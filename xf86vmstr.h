@@ -1,4 +1,4 @@
-/* $XFree86: xc/include/extensions/xf86vmstr.h,v 3.28 2002/12/22 00:46:50 dawes Exp $ */
+/* $XFree86$ */
 /*
 
 Copyright 1995  Kaleb S. KEITHLEY
