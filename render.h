@@ -1,5 +1,5 @@
 /*
- * $XFree86: xc/include/extensions/render.h,v 1.10 2002/11/06 22:47:49 keithp Exp $
+ * $XFree86: xc/include/extensions/render.h,v 1.11 2002/11/23 02:34:45 keithp Exp $
  *
  * Copyright © 2000 SuSE, Inc.
  *
