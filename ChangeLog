@@ -1,3 +1,7 @@
+2004-02-03  Jim Gettys  <jg@freedesktop.org>
+
+	* AUTHORS: Add contents to AUTHORS file
+
 2004-01-15  Daniel Stone  <daniel@fooishbar.org>
 	* Tag release 2.0.1 for first freedesktop.org clientside lib release.
 
