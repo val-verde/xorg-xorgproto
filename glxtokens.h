@@ -204,6 +204,12 @@ extern "C" {
 #define GLX_SLOW_VISUAL_EXT		0x8001
 #define GLX_NON_CONFORMANT_VISUAL_EXT	0x800D
 
+/* Property values for swap method (GLX_OML_swap_method) */
+#define GLX_SWAP_METHOD_OML                0x8060
+#define GLX_SWAP_EXCHANGE_OML              0x8061
+#define GLX_SWAP_COPY_OML                  0x8062
+#define GLX_SWAP_UNDEFINED_OML             0x8063
+
 /*
 ** Names for attributes to glXGetClientString.
 */
