@@ -1,4 +1,4 @@
-/* $XFree86$ */
+/* $XFree86: xc/include/extensions/xf86vmode.h,v 3.31 2002/12/22 00:46:50 dawes Exp $ */
 /*
 
 Copyright 1995  Kaleb S. KEITHLEY
