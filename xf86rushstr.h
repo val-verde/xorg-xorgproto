@@ -1,4 +1,4 @@
-/* $XFree86$ */
+/* $XFree86: xc/include/extensions/xf86rushstr.h,v 1.5 2001/08/01 00:44:36 tsi Exp $ */
 /*
 
 Copyright (c) 1998  Daryll Strauss

@@ -1,4 +1,4 @@
-/* $XFree86$ */
+/* $XFree86: xc/include/extensions/xf86rush.h,v 1.5 2003/11/17 22:20:04 dawes Exp $ */
 /*
 
 Copyright (c) 1998  Daryll Strauss
