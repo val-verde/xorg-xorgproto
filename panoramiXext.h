@@ -26,7 +26,7 @@ Equipment Corporation.
 /*  
  *	PanoramiX definitions
  */
-/* $XFree86: xc/include/extensions/panoramiXext.h,v 3.7 2003/11/17 22:20:03 dawes Exp $ */
+/* $XFree86$ */
 
 /* THIS IS NOT AN X PROJECT TEAM SPECIFICATION */
 
