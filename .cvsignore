@@ -1,0 +1,12 @@
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache
+compositeext.pc
+config.log
+config.status
+configure
+install-sh
+missing
+mkinstalldirs
+
