@@ -1,5 +1,5 @@
 /*
- * $Id: composite.h,v 1.2 2003-11-05 05:39:58 keithp Exp $
+ * $Id: composite.h,v 1.3 2003-11-07 04:21:01 keithp Exp $
  *
  * Copyright © 2003 Keith Packard
  *
@@ -40,5 +40,7 @@
 #define X_CompositeUnredirectWindow		3
 #define X_CompositeUnredirectSubwindows		4
 #define X_CompositeCreateRegionFromBorderClip	5
+
+#define CompositeNumberRequests	    (X_CompositeCreateRegionFromBorderClip + 1)
 
 #endif /* _COMPOSITE_H_ */

@@ -1,5 +1,5 @@
 /*
- * $Id: compositeproto.h,v 1.2 2003-11-05 05:39:58 keithp Exp $
+ * $Id: compositeproto.h,v 1.3 2003-11-07 04:21:01 keithp Exp $
  *
  * Copyright © 2003 Keith Packard
  *
@@ -79,27 +79,33 @@ typedef struct {
     CARD8   update;
     CARD8   pad1;
     CARD16  pad2 B16;
-} xCompositeRedirectWindowsReq;
+} xCompositeRedirectSubwindowsReq;
 
-#define sz_xCompositeRedirectWindowsReq	    12
+#define sz_xCompositeRedirectSubwindowsReq	    12
 
 typedef struct {
     CARD8   reqType;
     CARD8   compositeReqType;
     CARD16  length B16;
     Window  window B32;
+    CARD8   update;
+    CARD8   pad1;
+    CARD16  pad2 B16;
 } xCompositeUnredirectWindowReq;
 
-#define sz_xCompositeUnredirectWindowReq    8
+#define sz_xCompositeUnredirectWindowReq    12
 
 typedef struct {
     CARD8   reqType;
     CARD8   compositeReqType;
     CARD16  length B16;
     Window  window B32;
-} xCompositeUnredirectWindowsReq;
+    CARD8   update;
+    CARD8   pad1;
+    CARD16  pad2 B16;
+} xCompositeUnredirectSubwindowsReq;
 
-#define sz_xCompositeUnredirectWindowsReq   8
+#define sz_xCompositeUnredirectSubwindowsReq   12
 
 typedef struct {
     CARD8   reqType;

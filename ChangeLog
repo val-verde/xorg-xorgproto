@@ -1,3 +1,12 @@
+2003-11-06  Keith Packard  <keithp@keithp.com>
+
+	* composite.h:
+	* compositeproto.h:
+	Add update mode to Unredirect requests so clients
+	can redirect multiple times (and then unredirect)
+	Add CompositeNumberRequests
+	Fix some typeos
+
 2003-11-04  Keith Packard  <keithp@keithp.com>
 
 	* COPYING:
