@@ -1,4 +1,4 @@
-/* $XFree86: xc/include/extensions/xf86vmode.h,v 3.20.2.1 1997/07/13 14:44:57 dawes Exp $ */
+/* $XFree86: xc/include/extensions/xf86vmode.h,v 3.31 2002/12/22 00:46:50 dawes Exp $ */
 /*
 
 Copyright 1995  Kaleb S. KEITHLEY
@@ -51,6 +51,17 @@ from Kaleb S. KEITHLEY
 #define X_XF86VidModeSwitchToMode	10
 #define X_XF86VidModeGetViewPort	11
 #define X_XF86VidModeSetViewPort	12
+/* new for version 2.x of this extension */
+#define X_XF86VidModeGetDotClocks	13
+#define X_XF86VidModeSetClientVersion	14
+#define X_XF86VidModeSetGamma		15
+#define X_XF86VidModeGetGamma		16
+#define X_XF86VidModeGetGammaRamp	17
+#define X_XF86VidModeSetGammaRamp	18
+#define X_XF86VidModeGetGammaRampSize	19
+#define X_XF86VidModeGetPermissions	20
+
+#define CLKFLAG_PROGRAMABLE		1
 
 #ifdef XF86VIDMODE_EVENTS
 #define XF86VidModeNotify		0
@@ -73,6 +84,9 @@ from Kaleb S. KEITHLEY
 #define XF86VidModeZoomLocked		6
 #define XF86VidModeNumberErrors		(XF86VidModeZoomLocked + 1)
 
+#define XF86VM_READ_PERMISSION	1
+#define XF86VM_WRITE_PERMISSION	2
+
 #ifndef _XF86VIDMODE_SERVER_
 
 typedef struct {
@@ -80,6 +94,7 @@ typedef struct {
     unsigned short	hsyncstart;
     unsigned short	hsyncend;
     unsigned short	htotal;
+    unsigned short	hskew;
     unsigned short	vdisplay;
     unsigned short	vsyncstart;
     unsigned short	vsyncend;
@@ -100,6 +115,7 @@ typedef struct {
     unsigned short	hsyncstart;
     unsigned short	hsyncend;
     unsigned short	htotal;
+    unsigned short	hskew;
     unsigned short	vdisplay;
     unsigned short	vsyncstart;
     unsigned short	vsyncend;
@@ -122,7 +138,7 @@ typedef struct {
 typedef struct {
     char*			vendor;
     char*			model;
-    float			bandwidth;
+    float			EMPTY;
     unsigned char		nhsync;
     XF86VidModeSyncRange*	hsync;
     unsigned char		nvsync;
@@ -141,6 +157,13 @@ typedef struct {
     Time time;			/* event timestamp */
 } XF86VidModeNotifyEvent;
 
+typedef struct {
+    float red;			/* Red Gamma value */
+    float green;		/* Green Gamma value */
+    float blue;			/* Blue Gamma value */
+} XF86VidModeGamma;
+
+
 #define XF86VidModeSelectNextMode(disp, scr) \
 	XF86VidModeSwitchMode(disp, scr, 1)
 #define XF86VidModeSelectPrevMode(disp, scr) \
@@ -149,120 +172,147 @@ typedef struct {
 _XFUNCPROTOBEGIN
 
 Bool XF86VidModeQueryVersion(
-#if NeedFunctionPrototypes
     Display*		/* dpy */,
     int*		/* majorVersion */,
     int*		/* minorVersion */
-#endif
 );
 
 Bool XF86VidModeQueryExtension(
-#if NeedFunctionPrototypes
     Display*		/* dpy */,
     int*		/* event_base */,
     int*		/* error_base */
-#endif
+);
+
+Bool XF86VidModeSetClientVersion(
+    Display*		/* dpy */
 );
 
 Bool XF86VidModeGetModeLine(
-#if NeedFunctionPrototypes
     Display*			/* dpy */,
     int				/* screen */,
     int*			/* dotclock */,
     XF86VidModeModeLine*	/* modeline */
-#endif
 );
 
 Bool XF86VidModeGetAllModeLines(
-#if NeedFunctionPrototypes
     Display*			/* dpy */,
     int				/* screen */,
     int*			/* modecount */,
     XF86VidModeModeInfo***	/* modelinesPtr */
-#endif
 );
 
 Bool XF86VidModeAddModeLine(
-#if NeedFunctionPrototypes
     Display*			/* dpy */,
     int				/* screen */,
     XF86VidModeModeInfo*	/* new modeline */,
     XF86VidModeModeInfo*	/* after modeline */
-#endif
 );
 
 Bool XF86VidModeDeleteModeLine(
-#if NeedFunctionPrototypes
     Display*			/* dpy */,
     int				/* screen */,
     XF86VidModeModeInfo*	/* modeline */
-#endif
 );
 
 Bool XF86VidModeModModeLine(
-#if NeedFunctionPrototypes
     Display*			/* dpy */,
     int				/* screen */,
     XF86VidModeModeLine*	/* modeline */
-#endif
 );
 
 Status XF86VidModeValidateModeLine(
-#if NeedFunctionPrototypes
     Display*			/* dpy */,
     int				/* screen */,
     XF86VidModeModeInfo*	/* modeline */
-#endif
 );
 
 Bool XF86VidModeSwitchMode(
-#if NeedFunctionPrototypes
     Display*		/* dpy */,
     int			/* screen */,
     int			/* zoom */
-#endif
 );
 
 Bool XF86VidModeSwitchToMode(
-#if NeedFunctionPrototypes
     Display*			/* dpy */,
     int				/* screen */,
     XF86VidModeModeInfo*	/* modeline */
-#endif
 );
 
 Bool XF86VidModeLockModeSwitch(
-#if NeedFunctionPrototypes
     Display*		/* dpy */,
     int			/* screen */,
     int			/* lock */
-#endif
 );
 
 Bool XF86VidModeGetMonitor(
-#if NeedFunctionPrototypes
     Display*		/* dpy */,
     int			/* screen */,
     XF86VidModeMonitor*	/* monitor */
-#endif
 );
 
 Bool XF86VidModeGetViewPort(
-#if NeedFunctionPrototypes
     Display*		/* dpy */,
     int			/* screen */,
     int*		/* x return */,
     int*		/* y return */
-#endif
 );
 
 Bool XF86VidModeSetViewPort(
-#if NeedFunctionPrototypes
     Display*		/* dpy */,
     int			/* screen */,
     int			/* x */,
     int			/* y */
-#endif
+);
+
+Bool XF86VidModeGetDotClocks(
+    Display*		/* dpy */,
+    int			/* screen */,
+    int*		/* flags return */,
+    int*		/* number of clocks return */,
+    int*		/* max dot clock return */,
+    int**		/* clocks return */
+);
+
+Bool XF86VidModeGetGamma(
+    Display*			/* dpy */,
+    int				/* screen */,
+    XF86VidModeGamma*		/* Gamma */
+);
+
+Bool XF86VidModeSetGamma(
+    Display*			/* dpy */,
+    int				/* screen */,
+    XF86VidModeGamma*		/* Gamma */
+);
+
+Bool XF86VidModeSetGammaRamp(
+    Display*                    /* dpy */,
+    int                         /* screen */,
+    int				/* size */, 
+    unsigned short*             /* red array */,
+    unsigned short*             /* green array */,
+    unsigned short*             /* blue array */
+);
+
+Bool XF86VidModeGetGammaRamp(
+    Display*                    /* dpy */,
+    int                         /* screen */,
+    int                         /* size */,
+    unsigned short*             /* red array */,
+    unsigned short*             /* green array */,
+    unsigned short*             /* blue array */
+);
+
+Bool XF86VidModeGetGammaRampSize(
+    Display*                    /* dpy */,
+    int                         /* screen */,
+    int*                        /* size */
+);
+
+Bool XF86VidModeGetPermissions(
+    Display*                    /* dpy */,
+    int                         /* screen */,
+    int*			/* permissions */
 );
 
 _XFUNCPROTOEND
