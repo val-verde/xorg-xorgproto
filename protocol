@@ -50,7 +50,7 @@ per-window basis or for each child of a window.  Detecting when to update
 may be done with the Damage extension.
 
 The off-screen storage includes the window contents, it's borders and the
-contents of all decendents.
+contents of all descendants.
 
 4. Errors
 
