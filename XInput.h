@@ -45,7 +45,7 @@ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 SOFTWARE.
 
 ********************************************************/
-/* $XFree86: xc/include/extensions/XInput.h,v 1.4 2003/11/17 22:20:02 dawes Exp $ */
+/* $XFree86$ */
 
 /* Definitions used by the library and client */
 
