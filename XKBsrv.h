@@ -24,6 +24,7 @@ OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION  WITH
 THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 ********************************************************/
+/* $XFree86: xc/include/extensions/XKBsrv.h,v 3.22 2002/11/20 04:49:01 dawes Exp $ */
 
 #ifndef _XKBSRV_H_
 #define	_XKBSRV_H_
@@ -69,6 +70,7 @@ THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 #include <X11/extensions/XKBstr.h>
 #include <X11/extensions/XKBproto.h>
+#include "inputstr.h"
 
 typedef struct _XkbInterest {
 	DeviceIntPtr		dev;
@@ -233,7 +235,7 @@ typedef struct	_XkbSrvLedInfo {
 
 #define XkbAX_KRGMask	 (XkbSlowKeysMask|XkbBounceKeysMask)
 #define	XkbAllFilteredEventsMask \
-			(XkbAccessXKeysMask|XkbRepeatKeysMask|XkbAX_KRGMask)
+	(XkbAccessXKeysMask|XkbRepeatKeysMask|XkbMouseKeysAccelMask|XkbAX_KRGMask)
 
 /***====================================================================***/
 
@@ -289,6 +291,7 @@ extern	int	DeviceButtonPress,DeviceButtonRelease;
 				 (c)->curKeySyms.minKeyCode+1)
 
 #define	XConvertCase(s,l,u)	XkbConvertCase(s,l,u)
+#undef	IsKeypadKey
 #define	IsKeypadKey(s)		XkbKSIsKeypad(s)
 
 #define	Status		int
@@ -309,6 +312,20 @@ extern	int	DeviceButtonPress,DeviceButtonRelease;
 #endif
 
 _XFUNCPROTOBEGIN
+
+extern void XkbUseMsg(
+#if NeedFunctionPrototypes
+    void
+#endif
+);
+
+extern int XkbProcessArguments(
+#if NeedFunctionPrototypes
+    int				/* argc */,
+    char **			/* argv */,
+    int				/* i */
+#endif
+);
 
 extern	void	XkbFreeCompatMap(
 #if NeedFunctionPrototypes
@@ -1050,6 +1067,14 @@ extern int XkbDDXSwitchScreen(
 #endif
 );
 
+extern int XkbDDXPrivate(
+#if NeedFunctionPrototypes
+	DeviceIntPtr	/* dev */,
+	KeyCode		/* key */,
+	XkbAction *	/* act */
+#endif
+);
+
 extern void XkbDisableComputedAutoRepeats(
 #if NeedFunctionPrototypes
 	DeviceIntPtr 	/* pXDev */,
@@ -1116,12 +1141,6 @@ extern	Bool	XkbInitKeyboardDeviceStruct(
 #endif
 );
 
-extern	void	XkbInitDevice(
-#if NeedFunctionPrototypes
-	DeviceIntPtr 		/* pXDev */
-#endif
-);
-
 extern	int SProcXkbDispatch(
 #if NeedFunctionPrototypes
 	ClientPtr		/* client */
@@ -1159,11 +1178,134 @@ extern	Status	 XkbChangeKeycodeRange(
 #endif
 );
 
+extern int XkbFinishDeviceInit(
+#if NeedFunctionPrototypes
+	DeviceIntPtr		/* pXDev */
+#endif
+);
+
+extern void XkbFreeSrvLedInfo(
+#if NeedFunctionPrototypes
+	XkbSrvLedInfoPtr	/* sli */
+#endif
+);
+
+extern void XkbFreeInfo(
+#if NeedFunctionPrototypes
+	XkbSrvInfoPtr		/* xkbi */
+#endif
+);
+
+extern Status XkbChangeTypesOfKey(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	int			/* key */,
+	int			/* nGroups */,
+	unsigned int		/* groups */,
+	int *			/* newTypesIn */,
+	XkbMapChangesPtr	/* changes */
+#endif
+);
+
+extern XkbKeyTypePtr XkbAddKeyType(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	Atom			/* name */,
+	int			/* map_count */,
+	Bool			/* want_preserve */,
+	int			/* num_lvls */
+#endif
+);
+
+extern Status XkbInitCanonicalKeyTypes(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	unsigned int		/* which */,
+	int			/* keypadVMod */
+#endif
+);
+
+extern int XkbKeyTypesForCoreSymbols(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	int			/* map_width */,
+	KeySym *		/* core_syms */,
+	unsigned int		/* protected */,
+	int *			/* types_inout */,
+	KeySym *		/* xkb_syms_rtrn */
+#endif
+);
+
+extern Bool XkbApplyCompatMapToKey(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	KeyCode			/* key */,
+	XkbChangesPtr		/* changes */
+#endif
+);
+
+extern Bool XkbUpdateMapFromCore(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	KeyCode			/* first_key */,
+	int			/* num_keys */,
+	int			/* map_width */,
+	KeySym *		/* core_keysyms */,
+	XkbChangesPtr		/* changes */
+#endif
+);
+
+extern void XkbFreeControls(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	unsigned int		/* which */,
+	Bool			/* freeMap */
+#endif
+);
+
+extern void XkbFreeIndicatorMaps(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */
+#endif
+);
+
+extern Bool XkbApplyVirtualModChanges(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	unsigned int		/* changed */,
+	XkbChangesPtr		/* changes */
+#endif
+);
+
+extern Bool XkbUpdateActionVirtualMods(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	XkbAction *		/* act */,
+	unsigned int		/* changed */
+#endif
+);
+
+extern void XkbUpdateKeyTypeVirtualMods(
+#if NeedFunctionPrototypes
+	XkbDescPtr		/* xkb */,
+	XkbKeyTypePtr		/* type */,
+	unsigned int		/* changed */,
+	XkbChangesPtr		/* changes */
+#endif
+);
+
+extern void XkbSendNewKeyboardNotify(
+#if NeedFunctionPrototypes
+	DeviceIntPtr		/* kbd */,
+	xkbNewKeyboardNotify *	/* pNKN */
+#endif
+);
+
 #ifdef XKBSRV_NEED_FILE_FUNCS
 
-#include "extensions/XKMformat.h"
-#include "extensions/XKBfile.h"
-#include "extensions/XKBrules.h"
+#include <X11/extensions/XKMformat.h>
+#include <X11/extensions/XKBfile.h>
+#include <X11/extensions/XKBrules.h>
 
 #define	_XkbListKeymaps		0
 #define	_XkbListKeycodes	1
@@ -1249,20 +1391,6 @@ extern XPointer XkbDDXPreloadConfig(
 	XkbRF_VarDefsPtr	/* defs */,
 	XkbComponentNamesPtr	/* names */,
 	DeviceIntPtr		/* dev */
-#endif
-);
-
-extern	int XkbDDXUsesSoftRepeat(
-#if NeedFunctionPrototypes
-	DeviceIntPtr 	/* pXDev */
-#endif
-);
-
-extern	void XkbDDXFakePointerMotion(
-#if NeedFunctionPrototypes
-	unsigned int		/* flags */,
-	int			/* x */,
-	int			/* y */
 #endif
 );
 
