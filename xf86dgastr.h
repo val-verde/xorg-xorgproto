@@ -1,4 +1,4 @@
-/* $XFree86: xc/include/extensions/xf86dgastr.h,v 3.14 2001/08/01 00:44:36 tsi Exp $ */
+/* $XFree86$ */
 /*
 
 Copyright (c) 1995  Jon Tombs
