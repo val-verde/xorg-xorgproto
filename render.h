@@ -33,7 +33,7 @@ typedef unsigned long	PictFormat;
 
 #define RENDER_NAME	"RENDER"
 #define RENDER_MAJOR	0
-#define RENDER_MINOR	8
+#define RENDER_MINOR	9
 
 #define X_RenderQueryVersion		    0
 #define X_RenderQueryPictFormats	    1
@@ -68,8 +68,11 @@ typedef unsigned long	PictFormat;
 #define X_RenderSetPictureTransform	    28
 #define X_RenderQueryFilters		    29
 #define X_RenderSetPictureFilter	    30
+/* 0.8 */
 #define X_RenderCreateAnimCursor	    31
-#define RenderNumberRequests		    (X_RenderCreateAnimCursor+1)
+/* 0.9 */
+#define X_RenderAddTraps		    32
+#define RenderNumberRequests		    (X_RenderAddTraps+1)
 
 #define BadPictFormat			    0
 #define BadPicture			    1
