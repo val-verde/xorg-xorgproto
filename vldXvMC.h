@@ -21,7 +21,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  * 
- * Author: Thomas Hellström, 2004.
+ * Author: Thomas HellstrÃ¶m, 2004.
  */
 
 
