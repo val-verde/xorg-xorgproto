@@ -21,7 +21,8 @@ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 SOFTWARE.
 
 ******************************************************************/
-/* $NCDId: @(#)font.h,v 1.7 1991/06/24 17:00:23 lemke Exp $ */
+/* $XFree86: xc/include/fonts/font.h,v 3.5 2001/01/17 17:53:26 dawes Exp $ */
+/* $NCDXorg: @(#)font.h,v 1.7 1991/06/24 17:00:23 lemke Exp $ */
 
 #ifndef FONT_H
 #define FONT_H
@@ -95,34 +96,71 @@ typedef int DrawDirection;
 #define CACHING_OFF 0
 #define CACHE_16_BIT_GLYPHS 1
 #define CACHE_ALL_GLYPHS 2
-#define DEFAULT_GLYPH_CACHING_MODE CACHING_OFF
+#define DEFAULT_GLYPH_CACHING_MODE CACHE_16_BIT_GLYPHS
 extern int glyphCachingMode;
 
+struct _Client;
+
 extern int StartListFontsWithInfo(
-#if NeedFunctionPrototypes
-    ClientPtr /*client*/,
+    struct _Client * /*client*/,
     int /*length*/,
-    unsigned char */*pattern*/,
+    unsigned char * /*pattern*/,
     int /*max_names*/
-#endif
 );
 
-extern FontNamesPtr MakeFontNamesRecord( /* size */ );
-extern void FreeFontNames();
-extern int  AddFontNamesName();
+extern FontNamesPtr MakeFontNamesRecord(
+    unsigned /* size */
+);
 
+extern void FreeFontNames(
+    FontNamesPtr /* pFN*/
+);
+
+extern int  AddFontNamesName(
+    FontNamesPtr /* names */,
+    char * /* name */,
+    int /* length */
+);
+
+#if 0 /* unused */
 extern int  FontToFSError();
-
-extern FontResolutionPtr GetClientResolutions();
+extern FontResolutionPtr GetClientResolution();
+#endif
 
 typedef struct _FontPatternCache    *FontPatternCachePtr;
 
-extern FontPatternCachePtr  MakeFontPatternCache ();
-extern void		    FreeFontPatternCache ();
-extern void		    EmtpyFontPatternCache ();
-extern void		    CacheFontPattern ();
-extern FontPtr		    FindCachedFontPattern ();
-extern void		    RemoveCachedFontPattern ();
+extern FontPatternCachePtr  MakeFontPatternCache (
+    void
+);
+
+extern void		    FreeFontPatternCache (
+    FontPatternCachePtr /* cache */
+);
+
+extern void		    EmptyFontPatternCache (
+    FontPatternCachePtr /* cache */
+);
+
+extern void		    CacheFontPattern (
+    FontPatternCachePtr /* cache */,
+    char * /* pattern */,
+    int /* patlen */,
+    FontPtr /* pFont */
+);
+extern FontResolutionPtr GetClientResolutions(
+    int * /* num */
+);
+
+extern FontPtr		    FindCachedFontPattern (
+    FontPatternCachePtr /* cache */,
+    char * /* pattern */,
+    int /* patlen */
+);
+
+extern void		    RemoveCachedFontPattern (
+    FontPatternCachePtr /* cache */,
+    FontPtr /* pFont */
+);
 
 typedef enum {
     Linear8Bit, TwoD8Bit, Linear16Bit, TwoD16Bit

@@ -50,16 +50,16 @@ used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from The Open Group.
 
 */
+/* $XFree86: xc/include/fonts/FS.h,v 1.8 2001/12/14 19:53:31 dawes Exp $ */
 
 #ifndef _FS_H_
 #define	_FS_H_
 
-#include "fsmasks.h"
+#include <X11/Xdefs.h>
+#include <X11/fonts/fsmasks.h>
 
 #define	FS_PROTOCOL		2
 #define	FS_PROTOCOL_MINOR	0
-
-typedef unsigned long FSID;
 
 #ifndef X_PROTOCOL
 /* protocol familes */
@@ -67,10 +67,6 @@ typedef unsigned long FSID;
 #define FamilyDECnet            1
 #define FamilyChaos             2
 
-typedef unsigned long Mask;
-
-typedef FSID	Font;
-typedef FSID	AccContext;
 
 typedef unsigned int    FSDrawDirection;
 #endif
