@@ -23,6 +23,7 @@ shall not be used in advertising or otherwise to promote the sale, use or other
 dealings in this Software without prior written authorization from Digital
 Equipment Corporation.
 ******************************************************************/
+/* $XFree86: xc/include/extensions/panoramiXproto.h,v 3.6 2001/01/17 17:53:22 dawes Exp $ */
 
 /* THIS IS NOT AN X PROJECT TEAM SPECIFICATION */
 
@@ -35,6 +36,9 @@ Equipment Corporation.
 #define X_PanoramiXGetState		1
 #define X_PanoramiXGetScreenCount	2
 #define X_PanoramiXGetScreenSize	3
+
+#define X_XineramaIsActive		4
+#define X_XineramaQueryScreens		5
 
 typedef struct _PanoramiXQueryVersion {
 	CARD8	reqType;		/* always PanoramiXReqCode */
@@ -132,13 +136,57 @@ typedef struct {
 } xPanoramiXGetScreenSizeReply;
 #define sz_panoramiXGetScreenSizeReply 32	
 
-/* define any errors specific to this extension */
+/************  Alternate protocol  ******************/
 
-/* If a client asks for ScreenCount when PanoramiX
-   is not in use */
+typedef struct {
+        CARD8   reqType;
+        CARD8   panoramiXReqType;
+        CARD16  length B16;
+} xXineramaIsActiveReq;
+#define sz_xXineramaIsActiveReq 4
+
+typedef struct {
+	BYTE	type;
+	CARD8	pad1;			
+	CARD16	sequenceNumber B16;
+	CARD32	length	B32;
+	CARD32	state	B32;
+	CARD32	pad2	B32;
+	CARD32  pad3  	B32;
+	CARD32  pad4  	B32;
+	CARD32	pad5	B32;
+	CARD32	pad6	B32;
+} xXineramaIsActiveReply;
+#define sz_XineramaIsActiveReply 32	
 
 
-/* If a client asks for Screen Size of a screen when
-   PanoramiX is not in use */
+typedef struct {
+        CARD8   reqType;
+        CARD8   panoramiXReqType;
+        CARD16  length B16;
+} xXineramaQueryScreensReq;
+#define sz_xXineramaQueryScreensReq 4
+
+typedef struct {
+	BYTE	type;
+	CARD8	pad1;			
+	CARD16	sequenceNumber B16;
+	CARD32	length	B32;
+	CARD32	number	B32;
+	CARD32	pad2	B32;
+	CARD32  pad3  	B32;
+	CARD32  pad4  	B32;
+	CARD32	pad5	B32;
+	CARD32	pad6	B32;
+} xXineramaQueryScreensReply;
+#define sz_XineramaQueryScreensReply 32	
+
+typedef struct {
+	INT16   x_org   B16;
+	INT16   y_org   B16;
+	CARD16  width   B16;
+	CARD16  height  B16;
+} xXineramaScreenInfo;
+#define sz_XineramaScreenInfo 8
 
 #endif 
