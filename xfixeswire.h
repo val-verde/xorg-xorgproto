@@ -27,7 +27,7 @@
 #define _XFIXESWIRE_H_
 
 #define XFIXES_NAME	"XFIXES"
-#define XFIXES_MAJOR	2
+#define XFIXES_MAJOR	3
 #define XFIXES_MINOR	0
 
 /*************** Version 1 ******************/
@@ -60,8 +60,10 @@
 #define X_XFixesGetCursorImageAndName	    25
 #define X_XFixesChangeCursor		    26
 #define X_XFixesChangeCursorByName	    27
+/*************** Version 3 ******************/
+#define X_XFixesExpandRegion		    28
 
-#define XFixesNumberRequests		    (X_XFixesChangeCursorByName+1)
+#define XFixesNumberRequests		    29
 
 /* Selection events share one event number */
 #define XFixesSelectionNotify		    0

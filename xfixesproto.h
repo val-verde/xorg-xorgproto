@@ -446,6 +446,22 @@ typedef struct {
 
 #define sz_xXFixesChangeCursorByNameReq	12
 
+/*************** Version 3 ******************/
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  source B32;
+    Region  destination B32;
+    CARD16  left B16;
+    CARD16  right B16;
+    CARD16  top B16;
+    CARD16  bottom B16;
+} xXFixesExpandRegionReq;
+
+#define sz_xXFixesExpandRegionReq	20
+
 #undef Region
 #undef Picture
 #undef Window

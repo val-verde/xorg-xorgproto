@@ -1,3 +1,10 @@
+2004-07-26  Keith Packard  <keithp@keithp.com>
+
+	* configure.ac:
+	* xfixesproto.h:
+	* xfixeswire.h:
+	Add XFixesExpandRegion
+
 2004-02-03  Jim Gettys  <jg@freedesktop.org>
 
 	* AUTHORS: Add contents to AUTHORS file
