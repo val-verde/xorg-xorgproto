@@ -1,0 +1,9 @@
+2003-09-16  Anders Carlsson  <andersca@gnome.org>
+
+	* configure.ac:
+	* randr-uninstalled.pc.in:
+	Add uninstalled pc file.
+	
+2003-04-21	Keith Packard <keithp@keithp.com>
+
+	+ Added ChangeLog
