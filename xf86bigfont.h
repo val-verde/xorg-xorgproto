@@ -1,4 +1,4 @@
-/* $XFree86$ */
+/* $XFree86: xc/include/extensions/xf86bigfont.h,v 1.2 2001/08/01 00:44:35 tsi Exp $ */
 /*
  * Declarations for the BIGFONT extension.
  *
