@@ -85,6 +85,10 @@ extern "C" {
 #define GLX_MAX_PBUFFER_PIXELS		0x8018
 #define GLX_VISUAL_ID			0x800B
 
+/* FBConfigSGIX Attributes */
+#define GLX_OPTIMAL_PBUFFER_WIDTH_SGIX	0x8019
+#define GLX_OPTIMAL_PBUFFER_HEIGHT_SGIX	0x801A
+
 /*
 ** Error return values from glXGetConfig.  Success is indicated by
 ** a value of 0.
@@ -209,6 +213,9 @@ extern "C" {
 #define GLX_SWAP_EXCHANGE_OML              0x8061
 #define GLX_SWAP_COPY_OML                  0x8062
 #define GLX_SWAP_UNDEFINED_OML             0x8063
+
+/* Property values for multi-sampling */
+#define GLX_VISUAL_SELECT_GROUP_SGIX	0x8028	/* visuals grouped by select priority */
 
 /*
 ** Names for attributes to glXGetClientString.
