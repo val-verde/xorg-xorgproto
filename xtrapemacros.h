@@ -1,4 +1,4 @@
-/* $XFree86$ */
+/* $XFree86: xc/include/extensions/xtrapemacros.h,v 1.2 2001/11/21 23:06:58 tsi Exp $ */
 #ifndef __XTRAPEMACROS__
 #define __XTRAPEMACROS__ "@(#)xtrapemacros.h	1.9 - 90/09/18  "
 
