@@ -27,16 +27,39 @@
 #define _XFIXESWIRE_H_
 
 #define XFIXES_NAME	"XFIXES"
-#define XFIXES_MAJOR	1
+#define XFIXES_MAJOR	2
 #define XFIXES_MINOR	0
 
+/*************** Version 1 ******************/
 #define X_XFixesQueryVersion		    0
 #define X_XFixesChangeSaveSet		    1
 #define X_XFixesSelectSelectionInput	    2
 #define X_XFixesSelectCursorInput	    3
 #define X_XFixesGetCursorImage		    4
+/*************** Version 2 ******************/
+#define X_XFixesCreateRegion		    5
+#define X_XFixesCreateRegionFromBitmap	    6
+#define X_XFixesCreateRegionFromWindow	    7
+#define X_XFixesCreateRegionFromGC	    8
+#define X_XFixesCreateRegionFromPicture	    9
+#define X_XFixesDestroyRegion		    10
+#define X_XFixesSetRegion		    11
+#define X_XFixesUnionRegion		    12
+#define X_XFixesIntersectRegion		    13
+#define X_XFixesSubtractRegion		    14
+#define X_XFixesInvertRegion		    15
+#define X_XFixesRegionExtents		    16
+#define X_XFixesFetchRegion		    17
+#define X_XFixesSetGCClipRegion		    18
+#define X_XFixesSetWindowShapeRegion	    19
+#define X_XFixesSetPictureClipRegion	    20
+#define X_XFixesSetCursorName		    21
+#define X_XFixesGetCursorName		    22
+#define X_XFixesGetCursorImageAndName	    23
+#define X_XFixesChangeCursor		    24
+#define X_XFixesChangeCursorByName	    25
 
-#define XFixesNumberRequests		    (X_XFixesGetCursorImage+1)
+#define XFixesNumberRequests		    (X_XFixesChangeCursorByName+1)
 
 /* Selection events share one event number */
 #define XFixesSelectionNotify		    0
@@ -59,12 +82,19 @@
 
 #define XFixesNumberEvents		    (2)
 
-#define XFixesNumberErrors		    (0)
+/* errors */
+#define BadRegion			    0
+#define XFixesNumberErrors		    (BadRegion+1)
 
 #define SaveSetNearest			    0
 #define SaveSetRoot			    1
 
 #define SaveSetMap			    0
 #define SaveSetUnmap			    1
+
+/*************** Version 2 ******************/
+
+#define WindowRegionBounding		    0
+#define WindowRegionClip		    1
 
 #endif	/* _XFIXESWIRE_H_ */

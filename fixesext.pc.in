@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: RandR
-Description: RandR extension headers
+Name: FixesExt
+Description: X Fixes extension headers
 Version: @PACKAGE_VERSION@
-Cflags: -I${includedir}
+Cflags: -I${includedir} @XEXTENSIONS_CFLAGS@

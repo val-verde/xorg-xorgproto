@@ -27,6 +27,9 @@
 
 #include <X11/Xmd.h>
 #include <X11/extensions/xfixeswire.h>
+#define _SHAPE_SERVER_
+#include <X11/extensions/shape.h>
+#undef _SHAPE_SERVER_
 
 #define Window CARD32
 #define Drawable CARD32
@@ -40,6 +43,15 @@
 #define Time CARD32
 #define KeyCode CARD8
 #define KeySym CARD32
+#define Picture CARD32
+
+/*************** Version 1 ******************/
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+} xXFixesReq;
 
 /* 
  * requests and replies
@@ -123,10 +135,10 @@ typedef struct {
     Window  window B32;
     CARD32  cursorSerial B32;
     Time    timestamp;
+    Atom    name B32;	    /* Version 2 */
     CARD32  pad1 B32;
     CARD32  pad2 B32;
     CARD32  pad3 B32;
-    CARD32  pad4 B32;
 } xXFixesCursorNotifyEvent;
 
 typedef struct {
@@ -155,6 +167,270 @@ typedef struct {
 
 #define sz_xXFixesGetCursorImageReply	32
 
+/*************** Version 2 ******************/
+
+#define Region CARD32
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+    /* LISTofRECTANGLE */
+} xXFixesCreateRegionReq;
+
+#define sz_xXFixesCreateRegionReq	8
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+    Pixmap  bitmap B32;
+} xXFixesCreateRegionFromBitmapReq;
+
+#define sz_xXFixesCreateRegionFromBitmapReq	12
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+    Window  window B32;
+    CARD8   kind;
+    CARD8   pad1;
+    CARD16  pad2 B16;
+} xXFixesCreateRegionFromWindowReq;
+
+#define sz_xXFixesCreateRegionFromWindowReq	16
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+    GContext gc B32;
+} xXFixesCreateRegionFromGCReq;
+
+#define sz_xXFixesCreateRegionFromGCReq	12
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+    Picture picture B32;
+} xXFixesCreateRegionFromPictureReq;
+
+#define sz_xXFixesCreateRegionFromPictureReq	12
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+} xXFixesDestroyRegionReq;
+
+#define sz_xXFixesDestroyRegionReq	8
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+    /* LISTofRECTANGLE */
+} xXFixesSetRegionReq;
+
+#define sz_xXFixesSetRegionReq		8
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  source1 B32;
+    INT16   xOff1 B16, yOff1 B16;
+    Region  source2 B32;
+    INT16   xOff2 B16, yOff2 B16;
+    Region  destination B32;
+} xXFixesCombineRegionReq,
+  xXFixesUnionRegionReq,
+  xXFixesIntersectRegionReq,
+  xXFixesSubtractRegionReq;
+
+#define sz_xXFixesCombineRegionReq	24
+#define sz_xXFixesUnionRegionReq	sz_xXFixesCombineRegionReq
+#define sz_xXFixesIntersectRegionReq	sz_xXFixesCombineRegionReq
+#define sz_xXFixesSubtractRegionReq	sz_xXFixesCombineRegionReq
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  source B32;
+    INT16   xOff B16, yOff B16;
+    INT16   x B16, y B16;
+    CARD16  width B16, height B16;
+    Region  destination B32;
+} xXFixesInvertRegionReq;
+
+#define sz_xXFixesInvertRegionReq	24
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  source B32;
+    Region  destination B32;
+} xXFixesRegionExtentsReq;
+
+#define sz_xXFixesRegionExtentsReq	12
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+} xXFixesFetchRegionReq;
+
+#define sz_xXFixesFetchRegionReq	8
+
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    BYTE    pad1;
+    CARD16  sequenceNumber B16;
+    CARD32  length B32;
+    INT16   x B16, y B16;
+    CARD16  width B16, height B16;
+    CARD32  pad2 B32;
+    CARD32  pad3 B32;
+    CARD32  pad4 B32;
+    CARD32  pad5 B32;
+} xXFixesFetchRegionReply;
+
+#define sz_xXFixesFetchRegionReply	32
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    GContext	gc B32;
+    Region  region B32;
+    INT16   xOrigin B16, yOrigin B16;
+} xXFixesSetGCClipRegionReq;
+
+#define sz_xXFixesSetGCClipRegionReq	16
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Window  dest;
+    BYTE    destKind;
+    CARD8   pad1;
+    CARD16  pad2 B16;
+    INT16   xOff B16, yOff B16;
+    Region  region;
+} xXFixesSetWindowShapeRegionReq;
+
+#define sz_xXFixesSetWindowShapeRegionReq	20
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Picture picture B32;
+    Region  region B32;
+    INT16   xOrigin B16, yOrigin B16;
+} xXFixesSetPictureClipRegionReq;
+
+#define sz_xXFixesSetPictureClipRegionReq   16
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Cursor  cursor B32;
+    CARD16  nbytes B16;
+    CARD16  pad B16;
+} xXFixesSetCursorNameReq;
+
+#define sz_xXFixesSetCursorNameReq	    12
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Cursor  cursor B32;
+} xXFixesGetCursorNameReq;
+
+#define sz_xXFixesGetCursorNameReq	    8
+
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    BYTE    pad1;
+    CARD16  sequenceNumber B16;
+    CARD32  length B32;
+    Atom    atom B32;
+    CARD16  nbytes B16;
+    CARD16  pad2 B16;
+    CARD32  pad3 B32;
+    CARD32  pad4 B32;
+    CARD32  pad5 B32;
+    CARD32  pad6 B32;
+} xXFixesGetCursorNameReply;
+
+#define sz_xXFixesGetCursorNameReply	    32
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+} xXFixesGetCursorImageAndNameReq;
+
+#define sz_xXFixesGetCursorImageAndNameReq  4
+
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    BYTE    pad1;
+    CARD16  sequenceNumber B16;
+    CARD32  length B32;
+    INT16   x B16;
+    INT16   y B16;
+    CARD16  width B16;
+    CARD16  height B16;
+    CARD16  xhot B16;
+    CARD16  yhot B16;
+    CARD32  cursorSerial B32;
+    Atom    cursorName B32;
+    CARD16  nbytes B16;
+    CARD16  pad B16;
+} xXFixesGetCursorImageAndNameReply;
+
+#define sz_xXFixesGetCursorImageAndNameReply	32
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Cursor  source B32;
+    Cursor  destination B32;
+} xXFixesChangeCursorReq;
+
+#define sz_xXFixesChangeCursorReq	12
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Cursor  source B32;
+    CARD16  nbytes;
+    CARD16  pad;
+} xXFixesChangeCursorByNameReq;
+
+#define sz_xXFixesChangeCursorByNameReq	12
+
+#undef Region
+#undef Picture
 #undef Window
 #undef Drawable
 #undef Font

@@ -1,8 +1,8 @@
                          The XFIXES Extension
-			    Version 1.0
-			     2002-11-30
+			    Version 2.0
+			     2003-10-15
 			    Keith Packard
-			  keithp@xfree86.org
+			  keithp@keithp.com
 
 1. Introduction
 
@@ -23,6 +23,8 @@ developers, in particular,
  +	Bill Haneman for the design for cursor image tracking.
 
  +	Havoc Pennington 
+
+ +	Fredrik Höglund for cursor names
 
 3. Basic Premise
 
@@ -54,6 +56,8 @@ QueryVersion
 	the clients responsibility to ensure that the server supports
 	a version which is compatible with its expectations.
 
+************* XFIXES VERSION 1 OR BETTER ***********
+
 5. Save Set processing changes
 
 Embedding one application within another provides a way of unifying
@@ -82,19 +86,22 @@ Having embedded windows suddenly appear at the top level can confuse users,
 so XFIXES also permits these windows to remain unmapped instead of being
 remapped.
 
+5.1 Requests
+
 ChangeSaveSet
 
-	window:				Window
-	mode:				{ Insert, Delete }
-	target:				{ Nearest, Root }
-	map:				{ Map, Unmap }
+		window:				Window
+		mode:				{ Insert, Delete }
+		target:				{ Nearest, Root }
+		map:				{ Map, Unmap }
 
-ChangeSaveSet is an extension of the core protocol ChangeSaveSet
-request.  As in that request, mode specifies whether the indicated
-window is inserted or deleted from the save-set.  Target specifies
-whether the window is reparented to the nearest non-client window as in the
-core protocol, or reparented to the root window.  Map specifies
-whether the window is mapped as in the core protocol or unmapped.
+	ChangeSaveSet is an extension of the core protocol ChangeSaveSet
+	request.  As in that request, mode specifies whether the indicated
+	window is inserted or deleted from the save-set.  Target specifies
+	whether the window is reparented to the nearest non-client window as
+	in the core protocol, or reparented to the root window.  Map
+	specifies whether the window is mapped as in the core protocol or
+	unmapped.
 
 6. Selection Tracking
 
@@ -102,9 +109,13 @@ Applications wishing to monitor the contents of current selections must
 poll for selection changes.  XFIXES improves this by providing an event
 delivered whenever the selection ownership changes.
 
+6.1 Types
+
 	SELECTIONEVENT			{ SetSelectionOwner,
 					  SelectionWindowDestroy,
 					  SelectionClientClose }
+
+6.1 Events
 
 SelectionNotify
 
@@ -115,17 +126,20 @@ SelectionNotify
 	timestamp:			Timestamp
 	selection-timestamp:		Timestamp
 
+6.2 Requests
+
 SelectSelectionInput
 
-	window:				Window
-	selection:			Atom
-	event-mask:			SETofSELECTIONEVENT
+		window:				Window
+		selection:			Atom
+		event-mask:			SETofSELECTIONEVENT
 
-Selects for events to be delivered to window when various causes of
-ownership of selection occur.  Subtype indicates the cause of the selection
-ownership change.  Owner is set to the current selection owner, or None.
-Timestamp indicates the time the event was generated while
-selection-timestamp indicates the timestamp used to own the selection.
+	Selects for events to be delivered to window when various causes of
+	ownership of selection occur.  Subtype indicates the cause of the
+	selection ownership change.  Owner is set to the current selection
+	owner, or None.  Timestamp indicates the time the event was
+	generated while selection-timestamp indicates the timestamp used to
+	own the selection.
 
 7. Cursor Image Monitoring
 
@@ -141,7 +155,10 @@ is no stable name available.  Instead, XFIXES returns only the image of the
 current cursor and provides a way to identify cursor images to avoid
 refetching the image each time it changes to a previously seen cursor.
 
+7.1 Types
 	CURSOREVENT			{ DisplayCursor }
+
+7.2 Events
 
 CursorNotify
 
@@ -149,45 +166,315 @@ CursorNotify
 	window:			Window
 	cursor-serial:		CARD32
 	timestamp:		Timestamp
+	name:			Atom		(Version 2 only)
+
+7.3 Requests
 
 SelectCursorInput
 
-	window:			Window
-	event-mask:		SETofCURSOREVENT
+		window:			Window
+		event-mask:		SETofCURSOREVENT
 
-This request directs cursor change events to the named window.  Events will
-be delivered irrespective of the screen on which they occur.  Subtype
-indicates the cause of the cursor image change (there is only one subtype at
-present).  Cursor-serial is a number assigned to the cursor image which
-identifies the image.  Cursors with different serial numbers may have
-different images.  Timestamp is the time of the cursor change.
+	This request directs cursor change events to the named window.
+	Events will be delivered irrespective of the screen on which they
+	occur.  Subtype indicates the cause of the cursor image change
+	(there is only one subtype at present).  Cursor-serial is a number
+	assigned to the cursor image which identifies the image.  Cursors
+	with different serial numbers may have different images.  Timestamp
+	is the time of the cursor change.
 
 GetCursorImage
 
-	->
+		->
 
-	x:			INT16
-	y:			INT16
-	width:			CARD16
-	height:			CARD16
-	x-hot:			CARD16
-	y-hot:			CARD16
-	cursor-serial:		CARD32
-	cursor-image:		LISTofCARD32
+		x:			INT16
+		y:			INT16
+		width:			CARD16
+		height:			CARD16
+		x-hot:			CARD16
+		y-hot:			CARD16
+		cursor-serial:		CARD32
+		cursor-image:		LISTofCARD32
 
-GetCursorImage returns the image of the current cursor.  X and y are the
-current cursor position.  Width and height are the size of the cursor image.
-X-hot and y-hot mark the hotspot within the cursor image.  Cursor-serial
-provides the number assigned to this cursor image, this same serial number
-will be reported in a CursorNotify event if this cursor image is redisplayed
-in the future.
+	GetCursorImage returns the image of the current cursor.  X and y are
+	the current cursor position.  Width and height are the size of the
+	cursor image.  X-hot and y-hot mark the hotspot within the cursor
+	image.  Cursor-serial provides the number assigned to this cursor
+	image, this same serial number will be reported in a CursorNotify
+	event if this cursor image is redisplayed in the future.
 
-The cursor image itself is returned as a single image at 32 bits per pixel
-with 8 bits of alpha in the most significant 8 bits of the pixel followed by
-8 bits each of red, green and finally 8 bits of blue in the least significant
-8 bits.  The color components are pre-multiplied with the alpha component.
+	The cursor image itself is returned as a single image at 32 bits per
+	pixel with 8 bits of alpha in the most significant 8 bits of the
+	pixel followed by 8 bits each of red, green and finally 8 bits of
+	blue in the least significant 8 bits.  The color components are
+	pre-multiplied with the alpha component.
+	
+************* XFIXES VERSION 2 OR BETTER ***********
 
-8. Future compatibility
+8. Region Objects
+
+The core protocol doesn't expose regions as a primitive object and this
+makes many operations more complicated than they really need to be.  Adding
+region objects simplifies expose handling, the Shape extension and other
+operations. These operations are also designed to support a separate
+extension, the X Damage Extension.
+
+8.1 Types
+
+	Region:				XID
+	WINDOW_REGION_KIND:		{ Bounding, Clip }
+	
+8.2 Errors
+
+	Region				The specified region is invalid
+
+8.3 Requests
+
+CreateRegion
+
+		region:				REGION
+		rects:				LISTofRECTANGLE
+
+	Creates a region initialized to the specified list of rectangles.
+	The rectangles may be specified in any order, their union becomes
+	the region.  The core protocol allows applications to specify an
+	order for the rectangles, but it turns out to be just as hard to
+	verify the rectangles are actually in that order as it is to simply
+	ignore the ordering information and union them together.  Hence,
+	this request dispenses with the ordering information.
+
+	Errors: IDChoice
+
+CreateRegionFromBitmap
+
+		region:				REGION
+		bitmap:				PIXMAP
+
+	Creates a region initialized to the set of 'one' pixels in bitmap
+	(which must be depth 1, else Match error).
+
+	Errors: Pixmap, IDChoice, Match
+
+CreateRegionFromWindow
+
+		window:				Window
+		kind:				WINDOW_REGION_KIND
+		region:				Region
+
+	Creates a region initialized to the specified window region.  See the
+	Shape extension for the definition of Bounding and Clip regions.
+
+	Errors: Window, IDChoice, Value
+
+CreateRegionFromGC
+
+		gc:				GContext
+		region:				Region
+
+	Creates a region initialized from the clip list of the specified
+	GContext.
+
+	Errors: GContext, IDChoice
+
+CreateRegionFromPicture
+
+		picture:			Picture
+		region:				Region
+
+
+	Creates a region initialized from the clip list of the specified
+	Picture.
+
+	Errors: Picture, IDChoice
+
+DestroyRegion
+
+		region:				Region
+
+	Destroys the specified region.
+
+	Errors: Region
+
+SetRegion
+
+		region:				Region
+		rects:				LISTofRECTANGLE
+
+	This replaces the current contents of region with the region formed
+	by the union of rects.
+
+UnionRegion
+IntersectRegion
+SubtractRegion
+
+		source1:			Region or None
+		xOff1, yOff1:			INT16
+		source2:			Region or None
+		xOff2, yOff2:			INT16
+		destination:			Region
+	
+	Combines source1 and source2, placing the result in destination.
+	Destination may be the same as either source1 or source2.  If
+	source1 or source2 are None, the operation behaves as if an empty
+	region was specified.  xOff1, yOff1 are added to the coordinates of
+	source1 while xOff2 and yOff2 are added to the coordinates of
+	source2.
+
+	Errors: Region, Value
+	
+InvertRegion
+
+		source:				Region
+		xOff, yOff:			INT16
+		bounds:				RECTANGLE
+		destination:			Region
+	
+	The source region is offset by xOff, yOff and subtracted from the
+	region specified by bounds.  The result is placed in destination,
+	replacing its contents.
+
+	Errors: Region
+	
+RegionExtents
+
+		source:				Region
+		destination:			Region
+
+	The extents of the source region are placed in the destination
+
+FetchRegion
+
+		region:				Region
+		->
+		extents:			RECTANGLE
+		rectangles:			LISTofRECTANGLE
+
+	The region is returned as a list of rectangles in YX-banded order.
+
+	Errors: Region
+
+SetGCClipRegion
+
+		gc:				GCONTEXT
+		clip-x-origin, clip-y-origin:	INT16
+		region:				Region or None
+
+	This request changes clip-mask in gc to the specified region and
+	sets the clp origin.  Output will be clippped to remain contained
+	within the region.  The clip origin is interpreted relative to the
+	origin of whatever destination drawable is specified in a graphics
+	request.  The region is interpreted relative to the clip origin.
+	Future changes to region have no effect on the gc clip-mask.
+
+	Errors: GContext, Region
+
+SetWindowShapeRegion
+
+		dest:				Window
+		destKind:			SHAPE_KIND
+		xOff, yOff:			INT16
+		region:				Region or None
+
+	This request sets the specified (by destKind) Shape extension region
+	of the window to region, offset by xOff and yOff.   Future changes to
+	region have no effect on the window shape.
+
+	Errors: Window, Value, Region
+
+SetPictureClipRegion
+
+		picture:			Picture
+		clip-x-origin, clip-y-origin:	INT16
+		region:				Region or None
+
+	This request changes clip-mask in picture to the specified region
+	and sets the clip origin.  Input and output will be clipped to
+	remain contained within the region.  The clip origin is interpreted
+	relative to the origin of the drawable associated with picture.  The
+	region is interpreted relative to the clip origin.  Future changes
+	to region have no effect on the picture clip-mask.
+
+	Errors: Picture, Region
+
+9. Cursor Names
+
+Attaching names to cursors permits some abstract semantic content to be
+associated with specific cursor images.  Reflecting those names back to
+applications allows that semantic content to be related to the user through
+non-visual means.
+
+9.1 Events
+
+CursorNotify
+
+		subtype:		CURSOREVENT
+		window:			Window
+		cursor-serial:		CARD32
+		timestamp:		Timestamp
+		name:			Atom or None
+	
+	In Version 2 of the XFIXES protocol, this event adds the atom
+	of any name associated with the current cursor (else None).
+
+9.2 Requests
+
+SetCursorName
+
+		cursor:			CURSOR
+		name:			LISTofCARD8
+
+	This request interns name as an atom and sets that atom as the name
+	of cursor.
+
+	Errors: Cursor
+
+GetCursorName
+
+		cursor:			CURSOR
+		->
+		atom:			ATOM or None
+		name:			LISTofCARD8
+
+	This request returns the name and atom of cursor.  If no name is
+	set, atom is None and name is empty.
+
+	Errors: Cursor
+
+GetCursorImageAndName
+
+		->
+
+		x:			INT16
+		y:			INT16
+		width:			CARD16
+		height:			CARD16
+		x-hot:			CARD16
+		y-hot:			CARD16
+		cursor-serial:		CARD32
+		cursor-atom:		ATOM
+		cursor-name:		LISTofCARD8
+		cursor-image:		LISTofCARD32
+
+	This is similar to GetCursorImage except for including both
+	the atom and name of the current cursor.
+
+ChangeCursor
+
+		source, destination:	CURSOR
+
+	This request replaces all references to the destination with a
+	reference to source.  Any existing uses of the destination cursor
+	object will now show the source cursor image.
+
+ChangeCursorByName
+
+		src:			CURSOR
+		name:			LISTofCARD8
+
+	This request replaces the contents of all cursors with the specified
+	name with the src cursor.
+		
+99. Future compatibility
 
 This extension is not expected to remain fixed.  Future changes will
 strive to remain compatible if at all possible.  The X server will always
