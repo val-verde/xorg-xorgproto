@@ -45,19 +45,15 @@ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 SOFTWARE.
 
 ********************************************************/
+/* $XFree86: xc/include/extensions/XInput.h,v 1.3 2001/12/14 19:53:28 dawes Exp $ */
 
 /* Definitions used by the library and client */
 
 #ifndef _XINPUT_H_
 #define _XINPUT_H_
 
-#ifndef _XLIB_H_
 #include <X11/Xlib.h>
-#endif
-
-#ifndef _XI_H_
-#include "XI.h"
-#endif
+#include <X11/extensions/XI.h>
 
 #define _deviceKeyPress		0
 #define _deviceKeyRelease	1

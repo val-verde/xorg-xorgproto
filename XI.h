@@ -45,6 +45,7 @@ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 SOFTWARE.
 
 ********************************************************/
+/* $XFree86: xc/include/extensions/XI.h,v 1.5 2001/12/14 19:53:28 dawes Exp $ */
 
 /* Definitions used by the server, library and client */
 
@@ -203,6 +204,12 @@ SOFTWARE.
 #define DeviceMode              (1L << 0)
 #define Relative                0
 #define Absolute                1
+/* Merged from Metrolink tree for XINPUT stuff	*/
+#define TS_Raw					57
+#define TS_Scaled				58
+#define SendCoreEvents			59
+#define DontSendCoreEvents		60
+/* End of merged section	*/
 
 #define ProximityState          (1L << 1)
 #define InProximity             (0L << 1)
