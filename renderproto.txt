@@ -1,8 +1,8 @@
 			The X Rendering Extension
-			      Version 0.7
-			        2002-11-6
+			      Version 0.8
+			        2003-5-3
 			      Keith Packard
-			    keithp@xfree86.org
+			    keithp@keithp.com
 
 1. Introduction
 
@@ -245,6 +245,10 @@ GLYPHELT32	[
 		]
 GLYPHITEM32	GLYPHELT32 or GLYPHABLE
 
+ANIMCURSORELT	[
+			cursor:		CURSOR
+			delay:		CARD32
+		]
 7. Standard PictFormats
 
 The server must support a Direct PictFormat with 8 bits each of red, green,
@@ -1095,6 +1099,17 @@ CreateCursor
 	Subsequent drawing in the source has an undefined effect on the
 	cursor.  The server might or might not make a copy of the picture.
 
+CreateAnimCursor
+	cid:		CURSOR
+	cursors:	LISTofANIMCURSORELT
+
+	Errors:		Alloc, IDChoice, Cursor
+
+	This request creates a cursor and associates identifier cid with it.
+	When active, the cursor image on the screen will cycle through
+	'cursors', showing each cursor in the element for the number of
+	milliseconds indicated by the 'delay' member of that element.
+
 15. Extension Versioning
 
 The Render extension was developed in parallel with the implementation to
@@ -1141,3 +1156,5 @@ what each version before 1.0 implemented:
 
 	0.7:
 		QueryPictIndexValues
+	0.8:
+		CreateAnimCursor
