@@ -1,5 +1,21 @@
 2003-10-29  Keith Packard  <keithp@keithp.com>
 
+	* COPYING:
+	* INSTALL:
+	* Makefile.am:
+	* README:
+	* apportion.h:
+	* apportionext.pc.in:
+	* apportionproto.h:
+	* autogen.sh:
+	* configure.ac:
+	* protocol:
+	autofoo
+	Add protocol headers
+	Use enum for update mode instead of bool
+
+2003-10-29  Keith Packard  <keithp@keithp.com>
+
 	* protocol:
 	Define clipping while redirected
 

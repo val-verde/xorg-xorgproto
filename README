@@ -1,0 +1,9 @@
+	 Apportion X Extension
+	     Version 0.1
+	     2003-10-29
+
+This package contains header files and documentation for the apportion X
+extension.  Library and server implementations are separate.
+
+Keith Packard
+keithp@keithp.com

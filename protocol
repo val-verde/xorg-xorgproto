@@ -79,7 +79,7 @@ The apportion extension does not define any new errors.
 
 5. Types
 
-The apportion extension does not define any new datatypes.
+	UPDATETYPE	{ Automatic, Manual }
 
 6. Events
 
@@ -115,7 +115,7 @@ operations other than QueryVersion.
     RedirectWindow
 
 		window:				Window
-		automatic-update:		Bool
+		update:				UPDATETYPE
 
 		errors: Window, Access
 
@@ -129,7 +129,7 @@ operations other than QueryVersion.
     RedirectSubwindows
 
 		window:				Window
-		manual-update			Bool
+		update				UPDATETYPE
 
 		errors: Window, Access
 
