@@ -1,4 +1,4 @@
-/* $XFree86: xc/include/extensions/xtrapproto.h,v 1.2 2002/02/22 21:32:51 dawes Exp $ */
+/* $XFree86$ */
 
 #ifndef __XTRAPPROTO__
 #define __XTRAPPROTO__
