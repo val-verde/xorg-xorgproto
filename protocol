@@ -1,6 +1,6 @@
 		        Composite Extension
-			    Version 0.1
-			     2003-11-04
+			    Version 0.2
+			      2004-7-8
 			    Keith Packard
 			  keithp@keithp.com
 
@@ -55,6 +55,17 @@ may be done with the Damage extension.
 
 The off-screen storage includes the window contents, its borders and the
 contents of all descendants.
+
+Version 0.2 of the protocol introduces a mechanism for associating an XID
+with the off-screen pixmap used to store these contents.  This can be used
+to hold onto window contents after the window is unmapped (and hence animate
+it's disappearance), and also to access the border of the window, which is
+not reachable through the Window ID itself.  A new pixmap is created each
+time the window is mapped or resized; as these events are nicely signalled
+with existing events, no additional notification is needed.  The old pixmap
+will remain allocated as long as the Pixmap ID is left valid, it is
+important that the client use the FreePixmap request when it is done with
+the contents and to create a new name for the newly allocated pixmap.
 
 In automatic update mode, the X server is itself responsible for presenting
 the child window contents within the parent.  It seems reasonable, then, for
@@ -181,3 +192,20 @@ operations other than QueryVersion.
 	is copied at the moment the request is executed; future changes
 	to the window hierarchy will not be reflected in this region.
 
+10. Associating a Pixmap ID with the off-screen storage (0.2 and later)
+
+    NameWindowPixmap
+
+		window:				Window
+		pixmap:				Pixmap
+
+		errors: Window, Match, IDChoice
+
+	This request makes 'pixmap' a reference to the off-screen storage
+	for 'window'.  This pixmap will remain allocated until freed, even
+	if 'window' is unmapped, reconfigured or destroyed.  However,
+	'window' will get a new pixmap allocated each time it is
+	mapped or resized, so this request will need to be reinvoked for
+	the client to continue to refer to the storage holding the current
+	window contents.  Generates a 'Match' error if 'window' is not
+	redirected.

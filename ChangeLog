@@ -1,4 +1,12 @@
-2004-06-27  root  <set EMAIL_ADDRESS environment variable>
+2004-07-08  Keith Packard  <keithp@keithp.com>
+
+	* composite.h:
+	* compositeproto.h:
+	* protocol:
+	Add NameWindowPixmap request.
+	Bump protocol to 0.2
+
+2004-06-27  Eric Anholt <anholt@freedesktop.org>
 
 	* protocol:
 	Fix some apostrophe issues.

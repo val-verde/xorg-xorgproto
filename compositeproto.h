@@ -1,5 +1,5 @@
 /*
- * $Id: compositeproto.h,v 1.3 2003-11-07 04:21:01 keithp Exp $
+ * $Id: compositeproto.h,v 1.4 2004-07-08 07:20:55 keithp Exp $
  *
  * Copyright © 2003 Keith Packard
  *
@@ -116,6 +116,18 @@ typedef struct {
 } xCompositeCreateRegionFromBorderClipReq;
 
 #define sz_xCompositeCreateRegionFromBorderClipReq  12
+
+/* Version 0.2 additions */
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   compositeReqType;
+    CARD16  length;
+    Window  window B32;
+    Pixmap  pixmap B32;
+} xCompositeNameWindowPixmapReq;
+
+#define sz_xCompositeNameWindowPixmapReq	    12
 
 #undef Window
 #undef Region
