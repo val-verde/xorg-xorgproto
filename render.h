@@ -150,7 +150,7 @@ typedef unsigned long	PictFormat;
 #define CPPolyMode			    (1 << 10)
 #define CPDither			    (1 << 11)
 #define CPComponentAlpha		    (1 << 12)
-#define CPLastBit			    11
+#define CPLastBit			    12
 
 /* Filters included in 0.6 */
 #define FilterNearest			    "nearest"
