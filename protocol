@@ -1,0 +1,145 @@
+		      Apportion X Extension (Axe)
+			    Version 0.0
+			     2003-10-24
+			    Keith Packard
+			  keithp@keithp.com
+
+1. Introduction
+
+Many user interface operations would benefit from having pixel contents of
+window hierarchies available without respect to sibling and antecedent
+clipping.  In addition, placing control over the composition of these pixel
+contents into a final screen image in an external application will enable
+a flexible system for dynamic application content presentation.
+
+2. Acknowledgements
+
+This small extension has been brewing for several years, contributors to
+both early prototypes and the final design include:
+
+ +	Bill Haneman for motivating the ability to magnify occluded windows
+ 	with his work on accessibility
+
+ +	Jim Gettys for key insights into the relationship between damage
+ 	events and per-window pixmap usage
+
+ +	Mike Harris for the name
+
+3. Architecture
+
+The apportion extension provides two related mechanisms:
+
+ 1.	Per-hierarchy storage.  The rendering of an entire hierarchy of windows
+ 	is redirected to off-screen storage.  The pixels of that hierarchy
+	are available whenever it is viewable.  Storage is automatically
+	reallocated when the top level window changes size.  Contents beyond
+	the geometry of the top window are not preserved.
+
+ 2.	Automatic shadow update.  When a hierarchy is rendered off-screen,
+ 	the X server provides an automatic mechanism for presenting those
+	contents within the parent window.  The implementation is free to
+	make this update lag behind actual rendering operations by an
+	unspecified amount of time.  This automatic update mechanism may
+	be disabled so that the parent window contents can be completely
+	determined by an external application.
+
+Per-hierarchy storage may be created for individual windows or for all
+children of a window.  Manual shadow update may be selected by only a single
+application for each window; manual update may also be selected on a
+per-window basis or for each child of a window.  Detecting when to update
+may be done with the Damage extension.
+
+The off-screen storage includes the window contents, it's borders and the
+contents of all decendents.
+
+4. Errors
+
+The apportion extension does not define any new errors.
+
+5. Types
+
+The apportion extension does not define any new datatypes.
+
+6. Events
+
+The apportion extension does not define any new events.
+
+7. Extension Initialization
+
+The client must negotiate the version of the extension before executing
+extension requests.  Otherwise, the server will return BadRequest for any
+operations other than QueryVersion.
+
+    QueryVersion
+
+		client-major-version:		CARD32
+		client-minor-version:		CARD32
+
+		->
+
+		major-version:			CARD32
+		minor-version:			CARD32
+
+	The client sends the highest supported version to the server and
+	the server sends the highest version it supports, but no higher than
+	the requested version.  Major versions changes can introduce
+	incompatibilities in existing functionality, minor version
+	changes introduce only backward compatible changes.  It is
+	the clients responsibility to ensure that the server supports
+	a version which is compatible with its expectations.  Servers
+	are encouraged to support multiple versions of the extension.
+
+8. Hierarchy Redirection
+
+    RedirectWindow
+
+		window:				Window
+		automatic-update:		Bool
+
+		errors: Window, Access
+
+	The hierarchy starting at 'window' is directed to off-screen
+	storage.  'automatic-update' specifies whether the contents
+	are mirrored to the parent window automatically or not.  Only
+	one client may specify this flag, another attempt will result in an
+	Access error.  When all clients enabling redirection terminate,
+	the redirection will automatically be disabled.
+
+    RedirectSubwindows
+
+		window:				Window
+		manual-update			Bool
+
+		errors: Window, Access
+
+	Hierarchies starting at all current and future children of window
+	will be redirected as in RedirectWindow
+
+    UnredirectWindow:
+
+		window:				Window
+
+	Redirection of the specified window will be terminated
+
+    UnredirectWindows:
+
+		window:				Window
+
+	Redirection of all children of window will be terminated
+
+9. Clip lists
+
+    CreateRegionFromBorderClip
+
+		region:				Region
+		window:				Window
+
+		errors: Window, IDChoice
+
+	This request creates a region containing the "usual" border clip
+	value; that is the area of the window clipped against siblings and
+	the parent.  This region can be used to restrict rendering to
+	suitable areas while updating only a single window.  The region
+	is copied at the moment the request is executed; future changes
+	to the window hierarchy will not be reflected in this region.
+
