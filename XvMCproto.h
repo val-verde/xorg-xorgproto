@@ -1,4 +1,4 @@
-/* $XFree86: xc/include/extensions/XvMCproto.h,v 1.5 2001/11/14 21:54:37 mvojkovi Exp $ */
+/* $XFree86$ */
 
 #ifndef _XVMCPROTO_H_
 #define _XVMCPROTO_H_
