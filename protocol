@@ -52,6 +52,27 @@ may be done with the Damage extension.
 The off-screen storage includes the window contents, it's borders and the
 contents of all descendants.
 
+In automatic update mode, the X server is itself responsible for presenting
+the child window contents within the parent.  It seems reasonable, then, for
+rendering to the parent window to be clipped so as not to interfere with any
+child window content.  In an environment with a mixure of manual and
+automatic updating windows, rendering to the parent in the area nominally
+occupied by a manual update window should be able to affect parent pixel
+values in those areas, but such rendering should be clipped to automatic
+update windows, and presumably to other manual update windows managed by
+other applications.  In any of these cases, it should be easy to ensure that
+rendering has no effect on any non-redirected windows.
+
+Instead of attempting to define new clipping modes for rendering, the
+Apportion extension instead defines ClipByChildren rendering to the parent
+to exclude regions occupied by redirected windows (either automatic or
+manual).  The CreateRegionFromBorderClip request can be used along with
+IncludeInferiors clipping modes to restrict manual shadow updates to the
+apporpriate region of the screen.  Bracketing operations with
+GrabServer/UngrabServer will permit atomic sequences that can update the
+screen without artifact.  As all of these operations are asynchronous,
+network latency should not adversely affect update latency.
+
 4. Errors
 
 The apportion extension does not define any new errors.
