@@ -1,4 +1,4 @@
-/* $XFree86$ */
+/* $XFree86: xc/lib/apple/applewm.h,v 1.2 2003/09/16 00:36:09 torrey Exp $ */
 /**************************************************************************
 
 Copyright (c) 2002 Apple Computer, Inc.
