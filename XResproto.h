@@ -1,7 +1,7 @@
 /*
    Copyright (c) 2002  XFree86 Inc
 */
-/* $XFree86$ */
+/* $XFree86: xc/include/extensions/XResproto.h,v 1.2 2002/03/10 22:05:51 mvojkovi Exp $ */
 
 #ifndef _XRESPROTO_H
 #define _XRESPROTO_H
