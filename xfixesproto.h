@@ -247,17 +247,25 @@ typedef struct {
     CARD8   reqType;
     CARD8   xfixesReqType;
     CARD16  length B16;
+    Region  source B32;
+    Region  destination B32;
+} xXFixesCopyRegionReq;
+
+#define sz_xXFixesCopyRegionReq		12
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
     Region  source1 B32;
-    INT16   xOff1 B16, yOff1 B16;
     Region  source2 B32;
-    INT16   xOff2 B16, yOff2 B16;
     Region  destination B32;
 } xXFixesCombineRegionReq,
   xXFixesUnionRegionReq,
   xXFixesIntersectRegionReq,
   xXFixesSubtractRegionReq;
 
-#define sz_xXFixesCombineRegionReq	24
+#define sz_xXFixesCombineRegionReq	16
 #define sz_xXFixesUnionRegionReq	sz_xXFixesCombineRegionReq
 #define sz_xXFixesIntersectRegionReq	sz_xXFixesCombineRegionReq
 #define sz_xXFixesSubtractRegionReq	sz_xXFixesCombineRegionReq
@@ -267,14 +275,23 @@ typedef struct {
     CARD8   xfixesReqType;
     CARD16  length B16;
     Region  source B32;
-    INT16   xOff B16, yOff B16;
     INT16   x B16, y B16;
     CARD16  width B16, height B16;
     Region  destination B32;
 } xXFixesInvertRegionReq;
 
-#define sz_xXFixesInvertRegionReq	24
+#define sz_xXFixesInvertRegionReq	20
 
+typedef struct {
+    CARD8   reqType;
+    CARD8   xfixesReqType;
+    CARD16  length B16;
+    Region  region B32;
+    INT16   dx B16, dy B16;
+} xXFixesTranslateRegionReq;
+
+#define sz_xXFixesTranslateRegionReq	12
+    
 typedef struct {
     CARD8   reqType;
     CARD8   xfixesReqType;

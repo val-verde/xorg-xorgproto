@@ -1,6 +1,7 @@
-                         The XFIXES Extension
+                        The XFIXES Extension
 			    Version 2.0
-			     2003-10-15
+			 Document Revision 1
+			     2003-11-20
 			    Keith Packard
 			  keithp@keithp.com
 
@@ -303,38 +304,46 @@ SetRegion
 	This replaces the current contents of region with the region formed
 	by the union of rects.
 
+CopyRegion
+		source:				Region
+		destination:			Region
+
+	This replaces the contents of destination with the contents of 
+	source.
+
 UnionRegion
 IntersectRegion
 SubtractRegion
 
-		source1:			Region or None
-		xOff1, yOff1:			INT16
-		source2:			Region or None
-		xOff2, yOff2:			INT16
+		source1:			Region
+		source2:			Region
 		destination:			Region
 	
 	Combines source1 and source2, placing the result in destination.
-	Destination may be the same as either source1 or source2.  If
-	source1 or source2 are None, the operation behaves as if an empty
-	region was specified.  xOff1, yOff1 are added to the coordinates of
-	source1 while xOff2 and yOff2 are added to the coordinates of
-	source2.
+	Destination may be the same as either source1 or source2.
 
 	Errors: Region, Value
 	
 InvertRegion
 
 		source:				Region
-		xOff, yOff:			INT16
 		bounds:				RECTANGLE
 		destination:			Region
 	
-	The source region is offset by xOff, yOff and subtracted from the
-	region specified by bounds.  The result is placed in destination,
-	replacing its contents.
+	The source region is subtracted from the region specified by
+	bounds.  The result is placed in destination, replacing its contents.
 
 	Errors: Region
 	
+TranslateRegion
+
+		region:				Region
+		dx, dy:				INT16
+
+	The region is translated by dx, dy in place.
+
+	Errors: Region
+
 RegionExtents
 
 		source:				Region

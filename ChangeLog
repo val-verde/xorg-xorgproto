@@ -1,3 +1,11 @@
+2003-11-21  Keith Packard  <keithp@keithp.com>
+
+	* protocol:
+	* xfixesproto.h:
+	* xfixeswire.h:
+	Eliminate offset arguments in combining operators,
+	create separate CopyRegion and TranslateRegion requests.
+
 2003-11-02  Keith Packard  <keithp@keithp.com>
 
 	* configure.ac:

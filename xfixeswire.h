@@ -44,20 +44,22 @@
 #define X_XFixesCreateRegionFromPicture	    9
 #define X_XFixesDestroyRegion		    10
 #define X_XFixesSetRegion		    11
-#define X_XFixesUnionRegion		    12
-#define X_XFixesIntersectRegion		    13
-#define X_XFixesSubtractRegion		    14
-#define X_XFixesInvertRegion		    15
-#define X_XFixesRegionExtents		    16
-#define X_XFixesFetchRegion		    17
-#define X_XFixesSetGCClipRegion		    18
-#define X_XFixesSetWindowShapeRegion	    19
-#define X_XFixesSetPictureClipRegion	    20
-#define X_XFixesSetCursorName		    21
-#define X_XFixesGetCursorName		    22
-#define X_XFixesGetCursorImageAndName	    23
-#define X_XFixesChangeCursor		    24
-#define X_XFixesChangeCursorByName	    25
+#define X_XFixesCopyRegion		    12
+#define X_XFixesUnionRegion		    13
+#define X_XFixesIntersectRegion		    14
+#define X_XFixesSubtractRegion		    15
+#define X_XFixesInvertRegion		    16
+#define X_XFixesTranslateRegion		    17
+#define X_XFixesRegionExtents		    18
+#define X_XFixesFetchRegion		    19
+#define X_XFixesSetGCClipRegion		    20
+#define X_XFixesSetWindowShapeRegion	    21
+#define X_XFixesSetPictureClipRegion	    22
+#define X_XFixesSetCursorName		    23
+#define X_XFixesGetCursorName		    24
+#define X_XFixesGetCursorImageAndName	    25
+#define X_XFixesChangeCursor		    26
+#define X_XFixesChangeCursorByName	    27
 
 #define XFixesNumberRequests		    (X_XFixesChangeCursorByName+1)
 
