@@ -53,7 +53,7 @@ application for each window; manual update may also be selected on a
 per-window basis or for each child of a window.  Detecting when to update
 may be done with the Damage extension.
 
-The off-screen storage includes the window contents, it's borders and the
+The off-screen storage includes the window contents, its borders and the
 contents of all descendants.
 
 In automatic update mode, the X server is itself responsible for presenting
@@ -110,7 +110,7 @@ operations other than QueryVersion.
 	the requested version.  Major versions changes can introduce
 	incompatibilities in existing functionality, minor version
 	changes introduce only backward compatible changes.  It is
-	the clients responsibility to ensure that the server supports
+	the client's responsibility to ensure that the server supports
 	a version which is compatible with its expectations.  Servers
 	are encouraged to support multiple versions of the extension.
 

@@ -1,3 +1,8 @@
+2004-06-27  root  <set EMAIL_ADDRESS environment variable>
+
+	* protocol:
+	Fix some apostrophe issues.
+
 2004-02-03  Jim Gettys  <freedesktop.org>
 
 	* AUTHORS: needed author's attribution
