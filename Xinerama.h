@@ -1,4 +1,4 @@
-/* $XdotOrg$ */
+/* $XdotOrg: xc/include/extensions/Xinerama.h,v 1.2 2004/04/23 18:43:06 eich Exp $ */
 /*
 
 Copyright 2003  The Open Group
@@ -28,6 +28,8 @@ in this Software without prior written authorization from The Open Group.
 
 #ifndef _Xinerama_h
 #define _Xinerama_h
+
+#include <X11/Xlib.h>
 
 typedef struct {
    int   screen_number;
