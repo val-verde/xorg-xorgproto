@@ -141,7 +141,9 @@ operations other than QueryVersion.
 		errors: Window, Access
 
 	Hierarchies starting at all current and future children of window
-	will be redirected as in RedirectWindow
+	will be redirected as in RedirectWindow.  If update is Manual,
+	then painting of the window background during window manipulation
+	and ClearArea requests is inhibited.
 
     UnredirectWindow:
 

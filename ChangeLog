@@ -1,3 +1,8 @@
+2003-11-08  Keith Packard  <keithp@keithp.com>
+
+	* protocol:
+	Note that Manual Subwindows mode disables background painting.
+
 2003-11-06  Keith Packard  <keithp@keithp.com>
 
 	* composite.h:
