@@ -1,5 +1,5 @@
 # 
-#  $Id: Makefile.am,v 1.1 2003-10-30 04:31:19 keithp Exp $
+#  $Id: Makefile.am,v 1.2 2003-11-05 05:39:58 keithp Exp $
 # 
 #  Copyright © 2003 Keith Packard, Noah Levitt
 # 
@@ -21,17 +21,17 @@
 #  TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 #  PERFORMANCE OF THIS SOFTWARE.
 
-apportionextincludedir = $(includedir)/X11/extensions
+compositeextincludedir = $(includedir)/X11/extensions
 
-apportionextinclude_HEADERS = 	\
-	apportionproto.h	\
-	apportion.h
+compositeextinclude_HEADERS = 	\
+	compositeproto.h	\
+	composite.h
 
-apportionextdocdir = $(datadir)/doc/apportionext
-apportionextdoc_DATA = protocol
+compositeextdocdir = $(datadir)/doc/compositeext
+compositeextdoc_DATA = protocol
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = apportionext.pc
+pkgconfig_DATA = compositeext.pc
 
-EXTRA_DIST = autogen.sh apportionext.pc.in $(apportionextdoc_DATA)
+EXTRA_DIST = autogen.sh compositeext.pc.in $(compositeextdoc_DATA)
 

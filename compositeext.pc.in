@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: ApportionExt
-Description: Apportion X extension headers
+Name: CompositeExt
+Description: Composite extension headers
 Version: @PACKAGE_VERSION@
-Cflags: -I${includedir} @APPORTIONEXT_CFLAGS@
+Cflags: -I${includedir} @COMPOSITEEXT_CFLAGS@

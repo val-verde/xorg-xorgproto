@@ -1,8 +1,8 @@
-	 Apportion X Extension
-	     Version 0.1
-	     2003-10-29
+	 Composite Extension
+	    Version 0.1
+	    2003-11-04
 
-This package contains header files and documentation for the apportion X
+This package contains header files and documentation for the composite
 extension.  Library and server implementations are separate.
 
 Keith Packard

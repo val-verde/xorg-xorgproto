@@ -1,3 +1,18 @@
+2003-11-04  Keith Packard  <keithp@keithp.com>
+
+	* COPYING:
+	* INSTALL:
+	* Makefile.am:
+	* README:
+	* composite.h:
+	* compositeext.pc.in:
+	* compositeproto.h:
+	* configure.ac:
+	* protocol:
+	Change name from Apportion to Composite
+	Clarify that root cannot be redirected.
+	Add more error values.
+
 2003-10-29  Keith Packard  <keithp@keithp.com>
 
 	* COPYING:

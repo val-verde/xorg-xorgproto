@@ -1,5 +1,5 @@
 /*
- * $Id: composite.h,v 1.1 2003-10-30 04:31:19 keithp Exp $
+ * $Id: composite.h,v 1.2 2003-11-05 05:39:58 keithp Exp $
  *
  * Copyright © 2003 Keith Packard
  *
@@ -22,23 +22,23 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-#ifndef _APPORTION_H_
-#define _APPORTION_H_
+#ifndef _COMPOSITE_H_
+#define _COMPOSITE_H_
 
 #include <X11/extensions/xfixeswire.h>
 
-#define APPORTION_NAME				"Apportion"
-#define APPORTION_MAJOR				0
-#define APPORTION_MINOR				1
+#define COMPOSITE_NAME				"Composite"
+#define COMPOSITE_MAJOR				0
+#define COMPOSITE_MINOR				1
 
-#define ApportionRedirectAutomatic		0
-#define ApportionRedirectManual			1
+#define CompositeRedirectAutomatic		0
+#define CompositeRedirectManual			1
 
-#define X_ApportionQueryVersion			0
-#define X_ApportionRedirectWindow		1
-#define X_ApportionRedirectSubwindows		2
-#define X_ApportionUnredirectWindow		3
-#define X_ApportionUnredirectSubwindows		4
-#define X_ApportionCreateRegionFromBorderClip	5
+#define X_CompositeQueryVersion			0
+#define X_CompositeRedirectWindow		1
+#define X_CompositeRedirectSubwindows		2
+#define X_CompositeUnredirectWindow		3
+#define X_CompositeUnredirectSubwindows		4
+#define X_CompositeCreateRegionFromBorderClip	5
 
-#endif /* _APPORTION_H_ */
+#endif /* _COMPOSITE_H_ */

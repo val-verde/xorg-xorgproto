@@ -1,6 +1,6 @@
-		      Apportion X Extension (Axe)
-			    Version 0.0
-			     2003-10-24
+		        Composite Extension
+			    Version 0.1
+			     2003-11-04
 			    Keith Packard
 			  keithp@keithp.com
 
@@ -20,14 +20,18 @@ both early prototypes and the final design include:
  +	Bill Haneman for motivating the ability to magnify occluded windows
  	with his work on accessibility
 
+ +	Carsten Haitzler for Enlightenment, the original eye-candy window
+ 	manager which demonstrated that clever hacks are an awfully
+	close substitute for changes in the underlying system.
+
  +	Jim Gettys for key insights into the relationship between damage
  	events and per-window pixmap usage
 
- +	Mike Harris for the name
+ +	Mike Harris and Owen Taylor for figuring out what to call it.
 
 3. Architecture
 
-The apportion extension provides two related mechanisms:
+The composite extension provides two related mechanisms:
 
  1.	Per-hierarchy storage.  The rendering of an entire hierarchy of windows
  	is redirected to off-screen storage.  The pixels of that hierarchy
@@ -64,7 +68,7 @@ other applications.  In any of these cases, it should be easy to ensure that
 rendering has no effect on any non-redirected windows.
 
 Instead of attempting to define new clipping modes for rendering, the
-Apportion extension instead defines ClipByChildren rendering to the parent
+Composite extension instead defines ClipByChildren rendering to the parent
 to exclude regions occupied by redirected windows (either automatic or
 manual).  The CreateRegionFromBorderClip request can be used along with
 IncludeInferiors clipping modes to restrict manual shadow updates to the
@@ -75,7 +79,7 @@ network latency should not adversely affect update latency.
 
 4. Errors
 
-The apportion extension does not define any new errors.
+The composite extension does not define any new errors.
 
 5. Types
 
@@ -83,7 +87,7 @@ The apportion extension does not define any new errors.
 
 6. Events
 
-The apportion extension does not define any new events.
+The composite extension does not define any new events.
 
 7. Extension Initialization
 
@@ -117,7 +121,7 @@ operations other than QueryVersion.
 		window:				Window
 		update:				UPDATETYPE
 
-		errors: Window, Access
+		errors: Window, Access, Match
 
 	The hierarchy starting at 'window' is directed to off-screen
 	storage.  'automatic-update' specifies whether the contents
@@ -125,6 +129,9 @@ operations other than QueryVersion.
 	one client may specify this flag, another attempt will result in an
 	Access error.  When all clients enabling redirection terminate,
 	the redirection will automatically be disabled.
+
+	The root window may not be redirected.  Doing so results in a Match
+	error.
 
     RedirectSubwindows
 
@@ -140,13 +147,21 @@ operations other than QueryVersion.
 
 		window:				Window
 
-	Redirection of the specified window will be terminated
+		errors: Window, Value
+
+	Redirection of the specified window will be terminated.  If
+	the specified window was not selected for redirection by the
+	current client, a 'Value' error results.
 
     UnredirectWindows:
 
 		window:				Window
 
-	Redirection of all children of window will be terminated
+		errors: Window, Value
+
+	Redirection of all children of window will be terminated.  If
+	the specified window was not selected for sub-redirection by the
+	current client, a 'Value' error results.
 
 9. Clip lists
 

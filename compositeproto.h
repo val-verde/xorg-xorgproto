@@ -1,5 +1,5 @@
 /*
- * $Id: compositeproto.h,v 1.1 2003-10-30 04:31:19 keithp Exp $
+ * $Id: compositeproto.h,v 1.2 2003-11-05 05:39:58 keithp Exp $
  *
  * Copyright © 2003 Keith Packard
  *
@@ -22,11 +22,11 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-#ifndef _APPORTIONPROTO_H_
-#define _APPORTIONPROTO_H_
+#ifndef _COMPOSITEPROTO_H_
+#define _COMPOSITEPROTO_H_
 
 #include <X11/Xmd.h>
-#include <X11/extensions/apportion.h>
+#include <X11/extensions/composite.h>
 
 #define Window CARD32
 #define Region CARD32
@@ -36,13 +36,13 @@
  */
 typedef struct {
     CARD8   reqType;
-    CARD8   apportionReqType;
+    CARD8   compositeReqType;
     CARD16  length B16;
     CARD32  majorVersion B32;
     CARD32  minorVersion B32;
-} xApportionQueryVersionReq;
+} xCompositeQueryVersionReq;
 
-#define sz_xApportionQueryVersionReq   12
+#define sz_xCompositeQueryVersionReq   12
 
 typedef struct {
     BYTE    type;   /* X_Reply */
@@ -55,63 +55,63 @@ typedef struct {
     CARD32  pad3 B32;
     CARD32  pad4 B32;
     CARD32  pad5 B32;
-} xApportionQueryVersionReply;
+} xCompositeQueryVersionReply;
 
-#define sz_xApportionQueryVersionReply	32
+#define sz_xCompositeQueryVersionReply	32
 
 typedef struct {
     CARD8   reqType;
-    CARD8   apportionReqType;
+    CARD8   compositeReqType;
     CARD16  length B16;
     Window  window B32;
     CARD8   update;
     CARD8   pad1;
     CARD16  pad2 B16;
-} xApportionRedirectWindowReq;
+} xCompositeRedirectWindowReq;
 
-#define sz_xApportionRedirectWindowReq	12
+#define sz_xCompositeRedirectWindowReq	12
 
 typedef struct {
     CARD8   reqType;
-    CARD8   apportionReqType;
+    CARD8   compositeReqType;
     CARD16  length B16;
     Window  window B32;
     CARD8   update;
     CARD8   pad1;
     CARD16  pad2 B16;
-} xApportionRedirectWindowsReq;
+} xCompositeRedirectWindowsReq;
 
-#define sz_xApportionRedirectWindowsReq	    12
+#define sz_xCompositeRedirectWindowsReq	    12
 
 typedef struct {
     CARD8   reqType;
-    CARD8   apportionReqType;
+    CARD8   compositeReqType;
     CARD16  length B16;
     Window  window B32;
-} xApportionUnredirectWindowReq;
+} xCompositeUnredirectWindowReq;
 
-#define sz_xApportionUnredirectWindowReq    8
+#define sz_xCompositeUnredirectWindowReq    8
 
 typedef struct {
     CARD8   reqType;
-    CARD8   apportionReqType;
+    CARD8   compositeReqType;
     CARD16  length B16;
     Window  window B32;
-} xApportionUnredirectWindowsReq;
+} xCompositeUnredirectWindowsReq;
 
-#define sz_xApportionUnredirectWindowsReq   8
+#define sz_xCompositeUnredirectWindowsReq   8
 
 typedef struct {
     CARD8   reqType;
-    CARD8   apportionReqType;
+    CARD8   compositeReqType;
     CARD16  length B16;
     Region  region B32;
     Window  window B32;
-} xApportionCreateRegionFromBorderClipReq;
+} xCompositeCreateRegionFromBorderClipReq;
 
-#define sz_xApportionCreateRegionFromBorderClipReq  12
+#define sz_xCompositeCreateRegionFromBorderClipReq  12
 
 #undef Window
 #undef Region
 
-#endif /* _APPORTIONPROTO_H_ */
+#endif /* _COMPOSITEPROTO_H_ */

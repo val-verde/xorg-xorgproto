@@ -1,5 +1,5 @@
 dnl 
-dnl  $Id: configure.ac,v 1.1 2003-10-30 04:31:19 keithp Exp $
+dnl  $Id: configure.ac,v 1.2 2003-11-05 05:39:58 keithp Exp $
 dnl 
 dnl  Copyright © 2003 Keith Packard, Noah Levitt
 dnl 
@@ -24,12 +24,12 @@ dnl
 dnl Process this file with autoconf to create configure.
 
 AC_PREREQ([2.57])
-AC_INIT([apportionext], [2.0], [keithp@keithp.com], apportionext)
+AC_INIT([compositeext], [2.0], [keithp@keithp.com], compositeext)
 AM_INIT_AUTOMAKE([dist-bzip2])
 AM_MAINTAINER_MODE
 
-PKG_CHECK_MODULES(APPORTIONEXT, xextensions fixesext)
+PKG_CHECK_MODULES(COMPOSITEEXT, xextensions fixesext)
 
 AC_OUTPUT([Makefile
-           apportionext.pc])
+           compositeext.pc])
 
