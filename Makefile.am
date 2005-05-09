@@ -7,6 +7,6 @@ kb_HEADERS = \
 	XKBstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = kbext.pc
+pkgconfig_DATA = kbproto.pc
 
-EXTRA_DIST = autogen.sh kbext.pc.in
+EXTRA_DIST = autogen.sh kbproto.pc.in
