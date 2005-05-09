@@ -4,6 +4,6 @@ print_HEADERS = \
 	Printstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = printext.pc
+pkgconfig_DATA = printproto.pc
 
-EXTRA_DIST = autogen.sh printext.pc.in
+EXTRA_DIST = autogen.sh printproto.pc.in
