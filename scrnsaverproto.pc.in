@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
  
-Name: ScrnSaverExt
+Name: ScrnSaverProto
 Description: ScrnSaver extension headers
 Version: @PACKAGE_VERSION@
 Cflags: -I${includedir}

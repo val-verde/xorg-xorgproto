@@ -5,6 +5,6 @@ scrnsaver_HEADERS = \
 	scrnsaver.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = scrnsaverext.pc
+pkgconfig_DATA = scrnsaverproto.pc
 
-EXTRA_DIST = autogen.sh scrnsaverext.pc.in
+EXTRA_DIST = autogen.sh scrnsaverproto.pc.in
