@@ -8,6 +8,6 @@ fonts_HEADERS = \
 	FSproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = fontsext.pc
+pkgconfig_DATA = fontsproto.pc
 
-EXTRA_DIST = autogen.sh fontsext.pc.in
+EXTRA_DIST = autogen.sh fontsproto.pc.in
