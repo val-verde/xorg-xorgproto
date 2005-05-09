@@ -4,6 +4,6 @@ xf86bigfont_HEADERS = \
 	xf86bigfstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = xf86bigfontext.pc
+pkgconfig_DATA = xf86bigfontproto.pc
 
-EXTRA_DIST = autogen.sh xf86bigfontext.pc.in
+EXTRA_DIST = autogen.sh xf86bigfontproto.pc.in

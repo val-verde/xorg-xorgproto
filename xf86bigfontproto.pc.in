@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
  
-Name: XF86BigFontExt
+Name: XF86BigFontProto
 Description: XF86BigFont extension headers
 Version: @PACKAGE_VERSION@
 Cflags: -I${includedir}
