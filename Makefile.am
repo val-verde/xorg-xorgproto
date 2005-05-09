@@ -1,9 +1,9 @@
 dmxdir = $(includedir)/X11/extensions
 dmx_HEADERS = \
-	dmxext.h \
+	dmxproto.h \
 	dmxproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = dmxext.pc
+pkgconfig_DATA = dmxproto.pc
 
-EXTRA_DIST = autogen.sh dmxext.pc.in
+EXTRA_DIST = autogen.sh dmxproto.pc.in
