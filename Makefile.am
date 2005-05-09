@@ -3,6 +3,6 @@ xcmisc_HEADERS = \
 	xcmiscstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = xcmiscext.pc
+pkgconfig_DATA = xcmiscproto.pc
 
-EXTRA_DIST = autogen.sh xcmiscext.pc.in
+EXTRA_DIST = autogen.sh xcmiscproto.pc.in
