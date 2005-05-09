@@ -9,6 +9,6 @@ video_HEADERS = \
 	Xvproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = videoext.pc
+pkgconfig_DATA = videoproto.pc
 
-EXTRA_DIST = autogen.sh videoext.pc.in
+EXTRA_DIST = autogen.sh videoproto.pc.in
