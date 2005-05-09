@@ -5,6 +5,6 @@ input_HEADERS = \
 	XIproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = inputext.pc
+pkgconfig_DATA = inputproto.pc
 
-EXTRA_DIST = autogen.sh inputext.pc.in
+EXTRA_DIST = autogen.sh inputproto.pc.in
