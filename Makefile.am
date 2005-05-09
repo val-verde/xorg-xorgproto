@@ -5,6 +5,6 @@ fontcache_HEADERS = \
 	fontcachstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = fontcacheext.pc
+pkgconfig_DATA = fontcacheproto.pc
 
-EXTRA_DIST = autogen.sh fontcacheext.pc.in
+EXTRA_DIST = autogen.sh fontcacheproto.pc.in

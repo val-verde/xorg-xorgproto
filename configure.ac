@@ -1,6 +1,6 @@
 AC_PREREQ([2.57])
-AC_INIT([FontcacheExt], [7.0], [xorg@lists.freedesktop.org])
+AC_INIT([FontcacheProto], [7.0], [xorg@lists.freedesktop.org])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
  
 AC_OUTPUT([Makefile
-           fontcacheext.pc])
+           fontcacheproto.pc])
