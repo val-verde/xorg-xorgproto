@@ -4,6 +4,6 @@ render_HEADERS = \
 	renderproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = renderext.pc
+pkgconfig_DATA = renderproto.pc
 
-EXTRA_DIST = autogen.sh renderext.pc.in
+EXTRA_DIST = autogen.sh renderproto.pc.in
