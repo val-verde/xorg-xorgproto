@@ -3,6 +3,6 @@ bigreqs_HEADERS = \
 	bigreqstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = bigreqsext.pc
+pkgconfig_DATA = bigreqsproto.pc
 
-EXTRA_DIST = autogen.sh bigreqsext.pc.in
+EXTRA_DIST = autogen.sh bigreqsproto.pc.in
