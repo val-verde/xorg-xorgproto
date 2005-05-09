@@ -4,6 +4,6 @@ xf86misc_HEADERS = \
 	xf86mscstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = xf86miscext.pc
+pkgconfig_DATA = xf86miscproto.pc
 
-EXTRA_DIST = autogen.sh xf86miscext.pc.in
+EXTRA_DIST = autogen.sh xf86miscproto.pc.in
