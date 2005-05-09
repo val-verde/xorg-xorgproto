@@ -8,6 +8,6 @@ gl_HEADERS = \
 	glxtokens.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = glext.pc
+pkgconfig_DATA = glproto.pc
 
-EXTRA_DIST = autogen.sh glext.pc.in
+EXTRA_DIST = autogen.sh glproto.pc.in
