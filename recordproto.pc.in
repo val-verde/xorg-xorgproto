@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
  
-Name: RecordExt
+Name: RecordProto
 Description: Record extension headers
 Version: @PACKAGE_VERSION@
 Cflags: -I${includedir}

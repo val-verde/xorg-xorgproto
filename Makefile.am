@@ -4,6 +4,6 @@ record_HEADERS = \
 	recordstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = recordext.pc
+pkgconfig_DATA = recordproto.pc
 
-EXTRA_DIST = autogen.sh recordext.pc.in
+EXTRA_DIST = autogen.sh recordproto.pc.in

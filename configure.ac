@@ -1,6 +1,6 @@
 AC_PREREQ([2.57])
-AC_INIT([RecordExt], [7.0], [xorg@lists.freedesktop.org])
+AC_INIT([RecordProto], [7.0], [xorg@lists.freedesktop.org])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
  
 AC_OUTPUT([Makefile
-           recordext.pc])
+           recordproto.pc])
