@@ -4,6 +4,6 @@ evie_HEADERS = \
 	Xeviestr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = evieext.pc
+pkgconfig_DATA = evieproto.pc
 
-EXTRA_DIST = autogen.sh evieext.pc.in
+EXTRA_DIST = autogen.sh evieproto.pc.in
