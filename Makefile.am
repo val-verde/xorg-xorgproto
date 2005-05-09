@@ -4,6 +4,6 @@ xf86vidmode_HEADERS = \
 	xf86vmstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = xf86vidmodeext.pc
+pkgconfig_DATA = xf86vidmodeproto.pc
 
-EXTRA_DIST = autogen.sh xf86vidmodeext.pc.in
+EXTRA_DIST = autogen.sh xf86vidmodeproto.pc.in
