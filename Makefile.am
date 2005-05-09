@@ -5,6 +5,6 @@ panoramix_HEADERS = \
 	Xinerama.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = panoramixext.pc
+pkgconfig_DATA = panoramixproto.pc
 
-EXTRA_DIST = autogen.sh panoramixext.pc.in
+EXTRA_DIST = autogen.sh panoramixproto.pc.in
