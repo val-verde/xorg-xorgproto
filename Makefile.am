@@ -9,6 +9,6 @@ trap_HEADERS = \
 	xtrapproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = trapext.pc
+pkgconfig_DATA = trapproto.pc
 
-EXTRA_DIST = autogen.sh trapext.pc.in
+EXTRA_DIST = autogen.sh trapproto.pc.in
