@@ -6,6 +6,6 @@ xf86dga_HEADERS = \
 	xf86dgastr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = xf86dgaext.pc
+pkgconfig_DATA = xf86dgaproto.pc
 
-EXTRA_DIST = autogen.sh xf86dgaext.pc.in
+EXTRA_DIST = autogen.sh xf86dgaproto.pc.in

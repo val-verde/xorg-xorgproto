@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
  
-Name: XF86DGAExt
+Name: XF86DGAProto
 Description: XF86DGA extension headers
 Version: @PACKAGE_VERSION@
 Cflags: -I${includedir}
