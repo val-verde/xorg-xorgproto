@@ -1,4 +1,4 @@
-fontsdir = $(includedir)/X11/extensions
+fontsdir = $(includedir)/X11/fonts
 fonts_HEADERS = \
 	font.h \
 	fontproto.h \
