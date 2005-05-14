@@ -1,6 +1,6 @@
 dmxdir = $(includedir)/X11/extensions
 dmx_HEADERS = \
-	dmxproto.h \
+	dmxext.h \
 	dmxproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
