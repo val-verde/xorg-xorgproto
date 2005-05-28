@@ -1,0 +1,5 @@
+2005-05-27  Alan Coopersmith  <alan.coopersmith@sun.com>
+
+	* Makefile.am (evie_HEADERS): Removed Xevie.h since it's now only
+	  library prototypes and as such is in lib/Xevie.
+
