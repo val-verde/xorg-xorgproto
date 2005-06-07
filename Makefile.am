@@ -1,6 +1,5 @@
 resourcedir = $(includedir)/X11/extensions
 resource_HEADERS = \
-	XRes.h \
 	XResproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
