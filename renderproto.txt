@@ -187,6 +187,7 @@ POINTFIX	[
 		]
 POLYEDGE	{ Sharp, Smooth }
 POLYMODE	{ Precise, Imprecise }
+REPEAT          { None, Regular, Pad, Reflect }
 COLORPOINT	[
 			point:		POINTFIX
 			color:		COLOR
@@ -591,8 +592,7 @@ CreatePicture
 	The value-mask and value-list specify attributes of the picture that
 	are to be explicitly initialized.  The possible values are:
 	
-	repeat:			BOOL
-	fill-nearest:		BOOL
+	repeat:			REPEAT
 	alpha-map:		PICTURE or None
 	alpha-x-origin:		INT16
 	alpha-y-origin:		INT16
@@ -610,16 +610,8 @@ CreatePicture
 	values control how pixels outside the geometry of the drawable are
 	computed.
 	
-	Fill-nearest indicates that pixel values outside of the drawable
-	geometry should be replaced the nearest available pixel within the
-	drawable geometry is used.  When multiple pixels are equidistant,
-	those with smaller Y and then X values are preferred.  Otherwise,
-	missing pixels are replaced with transparent.
-
-	Repeat indicates that the drawable contents should be treated
-	as if tiled in both directions.  Pixels falling in missing
-	areas of this tile are replaced according to the fill-nearest
-	rule.
+	Repeat indicates how the drawable contents should be extented
+	in both directions.  
 	
 	The alpha channel of alpha-map is used in place of any alpha channel
 	contained within the drawable for all rendering operations.  The
@@ -1124,6 +1116,85 @@ AddTraps
 	'picture' must be an alpha-only picture else a 'Match' error is
 	returned.
 	
+CreateSolidFill
+	pid: 		PICTURE
+	color:		COLOR	
+
+	Creates a Source picture that represents a solid fill with
+	the specified color. color is assumed to be non premultiplied.
+
+CreateLinearGradient
+	pid:		PICTURE
+	p1, p2:		POINTFIX
+	spread:		CARD16
+	nstops:		CARD16
+	stops:		LISTofFIXED
+	stop_colors:	LISTofCOLOR
+
+	Errors:		Alloc, Value
+
+	Creates a source picture representing a linear Gradient. The gradients
+	bounds are defined by the two end points p1 and p2. 
+
+	The gradient has nstops stop points between 0 and 1, each
+	having a stop color defined in stop_colors.
+
+	The array of stops has to contain values between 0 and 1 (inclusive) and
+	has to be ordered in increasing size or a Value error is generated. If 
+	p1 == p2 a Value error is generated.
+
+	The colors are non premultiplied.
+
+CreateRadialGradient
+	pid:		PICTURE
+	inner_center:	POINTFIX
+	outer_center:	POINTFIX
+	inner_radius:	FIXED
+	outer_radius:	FIXED
+	spread:		CARD16
+	nstops:		CARD16
+	stops:		LISTofFIXED
+	stop_colors:	LISTofCOLOR
+
+	Errors:		Alloc, Value
+
+	Creates a source picture representing a linear Gradient. The
+	gradients bounds are defined by a center point, a focal point and a
+	radius around the center.
+
+	The gradient has nstops stop points between 0 and 1, each
+	having a stop color defined in stop_colors.
+
+	The array of stops has to contain values between 0 and 1 (inclusive) and
+	has to be ordered in increasing size or a Value error is generated. The inner
+	circle has to be completely contained inside the outer one or a Value error is 
+	generated. 
+
+	The colors are non premultiplied.
+
+CreateConicalGradient
+	pid:		PICTURE
+	center:		POINTFIX
+	angle:		FIXED
+	spread:		CARD16
+	nstops:		CARD16
+	stops:		LISTofFIXED
+	stop_colors:	LISTofCOLOR
+
+	Errors:		Alloc, Value
+
+	Creates a source picture representing a conical Gradient. The
+	gradient is defined by a center point and an angle (in degrees).
+
+	The gradient has nstops stop points between 0 and 1, each
+	having a stop color defined in stop_colors.
+
+	The array of stops has to contain values between 0 and 1 (inclusive) and
+	has to be ordered in increasing size or a Value error is generated.
+
+	The colors are non premultiplied.
+
+	
 15. Extension Versioning
 
 The Render extension was developed in parallel with the implementation to
@@ -1174,3 +1245,12 @@ what each version before 1.0 implemented:
 		CreateAnimCursor
 	0.9:
 		AddTrapezoids
+
+	0.10:	
+		CreateSolidFill
+		CreateLinearGradient
+		CreateRadialGradient
+		CreateConicalGradient
+
+		The repeat picture attribute now supports Pad and
+		Reflect, older versions only supported None and Normal.
