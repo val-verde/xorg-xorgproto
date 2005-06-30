@@ -1126,8 +1126,7 @@ CreateSolidFill
 CreateLinearGradient
 	pid:		PICTURE
 	p1, p2:		POINTFIX
-	spread:		CARD16
-	nstops:		CARD16
+	nstops:		CARD32
 	stops:		LISTofFIXED
 	stop_colors:	LISTofCOLOR
 
@@ -1151,14 +1150,13 @@ CreateRadialGradient
 	outer_center:	POINTFIX
 	inner_radius:	FIXED
 	outer_radius:	FIXED
-	spread:		CARD16
-	nstops:		CARD16
+	nstops:		CARD32
 	stops:		LISTofFIXED
 	stop_colors:	LISTofCOLOR
 
 	Errors:		Alloc, Value
 
-	Creates a source picture representing a linear Gradient. The
+	Creates a source picture representing a radial Gradient. The
 	gradients bounds are defined by a center point, a focal point and a
 	radius around the center.
 
@@ -1176,8 +1174,7 @@ CreateConicalGradient
 	pid:		PICTURE
 	center:		POINTFIX
 	angle:		FIXED
-	spread:		CARD16
-	nstops:		CARD16
+	nstops:		CARD32
 	stops:		LISTofFIXED
 	stop_colors:	LISTofCOLOR
 
