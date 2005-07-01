@@ -1121,7 +1121,7 @@ CreateSolidFill
 	color:		COLOR	
 
 	Creates a Source picture that represents a solid fill with
-	the specified color. color is assumed to be non premultiplied.
+	the specified color. 
 
 CreateLinearGradient
 	pid:		PICTURE
