@@ -1,4 +1,4 @@
-gldir = $(includedir)/X11/extensions
+gldir = $(includedir)/GL
 gl_HEADERS = \
 	glu.h \
 	glx.h \
