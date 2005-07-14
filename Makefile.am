@@ -7,6 +7,10 @@ gl_HEADERS = \
 	glxproto.h \
 	glxtokens.h
 
+glinternaldir = $(includedir)/GL/internal
+glinternal_HEADERS = \
+	glcore.h
+
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = glproto.pc
 
