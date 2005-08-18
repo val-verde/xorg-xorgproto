@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
  
-Name: PanoramixProto
-Description: Panoramix extension headers
+Name: XineramaProto
+Description: Xinerama extension headers
 Version: @PACKAGE_VERSION@
 Cflags: -I${includedir}

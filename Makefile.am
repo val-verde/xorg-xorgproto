@@ -1,10 +1,10 @@
-panoramixdir = $(includedir)/X11/extensions
-panoramix_HEADERS = \
+xineramadir = $(includedir)/X11/extensions
+xinerama_HEADERS = \
 	panoramiXext.h \
 	panoramiXproto.h \
 	Xinerama.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = panoramixproto.pc
+pkgconfig_DATA = xineramaproto.pc
 
-EXTRA_DIST = autogen.sh panoramixproto.pc.in
+EXTRA_DIST = autogen.sh xineramaproto.pc.in
