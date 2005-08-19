@@ -7,4 +7,4 @@ config.status
 configure
 install-sh
 missing
-panoramixproto.pc
+xineramaproto.pc
