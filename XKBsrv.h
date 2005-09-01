@@ -279,6 +279,7 @@ extern int	XkbEventBase;
 extern int	XkbKeyboardErrorCode;
 extern int	XkbDisableLockActions;
 extern char *	XkbBaseDirectory;
+extern char *	XkbBinDirectory;
 extern char *	XkbInitialMap;
 extern int	_XkbClientMajor;
 extern int	_XkbClientMinor;
