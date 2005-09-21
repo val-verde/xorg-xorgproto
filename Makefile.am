@@ -1,7 +1,5 @@
 gldir = $(includedir)/GL
 gl_HEADERS = \
-	glu.h \
-	glx.h \
 	glxint.h \
 	glxmd.h \
 	glxproto.h \
