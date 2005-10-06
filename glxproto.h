@@ -1083,50 +1083,6 @@ typedef struct {
 #define sz_xGLXQueryMaxSwapBarriersSGIXReply 32
 
 /*
-** glXBindSwapBarrierSGIX request
-*/
-typedef struct GLXBindSwapBarrierSGIX {
-    CARD8       reqType;
-    CARD8       glxCode;
-    CARD16      length B16;
-    CARD32      vendorCode B32;         /* vendor-specific opcode */
-    CARD32      pad1 B32;   /* unused; corresponds to contextTag in header */
-    GLXDrawable drawable B32;
-    CARD32      barrier B32;
-} xGLXBindSwapBarrierSGIXReq;
-#define sz_xGLXBindSwapBarrierSGIXReq 20
-
-/*
-** glXQueryMaxSwapBarriersSGIX request
-*/
-typedef struct GLXQueryMaxSwapBarriersSGIX {
-    CARD8       reqType;
-    CARD8       glxCode;
-    CARD16      length B16;
-    CARD32      vendorCode B32;         /* vendor-specific opcode */
-    CARD32      pad1 B32;   /* unused; corresponds to contextTag in header */
-    CARD32      screen B32;
-} xGLXQueryMaxSwapBarriersSGIXReq;
-#define sz_xGLXQueryMaxSwapBarriersSGIXReq 16
-
-/*
-** glXQueryMaxSwapBarriersSGIX reply
-*/
-typedef struct {
-    BYTE        type;                   /* X_Reply */
-    CARD8       unused;                 /* not used */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    CARD32      max B32;
-    CARD32      pad2 B32;
-    CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-    CARD32      pad6 B32;
-} xGLXQueryMaxSwapBarriersSGIXReply;
-#define sz_xGLXQueryMaxSwapBarriersSGIXReply 32
-
-/*
 ** glXQueryHyperpipeNetworkSGIX request
 */
 typedef struct GLXQueryHyperpipeNetworkSGIX {
