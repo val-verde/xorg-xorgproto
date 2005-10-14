@@ -1,0 +1,4 @@
+2005-10-13  Donnie Berkholz  <spyderous@gentoo.org>
+
+	* configure.ac: Bump version to 1.4.1, so xserver can depend on newer
+	  version and not die.
