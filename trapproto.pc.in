@@ -6,4 +6,5 @@ includedir=@includedir@
 Name: TrapProto
 Description: Trap extension headers
 Version: @PACKAGE_VERSION@
+Requires: xt
 Cflags: -I${includedir}
