@@ -6,4 +6,5 @@ includedir=@includedir@
 Name: PrintProto
 Description: Print extension headers
 Version: @PACKAGE_VERSION@
+Requires: xau
 Cflags: -I${includedir}
