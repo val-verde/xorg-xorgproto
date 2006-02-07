@@ -2387,7 +2387,8 @@ typedef struct {
 #define X_GLXvop_QueryHyperpipeConfigSGIX       65551
 #define X_GLXvop_HyperpipeConfigSGIX            65552
 #define X_GLXvop_DestroyHyperpipeConfigSGIX     65553
-
+#define X_GLXvop_BindTexImageEXT                5152
+#define X_GLXvop_ReleaseTexImageEXT             5153
 
 /* ARB extension opcodes */
 
