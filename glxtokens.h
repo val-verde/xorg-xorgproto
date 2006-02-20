@@ -232,6 +232,11 @@ extern "C" {
 #define GLX_SCREEN_EXT		0x800C	/* screen number */
 
 /*
+** GLX_EXT_texture_from_pixmap
+*/
+#define GLX_FRONT_LEFT_EXT      0x6005
+
+/*
  * GLX 1.4 and later:
  */
 #define GLX_SAMPLE_BUFFERS_SGIS            100000
