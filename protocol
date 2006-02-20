@@ -1,6 +1,6 @@
 		        Composite Extension
-			    Version 0.2
-			      2004-7-8
+			    Version 0.3
+			      2006-1-22
 			    Keith Packard
 			  keithp@keithp.com
 
@@ -8,7 +8,7 @@
 
 Many user interface operations would benefit from having pixel contents of
 window hierarchies available without respect to sibling and antecedent
-clipping.  In addition, placing control over the composition of these pixel
+clipping. In addition, placing control over the composition of these pixel
 contents into a final screen image in an external application will enable
 a flexible system for dynamic application content presentation.
 
@@ -29,64 +29,77 @@ both early prototypes and the final design include:
 
  +	Mike Harris and Owen Taylor for figuring out what to call it.
 
+ +	Deron Johnson for the Looking Glass implementation and
+ 	a prototype of the coordinate transformation mechanism.
+
 3. Architecture
 
-The composite extension provides two related mechanisms:
+The composite extension provides three related mechanisms:
 
- 1.	Per-hierarchy storage.  The rendering of an entire hierarchy of windows
- 	is redirected to off-screen storage.  The pixels of that hierarchy
-	are available whenever it is viewable.  Storage is automatically
-	reallocated when the top level window changes size.  Contents beyond
+ 1.	Per-hierarchy storage. The rendering of an entire hierarchy of windows
+ 	is redirected to off-screen storage. The pixels of that hierarchy
+	are available whenever it is viewable. Storage is automatically
+	reallocated when the top level window changes size. Contents beyond
 	the geometry of the top window are not preserved.
 
- 2.	Automatic shadow update.  When a hierarchy is rendered off-screen,
+ 2.	Automatic shadow update. When a hierarchy is rendered off-screen,
  	the X server provides an automatic mechanism for presenting those
-	contents within the parent window.  The implementation is free to
+	contents within the parent window. The implementation is free to
 	make this update lag behind actual rendering operations by an
-	unspecified amount of time.  This automatic update mechanism may
+	unspecified amount of time. This automatic update mechanism may
 	be disabled so that the parent window contents can be completely
 	determined by an external application.
 
+ 3.	External parent - child pointer coordinate transformation.
+ 	When a hierarchy is under manual compositing, the relationship
+	of coordinates within the parent to those in the child may
+	not be known within the X server. This mechanism provides
+	for redirection of these transformations through a client.
+
 Per-hierarchy storage may be created for individual windows or for all
-children of a window.  Manual shadow update may be selected by only a single
+children of a window. Manual shadow update may be selected by only a single
 application for each window; manual update may also be selected on a
-per-window basis or for each child of a window.  Detecting when to update
+per-window basis or for each child of a window. Detecting when to update
 may be done with the Damage extension.
 
 The off-screen storage includes the window contents, its borders and the
 contents of all descendants.
 
 Version 0.2 of the protocol introduces a mechanism for associating an XID
-with the off-screen pixmap used to store these contents.  This can be used
+with the off-screen pixmap used to store these contents. This can be used
 to hold onto window contents after the window is unmapped (and hence animate
 it's disappearance), and also to access the border of the window, which is
-not reachable through the Window ID itself.  A new pixmap is created each
+not reachable through the Window ID itself. A new pixmap is created each
 time the window is mapped or resized; as these events are nicely signalled
-with existing events, no additional notification is needed.  The old pixmap
+with existing events, no additional notification is needed. The old pixmap
 will remain allocated as long as the Pixmap ID is left valid, it is
 important that the client use the FreePixmap request when it is done with
 the contents and to create a new name for the newly allocated pixmap.
 
 In automatic update mode, the X server is itself responsible for presenting
-the child window contents within the parent.  It seems reasonable, then, for
+the child window contents within the parent. It seems reasonable, then, for
 rendering to the parent window to be clipped so as not to interfere with any
-child window content.  In an environment with a mixure of manual and
+child window content. In an environment with a mixure of manual and
 automatic updating windows, rendering to the parent in the area nominally
 occupied by a manual update window should be able to affect parent pixel
 values in those areas, but such rendering should be clipped to automatic
 update windows, and presumably to other manual update windows managed by
-other applications.  In any of these cases, it should be easy to ensure that
+other applications. In any of these cases, it should be easy to ensure that
 rendering has no effect on any non-redirected windows.
 
 Instead of attempting to define new clipping modes for rendering, the
 Composite extension instead defines ClipByChildren rendering to the parent
 to exclude regions occupied by redirected windows (either automatic or
-manual).  The CreateRegionFromBorderClip request can be used along with
+manual). The CreateRegionFromBorderClip request can be used along with
 IncludeInferiors clipping modes to restrict manual shadow updates to the
-apporpriate region of the screen.  Bracketing operations with
+apporpriate region of the screen. Bracketing operations with
 GrabServer/UngrabServer will permit atomic sequences that can update the
-screen without artifact.  As all of these operations are asynchronous,
+screen without artifact. As all of these operations are asynchronous,
 network latency should not adversely affect update latency.
+
+Version 0.3 of the protocol adds the coordinate transformation redirection
+portions of the protocol which externalize the relationship between
+parent and child positions with respect to pointer coordinates.
 
 4. Errors
 
@@ -96,14 +109,42 @@ The composite extension does not define any new errors.
 
 	UPDATETYPE	{ Automatic, Manual }
 
+	CompositeCoordinate
+		child:			Window
+		x, y:			CARD16
+
 6. Events
 
-The composite extension does not define any new events.
+Version 0.3 of the Composite protocol defines one new event
+
+    TransformCoordinateNotify
+    
+		subtype:		COORDINATEEVENT
+		window:			Window
+		child:			Window
+		time:			Timestamp
+		serialNumber:		CARD32
+		count:			CARD32
+		x, y:			INT16
+	
+	This event is delivered to the client requesting for coordinate
+	redirection for 'window'. 'x' and 'y' are a location in 'child' if
+	not None, else in 'window'. 'time' is the time of any related
+	pointer event. 'serialNumber' serves to sequence transformations.
+	'count' indicates the number of events still to be delivered for
+	'window' to satisfy a particular operation within the server
+
+	The client must respond to this event with a suitable
+	TransformCoordinate request that includes matching 'window', 'child'
+	and serialNumber fields.
+
+	'serialNumber' may be repeated in multiple events, indicating that
+	the server needs to redo the same transformation for some reason.
 
 7. Extension Initialization
 
 The client must negotiate the version of the extension before executing
-extension requests.  Otherwise, the server will return BadRequest for any
+extension requests. Otherwise, the server will return BadRequest for any
 operations other than QueryVersion.
 
     QueryVersion
@@ -118,11 +159,11 @@ operations other than QueryVersion.
 
 	The client sends the highest supported version to the server and
 	the server sends the highest version it supports, but no higher than
-	the requested version.  Major versions changes can introduce
+	the requested version. Major versions changes can introduce
 	incompatibilities in existing functionality, minor version
-	changes introduce only backward compatible changes.  It is
+	changes introduce only backward compatible changes. It is
 	the client's responsibility to ensure that the server supports
-	a version which is compatible with its expectations.  Servers
+	a version which is compatible with its expectations. Servers
 	are encouraged to support multiple versions of the extension.
 
 8. Hierarchy Redirection
@@ -135,13 +176,13 @@ operations other than QueryVersion.
 		errors: Window, Access, Match
 
 	The hierarchy starting at 'window' is directed to off-screen
-	storage.  'automatic-update' specifies whether the contents
-	are mirrored to the parent window automatically or not.  Only
+	storage. 'automatic-update' specifies whether the contents
+	are mirrored to the parent window automatically or not. Only
 	one client may specify this flag, another attempt will result in an
-	Access error.  When all clients enabling redirection terminate,
+	Access error. When all clients enabling redirection terminate,
 	the redirection will automatically be disabled.
 
-	The root window may not be redirected.  Doing so results in a Match
+	The root window may not be redirected. Doing so results in a Match
 	error.
 
     RedirectSubwindows
@@ -152,7 +193,7 @@ operations other than QueryVersion.
 		errors: Window, Access
 
 	Hierarchies starting at all current and future children of window
-	will be redirected as in RedirectWindow.  If update is Manual,
+	will be redirected as in RedirectWindow. If update is Manual,
 	then painting of the window background during window manipulation
 	and ClearArea requests is inhibited.
 
@@ -162,7 +203,7 @@ operations other than QueryVersion.
 
 		errors: Window, Value
 
-	Redirection of the specified window will be terminated.  If
+	Redirection of the specified window will be terminated. If
 	the specified window was not selected for redirection by the
 	current client, a 'Value' error results.
 
@@ -172,7 +213,7 @@ operations other than QueryVersion.
 
 		errors: Window, Value
 
-	Redirection of all children of window will be terminated.  If
+	Redirection of all children of window will be terminated. If
 	the specified window was not selected for sub-redirection by the
 	current client, a 'Value' error results.
 
@@ -187,8 +228,8 @@ operations other than QueryVersion.
 
 	This request creates a region containing the "usual" border clip
 	value; that is the area of the window clipped against siblings and
-	the parent.  This region can be used to restrict rendering to
-	suitable areas while updating only a single window.  The region
+	the parent. This region can be used to restrict rendering to
+	suitable areas while updating only a single window. The region
 	is copied at the moment the request is executed; future changes
 	to the window hierarchy will not be reflected in this region.
 
@@ -202,10 +243,50 @@ operations other than QueryVersion.
 		errors: Window, Match, IDChoice
 
 	This request makes 'pixmap' a reference to the off-screen storage
-	for 'window'.  This pixmap will remain allocated until freed, even
-	if 'window' is unmapped, reconfigured or destroyed.  However,
+	for 'window'. This pixmap will remain allocated until freed, even
+	if 'window' is unmapped, reconfigured or destroyed. However,
 	'window' will get a new pixmap allocated each time it is
 	mapped or resized, so this request will need to be reinvoked for
 	the client to continue to refer to the storage holding the current
-	window contents.  Generates a 'Match' error if 'window' is not
+	window contents. Generates a 'Match' error if 'window' is not
 	redirected.
+
+11. External coordinate transformation (0.3 and later)
+
+    RedirectCoordinate
+
+		window:				Window
+		redirect:			BOOL
+
+		errors: Window, Access
+		
+	If 'redirect' is TRUE, the requesting client is placed in charge of
+	coordinate transformations between 'window' and its children. If
+	'redirect' is FALSE, any such redirection is disabled. Any
+	transformations needed by the server will be delivered to the
+	requesting client in TransformCoordinateNotify events and the
+	requesting client must reply with matching TransformCoordinate
+	requests for the server to continue with the operation.
+
+	Generates an 'Access' error if another client has
+	redirected coordinates for 'window'.
+	
+    TransformCoordinate
+
+		window:				Window
+		serialNumber:			CARD32
+		x, y:				INT16
+		coordinates:			LISTofCompositeCoordinate
+
+	This provides the transformation data needed by the server for a
+	single TransformCoordinateNotify event. 'serialNumber' must match
+	the serial number delivered in the event. 'x' and 'y' represent the
+	coordinate from the event relative to the 'window'. 'coordinates'
+	represent the coordinate from the event relative to each child
+	listed. Any children not listed in 'coordinates' are given the
+	default transformation using the child window position within the
+	parent as a simple translation.
+
+	The result of this is that any pointer data seen by means of
+	the protocol will appear to reflect the transformation
+	performed by this request.
