@@ -1,5 +1,5 @@
 /*
- * $Id: compositeproto.h,v 1.4 2004-07-08 07:20:55 keithp Exp $
+ * $Id: compositeproto.h,v 1.4 2004/07/08 07:20:55 keithp Exp $
  *
  * Copyright © 2003 Keith Packard
  *
@@ -128,6 +128,54 @@ typedef struct {
 } xCompositeNameWindowPixmapReq;
 
 #define sz_xCompositeNameWindowPixmapReq	    12
+
+/* Version 0.3 additions */
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   compositeReqType;
+    CARD16  length;
+    Window  window B32;
+    BOOL    redirect;
+    BYTE    unused1;
+    CARD16  unused2 B16;
+} xCompositeRedirectCoordinateReq;
+
+#define sz_xCompositeRedirectCoordinateReq	    12
+
+typedef struct {
+    CARD8   type;
+    CARD8   subtype;	/* XXX use this? */
+    CARD16  sequenceNumber B16;
+    Time    time B32;
+    Window  window B32;
+    Window  child B32;
+    CARD32  serialNumber B32;
+    CARD32  count B32;
+    CARD16  x B16;
+    CARD16  y B16;
+    CARD32  pad1 B32;
+} xCompositeTransformCoordinateNotifyEvent;
+
+typedef struct {
+    Window  window B32;
+    CARD16  x B16;
+    CARD16  y B16;
+} xCompositeCoordinate;
+
+#define sz_xCompositeCoordinate	8
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   compositeReqType;
+    CARD16  length;
+    Window  window B32;
+    CARD32  serialNumber B32;
+    CARD16  x B16;
+    CARD16  y B16;
+} xCompositeTransformCoordinateReq;
+
+#define sz_xCompositeTransformCoordinateReq	16
 
 #undef Window
 #undef Region
