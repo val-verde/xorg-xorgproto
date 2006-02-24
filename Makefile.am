@@ -21,17 +21,16 @@
 #  TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 #  PERFORMANCE OF THIS SOFTWARE.
 
-compositeextincludedir = $(includedir)/X11/extensions
-
-compositeextinclude_HEADERS = 	\
-	compositeproto.h	\
-	composite.h
-
-compositeextdocdir = $(datadir)/doc/compositeext
-compositeextdoc_DATA = protocol
+compositedir = $(includedir)/X11/extensions
+composite_HEADERS = \
+	composite.h \
+	compositeproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = compositeext.pc
+pkgconfig_DATA = compositeproto.pc
 
-EXTRA_DIST = autogen.sh compositeext.pc.in $(compositeextdoc_DATA)
+compositedocdir = $(datadir)/doc/Composite
+compositedoc_DATA = protocol
+
+EXTRA_DIST = autogen.sh compositeproto.pc.in $(compositeextdoc_DATA)
 

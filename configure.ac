@@ -24,12 +24,12 @@ dnl
 dnl Process this file with autoconf to create configure.
 
 AC_PREREQ([2.57])
-AC_INIT([compositeext], [2.0], [keithp@keithp.com], compositeext)
-AM_INIT_AUTOMAKE([dist-bzip2])
+AC_INIT([COmpositeProto], [0.2.2], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
+AM_INIT_AUTOMAKE([foreign dist-bzip2])
 AM_MAINTAINER_MODE
 
-PKG_CHECK_MODULES(COMPOSITEEXT, xextensions fixesext)
+XORG_RELEASE_VERSION
 
 AC_OUTPUT([Makefile
-           compositeext.pc])
+           compositeproto.pc])
 
