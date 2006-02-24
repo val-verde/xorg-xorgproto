@@ -24,12 +24,12 @@ dnl
 dnl Process this file with autoconf to create configure.
 
 AC_PREREQ([2.57])
-AC_INIT([fixesext], [3.0.0], [keithp@keithp.com], fixesext)
-AM_INIT_AUTOMAKE([dist-bzip2])
+AC_INIT([FixesProto], [3.0.2], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
+AM_INIT_AUTOMAKE([foreign dist-bzip2])
 AM_MAINTAINER_MODE
 
-PKG_CHECK_MODULES(XEXTENSIONS, xextensions)
+XORG_RELEASE_VERSION
 
 AC_OUTPUT([Makefile
-           fixesext.pc])
+           fixesproto.pc])
 

@@ -3,7 +3,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: FixesExt
+Name: FixesProto
 Description: X Fixes extension headers
 Version: @PACKAGE_VERSION@
-Cflags: -I${includedir} @XEXTENSIONS_CFLAGS@
+Cflags: -I${includedir}

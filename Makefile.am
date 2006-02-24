@@ -21,17 +21,16 @@
 #  TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 #  PERFORMANCE OF THIS SOFTWARE.
 
-fixesextincludedir = $(includedir)/X11/extensions
-fixesextinclude_HEADERS = 	\
-	xfixesproto.h		\
+fixesdir = $(includedir)/X11/extensions
+fixes_HEADERS = \
+	xfixesproto.h \
 	xfixeswire.h
 
-
-fixesextdocdir = $(datadir)/doc/fixesext
-fixesextdoc_DATA = protocol
+fixesdocdir = $(datadir)/doc/XFixes
+fixesdoc_DATA = protocol
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = fixesext.pc
+pkgconfig_DATA = fixesproto.pc
 
-EXTRA_DIST = autogen.sh fixesext.pc.in $(fixesextdoc_DATA)
+EXTRA_DIST = autogen.sh fixesproto.pc.in $(fixesdoc_DATA)
 
