@@ -1,0 +1,10 @@
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache
+compositeproto.pc
+config.log
+config.status
+configure
+install-sh
+missing
