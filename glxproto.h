@@ -2515,4 +2515,13 @@ typedef struct {
 /* 299. GL_EXT_blend_equation_separate */
 #define X_GLrop_BlendEquationSeparateEXT    4228
 
+/* 310. GL_EXT_framebuffer_object */
+#define X_GLvop_IsRenderbufferEXT                      1422
+#define X_GLvop_GenRenderbuffersEXT                    1423
+#define X_GLvop_GetRenderbufferParameterivEXT          1424
+#define X_GLvop_IsFramebufferEXT                       1425
+#define X_GLvop_GenFramebuffersEXT                     1426
+#define X_GLvop_CheckFramebufferStatusEXT              1427
+#define X_GLvop_GetFramebufferAttachmentParameterivEXT 1428
+
 #endif /* _GLX_glxproto_h_ */
