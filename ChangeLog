@@ -1,3 +1,8 @@
+2006-02-24  Brian Paul <brian.paul@tungstengraphics.com>
+
+	* glxproto.h
+	Added GL_EXT_framebuffer_object opcodes for Dave Reveman.
+
 2006-02-20  Adam Jackson  <ajax@freedesktop.org>
 
 	* glxtokens.h:
