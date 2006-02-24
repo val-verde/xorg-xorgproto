@@ -6,4 +6,4 @@ includedir=@includedir@
 Name: CompositeExt
 Description: Composite extension headers
 Version: @PACKAGE_VERSION@
-Cflags: -I${includedir} @COMPOSITEEXT_CFLAGS@
+Cflags: -I${includedir}
