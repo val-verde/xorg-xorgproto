@@ -1,3 +1,7 @@
+2006-03-10  David Reveman  <davidr@novell.com>
+
+	* glxproto.h: Fix typo.
+
 2006-02-24  Brian Paul <brian.paul@tungstengraphics.com>
 
 	* glxproto.h

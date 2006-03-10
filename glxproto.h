@@ -2343,9 +2343,9 @@ typedef struct {
 #define X_GLvop_GetProgramEnvParameterivNV     1298
 #define X_GLvop_GetProgramStringNV             1299
 #define X_GLvop_GetTrackMatrixivNV             1300
-#define X_GLvop_GetVetrexAttribdvARB           1301
-#define X_GLvop_GetVetrexAttribfvARB           1302
-#define X_GLvop_GetVetrexAttribivARB           1303
+#define X_GLvop_GetVertexAttribdvARB           1301
+#define X_GLvop_GetVertexAttribfvARB           1302
+#define X_GLvop_GetVertexAttribivARB           1303
 #define X_GLvop_IsProgramARB                   1304
 #define X_GLvop_GetProgramLocalParameterfvARB  1305
 #define X_GLvop_GetProgramLocalParameterdvARB  1306
