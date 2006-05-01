@@ -1,3 +1,8 @@
+2006-04-30  Adam Jackson  <ajax@freedesktop.org>
+
+	* glxtokens.h:
+	Bump to 1.4.7 for final EXT_tfp tokens.
+
 2006-03-16  Kristian Høgsberg  <krh@redhat.com>
 
 	* configure.ac: Bump to 1.4.6 for FBO opcodes.
