@@ -24,7 +24,7 @@ RandR as implemented and integrated into the X server differs in
 one substantial fashion from the design discussed in that paper: that
 is, RandR 1.0 does not implement the depth switching described in that
 document, and the support described for that in the protocol in that
-document and in the XFree86 implementation has been removed from the
+document and in the implementation has been removed from the
 protocol described here, as it has been overtaken by events.
 
 These events include:
@@ -42,17 +42,16 @@ Additionally, the requirement to support depth switching might
 complicate other re-engineering of the device independent part of the
 X server that is currently being contemplated.
 	
-Rather than further delaying RandR's widespread deployment for a
-feature long wanted by the community (resizing of screens,
-particularly on laptops), or the deployment of a protocol design that
-might be flawed due to lack of implementation experience, we decided
-to remove depth switching from the protocol.  It may be implementated
-at a later time if resources and interests permit as a revision to the
-protocol described here, which will remain a stable base for
-applications.  The protocol described here has been implemented in the
-main XFree86 server, and more fully in the TinyX implementation in the
-XFree86 distribution, which fully implements resizing, rotation and
-reflection.
+Rather than further delaying RandR's widespread deployment for a feature
+long wanted by the community (resizing of screens, particularly on laptops),
+or the deployment of a protocol design that might be flawed due to lack of
+implementation experience, we decided to remove depth switching from the
+protocol.  It may be implementated at a later time if resources and
+interests permit as a revision to the protocol described here, which will
+remain a stable base for applications.  The protocol described here has been
+implemented in the main X.org server, and more fully in the hw/kdrive
+implementation in the distribution, which fully implements resizing,
+rotation and reflection.
 
 1.2 Introduction to version 1.2 of the extension
 
@@ -76,7 +75,15 @@ Additional requests and events are provided for this new functionality.
 
 2. Acknowlegements
 
-Our thanks to the contributors to the design found on the xpert mailing list.
+Our thanks to the contributors to the design found on the xpert mailing
+list, in particular:
+
+Alan Hourihane for work on the early implementation
+Andrew C. Aitchison for help with the XFree86 DDX implementation
+Andy Ritger for early questions about how mergefb/Xinerama work with RandR
+Carl Worth for editing the specification and Usenix paper
+David Dawes for XFree86 DDX integration work
+Thomas Winischhofer for the hardware-accelerated SiS rotation implementation
 
 2. Screen change model
 
@@ -180,12 +187,12 @@ RRSelectInput
 
 	Errors: Window, Value
 
-	If enable is RRScreenChangeNotifyMask, RRScreenChangeNotify
-	events will be sent anytime the screen configuration changes,
-	either from this protocol extension, or due to detected
-	external screen configuration changes. RRScreenChangeNotify
-	may also be sent immediately if the screen configuration has
-	changed since the client connected, to avoid race conditions.
+	If 'enable' is RRScreenChangeNotifyMask, RRScreenChangeNotify events
+	will be sent anytime the screen configuration changes, either from
+	this protocol extension, or due to detected external screen
+	configuration changes. RRScreenChangeNotify may also be sent when
+	this request executes if the screen configuration has changed since
+	the client connected, to avoid race conditions.
 
 RRSetScreenConfig
 	drawable: DRAWABLE
@@ -243,7 +250,6 @@ RRGetScreenInfo
 	root: WINDOW
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
-	nSizes: CARD16
 	sizeID: SIZEID
 	rotation: ROTATION
 	rate: CARD16
@@ -262,50 +268,47 @@ RRGetScreenInfo
 
 	Errors: Window
 
-	This event is delivered to clients selecting for notification
-	with RRSelectInput requests using a RRScreenChangeNotifyMask.
+	RRGetScreenInfo returns information about the current and available
+	configurations for the screen associated with 'window'.
 
-	Size-index indicates which size is active.  The returned
-	window is the window requsting notification.
+	'rotations' contains the set of rotations and reflections supported
+	by the screen.
 
-	This call returns the root window of the screen which has changed.
-
-	Rotations contains the set of rotations and reflections
-	supported by the screen of the window requested. The root
-	window of that screen is reported. The number of current sizes
-	supported is returned, along with which size rotation and
-	reflection the screen is currently set to.
-
-	The config-timestamp indicates when the screen configuration
+	'root' is the root window of the screen.
+	
+	'config-timestamp' indicates when the screen configuration
 	information last changed: requests to set the screen will fail
 	unless the timestamp indicates that the information the client
 	is using is up to date, to ensure clients can be well behaved
-	in the face of race conditions. Similarly, timestamp indicates
-	when the configuration was last set, and must both must be up
-	to date in a call to RRSetScreenConfig for it to succeed.
+	in the face of race conditions. 
 	
-	Rate is the current refresh rate.  This is zero when the refresh
+	'timestamp' indicates when the configuration was last set.
+	
+	'sizeID' indicates which size is active.
+
+	'rate' is the current refresh rate.  This is zero when the refresh
 	rate is unknown or on devices for which refresh is not relevant.
 
-	Sizes is the list of possible frame buffer sizes (at the
-	normal orientation, each provide both the linear physical size
-	of the screen and the pixel size.
+	'sizes' is the list of possible frame buffer sizes (at the normal
+	orientation. Each size indicates both the linear physical size of
+	the screen and the pixel size.
 
-	Refresh is the list of refresh rates for each size, each element
-	of sizes has a cooresponding element in refresh.  An empty list
+	'refresh' is the list of refresh rates for each size. Each element
+	of 'sizes' has a cooresponding element in 'refresh'.  An empty list
 	indicates no known rates, or a device for which refresh is not
 	relevant.
 
 	The default size of the screen (the size that would become the
 	current size when the server resets) is the first size in the
-	list.  The potential screen sizes themselves are also
-	returned.
+	list.
 
-	Toolkits SHOULD use RRScreenChangeSelectInput to be notified
-	via a RRScreenChangeNotify event, so that they can adapt to
-	screen size changes.
+7.1. Extension Requests added in version 1.2 of the extension
 
-7.1. Extension Requests added in version 1.1 of the extension
+As introduced above, version 1.2 of the extension splits the screen size
+from the monitor configuration, permitting the subset of the screen
+presented by multiple monitors to be configured. As a separate notion, the
+size of the screen itself may be arbitrarily configured within a defined
+range.
 
 RRGetScreenSizeRange
 	drawable: DRAWABLE
@@ -324,6 +327,18 @@ RRSetScreenSize
 	drawable: DRAWABLE
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
+	width: CARD16
+	height: CARD16
+
+	Errors: Drawable, Match, Value
+
+	Sets the screen to the specified size. 'width' and 'height' must be
+	within the range allowed by GetScreenSizeRanges, otherwise a Value
+	error results. All active monitors must be configured to display a
+	subset of the specified size, else a Match error results.
+
+RRGetMonitorInfo
+	
 
 8. Extension Events
 
@@ -351,13 +366,12 @@ RRScreenChangeNotify
 	widthInMillimeters: INT16
 	heightInMillimeters: INT16
 
-	This event is generated whenever the screen configuration is
-	changed and sent to requesting clients. The timestamp included
-	indicates when the screen configuration was changed, and
-	configTimestamp says when the last time the configuration was
-	changed. The root is the root of the screen the change
-	occurred on, and the event window is also returned.  SizeID
-	contains an index indicating which size is current.
+	This event is generated whenever the screen configuration is changed
+	and sent to requesting clients. 'timestamp' indicates when the
+	screen configuration was changed.  'configTimestamp' says when the
+	last time the configuration was changed. 'root' is the root of the
+	screen the change occurred on, 'window' is window selecting for this
+	event. 'sizeID' contains the index of the current size.
 
 	This event is sent whenever the screen's configuration changes
 	or if a new screen configuration becomes available that was
@@ -366,8 +380,7 @@ RRScreenChangeNotify
 	the last call to RRGetScreenInfo), the client MUST call
 	RRGetScreenInfo to update its view of possible screen
 	configurations to have a correct view of possible screen
-	organizations. Timestamp is set to when the active screen
-	configuration was changed.
+	organizations.
 
 	Clients which select screen change notification events may be
 	sent an event immediately if the screen configuration was
@@ -376,7 +389,6 @@ RRScreenChangeNotify
 	that might occur on log-in, where many applications start up
 	just at the time when a display manager or log in script might
 	be changing the screen size or configuration.
-
 
 9. Extension Versioning
 
@@ -403,13 +415,14 @@ list of what each version before 1.0 implemented:
 
 	1.1: Added refresh rates
 
+	1.2: Separate out screens from monitors
+
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
 will fail against 1.0 servers.  The wire encoding op-codes were
 changed for GetScreenInfo to ensure this failure in a relatively
 graceful way.  Version 1.1 servers and clients are cross compatible with
 1.0.  Version 1.1 is considered to be stable and we intend upward
 compatibility from this point.
-
 
 Appendix A. Protocol Encoding
 
