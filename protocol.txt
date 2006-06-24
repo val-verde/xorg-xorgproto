@@ -1,16 +1,17 @@
 	The X Resize, Rotate and Reflect Extension
-		      Version 1.0
-		      2002-10-4
+		     Version 1.2
+		       2006-4-13
 
 		      Jim Gettys
 	          Jim.Gettys@hp.com
-
-	            Keith Packard
-	         keithp@xfree86.org
-
 	     Cambridge Research Laboratory
-		      HP Labs
-	       Hewlett Packard Company
+		        HP Labs
+	        Hewlett Packard Company
+
+	             Keith Packard
+	         keith.packard@intel.com
+	      Open Source Technology Center
+		   Intel Corporation
 
 1. Introduction
 
@@ -19,7 +20,7 @@ brings the ability to resize, rotate and reflect the root window of a
 screen.  It is based on the X Resize and Rotate Extension as specified
 in the Proceedings of the 2001 Usenix Technical Conference [RANDR].
 
-RandR as implemented and integrated into the XFree86 server differs in
+RandR as implemented and integrated into the X server differs in
 one substantial fashion from the design discussed in that paper: that
 is, RandR 1.0 does not implement the depth switching described in that
 document, and the support described for that in the protocol in that
@@ -52,6 +53,26 @@ applications.  The protocol described here has been implemented in the
 main XFree86 server, and more fully in the TinyX implementation in the
 XFree86 distribution, which fully implements resizing, rotation and
 reflection.
+
+1.2 Introduction to version 1.2 of the extension
+
+One of the significant limitations found in version 1.1 of the RandR
+protocol was the inability to deal with the Xinerama model where multiple
+monitors display portions of a common underlying screen. In this environment,
+the size of the 'porthole' shown by each monitor is independent of the
+overall size of the screen, and the porthole may be located anywhere within
+the screen.
+
+The effect is to decouple the reported size of the screen from the size
+presented by each monitor, and to permit multiple monitors to present
+information for a single screen.
+
+To extend RandR for this model, we separate out the monitor and screen
+configuration information and permit them to be configured separately. For
+compatibility with the 1.1 version of the protocol, we make the 1.1 requests
+simultaneously affect both the screen and the (presumably sole) monitor.
+
+Additional requests and events are provided for this new functionality.
 
 2. Acknowlegements
 
@@ -107,7 +128,6 @@ The subpixel order is shared with the Render extension, and is
 documented there.  The only datatype defined is the screen size,
 defined in the normal (0 degree) orientation.
 
-
 4. Errors
 
 There are no new error types defined by this extension.
@@ -132,7 +152,6 @@ SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 	      SubPixelVerticalRGB
 	      SubPixelVerticalBGR
 	      SubPixelNone }
-
 
 6. Extension Initialization
 
@@ -159,7 +178,7 @@ RRSelectInput
 	window: WINDOW
 	enable: SETofRRSELECTMASK
 
-	Errors: BadWindow, BadValue
+	Errors: Window, Value
 
 	If enable is RRScreenChangeNotifyMask, RRScreenChangeNotify
 	events will be sent anytime the screen configuration changes,
@@ -183,7 +202,7 @@ RRSetScreenConfig
 	root: WINDOW
 	subpixelOrder: SUBPIXELORDER
 
-	Errors: BadValue, BadMatch
+	Errors: Value, Match
 
 	If the timestamp in this request is less than the time when
 	the configuration was last successfully set, the request is
@@ -209,8 +228,8 @@ RRSetScreenConfig
 	argument is also returned, along with the subpixel order, to
 	allow correct subpixel rendering.
 
-	BadValue errors are generated if the rotation is not an
-	allowed rotation. BadValue errors are generated, if, when the
+	Value errors are generated if the rotation is not an
+	allowed rotation. Value errors are generated, if, when the
 	timestamps would allow the operation to succeed, or size-index
 	are not possible (out of range).
 
@@ -241,7 +260,7 @@ RRGetScreenInfo
 		rates: LISTofCARD16
 	}
 
-	Errors: BadWindow
+	Errors: Window
 
 	This event is delivered to clients selecting for notification
 	with RRSelectInput requests using a RRScreenChangeNotifyMask.
@@ -286,6 +305,25 @@ RRGetScreenInfo
 	via a RRScreenChangeNotify event, so that they can adapt to
 	screen size changes.
 
+7.1. Extension Requests added in version 1.1 of the extension
+
+RRGetScreenSizeRange
+	drawable: DRAWABLE
+	
+	->
+
+	CARD16	minWidth, minHeight
+	CARD16	maxWidth, maxHeight
+
+	Errors: Drawable
+
+	Returns the range of possible screen sizes. The screen may be set to
+	any size within this range.
+
+RRSetScreenSize
+	drawable: DRAWABLE
+	timestamp: TIMESTAMP
+	config-timestamp: TIMESTAMP
 
 8. Extension Events
 
