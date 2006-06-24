@@ -24,7 +24,7 @@ RandR as implemented and integrated into the X server differs in
 one substantial fashion from the design discussed in that paper: that
 is, RandR 1.0 does not implement the depth switching described in that
 document, and the support described for that in the protocol in that
-document and in the XFree86 implementationhas been removed from the
+document and in the XFree86 implementation has been removed from the
 protocol described here, as it has been overtaken by events.
 
 These events include:
