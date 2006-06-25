@@ -154,9 +154,12 @@ ROTATION {
 	 Reflect_X
 	 Reflect_Y }
 
-RRSELECTMASK { RRScreenChangeNotifyMask }
+RRSELECTMASK { RRScreenChangeNotifyMask
+	       RRMonitorChangeNotifyMask (New in version 1.2) }
 
 SIZEID { CARD16 }
+
+MONITOR { CARD32 }
 
 SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 	      SubPixelHorizontalRGB	extensions definitions; they are here
@@ -200,11 +203,19 @@ RRSelectInput
 	Errors: Window, Value
 
 	If 'enable' is RRScreenChangeNotifyMask, RRScreenChangeNotify events
-	will be sent anytime the screen configuration changes, either from
+	will be sent when the screen configuration changes, either from
 	this protocol extension, or due to detected external screen
 	configuration changes. RRScreenChangeNotify may also be sent when
 	this request executes if the screen configuration has changed since
 	the client connected, to avoid race conditions.
+
+	New for version 1.2 - if 'enable' contains RRMonitorChangeMask,
+	RRMonitorChangeNotify events will be sent when a the configuration
+	for a monitor associated with the screen changes, either through
+	this protocol extension or due to detected external monitor changes.
+	RRMonitorChangeNotify may also be sent when this request executes if
+	the monitor configuration has changed since the client connected, to
+	avoid race conditions.
 
 RRSetScreenConfig
 	drawable: DRAWABLE
@@ -423,52 +434,79 @@ RRGetMonitorInfo
 
 RRSetMonitorConfig
 	drawable: DRAWABLE
-	monitor: CARD32
+	monitorID: MONITOR
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
-	x,y: INT16
+	x, y: INT16
 	sizeID: SIZEID
 	rotation: ROTATION
 	rate: CARD16
 
 	->
 
-	status: RRStatus
+	status: RRCONFIGSTATUS
 	new-timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	root: WINDOW
 	subpixelOrder: SUBPIXELORDER
 
-	Errors: Drawable, Value, Match
+	Errors: Value, Match
 
-	If the timestamp in this request is less than the time when
-	the configuration was last successfully set, the request is
-	ignored and False returned in success.  If the
-	config-timestamp in this request is not equal to when the
-	server's screen configurations last changed, the request is
-	ignored and False returned in success.  This could occur if
-	the screen changed since you last made a RRGetScreenInfo
-	request, perhaps by a different piece of display hardware
-	being installed.  Rather than allowing an incorrect call to be
-	executed based on stale data, the server will ignore the
-	request.
+	If 'timestamp' is less than the time when the configuration was last
+	successfully set, the request is ignored and InvalidTime returned in
+	status.
+	
+	If 'config-timestamp' is not equal to when the monitor's
+	configuration last changed, the request is ignored and
+	InvalidConfigTime returned in status.  This could occur if the
+	monitor changed since you last made a RRGetScreenInfo request,
+	perhaps by a different monitor being connected to the machine.
+	Rather than allowing an incorrect call to be executed based on stale
+	data, the server will ignore the request.
 
-	If rate is zero, the server selects an appropriate rate.
+	'x' and 'y' contain the desired location within the screen for this
+	monitor's content. 'x' and 'y' must be within the screen size, else
+	a Value error results.
 
-	If the request succeeds, this request sets the screen to the
-	specified size, rate, rotation and reflection. If the requests
-	succeeds, the new-time-stamp is returned containing the time
-	when the screen configuration was changed and config-timestamp
-	is returned to indicate when the possible screen
-	configurations were last changed, and success is set to True.
-	The root window for the screen indicated by the drawable
-	argument is also returned, along with the subpixel order, to
-	allow correct subpixel rendering.
+	'sizeID' contains the index of desired size or Disabled indicating
+	the monitor should be disabled. 'sizeID' must be either a valid size
+	index or 'Disabled', else a Value error results.
 
-	Value errors are generated if the rotation is not an
-	allowed rotation. Value errors are generated, if, when the
-	timestamps would allow the operation to succeed, or size-index
-	are not possible (out of range).
+	'rotation' contains the desired rotation along with which
+	reflections should be enabled. The rotation and reflection values
+	must be among those allowed for this monitor, else a Value error
+	results.
+
+	'rate' contains the desired refresh rate. If it is zero, the server
+	selects an appropriate rate. Otherwise, the rate must be valid for
+	the selected size, else a Value error results.
+
+	This request may fail for other indeterminate reasons, in which case
+	'status' will be set to Failed and no configuration change will be
+	made.
+	
+	This request sets the monitor to the specified position size, rate,
+	rotation and reflection. The entire area of the monitor must fit
+	within the screen size, else a Match error results. As an example,
+	rotating the screen so that a single monitor fills the entire screen
+	before and after may necessitate disabling the monitor, resizing the
+	screen, then re-enabling the monitor at the new configuration to
+	avoid an invalid intermediate configuration.
+
+	When this request succeeds, 'status' contains Success and the
+	requested changes to configuration will have been made.
+	
+	'new-time-stamp' contains the time at which this request was
+	executed.
+	
+	'config-timestamp' contains the time when the possible screen
+	configurations were last changed.
+	
+	'root' contains the root window for the screen indicated by the
+	drawable.
+
+	'subpixelOrder' contains the resulting subpixel order of the monitor
+	to allow correct subpixel rendering.
 
 8. Extension Events
 
@@ -491,10 +529,10 @@ RRScreenChangeNotify
 	window: WINDOW			window requesting notification
 	sizeID: SIZEID			new ID of size
 	subpixelOrder: SUBPIXELORDER	order of subpixels
-	widthInPixels: INT16
-	heightInPixels: INT16
-	widthInMillimeters: INT16
-	heightInMillimeters: INT16
+	widthInPixels: CARD16
+	heightInPixels: CARD16
+	widthInMillimeters: CARD16
+	heightInMillimeters: CARD16
 
 	This event is generated whenever the screen configuration is changed
 	and sent to requesting clients. 'timestamp' indicates when the
@@ -519,6 +557,46 @@ RRScreenChangeNotify
 	that might occur on log-in, where many applications start up
 	just at the time when a display manager or log in script might
 	be changing the screen size or configuration.
+
+8.1 Events added in version 1.2 of the RandR extension
+
+RRMonitorChangeNotify
+
+	rotation: ROTATION;		new rotation
+	sequenceNumber: CARD16		low 16 bits of request's seq. number
+	timestamp: TIMESTAMP		time monitor was changed
+	configTimestamp: TIMESTAMP	time config data was changed
+	root: WINDOW			root window of screen
+	window: WINDOW			window requesting notification
+	monitorID: MONITOR		monitor which changed
+	sizeID: SIZEID			ID of new size
+	subpixelOrder: SUBPIXELORDER	order of subpixels
+	x: INT16			x position of monitor within screen
+	y: INT16			y position of monitor within screen
+
+	This event is generated whenever the monitor configuration is changed
+	and sent to requesting clients. 'timestamp' indicates when the
+	monitor configuration was changed.  'configTimestamp' says when the
+	last time the configuration was changed. 'root' is the root of the
+	screen the change occurred on, 'window' is window selecting for this
+	event. 'sizeID' contains the index of the current size.
+
+	This event is sent whenever the monitor's configuration changes
+	or if a new monitor configuration becomes available that was
+	not available in the past.  In this case (config-timestamp in
+	the event not being equal to the config-timestamp returned in
+	the last call to RRGetMonitorInfo), the client MUST call
+	RRGetMonitorInfo to update its view of possible monitor
+	configurations to have a correct view of possible monitor
+	organizations.
+
+	Clients which select monitor change notification events may be
+	sent an event immediately if the monitor configuration was
+	changed between when they connected to the X server and
+	selected for notification.  This is to prevent a common race
+	that might occur on log-in, where many applications start up
+	just at the time when a display manager or log in script might
+	be changing the monitor size or configuration.
 
 9. Extension Versioning
 
@@ -553,6 +631,11 @@ changed for GetScreenInfo to ensure this failure in a relatively
 graceful way.  Version 1.1 servers and clients are cross compatible with
 1.0.  Version 1.1 is considered to be stable and we intend upward
 compatibility from this point.
+
+10. Relationship between RandR, XFree86-VidModeExtension and Xinerama
+
+Two other extensions have a direct relationship with this extension. This
+section attempts to explain how these three are supposed to work together.
 
 Appendix A. Protocol Encoding
 
