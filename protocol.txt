@@ -141,13 +141,18 @@ There are no new error types defined by this extension.
 
 5. Protocol Types
 
+RRCONFIGSTATUS {
+	Success
+	InvalidConfigTime
+	InvalidTime
+	Failed }
 ROTATION {
-	 RR_rotate_0
-	 RR_rotate_90
-	 RR_rotate_180
-	 RR_rotate_270
-	 RR-Reflect_X
-	 RR_Reflect_Y }
+	 Rotate_0
+	 Rotate_90
+	 Rotate_180
+	 Rotate_270
+	 Reflect_X
+	 Reflect_Y }
 
 RRSELECTMASK { RRScreenChangeNotifyMask }
 
@@ -159,6 +164,13 @@ SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 	      SubPixelVerticalRGB
 	      SubPixelVerticalBGR
 	      SubPixelNone }
+
+SCREENSIZE {    
+	widthInPixels, heightInPixels: CARD16
+	widthInMillimeters, heightInMillimeters: CARD16 }
+
+REFRESH {
+	rates: LISTofCARD16 }
 
 6. Extension Initialization
 
@@ -204,6 +216,7 @@ RRSetScreenConfig
 
 	->
 
+	status: RRCONFIGSTATUS
 	new-timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	root: WINDOW
@@ -211,35 +224,45 @@ RRSetScreenConfig
 
 	Errors: Value, Match
 
-	If the timestamp in this request is less than the time when
-	the configuration was last successfully set, the request is
-	ignored and False returned in success.  If the
-	config-timestamp in this request is not equal to when the
-	server's screen configurations last changed, the request is
-	ignored and False returned in success.  This could occur if
-	the screen changed since you last made a RRGetScreenInfo
-	request, perhaps by a different piece of display hardware
-	being installed.  Rather than allowing an incorrect call to be
-	executed based on stale data, the server will ignore the
-	request.
+	If 'timestamp' is less than the time when the configuration was last
+	successfully set, the request is ignored and InvalidTime returned in
+	status.
+	
+	If 'config-timestamp' is not equal to when the server's screen
+	configurations last changed, the request is ignored and
+	InvalidConfigTime returned in status.  This could occur if the
+	screen changed since you last made a RRGetScreenInfo request,
+	perhaps by a different piece of display hardware being installed.
+	Rather than allowing an incorrect call to be executed based on stale
+	data, the server will ignore the request.
 
-	If rate is zero, the server selects an appropriate rate.
+	'rate' contains the desired refresh rate. If it is zero, the server
+	selects an appropriate rate.
 
-	If the request succeeds, this request sets the screen to the
-	specified size, rate, rotation and reflection. If the requests
-	succeeds, the new-time-stamp is returned containing the time
-	when the screen configuration was changed and config-timestamp
-	is returned to indicate when the possible screen
-	configurations were last changed, and success is set to True.
-	The root window for the screen indicated by the drawable
-	argument is also returned, along with the subpixel order, to
-	allow correct subpixel rendering.
+	This request may fail for other indeterminate reasons, in which case
+	'status' will be set to Failed and no configuration change will be
+	made.
+	
+	This request sets the screen to the specified size, rate, rotation
+	and reflection.
 
-	Value errors are generated if the rotation is not an
-	allowed rotation. Value errors are generated, if, when the
-	timestamps would allow the operation to succeed, or size-index
-	are not possible (out of range).
+	When this request succeeds, 'status' contains Success and the
+	requested changes to configuration will have been made.
+	
+	'new-time-stamp' contains the time at which this request was
+	executed.
+	
+	'config-timestamp' contains the time when the possible screen
+	configurations were last changed.
+	
+	'root' contains the root window for the screen indicated by the
+	drawable.
 
+	'subpixelOrder' contains the resulting subpixel order of the screen
+	to allow correct subpixel rendering.
+
+	Value errors are generated when 'rotation', 'rate' or 'sizeID' are
+	invalid.
 
 RRGetScreenInfo
 	window: WINDOW
@@ -257,14 +280,6 @@ RRGetScreenInfo
 	refresh: LISTofREFRESH
 
 	where:
-
-	SCREENSIZE {    
-		 widthInPixels, heightInPixels: CARD16
-		  widthInMillimeters, heightInMillimeters: CARD16 }
-
-	REFRESH {
-		rates: LISTofCARD16
-	}
 
 	Errors: Window
 
@@ -338,7 +353,122 @@ RRSetScreenSize
 	subset of the specified size, else a Match error results.
 
 RRGetMonitorInfo
+	drawable: DRAWABLE
+
+	->
+
+	root: WINDOW
+	monitors: LISTofMONITOR
+
+	where:
+
+	MONITOR {
+		name: STRING
+		timestamp: TIMESTAMP
+		config-timestamp: TIMESTAMP
+		x, y: INT16
+		sizeID: SIZEID or Disabled
+		rotation: ROTATION
+		rate: CARD16
+		rotations: SETofROTATION
+		defaultSizeID: SIZEID or Disabled
+		sizes: LISTofSCREENSIZE
+		refresh: LISTofREFRESH
+	}
+
+	Errors: Drawable
+
+	RRGetMonitorInfo returns information about the current and available
+	configurations for all monitors connected to the screen associated
+	with 'window'.
+
+	'root' is the root window of the screen.
 	
+	'timestamp' indicates when the configuration was last set.
+	
+	'config-timestamp' indicates when the screen configuration
+	information last changed: requests to set the screen will fail
+	unless the timestamp indicates that the information the client
+	is using is up to date, to ensure clients can be well behaved
+	in the face of race conditions. 
+	
+	'x' and 'y' indicate the position of this monitor within the screen
+	region. They will be set to 0 when the monitor is disabled.
+	
+	'sizeID' indicates which size is active, or 'Disabled' indicating
+	that the monitor has been disabled and is not displaying the screen
+	contents.
+
+	'rotation' indicates the active rotation. It is set to Rotate_0
+	when the monitor is disabled.
+	
+	'rate' is the current refresh rate.  This is zero when monitor is
+	disabled, when the refresh rate is unknown or on devices for which
+	refresh is not relevant.
+
+	'rotations' contains the set of rotations and reflections supported
+	by the monitor.
+
+	'defaultSizeID' is the size the monitor is set to at server reset
+	time.
+
+	'sizes' is the list of possible displayed sizes (with rotation set
+	to Rotate_0). Each size indicates both the linear physical size of
+	the monitor and the pixel size of the displayed area.
+
+	'refresh' is the list of refresh rates for each size. Each element
+	of 'sizes' has a cooresponding element in 'refresh'.  An empty list
+	indicates no known rates, or a device for which refresh is not
+	relevant.
+
+RRSetMonitorConfig
+	drawable: DRAWABLE
+	monitor: CARD32
+	timestamp: TIMESTAMP
+	config-timestamp: TIMESTAMP
+	x,y: INT16
+	sizeID: SIZEID
+	rotation: ROTATION
+	rate: CARD16
+
+	->
+
+	status: RRStatus
+	new-timestamp: TIMESTAMP
+	config-timestamp: TIMESTAMP
+	root: WINDOW
+	subpixelOrder: SUBPIXELORDER
+
+	Errors: Drawable, Value, Match
+
+	If the timestamp in this request is less than the time when
+	the configuration was last successfully set, the request is
+	ignored and False returned in success.  If the
+	config-timestamp in this request is not equal to when the
+	server's screen configurations last changed, the request is
+	ignored and False returned in success.  This could occur if
+	the screen changed since you last made a RRGetScreenInfo
+	request, perhaps by a different piece of display hardware
+	being installed.  Rather than allowing an incorrect call to be
+	executed based on stale data, the server will ignore the
+	request.
+
+	If rate is zero, the server selects an appropriate rate.
+
+	If the request succeeds, this request sets the screen to the
+	specified size, rate, rotation and reflection. If the requests
+	succeeds, the new-time-stamp is returned containing the time
+	when the screen configuration was changed and config-timestamp
+	is returned to indicate when the possible screen
+	configurations were last changed, and success is set to True.
+	The root window for the screen indicated by the drawable
+	argument is also returned, along with the subpixel order, to
+	allow correct subpixel rendering.
+
+	Value errors are generated if the rotation is not an
+	allowed rotation. Value errors are generated, if, when the
+	timestamps would allow the operation to succeed, or size-index
+	are not possible (out of range).
 
 8. Extension Events
 
@@ -436,12 +566,12 @@ A.1 Common Types
 
 	SETofROTATION
 
-	0x0001	RR_Rotate_0
-	0x0002	RR_Rotate_90
-	0x0004	RR_Rotate_180
-	0x0008	RR_Rotate_270
-	0x0010	RR_Reflect_X
-	0x0020	RR_Reflect_Y
+	0x0001	Rotate_0
+	0x0002	Rotate_90
+	0x0004	Rotate_180
+	0x0008	Rotate_270
+	0x0010	Reflect_X
+	0x0020	Reflect_Y
 
 
 	SETofRRSELECTMASK
