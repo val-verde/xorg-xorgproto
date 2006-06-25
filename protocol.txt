@@ -632,10 +632,42 @@ graceful way.  Version 1.1 servers and clients are cross compatible with
 1.0.  Version 1.1 is considered to be stable and we intend upward
 compatibility from this point.
 
-10. Relationship between RandR, XFree86-VidModeExtension and Xinerama
+10. Relationship with other extensions
 
 Two other extensions have a direct relationship with this extension. This
 section attempts to explain how these three are supposed to work together.
+
+10.1 XFree86-VidModeExtension
+
+XFree86-VidModeExtension changes the configuration of a single monitor
+attached to the screen without changing the configuration of the screen
+itself. It provides the ability to specify new mode lines for the server to
+use along with selecting among existing mode lines. As it uses screen
+numbers instead of window identifiers, it can be used to affect multiple
+monitors in a single-screen Xinerama configuration. However, the association
+between screen numbers and root windows in a multi-Screen environment is not
+defined by the extension. Version 2.0 of this extension added the ability to
+adjust the DAC values in a TrueColor server to modify the brightness curves
+of the display.
+
+Most of the utility of this extension is subsumed by RandR version 1.2, with
+the noted exception of specifying new mode lines and the gamma adjustments.
+If these features continue to be useful, either some relationship between
+the screen indices used in the XFree86-VidModeExtension and the
+screen/monitor pairs used int RandR or an incorporation of this
+functionality into RandR might be needed.
+
+10.2 Xinerama
+
+Xinerama provides a mechanism for describing the relationship between the
+overall screen display and monitors placed within that area. As such, it
+provides the query functionality of RandR 1.2 without any of the
+configuration functionality. Applications using Xinerama to discover
+monitor geometry can continue to do so, with the caveat that they will not be
+informed of changes when they occur. However, Xinerama configuration data
+will be updated, so applications selecting for RandR notification and
+re-querying the configuration with the Xinerama extension will get updated
+information.
 
 Appendix A. Protocol Encoding
 
