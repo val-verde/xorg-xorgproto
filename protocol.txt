@@ -157,9 +157,9 @@ ROTATION {
 RRSELECTMASK { RRScreenChangeNotifyMask
 	       RRMonitorChangeNotifyMask (New in version 1.2) }
 
-SIZEID { CARD16 }
+SIZEID { CARD16 or Disabled } 
 
-MONITOR { CARD32 }
+MONITOR { CARD16 }
 
 SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 	      SubPixelHorizontalRGB	extensions definitions; they are here
@@ -221,7 +221,7 @@ RRSetScreenConfig
 	drawable: DRAWABLE
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
-	sizeID: SIZEID
+	size-id: SIZEID
 	rotation: ROTATION
 	rate: CARD16
 
@@ -272,8 +272,8 @@ RRSetScreenConfig
 	'subpixelOrder' contains the resulting subpixel order of the screen
 	to allow correct subpixel rendering.
 
-	Value errors are generated when 'rotation', 'rate' or 'sizeID' are
-	invalid.
+	Value errors are generated when 'rotation', 'rate' or 'size-id'
+	are invalid.
 
 RRGetScreenInfo
 	window: WINDOW
@@ -284,7 +284,7 @@ RRGetScreenInfo
 	root: WINDOW
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
-	sizeID: SIZEID
+	size-id: SIZEID
 	rotation: ROTATION
 	rate: CARD16
 	sizes: LISTofSCREENSIZE
@@ -310,7 +310,7 @@ RRGetScreenInfo
 	
 	'timestamp' indicates when the configuration was last set.
 	
-	'sizeID' indicates which size is active.
+	'size-id' indicates which size is active.
 
 	'rate' is the current refresh rate.  This is zero when the refresh
 	rate is unknown or on devices for which refresh is not relevant.
@@ -367,20 +367,19 @@ RRGetMonitorInfo
 	->
 
 	root: WINDOW
-	monitors: LISTofMONITOR
+	monitors: LISTofMONITORINFO
 
 	where:
 
-	MONITOR {
-		name: STRING
+	MONITORINFO {
 		timestamp: TIMESTAMP
 		config-timestamp: TIMESTAMP
 		x, y: INT16
-		sizeID: SIZEID or Disabled
+		size-id: SIZEID or Disabled
 		rotation: ROTATION
 		rate: CARD16
 		rotations: SETofROTATION
-		defaultSizeID: SIZEID or Disabled
+		default-size-id: SIZEID or Disabled
 		sizes: LISTofSCREENSIZE
 		refresh: LISTofREFRESH
 	}
@@ -404,7 +403,7 @@ RRGetMonitorInfo
 	'x' and 'y' indicate the position of this monitor within the screen
 	region. They will be set to 0 when the monitor is disabled.
 	
-	'sizeID' indicates which size is active, or 'Disabled' indicating
+	'size-id' indicates which size is active, or 'Disabled' indicating
 	that the monitor has been disabled and is not displaying the screen
 	contents.
 
@@ -418,8 +417,8 @@ RRGetMonitorInfo
 	'rotations' contains the set of rotations and reflections supported
 	by the monitor.
 
-	'defaultSizeID' is the size the monitor is set to at server reset
-	time.
+	'default-size-id' is the size the monitor is set to at server
+	reset time.
 
 	'sizes' is the list of possible displayed sizes (with rotation set
 	to Rotate_0). Each size indicates both the linear physical size of
@@ -432,11 +431,11 @@ RRGetMonitorInfo
 
 RRSetMonitorConfig
 	drawable: DRAWABLE
-	monitorID: MONITOR
+	monitor-index: MONITOR
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	x, y: INT16
-	sizeID: SIZEID
+	size-id: SIZEID
 	rotation: ROTATION
 	rate: CARD16
 
@@ -446,6 +445,7 @@ RRSetMonitorConfig
 	new-timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	root: WINDOW
+	monitor: MONITOR
 	subpixelOrder: SUBPIXELORDER
 
 	Errors: Value, Match
@@ -466,9 +466,9 @@ RRSetMonitorConfig
 	monitor's content. 'x' and 'y' must be within the screen size, else
 	a Value error results.
 
-	'sizeID' contains the index of desired size or Disabled indicating
-	the monitor should be disabled. 'sizeID' must be either a valid size
-	index or 'Disabled', else a Value error results.
+	'size-id' contains the index of desired size or Disabled
+	indicating the monitor should be disabled. 'size-id' must be
+	either a valid size index or 'Disabled', else a Value error results.
 
 	'rotation' contains the desired rotation along with which
 	reflections should be enabled. The rotation and reflection values
@@ -525,7 +525,7 @@ RRScreenChangeNotify
 	configTimestamp: TIMESTAMP	time config data was changed
 	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
-	sizeID: SIZEID			new ID of size
+	size-id: SIZEID		index of new size
 	subpixelOrder: SUBPIXELORDER	order of subpixels
 	widthInPixels: CARD16
 	heightInPixels: CARD16
@@ -537,7 +537,7 @@ RRScreenChangeNotify
 	screen configuration was changed.  'configTimestamp' says when the
 	last time the configuration was changed. 'root' is the root of the
 	screen the change occurred on, 'window' is window selecting for this
-	event. 'sizeID' contains the index of the current size.
+	event. 'size-id' contains the index of the current size.
 
 	This event is sent whenever the screen's configuration changes
 	or if a new screen configuration becomes available that was
@@ -566,8 +566,8 @@ RRMonitorChangeNotify
 	configTimestamp: TIMESTAMP	time config data was changed
 	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
-	monitorID: MONITOR		monitor which changed
-	sizeID: SIZEID			ID of new size
+	monitor-index: MONITOR		monitor which changed
+	size-id: SIZEID		new size index
 	subpixelOrder: SUBPIXELORDER	order of subpixels
 	x: INT16			x position of monitor within screen
 	y: INT16			y position of monitor within screen
@@ -577,7 +577,7 @@ RRMonitorChangeNotify
 	monitor configuration was changed.  'configTimestamp' says when the
 	last time the configuration was changed. 'root' is the root of the
 	screen the change occurred on, 'window' is window selecting for this
-	event. 'sizeID' contains the index of the current size.
+	event. 'size-id' contains the index of the current size.
 
 	This event is sent whenever the monitor's configuration changes
 	or if a new monitor configuration becomes available that was
@@ -692,6 +692,16 @@ A.1 Common Types
 	0x0001	ScreenChangeNotifyMask
 	0x0002	MonitorChangeNotifyMask		Added in version 1.2
 
+	RRCONFIGSTATUS
+	
+	0x0 Success
+	0x1 InvalidConfigTime
+	0x2 InvalidTime
+	0x3 Failed
+
+	SIZEID
+	0xffff	Disabled
+
 A.2 Protocol Requests
 
 
@@ -713,24 +723,22 @@ errors if used in version 1.0.
 	1	CARD32			major version
         1	CARD32			minor version
 
-	RRSetScreenConfig
 
+	RRSetScreenConfig
+	
 	1	CARD8			major opcode
 	1	0x02			RandR opcode
-	2	5			length
+	2	6			length
 	4	DRAWABLE		drawable on screen to be configured
 	4	TIMESTAMP		timestamp
-	2	SIZEID			size id
+	4	TIMESTAMP		config timestamp
+	2	SIZEID		size index
 	2	ROTATION		rotation/reflection
 	2	CARD16			refresh rate (1.1 only)
 	2	CARD16			pad
 	->
 	1	1			Reply
-	1	CARD8			status
-		0x0 Success
-		0x1 InvalidConfigTime
-		0x2 InvalidTime
-		0x3 Failed
+	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
 	4	0			reply length
 	4	TIMESTAMP		new timestamp
@@ -740,7 +748,7 @@ errors if used in version 1.0.
 	2	CARD16			pad4
 	4	CARD32			pad5
 	4	CARD32			pad6
-
+	
 	
 	RRSelectInput
 
@@ -766,14 +774,14 @@ errors if used in version 1.0.
 	4	WINDOW			root window
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config timestamp
-	2	CARD16			number of SIZE following
-	2	SIZEID			sizeID
+	2	CARD16			number of SCREENSIZE following
+	2	SIZEID			current size index
 	2	ROTATION		current rotation and reflection
-	2	CARD16			rate (1.1)
+	2	CARD16			current rate (added in version 1.1)
 	2	CARD16			length of rate info (number of CARD16s)
 	2	CARD16			pad
 
-	SIZE
+	SCREENSIZE
 	2	CARD16			width in pixels
 	2	CARD16			height in pixels
 	2	CARD16			width in millimeters
@@ -805,6 +813,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4				unused
 	4				unused
 	
+	
 	RRSetScreenSize
 	
 	1	CARD8			major opcode
@@ -814,6 +823,71 @@ A.2.1 Protocol Requests added with version 1.2
 	2	CARD16			width
 	2	CARD16			height
 	
+
+	RRGetMonitorInfo
+	
+	1	CARD8			major opcode
+	1	0x08			RandR opcode
+	2	2			length
+	4	DRAWABLE		drawable
+	->
+	1	1			Reply
+	1				unused
+	2	CARD16			sequence number
+	4	m*7 + s*2 + (r*2+p)/4	reply length
+	4	WINDOW			root
+	2	CARD16			m = number of MONITORINFO following
+	2	CARD16			s = number of SIZE following
+	2	CARD16			r = number of CARD16 in rates following
+	14				unused
+	m*28	LISTofMONITORINFO	one per monitor
+	s*8	LISTofSCREENSIZE	for all monitors
+	r*2	LISTofREFRESH		refresh rates
+	p	pad			pad(r*2)
+
+	MONITORINFO
+	4	TIMESTAMP		timestamp
+	4	TIMESTAMP		config-timestamp
+	2	INT16			x
+	2	INT16			y
+	2	ROTATION		rotation
+	2	CARD16			rate
+	2	SETofROTATION		rotations
+	2	SIZEID or Disabled	default-size-id
+	2	CARD16			start offset in LISTofSCREENSIZE
+	2	CARD16			number of SCREENSIZE
+	2	CARD16			CARD16 offset in LISTofREFRESH
+	2	CARD16			number of CARD16 in refresh rates
+
+
+	RRSetMonitorConfig
+
+	1	CARD8			major opcode
+	1	0x09			RandR opcode
+	2	7			length
+	4	DRAWABLE		drawable
+	4	TIMESTAMP		timestamp
+	4	TIMESTAMP		config timestamp
+	2	SIZEID		size index
+	2	ROTATION		rotation/reflection
+	2	CARD16			rate
+	2	MONITOR			monitor index
+	2	INT16			x
+	2	INT16			y
+	->
+	1	1			Reply
+	1	RRCONFIGSTATUS		status
+	2	CARD16			sequence number
+	4	0			reply length
+	4	TIMESTAMP		new timestamp
+	4	TIMESTAMP		new configuration timestamp
+	4	WINDOW			root
+	2	SUBPIXELORDER		subpixel order defined in Render
+	2	MONITOR			monitor
+	4	CARD32			pad6
+	4	CARD32			pad7
+	
+
 A.3 Protocol Events
 
 	RRScreenChangeNotify
