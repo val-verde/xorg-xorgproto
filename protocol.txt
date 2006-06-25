@@ -338,7 +338,7 @@ range.
 
 RRGetScreenSizeRange
 	drawable: DRAWABLE
-	
+
 	->
 
 	CARD16	minWidth, minHeight
@@ -351,8 +351,6 @@ RRGetScreenSizeRange
 
 RRSetScreenSize
 	drawable: DRAWABLE
-	timestamp: TIMESTAMP
-	config-timestamp: TIMESTAMP
 	width: CARD16
 	height: CARD16
 
@@ -679,7 +677,7 @@ protocol encoding document.
 
 A.1 Common Types
 
-	SETofROTATION
+	ROTATION
 
 	0x0001	Rotate_0
 	0x0002	Rotate_90
@@ -689,10 +687,10 @@ A.1 Common Types
 	0x0020	Reflect_Y
 
 
-	SETofRRSELECTMASK
+	RRSELECTMASK
 
-	0x0001	RRScreenChangeNotifyMask
-
+	0x0001	ScreenChangeNotifyMask
+	0x0002	MonitorChangeNotifyMask		Added in version 1.2
 
 A.2 Protocol Requests
 
@@ -729,10 +727,10 @@ errors if used in version 1.0.
 	->
 	1	1			Reply
 	1	CARD8			status
-		0x0 RRSetConfigSuccess
-		0x1 RRSetConfigInvalidConfigTime
-		0x2 RRSetConfigInvalidTime
-		0x3 RRSetConfigFailed
+		0x0 Success
+		0x1 InvalidConfigTime
+		0x2 InvalidTime
+		0x3 Failed
 	2	CARD16			sequence number
 	4	0			reply length
 	4	TIMESTAMP		new timestamp
@@ -785,7 +783,38 @@ errors if used in version 1.0.
 	2	CARD16			number of rates (n)
 	2n	CARD16			rates
 
-A.2 Protocol Event
+A.2.1 Protocol Requests added with version 1.2
+
+	RRGetScreenSizeRange
+	
+	1	CARD8			major opcode
+	1	0x06			RandR opcode
+	2	2			length
+	4	DRAWABLE		drawable
+	->
+	1	1			Reply
+	1				unused
+	2	CARD16			sequence number
+	4	0			reply length
+	2	CARD16			minWidth
+	2	CARD16			minHeight
+	2	CARD16			maxWidth
+	2	CARD16			maxHeight
+	4				unused
+	4				unused
+	4				unused
+	4				unused
+	
+	RRSetScreenSize
+	
+	1	CARD8			major opcode
+	1	0x07			RandR opcode
+	2	3			length
+	4	DRAWABLE		drawable
+	2	CARD16			width
+	2	CARD16			height
+	
+A.3 Protocol Events
 
 	RRScreenChangeNotify
 
@@ -803,6 +832,7 @@ A.2 Protocol Event
 	2	CARD16			width in millimeters
 	2	CARD16			height in millimeters
 
+A.3.1 Protocol Events added with version 1.2
 
 Bibliography
 
