@@ -247,7 +247,7 @@ RRSelectInput
 	avoid race conditions.
 
 RRSetScreenConfig
-	drawable: DRAWABLE
+	window: WINDOW
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	size-id: SIZEID
@@ -296,7 +296,7 @@ RRSetScreenConfig
 	configurations were last changed.
 	
 	'root' contains the root window for the screen indicated by the
-	drawable.
+	window.
 
 	'subpixelOrder' contains the resulting subpixel order of the screen
 	to allow correct subpixel rendering.
@@ -368,32 +368,39 @@ by RRGetMonitorModes will change so that applications can detect dynamic
 changes in the monitor environment.
 
 RRGetScreenSizeRange
-	drawable: DRAWABLE
+	window: WINDOW
 
 	->
 
 	CARD16	minWidth, minHeight
 	CARD16	maxWidth, maxHeight
 
-	Errors: Drawable
+	Errors: Window
 
 	Returns the range of possible screen sizes. The screen may be set to
 	any size within this range.
 
 RRSetScreenSize
-	drawable: DRAWABLE
+	window: WINDOW
 	width: CARD16
 	height: CARD16
+	width-in-millimeters: CARD32
+	height-in-millimeters: CARD32
 
-	Errors: Drawable, Match, Value
+	Errors: Window, Match, Value
 
 	Sets the screen to the specified size. 'width' and 'height' must be
 	within the range allowed by GetScreenSizeRanges, otherwise a Value
 	error results. All active monitors must be configured to display a
 	subset of the specified size, else a Match error results.
 
+	'width-in-millimeters' and 'height-in-millimeters' can be set to
+	reflect the physical size of the screen reported both through this
+	extension and the core protocol. They must be non-zero, or Value
+	error results.
+
 RRGetMonitorModes
-	drawable: DRAWABLE
+	window: WINDOW
 
 	->
 
@@ -413,9 +420,9 @@ RRGetMonitorModes
 		modes: LISTofMONITORMODE
 	}
 
-	Errors: Drawable
+	Errors: Window
 
-	RRGetMonitorInfo returns information about the current and available
+	RRGetMonitorModes returns information about the current and available
 	configurations for all monitors connected to the screen associated
 	with 'window'.
 
@@ -449,7 +456,7 @@ RRGetMonitorModes
 	the sizes are reported for rotation set to Rotate_0.
 
 RRAddMonitorMode
-	drawable: DRAWABLE
+	window: WINDOW
 	monitor-index: MONITOR
 	mode: MONITORMODE
 	config-timestamp: TIMESTAMP
@@ -457,9 +464,9 @@ RRAddMonitorMode
 	
 	->
 
-	Errors: Drawable, Value, Match, Name
+	Errors: Window, Value, Match, Name
 
-	'drawable' and 'monitor-index' indicate which monitor is to be
+	'window' and 'monitor-index' indicate which monitor is to be
 	configured. If 'monitor-index' is out of range, a Value error is
 	returned.
 
@@ -472,15 +479,15 @@ RRAddMonitorMode
 	This request generates MonitorChangeNotify events.
 
 RRDeleteMonitorMode
-	drawable: DRAWABLE
+	window: WINDOW
 	monitor-index: MONITOR
 	name: STRING
 
 	->
 
-	Errors: Drawable, Value, Name
+	Errors: Window, Value, Name
 
-	'drawable' and 'monitor-index' indicate which monitor is to be
+	'window' and 'monitor-index' indicate which monitor is to be
 	configured. If 'monitor-index' is out of range, a Value error is
 	returned.
 
@@ -490,7 +497,7 @@ RRDeleteMonitorMode
 	The named mode must not be active, else a Match error is returned.
 
 RRSetMonitorMode
-	drawable: DRAWABLE
+	window: WINDOW
 	monitor-index: MONITOR
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
@@ -556,7 +563,7 @@ RRSetMonitorMode
 	configurations were last changed.
 	
 	'root' contains the root window for the screen indicated by the
-	drawable.
+	window.
 
 	'subpixelOrder' contains the resulting subpixel order of the monitor
 	to allow correct subpixel rendering.
@@ -638,8 +645,8 @@ RRMonitorChangeNotify
 	or if a new monitor configuration becomes available that was
 	not available in the past.  In this case (config-timestamp in
 	the event not being equal to the config-timestamp returned in
-	the last call to RRGetMonitorInfo), the client MUST call
-	RRGetMonitorInfo to update its view of possible monitor
+	the last call to RRGetMonitorModes), the client MUST call
+	RRGetMonitorModes to update its view of possible monitor
 	configurations to have a correct view of possible monitor
 	organizations.
 
@@ -799,10 +806,10 @@ errors if used in version 1.0.
 	1	CARD8			major opcode
 	1	0x02			RandR opcode
 	2	6			length
-	4	DRAWABLE		drawable on screen to be configured
+	4	WINDOW			window on screen to be configured
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config timestamp
-	2	SIZEID		size index
+	2	SIZEID			size index
 	2	ROTATION		rotation/reflection
 	2	CARD16			refresh rate (1.1 only)
 	2	CARD16			pad
@@ -868,7 +875,7 @@ A.2.1 Protocol Requests added with version 1.2
 	1	CARD8			major opcode
 	1	0x06			RandR opcode
 	2	2			length
-	4	DRAWABLE		drawable
+	4	WINDOW			window
 	->
 	1	1			Reply
 	1				unused
@@ -888,18 +895,20 @@ A.2.1 Protocol Requests added with version 1.2
 	
 	1	CARD8			major opcode
 	1	0x07			RandR opcode
-	2	3			length
-	4	DRAWABLE		drawable
+	2	5			length
+	4	WINDOW			window
 	2	CARD16			width
 	2	CARD16			height
+	4	CARD32			width in millimeters
+	4	CARD32			height in millimeters
 	
 
-	RRGetMonitorInfo
+	RRGetMonitorModes
 	
 	1	CARD8			major opcode
 	1	0x08			RandR opcode
 	2	2			length
-	4	DRAWABLE		drawable
+	4	WINDOW			window
 	->
 	1	1			Reply
 	1				unused
@@ -930,11 +939,11 @@ A.2.1 Protocol Requests added with version 1.2
 	RRAddMonitorMode
 	1	CARD8			major opcode
 	1	0x09			RandR opcode
-	2	9+(b+p)/4		length
-	4	DRAWABLE		drawable
+	2	12+(b+p)/4		length
+	4	WINDOW			window
 	2	MONITOR			monitor index
 	2				unused
-	24	MONITORMODE		mode
+	36	MONITORMODE		mode
 	b	STRING			mode name
 	p				pad(b)
 	
@@ -942,26 +951,26 @@ A.2.1 Protocol Requests added with version 1.2
 	1	CARD8			major opcode
 	1	0x0a			RandR opcode
 	2	3+(b+p)/4		length
-	4	DRAWABLE		drawable
+	4	WINDOW			window
 	2	MONITOR			monitor index
 	2	CARD16			mode name length
 	b	STRING			mode name
 	p				pad(b)
 	
-	RRSetMonitorConfig
+	RRSetMonitorMode
 
 	1	CARD8			major opcode
 	1	0x0b			RandR opcode
 	2	7			length
-	4	DRAWABLE		drawable
+	4	WINDOW			window
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config timestamp
-	2	SIZEID		size index
-	2	ROTATION		rotation/reflection
-	2	CARD16			rate
 	2	MONITOR			monitor index
 	2	INT16			x
 	2	INT16			y
+	2	MODEID			mode index
+	2	ROTATION		rotation/reflection
+	2				unused
 	->
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
@@ -972,8 +981,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4	WINDOW			root
 	2	SUBPIXELORDER		subpixel order defined in Render
 	2	MONITOR			monitor
-	4	CARD32			pad6
-	4	CARD32			pad7
+	8				unused
 	
 
 A.3 Protocol Events
@@ -1007,10 +1015,10 @@ A.3.1 Protocol Events added with version 1.2
 	4	WINDOW			request window
 	2	MONITOR			monitor index
 	2	MODEID			mode ID
-	2	CARD16			x
-	2	CARD16			y
-	1	ROTATION		new rotation and reflection
-	3				unused
+	2	INT16			x
+	2	INT16			y
+	2	ROTATION		new rotation and reflection
+	2				unused
 
 Bibliography
 

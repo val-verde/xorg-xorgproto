@@ -171,7 +171,153 @@ typedef struct {
 } xRRSelectInputReq;
 #define sz_xRRSelectInputReq   12
 
-#define sz_xRRSelectInputReq   12
+/*
+ * Additions for version 1.2
+ */
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   randrReqType;
+    CARD16  length B16;
+    Window	window B32;
+} xRRGetScreenSizeRangeReq;
+#define sz_xRRGetScreenSizeRangeReq 8
+
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    CARD8   status;
+    CARD16  sequenceNumber B16;
+    CARD32  length B32;
+    CARD16  minWidth B16;
+    CARD16  minHeight B16;
+    CARD16  maxWidth B16;
+    CARD16  maxHeight B16;
+    CARD32  pad0 B32;
+    CARD32  pad1 B32;
+    CARD32  pad2 B32;
+    CARD32  pad3 B32;
+} xRRGetScreenSizeRangeReply;
+#define sz_xRRGetScreenSizeRangeReply 32
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   randrReqType;
+    CARD16  length B16;
+    Window  window B32;
+    CARD16  width B16;
+    CARD16  height B16;
+    CARD32  widthInMillimeters B32;
+    CARD32  heightInMillimeters B32;
+} xRRSetScreenSizeReq;
+#define sz_xRRSetScreenSizeReq	    20
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   randrReqType;
+    CARD16  length B16;
+    Window  window B32;
+} xRRGetMonitorModesReq;
+    
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    CARD8   status;
+    CARD16  sequenceNumber B16;
+    CARD32  length B32;
+    Window  root B32;
+    CARD16  i B16;
+    CARD16  m B16;
+    CARD16  b B16;
+    CARD16  pad0 B16;
+    CARD32  pad1 B32;
+    CARD32  pad2 B32;
+    CARD32  pad3 B32;
+} xRRGetMonitorModesReply;
+#define sz_xRRGetMonitorModesReply 32
+
+typedef struct {
+    Time	timestamp B32;
+    Time	configTimestamp B32;
+    INT16	x B16;
+    INT16	y B16;
+    Rotation	rotation B16;
+    ModeID	mode B16;
+    ModeID	defaultMode B16;
+    Rotation	rotations B16;
+    CARD16	firstMode B16;
+    CARD16	numModes B16;
+} xRRMonitorInfo;
+#define sz_xRRMonitorInfo   24
+
+typedef struct {
+    CARD16  width B16;
+    CARD16  height B16;
+    CARD32  widthInMillimeters B32;
+    CARD32  heightInMillimeters B32;
+    CARD32  dotClock B32;
+    CARD16  hSyncStart B16;
+    CARD16  hSyncEnd B16;
+    CARD16  hTotal B16;
+    CARD16  hSkew B16;
+    CARD16  vSyncStart B16;
+    CARD16  vSyncEnd B16;
+    CARD16  vTotal B16;
+    CARD16  nameLength B16;
+    CARD32  modeFlags B32;
+} xRRMonitorMode;
+#define sz_xRRMonitorMode   36
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   randrReqType;
+    CARD16  length B16;
+    Window  window B32;
+    Monitor monitorIndex B16;
+    CARD16  pad B16;
+    xRRMonitorMode  mode;
+} xRRAddMonitorModeReq;
+#define sz_xRRAddMonitorModeReq	48
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   randrReqType;
+    CARD16  length B16;
+    Window  window B32;
+    Monitor monitorIndex B16;
+    CARD16  nameLength B16;
+} xRRDeleteMonitorModeReq;
+#define sz_xRRDeleteMonitorModeReq  12
+
+typedef struct {
+    CARD8   reqType;
+    CARD8	randrReqType;
+    CARD16	length B16;
+    Window	window B32;
+    Time	timestamp B32;
+    Time	configTimestamp B32;
+    Monitor	monitorIndex B16;
+    INT16	x B16;
+    INT16	y B16;
+    ModeID	mode B16;
+    Rotation	rotation B16;
+    CARD16	pad B16;
+} xRRSetMonitorConfigReq
+#define sz_xRRSetMonitorConfigReq   28
+
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    CARD8   status;
+    CARD16  sequenceNumber B16;
+    CARD32  length B32;
+    Time    timestamp B32;
+    Time    configTimestamp B32;
+    Window  root B32;
+    SubpixelOrder   subpixelOrder B16;
+    Monitor monitor B16;
+    CARD32  pad1 B32;
+    CARD32  pad2 B32;
+} xRRSetMonitorConfigReply;
+
+#define sz_xRRSetMonitorConfigReply
 
 /*
  * event
@@ -193,8 +339,24 @@ typedef struct {
 } xRRScreenChangeNotifyEvent;
 #define sz_xRRScreenChangeNotifyEvent	32
 
+typedef struct {
+    CARD8 type;				/* always evBase +  RRNotify */
+    CARD8 subCode;			/* RRNotify_MonitorChange */
+    CARD16 sequenceNumber B16;
+    Time timestamp B32;			/* time screen was changed */
+    Time configTimestamp B32;		/* time config data was changed */
+    Window root B32;			/* root window */
+    Window window B32;			/* window requesting notification */
+    ModeID modeID B16;			/* mode ID */
+    INT16 x B16;			/* x */
+    INT16 y B16;			/* y */
+    Rotation rotation B16;		/* rotation/reflection */
+    CARD16 pad B16;
+} xRRMonitorChangeNotifyEvent;
+#define sz_xRRMonitorChangeNotifyEvent	32
+
 #undef Window
-#undef Drawable
+#undef Window
 #undef Font
 #undef Pixmap
 #undef Cursor
