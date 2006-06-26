@@ -70,6 +70,10 @@ To extend RandR for this model, we separate out the monitor and screen
 configuration information and permit them to be configured separately. For
 compatibility with the 1.1 version of the protocol, we make the 1.1 requests
 simultaneously affect both the screen and the (presumably sole) monitor.
+Monitor configuration is now done with full mode information instead of just
+size and refresh rate, and these modes have names. These names should use
+UTF-8 encoding, but there isn't any enforcement in the specification.
+New modes may also be added by the user.
 
 Additional requests and events are provided for this new functionality.
 
@@ -157,7 +161,9 @@ ROTATION {
 RRSELECTMASK { RRScreenChangeNotifyMask
 	       RRMonitorChangeNotifyMask (New in version 1.2) }
 
-SIZEID { CARD16 or Disabled } 
+SIZEID { CARD16 }
+
+MODEID { CARD16 or Disabled }
 
 MONITOR { CARD16 }
 
@@ -171,6 +177,29 @@ SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 SCREENSIZE {    
 	widthInPixels, heightInPixels: CARD16
 	widthInMillimeters, heightInMillimeters: CARD16 }
+
+
+MODEFLAG {
+	hsync_positive hsync_negative
+	vsync_positive vsync_negative
+	interlace double_scan
+	csync csync_positive csync_negative
+	hskew_present
+	bcast
+	pixel_multiplex
+	double_clock
+	clock_divide_by_2
+}
+
+MONITORMODE {
+	name: STRING
+	widthInPixels, heightInPixels: CARD16
+	widthInMillimeters, heightInMillimeters: CARD32
+	dotClock: CARD32
+	hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
+	vSyncStart, vSyncEnd, vTotal: CARD16
+	modeFlags: SETofMODEFLAG
+}
 
 REFRESH {
 	rates: LISTofCARD16 }
@@ -334,7 +363,9 @@ As introduced above, version 1.2 of the extension splits the screen size
 from the monitor configuration, permitting the subset of the screen
 presented by multiple monitors to be configured. As a separate notion, the
 size of the screen itself may be arbitrarily configured within a defined
-range.
+range. As monitors are added and removed from the system, the set returned
+by RRGetMonitorModes will change so that applications can detect dynamic
+changes in the monitor environment.
 
 RRGetScreenSizeRange
 	drawable: DRAWABLE
@@ -361,7 +392,7 @@ RRSetScreenSize
 	error results. All active monitors must be configured to display a
 	subset of the specified size, else a Match error results.
 
-RRGetMonitorInfo
+RRGetMonitorModes
 	drawable: DRAWABLE
 
 	->
@@ -375,13 +406,11 @@ RRGetMonitorInfo
 		timestamp: TIMESTAMP
 		config-timestamp: TIMESTAMP
 		x, y: INT16
-		size-id: SIZEID or Disabled
+		mode: MODEID
 		rotation: ROTATION
-		rate: CARD16
 		rotations: SETofROTATION
-		default-size-id: SIZEID or Disabled
-		sizes: LISTofSCREENSIZE
-		refresh: LISTofREFRESH
+		default-mode: MODEID
+		modes: LISTofMONITORMODE
 	}
 
 	Errors: Drawable
@@ -403,41 +432,71 @@ RRGetMonitorInfo
 	'x' and 'y' indicate the position of this monitor within the screen
 	region. They will be set to 0 when the monitor is disabled.
 	
-	'size-id' indicates which size is active, or 'Disabled' indicating
+	'mode' indicates which mode is active, or 'Disabled' indicating
 	that the monitor has been disabled and is not displaying the screen
 	contents.
 
 	'rotation' indicates the active rotation. It is set to Rotate_0
 	when the monitor is disabled.
 	
-	'rate' is the current refresh rate.  This is zero when monitor is
-	disabled, when the refresh rate is unknown or on devices for which
-	refresh is not relevant.
-
 	'rotations' contains the set of rotations and reflections supported
 	by the monitor.
 
-	'default-size-id' is the size the monitor is set to at server
+	'default-mode' is the mode the monitor is set to at server
 	reset time.
 
-	'sizes' is the list of possible displayed sizes (with rotation set
-	to Rotate_0). Each size indicates both the linear physical size of
-	the monitor and the pixel size of the displayed area.
+	'modes' is the list of possible displayed modes. Within each mode,
+	the sizes are reported for rotation set to Rotate_0.
 
-	'refresh' is the list of refresh rates for each size. Each element
-	of 'sizes' has a cooresponding element in 'refresh'.  An empty list
-	indicates no known rates, or a device for which refresh is not
-	relevant.
+RRAddMonitorMode
+	drawable: DRAWABLE
+	monitor-index: MONITOR
+	mode: MONITORMODE
+	config-timestamp: TIMESTAMP
+	timestamp: TIMESTAMP
+	
+	->
 
-RRSetMonitorConfig
+	Errors: Drawable, Value, Match, Name
+
+	'drawable' and 'monitor-index' indicate which monitor is to be
+	configured. If 'monitor-index' is out of range, a Value error is
+	returned.
+
+	'mode' provides a new mode for the monitor.  If the name of 'mode'
+	names an existing mode, a Name error is returned. If 'mode' cannot be
+	supported by the specified monitor, a Match error is returned. If
+	some parameter of the mode is not valid in some other way, a Value
+	error is returned.
+
+	This request generates MonitorChangeNotify events.
+
+RRDeleteMonitorMode
+	drawable: DRAWABLE
+	monitor-index: MONITOR
+	name: STRING
+
+	->
+
+	Errors: Drawable, Value, Name
+
+	'drawable' and 'monitor-index' indicate which monitor is to be
+	configured. If 'monitor-index' is out of range, a Value error is
+	returned.
+
+	'name' specifies which mode to delete. If no mode of the specified
+	name exists, a Name error is returned. The named mode must have
+	been added with RRAddMonitorMode, else an Access error is returned.
+	The named mode must not be active, else a Match error is returned.
+
+RRSetMonitorMode
 	drawable: DRAWABLE
 	monitor-index: MONITOR
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	x, y: INT16
-	size-id: SIZEID
+	mode: MODEID
 	rotation: ROTATION
-	rate: CARD16
 
 	->
 
@@ -466,24 +525,20 @@ RRSetMonitorConfig
 	monitor's content. 'x' and 'y' must be within the screen size, else
 	a Value error results.
 
-	'size-id' contains the index of desired size or Disabled
-	indicating the monitor should be disabled. 'size-id' must be
-	either a valid size index or 'Disabled', else a Value error results.
+	'mode' contains the index of desired mode or Disabled indicating the
+	monitor should be disabled. If 'mode' is not one of these values, a
+	Value error results.
 
 	'rotation' contains the desired rotation along with which
 	reflections should be enabled. The rotation and reflection values
 	must be among those allowed for this monitor, else a Value error
 	results.
 
-	'rate' contains the desired refresh rate. If it is zero, the server
-	selects an appropriate rate. Otherwise, the rate must be valid for
-	the selected size, else a Value error results.
-
 	This request may fail for other indeterminate reasons, in which case
 	'status' will be set to Failed and no configuration change will be
 	made.
 	
-	This request sets the monitor to the specified position size, rate,
+	This request sets the monitor to the specified position, mode,
 	rotation and reflection. The entire area of the monitor must fit
 	within the screen size, else a Match error results. As an example,
 	rotating the screen so that a single monitor fills the entire screen
@@ -567,7 +622,7 @@ RRMonitorChangeNotify
 	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
 	monitor-index: MONITOR		monitor which changed
-	size-id: SIZEID		new size index
+	mode: MODEID			new mode
 	subpixelOrder: SUBPIXELORDER	order of subpixels
 	x: INT16			x position of monitor within screen
 	y: INT16			y position of monitor within screen
@@ -621,7 +676,7 @@ list of what each version before 1.0 implemented:
 
 	1.1: Added refresh rates
 
-	1.2: Separate out screens from monitors
+	1.2: Separate out screens from monitors, switch to full VESA modes
 
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
 will fail against 1.0 servers.  The wire encoding op-codes were
@@ -648,12 +703,11 @@ defined by the extension. Version 2.0 of this extension added the ability to
 adjust the DAC values in a TrueColor server to modify the brightness curves
 of the display.
 
-Most of the utility of this extension is subsumed by RandR version 1.2, with
-the noted exception of specifying new mode lines and the gamma adjustments.
-If these features continue to be useful, either some relationship between
-the screen indices used in the XFree86-VidModeExtension and the
-screen/monitor pairs used int RandR or an incorporation of this
-functionality into RandR might be needed.
+Most of the utility of this extension is subsumed by RandR version 1.2,
+except for the gamma adjustments. If this features continue to be useful,
+either some relationship between the screen indices used in the
+XFree86-VidModeExtension and the screen/monitor pairs used int RandR or an
+incorporation of this functionality into RandR might be needed.
 
 10.2 Xinerama
 
@@ -665,7 +719,8 @@ monitor geometry can continue to do so, with the caveat that they will not be
 informed of changes when they occur. However, Xinerama configuration data
 will be updated, so applications selecting for RandR notification and
 re-querying the configuration with the Xinerama extension will get updated
-information.
+information. It is probably better to view RandR as a superset of Xinerama
+at this point and use it in preference to Xinerama where both are present.
 
 Appendix A. Protocol Encoding
 
@@ -678,7 +733,6 @@ protocol encoding document.
 A.1 Common Types
 
 	ROTATION
-
 	0x0001	Rotate_0
 	0x0002	Rotate_90
 	0x0004	Rotate_180
@@ -688,12 +742,10 @@ A.1 Common Types
 
 
 	RRSELECTMASK
-
 	0x0001	ScreenChangeNotifyMask
 	0x0002	MonitorChangeNotifyMask		Added in version 1.2
 
 	RRCONFIGSTATUS
-	
 	0x0 Success
 	0x1 InvalidConfigTime
 	0x2 InvalidTime
@@ -702,6 +754,24 @@ A.1 Common Types
 	SIZEID
 	0xffff	Disabled
 
+	MONITORMODE (36)			Added in version 1.2
+	2	CARD16		width in pixels
+	2	CARD16		height in pixels
+	4	CARD32		width in millimeters
+	4	CARD32		height in millimeters
+	4	CARD32		dot clock
+	2	CARD16		h sync start
+	2	CARD16		h sync end
+	2	CARD16		h total
+	2	CARD16		h skew
+	2	CARD16		v sync start
+	2	CARD16		v sync end
+	2	CARD16		v total
+	2	CARD16		name length (n)
+	4	SETofMODEFLAG	mode flags
+	
+	The location of the name in the encoding is specified separately
+	
 A.2 Protocol Requests
 
 
@@ -834,16 +904,16 @@ A.2.1 Protocol Requests added with version 1.2
 	1	1			Reply
 	1				unused
 	2	CARD16			sequence number
-	4	m*7 + s*2 + (r*2+p)/4	reply length
+	4	i*6 + m*9 + (b+p)/4	reply length
 	4	WINDOW			root
-	2	CARD16			m = number of MONITORINFO following
-	2	CARD16			s = number of SIZE following
-	2	CARD16			r = number of CARD16 in rates following
+	2	CARD16			i = number of MONITORINFO following
+	2	CARD16			m = number of SIZE following
+	2	CARD16			b = size of name array following
 	14				unused
-	m*28	LISTofMONITORINFO	one per monitor
-	s*8	LISTofSCREENSIZE	for all monitors
-	r*2	LISTofREFRESH		refresh rates
-	p	pad			pad(r*2)
+	i*24	LISTofMONITORINFO	one per monitor
+	m*36	LISTofMONITORMODE	for all monitors
+	b	LISTofCARD*		list of mode names
+	p	pad			pad(b)
 
 	MONITORINFO
 	4	TIMESTAMP		timestamp
@@ -851,19 +921,37 @@ A.2.1 Protocol Requests added with version 1.2
 	2	INT16			x
 	2	INT16			y
 	2	ROTATION		rotation
-	2	CARD16			rate
+	2	MODEID			mode
+	2	MODEID			default mode
 	2	SETofROTATION		rotations
-	2	SIZEID or Disabled	default-size-id
-	2	CARD16			start offset in LISTofSCREENSIZE
-	2	CARD16			number of SCREENSIZE
-	2	CARD16			CARD16 offset in LISTofREFRESH
-	2	CARD16			number of CARD16 in refresh rates
+	2	CARD16			start offset in LISTofMONITORMODE
+	2	CARD16			number of MONITORMODE
 
-
+	RRAddMonitorMode
+	1	CARD8			major opcode
+	1	0x09			RandR opcode
+	2	9+(b+p)/4		length
+	4	DRAWABLE		drawable
+	2	MONITOR			monitor index
+	2				unused
+	24	MONITORMODE		mode
+	b	STRING			mode name
+	p				pad(b)
+	
+	RRDeleteMonitorMode
+	1	CARD8			major opcode
+	1	0x0a			RandR opcode
+	2	3+(b+p)/4		length
+	4	DRAWABLE		drawable
+	2	MONITOR			monitor index
+	2	CARD16			mode name length
+	b	STRING			mode name
+	p				pad(b)
+	
 	RRSetMonitorConfig
 
 	1	CARD8			major opcode
-	1	0x09			RandR opcode
+	1	0x0b			RandR opcode
 	2	7			length
 	4	DRAWABLE		drawable
 	4	TIMESTAMP		timestamp
@@ -907,6 +995,22 @@ A.3 Protocol Events
 	2	CARD16			height in millimeters
 
 A.3.1 Protocol Events added with version 1.2
+
+	RRMonitorChangeNotify
+
+	1	Base + 1		code
+	1	0			sub-code
+	2	CARD16			sequence number
+	4	TIMESTAMP		timestamp
+	4	TIMESTAMP		configuration timestamp
+	4	WINDOW			root window
+	4	WINDOW			request window
+	2	MONITOR			monitor index
+	2	MODEID			mode ID
+	2	CARD16			x
+	2	CARD16			y
+	1	ROTATION		new rotation and reflection
+	3				unused
 
 Bibliography
 

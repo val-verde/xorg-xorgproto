@@ -31,13 +31,18 @@
 typedef unsigned short	Rotation;
 typedef unsigned short	SizeID;
 typedef unsigned short	SubpixelOrder;
+typedef unsigned short	XRandrRotation;
+typedef unsigned short	XRandrSizeID;
+typedef unsigned short	XRandrSubpixelOrder;
+typedef unsigned short	XRandrModeID;
+typedef unsigned short	XRandrMonitor;
 
 #define RANDR_NAME		"RANDR"
 #define RANDR_MAJOR		1
-#define RANDR_MINOR		1
+#define RANDR_MINOR		2
 
 #define RRNumberErrors		0
-#define RRNumberEvents		1
+#define RRNumberEvents		2
 
 #define X_RRQueryVersion	0
 /* we skip 1 to make old clients fail pretty immediately */
@@ -50,11 +55,25 @@ typedef unsigned short	SubpixelOrder;
 #define X_RRSelectInput		4
 #define X_RRGetScreenInfo	5
 
-/* used in XRRSelectInput */
+/* V1.2 additions */
+#define X_RRGetScreenSizeRange	6
+#define X_RRSetScreenSize	7
+#define X_RRGetMonitorInfo	8
+#define X_RRAddMonitorMode	9
+#define X_RRDeleteMonitorMode	10
+#define X_RRSetMonitorConfig	11
 
+/* Event selection bits */
 #define RRScreenChangeNotifyMask  (1L << 0)
+/* V1.2 additions */
+#define RRMonitorChangeNotifyMask (1L << 1)
 
+/* Event codes */
 #define RRScreenChangeNotify	0
+/* V1.2 additions */
+#define RRNotify		1
+/* RRNotify Subcodes */
+#define  RRNotify_MonitorChange	0 
 
 /* used in the rotation field; rotation and reflection in 0.1 proto. */
 #define RR_Rotate_0		1
@@ -71,5 +90,23 @@ typedef unsigned short	SubpixelOrder;
 #define RRSetConfigInvalidConfigTime	1
 #define RRSetConfigInvalidTime		2
 #define RRSetConfigFailed		3
+
+/* new in 1.2 protocol */
+#define RR_MonitorDisabled	0xffff
+
+#define RR_HSyncPositive	0x00000001
+#define RR_HSyncNegative	0x00000002
+#define RR_VSyncPositive	0x00000004
+#define RR_VSyncNegative	0x00000008
+#define RR_Interlace		0x00000010
+#define RR_DoubleScan		0x00000020
+#define RR_CSync		0x00000040
+#define RR_CSyncPositive	0x00000080
+#define RR_CSyncNegative	0x00000100
+#define RR_HSkewPresent		0x00000200
+#define RR_BCast		0x00000400
+#define RR_PixelMultiplex	0x00000800
+#define RR_DoubleClock		0x00001000
+#define RR_ClockDivideBy2	0x00002000
 
 #endif	/* _RANDR_H_ */

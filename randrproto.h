@@ -47,6 +47,7 @@
 #define Rotation CARD16
 #define SizeID CARD16
 #define SubpixelOrder CARD16
+#define ModeID CARD16
 
 /*
  * data structures
