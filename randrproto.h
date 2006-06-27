@@ -271,7 +271,7 @@ typedef struct {
     CARD8   randrReqType;
     CARD16  length B16;
     Window  window B32;
-    Monitor monitorIndex B16;
+    CARD16  monitorIndex B16;
     CARD16  pad B16;
     xRRMonitorMode  mode;
 } xRRAddMonitorModeReq;
@@ -282,7 +282,7 @@ typedef struct {
     CARD8   randrReqType;
     CARD16  length B16;
     Window  window B32;
-    Monitor monitorIndex B16;
+    CARD16  monitorIndex B16;
     CARD16  nameLength B16;
 } xRRDeleteMonitorModeReq;
 #define sz_xRRDeleteMonitorModeReq  12
@@ -294,13 +294,13 @@ typedef struct {
     Window	window B32;
     Time	timestamp B32;
     Time	configTimestamp B32;
-    Monitor	monitorIndex B16;
+    CARD16	monitorIndex B16;
     INT16	x B16;
     INT16	y B16;
     ModeID	mode B16;
     Rotation	rotation B16;
     CARD16	pad B16;
-} xRRSetMonitorConfigReq
+} xRRSetMonitorConfigReq;
 #define sz_xRRSetMonitorConfigReq   28
 
 typedef struct {
@@ -312,7 +312,7 @@ typedef struct {
     Time    configTimestamp B32;
     Window  root B32;
     SubpixelOrder   subpixelOrder B16;
-    Monitor monitor B16;
+    CARD16  monitor B16;
     CARD32  pad1 B32;
     CARD32  pad2 B32;
 } xRRSetMonitorConfigReply;
