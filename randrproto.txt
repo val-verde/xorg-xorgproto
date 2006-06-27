@@ -622,7 +622,6 @@ RRScreenChangeNotify
 
 RRMonitorChangeNotify
 
-	rotation: ROTATION;		new rotation
 	sequenceNumber: CARD16		low 16 bits of request's seq. number
 	timestamp: TIMESTAMP		time monitor was changed
 	configTimestamp: TIMESTAMP	time config data was changed
@@ -630,6 +629,7 @@ RRMonitorChangeNotify
 	window: WINDOW			window requesting notification
 	monitor-index: MONITOR		monitor which changed
 	mode: MODEID			new mode
+	rotation: ROTATION;		new rotation
 	subpixelOrder: SUBPIXELORDER	order of subpixels
 	x: INT16			x position of monitor within screen
 	y: INT16			y position of monitor within screen
@@ -776,6 +776,13 @@ A.1 Common Types
 	2	CARD16		v total
 	2	CARD16		name length (n)
 	4	SETofMODEFLAG	mode flags
+	
+	A monitor mode specifies the complete CRTC timings for
+	a specfic mode. The vertical and horizontal synchronization rates
+	can be computed given the dot clock and the h total/v total
+	values. If the dot clock is zero, then all of the timing
+	parameters and flags are not used, and must be zero as this
+	indicates that the timings are unknown or otherwise unused.
 	
 	The location of the name in the encoding is specified separately
 	
@@ -1015,10 +1022,10 @@ A.3.1 Protocol Events added with version 1.2
 	4	WINDOW			request window
 	2	MONITOR			monitor index
 	2	MODEID			mode ID
+	2	ROTATION		new rotation and reflection
+	2	SUBPIXELORDER		new subpixel order
 	2	INT16			x
 	2	INT16			y
-	2	ROTATION		new rotation and reflection
-	2				unused
 
 Bibliography
 

@@ -347,11 +347,12 @@ typedef struct {
     Time configTimestamp B32;		/* time config data was changed */
     Window root B32;			/* root window */
     Window window B32;			/* window requesting notification */
+    CARD16 monitor B16;			/* monitor index */
     ModeID modeID B16;			/* mode ID */
+    Rotation rotation B16;		/* rotation/reflection */
+    SubpixelOrder subpixelOrder B16;	/* new subpixel order */
     INT16 x B16;			/* x */
     INT16 y B16;			/* y */
-    Rotation rotation B16;		/* rotation/reflection */
-    CARD16 pad B16;
 } xRRMonitorChangeNotifyEvent;
 #define sz_xRRMonitorChangeNotifyEvent	32
 
