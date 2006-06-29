@@ -57,7 +57,7 @@
 #define GLXBadCurrentDrawable	11
 #define GLXBadWindow		12
 
-#define __GLX_NUMBER_ERRORS 12
+#define __GLX_NUMBER_ERRORS 13
 
 /*
 ** Events.
