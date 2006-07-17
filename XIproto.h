@@ -72,7 +72,7 @@ SOFTWARE.
 
 #define numInputClasses 7
 
-#define IEVENTS		15
+#define IEVENTS		16
 #define IERRORS		5
 
 #define CLIENT_REQ		1
@@ -113,6 +113,7 @@ struct tmask
 #define XI_ChangeDeviceNotify		12
 #define XI_DeviceKeystateNotify		13
 #define XI_DeviceButtonstateNotify	14
+#define XI_DevicePresenceNotify		15
 
 /*********************************************************
  *
@@ -1290,6 +1291,24 @@ typedef struct {
     CARD32  	num_valuators B32; 	/* number of valuators		*/
 } xDeviceResolutionState;
 
+typedef struct {
+     CARD16         control B16;
+     CARD16         length B16;
+     CARD32         min_x;
+     CARD32         max_x;
+     CARD32         min_y;
+     CARD32         max_y;
+     CARD32         button_threshold;
+} xDeviceTSState;
+
+typedef struct {
+    CARD16      control B16;            /* control type                 */
+    CARD16      length  B16;            /* control length               */
+    CARD8       status;
+    CARD8       pad0;
+    CARD16      pad1 B16;
+} xDeviceCoreState;
+
 /*********************************************************
  *
  * ChangeDeviceControl.
@@ -1332,21 +1351,23 @@ typedef struct {
     CARD8  	pad1,pad2;
 } xDeviceResolutionCtl;
 
-
-/* Merged from Metrolink tree for XINPUT stuff	*/
-
 typedef struct {
-     CARD16         control;
-     CARD16         length;
+     CARD16         control B16;
+     CARD16         length B16;
      CARD32         min_x;
      CARD32         max_x;
      CARD32         min_y;
      CARD32         max_y;
      CARD32         button_threshold;
-} xDeviceTSCalibrationCtl;
+} xDeviceTSCtl;
 
-/* End of merged section	*/
-
+typedef struct {
+    CARD16          control B16;
+    CARD16          length  B16;
+    CARD8           status;
+    CARD8           pad0;
+    CARD16          pad1 B16;
+} xDeviceCoreCtl;
 
 /**********************************************************
  *
@@ -1522,6 +1543,26 @@ typedef struct
     CARD32	pad03 B32;
     CARD32	pad04 B32;
     }  changeDeviceNotify;
+
+/**********************************************************
+ *
+ * devicePresenceNotify.
+ *
+ */
+
+typedef struct
+    {
+    BYTE 	type;
+    BYTE        pad00;
+    CARD16 	sequenceNumber B16;
+    Time        time B32;
+    CARD32	pad01 B32;
+    CARD32	pad02 B32;
+    CARD32	pad03 B32;
+    CARD32	pad04 B32;
+    CARD32	pad05 B32;
+    CARD32	pad06 B32;
+    }  devicePresenceNotify;
 
 #undef Window
 #undef Time

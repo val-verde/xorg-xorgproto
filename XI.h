@@ -137,6 +137,7 @@ SOFTWARE.
 #define XInput_Add_XDeviceBell		2
 #define XInput_Add_XSetDeviceValuators	3
 #define XInput_Add_XChangeDeviceControl	4
+#define XInput_Add_DevicePresenceNotify	5
 
 #define XI_Absent		0
 #define XI_Present		1
@@ -153,7 +154,12 @@ SOFTWARE.
 #define XI_Add_XChangeDeviceControl_Major	1
 #define XI_Add_XChangeDeviceControl_Minor	3
 
+#define XI_Add_DevicePresenceNotify_Major	1
+#define XI_Add_DevicePresenceNotify_Minor	4
+
 #define DEVICE_RESOLUTION	1
+#define DEVICE_TOUCHSCREEN      2
+#define DEVICE_CORE             3
 
 #define NoSuchExtension		1
 
@@ -204,12 +210,6 @@ SOFTWARE.
 #define DeviceMode              (1L << 0)
 #define Relative                0
 #define Absolute                1
-/* Merged from Metrolink tree for XINPUT stuff	*/
-#define TS_Raw					57
-#define TS_Scaled				58
-#define SendCoreEvents			59
-#define DontSendCoreEvents		60
-/* End of merged section	*/
 
 #define ProximityState          (1L << 1)
 #define InProximity             (0L << 1)
@@ -243,6 +243,8 @@ SOFTWARE.
 #define _deviceButtonGrab	 7
 #define _deviceOwnerGrabButton	 8
 #define _noExtensionEvent	 9
+
+#define _devicePresence		 0
 
 #define XI_BadDevice	0
 #define XI_BadEvent	1

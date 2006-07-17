@@ -149,6 +149,13 @@ SOFTWARE.
 #define NoExtensionEvent(d,type,_class) \
     { _class =  ((XDevice *) d)->device_id << 8 | _noExtensionEvent;}
 
+#define DevicePresence(dpy, type, _class)                       \
+    {                                                           \
+        extern int_XiGetDevicePresenceNotifyEvent(Display *);   \
+        type = _XiGetDevicePresenceNotifyEvent(dpy);            \
+        _class =  (0x10000 | _devicePresence);                  \
+    }
+
 #define BadDevice(dpy,error) _xibaddevice(dpy, &error)
 
 #define BadClass(dpy,error) _xibadclass(dpy, &error)
@@ -418,6 +425,24 @@ typedef struct {
 
 /*******************************************************************
  *
+ * DevicePresenceNotify event.  This event is sent when the list of
+ * input devices changes.  No information about the change is
+ * contained in this event, the client should use XListInputDevices()
+ * to learn what has changed.
+ *
+ */
+
+typedef struct {
+    int           type;
+    unsigned long serial;       /* # of last request processed by server */
+    Bool          send_event;   /* true if this came from a SendEvent request */
+    Display       *display;     /* Display the event was read from */
+    Window        window;       /* unused */
+    Time          time;
+} XDevicePresenceNotifyEvent;
+
+/*******************************************************************
+ *
  * Control structures for input devices that support input class
  * Feedback.  These are used by the XGetFeedbackControl and 
  * XChangeFeedbackControl functions.
@@ -631,6 +656,22 @@ typedef struct {
      int            *min_resolutions;
      int            *max_resolutions;
 } XDeviceResolutionState;
+
+typedef struct {
+    XID             control;
+    int             length;
+    int             min_x;
+    int             max_x;
+    int             min_y;
+    int             max_y;
+    int             button_threshold;
+} XDeviceTSControl, XDeviceTSState;
+
+typedef struct {
+    XID             control;
+    int             length;
+    int             status;
+} XDeviceCoreControl, XDeviceCoreState;
 
 /*******************************************************************
  *
