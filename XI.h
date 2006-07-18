@@ -177,6 +177,8 @@ SOFTWARE.
 #define IsXPointer		0
 #define IsXKeyboard		1
 #define IsXExtensionDevice	2
+#define IsXExtensionKeyboard    3
+#define IsXExtensionPointer     4
 
 #define AsyncThisDevice		0
 #define SyncThisDevice		1
