@@ -24,6 +24,6 @@ XCalibrateincludedir = $(includedir)/X11/extensions
 XCalibrateinclude_HEADERS = xcalibrateproto.h xcalibratewire.h
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = xcalibrateext.pc
+pkgconfig_DATA = xcalibrateproto.pc
 
-EXTRA_DIST = autogen.sh xcalibrateext.pc.in
+EXTRA_DIST = autogen.sh xcalibrateproto.pc.in
