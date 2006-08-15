@@ -32,5 +32,4 @@ pkgconfig_DATA = compositeproto.pc
 compositedocdir = $(datadir)/doc/Composite
 compositedoc_DATA = protocol
 
-EXTRA_DIST = autogen.sh compositeproto.pc.in $(compositeextdoc_DATA)
-
+EXTRA_DIST = autogen.sh compositeproto.pc.in $(compositedoc_DATA)
