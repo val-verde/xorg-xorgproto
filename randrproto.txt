@@ -1,23 +1,23 @@
-	The X Resize, Rotate and Reflect Extension
-		     Version 1.2
-		       2006-4-13
+         The X Resize, Rotate and Reflect Extension
+                        Version 1.2
+                         2006-4-13
 
-		      Jim Gettys
-	          Jim.Gettys@hp.com
-	     Cambridge Research Laboratory
-		        HP Labs
-	        Hewlett Packard Company
+                        Jim Gettys
+                     Jim.Gettys@hp.com
+               Cambridge Research Laboratory
+                          HP Labs
+                  Hewlett Packard Company
 
-	             Keith Packard
-	         keith.packard@intel.com
-	      Open Source Technology Center
-		   Intel Corporation
+                       Keith Packard
+                  keith.packard@intel.com
+               Open Source Technology Center
+                     Intel Corporation
 
 1. Introduction
 
 The X Resize, Rotate and Reflect Extension, called RandR for short,
 brings the ability to resize, rotate and reflect the root window of a
-screen.  It is based on the X Resize and Rotate Extension as specified
+screen. It is based on the X Resize and Rotate Extension as specified
 in the Proceedings of the 2001 Usenix Technical Conference [RANDR].
 
 RandR as implemented and integrated into the X server differs in
@@ -28,14 +28,14 @@ document and in the implementation has been removed from the
 protocol described here, as it has been overtaken by events.
 
 These events include:
-      o Modern toolkits (in this case, GTK+ 2.x) have progressed to the point
+      ► Modern toolkits (in this case, GTK+ 2.x) have progressed to the point
         of implementing migration between screens of arbitrary depths
-      o The continued advance of Moore's law has made limited amounts of VRAM
+      ► The continued advance of Moore's law has made limited amounts of VRAM
         less of an issue, reducing the pressure to implement depth switching
 	on laptops or desktop systems
-      o The continued decline of legacy toolkits whose design would have
+      ► The continued decline of legacy toolkits whose design would have
         required depth switching to support migration
-      o The lack of depth switchin implementation experience in the 
+      ► The lack of depth switchin implementation experience in the 
         intervening time, due to events beyond our control
 
 Additionally, the requirement to support depth switching might
@@ -46,9 +46,9 @@ Rather than further delaying RandR's widespread deployment for a feature
 long wanted by the community (resizing of screens, particularly on laptops),
 or the deployment of a protocol design that might be flawed due to lack of
 implementation experience, we decided to remove depth switching from the
-protocol.  It may be implementated at a later time if resources and
+protocol. It may be implementated at a later time if resources and
 interests permit as a revision to the protocol described here, which will
-remain a stable base for applications.  The protocol described here has been
+remain a stable base for applications. The protocol described here has been
 implemented in the main X.org server, and more fully in the hw/kdrive
 implementation in the distribution, which fully implements resizing,
 rotation and reflection.
@@ -58,24 +58,57 @@ rotation and reflection.
 One of the significant limitations found in version 1.1 of the RandR
 protocol was the inability to deal with the Xinerama model where multiple
 monitors display portions of a common underlying screen. In this environment,
-the size of the 'porthole' shown by each monitor is independent of the
-overall size of the screen, and the porthole may be located anywhere within
-the screen.
+zero or more video outputs are associated with each CRT controller which
+defines both a set of video timings and a 'viewport' within the larger
+screen. This viewport is independent of the overall size of the screen, and
+may be located anywhere within the screen. 
 
 The effect is to decouple the reported size of the screen from the size
-presented by each monitor, and to permit multiple monitors to present
+presented by each video output, and to permit multiple outputs to present
 information for a single screen.
 
-To extend RandR for this model, we separate out the monitor and screen
+To extend RandR for this model, we separate out the output, CRTC and screen
 configuration information and permit them to be configured separately. For
 compatibility with the 1.1 version of the protocol, we make the 1.1 requests
-simultaneously affect both the screen and the (presumably sole) monitor.
-Monitor configuration is now done with full mode information instead of just
-size and refresh rate, and these modes have names. These names should use
-UTF-8 encoding, but there isn't any enforcement in the specification.
-New modes may also be added by the user.
+simultaneously affect both the screen and the (presumably sole) CRTC and
+output. The set of available outputs are presented with UTF-8 encoded names
+and may be connected to CRTCs as permitted by the underlying hardware. CRTC
+configuration is now done with full mode information instead of just size
+and refresh rate, and these modes have names. These names also use UTF-8
+encoding. New modes may also be added by the user.
 
 Additional requests and events are provided for this new functionality.
+
+       ┌────────────────────────────────┬──────────┐
+    ┏━━━━━━━┳───────────────┐       ╔════════╗ ╔════════╗
+    ┃   1   ┃               │       ║   A    ║ ║   B    ║
+    ┃   ┏━━━╋━━━━━━━━━━━━━━━┫       ║        ║ ║        ║
+    ┣━━━╋━━━┛               ┃       ╚════════╝ ╚════════╝
+    │   ┃         2         ┃─────────────────┐
+    │   ┃                   ┃        ╔═══════════════════╗ 
+    │   ┃                   ┃        ║                   ║
+    │   ┗━━━━━━━━━━━━━━━━━━━┫        ║        C          ║
+    └───────────────────────┘        ║                   ║
+    ┌──────┐  ┏━━━━┓  ╔═══════╗      ║                   ║
+    │screen│  ┃CRTC┃  ║monitor║      ╚═══════════════════╝
+    └──────┘  ┗━━━━┛  ╚═══════╝
+
+In this picture, the screen is covered (incompletely) by two CRTCs. CRTC1
+is connected to two monitors, A and B. CRTC2 is connected to monitor C.
+Monitors A and B will present exactly the same region of the screen using
+the same mode line. Monitor C will present a different (larger) region of
+the screen using a different mode line.
+
+RandR provides information about each available CRTC and monitor; the
+connection between CRTC and monitor is under application control, although
+the hardware will probably impose restrictions on the possible
+configurations. The protocol doesn't try to describe these restrictions,
+instead it provides a mechanism to find out what combinations are supported.
+
+For instance, dual-link DVI gangs two CRTC outputs togther to provide higher
+bandwidth for large resolution screens. This is exposed in RandR by
+requiring that nothing be connected to the second CRTC when driving a high
+resolution screen on the first.
 
 2. Acknowlegements
 
@@ -88,6 +121,8 @@ Andy Ritger for early questions about how mergefb/Xinerama work with RandR
 Carl Worth for editing the specification and Usenix paper
 David Dawes for XFree86 DDX integration work
 Thomas Winischhofer for the hardware-accelerated SiS rotation implementation
+Matthew Tippet and Kevin Martin for splitting outputs and CRTCs to more
+fully expose what video hardware can do
 
 2. Screen change model
 
@@ -110,24 +145,24 @@ Interested applications are notified whenever the screen configuration
 changes, providing the current size of the screen and subpixel order
 (see the Render extension [RENDER]), to enabel proper rendering of
 subpixel decimated client text to continue, along with a time stamp of
-the configuration change.  A client must refresh its knowledge of the
+the configuration change. A client must refresh its knowledge of the
 screen configuration before attempting to change the configuration
 after a notification, or the request will fail.
 
 To avoid multiplicative explosion between orientation, reflection
 and sizes, the sizes are only those sizes in the normal (0) rotation.
 
-Rotation and reflection and how they interact can be confusing.  In
+Rotation and reflection and how they interact can be confusing. In
 Randr, the coordinate system is rotated in a counter-clockwise
-direction relative to the normal orientation.  Reflection is along the
+direction relative to the normal orientation. Reflection is along the
 window system coordinate system, not the physical screen X and Y axis,
-so that rotation and reflection do not interact.  The other way to
+so that rotation and reflection do not interact. The other way to
 consider reflection is to is specified in the "normal" orientation,
 before rotation, if you find the other way confusing.
 
 We expect that most clients and toolkits will be oblivious to changes
 to the screen stucture, as they generally use the values in the
-connections Display structure directly.  By toolkits updating the
+connections Display structure directly. By toolkits updating the
 values on the fly, we believe pop-up menus and other pop up windows
 will position themselves correctly in the face of screen configuration
 changes (the issue is ensuring that pop-ups are visible on the
@@ -136,7 +171,7 @@ reconfigured screen).
 3. Data Types
 
 The subpixel order is shared with the Render extension, and is
-documented there.  The only datatype defined is the screen size,
+documented there. The only datatype defined is the screen size,
 defined in the normal (0 degree) orientation.
 
 4. Errors
@@ -159,13 +194,16 @@ ROTATION {
 	 Reflect_Y }
 
 RRSELECTMASK { RRScreenChangeNotifyMask
-	       RRMonitorChangeNotifyMask (New in version 1.2) }
+	       RRCrtcChangeNotifyMask (New in version 1.2)
+	       RROutputChangeNotifyMask (New in version 1.2) }
 
 SIZEID { CARD16 }
 
 MODEID { CARD16 or Disabled }
 
-MONITOR { CARD16 }
+CRTC { CARD16 }
+
+OUTPUT { CARD16 }
 
 SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 	      SubPixelHorizontalRGB	extensions definitions; they are here
@@ -177,7 +215,6 @@ SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 SCREENSIZE {    
 	widthInPixels, heightInPixels: CARD16
 	widthInMillimeters, heightInMillimeters: CARD16 }
-
 
 MODEFLAG {
 	hsync_positive hsync_negative
@@ -191,7 +228,7 @@ MODEFLAG {
 	clock_divide_by_2
 }
 
-MONITORMODE {
+CRTCMODE {
 	name: STRING
 	widthInPixels, heightInPixels: CARD16
 	widthInMillimeters, heightInMillimeters: CARD32
@@ -199,6 +236,7 @@ MONITORMODE {
 	hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
 	vSyncStart, vSyncEnd, vTotal: CARD16
 	modeFlags: SETofMODEFLAG
+	possible-outputs: LISTofLISTofOUTPUT
 }
 
 REFRESH {
@@ -217,7 +255,7 @@ RRQueryVersion
 
 	The client sends the highest supported version to the server
 	and the server sends the highest version it supports, but no
-	higher than the requested version.  Major versions changes can
+	higher than the requested version. Major versions changes can
 	introduce incompatibilities in existing functionality, minor
 	version changes introduce only backward compatible changes.
 	It is the clients responsibility to ensure that the server
@@ -238,14 +276,22 @@ RRSelectInput
 	this request executes if the screen configuration has changed since
 	the client connected, to avoid race conditions.
 
-	New for version 1.2 - if 'enable' contains RRMonitorChangeMask,
-	RRMonitorChangeNotify events will be sent when a the configuration
-	for a monitor associated with the screen changes, either through
-	this protocol extension or due to detected external monitor changes.
-	RRMonitorChangeNotify may also be sent when this request executes if
-	the monitor configuration has changed since the client connected, to
-	avoid race conditions.
-
+	New for version 1.2:
+	
+	If 'enable' contains RRCrtcChangeMask, RRCrtcChangeNotify events
+	will be sent when a the configuration for a CRTC associated with the
+	screen changes, either through this protocol extension or due to
+	detected external changes. RRCrtcChangeNotify may also be sent when
+	this request executes if the CRTC configuration has changed since
+	the client connected, to avoid race conditions. 
+	
+	If 'enable' contains RROutputChangeMask, RROutputChangeNotify events
+	will be sent when a the configuration for an output associated with
+	the screen changes, either through this protocol extension or due to
+	detected external changes. RROutputChangeNotify may also be sent
+	when this request executes if the output configuration has changed
+	since the client connected, to avoid race conditions. 
+	
 RRSetScreenConfig
 	window: WINDOW
 	timestamp: TIMESTAMP
@@ -270,7 +316,7 @@ RRSetScreenConfig
 	
 	If 'config-timestamp' is not equal to when the server's screen
 	configurations last changed, the request is ignored and
-	InvalidConfigTime returned in status.  This could occur if the
+	InvalidConfigTime returned in status. This could occur if the
 	screen changed since you last made a RRGetScreenInfo request,
 	perhaps by a different piece of display hardware being installed.
 	Rather than allowing an incorrect call to be executed based on stale
@@ -341,7 +387,7 @@ RRGetScreenInfo
 	
 	'size-id' indicates which size is active.
 
-	'rate' is the current refresh rate.  This is zero when the refresh
+	'rate' is the current refresh rate. This is zero when the refresh
 	rate is unknown or on devices for which refresh is not relevant.
 
 	'sizes' is the list of possible frame buffer sizes (at the normal
@@ -349,7 +395,7 @@ RRGetScreenInfo
 	the screen and the pixel size.
 
 	'refresh' is the list of refresh rates for each size. Each element
-	of 'sizes' has a cooresponding element in 'refresh'.  An empty list
+	of 'sizes' has a cooresponding element in 'refresh'. An empty list
 	indicates no known rates, or a device for which refresh is not
 	relevant.
 
@@ -399,35 +445,27 @@ RRSetScreenSize
 	extension and the core protocol. They must be non-zero, or Value
 	error results.
 
-RRGetMonitorModes
+RRGetCrtcModes
 	window: WINDOW
+	crtc-index: CRTC
 
 	->
 
-	root: WINDOW
-	monitors: LISTofMONITORINFO
-
-	where:
-
-	MONITORINFO {
-		timestamp: TIMESTAMP
-		config-timestamp: TIMESTAMP
-		x, y: INT16
-		mode: MODEID
-		rotation: ROTATION
-		rotations: SETofROTATION
-		default-mode: MODEID
-		modes: LISTofMONITORMODE
-	}
+	timestamp: TIMESTAMP
+	config-timestamp: TIMESTAMP
+	x, y: INT16
+	mode: MODEID
+	rotation: ROTATION
+	rotations: SETofROTATION
+	default-mode: MODEID
+	modes: LISTofCRTCMODE
 
 	Errors: Window
 
-	RRGetMonitorModes returns information about the current and available
-	configurations for all monitors connected to the screen associated
-	with 'window'.
+	RRGetCrtcModes returns information about the current and available
+	configurations for the specified crtc connected to the screen
+	associated with 'window'.
 
-	'root' is the root window of the screen.
-	
 	'timestamp' indicates when the configuration was last set.
 	
 	'config-timestamp' indicates when the screen configuration
@@ -436,29 +474,32 @@ RRGetMonitorModes
 	is using is up to date, to ensure clients can be well behaved
 	in the face of race conditions. 
 	
-	'x' and 'y' indicate the position of this monitor within the screen
-	region. They will be set to 0 when the monitor is disabled.
+	'x' and 'y' indicate the position of this CRTC within the screen
+	region. They will be set to 0 when the CRTC is disabled.
 	
-	'mode' indicates which mode is active, or 'Disabled' indicating
-	that the monitor has been disabled and is not displaying the screen
+	'mode' indicates which mode is active, or Disabled indicating
+	that the CRTC has been disabled and is not displaying the screen
 	contents.
 
 	'rotation' indicates the active rotation. It is set to Rotate_0
-	when the monitor is disabled.
+	when the CRTC is disabled.
 	
 	'rotations' contains the set of rotations and reflections supported
-	by the monitor.
+	by the CRTC.
 
-	'default-mode' is the mode the monitor is set to at server
+	'default-mode' is the mode the CRTC is set to at server
 	reset time.
 
 	'modes' is the list of possible displayed modes. Within each mode,
 	the sizes are reported for rotation set to Rotate_0.
 
-RRAddMonitorMode
+RRGetOutputs
 	window: WINDOW
-	monitor-index: MONITOR
-	mode: MONITORMODE
+	
+RRAddCrtcMode
+	window: WINDOW
+	crtc-index: CRTC
+	mode: CRTCMODE
 	config-timestamp: TIMESTAMP
 	timestamp: TIMESTAMP
 	
@@ -466,44 +507,45 @@ RRAddMonitorMode
 
 	Errors: Window, Value, Match, Name
 
-	'window' and 'monitor-index' indicate which monitor is to be
-	configured. If 'monitor-index' is out of range, a Value error is
+	'window' and 'crtc-index' indicate which CRTC is to be
+	configured. If 'crtc-index' is out of range, a Value error is
 	returned.
 
-	'mode' provides a new mode for the monitor.  If the name of 'mode'
+	'mode' provides a new mode for the CRTC. If the name of 'mode'
 	names an existing mode, a Name error is returned. If 'mode' cannot be
-	supported by the specified monitor, a Match error is returned. If
+	supported by the specified CRTC, a Match error is returned. If
 	some parameter of the mode is not valid in some other way, a Value
 	error is returned.
 
-	This request generates MonitorChangeNotify events.
+	This request generates CrtcChangeNotify events.
 
-RRDeleteMonitorMode
+RRDeleteCrtcMode
 	window: WINDOW
-	monitor-index: MONITOR
+	crtc-index: CRTC
 	name: STRING
 
 	->
 
 	Errors: Window, Value, Name
 
-	'window' and 'monitor-index' indicate which monitor is to be
-	configured. If 'monitor-index' is out of range, a Value error is
+	'window' and 'crtc-index' indicate which CRTC is to be
+	configured. If 'crtc-index' is out of range, a Value error is
 	returned.
 
 	'name' specifies which mode to delete. If no mode of the specified
 	name exists, a Name error is returned. The named mode must have
-	been added with RRAddMonitorMode, else an Access error is returned.
+	been added with RRAddCrtcMode, else an Access error is returned.
 	The named mode must not be active, else a Match error is returned.
 
-RRSetMonitorMode
+RRSetCrtcConfig
 	window: WINDOW
-	monitor-index: MONITOR
+	crtc-index: CRTC
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	x, y: INT16
 	mode: MODEID
 	rotation: ROTATION
+	outputs: LISTofOUTPUT
 
 	->
 
@@ -511,7 +553,7 @@ RRSetMonitorMode
 	new-timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	root: WINDOW
-	monitor: MONITOR
+	monitor: CRTC
 	subpixelOrder: SUBPIXELORDER
 
 	Errors: Value, Match
@@ -522,7 +564,7 @@ RRSetMonitorMode
 	
 	If 'config-timestamp' is not equal to when the monitor's
 	configuration last changed, the request is ignored and
-	InvalidConfigTime returned in status.  This could occur if the
+	InvalidConfigTime returned in status. This could occur if the
 	monitor changed since you last made a RRGetScreenInfo request,
 	perhaps by a different monitor being connected to the machine.
 	Rather than allowing an incorrect call to be executed based on stale
@@ -541,6 +583,10 @@ RRSetMonitorMode
 	must be among those allowed for this monitor, else a Value error
 	results.
 
+	'outputs' contains the set of outputs that this CRTC should be
+	connected to. The set must be among the list of acceptable output
+	sets for this CRTC or a Match error results.
+	
 	This request may fail for other indeterminate reasons, in which case
 	'status' will be set to Failed and no configuration change will be
 	made.
@@ -571,7 +617,7 @@ RRSetMonitorMode
 8. Extension Events
 
 Clients MAY select for ConfigureNotify on the root window to be
-informed of screen changes.  This may be advantageous if all your
+informed of screen changes. This may be advantageous if all your
 clients need to know is the size of the root window, as it avoids
 round trips to set up the extension.
 
@@ -596,14 +642,14 @@ RRScreenChangeNotify
 
 	This event is generated whenever the screen configuration is changed
 	and sent to requesting clients. 'timestamp' indicates when the
-	screen configuration was changed.  'configTimestamp' says when the
+	screen configuration was changed. 'configTimestamp' says when the
 	last time the configuration was changed. 'root' is the root of the
 	screen the change occurred on, 'window' is window selecting for this
 	event. 'size-id' contains the index of the current size.
 
 	This event is sent whenever the screen's configuration changes
 	or if a new screen configuration becomes available that was
-	not available in the past.  In this case (config-timestamp in
+	not available in the past. In this case (config-timestamp in
 	the event not being equal to the config-timestamp returned in
 	the last call to RRGetScreenInfo), the client MUST call
 	RRGetScreenInfo to update its view of possible screen
@@ -613,21 +659,21 @@ RRScreenChangeNotify
 	Clients which select screen change notification events may be
 	sent an event immediately if the screen configuration was
 	changed between when they connected to the X server and
-	selected for notification.  This is to prevent a common race
+	selected for notification. This is to prevent a common race
 	that might occur on log-in, where many applications start up
 	just at the time when a display manager or log in script might
 	be changing the screen size or configuration.
 
 8.1 Events added in version 1.2 of the RandR extension
 
-RRMonitorChangeNotify
+RRCrtcChangeNotify
 
 	sequenceNumber: CARD16		low 16 bits of request's seq. number
 	timestamp: TIMESTAMP		time monitor was changed
 	configTimestamp: TIMESTAMP	time config data was changed
 	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
-	monitor-index: MONITOR		monitor which changed
+	crtc-index: CRTC		monitor which changed
 	mode: MODEID			new mode
 	rotation: ROTATION;		new rotation
 	subpixelOrder: SUBPIXELORDER	order of subpixels
@@ -636,24 +682,24 @@ RRMonitorChangeNotify
 
 	This event is generated whenever the monitor configuration is changed
 	and sent to requesting clients. 'timestamp' indicates when the
-	monitor configuration was changed.  'configTimestamp' says when the
+	monitor configuration was changed. 'configTimestamp' says when the
 	last time the configuration was changed. 'root' is the root of the
 	screen the change occurred on, 'window' is window selecting for this
 	event. 'size-id' contains the index of the current size.
 
 	This event is sent whenever the monitor's configuration changes
 	or if a new monitor configuration becomes available that was
-	not available in the past.  In this case (config-timestamp in
+	not available in the past. In this case (config-timestamp in
 	the event not being equal to the config-timestamp returned in
-	the last call to RRGetMonitorModes), the client MUST call
-	RRGetMonitorModes to update its view of possible monitor
+	the last call to RRGetCrtcModes), the client MUST call
+	RRGetCrtcModes to update its view of possible monitor
 	configurations to have a correct view of possible monitor
 	organizations.
 
 	Clients which select monitor change notification events may be
 	sent an event immediately if the monitor configuration was
 	changed between when they connected to the X server and
-	selected for notification.  This is to prevent a common race
+	selected for notification. This is to prevent a common race
 	that might occur on log-in, where many applications start up
 	just at the time when a display manager or log in script might
 	be changing the monitor size or configuration.
@@ -661,22 +707,22 @@ RRMonitorChangeNotify
 9. Extension Versioning
 
 The RandR extension was developed in parallel with the implementation
-to ensure the feasibility of various portions of the design.  As
+to ensure the feasibility of various portions of the design. As
 portions of the extension are implemented, the version number of the
 extension has changed to reflect the portions of the standard provied.
 This document describes the version 1.0 of the specification, the
-partial implementations have version numbers less than that.  Here's a
+partial implementations have version numbers less than that. Here's a
 list of what each version before 1.0 implemented:
 
 	0.0: This prototype implemented resize and rotation in the
 	     TinyX server Used approximately the protocol described in
-	     the Usenix paper.  Appeared in the TinyX server in
+	     the Usenix paper. Appeared in the TinyX server in
 	     XFree86 4.2, but not in the XFree86 main server.
 
 	0.1: Added subpixel order, added an event for subpixel order.
 	     This version was never checked in to XFree86 CVS.
 
-	1.0: Implements resize, rotation, and reflection.  Implemented
+	1.0: Implements resize, rotation, and reflection. Implemented
 	     both in the XFree86 main server (size change only at this
 	     date), and fully (size change, rotation, and reflection)
 	     in XFree86's TinyX server.
@@ -686,10 +732,10 @@ list of what each version before 1.0 implemented:
 	1.2: Separate out screens from monitors, switch to full VESA modes
 
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
-will fail against 1.0 servers.  The wire encoding op-codes were
+will fail against 1.0 servers. The wire encoding op-codes were
 changed for GetScreenInfo to ensure this failure in a relatively
-graceful way.  Version 1.1 servers and clients are cross compatible with
-1.0.  Version 1.1 is considered to be stable and we intend upward
+graceful way. Version 1.1 servers and clients are cross compatible with
+1.0. Version 1.1 is considered to be stable and we intend upward
 compatibility from this point.
 
 10. Relationship with other extensions
@@ -750,7 +796,7 @@ A.1 Common Types
 
 	RRSELECTMASK
 	0x0001	ScreenChangeNotifyMask
-	0x0002	MonitorChangeNotifyMask		Added in version 1.2
+	0x0002	CrtcChangeNotifyMask		Added in version 1.2
 
 	RRCONFIGSTATUS
 	0x0 Success
@@ -761,7 +807,7 @@ A.1 Common Types
 	SIZEID
 	0xffff	Disabled
 
-	MONITORMODE (36)			Added in version 1.2
+	CRTCMODE (36)			Added in version 1.2
 	2	CARD16		width in pixels
 	2	CARD16		height in pixels
 	4	CARD32		width in millimeters
@@ -910,7 +956,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4	CARD32			height in millimeters
 	
 
-	RRGetMonitorModes
+	RRGetCrtcInfo
 	
 	1	CARD8			major opcode
 	1	0x08			RandR opcode
@@ -922,16 +968,16 @@ A.2.1 Protocol Requests added with version 1.2
 	2	CARD16			sequence number
 	4	i*6 + m*9 + (b+p)/4	reply length
 	4	WINDOW			root
-	2	CARD16			i = number of MONITORINFO following
-	2	CARD16			m = number of SIZE following
+	2	CARD16			i = number of CRTCINFO following
+	2	CARD16			m = number of CRTCMODE following
 	2	CARD16			b = size of name array following
 	14				unused
-	i*24	LISTofMONITORINFO	one per monitor
-	m*36	LISTofMONITORMODE	for all monitors
-	b	LISTofCARD*		list of mode names
+	i*24	LISTofCRTCINFO	one per monitor
+	m*36	LISTofCRTCMODE	for all monitors
+	b	LISTofCARD8		list of mode names
 	p	pad			pad(b)
 
-	MONITORINFO
+	CRTCINFO
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config-timestamp
 	2	INT16			x
@@ -940,31 +986,31 @@ A.2.1 Protocol Requests added with version 1.2
 	2	MODEID			mode
 	2	MODEID			default mode
 	2	SETofROTATION		rotations
-	2	CARD16			start offset in LISTofMONITORMODE
-	2	CARD16			number of MONITORMODE
+	2	CARD16			start offset in LISTofCRTCMODE
+	2	CARD16			number of CRTCMODE
 
-	RRAddMonitorMode
+	RRAddCrtcMode
 	1	CARD8			major opcode
 	1	0x09			RandR opcode
 	2	12+(b+p)/4		length
 	4	WINDOW			window
-	2	MONITOR			monitor index
+	2	CRTC			monitor index
 	2				unused
-	36	MONITORMODE		mode
+	36	CRTCMODE		mode
 	b	STRING			mode name
 	p				pad(b)
 	
-	RRDeleteMonitorMode
+	RRDeleteCrtcMode
 	1	CARD8			major opcode
 	1	0x0a			RandR opcode
 	2	3+(b+p)/4		length
 	4	WINDOW			window
-	2	MONITOR			monitor index
+	2	CRTC			monitor index
 	2	CARD16			mode name length
 	b	STRING			mode name
 	p				pad(b)
 	
-	RRSetMonitorMode
+	RRSetCrtcConfig
 
 	1	CARD8			major opcode
 	1	0x0b			RandR opcode
@@ -972,7 +1018,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4	WINDOW			window
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config timestamp
-	2	MONITOR			monitor index
+	2	CRTC			monitor index
 	2	INT16			x
 	2	INT16			y
 	2	MODEID			mode index
@@ -987,7 +1033,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4	TIMESTAMP		new configuration timestamp
 	4	WINDOW			root
 	2	SUBPIXELORDER		subpixel order defined in Render
-	2	MONITOR			monitor
+	2	CRTC			monitor
 	8				unused
 	
 
@@ -1011,7 +1057,7 @@ A.3 Protocol Events
 
 A.3.1 Protocol Events added with version 1.2
 
-	RRMonitorChangeNotify
+	RRCrtcChangeNotify
 
 	1	Base + 1		code
 	1	0			sub-code
@@ -1020,7 +1066,7 @@ A.3.1 Protocol Events added with version 1.2
 	4	TIMESTAMP		configuration timestamp
 	4	WINDOW			root window
 	4	WINDOW			request window
-	2	MONITOR			monitor index
+	2	CRTC			monitor index
 	2	MODEID			mode ID
 	2	ROTATION		new rotation and reflection
 	2	SUBPIXELORDER		new subpixel order
