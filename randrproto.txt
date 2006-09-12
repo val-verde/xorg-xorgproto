@@ -1,17 +1,17 @@
-         The X Resize, Rotate and Reflect Extension
-                        Version 1.2
-                         2006-4-13
-
-                        Jim Gettys
-                     Jim.Gettys@hp.com
-               Cambridge Research Laboratory
-                          HP Labs
-                  Hewlett Packard Company
-
-                       Keith Packard
-                  keith.packard@intel.com
-               Open Source Technology Center
-                     Intel Corporation
+	       The X Resize, Rotate and Reflect Extension
+			      Version 1.2
+			       2006-4-13
+      
+			      Jim Gettys
+			   Jim.Gettys@hp.com
+		     Cambridge Research Laboratory
+				HP Labs
+			Hewlett Packard Company
+      
+			     Keith Packard
+			keith.packard@intel.com
+		     Open Source Technology Center
+			   Intel Corporation
 
 1. Introduction
 
@@ -201,6 +201,8 @@ MODE { XID or None }
 CRTC { CARD16 }
 
 OUTPUT { CARD16 }
+
+CONNECTION { Connected, Disconnected, UnknownConnection }
 
 SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 	        SubPixelHorizontalRGB	extensions definitions; they are here
@@ -395,6 +397,8 @@ RRGetScreenInfo
 	current size when the server resets) is the first size in the
 	list.
 
+                              ❧❧❧❧❧❧❧❧❧❧❧
+
 7.1. Extension Requests added in version 1.2 of the extension
 
 As introduced above, version 1.2 of the extension splits the screen size
@@ -449,6 +453,21 @@ RRGetScreenResources
 
 	Errors: Window
 
+	RRGetScreenResources returns information about the number of outputs
+	and crtcs connected to the screen associated with 'window'.
+
+	'timestamp' indicates when the configuration was last set.
+	
+	'config-timestamp' indicates when the configuration information last
+	changed. Requests to configure the output will fail unless the
+	timestamp indicates that the information the client is using is up
+	to date, to ensure clients can be well behaved in the face of race
+	conditions.
+
+	'number-of-crtcs' indicates the valid range of CRTC indices.
+
+	'number-of-outputs' indicates the valid range of OUTPUT indices.
+
 RRGetOutputInfo
 	window: WINDOW
 	output: OUTPUT
@@ -456,12 +475,52 @@ RRGetOutputInfo
 	▶
 
 	timestamp: TIMESTAMP
+	crtc: CRTC
+	
 	config-timestamp: TIMESTAMP
 	name: STRING
-	crtc: CRTC
+	connection: CONNECTION
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
 	modes: LISTofOUTPUTMODE
+
+	Errors: Window
+
+	RRGetOutputInfo returns information about the current and available
+	configurations for the specified output connected to the screen
+	associated with 'window'.
+
+	'timestamp' indicates when the configuration was last set.
+	
+	'crtc' is the current source CRTC for video data, or Disabled if the
+	output is not connected to any CRTC.
+
+	'config-timestamp' indicates when the configuration information last
+	changed. Requests to configure the output will fail unless the
+	timestamp indicates that the information the client is using is up
+	to date, to ensure clients can be well behaved in the face of race
+	conditions.
+
+	'name' is a UTF-8 encoded string designed to be presented to the
+	user to indicate which output this is. E.g. "S-Video" or "DVI".
+
+	'connection' indicates whether the hardware was able to detect a
+	device connected to this output. If the hardware cannot determine
+	whether something is connected, it will set this to
+	UnknownConnection.
+	
+	'crtcs' is the list of CRTCs that this output may be connected to.
+	Attempting to connect this output to a different CRTC results in a
+	Match error.
+
+	'clones' is the list of outputs which may be simultaneously
+	connected to the same CRTC along with this output. Attempting to
+	connect this output with an output not in the 'clones' list
+	results in a Match error.
+
+	'modes' is the list of modes supported by this output. Attempting to
+	connect this output to a CRTC not using one of these modes results
+	in a Match error.
 
 RRGetCrtcInfo
 	window: WINDOW
@@ -498,7 +557,7 @@ RRGetCrtcInfo
 	when the CRTC is disabled.
 	
 	'config-timestamp' indicates when the configuration information last
-	changed: requests to configure the CRTC will fail unless the
+	changed. Requests to configure the CRTC will fail unless the
 	timestamp indicates that the information the client is using is up
 	to date, to ensure clients can be well behaved in the face of race
 	conditions. 
@@ -512,9 +571,9 @@ RRGetCrtcInfo
 RRAddOutputMode
 	window: WINDOW
 	output: OUTPUT
-	mode: OUTPUTMODE
 	config-timestamp: TIMESTAMP
 	timestamp: TIMESTAMP
+	mode: OUTPUTMODE
 	
 	▶
 
@@ -688,35 +747,36 @@ RROutputChangeNotify:
 	config-timestamp: TIMESTAMP	time available config data was changed
 	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
-	output: OUTPUT			output which changed
 
 	This event is generated whenever the available output configurations
 	have changed and is sent to requesting clients. 'timestamp'
 	indicates when the crtc configuration was changed by a client.
 	'config-timestamp' says when the last time the available
 	configurations changed. 'root' is the root of the screen the change
-	occurred on, 'window' is window selecting for this event.
+	occurred on, 'window' is window selecting for this event. The
+	precise change can be detected by examining the new state of the
+	system.
 
-RRCrtcChangeNotify
+RRCrtcChangeNotify /* XXX need to fit to 32 bytes */
 
 	sequence-number: CARD16		low 16 bits of request's seq. number
 	timestamp: TIMESTAMP		time monitor was changed
 	config-timestamp: TIMESTAMP	time config data was changed
 	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
-	crtc-index: CRTC		monitor which changed
+	crtc: CRTC			CRTC which changed
 	mode: MODE			new mode
 	rotation: ROTATION;		new rotation
 	subpixelOrder: SUBPIXELORDER	order of subpixels
-	x: INT16			x position of monitor within screen
-	y: INT16			y position of monitor within screen
+	x: INT16			x position of CRTC within screen
+	y: INT16			y position of CRTC within screen
 
-	This event is generated whenever the monitor configuration is changed
+	This event is generated whenever the CRTC configuration is changed
 	and sent to requesting clients. 'timestamp' indicates when the
-	monitor configuration was changed. 'config-timestamp' says when the
+	CRTC configuration was changed. 'config-timestamp' says when the
 	last time the configuration was changed. 'root' is the root of the
 	screen the change occurred on, 'window' is window selecting for this
-	event. 'size-id' contains the index of the current size.
+	event.
 
 	This event is sent whenever the monitor's configuration changes
 	or if a new monitor configuration becomes available that was
