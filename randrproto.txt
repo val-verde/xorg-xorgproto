@@ -110,7 +110,7 @@ bandwidth for large resolution screens. This is exposed in RandR by
 requiring that nothing be connected to the second CRTC when driving a high
 resolution screen on the first.
 
-2. Acknowlegements
+1.1 Acknowlegements
 
 Our thanks to the contributors to the design found on the xpert mailing
 list, in particular:
@@ -123,6 +123,8 @@ David Dawes for XFree86 DDX integration work
 Thomas Winischhofer for the hardware-accelerated SiS rotation implementation
 Matthew Tippet and Kevin Martin for splitting outputs and CRTCs to more
 fully expose what video hardware can do
+
+                              ❧❧❧❧❧❧❧❧❧❧❧
 
 2. Screen change model
 
@@ -166,15 +168,28 @@ pop-up menus and other pop up windows will position themselves correctly in
 the face of screen configuration changes (the issue is ensuring that pop-ups
 are visible on the reconfigured screen).
 
+                              ❧❧❧❧❧❧❧❧❧❧❧
+
 3. Data Types
 
 The subpixel order is shared with the Render extension, and is documented
 there. The only datatype defined is the screen size, defined in the normal
 (0 degree) orientation.
 
+                              ❧❧❧❧❧❧❧❧❧❧❧
+
 4. Errors
 
-There are no new error types defined by this extension.
+Errors are sent using core X error reports.
+
+Output
+	A value for an OUTPUT argument does not name a defined OUTPUT.
+CRTC
+	A value for a CRTC argument does not name a defined CRTC.
+Mode
+	A value for a MODE argument does not name a defined MODE.
+
+                              ❧❧❧❧❧❧❧❧❧❧❧
 
 5. Protocol Types
 
@@ -198,9 +213,9 @@ SIZEID { CARD16 }
 
 MODE { XID or None }
 
-CRTC { CARD16 }
+CRTC { XID }
 
-OUTPUT { CARD16 }
+OUTPUT { XID }
 
 CONNECTION { Connected, Disconnected, UnknownConnection }
 
@@ -224,15 +239,18 @@ MODEFLAG { hsync_positive hsync_negative
 	   double_clock
 	   clock_divide_by_2 }
 
-OUTPUTMODE { id: MODE
-             widthInPixels, heightInPixels: CARD16
-             widthInMillimeters, heightInMillimeters: CARD32
-             dotClock: CARD32
-             hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
-             vSyncStart, vSyncEnd, vTotal: CARD16
-             modeFlags: SETofMODEFLAG }
+MODEINFO { id: MODE
+	   name: STRING
+           widthInPixels, heightInPixels: CARD16
+           widthInMillimeters, heightInMillimeters: CARD32
+           dotClock: CARD32
+           hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
+           vSyncStart, vSyncEnd, vTotal: CARD16
+           modeFlags: SETofMODEFLAG }
 
 REFRESH { rates: LISTofCARD16 }
+
+                              ❧❧❧❧❧❧❧❧❧❧❧
 
 6. Extension Initialization
 
@@ -254,6 +272,8 @@ RRQueryVersion
 	version changes introduce only backward compatible changes.
 	It is the clients responsibility to ensure that the server
 	supports a version which is compatible with its expectations.
+
+                              ❧❧❧❧❧❧❧❧❧❧❧
 
 7. Extension Requests
 
@@ -344,11 +364,10 @@ RRSetScreenConfig
 	Value errors are generated when 'rotation', 'rate' or 'size-id'
 	are invalid.
 
-RRGetScreenInfo
+┌───
+    RRGetScreenInfo
 	window: WINDOW
-
-	▶	
-
+      ▶	
 	rotations: SETofROTATION
 	root: WINDOW
 	timestamp: TIMESTAMP
@@ -358,8 +377,7 @@ RRGetScreenInfo
 	rate: CARD16
 	sizes: LISTofSCREENSIZE
 	refresh: LISTofREFRESH
-
-	where:
+└───
 
 	Errors: Window
 
@@ -397,8 +415,6 @@ RRGetScreenInfo
 	current size when the server resets) is the first size in the
 	list.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
-
 7.1. Extension Requests added in version 1.2 of the extension
 
 As introduced above, version 1.2 of the extension splits the screen size
@@ -409,26 +425,28 @@ range. As crtcs and outputs are added and removed from the system, the set
 returned by the extension will change so that applications can detect
 dynamic changes in the display environment.
 
-RRGetScreenSizeRange
+┌───
+    RRGetScreenSizeRange
 	window: WINDOW
 
-	▶
+      ▶
 
 	CARD16	minWidth, minHeight
 	CARD16	maxWidth, maxHeight
-
+└───
 	Errors: Window
 
 	Returns the range of possible screen sizes. The screen may be set to
 	any size within this range.
 
-RRSetScreenSize
+┌───
+    RRSetScreenSize
 	window: WINDOW
 	width: CARD16
 	height: CARD16
 	width-in-millimeters: CARD32
 	height-in-millimeters: CARD32
-
+└───
 	Errors: Window, Match, Value
 
 	Sets the screen to the specified size. 'width' and 'height' must be
@@ -441,20 +459,20 @@ RRSetScreenSize
 	extension and the core protocol. They must be non-zero, or Value
 	error results.
 
-RRGetScreenResources
+┌───
+    RRGetScreenResources
 	window: WINDOW
-
-	▶
-
+      ▶
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
-	number-of-crtcs: CARD16
-	number-of-outputs: CARD16
-
+	crtcs: LISTofCRTC
+	outputs: LISTofOUTPUT
+	modes: LISTofMODEINFO
+└───
 	Errors: Window
 
-	RRGetScreenResources returns information about the number of outputs
-	and crtcs connected to the screen associated with 'window'.
+	RRGetScreenResources returns the list of outputs and crtcs connected
+	to the screen associated with 'window'.
 
 	'timestamp' indicates when the configuration was last set.
 	
@@ -464,42 +482,48 @@ RRGetScreenResources
 	to date, to ensure clients can be well behaved in the face of race
 	conditions.
 
-	'number-of-crtcs' indicates the valid range of CRTC indices.
+	'crtcs' contains the list of CRTCs associated with the screen.
 
-	'number-of-outputs' indicates the valid range of OUTPUT indices.
+	'outputs' contains the list of outputs associated with the screen.
 
-RRGetOutputInfo
-	window: WINDOW
+	'modes' contains the list of modes associated with the screen
+	
+	This request explicitly asks the server to ensure that the
+	configuration data is up-to-date wrt the hardware. If that requires
+	polling, this is when such polling would take place. Requests for
+	further information should not poll, but rather return the data
+	collected at this point.
+	
+┌───
+    RRGetOutputInfo
 	output: OUTPUT
-
-	▶
-
+	config-timestamp: TIMESTAMP
+      ▶
+	status: RRCONFIGSTATUS
 	timestamp: TIMESTAMP
 	crtc: CRTC
 	
-	config-timestamp: TIMESTAMP
 	name: STRING
 	connection: CONNECTION
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
-	modes: LISTofOUTPUTMODE
+	modes: LISTofMODE
+└───
 
-	Errors: Window
+	Errors: Output, 
 
 	RRGetOutputInfo returns information about the current and available
-	configurations for the specified output connected to the screen
-	associated with 'window'.
+	configurations 'output'. 
+	
+	If 'config-timestamp' does not match the current configuration
+	timestamp (as returned by RRGetScreenResources), 'status' is set to
+	InvalidConfigTime and the remaining reply data is empty. Otherwise,
+	'status' is set to Success.
 
 	'timestamp' indicates when the configuration was last set.
 	
 	'crtc' is the current source CRTC for video data, or Disabled if the
 	output is not connected to any CRTC.
-
-	'config-timestamp' indicates when the configuration information last
-	changed. Requests to configure the output will fail unless the
-	timestamp indicates that the information the client is using is up
-	to date, to ensure clients can be well behaved in the face of race
-	conditions.
 
 	'name' is a UTF-8 encoded string designed to be presented to the
 	user to indicate which output this is. E.g. "S-Video" or "DVI".
@@ -522,21 +546,78 @@ RRGetOutputInfo
 	connect this output to a CRTC not using one of these modes results
 	in a Match error.
 
-RRGetCrtcInfo
-	window: WINDOW
+┌───
+    RRCreateMode
+    	window: WINDOW
+	modeinfo: MODEINFO
+      ▶
+      	mode: MODE
+└───
+	Errors: Window, Name, Value
+	
+	'modeinfo' provides a new mode for outputs on the screen
+	associated with 'window'. If the name of 'modeinfo' names an
+	existing mode, a Name error is returned.  If some parameter of the
+	mode is not valid in some other way, a Value error is returned.
+
+	The returned 'mode' provides the id for the mode.
+	
+┌───
+    RRDestroyMode
+      	mode: MODE
+└───
+	Errors: Mode, Access
+
+	The user-defined 'mode' is destroyed. 'mode' must name a mode
+	defined with RRCreateMode, else an Match error is returned.  If
+	'mode' is in use by some CRTC or Output, then an Access error is
+	returned.
+	
+┌───
+    RRAddOutputMode
+	output: OUTPUT
+	mode: MODE
+└───
+	Errors: Output, Mode, Match
+
+	'output' indicates which output is to be configured.
+
+	'mode' specifies which mode to add. If 'mode' is not valid for
+	'output', then a Match error is generated. 
+
+	This request generates OutputChangeNotify events.
+	
+┌───
+    RRDeleteOutputMode
+	output: OUTPUT
+	mode: MODE
+└───
+	Errors: Output, Mode
+
+	'output' indicates which output is to be configured.
+
+	'mode' specifies which mode to delete. 'mode' must have been added
+	with RRAddOutputMode, else an Access error is returned. 'mode' must
+	not be active, else a Match error is returned.
+
+	This request generates OutputChangeNotify events.
+
+┌───
+    RRGetCrtcInfo
 	crtc: CRTC
-
-	▶
-
+	config-timestamp: TIMESTAMP
+      ▶
+	status: RRCONFIGSTATUS
 	timestamp: TIMESTAMP
 	x, y: INT16
+	width, height: CARD16
 	mode: MODE
 	rotation: ROTATION
-	
-	config-timestamp: TIMESTAMP
-	rotations: SETofROTATION
-	default-mode: MODE
 	outputs: LISTofOUTPUT
+	
+	rotations: SETofROTATION
+	possible-outputs: LISTofOUTPUT
+└───
 
 	Errors: Window
 
@@ -544,71 +625,36 @@ RRGetCrtcInfo
 	configurations for the specified crtc connected to the screen
 	associated with 'window'.
 
+	If 'config-timestamp' does not match the current configuration
+	timestamp (as returned by RRGetScreenResources), 'status' is set to
+	InvalidConfigTime and the remaining reply data is empty. Otherwise,
+	'status' is set to Success.
+	
 	'timestamp' indicates when the configuration was last set.
 	
 	'x' and 'y' indicate the position of this CRTC within the screen
 	region. They will be set to 0 when the CRTC is disabled.
+
+	'width' and 'height' indicate the size of the area presented by this
+	CRTC.
 	
-	'mode' indicates which mode is active, or Disabled indicating
-	that the CRTC has been disabled and is not displaying the screen
-	contents.
+	'mode' indicates which mode is active, or None indicating that the
+	CRTC has been disabled and is not displaying the screen contents.
 
 	'rotation' indicates the active rotation. It is set to Rotate_0
 	when the CRTC is disabled.
 	
-	'config-timestamp' indicates when the configuration information last
-	changed. Requests to configure the CRTC will fail unless the
-	timestamp indicates that the information the client is using is up
-	to date, to ensure clients can be well behaved in the face of race
-	conditions. 
-	
+	'outputs' is the list of outputs currently connected to this CRTC
+	and is empty when the CRTC is disabled.
+
 	'rotations' contains the set of rotations and reflections supported
 	by the CRTC.
 
-	'default-mode' is the mode the CRTC is set to at server
-	reset time.
+	'possible-outputs' lists all of the outputs which may be connected
+	to this CRTC.
 
-RRAddOutputMode
-	window: WINDOW
-	output: OUTPUT
-	config-timestamp: TIMESTAMP
-	timestamp: TIMESTAMP
-	mode: OUTPUTMODE
-	
-	▶
-
-	Errors: Window, Value, Match, Name
-
-	'window' and 'output' which output is to be configured. If 'output'
-	is out of range, a Value error is returned.
-
-	'mode' provides a new mode for the output. If the name of 'mode'
-	names an existing mode, a Name error is returned. If 'mode' cannot be
-	supported by the specified output, a Match error is returned. If some
-	parameter of the mode is not valid in some other way, a Value error
-	is returned.
-
-	This request generates OutputChangeNotify events.
-
-RRDeleteOutputMode
-	window: WINDOW
-	output: OUTPUT
-	name: STRING
-
-	▶
-
-	Errors: Window, Value, Name
-
-	'window' and 'output' indicate which output is to be configured. If
-	'output' is out of range, a Value error is returned.
-
-	'name' specifies which mode to delete. If no mode of the specified
-	name exists, a Name error is returned. The named mode must have been
-	added with RRAddOutputMode, else an Access error is returned. The
-	named mode must not be active, else a Match error is returned.
-
-RRSetCrtcConfig
-	window: WINDOW
+┌───
+    RRSetCrtcConfig
 	crtc: CRTC
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
@@ -616,16 +662,11 @@ RRSetCrtcConfig
 	mode: MODE
 	rotation: ROTATION
 	outputs: LISTofOUTPUT
-
-	▶
-
+      ▶
 	status: RRCONFIGSTATUS
 	new-timestamp: TIMESTAMP
-	config-timestamp: TIMESTAMP
-	root: WINDOW
-	monitor: CRTC
 	subpixelOrder: SUBPIXELORDER
-
+└───
 	Errors: Value, Match
 
 	If 'timestamp' is less than the time when the configuration was last
@@ -680,14 +721,10 @@ RRSetCrtcConfig
 	'new-time-stamp' contains the time at which this request was
 	executed.
 	
-	'config-timestamp' contains the time when the possible screen
-	configurations were last changed.
-	
-	'root' contains the root window for the screen indicated by the
-	window.
-
 	'subpixelOrder' contains the resulting subpixel order of the monitor
 	to allow correct subpixel rendering.
+
+                              ❧❧❧❧❧❧❧❧❧❧❧
 
 8. Extension Events
 
@@ -700,7 +737,8 @@ RRScreenChangeNotify is sent if RRSelectInput has requested it
 whenever properties of the screen change, which may be due to external
 factors, such as recabling a monitor, etc.
 
-RRScreenChangeNotify
+┌───
+    RRScreenChangeNotify
 
 	rotation: ROTATION;		new rotation
 	sequenceNumber: CARD16		low 16 bits of request's seq. number
@@ -714,7 +752,7 @@ RRScreenChangeNotify
 	heightInPixels: CARD16
 	widthInMillimeters: CARD16
 	heightInMillimeters: CARD16
-
+└───
 	This event is generated whenever the screen configuration is changed
 	and sent to requesting clients. 'timestamp' indicates when the
 	screen configuration was changed. 'configTimestamp' says when the
@@ -741,12 +779,17 @@ RRScreenChangeNotify
 
 8.1 Events added in version 1.2 of the RandR extension
 
-RROutputChangeNotify:
+┌───
+    RROutputChangeNotify:
 	sequence-number: CARD16		low 16 bits of request's seq. number
 	timestamp: TIMESTAMP		time screen was reconfigured
 	config-timestamp: TIMESTAMP	time available config data was changed
-	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
+	output: OUTPUT			output affected by change
+	crtc: CRTC			connected CRTC or None
+	mode: MODE			mode in use on CRTC or None
+	connection: CONNECTION		connection status
+└───
 
 	This event is generated whenever the available output configurations
 	have changed and is sent to requesting clients. 'timestamp'
@@ -757,8 +800,8 @@ RROutputChangeNotify:
 	precise change can be detected by examining the new state of the
 	system.
 
-RRCrtcChangeNotify /* XXX need to fit to 32 bytes */
-
+┌───
+    RRCrtcChangeNotify /* XXX need to fit to 32 bytes */
 	sequence-number: CARD16		low 16 bits of request's seq. number
 	timestamp: TIMESTAMP		time monitor was changed
 	config-timestamp: TIMESTAMP	time config data was changed
@@ -770,7 +813,7 @@ RRCrtcChangeNotify /* XXX need to fit to 32 bytes */
 	subpixelOrder: SUBPIXELORDER	order of subpixels
 	x: INT16			x position of CRTC within screen
 	y: INT16			y position of CRTC within screen
-
+└───
 	This event is generated whenever the CRTC configuration is changed
 	and sent to requesting clients. 'timestamp' indicates when the
 	CRTC configuration was changed. 'config-timestamp' says when the
@@ -794,6 +837,8 @@ RRCrtcChangeNotify /* XXX need to fit to 32 bytes */
 	that might occur on log-in, where many applications start up
 	just at the time when a display manager or log in script might
 	be changing the monitor size or configuration.
+
+                              ❧❧❧❧❧❧❧❧❧❧❧
 
 9. Extension Versioning
 
@@ -820,7 +865,8 @@ list of what each version before 1.0 implemented:
 
 	1.1: Added refresh rates
 
-	1.2: Separate out screens from monitors, switch to full VESA modes
+	1.2: Separate screens from CRTCs and outputs, switch to full VESA
+	     modes
 
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
 will fail against 1.0 servers. The wire encoding op-codes were
@@ -828,6 +874,8 @@ changed for GetScreenInfo to ensure this failure in a relatively
 graceful way. Version 1.1 servers and clients are cross compatible with
 1.0. Version 1.1 is considered to be stable and we intend upward
 compatibility from this point.
+
+                              ❧❧❧❧❧❧❧❧❧❧❧
 
 10. Relationship with other extensions
 
@@ -866,6 +914,8 @@ re-querying the configuration with the Xinerama extension will get updated
 information. It is probably better to view RandR as a superset of Xinerama
 at this point and use it in preference to Xinerama where both are present.
 
+                              ❧❧❧❧❧❧❧❧❧❧❧
+
 Appendix A. Protocol Encoding
 
 Syntactic Conventions
@@ -876,29 +926,38 @@ protocol encoding document.
 
 A.1 Common Types
 
-	ROTATION
+┌───
+    ROTATION
 	0x0001	Rotate_0
 	0x0002	Rotate_90
 	0x0004	Rotate_180
 	0x0008	Rotate_270
 	0x0010	Reflect_X
 	0x0020	Reflect_Y
+└───
+	Used to encode both sets of possible rotations and individual
+	selected rotations.
 
-
-	RRSELECTMASK
+┌───
+    RRSELECTMASK
 	0x0001	ScreenChangeNotifyMask
 	0x0002	CrtcChangeNotifyMask		Added in version 1.2
-
-	RRCONFIGSTATUS
+	0x0004	OutputChangeNotifyMask		Added in version 1.2
+└───
+      Event select mask for RRSelectInput
+      
+┌───
+    RRCONFIGSTATUS
 	0x0 Success
 	0x1 InvalidConfigTime
 	0x2 InvalidTime
 	0x3 Failed
+└───
+	Return status for requests which depend on time.
 
-	SIZEID
-	0xffff	Disabled
-
-	CRTCMODE (36)			Added in version 1.2
+┌───
+    MODEINFO (40)				Added in version 1.2
+	4	CARD32		id
 	2	CARD16		width in pixels
 	2	CARD16		height in pixels
 	4	CARD32		width in millimeters
@@ -911,41 +970,41 @@ A.1 Common Types
 	2	CARD16		v sync start
 	2	CARD16		v sync end
 	2	CARD16		v total
-	2	CARD16		name length (n)
+	2	CARD16		name length
 	4	SETofMODEFLAG	mode flags
+└───
 	
-	A monitor mode specifies the complete CRTC timings for
+	An output mode specifies the complete CRTC timings for
 	a specfic mode. The vertical and horizontal synchronization rates
 	can be computed given the dot clock and the h total/v total
 	values. If the dot clock is zero, then all of the timing
 	parameters and flags are not used, and must be zero as this
 	indicates that the timings are unknown or otherwise unused.
 	
-	The location of the name in the encoding is specified separately
-	
 A.2 Protocol Requests
-
 
 Opcodes 0x1 and 0x3 were used in the 0.0 protocols, and will return
 errors if used in version 1.0.
 
-	RRQueryVersion
+┌───
+    RRQueryVersion
 
 	1	CARD8			major opcode
-	1	0x01			RandR opcode
+	1	0x00			RandR opcode
 	2	3			length
 	4	CARD32			major version
 	4	CARD32			minor version
-	▶
+      ▶
 	1	1			Reply
         1				unused
 	2	CARD16			sequence number
 	4	0			reply length
 	1	CARD32			major version
         1	CARD32			minor version
+└───
 
-
-	RRSetScreenConfig
+┌───
+    RRSetScreenConfig
 	
 	1	CARD8			major opcode
 	1	0x02			RandR opcode
@@ -957,7 +1016,7 @@ errors if used in version 1.0.
 	2	ROTATION		rotation/reflection
 	2	CARD16			refresh rate (1.1 only)
 	2	CARD16			pad
-	▶
+      ▶
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
@@ -969,9 +1028,10 @@ errors if used in version 1.0.
 	2	CARD16			pad4
 	4	CARD32			pad5
 	4	CARD32			pad6
-	
-	
-	RRSelectInput
+└───
+
+┌───
+    RRSelectInput
 
 	1	CARD8			major opcode
 	1	0x04			RandR opcode
@@ -979,15 +1039,16 @@ errors if used in version 1.0.
 	4	WINDOW			window
 	2	SETofRRSELECTMASK	enable
 	2	CARD16			pad
-
-
-	RRGetScreenInfo
+└───
+      
+┌───
+    RRGetScreenInfo
 
 	1	CARD8			major opcode
 	1	0x05			RandR opcode
 	2	2			length
 	4	WINDOW			window
-	▶
+      ▶
 	1	1			Reply
 	1	CARD8			set of Rotations
 	2	CARD16			sequence number
@@ -1011,16 +1072,17 @@ errors if used in version 1.0.
 	REFRESH
 	2	CARD16			number of rates (n)
 	2n	CARD16			rates
+└───
 
 A.2.1 Protocol Requests added with version 1.2
 
-	RRGetScreenSizeRange
-	
+┌───
+    RRGetScreenSizeRange
 	1	CARD8			major opcode
 	1	0x06			RandR opcode
 	2	2			length
 	4	WINDOW			window
-	▶
+      ▶
 	1	1			Reply
 	1				unused
 	2	CARD16			sequence number
@@ -1033,10 +1095,10 @@ A.2.1 Protocol Requests added with version 1.2
 	4				unused
 	4				unused
 	4				unused
+└───
 	
-	
-	RRSetScreenSize
-	
+┌───
+    RRSetScreenSize
 	1	CARD8			major opcode
 	1	0x07			RandR opcode
 	2	5			length
@@ -1045,93 +1107,152 @@ A.2.1 Protocol Requests added with version 1.2
 	2	CARD16			height
 	4	CARD32			width in millimeters
 	4	CARD32			height in millimeters
-	
+└───
 
-	RRGetCrtcInfo
-	
+┌───
+    RRGetScreenResources
 	1	CARD8			major opcode
 	1	0x08			RandR opcode
 	2	2			length
 	4	WINDOW			window
-	▶
+      ▶
 	1	1			Reply
 	1				unused
 	2	CARD16			sequence number
-	4	i*6 + m*9 + (b+p)/4	reply length
-	4	WINDOW			root
-	2	CARD16			i = number of CRTCINFO following
-	2	CARD16			m = number of CRTCMODE following
-	2	CARD16			b = size of name array following
-	14				unused
-	i*24	LISTofCRTCINFO	one per monitor
-	m*36	LISTofCRTCMODE	for all monitors
-	b	LISTofCARD8		list of mode names
-	p	pad			pad(b)
-
-	CRTCINFO
+	4	c+o+10m+(b+p)/4		reply length
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config-timestamp
-	2	INT16			x
-	2	INT16			y
-	2	ROTATION		rotation
-	2	MODE			mode
-	2	MODE			default mode
-	2	SETofROTATION		rotations
-	2	CARD16			start offset in LISTofCRTCMODE
-	2	CARD16			number of CRTCMODE
+	2	c			number of CRTCs
+	2	o			number of outputs
+	2	m			number of modeinfos
+	2	b			total bytes in mode names
+	10				unused
+	4c	LISTofCRTC		crtcs
+	4o	LISTofOUTPUT		outputs
+	40m	LISTofMODEINFO		modeinfos
+	b	STRING8			mode names
+	p				unused, p=pad(b)
+└───
 
-	RRAddCrtcMode
+┌───
+    RRGetOutputInfo
 	1	CARD8			major opcode
 	1	0x09			RandR opcode
-	2	12+(b+p)/4		length
-	4	WINDOW			window
-	2	CRTC			monitor index
-	2				unused
-	36	CRTCMODE		mode
-	b	STRING			mode name
-	p				pad(b)
-	
-	RRDeleteCrtcMode
-	1	CARD8			major opcode
-	1	0x0a			RandR opcode
-	2	3+(b+p)/4		length
-	4	WINDOW			window
-	2	CRTC			monitor index
-	2	CARD16			mode name length
-	b	STRING			mode name
-	p				pad(b)
-	
-	RRSetCrtcConfig
-
-	1	CARD8			major opcode
-	1	0x0b			RandR opcode
-	2	7			length
-	4	WINDOW			window
+	2	3			length
+	4	OUTPUT			output
+	4	TIMESTAMP		config-timestamp
+      ▶
+	1	1			Reply
+	1	RRCONFIGSTATUS		status
+	2	CARD16			sequence number
+	4	c+m+(n+p)/4		reply length
 	4	TIMESTAMP		timestamp
-	4	TIMESTAMP		config timestamp
-	2	CRTC			monitor index
+	4	CRTC			current connected crtc
+	1	CONNECTION		connection
+	1				unused
+	2	c			number of CRTCs
+	2	m			number of modes
+	2	n			length of name
+	8				unused
+	4c	LISTofCRTC		crtcs
+	4m	LISTofMODE		modes
+	n	STRING8			name
+	p				unused, p=pad(n)
+└───
+
+┌───
+    RRCreateMode
+	1	CARD8			major opcode
+	1	0x09			RandR opcode
+	2	12+(n+p)/4		length
+	4	WINDOW			window
+	40	MODEINFO		mode
+	n	STRING8			mode name
+	p				unused, p=pad(n)
+      ▶
+	1	1			Reply
+	1				unused
+	2	CARD16			sequence number
+	4	0			reply length
+	4	MODE			mode
+	20				unused
+└───
+┌───
+    RRDestroyMode
+	1	CARD8			major opcode
+	1	0x09			RandR opcode
+	2	2			length
+	4	MODE			mode
+└───
+┌───
+    RRAddOutputMode
+	1	CARD8			major opcode
+	1	0x09			RandR opcode
+	2	3			length
+	4	OUTPUT			output
+	4	MODE			mode
+└───
+┌───
+    RRDeleteOutputMode
+	1	CARD8			major opcode
+	1	0x09			RandR opcode
+	2	3			length
+	4	OUTPUT			output
+	4	MODE			mode
+└───
+┌───
+    RRGetCrtcInfo
+	1	CARD8			major opcode
+	1				RandR opcode
+	2	3			length
+	4	CRTC			crtc
+	4	TIMESTAMP		config-timestamp
+      ▶
+	1	1			Reply
+	1	RRCONFIGSTATUS		status
+	2	CARD16			sequence number
+	4	o+p			reply length
 	2	INT16			x
 	2	INT16			y
-	2	MODE			mode index
+	2	CARD16			width
+	2	CARD16			height
+	4	MODE			mode
+	2	ROTATION		current rotation and reflection
+	2	ROTATION		set of possible rotations
+	2	o			number of outputs
+	2	p			number of possible outputs
+	4				unused
+	4o	LISTofOUTPUT		outputs
+	4p	LISTofOUTPUT		possible outputs
+└───
+┌───
+    RRSetCrtcConfig
+	1	CARD8			major opcode
+	1				RandR opcode
+	2	7+n			length
+	4	CRTC			crtc
+	4	TIMESTAMP		timestamp
+	4	TIMESTAMP		config timestamp
+	2	INT16			x
+	2	INT16			y
+	4	MODE			mode
 	2	ROTATION		rotation/reflection
-	2				unused
-	▶
+	2	n			number of outputs
+	4n	LISTofOUTPUT		outputs
+      ▶
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
 	4	0			reply length
 	4	TIMESTAMP		new timestamp
-	4	TIMESTAMP		new configuration timestamp
-	4	WINDOW			root
-	2	SUBPIXELORDER		subpixel order defined in Render
-	2	CRTC			monitor
-	8				unused
-	
+	2	SUBPIXELORDER		subpixel order
+	18				unused
+└───
 
 A.3 Protocol Events
 
-	RRScreenChangeNotify
-
+┌───
+    RRScreenChangeNotify
 	1	Base + 0		code
 	1	ROTATION		new rotation and reflection
 	2	CARD16			sequence number
@@ -1145,24 +1266,41 @@ A.3 Protocol Events
 	2	CARD16			height in pixels
 	2	CARD16			width in millimeters
 	2	CARD16			height in millimeters
+└───
 
 A.3.1 Protocol Events added with version 1.2
 
-	RRCrtcChangeNotify
-
+┌───
+    RROutputChangeNotify
 	1	Base + 1		code
 	1	0			sub-code
 	2	CARD16			sequence number
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		configuration timestamp
-	4	WINDOW			root window
 	4	WINDOW			request window
-	2	CRTC			monitor index
-	2	MODE			mode ID
+	4	OUTPUT			output affected
+	4	CRTC			crtc in use
+	4	MODE			mode in use
+	2	ROTATION		rotation in use
+	1	CONNECTION		connection status
+	1	SUBPIXELORDER		subpixel order
+└───
+┌───
+    RRCrtcChangeNotify
+	1	Base + 2		code
+	1	0			sub-code
+	2	CARD16			sequence number
+	4	TIMESTAMP		timestamp
+	4	WINDOW			request window
+	4	CRTC			crtc affected
+	4	MODE			mode in use
 	2	ROTATION		new rotation and reflection
-	2	SUBPIXELORDER		new subpixel order
 	2	INT16			x
 	2	INT16			y
+	2	CARD16			width
+	2	CARD16			height
+	2				unused
+└───
 
 Bibliography
 
