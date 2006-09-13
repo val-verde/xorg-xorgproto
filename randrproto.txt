@@ -35,7 +35,7 @@ These events include:
 	on laptops or desktop systems
       ► The continued decline of legacy toolkits whose design would have
         required depth switching to support migration
-      ► The lack of depth switchin implementation experience in the 
+      ► The lack of depth switching implementation experience in the 
         intervening time, due to events beyond our control
 
 Additionally, the requirement to support depth switching might
@@ -46,7 +46,7 @@ Rather than further delaying RandR's widespread deployment for a feature
 long wanted by the community (resizing of screens, particularly on laptops),
 or the deployment of a protocol design that might be flawed due to lack of
 implementation experience, we decided to remove depth switching from the
-protocol. It may be implementated at a later time if resources and
+protocol. It may be implemented at a later time if resources and
 interests permit as a revision to the protocol described here, which will
 remain a stable base for applications. The protocol described here has been
 implemented in the main X.org server, and more fully in the hw/kdrive
@@ -105,12 +105,12 @@ the hardware will probably impose restrictions on the possible
 configurations. The protocol doesn't try to describe these restrictions,
 instead it provides a mechanism to find out what combinations are supported.
 
-For instance, dual-link DVI gangs two CRTC outputs togther to provide higher
+For instance, dual-link DVI gangs two CRTC outputs together to provide higher
 bandwidth for large resolution screens. This is exposed in RandR by
 requiring that nothing be connected to the second CRTC when driving a high
 resolution screen on the first.
 
-1.1 Acknowlegements
+1.1 Acknowledgements
 
 Our thanks to the contributors to the design found on the xpert mailing
 list, in particular:
@@ -144,7 +144,7 @@ screen configuration (by requiring a timestamp on the request).
 
 Interested applications are notified whenever the screen configuration
 changes, providing the current size of the screen and subpixel order (see
-the Render extension [RENDER]), to enabel proper rendering of subpixel
+the Render extension [RENDER]), to enable proper rendering of subpixel
 decimated client text to continue, along with a time stamp of the
 configuration change. A client must refresh its knowledge of the screen
 configuration before attempting to change the configuration after a
@@ -162,7 +162,7 @@ specified in the "normal" orientation, before rotation, if you find the
 other way confusing.
 
 We expect that most clients and toolkits will be oblivious to changes to the
-screen stucture, as they generally use the values in the connections Display
+screen structure, as they generally use the values in the connections Display
 structure directly. By toolkits updating the values on the fly, we believe
 pop-up menus and other pop up windows will position themselves correctly in
 the face of screen configuration changes (the issue is ensuring that pop-ups
@@ -256,14 +256,14 @@ REFRESH { rates: LISTofCARD16 }
 
 The name of this extension is "RANDR".
 
-RRQueryVersion
+┌───
+    RRQueryVersion
 	client-major-version:	CARD32
 	client-minor-version:	CARD32
-	
-	▶
-	
+      ▶
 	major-version:		CARD32
 	minor-version:		CARD32
+└───
 
 	The client sends the highest supported version to the server
 	and the server sends the highest version it supports, but no
@@ -277,10 +277,11 @@ RRQueryVersion
 
 7. Extension Requests
 
-RRSelectInput
+┌───
+    RRSelectInput
 	window: WINDOW
 	enable: SETofRRSELECTMASK
-
+└───
 	Errors: Window, Value
 
 	If 'enable' is RRScreenChangeNotifyMask, RRScreenChangeNotify events
@@ -306,22 +307,21 @@ RRSelectInput
 	when this request executes if the output configuration has changed
 	since the client connected, to avoid race conditions. 
 	
-RRSetScreenConfig
+┌───
+    RRSetScreenConfig
 	window: WINDOW
 	timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	size-id: SIZEID
 	rotation: ROTATION
 	rate: CARD16
-
-	▶
-
+      ▶
 	status: RRCONFIGSTATUS
 	new-timestamp: TIMESTAMP
 	config-timestamp: TIMESTAMP
 	root: WINDOW
 	subpixelOrder: SUBPIXELORDER
-
+└───
 	Errors: Value, Match
 
 	If 'timestamp' is less than the time when the configuration was last
@@ -407,7 +407,7 @@ RRSetScreenConfig
 	the screen and the pixel size.
 
 	'refresh' is the list of refresh rates for each size. Each element
-	of 'sizes' has a cooresponding element in 'refresh'. An empty list
+	of 'sizes' has a corresponding element in 'refresh'. An empty list
 	indicates no known rates, or a device for which refresh is not
 	relevant.
 
@@ -428,9 +428,7 @@ dynamic changes in the display environment.
 ┌───
     RRGetScreenSizeRange
 	window: WINDOW
-
       ▶
-
 	CARD16	minWidth, minHeight
 	CARD16	maxWidth, maxHeight
 └───
@@ -509,8 +507,7 @@ dynamic changes in the display environment.
 	clones: LISTofOUTPUT
 	modes: LISTofMODE
 └───
-
-	Errors: Output, 
+	Errors: Output
 
 	RRGetOutputInfo returns information about the current and available
 	configurations 'output'. 
@@ -700,7 +697,7 @@ dynamic changes in the display environment.
 	sets for this CRTC or a Match error results. 
 	
 	If 'mode' is None, then 'outputs' must be empty, else a Match error
-	results. Conversly, if 'mode' is not None, then 'outputs' must not be
+	results. Conversely, if 'mode' is not None, then 'outputs' must not be
 	empty, else a Match error results.
 	
 	This request may fail for other indeterminate reasons, in which case
@@ -735,13 +732,13 @@ round trips to set up the extension.
 
 RRScreenChangeNotify is sent if RRSelectInput has requested it
 whenever properties of the screen change, which may be due to external
-factors, such as recabling a monitor, etc.
+factors, such as re-cabling a monitor, etc.
 
 ┌───
     RRScreenChangeNotify
 
 	rotation: ROTATION;		new rotation
-	sequenceNumber: CARD16		low 16 bits of request's seq. number
+	sequenceNumber: CARD16		low 16 bits of request seq. number
 	timestamp: TIMESTAMP		time screen was changed
 	configTimestamp: TIMESTAMP	time config data was changed
 	root: WINDOW			root window of screen
@@ -781,7 +778,7 @@ factors, such as recabling a monitor, etc.
 
 ┌───
     RROutputChangeNotify:
-	sequence-number: CARD16		low 16 bits of request's seq. number
+	sequence-number: CARD16		low 16 bits of request seq. number
 	timestamp: TIMESTAMP		time screen was reconfigured
 	config-timestamp: TIMESTAMP	time available config data was changed
 	window: WINDOW			window requesting notification
@@ -802,7 +799,7 @@ factors, such as recabling a monitor, etc.
 
 ┌───
     RRCrtcChangeNotify /* XXX need to fit to 32 bytes */
-	sequence-number: CARD16		low 16 bits of request's seq. number
+	sequence-number: CARD16		low 16 bits of request seq. number
 	timestamp: TIMESTAMP		time monitor was changed
 	config-timestamp: TIMESTAMP	time config data was changed
 	root: WINDOW			root window of screen
@@ -845,7 +842,7 @@ factors, such as recabling a monitor, etc.
 The RandR extension was developed in parallel with the implementation
 to ensure the feasibility of various portions of the design. As
 portions of the extension are implemented, the version number of the
-extension has changed to reflect the portions of the standard provied.
+extension has changed to reflect the portions of the standard provided.
 This document describes the version 1.0 of the specification, the
 partial implementations have version numbers less than that. Here's a
 list of what each version before 1.0 implemented:
@@ -923,7 +920,6 @@ Syntactic Conventions
 This document uses the same syntactic conventions as the core X
 protocol encoding document.
 
-
 A.1 Common Types
 
 ┌───
@@ -954,7 +950,7 @@ A.1 Common Types
 	0x3 Failed
 └───
 	Return status for requests which depend on time.
-
+	
 ┌───
     MODEINFO (40)				Added in version 1.2
 	4	CARD32		id
@@ -975,7 +971,7 @@ A.1 Common Types
 └───
 	
 	An output mode specifies the complete CRTC timings for
-	a specfic mode. The vertical and horizontal synchronization rates
+	a specific mode. The vertical and horizontal synchronization rates
 	can be computed given the dot clock and the h total/v total
 	values. If the dot clock is zero, then all of the timing
 	parameters and flags are not used, and must be zero as this
@@ -1002,7 +998,6 @@ errors if used in version 1.0.
 	1	CARD32			major version
         1	CARD32			minor version
 └───
-
 ┌───
     RRSetScreenConfig
 	
@@ -1029,7 +1024,6 @@ errors if used in version 1.0.
 	4	CARD32			pad5
 	4	CARD32			pad6
 └───
-
 ┌───
     RRSelectInput
 
@@ -1040,7 +1034,6 @@ errors if used in version 1.0.
 	2	SETofRRSELECTMASK	enable
 	2	CARD16			pad
 └───
-      
 ┌───
     RRGetScreenInfo
 
@@ -1096,7 +1089,6 @@ A.2.1 Protocol Requests added with version 1.2
 	4				unused
 	4				unused
 └───
-	
 ┌───
     RRSetScreenSize
 	1	CARD8			major opcode
@@ -1108,7 +1100,6 @@ A.2.1 Protocol Requests added with version 1.2
 	4	CARD32			width in millimeters
 	4	CARD32			height in millimeters
 └───
-
 ┌───
     RRGetScreenResources
 	1	CARD8			major opcode
@@ -1133,7 +1124,6 @@ A.2.1 Protocol Requests added with version 1.2
 	b	STRING8			mode names
 	p				unused, p=pad(b)
 └───
-
 ┌───
     RRGetOutputInfo
 	1	CARD8			major opcode
@@ -1159,11 +1149,10 @@ A.2.1 Protocol Requests added with version 1.2
 	n	STRING8			name
 	p				unused, p=pad(n)
 └───
-
 ┌───
     RRCreateMode
 	1	CARD8			major opcode
-	1	0x09			RandR opcode
+	1	0x0a			RandR opcode
 	2	12+(n+p)/4		length
 	4	WINDOW			window
 	40	MODEINFO		mode
@@ -1180,14 +1169,14 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRDestroyMode
 	1	CARD8			major opcode
-	1	0x09			RandR opcode
+	1	0x0b			RandR opcode
 	2	2			length
 	4	MODE			mode
 └───
 ┌───
     RRAddOutputMode
 	1	CARD8			major opcode
-	1	0x09			RandR opcode
+	1	0x0c			RandR opcode
 	2	3			length
 	4	OUTPUT			output
 	4	MODE			mode
@@ -1195,7 +1184,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRDeleteOutputMode
 	1	CARD8			major opcode
-	1	0x09			RandR opcode
+	1	0x0d			RandR opcode
 	2	3			length
 	4	OUTPUT			output
 	4	MODE			mode
@@ -1203,7 +1192,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRGetCrtcInfo
 	1	CARD8			major opcode
-	1				RandR opcode
+	1	0x0e			RandR opcode
 	2	3			length
 	4	CRTC			crtc
 	4	TIMESTAMP		config-timestamp
@@ -1228,7 +1217,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRSetCrtcConfig
 	1	CARD8			major opcode
-	1				RandR opcode
+	1	0x0f			RandR opcode
 	2	7+n			length
 	4	CRTC			crtc
 	4	TIMESTAMP		timestamp
@@ -1288,7 +1277,7 @@ A.3.1 Protocol Events added with version 1.2
 ┌───
     RRCrtcChangeNotify
 	1	Base + 2		code
-	1	0			sub-code
+	1	1			sub-code
 	2	CARD16			sequence number
 	4	TIMESTAMP		timestamp
 	4	WINDOW			request window
