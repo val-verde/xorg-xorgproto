@@ -207,7 +207,8 @@ ROTATION { Rotate_0
 
 RRSELECTMASK { RRScreenChangeNotifyMask
 	       RRCrtcChangeNotifyMask (New in version 1.2)
-	       RROutputChangeNotifyMask (New in version 1.2) }
+	       RROutputChangeNotifyMask (New in version 1.2) 
+	       RROutputPropertyNotifyMask (New in version 1.2) }
 
 SIZEID { CARD16 }
 
@@ -306,6 +307,10 @@ The name of this extension is "RANDR".
 	detected external changes. RROutputChangeNotify may also be sent
 	when this request executes if the output configuration has changed
 	since the client connected, to avoid race conditions. 
+
+	If 'enable' contains RROutputPropertyNotifyMask,
+	RROutputPropertyNotify events will be sent when properties change on
+	this output.
 	
 ┌───
     RRSetScreenConfig
@@ -503,6 +508,7 @@ dynamic changes in the display environment.
 	
 	name: STRING
 	connection: CONNECTION
+	subpixel-order: SUBPIXELORDER
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
 	modes: LISTofMODE
@@ -530,6 +536,9 @@ dynamic changes in the display environment.
 	whether something is connected, it will set this to
 	UnknownConnection.
 	
+	'subpixel-order' contains the resulting subpixel order of the
+	connected device to allow correct subpixel rendering.
+
 	'crtcs' is the list of CRTCs that this output may be connected to.
 	Attempting to connect this output to a different CRTC results in a
 	Match error.
@@ -542,6 +551,109 @@ dynamic changes in the display environment.
 	'modes' is the list of modes supported by this output. Attempting to
 	connect this output to a CRTC not using one of these modes results
 	in a Match error.
+
+┌───
+    RRListOutputProperties
+    	output:OUTPUT
+      ▶
+      	atoms: LISTof ATOM
+└───
+	Errors: Output
+
+	This request returns the atoms of properties currently defined on
+	the output.
+
+┌───
+    RRChangeOutputProperty
+    	output: OUTPUT
+	property, type: ATOM
+	format: {8, 16, 32}
+	mode: { Replace, Prepend, Append }
+	data: LISTofINT8 or LISTofINT16 or LISTofINT32
+└───
+	Errors: Alloc, Atom, Match, Value, Output
+	
+	This request alters the property for the specified output.  The type
+	is uninterpreted by the server.  The format specifies whether the
+	data should be viewed as a list of 8-bit, 16-bit, or 32-bit
+	quantities so that the server can correctly byte-swap as necessary.
+
+	If the mode is Replace, the previous property value is discarded.
+	If the mode is Prepend or Append, then the type and format must
+	match the existing property value (or a Match error results).  If
+	the property is undefined, it is treated as defined with the correct
+	type and format with zero-length data.
+	
+	For Prepend, the data is tacked on to the beginning of the existing
+	data, and for Append, it is tacked on to the end of the existing data.
+
+	This request generates a OutputPropertyNotify
+
+	The lifetime of a property is not tied to the storing client.
+	Properties remain until explicitly deleted, until the output is
+	destroyed, or until server reset (see section 10).
+
+	The maximum size of a property is server-dependent and may vary
+	dynamically.  
+
+┌───
+    RRDeleteOutputProperty
+    	output: OUTPUT
+	property: ATOM
+└───
+	Errors: Atom, Output
+	
+	This request deletes the property from the specified window if the
+	property exists and generates a OutputPropertyNotify event unless
+	the property does not exist.
+
+┌───
+    RRGetOutputProperty
+    	output: OUTPUT
+	property: ATOM
+	type: ATOM or AnyPropertyType
+	long-offset, long-length: CARD32
+	delete: BOOL
+      ▶
+	type: ATOM or None
+	format: {0, 8, 16, 32}
+	bytes-after: CARD32
+	value: LISTofINT8 or LISTofINT16 or LISTofINT32
+└───
+	Errors: Atom, Value, Output
+
+	If the specified property does not exist for the specified output,
+	then the return type is None, the format and bytes-after are zero,
+	and the value is empty.  The delete argument is ignored in this
+	case.  
+	
+	If the specified property exists but its type does not match the
+	specified type, then the return type is the actual type of the
+	property, the format is the actual format of the property (never
+	zero), the bytes-after is the length of the property in bytes (even
+	if the format is 16 or 32), and the value is empty.  The delete
+	argument is ignored in this case.  
+	
+	If the specified property exists and either AnyPropertyType is
+	specified or the specified type matches the actual type of the
+	property, then the return type is the actual type of the property,
+	the format is the actual format of the property (never zero), and
+	the bytes-after and value are as follows, given:
+
+		N = actual length of the stored property in bytes 
+				  (even if the format is 16 or 32)
+		I = 4 × offset
+		T = N - I
+		L = MINIMUM(T, 4 × long-length)
+		A = N - (I + L)
+	
+	The returned value starts at byte index I in the property (indexing
+	from 0), and its length in bytes is L.  However, it is a Value error
+	if long-offset is given such that L is negative.  The value of
+	bytes-after is A, giving the number of trailing unread bytes in the
+	stored property.  If delete is True and the bytes-after is zero, the
+	property is also deleted from the output, and a
+	RROutputPropertyNotify event is generated.
 
 ┌───
     RRCreateMode
@@ -662,7 +774,6 @@ dynamic changes in the display environment.
       ▶
 	status: RRCONFIGSTATUS
 	new-timestamp: TIMESTAMP
-	subpixelOrder: SUBPIXELORDER
 └───
 	Errors: Value, Match
 
@@ -718,8 +829,42 @@ dynamic changes in the display environment.
 	'new-time-stamp' contains the time at which this request was
 	executed.
 	
-	'subpixelOrder' contains the resulting subpixel order of the monitor
-	to allow correct subpixel rendering.
+┌───
+    RRGetCrtcGammaSize
+	crtc: CRTC
+      ▶
+	size: CARD16
+└───
+	Errors: Crtc
+
+	This request returns the size of the gamma ramps used by 'crtc'.
+
+┌───
+    RRGetCrtcGamma
+	crtc: CRTC
+      ▶
+      	red: LISTofCARD16
+	green: LISTofCARD16
+	blue: LISTofCARD16
+└─── 
+	Errors: Crtc
+	
+	This request returns the currently set gamma ramps for 'crtc'.  All
+	three lists will be the size returned by the RRGetCrtcGammaSize
+	request.
+	
+┌───
+    RRSetCrtcGamma
+	crtc: CRTC
+	red: LISTofCARD16
+	green: LISTofCARD16
+	blue: LISTofCARD16
+└───
+	Errors: Crtc, Match
+	
+	This request sets the gamma ramps for 'crtc'. All three lists
+	must be the size returned by RRGetCrtcGammaSize else a Value error
+	results.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -778,7 +923,6 @@ factors, such as re-cabling a monitor, etc.
 
 ┌───
     RROutputChangeNotify:
-	sequence-number: CARD16		low 16 bits of request seq. number
 	timestamp: TIMESTAMP		time screen was reconfigured
 	config-timestamp: TIMESTAMP	time available config data was changed
 	window: WINDOW			window requesting notification
@@ -798,8 +942,26 @@ factors, such as re-cabling a monitor, etc.
 	system.
 
 ┌───
-    RRCrtcChangeNotify /* XXX need to fit to 32 bytes */
-	sequence-number: CARD16		low 16 bits of request seq. number
+    RROutputPropertyNotify:
+	window: WINDOW			window requesting notification
+	output: OUTPUT			output affected by change
+	atom: ATOM			affected property
+	time: TIMESTAMP			time property was changed
+	subpixel-order: SUBPIXELORDER	order of subpixels
+	state: { NewValue, Deleted }	new property state
+└───
+
+	This event is reported to clients selecting RROutputPropertyChange
+	on the window and is generated with state NewValue when a property
+	of the window is changed using RRChangeOutputProperty even when
+	adding zero-length data and when replacing all or part of a property
+	with identical data.  It is generated with state Deleted when a
+	property of the window is deleted using either
+	RRDeleteOutputProperty or RRGetOutputProperty.  The timestamp
+	indicates the server time when the property was changed.
+
+┌───
+    RRCrtcChangeNotify
 	timestamp: TIMESTAMP		time monitor was changed
 	config-timestamp: TIMESTAMP	time config data was changed
 	root: WINDOW			root window of screen
@@ -807,7 +969,6 @@ factors, such as re-cabling a monitor, etc.
 	crtc: CRTC			CRTC which changed
 	mode: MODE			new mode
 	rotation: ROTATION;		new rotation
-	subpixelOrder: SUBPIXELORDER	order of subpixels
 	x: INT16			x position of CRTC within screen
 	y: INT16			y position of CRTC within screen
 └───
@@ -843,9 +1004,9 @@ The RandR extension was developed in parallel with the implementation
 to ensure the feasibility of various portions of the design. As
 portions of the extension are implemented, the version number of the
 extension has changed to reflect the portions of the standard provided.
-This document describes the version 1.0 of the specification, the
+This document describes the version 1.2 of the specification, the
 partial implementations have version numbers less than that. Here's a
-list of what each version before 1.0 implemented:
+list of what each version provided:
 
 	0.0: This prototype implemented resize and rotation in the
 	     TinyX server Used approximately the protocol described in
@@ -870,7 +1031,9 @@ will fail against 1.0 servers. The wire encoding op-codes were
 changed for GetScreenInfo to ensure this failure in a relatively
 graceful way. Version 1.1 servers and clients are cross compatible with
 1.0. Version 1.1 is considered to be stable and we intend upward
-compatibility from this point.
+compatibility from this point. Version 1.2 offers an extended model of the
+system with multiple output support. It offers backward compatibility with
+version 1.1.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -892,11 +1055,9 @@ defined by the extension. Version 2.0 of this extension added the ability to
 adjust the DAC values in a TrueColor server to modify the brightness curves
 of the display.
 
-Most of the utility of this extension is subsumed by RandR version 1.2,
-except for the gamma adjustments. If this features continue to be useful,
-either some relationship between the screen indices used in the
-XFree86-VidModeExtension and the screen/monitor pairs used int RandR or an
-incorporation of this functionality into RandR might be needed.
+All of the utility of this extension is subsumed by RandR version 1.2, RandR
+should be used in preference to XFree86-VidModeExtension where both are
+present.
 
 10.2 Xinerama
 
@@ -976,6 +1137,7 @@ A.1 Common Types
 	values. If the dot clock is zero, then all of the timing
 	parameters and flags are not used, and must be zero as this
 	indicates that the timings are unknown or otherwise unused.
+	The name itself will be encoded separately in each usage.
 	
 A.2 Protocol Requests
 
@@ -1084,10 +1246,7 @@ A.2.1 Protocol Requests added with version 1.2
 	2	CARD16			minHeight
 	2	CARD16			maxWidth
 	2	CARD16			maxHeight
-	4				unused
-	4				unused
-	4				unused
-	4				unused
+	16				unused
 └───
 ┌───
     RRSetScreenSize
@@ -1139,7 +1298,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4	TIMESTAMP		timestamp
 	4	CRTC			current connected crtc
 	1	CONNECTION		connection
-	1				unused
+	1	SUBPIXELORDER		subpixel-order
 	2	c			number of CRTCs
 	2	m			number of modes
 	2	n			length of name
@@ -1147,6 +1306,85 @@ A.2.1 Protocol Requests added with version 1.2
 	4c	LISTofCRTC		crtcs
 	4m	LISTofMODE		modes
 	n	STRING8			name
+	p				unused, p=pad(n)
+└───
+┌───
+    RRListOutputProperties
+	1	CARD8			major opcode
+	1	0x09			RandR opcode
+	2	3			length
+	4	OUTPUT			output
+      ▶
+	1	1			Reply
+	1				unused
+	2	CARD16			sequence number
+	4	n			reply length
+	2	n			number of ATOMs in atoms
+	22				unused
+	4n	LISTofATOM		atoms
+└───
+┌───
+    RRChangeOutputProperty
+	1	CARD8			major opcode
+	1				RandR opcode
+	2	6+(n+p)/4		request length
+	4	OUTPUT			output
+	4	ATOM			property
+	4	ATOM			type
+	1	CARD8			format
+	1				mode
+		0	Replace
+		1	Prepend
+		2	Append
+	2				unused
+	4	CARD32			length of data in format units
+					(= n for format = 8)
+					(= n/2 for format = 16)
+					(= n/4 for format = 32)
+	n	LISTofBYTE		data
+					(n is a multiple of 2 for format = 16)
+					(n is a multiple of 4 for format = 32)
+	p				unused, p=pad(n)
+└───
+┌───
+    RRDeleteOutputProperty
+	1	CARD8			major opcode
+	1				RandR opcode
+	2	3			request length
+	4	OUTPUT			output
+	4	ATOM			property
+└───
+┌───
+    RRGetOutputProperty
+	1	CARD8			major opcode
+	1				RandR opcode
+	2	7			request length
+	4	OUTPUT			output
+	4	ATOM			property
+	4	ATOM			type
+		0	AnyPropertyType
+	4	CARD32			long-offset
+	4	CARD32			long-length
+	1	BOOL			delete
+	3				unused
+      ▶
+	1	1			Reply
+	1	CARD8			format
+	2	CARD16			sequence number
+	4	(n+p)/4			reply length
+	4	ATOM			type
+		0	None
+	4	CARD32			bytes-after
+	4	CARD32			length of value in format units
+					(= 0 for format = 0)
+					(= n for format = 8)
+					(= n/2 for format = 16)
+					(= n/4 for format = 32)
+	12				unused
+	n	LISTofBYTE		value
+					(n is zero for format = 0)
+					(n is a multiple of 2 for format = 16)
+					(n is a multiple of 4 for format = 32)
 	p				unused, p=pad(n)
 └───
 ┌───
@@ -1234,8 +1472,51 @@ A.2.1 Protocol Requests added with version 1.2
 	2	CARD16			sequence number
 	4	0			reply length
 	4	TIMESTAMP		new timestamp
-	2	SUBPIXELORDER		subpixel order
-	18				unused
+	1	SUBPIXELORDER		subpixel order
+	19				unused
+└───
+┌───
+    RRGetCrtcGammaSize
+	1	CARD8			major opcode
+	1				RandR opcode
+	2	2			length
+	4	CRTC			crtc
+      ▶
+	1	1			Reply
+	1				unused
+	2	CARD16			sequence number
+	4	0			reply length
+	2	CARD16			size
+	22				unused
+└───
+┌───
+    RRGetCrtcGamma
+	1	CARD8			major opcode
+	1				RandR opcode
+	2	2			length
+	4	CRTC			crtc
+      ▶
+	1	1			Reply
+	1				unused
+	2	CARD16			sequence number
+	4	(6n+2)/4		reply length
+	2	n			size
+	20				unused
+	2n	LISTofCARD16		red
+	2n	LISTofCARD16		green
+	2n	LISTofCARD16		blue
+└───
+┌───
+    RRSetCrtcGamma
+	1	CARD8			major opcode
+	1	0x0f			RandR opcode
+	2	3+(6n+2)/4		length
+	4	CRTC			crtc
+	2	n			size
+	2				unused
+	2n	LISTofCARD16		red
+	2n	LISTofCARD16		green
+	2n	LISTofCARD16		blue
 └───
 
 A.3 Protocol Events
