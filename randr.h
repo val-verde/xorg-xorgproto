@@ -124,4 +124,8 @@ typedef unsigned short	XRandrMonitor;
 #define RR_DoubleClock		0x00001000
 #define RR_ClockDivideBy2	0x00002000
 
+#define RR_Connected		0
+#define RR_Disconnected		1
+#define RR_UnknownConnection	2
+
 #endif	/* _RANDR_H_ */

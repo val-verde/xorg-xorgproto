@@ -1162,7 +1162,13 @@ A.1 Common Types
 	0x00001000	DoubleClock
 	0x00002000	ClockDivideBy2
 └───
-    
+┌───
+    CONNECTION
+	0		Connected
+	1		Disconnected
+	2		UnknownConnection
+└───
+
 A.2 Protocol Requests
 
 Opcodes 1 and 3 were used in the 0.0 protocols, and will return
