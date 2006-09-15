@@ -230,15 +230,20 @@ SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 SCREENSIZE { widthInPixels, heightInPixels: CARD16
 	     widthInMillimeters, heightInMillimeters: CARD16 }
 
-MODEFLAG { hsync_positive hsync_negative
-	   vsync_positive vsync_negative
-	   interlace double_scan
-	   csync csync_positive csync_negative
-	   hskew_present
-	   bcast
-	   pixel_multiplex
-	   double_clock
-	   clock_divide_by_2 }
+MODEFLAG { HSyncPositive
+	   HSyncNegative
+	   VSyncPositive
+	   VSyncNegative
+	   Interlace
+	   DoubleScan
+	   CSync
+	   CSyncPositive
+	   CSyncNegative
+	   HSkewPresent
+	   BCast
+	   PixelMultiplex
+	   DoubleClock
+	   ClockDivideBy2 }
 
 MODEINFO { id: MODE
 	   name: STRING
@@ -1100,6 +1105,7 @@ A.1 Common Types
 	0x0001	ScreenChangeNotifyMask
 	0x0002	CrtcChangeNotifyMask		Added in version 1.2
 	0x0004	OutputChangeNotifyMask		Added in version 1.2
+	0x0008	OutputPropertyNotifyMask	Added in version 1.2
 └───
       Event select mask for RRSelectInput
       
@@ -1139,6 +1145,24 @@ A.1 Common Types
 	indicates that the timings are unknown or otherwise unused.
 	The name itself will be encoded separately in each usage.
 	
+┌───
+    MODEFLAG
+	0x00000001	HSyncPositive
+	0x00000002	HSyncNegative
+	0x00000004	VSyncPositive
+	0x00000008	VSyncNegative
+	0x00000010	Interlace
+	0x00000020	DoubleScan
+	0x00000040	CSync
+	0x00000080	CSyncPositive
+	0x00000100	CSyncNegative
+	0x00000200	HSkewPresent
+	0x00000400	BCast
+	0x00000800	PixelMultiplex
+	0x00001000	DoubleClock
+	0x00002000	ClockDivideBy2
+└───
+    
 A.2 Protocol Requests
 
 Opcodes 1 and 3 were used in the 0.0 protocols, and will return
@@ -1301,8 +1325,9 @@ A.2.1 Protocol Requests added with version 1.2
 	1	SUBPIXELORDER		subpixel-order
 	2	c			number of CRTCs
 	2	m			number of modes
+	2	o			number of clones
 	2	n			length of name
-	8				unused
+	6				unused
 	4c	LISTofCRTC		crtcs
 	4m	LISTofMODE		modes
 	n	STRING8			name
@@ -1541,9 +1566,25 @@ A.3 Protocol Events
 A.3.1 Protocol Events added with version 1.2
 
 ┌───
-    RROutputChangeNotify
+    RRCrtcChangeNotify
 	1	Base + 1		code
 	1	0			sub-code
+	2	CARD16			sequence number
+	4	TIMESTAMP		timestamp
+	4	WINDOW			request window
+	4	CRTC			crtc affected
+	4	MODE			mode in use
+	2	ROTATION		new rotation and reflection
+	2				unused
+	2	INT16			x
+	2	INT16			y
+	2	CARD16			width
+	2	CARD16			height
+└───
+┌───
+    RROutputChangeNotify
+	1	Base + 1		code
+	1	1			sub-code
 	2	CARD16			sequence number
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		configuration timestamp
@@ -1556,20 +1597,18 @@ A.3.1 Protocol Events added with version 1.2
 	1	SUBPIXELORDER		subpixel order
 └───
 ┌───
-    RRCrtcChangeNotify
-	1	Base + 2		code
-	1	1			sub-code
+    RROutputPropertyNotify
+	1	Base + 1		code
+	1	2			sub-code
 	2	CARD16			sequence number
-	4	TIMESTAMP		timestamp
-	4	WINDOW			request window
-	4	CRTC			crtc affected
-	4	MODE			mode in use
-	2	ROTATION		new rotation and reflection
-	2	INT16			x
-	2	INT16			y
-	2	CARD16			width
-	2	CARD16			height
-	2				unused
+	4	WINDOW			window
+	4	OUTPUT			output
+	4	ATOM			atom
+	4	TIMESTAMP		time
+	1				state
+		0	NewValue
+		1	Deleted
+	11				unused
 └───
 
 Bibliography
