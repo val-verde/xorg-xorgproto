@@ -43,7 +43,7 @@ typedef unsigned short	XRandrMonitor;
 
 #define RRNumberErrors		0
 #define RRNumberEvents		2
-#define RRNumberRequests	12
+#define RRNumberRequests	23
 
 #define X_RRQueryVersion	0
 /* we skip 1 to make old clients fail pretty immediately */
@@ -127,5 +127,9 @@ typedef unsigned short	XRandrMonitor;
 #define RR_Connected		0
 #define RR_Disconnected		1
 #define RR_UnknownConnection	2
+
+#define BadRROutput		0
+#define BadRRCrtc		1
+#define BadRRMode		2
 
 #endif	/* _RANDR_H_ */

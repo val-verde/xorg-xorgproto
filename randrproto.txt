@@ -245,6 +245,10 @@ MODEFLAG { HSyncPositive
 	   DoubleClock
 	   ClockDivideBy2 }
 
+MODEOPTION { ScalingNone,
+	     ScalingMaxAspect,
+	     ScalingMax }
+
 MODEINFO { id: MODE
 	   name: STRING
            widthInPixels, heightInPixels: CARD16
@@ -252,7 +256,8 @@ MODEINFO { id: MODE
            dotClock: CARD32
            hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
            vSyncStart, vSyncEnd, vTotal: CARD16
-           modeFlags: SETofMODEFLAG }
+           modeFlags: SETofMODEFLAG
+	   modeOptions: SETofMODEOPTION }
 
 REFRESH { rates: LISTofCARD16 }
 
@@ -774,6 +779,7 @@ dynamic changes in the display environment.
 	config-timestamp: TIMESTAMP
 	x, y: INT16
 	mode: MODE
+	options: SETofMODEOPTION
 	rotation: ROTATION
 	outputs: LISTofOUTPUT
       ▶
@@ -1495,7 +1501,7 @@ A.2.1 Protocol Requests added with version 1.2
 	2	INT16			y
 	4	MODE			mode
 	2	ROTATION		rotation/reflection
-	2	n			number of outputs
+	2				unused
 	4n	LISTofOUTPUT		outputs
       ▶
 	1	1			Reply
@@ -1503,8 +1509,7 @@ A.2.1 Protocol Requests added with version 1.2
 	2	CARD16			sequence number
 	4	0			reply length
 	4	TIMESTAMP		new timestamp
-	1	SUBPIXELORDER		subpixel order
-	19				unused
+	20				unused
 └───
 ┌───
     RRGetCrtcGammaSize
@@ -1617,6 +1622,15 @@ A.3.1 Protocol Events added with version 1.2
 	11				unused
 └───
 
+A.4 Protocol Errors
+
+┌───
+    ERRORS
+	Base + 0		Output
+	Base + 1		Crtc
+	Base + 2		Mode
+└───
+	
 Bibliography
 
 [RANDR] Gettys, Jim and Keith Packard, "The X Resize and Rotate

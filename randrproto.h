@@ -327,8 +327,8 @@ typedef struct {
     CARD16	length B16;
     RROutput	output B32;
     Atom	property B32;
-} xDeleteOutputPropertyReq;
-#define sz_xDeleteOutputPropertyReq	12
+} xRRDeleteOutputPropertyReq;
+#define sz_xRRDeleteOutputPropertyReq	12
 
 typedef struct {
     CARD8	reqType;
@@ -342,8 +342,8 @@ typedef struct {
     BOOL	delete;
     CARD8	pad1;
     CARD16	pad2;
-} xGetOutputPropertyReq;
-#define sz_xGetOutputPropertyReq	28
+} xRRGetOutputPropertyReq;
+#define sz_xRRGetOutputPropertyReq	28
 
 typedef struct {
     BYTE	type;
@@ -356,8 +356,8 @@ typedef struct {
     CARD32	pad1 B32;
     CARD32	pad2 B32;
     CARD32	pad3 B32;
-} xGetOutputPropertyReply;
-#define sz_xGetOutputPropertyReply	32
+} xRRGetOutputPropertyReply;
+#define sz_xRRGetOutputPropertyReply	32
 
 typedef struct {
     CARD8	reqType;
@@ -414,8 +414,8 @@ typedef struct {
     CARD16	length B16;
     RRCrtc	crtc B32;
     Time	configTimestamp B32;
-} xGetCrtcInfoReq; 
-#define sz_xGetCrtcInfoReq		12
+} xRRGetCrtcInfoReq; 
+#define sz_xRRGetCrtcInfoReq		12
 
 typedef struct {
     BYTE	type;
@@ -447,7 +447,7 @@ typedef struct {
     INT16	y B16;
     RRMode	mode B32;
     Rotation	rotation B16;
-    CARD16	nOutputs B16;
+    CARD16	pad B16;
 } xRRSetCrtcConfigReq; 
 #define sz_xRRSetCrtcConfigReq		28
 
@@ -456,14 +456,12 @@ typedef struct {
     CARD8	status;
     CARD16	sequenceNumber B16;
     CARD32	length B32;
-    Time	timestamp B32;
-    CARD8	subpixelOrder;
-    CARD8	pad1;
-    CARD16	pad2 B16;
+    Time	newTimestamp B32;
+    CARD32	pad1 B32;
+    CARD32	pad2 B16;
     CARD32	pad3 B32;
     CARD32	pad4 B32;
     CARD32	pad5 B32;
-    CARD32	pad6 B32;
 } xRRSetCrtcConfigReply;
 #define sz_xRRSetCrtcConfigReply	32
 
@@ -472,8 +470,8 @@ typedef struct {
     CARD8	randrReqType;
     CARD16	length B16;
     RRCrtc	crtc B32;
-} xGetCrtcGammaSizeReq; 
-#define sz_xGetCrtcGammaSizeReq		8
+} xRRGetCrtcGammaSizeReq; 
+#define sz_xRRGetCrtcGammaSizeReq	8
 
 typedef struct {
     BYTE	type;
@@ -487,16 +485,16 @@ typedef struct {
     CARD16	pad4 B32;
     CARD16	pad5 B32;
     CARD16	pad6 B32;
-} xGetCrtcGammaSizeReply;
-#define sz_xGetCrtcGammaSizeReply	32
+} xRRGetCrtcGammaSizeReply;
+#define sz_xRRGetCrtcGammaSizeReply	32
 
 typedef struct {
     CARD8	reqType;
     CARD8	randrReqType;
     CARD16	length B16;
     RRCrtc	crtc B32;
-} xGetCrtcGammaReq; 
-#define sz_xGetCrtcGammaReq		8
+} xRRGetCrtcGammaReq; 
+#define sz_xRRGetCrtcGammaReq		8
 
 typedef struct {
     BYTE	type;
@@ -510,8 +508,8 @@ typedef struct {
     CARD16	pad4 B32;
     CARD16	pad5 B32;
     CARD16	pad6 B32;
-} xGetCrtcGammaReply;
-#define sz_xGetCrtcGammaReply		32
+} xRRGetCrtcGammaReply;
+#define sz_xRRGetCrtcGammaReply		32
 
 typedef struct {
     CARD8	reqType;
