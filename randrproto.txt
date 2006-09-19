@@ -1312,7 +1312,7 @@ A.2.1 Protocol Requests added with version 1.2
 	2	o			number of outputs
 	2	m			number of modeinfos
 	2	b			total bytes in mode names
-	10				unused
+	8				unused
 	4c	LISTofCRTC		crtcs
 	4o	LISTofOUTPUT		outputs
 	40m	LISTofMODEINFO		modeinfos
@@ -1476,6 +1476,7 @@ A.2.1 Protocol Requests added with version 1.2
 	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
 	4	o+p			reply length
+	4	TIMESTATMP		timestamp
 	2	INT16			x
 	2	INT16			y
 	2	CARD16			width
@@ -1485,7 +1486,6 @@ A.2.1 Protocol Requests added with version 1.2
 	2	ROTATION		set of possible rotations
 	2	o			number of outputs
 	2	p			number of possible outputs
-	4				unused
 	4o	LISTofOUTPUT		outputs
 	4p	LISTofOUTPUT		possible outputs
 └───

@@ -192,9 +192,10 @@ typedef struct _xRRModeInfo {
     CARD16		vSyncStart B16;
     CARD16		vSyncEnd B16;
     CARD16		vTotal B16;
-    CARD16		nameLength B32;
+    CARD16		nameLength B16;
     RRModeFlags		modeFlags B32;
 } xRRModeInfo;
+#define sz_xRRModeInfo		    40
 
 typedef struct {
     CARD8   reqType;
@@ -251,9 +252,8 @@ typedef struct {
     CARD16	nOutputs B16;
     CARD16	nModes B16;
     CARD16	nbytesNames B16;
-    CARD16	pad1 B16;
+    CARD32	pad1 B32;
     CARD32	pad2 B32;
-    CARD32	pad3 B32;
 } xRRGetScreenResourcesReply;
 #define sz_xRRGetScreenResourcesReply	32
 
@@ -294,7 +294,7 @@ typedef struct {
 
 typedef struct {
     BYTE	type;
-    CARD8	status;
+    CARD8	nProperties;
     CARD16	sequenceNumber B16;
     CARD32	length B32;
     CARD16	nAtoms B16;
@@ -347,7 +347,7 @@ typedef struct {
 
 typedef struct {
     BYTE	type;
-    CARD8	status;
+    CARD8	format;
     CARD16	sequenceNumber B16;
     CARD32	length B32;
     Atom	propertyType B32;
@@ -422,6 +422,7 @@ typedef struct {
     CARD8	status;
     CARD16	sequenceNumber B16;
     CARD32	length B32;
+    Time	timestamp B32;
     INT16	x B16;
     INT16	y B16;
     CARD16	width B16;
@@ -431,8 +432,6 @@ typedef struct {
     Rotation	rotations B16;
     CARD16	nOutput B16;
     CARD16	nPossibleOutput B16;
-    CARD32	pad1 B32;
-    CARD32	pad2 B32;
 } xRRGetCrtcInfoReply;
 #define sz_xRRGetCrtcInfoReply		32
 

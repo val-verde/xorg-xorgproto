@@ -31,11 +31,11 @@
 typedef unsigned short	Rotation;
 typedef unsigned short	SizeID;
 typedef unsigned short	SubpixelOrder;
+typedef unsigned short	Connection;
 typedef unsigned short	XRandrRotation;
 typedef unsigned short	XRandrSizeID;
 typedef unsigned short	XRandrSubpixelOrder;
-typedef unsigned short	XRandrModeID;
-typedef unsigned short	XRandrMonitor;
+typedef unsigned long	XRandrModeFlags;
 
 #define RANDR_NAME		"RANDR"
 #define RANDR_MAJOR		1
