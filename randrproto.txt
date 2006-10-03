@@ -198,12 +198,40 @@ RRCONFIGSTATUS { Success
 		 InvalidTime
 		 Failed }
 
+	A value of type RRCONFIGSTATUS returned when manipulating the output
+	configuration or querying information from the server that has some
+	time-dependency.
+	
+	InvalidConfigTime indicates that the supplied configuration
+	timestamp does not match the current X server configuration
+	timestamp. Usually this means that the output configuration has
+	changed since the timestamp was received by the application.
+
+	InvalidTime indicates that the supplied output reconfiguration time
+	is earlier than the most recent output reconfiguration request.
+	Generally this indicates that another application has reconfigured
+	the output using a later timestamp.
+
+	Failed is returned whenever the operation is unsuccessful for some
+	other reason. This generally indicates that the requested output
+	configuration is unsupported by the hardware. The goal is to make
+	these limitations expressed by the protocol, but when that isn't
+	possible it is correct to return this error value. If, as a
+	implentor, you find this error code required, please submit the
+	hardware constraints that exist so that a future version of the
+	extension can correctly capture the configuration constraints in
+	your system.
+
 ROTATION { Rotate_0
 	   Rotate_90
 	   Rotate_180
 	   Rotate_270
 	   Reflect_X
 	   Reflect_Y }
+
+	These values are used both to indicate a set of allowed rotations
+	and reflections as well as to indicate a specific rotation and
+	reflection combination.
 
 RRSELECTMASK { RRScreenChangeNotifyMask
 	       RRCrtcChangeNotifyMask (New in version 1.2)
@@ -214,11 +242,43 @@ SIZEID { CARD16 }
 
 MODE { XID or None }
 
+RRMODEORIGIN { RRModeOriginPreferred,
+	       RRModeOriginDetailed,
+	       RRModeOriginVESA,
+	       RRModeOriginConfig,
+	       RRModeOriginUser,
+	       RRModeOriginOther }
+
+	These values are used to indicate to the application the origin
+	of each mode.
+
+	Preferred modes come from the monitor as the preferred mode for
+	this monitor; generally these are used for fixed-pixel flat panels
+	to indicate the native resolution of the panel.
+
+	Detailed modes also come from the monitor as additional modes that
+	may not follow the VESA specification.
+
+	VESA modes are either standard modes from the VESA spec or modes
+	generated from the GTF using the monitor specifications.
+
+	Config modes are those provided as a part of the X server
+	configuration.
+
+	User modes are those defined through the RandR protocol during X
+	server operation.
+
+	Other modes covers modes that come from any other source; space
+	aliens, tarot cards, whatever.
+
 CRTC { XID }
 
 OUTPUT { XID }
 
 CONNECTION { Connected, Disconnected, UnknownConnection }
+
+	This value provides an indication of whether an output is actually
+	connected to a monitor or other presentation device.
 
 SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
 	        SubPixelHorizontalRGB	extensions definitions; they are here
@@ -245,10 +305,16 @@ MODEFLAG { HSyncPositive
 	   DoubleClock
 	   ClockDivideBy2 }
 
-MODEOPTION { ScalingNone,
-	     ScalingMaxAspect,
-	     ScalingMax }
+OUTPUTOPTION { RROutputOptionScaleNone,
+	       RROutputOptionScaleMaxAspect,
+	       RROutputOptionScaleMax }
 
+	These options select paramaters of the output which are independent
+	of the output mode.
+	
+	The scale options are used for fixed panels and select between
+	different scaling options for non-native resolutions.
+	
 MODEINFO { id: MODE
 	   name: STRING
            widthInPixels, heightInPixels: CARD16
@@ -257,7 +323,10 @@ MODEINFO { id: MODE
            hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
            vSyncStart, vSyncEnd, vTotal: CARD16
            modeFlags: SETofMODEFLAG
-	   modeOptions: SETofMODEOPTION }
+	   modeOrigin: MODEORIGIN }
+
+OUTPUTCONFIG { output: OUTPUT
+	       options: SETofOUTPUTOPTION }
 
 REFRESH { rates: LISTofCARD16 }
 
@@ -515,10 +584,12 @@ dynamic changes in the display environment.
 	status: RRCONFIGSTATUS
 	timestamp: TIMESTAMP
 	crtc: CRTC
+	options: SETofOUTPUTOPTION
 	
 	name: STRING
 	connection: CONNECTION
 	subpixel-order: SUBPIXELORDER
+	possible-options: SETofOUTPUTOPTION
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
 	modes: LISTofMODE
@@ -538,6 +609,8 @@ dynamic changes in the display environment.
 	'crtc' is the current source CRTC for video data, or Disabled if the
 	output is not connected to any CRTC.
 
+	'options' is the currently enabled set of options.
+	
 	'name' is a UTF-8 encoded string designed to be presented to the
 	user to indicate which output this is. E.g. "S-Video" or "DVI".
 
@@ -549,6 +622,9 @@ dynamic changes in the display environment.
 	'subpixel-order' contains the resulting subpixel order of the
 	connected device to allow correct subpixel rendering.
 
+	'possible-options' indicate which options are supported by this
+	output device.
+	
 	'crtcs' is the list of CRTCs that this output may be connected to.
 	Attempting to connect this output to a different CRTC results in a
 	Match error.
@@ -779,7 +855,6 @@ dynamic changes in the display environment.
 	config-timestamp: TIMESTAMP
 	x, y: INT16
 	mode: MODE
-	options: SETofMODEOPTION
 	rotation: ROTATION
 	outputs: LISTofOUTPUT
       ▶
@@ -1125,6 +1200,17 @@ A.1 Common Types
 	Return status for requests which depend on time.
 	
 ┌───
+    RRMODEORIGIN
+	0	RRModeOriginPreferred
+	1	RRModeOriginDetailed
+	2	RRModeOriginVESA
+	3	RRModeOriginConfig
+	4	RRModeOriginUser
+	5	RRModeOriginOther
+└───
+	Origin of mode information.
+
+┌───
     MODEINFO (40)				Added in version 1.2
 	4	CARD32		id
 	2	CARD16		width in pixels
@@ -1174,6 +1260,18 @@ A.1 Common Types
 	1		Disconnected
 	2		UnknownConnection
 └───
+┌───
+    OUTPUTOPTION
+	1		RROutputOptionScaleNone
+	2		RROutputOptionScaleMaxAspect
+	4		RROutputOptionScaleMax
+└───
+┌───
+    OUTPUTCONFIG
+    	4	CARD32		output
+	4	CARD32		set of output options
+└───
+
 
 A.2 Protocol Requests
 
@@ -1330,16 +1428,18 @@ A.2.1 Protocol Requests added with version 1.2
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
-	4	c+m+(n+p)/4		reply length
+	4	1+c+m+(n+p)/4		reply length
 	4	TIMESTAMP		timestamp
 	4	CRTC			current connected crtc
+	4	SETofOUTPUTOPTION	current output options
 	1	CONNECTION		connection
 	1	SUBPIXELORDER		subpixel-order
 	2	c			number of CRTCs
 	2	m			number of modes
 	2	o			number of clones
 	2	n			length of name
-	6				unused
+	2				unused
+	4	SETofOUTPUTOPTION	supported output options
 	4c	LISTofCRTC		crtcs
 	4m	LISTofMODE		modes
 	n	STRING8			name
@@ -1493,7 +1593,7 @@ A.2.1 Protocol Requests added with version 1.2
     RRSetCrtcConfig
 	1	CARD8			major opcode
 	1	19			RandR opcode
-	2	7+n			length
+	2	7+2n			length
 	4	CRTC			crtc
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config timestamp
@@ -1502,7 +1602,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4	MODE			mode
 	2	ROTATION		rotation/reflection
 	2				unused
-	4n	LISTofOUTPUT		outputs
+	8n	LISTofOUTPUTCONFIG	outputs
       ▶
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
