@@ -132,4 +132,15 @@ typedef unsigned long	XRandrModeFlags;
 #define BadRRCrtc		1
 #define BadRRMode		2
 
+#define RRModeOriginPreferred	0
+#define RRModeOriginDetailed	1
+#define RRModeOriginVESA	2
+#define RRModeOriginConfig	3
+#define RRModeOriginUser	4
+#define RRModeOriginOther	5
+
+#define RROutputOptionScaleNone		1
+#define RROutputOptionScaleMaxAspect	2
+#define RROutputOptionScaleMax		4
+
 #endif	/* _RANDR_H_ */

@@ -1211,7 +1211,7 @@ A.1 Common Types
 	Origin of mode information.
 
 ┌───
-    MODEINFO (40)				Added in version 1.2
+    MODEINFO (44)				Added in version 1.2
 	4	CARD32		id
 	2	CARD16		width in pixels
 	2	CARD16		height in pixels
@@ -1227,6 +1227,8 @@ A.1 Common Types
 	2	CARD16		v total
 	2	CARD16		name length
 	4	SETofMODEFLAG	mode flags
+	1	MODEORIGIN	mode origin
+	3			unused
 └───
 	
 	An output mode specifies the complete CRTC timings for
@@ -1403,7 +1405,7 @@ A.2.1 Protocol Requests added with version 1.2
 	1	1			Reply
 	1				unused
 	2	CARD16			sequence number
-	4	c+o+10m+(b+p)/4		reply length
+	4	c+o+11m+(b+p)/4		reply length
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config-timestamp
 	2	c			number of CRTCs
@@ -1413,7 +1415,7 @@ A.2.1 Protocol Requests added with version 1.2
 	8				unused
 	4c	LISTofCRTC		crtcs
 	4o	LISTofOUTPUT		outputs
-	40m	LISTofMODEINFO		modeinfos
+	44m	LISTofMODEINFO		modeinfos
 	b	STRING8			mode names
 	p				unused, p=pad(b)
 └───
@@ -1528,9 +1530,9 @@ A.2.1 Protocol Requests added with version 1.2
     RRCreateMode
 	1	CARD8			major opcode
 	1	14			RandR opcode
-	2	12+(n+p)/4		length
+	2	13+(n+p)/4		length
 	4	WINDOW			window
-	40	MODEINFO		mode
+	44	MODEINFO		mode
 	n	STRING8			mode name
 	p				unused, p=pad(n)
       ▶
