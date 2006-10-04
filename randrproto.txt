@@ -242,34 +242,12 @@ SIZEID { CARD16 }
 
 MODE { XID or None }
 
-RRMODEORIGIN { RRModeOriginPreferred,
-	       RRModeOriginDetailed,
-	       RRModeOriginVESA,
-	       RRModeOriginConfig,
-	       RRModeOriginUser,
-	       RRModeOriginOther }
-
-	These values are used to indicate to the application the origin
-	of each mode.
-
-	Preferred modes come from the monitor as the preferred mode for
-	this monitor; generally these are used for fixed-pixel flat panels
-	to indicate the native resolution of the panel.
-
-	Detailed modes also come from the monitor as additional modes that
-	may not follow the VESA specification.
-
-	VESA modes are either standard modes from the VESA spec or modes
-	generated from the GTF using the monitor specifications.
-
-	Config modes are those provided as a part of the X server
-	configuration.
-
-	User modes are those defined through the RandR protocol during X
-	server operation.
-
-	Other modes covers modes that come from any other source; space
-	aliens, tarot cards, whatever.
+OUTPUTPREFERENCE { RROutputPreferencePreferred,
+		   RROutputPreferenceMonitor,
+		   RROutputPreference
+		   
+OUTPUTMODE { mode: MODE,
+	     preference: OUTPUTPREFERENCE }
 
 CRTC { XID }
 
@@ -592,7 +570,7 @@ dynamic changes in the display environment.
 	possible-options: SETofOUTPUTOPTION
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
-	modes: LISTofMODE
+	modes: LISTofOUTPUTMODE
 └───
 	Errors: Output
 
