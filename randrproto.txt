@@ -242,13 +242,6 @@ SIZEID { CARD16 }
 
 MODE { XID or None }
 
-OUTPUTPREFERENCE { RROutputPreferencePreferred,
-		   RROutputPreferenceMonitor,
-		   RROutputPreference
-		   
-OUTPUTMODE { mode: MODE,
-	     preference: OUTPUTPREFERENCE }
-
 CRTC { XID }
 
 OUTPUT { XID }
@@ -300,8 +293,7 @@ MODEINFO { id: MODE
            dotClock: CARD32
            hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
            vSyncStart, vSyncEnd, vTotal: CARD16
-           modeFlags: SETofMODEFLAG
-	   modeOrigin: MODEORIGIN }
+           modeFlags: SETofMODEFLAG }
 
 OUTPUTCONFIG { output: OUTPUT
 	       options: SETofOUTPUTOPTION }
@@ -570,7 +562,8 @@ dynamic changes in the display environment.
 	possible-options: SETofOUTPUTOPTION
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
-	modes: LISTofOUTPUTMODE
+	modes: LISTofOUTPUT
+	num-preferred: CARD16
 └───
 	Errors: Output
 
@@ -615,6 +608,10 @@ dynamic changes in the display environment.
 	'modes' is the list of modes supported by this output. Attempting to
 	connect this output to a CRTC not using one of these modes results
 	in a Match error.
+
+	The first 'num-preferred' modes in 'modes' are preferred by the
+	monitor in some way; for fixed-pixel devices, this would generally
+	indicate which modes match the resolution of the output device.
 
 ┌───
     RRListOutputProperties
@@ -1178,18 +1175,7 @@ A.1 Common Types
 	Return status for requests which depend on time.
 	
 ┌───
-    RRMODEORIGIN
-	0	RRModeOriginPreferred
-	1	RRModeOriginDetailed
-	2	RRModeOriginVESA
-	3	RRModeOriginConfig
-	4	RRModeOriginUser
-	5	RRModeOriginOther
-└───
-	Origin of mode information.
-
-┌───
-    MODEINFO (44)				Added in version 1.2
+    MODEINFO (40)				Added in version 1.2
 	4	CARD32		id
 	2	CARD16		width in pixels
 	2	CARD16		height in pixels
@@ -1205,8 +1191,6 @@ A.1 Common Types
 	2	CARD16		v total
 	2	CARD16		name length
 	4	SETofMODEFLAG	mode flags
-	1	MODEORIGIN	mode origin
-	3			unused
 └───
 	
 	An output mode specifies the complete CRTC timings for
@@ -1249,7 +1233,7 @@ A.1 Common Types
 ┌───
     OUTPUTCONFIG
     	4	CARD32		output
-	4	CARD32		set of output options
+	4	OUTPUTOPTION	set of output options
 └───
 
 
@@ -1383,7 +1367,7 @@ A.2.1 Protocol Requests added with version 1.2
 	1	1			Reply
 	1				unused
 	2	CARD16			sequence number
-	4	c+o+11m+(b+p)/4		reply length
+	4	c+o+10m+(b+p)/4		reply length
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config-timestamp
 	2	c			number of CRTCs
@@ -1393,7 +1377,7 @@ A.2.1 Protocol Requests added with version 1.2
 	8				unused
 	4c	LISTofCRTC		crtcs
 	4o	LISTofOUTPUT		outputs
-	44m	LISTofMODEINFO		modeinfos
+	40m	LISTofMODEINFO		modeinfos
 	b	STRING8			mode names
 	p				unused, p=pad(b)
 └───
@@ -1416,9 +1400,9 @@ A.2.1 Protocol Requests added with version 1.2
 	1	SUBPIXELORDER		subpixel-order
 	2	c			number of CRTCs
 	2	m			number of modes
+	2	p			number of preferred modes
 	2	o			number of clones
 	2	n			length of name
-	2				unused
 	4	SETofOUTPUTOPTION	supported output options
 	4c	LISTofCRTC		crtcs
 	4m	LISTofMODE		modes
@@ -1508,9 +1492,9 @@ A.2.1 Protocol Requests added with version 1.2
     RRCreateMode
 	1	CARD8			major opcode
 	1	14			RandR opcode
-	2	13+(n+p)/4		length
+	2	12+(n+p)/4		length
 	4	WINDOW			window
-	44	MODEINFO		mode
+	40	MODEINFO		mode
 	n	STRING8			mode name
 	p				unused, p=pad(n)
       ▶

@@ -48,7 +48,6 @@
 #define RRCrtc CARD32
 #define RRModeFlags CARD32
 #define RROutputOptions CARD32
-#define RRModeOrigin CARD8
 
 #define Rotation CARD16
 #define SizeID CARD16
@@ -196,11 +195,8 @@ typedef struct _xRRModeInfo {
     CARD16		vTotal B16;
     CARD16		nameLength B16;
     RRModeFlags		modeFlags B32;
-    RRModeOrigin	origin;
-    CARD8		pad1;
-    CARD16		pad2 B16;
 } xRRModeInfo;
-#define sz_xRRModeInfo		    44
+#define sz_xRRModeInfo		    40
 
 typedef struct {
     RROutput		output B32;
@@ -289,9 +285,9 @@ typedef struct {
     CARD8	subpixelOrder;
     CARD16	nCrtcs B16;
     CARD16	nModes B16;
+    CARD16	nPreferred B16;
     CARD16	nClones B16;
     CARD16	nameLength B16;
-    CARD16	pad1 B16;
     RROutputOptions possibleOptions B32;
 } xRRGetOutputInfoReply;
 #define sz_xRRGetOutputInfoReply	36
@@ -378,7 +374,7 @@ typedef struct {
     Window	window B32;
     xRRModeInfo	modeInfo;
 } xRRCreateModeReq; 
-#define sz_xRRCreateModeReq		52
+#define sz_xRRCreateModeReq		48
 
 typedef struct {
     BYTE	type;
@@ -601,7 +597,10 @@ typedef struct {
 } xRROutputPropertyNotifyEvent;
 #define sz_xRROUtputPropertyNotifyEvent	32
 
-
+#undef RROutputOptions
+#undef RRModeFlags
+#undef RRCrtc
+#undef RRMode
 #undef RROutput
 #undef RRMode
 #undef RRCrtc
