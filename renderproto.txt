@@ -8,7 +8,7 @@
 
 The X Rendering Extension (Render) introduces digital image composition as
 the foundation of a new rendering model within the X Window System.
-Rendering geometric figures is accomplished by client-side tesselation into
+Rendering geometric figures is accomplished by client-side tessellation into
 either triangles or trapezoids.  Text is drawn by loading glyphs into the
 server and rendering sets of them.
 
@@ -371,7 +371,7 @@ the resulting region is empty, a NoExpose event is delivered instead.
 
 To construct the source and mask operands, the computed pixels values are
 transformed through a homogeneous matrix, filtered and then used in the
-fundemental rendering operator described above.  Each screen provides a list
+fundamental rendering operator described above.  Each screen provides a list
 of supported filter names. There are a few required filters, and several
 required filter alias which must map to one of the available filters.
 
@@ -420,7 +420,7 @@ the implementation must conform to the following constraints:
 	same coordinates in each polygon then the sum of alpha values for
 	pixels inside the union of the two polygons must be precisely one.
 
- +	Translationally invarient.  The pixelization of the polygon must
+ +	Translationally invariant.  The pixelization of the polygon must
 	be the same when either the polygon or the target drawable
 	are translated by any whole number of pixels in any direction.
 
@@ -1039,7 +1039,7 @@ CompositeGlyphs32
 	The dst-x and dst-y coordinates are relative to the drawable's
 	origin and specify the baseline starting position (the initial glyph
 	origin).  Each glyph item is processed in turn.  A glyphset item
-	causes the glyhpset to be used for subsequent glyphs.  Switching
+	causes the glyphset to be used for subsequent glyphs.  Switching
 	among glyphsets does not affect the next glyph origin.  A glyph
 	element delta-x and delta-y specify additional changes in the
 	position along the x and y axes before the string is drawn; the
@@ -1197,7 +1197,7 @@ CreateConicalGradient
 The Render extension was developed in parallel with the implementation to
 ensure the feasibility of various portions of the design.  As portions of
 the extension are implemented, the version number of the extension has
-changed to reflect the portions of the standard provied.  This document
+changed to reflect the portions of the standard provided.  This document
 describes the intent for version 1.0 of the specification, the partial
 implementations have version numbers less than that.  Here's a list of
 what each version before 1.0 implemented:
