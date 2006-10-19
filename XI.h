@@ -160,6 +160,7 @@ SOFTWARE.
 #define DEVICE_RESOLUTION	1
 #define DEVICE_TOUCHSCREEN      2
 #define DEVICE_CORE             3
+#define DEVICE_ENABLE           4
 
 #define NoSuchExtension		1
 

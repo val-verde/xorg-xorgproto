@@ -1305,9 +1305,17 @@ typedef struct {
     CARD16      control B16;            /* control type                 */
     CARD16      length  B16;            /* control length               */
     CARD8       status;
-    CARD8       pad0;
+    CARD8       iscore;
     CARD16      pad1 B16;
 } xDeviceCoreState;
+
+typedef struct {
+    CARD16      control B16;            /* control type                 */
+    CARD16      length  B16;            /* control length               */
+    CARD8       enable;
+    CARD8       pad0;
+    CARD16      pad1 B16;
+} xDeviceEnableState;
 
 /*********************************************************
  *
@@ -1368,6 +1376,14 @@ typedef struct {
     CARD8           pad0;
     CARD16          pad1 B16;
 } xDeviceCoreCtl;
+
+typedef struct {
+    CARD16          control B16;
+    CARD16          length  B16;
+    CARD8           enable;
+    CARD8           pad0;
+    CARD16          pad1 B16;
+} xDeviceEnableCtl;
 
 /**********************************************************
  *

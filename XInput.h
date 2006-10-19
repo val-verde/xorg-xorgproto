@@ -671,7 +671,20 @@ typedef struct {
     XID             control;
     int             length;
     int             status;
-} XDeviceCoreControl, XDeviceCoreState;
+} XDeviceCoreControl;
+
+typedef struct {
+    XID             control;
+    int             length;
+    int             status;
+    int             iscore;
+} XDeviceCoreState;
+
+typedef struct {
+    XID             control;
+    int             length;
+    int             enable;
+} XDeviceEnableControl, XDeviceEnableState;
 
 /*******************************************************************
  *
