@@ -1294,12 +1294,26 @@ typedef struct {
 typedef struct {
      CARD16         control B16;
      CARD16         length B16;
-     CARD32         min_x;
-     CARD32         max_x;
-     CARD32         min_y;
-     CARD32         max_y;
+     INT32          min_x;
+     INT32          max_x;
+     INT32          min_y;
+     INT32          max_y;
+     CARD32         flip_x;
+     CARD32         flip_y;
+     CARD32         rotation;
      CARD32         button_threshold;
-} xDeviceTSState;
+} xDeviceAbsCalibState;
+
+typedef struct {
+     CARD16         control B16;
+     CARD16         length B16;
+     CARD32         offset_x;
+     CARD32         offset_y;
+     CARD32         width;
+     CARD32         height;
+     CARD32         screen;
+     CARD32         following;
+} xDeviceAbsAreaState;
 
 typedef struct {
     CARD16      control B16;            /* control type                 */
@@ -1362,12 +1376,26 @@ typedef struct {
 typedef struct {
      CARD16         control B16;
      CARD16         length B16;
-     CARD32         min_x;
-     CARD32         max_x;
-     CARD32         min_y;
-     CARD32         max_y;
+     INT32          min_x;
+     INT32          max_x;
+     INT32          min_y;
+     INT32          max_y;
+     CARD32         flip_x;
+     CARD32         flip_y;
+     CARD32         rotation;
      CARD32         button_threshold;
-} xDeviceTSCtl;
+} xDeviceAbsCalibCtl;
+
+typedef struct {
+     CARD16         control B16;
+     CARD16         length B16;
+     CARD32         offset_x;
+     CARD32         offset_y;
+     INT32          width;
+     INT32          height;
+     INT32          screen;
+     CARD32         following;
+} xDeviceAbsAreaCtl;
 
 typedef struct {
     CARD16          control B16;

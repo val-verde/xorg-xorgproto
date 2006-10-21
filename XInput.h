@@ -664,8 +664,22 @@ typedef struct {
     int             max_x;
     int             min_y;
     int             max_y;
+    int             flip_x;
+    int             flip_y;
+    int             rotation;
     int             button_threshold;
-} XDeviceTSControl, XDeviceTSState;
+} XDeviceAbsCalibControl, XDeviceAbsCalibState;
+
+typedef struct {
+    XID             control;
+    int             length;
+    int             offset_x;
+    int             offset_y;
+    int             width;
+    int             height;
+    int             screen;
+    XID             following;
+} XDeviceAbsAreaControl, XDeviceAbsAreaState;
 
 typedef struct {
     XID             control;
