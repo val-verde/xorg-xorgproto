@@ -1294,25 +1294,25 @@ typedef struct {
 typedef struct {
      CARD16         control B16;
      CARD16         length B16;
-     INT32          min_x;
-     INT32          max_x;
-     INT32          min_y;
-     INT32          max_y;
-     CARD32         flip_x;
-     CARD32         flip_y;
-     CARD32         rotation;
-     CARD32         button_threshold;
+     INT32          min_x B32;
+     INT32          max_x B32;
+     INT32          min_y B32;
+     INT32          max_y B32;
+     CARD32         flip_x B32;
+     CARD32         flip_y B32;
+     CARD32         rotation B32;
+     CARD32         button_threshold B32;
 } xDeviceAbsCalibState;
 
 typedef struct {
      CARD16         control B16;
      CARD16         length B16;
-     CARD32         offset_x;
-     CARD32         offset_y;
-     CARD32         width;
-     CARD32         height;
-     CARD32         screen;
-     CARD32         following;
+     CARD32         offset_x B32;
+     CARD32         offset_y B32;
+     CARD32         width B32;
+     CARD32         height B32;
+     CARD32         screen B32;
+     CARD32         following B32;
 } xDeviceAbsAreaState;
 
 typedef struct {
