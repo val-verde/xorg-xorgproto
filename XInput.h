@@ -426,10 +426,14 @@ typedef struct {
 /*******************************************************************
  *
  * DevicePresenceNotify event.  This event is sent when the list of
- * input devices changes.  No information about the change is
- * contained in this event, the client should use XListInputDevices()
- * to learn what has changed.
+ * input devices changes, in which case devchange will be false, and
+ * no information about the change will be contained in the event;
+ * the client should use XListInputDevices() to learn what has changed.
  *
+ * If devchange is true, an attribute that the server believes is
+ * important has changed on a device, and the client should use
+ * XGetDeviceControl to examine the device.  If control is non-zero,
+ * then that control has changed meaningfully.
  */
 
 typedef struct {
@@ -439,6 +443,9 @@ typedef struct {
     Display       *display;     /* Display the event was read from */
     Window        window;       /* unused */
     Time          time;
+    Bool          devchange;
+    XID           deviceid;
+    XID           control;
 } XDevicePresenceNotifyEvent;
 
 /*******************************************************************

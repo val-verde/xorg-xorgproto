@@ -1600,7 +1600,9 @@ typedef struct
     BYTE        pad00;
     CARD16 	sequenceNumber B16;
     Time        time B32;
-    CARD32	pad01 B32;
+    BYTE        devchange;
+    BYTE        deviceid;
+    CARD16      control B16;
     CARD32	pad02 B32;
     CARD32	pad03 B32;
     CARD32	pad04 B32;
