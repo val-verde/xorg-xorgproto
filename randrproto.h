@@ -183,8 +183,6 @@ typedef struct _xRRModeInfo {
     RRMode		id B32;
     CARD16		width B16;
     CARD16		height B16;
-    CARD32		mmWidth B32;
-    CARD32		mmHeight B32;
     CARD32		dotClock B32;
     CARD16		hSyncStart B16;
     CARD16		hSyncEnd B16;
@@ -196,7 +194,7 @@ typedef struct _xRRModeInfo {
     CARD16		nameLength B16;
     RRModeFlags		modeFlags B32;
 } xRRModeInfo;
-#define sz_xRRModeInfo		    40
+#define sz_xRRModeInfo		    32
 
 typedef struct {
     RROutput		output B32;
@@ -281,6 +279,8 @@ typedef struct {
     Time	timestamp B32;
     RRCrtc	crtc B32;
     RROutputOptions currentOptions B32;
+    CARD32	mmWidth B32;
+    CARD32	mmHeight B32;
     CARD8	connection;
     CARD8	subpixelOrder;
     CARD16	nCrtcs B16;
@@ -290,7 +290,7 @@ typedef struct {
     CARD16	nameLength B16;
     RROutputOptions possibleOptions B32;
 } xRRGetOutputInfoReply;
-#define sz_xRRGetOutputInfoReply	36
+#define sz_xRRGetOutputInfoReply	44
 
 typedef struct {
     CARD8	reqType;
@@ -374,7 +374,7 @@ typedef struct {
     Window	window B32;
     xRRModeInfo	modeInfo;
 } xRRCreateModeReq; 
-#define sz_xRRCreateModeReq		48
+#define sz_xRRCreateModeReq		40
 
 typedef struct {
     BYTE	type;

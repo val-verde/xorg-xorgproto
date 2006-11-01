@@ -288,8 +288,7 @@ OUTPUTOPTION { RROutputOptionScaleNone,
 	
 MODEINFO { id: MODE
 	   name: STRING
-           widthInPixels, heightInPixels: CARD16
-           widthInMillimeters, heightInMillimeters: CARD32
+           width, height: CARD16
            dotClock: CARD32
            hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
            vSyncStart, vSyncEnd, vTotal: CARD16
@@ -559,6 +558,7 @@ dynamic changes in the display environment.
 	name: STRING
 	connection: CONNECTION
 	subpixel-order: SUBPIXELORDER
+        widthInMillimeters, heightInMillimeters: CARD32
 	possible-options: SETofOUTPUTOPTION
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
@@ -592,6 +592,10 @@ dynamic changes in the display environment.
 	
 	'subpixel-order' contains the resulting subpixel order of the
 	connected device to allow correct subpixel rendering.
+
+	'widthInMillimeters' and 'heightInMillimeters' report the physical
+	size of the displayed area. If unknown, or not really fixed (e.g.,
+	for a projector), these	values are both zero.
 
 	'possible-options' indicate which options are supported by this
 	output device.
@@ -1392,10 +1396,12 @@ A.2.1 Protocol Requests added with version 1.2
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
-	4	1+c+m+(n+p)/4		reply length
+	4	3+c+m+(n+p)/4		reply length
 	4	TIMESTAMP		timestamp
 	4	CRTC			current connected crtc
 	4	SETofOUTPUTOPTION	current output options
+	4	CARD32			width in millimeters
+	4	CARD32			height in millimeters
 	1	CONNECTION		connection
 	1	SUBPIXELORDER		subpixel-order
 	2	c			number of CRTCs
