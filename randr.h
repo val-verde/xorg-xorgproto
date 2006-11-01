@@ -42,7 +42,7 @@ typedef unsigned long	XRandrOutputOptions;
 #define RANDR_MAJOR		1
 #define RANDR_MINOR		2
 
-#define RRNumberErrors		0
+#define RRNumberErrors		3
 #define RRNumberEvents		2
 #define RRNumberRequests	23
 
@@ -136,5 +136,9 @@ typedef unsigned long	XRandrOutputOptions;
 #define RROutputOptionScaleNone		1
 #define RROutputOptionScaleMaxAspect	2
 #define RROutputOptionScaleMax		4
+
+/* Conventional RandR output properties */
+
+#define RR_PROPERTY_RANDR_EDID		"RANDR_EDID"
 
 #endif	/* _RANDR_H_ */
