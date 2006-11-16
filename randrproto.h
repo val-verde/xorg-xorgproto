@@ -47,7 +47,6 @@
 #define RRMode CARD32
 #define RRCrtc CARD32
 #define RRModeFlags CARD32
-#define RROutputOptions CARD32
 
 #define Rotation CARD16
 #define SizeID CARD16
@@ -197,12 +196,6 @@ typedef struct _xRRModeInfo {
 #define sz_xRRModeInfo		    32
 
 typedef struct {
-    RROutput		output B32;
-    RROutputOptions	options B32;
-} xRROutputConfig;
-#define sz_xRROutputConfig	    8
-
-typedef struct {
     CARD8   reqType;
     CARD8   randrReqType;
     CARD16  length B16;
@@ -278,7 +271,6 @@ typedef struct {
     CARD32	length B32;
     Time	timestamp B32;
     RRCrtc	crtc B32;
-    RROutputOptions currentOptions B32;
     CARD32	mmWidth B32;
     CARD32	mmHeight B32;
     CARD8	connection;
@@ -288,9 +280,8 @@ typedef struct {
     CARD16	nPreferred B16;
     CARD16	nClones B16;
     CARD16	nameLength B16;
-    RROutputOptions possibleOptions B32;
 } xRRGetOutputInfoReply;
-#define sz_xRRGetOutputInfoReply	44
+#define sz_xRRGetOutputInfoReply	36
 
 typedef struct {
     CARD8	reqType;
@@ -597,7 +588,6 @@ typedef struct {
 } xRROutputPropertyNotifyEvent;
 #define sz_xRROUtputPropertyNotifyEvent	32
 
-#undef RROutputOptions
 #undef RRModeFlags
 #undef RRCrtc
 #undef RRMode

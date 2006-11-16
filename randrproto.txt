@@ -276,16 +276,6 @@ MODEFLAG { HSyncPositive
 	   DoubleClock
 	   ClockDivideBy2 }
 
-OUTPUTOPTION { RROutputOptionScaleNone,
-	       RROutputOptionScaleMaxAspect,
-	       RROutputOptionScaleMax }
-
-	These options select paramaters of the output which are independent
-	of the output mode.
-	
-	The scale options are used for fixed panels and select between
-	different scaling options for non-native resolutions.
-	
 MODEINFO { id: MODE
 	   name: STRING
            width, height: CARD16
@@ -293,9 +283,6 @@ MODEINFO { id: MODE
            hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
            vSyncStart, vSyncEnd, vTotal: CARD16
            modeFlags: SETofMODEFLAG }
-
-OUTPUTCONFIG { output: OUTPUT
-	       options: SETofOUTPUTOPTION }
 
 REFRESH { rates: LISTofCARD16 }
 
@@ -553,13 +540,11 @@ dynamic changes in the display environment.
 	status: RRCONFIGSTATUS
 	timestamp: TIMESTAMP
 	crtc: CRTC
-	options: SETofOUTPUTOPTION
 	
 	name: STRING
 	connection: CONNECTION
 	subpixel-order: SUBPIXELORDER
         widthInMillimeters, heightInMillimeters: CARD32
-	possible-options: SETofOUTPUTOPTION
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
 	modes: LISTofOUTPUT
@@ -580,8 +565,6 @@ dynamic changes in the display environment.
 	'crtc' is the current source CRTC for video data, or Disabled if the
 	output is not connected to any CRTC.
 
-	'options' is the currently enabled set of options.
-	
 	'name' is a UTF-8 encoded string designed to be presented to the
 	user to indicate which output this is. E.g. "S-Video" or "DVI".
 
@@ -597,9 +580,6 @@ dynamic changes in the display environment.
 	size of the displayed area. If unknown, or not really fixed (e.g.,
 	for a projector), these	values are both zero.
 
-	'possible-options' indicate which options are supported by this
-	output device.
-	
 	'crtcs' is the list of CRTCs that this output may be connected to.
 	Attempting to connect this output to a different CRTC results in a
 	Match error.
@@ -1179,12 +1159,10 @@ A.1 Common Types
 	Return status for requests which depend on time.
 	
 ┌───
-    MODEINFO (40)				Added in version 1.2
+    MODEINFO (32)				Added in version 1.2
 	4	CARD32		id
 	2	CARD16		width in pixels
 	2	CARD16		height in pixels
-	4	CARD32		width in millimeters
-	4	CARD32		height in millimeters
 	4	CARD32		dot clock
 	2	CARD16		h sync start
 	2	CARD16		h sync end
@@ -1227,17 +1205,6 @@ A.1 Common Types
 	0		Connected
 	1		Disconnected
 	2		UnknownConnection
-└───
-┌───
-    OUTPUTOPTION
-	1		RROutputOptionScaleNone
-	2		RROutputOptionScaleMaxAspect
-	4		RROutputOptionScaleMax
-└───
-┌───
-    OUTPUTCONFIG
-    	4	CARD32		output
-	4	OUTPUTOPTION	set of output options
 └───
 
 
@@ -1371,7 +1338,7 @@ A.2.1 Protocol Requests added with version 1.2
 	1	1			Reply
 	1				unused
 	2	CARD16			sequence number
-	4	c+o+10m+(b+p)/4		reply length
+	4	c+o+8m+(b+p)/4		reply length
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config-timestamp
 	2	c			number of CRTCs
@@ -1381,7 +1348,7 @@ A.2.1 Protocol Requests added with version 1.2
 	8				unused
 	4c	LISTofCRTC		crtcs
 	4o	LISTofOUTPUT		outputs
-	40m	LISTofMODEINFO		modeinfos
+	32m	LISTofMODEINFO		modeinfos
 	b	STRING8			mode names
 	p				unused, p=pad(b)
 └───
@@ -1396,10 +1363,9 @@ A.2.1 Protocol Requests added with version 1.2
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
-	4	3+c+m+(n+p)/4		reply length
+	4	1+c+m+(n+p)/4		reply length
 	4	TIMESTAMP		timestamp
 	4	CRTC			current connected crtc
-	4	SETofOUTPUTOPTION	current output options
 	4	CARD32			width in millimeters
 	4	CARD32			height in millimeters
 	1	CONNECTION		connection
@@ -1409,7 +1375,6 @@ A.2.1 Protocol Requests added with version 1.2
 	2	p			number of preferred modes
 	2	o			number of clones
 	2	n			length of name
-	4	SETofOUTPUTOPTION	supported output options
 	4c	LISTofCRTC		crtcs
 	4m	LISTofMODE		modes
 	n	STRING8			name
@@ -1500,7 +1465,7 @@ A.2.1 Protocol Requests added with version 1.2
 	1	14			RandR opcode
 	2	12+(n+p)/4		length
 	4	WINDOW			window
-	40	MODEINFO		mode
+	32	MODEINFO		mode
 	n	STRING8			mode name
 	p				unused, p=pad(n)
       ▶
@@ -1572,7 +1537,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4	MODE			mode
 	2	ROTATION		rotation/reflection
 	2				unused
-	8n	LISTofOUTPUTCONFIG	outputs
+	8n	LISTofOUTPUT		outputs
       ▶
 	1	1			Reply
 	1	RRCONFIGSTATUS		status

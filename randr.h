@@ -36,7 +36,6 @@ typedef unsigned short	XRandrRotation;
 typedef unsigned short	XRandrSizeID;
 typedef unsigned short	XRandrSubpixelOrder;
 typedef unsigned long	XRandrModeFlags;
-typedef unsigned long	XRandrOutputOptions;
 
 #define RANDR_NAME		"RANDR"
 #define RANDR_MAJOR		1
@@ -132,10 +131,6 @@ typedef unsigned long	XRandrOutputOptions;
 #define BadRROutput		0
 #define BadRRCrtc		1
 #define BadRRMode		2
-
-#define RROutputOptionScaleNone		1
-#define RROutputOptionScaleMaxAspect	2
-#define RROutputOptionScaleMax		4
 
 /* Conventional RandR output properties */
 
