@@ -43,7 +43,7 @@ typedef unsigned long	XRandrModeFlags;
 
 #define RRNumberErrors		3
 #define RRNumberEvents		2
-#define RRNumberRequests	23
+#define RRNumberRequests	25
 
 #define X_RRQueryVersion	0
 /* we skip 1 to make old clients fail pretty immediately */
@@ -62,18 +62,20 @@ typedef unsigned long	XRandrModeFlags;
 #define X_RRGetScreenResources	    8
 #define X_RRGetOutputInfo	    9
 #define X_RRListOutputProperties    10
-#define X_RRChangeOutputProperty    11
-#define X_RRDeleteOutputProperty    12
-#define X_RRGetOutputProperty	    13
-#define X_RRCreateMode		    14
-#define X_RRDestroyMode		    15
-#define X_RRAddOutputMode	    16
-#define X_RRDeleteOutputMode	    17
-#define X_RRGetCrtcInfo		    18
-#define X_RRSetCrtcConfig	    19
-#define X_RRGetCrtcGammaSize	    20
-#define X_RRGetCrtcGamma	    21
-#define X_RRSetCrtcGamma	    22
+#define X_RRQueryOutputProperty	    11
+#define X_RRConfigureOutputProperty 12
+#define X_RRChangeOutputProperty    13
+#define X_RRDeleteOutputProperty    14
+#define X_RRGetOutputProperty	    15
+#define X_RRCreateMode		    16
+#define X_RRDestroyMode		    17
+#define X_RRAddOutputMode	    18
+#define X_RRDeleteOutputMode	    19
+#define X_RRGetCrtcInfo		    20
+#define X_RRSetCrtcConfig	    21
+#define X_RRGetCrtcGammaSize	    22
+#define X_RRGetCrtcGamma	    23
+#define X_RRSetCrtcGamma	    24
 
 /* Event selection bits */
 #define RRScreenChangeNotifyMask  (1L << 0)

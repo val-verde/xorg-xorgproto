@@ -121,7 +121,7 @@ Andy Ritger for early questions about how mergefb/Xinerama work with RandR
 Carl Worth for editing the specification and Usenix paper
 David Dawes for XFree86 DDX integration work
 Thomas Winischhofer for the hardware-accelerated SiS rotation implementation
-Matthew Tippet and Kevin Martin for splitting outputs and CRTCs to more
+Matthew Tippett and Kevin Martin for splitting outputs and CRTCs to more
 fully expose what video hardware can do
 
                               ❧❧❧❧❧❧❧❧❧❧❧
@@ -609,6 +609,56 @@ dynamic changes in the display environment.
 	the output.
 
 ┌───
+    RRQueryOutputProperty
+	output: OUTPUT
+	property: ATOM
+      ▶
+      	pending: BOOL
+	range: BOOL
+	immutable: BOOL
+	valid-values: LISTofINT32
+└───
+	Errors: Name, Atom, Output
+
+	If the specified property does not exist for the specified output,
+	then a Name error is returned.
+
+	If 'pending' is TRUE, changes made to property values with
+	RRChangeOutputProperty will be saved in the pending property value
+	and be automatically copied to the current value on the next
+	RRSetCrtcConfig request involving the named output. If 'pending' is
+	FALSE, changes are copied immediately.
+	
+	If 'range' is TRUE, then the valid-values list will contain
+	precisely two values indicating the minimum and maximum allowed
+	values. If 'range' is FALSE, then the valid-values list will contain
+	the list of possible values; attempts to set other values will
+	result in a Value error.
+
+	If 'immutable' is TRUE, then the property configuration cannot be
+	changed by clients. Immutable properties are interpreted by the X
+	server.
+	
+┌───
+    RRConfigureOutputProperty
+	output: OUTPUT
+	property: ATOM
+      	pending: BOOL
+	range: BOOL
+	valid-values: LISTofINT32
+└───
+	Errors: Access, Name, Atom, Output
+
+	If the specified property does not exist for the specified output,
+	then a Name error is returned.
+
+	If the specified property is 'immutable', an Access error is
+	returned.
+
+	Otherwise, the configuration of the specified property is changed to
+	the values provided in this request.
+
+┌───
     RRChangeOutputProperty
     	output: OUTPUT
 	property, type: ATOM
@@ -618,10 +668,14 @@ dynamic changes in the display environment.
 └───
 	Errors: Alloc, Atom, Match, Value, Output
 	
-	This request alters the property for the specified output.  The type
-	is uninterpreted by the server.  The format specifies whether the
-	data should be viewed as a list of 8-bit, 16-bit, or 32-bit
-	quantities so that the server can correctly byte-swap as necessary.
+	This request alters the value of the property for the specified
+	output. If the property is marked as a 'pending' property, only the
+	pending value of the property is changed. Otherwise, changes are
+	reflected in both the pending and current values of the property.
+	The type is uninterpreted by the server.  The format specifies
+	whether the data should be viewed as a list of 8-bit, 16-bit, or
+	32-bit quantities so that the server can correctly byte-swap as
+	necessary.
 
 	If the mode is Replace, the previous property value is discarded.
 	If the mode is Prepend or Append, then the type and format must
@@ -659,6 +713,7 @@ dynamic changes in the display environment.
 	type: ATOM or AnyPropertyType
 	long-offset, long-length: CARD32
 	delete: BOOL
+	pending: BOOL
       ▶
 	type: ATOM or None
 	format: {0, 8, 16, 32}
@@ -692,9 +747,11 @@ dynamic changes in the display environment.
 		L = MINIMUM(T, 4 × long-length)
 		A = N - (I + L)
 	
-	The returned value starts at byte index I in the property (indexing
-	from 0), and its length in bytes is L.  However, it is a Value error
-	if long-offset is given such that L is negative.  The value of
+	If 'pending' is true, then the value returned will be the pending
+	value of the property rather than the current value.  The returned
+	value starts at byte index I in the property (indexing from 0), and
+	its length in bytes is L.  However, it is a Value error if
+	long-offset is given such that L is negative.  The value of
 	bytes-after is A, giving the number of trailing unread bytes in the
 	stored property.  If delete is True and the bytes-after is zero, the
 	property is also deleted from the output, and a
@@ -1384,7 +1441,7 @@ A.2.1 Protocol Requests added with version 1.2
     RRListOutputProperties
 	1	CARD8			major opcode
 	1	10			RandR opcode
-	2	3			length
+	2	2			length
 	4	OUTPUT			output
       ▶
 	1	1			Reply
@@ -1396,9 +1453,39 @@ A.2.1 Protocol Requests added with version 1.2
 	4n	LISTofATOM		atoms
 └───
 ┌───
-    RRChangeOutputProperty
+    RRQueryOutputProperty
 	1	CARD8			major opcode
 	1	11			RandR opcode
+	2	3			request length
+	4	OUTPUT			output
+	4	ATOM			property
+      ▶
+	1	1			Reply
+	1				unused
+	2	CARD16			sequence number
+	4	n			reply length
+	1	BOOL			pending
+	1	BOOL			range
+	1	BOOL			immutable
+	21				unused
+	4n	LISTofINT32		valid values
+└───
+┌───
+    RRConfigureOutputProperty
+	1	CARD8			major opcode
+	1	12			RandR opcode
+	2	4+n			request length
+	4	OUTPUT			output
+	4	ATOM			property
+	1	BOOL			pending
+	1	BOOL			range
+	2				unused
+	4n	LISTofINT32		valid values
+└───
+┌───
+    RRChangeOutputProperty
+	1	CARD8			major opcode
+	1	13			RandR opcode
 	2	6+(n+p)/4		request length
 	4	OUTPUT			output
 	4	ATOM			property
@@ -1421,7 +1508,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRDeleteOutputProperty
 	1	CARD8			major opcode
-	1	12			RandR opcode
+	1	14			RandR opcode
 	2	3			request length
 	4	OUTPUT			output
 	4	ATOM			property
@@ -1429,7 +1516,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRGetOutputProperty
 	1	CARD8			major opcode
-	1	13			RandR opcode
+	1	15			RandR opcode
 	2	7			request length
 	4	OUTPUT			output
 	4	ATOM			property
@@ -1438,7 +1525,8 @@ A.2.1 Protocol Requests added with version 1.2
 	4	CARD32			long-offset
 	4	CARD32			long-length
 	1	BOOL			delete
-	3				unused
+	1	BOOL			pending
+	2				unused
       ▶
 	1	1			Reply
 	1	CARD8			format
@@ -1462,7 +1550,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRCreateMode
 	1	CARD8			major opcode
-	1	14			RandR opcode
+	1	16			RandR opcode
 	2	12+(n+p)/4		length
 	4	WINDOW			window
 	32	MODEINFO		mode
@@ -1479,14 +1567,14 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRDestroyMode
 	1	CARD8			major opcode
-	1	15			RandR opcode
+	1	17			RandR opcode
 	2	2			length
 	4	MODE			mode
 └───
 ┌───
     RRAddOutputMode
 	1	CARD8			major opcode
-	1	16			RandR opcode
+	1	18			RandR opcode
 	2	3			length
 	4	OUTPUT			output
 	4	MODE			mode
@@ -1494,7 +1582,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRDeleteOutputMode
 	1	CARD8			major opcode
-	1	17			RandR opcode
+	1	19			RandR opcode
 	2	3			length
 	4	OUTPUT			output
 	4	MODE			mode
@@ -1502,7 +1590,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRGetCrtcInfo
 	1	CARD8			major opcode
-	1	18			RandR opcode
+	1	20			RandR opcode
 	2	3			length
 	4	CRTC			crtc
 	4	TIMESTAMP		config-timestamp
@@ -1527,7 +1615,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRSetCrtcConfig
 	1	CARD8			major opcode
-	1	19			RandR opcode
+	1	21			RandR opcode
 	2	7+2n			length
 	4	CRTC			crtc
 	4	TIMESTAMP		timestamp
@@ -1549,7 +1637,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRGetCrtcGammaSize
 	1	CARD8			major opcode
-	1	20			RandR opcode
+	1	22			RandR opcode
 	2	2			length
 	4	CRTC			crtc
       ▶
@@ -1563,7 +1651,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRGetCrtcGamma
 	1	CARD8			major opcode
-	1	21			RandR opcode
+	1	23			RandR opcode
 	2	2			length
 	4	CRTC			crtc
       ▶
@@ -1580,7 +1668,7 @@ A.2.1 Protocol Requests added with version 1.2
 ┌───
     RRSetCrtcGamma
 	1	CARD8			major opcode
-	1	22			RandR opcode
+	1	24			RandR opcode
 	2	3+(6n+2)/4		length
 	4	CRTC			crtc
 	2	n			size

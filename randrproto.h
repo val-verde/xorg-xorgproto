@@ -312,6 +312,44 @@ typedef struct {
     CARD16	length B16;
     RROutput	output B32;
     Atom	property B32;
+} xRRQueryOutputPropertyReq; 
+#define sz_xRRQueryOutputPropertyReq	12
+
+typedef struct {
+    BYTE	type;
+    CARD8	nProperties;
+    CARD16	sequenceNumber B16;
+    CARD32	length B32;
+    BOOL	pending;
+    BOOL	range;
+    BOOL	immutable;
+    BOOL	pad0;
+    CARD16	pad2 B16;
+    CARD32	pad3 B32;
+    CARD32	pad4 B32;
+    CARD32	pad5 B32;
+    CARD32	pad6 B32;
+} xRRQueryOutputPropertyReply;
+#define sz_xRRQueryOutputPropertyReply	32
+
+typedef struct {
+    CARD8	reqType;
+    CARD8	randrReqType;
+    CARD16	length B16;
+    RROutput	output B32;
+    Atom	property B32;
+    BOOL	pending;
+    BOOL	range;
+    CARD16	pad B16;
+} xRRConfigureOutputPropertyReq; 
+#define sz_xRRConfigureOutputPropertyReq	16
+
+typedef struct {
+    CARD8	reqType;
+    CARD8	randrReqType;
+    CARD16	length B16;
+    RROutput	output B32;
+    Atom	property B32;
     Atom	type B32;
     CARD8	format;
     CARD8	mode;
@@ -339,8 +377,8 @@ typedef struct {
     CARD32	longOffset B32;
     CARD32	longLength B32;
     BOOL	delete;
-    CARD8	pad1;
-    CARD16	pad2;
+    BOOL	pending;
+    CARD16	pad1 B16;
 } xRRGetOutputPropertyReq;
 #define sz_xRRGetOutputPropertyReq	28
 
