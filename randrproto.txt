@@ -649,14 +649,14 @@ dynamic changes in the display environment.
 └───
 	Errors: Access, Name, Atom, Output
 
-	If the specified property does not exist for the specified output,
-	then a Name error is returned.
-
 	If the specified property is 'immutable', an Access error is
 	returned.
 
 	Otherwise, the configuration of the specified property is changed to
 	the values provided in this request.
+
+	If the specified property does not exist for the specified output,
+	it is created with an empty value and None type.
 
 ┌───
     RRChangeOutputProperty
@@ -747,15 +747,15 @@ dynamic changes in the display environment.
 		L = MINIMUM(T, 4 × long-length)
 		A = N - (I + L)
 	
-	If 'pending' is true, then the value returned will be the pending
-	value of the property rather than the current value.  The returned
-	value starts at byte index I in the property (indexing from 0), and
-	its length in bytes is L.  However, it is a Value error if
-	long-offset is given such that L is negative.  The value of
-	bytes-after is A, giving the number of trailing unread bytes in the
-	stored property.  If delete is True and the bytes-after is zero, the
-	property is also deleted from the output, and a
-	RROutputPropertyNotify event is generated.
+	If 'pending' is true, and if the property holds a pending value,
+	then the value returned will be the pending value of the property
+	rather than the current value.  The returned value starts at byte
+	index I in the property (indexing from 0), and its length in bytes
+	is L.  However, it is a Value error if long-offset is given such
+	that L is negative.  The value of bytes-after is A, giving the
+	number of trailing unread bytes in the stored property.  If delete
+	is True and the bytes-after is zero, the property is also deleted
+	from the output, and a RROutputPropertyNotify event is generated.
 
 ┌───
     RRCreateMode
