@@ -317,13 +317,13 @@ typedef struct {
 
 typedef struct {
     BYTE	type;
-    CARD8	nProperties;
+    BYTE	pad0;
     CARD16	sequenceNumber B16;
     CARD32	length B32;
     BOOL	pending;
     BOOL	range;
     BOOL	immutable;
-    BOOL	pad0;
+    BYTE	pad1;
     CARD16	pad2 B16;
     CARD32	pad3 B32;
     CARD32	pad4 B32;
@@ -632,6 +632,7 @@ typedef struct {
 #undef RROutput
 #undef RRMode
 #undef RRCrtc
+#undef Drawable
 #undef Window
 #undef Font
 #undef Pixmap
