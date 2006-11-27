@@ -6,4 +6,4 @@ randr_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = randrproto.pc
 
-EXTRA_DIST = autogen.sh randrproto.pc.in
+EXTRA_DIST = autogen.sh randrproto.pc.in randrproto.txt
