@@ -1,7 +1,5 @@
 /************************************************************
 
-$RCSfile: lgewire.h,v $
-
 Copyright (c) 2004, Sun Microsystems, Inc. 
 
 Permission to use, copy, modify, distribute, and sell this software and its
@@ -23,10 +21,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 Except as contained in this notice, the name of The Open Group shall not be
 used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from The Open Group.
-
-$Revision: 1.1.4.2 $
-$Date: 2006/01/18 18:51:05 $
-$State: Exp $
 
 ********************************************************/
 
@@ -86,7 +80,7 @@ typedef struct {
     CARD8  lgeReqType;
     CARD16 length B16;
     CARD8  clientType;
-    CARD8  pad1;
+    BOOL   sendEventDirect;
     CARD16 pad2 B16;
 } xLgeRegisterClientReq;
 
