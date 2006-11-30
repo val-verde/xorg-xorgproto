@@ -1664,6 +1664,7 @@ A.2.1 Protocol Requests added with version 1.2
 	2n	LISTofCARD16		red
 	2n	LISTofCARD16		green
 	2n	LISTofCARD16		blue
+	p				unused, p=pad(6n)
 └───
 ┌───
     RRSetCrtcGamma
@@ -1676,6 +1677,7 @@ A.2.1 Protocol Requests added with version 1.2
 	2n	LISTofCARD16		red
 	2n	LISTofCARD16		green
 	2n	LISTofCARD16		blue
+	p				unused, p=pad(6n)
 └───
 
 A.3 Protocol Events

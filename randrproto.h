@@ -293,7 +293,7 @@ typedef struct {
 
 typedef struct {
     BYTE	type;
-    CARD8	nProperties;
+    CARD8	pad0;
     CARD16	sequenceNumber B16;
     CARD32	length B32;
     CARD16	nAtoms B16;
@@ -407,7 +407,7 @@ typedef struct {
 
 typedef struct {
     BYTE	type;
-    CARD8	status;
+    CARD8	pad0;
     CARD16	sequenceNumber B16;
     CARD32	length B32;
     RRMode	mode B32;
@@ -608,7 +608,7 @@ typedef struct {
     CARD8 connection;			/* connection status */
     CARD8 subpixelOrder;		/* subpixel order */
 } xRROutputChangeNotifyEvent;
-#define sz_xRROUtputChangeNotifyEvent	32
+#define sz_xRROutputChangeNotifyEvent	32
 
 typedef struct {
     CARD8 type;				/* always evBase + RRNotify */
@@ -624,7 +624,7 @@ typedef struct {
     CARD32 pad3 B32;
     CARD32 pad4 B32;
 } xRROutputPropertyNotifyEvent;
-#define sz_xRROUtputPropertyNotifyEvent	32
+#define sz_xRROutputPropertyNotifyEvent	32
 
 #undef RRModeFlags
 #undef RRCrtc
