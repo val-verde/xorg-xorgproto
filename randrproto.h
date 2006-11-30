@@ -324,7 +324,7 @@ typedef struct {
     BOOL	range;
     BOOL	immutable;
     BYTE	pad1;
-    CARD16	pad2 B16;
+    CARD32	pad2 B32;
     CARD32	pad3 B32;
     CARD32	pad4 B32;
     CARD32	pad5 B32;
@@ -516,11 +516,11 @@ typedef struct {
     CARD32	length B32;
     CARD16	size B16;
     CARD16	pad1 B16;
-    CARD16	pad2 B32;
-    CARD16	pad3 B32;
-    CARD16	pad4 B32;
-    CARD16	pad5 B32;
-    CARD16	pad6 B32;
+    CARD32	pad2 B32;
+    CARD32	pad3 B32;
+    CARD32	pad4 B32;
+    CARD32	pad5 B32;
+    CARD32	pad6 B32;
 } xRRGetCrtcGammaSizeReply;
 #define sz_xRRGetCrtcGammaSizeReply	32
 
