@@ -249,7 +249,7 @@ operations other than QueryVersion.
 	mapped or resized, so this request will need to be reinvoked for
 	the client to continue to refer to the storage holding the current
 	window contents. Generates a 'Match' error if 'window' is not
-	redirected.
+	redirected or is not visible.
 
 11. External coordinate transformation (0.3 and later)
 
