@@ -371,7 +371,7 @@ SetGCClipRegion
 		region:				Region or None
 
 	This request changes clip-mask in gc to the specified region and
-	sets the clp origin.  Output will be clippped to remain contained
+	sets the clip origin.  Output will be clipped to remain contained
 	within the region.  The clip origin is interpreted relative to the
 	origin of whatever destination drawable is specified in a graphics
 	request.  The region is interpreted relative to the clip origin.
