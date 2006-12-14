@@ -1,7 +1,7 @@
                         The XFIXES Extension
-			    Version 2.0
+			    Version 4.0
 			 Document Revision 1
-			     2003-11-20
+			     2006-12-14
 			    Keith Packard
 			  keithp@keithp.com
 
@@ -26,6 +26,8 @@ developers, in particular,
  +	Havoc Pennington 
 
  +	Fredrik Höglund for cursor names
+
+ +	Deron Johnson for cursor visibility
 
 3. Basic Premise
 
@@ -52,8 +54,8 @@ QueryVersion
 	The client sends the highest supported version to the server and
 	the server sends the highest version it supports, but no higher than
 	the requested version.  Major versions changes can introduce
-	incompatibilities in existing functionality, minor version
-	changes introduce only backward compatible changes.  It is
+	new requests, minor version changes introduce only adjustments to
+	existing requests or backward compatible changes.  It is
 	the clients responsibility to ensure that the server supports
 	a version which is compatible with its expectations.
 
@@ -482,6 +484,74 @@ ChangeCursorByName
 
 	This request replaces the contents of all cursors with the specified
 	name with the src cursor.
+
+************* XFIXES VERSION 3 OR BETTER ***********
+
+10. Region Expansion
+
+This update provides another operation on the region objects defined in
+Section 8 of this document.
+
+10.1 Requests
+
+ExpandRegion
+		source:				REGION
+		destination:			REGION
+		left, right, top, bottom:	CARD16
+
+	Creates destination region containing the area specified by
+	expanding each rectangle in the source region by the specified
+	number of pixels to the left, right, top and bottom.
+
+************* XFIXES VERSION 4 OR BETTER ***********
+
+11. Cursor Visibility
+
+Composite managers may want to render the cursor themselves instead of
+relying on the X server sprite drawing, this provides a way for them to
+do so without getting a double cursor image.
+
+11.1 Requests
+
+HideCursor
+
+		window:			WINDOW
+
+	A client sends this request to indicate that it wants the
+	cursor image to be hidden (i.e. to not be displayed) when
+	the sprite is inside the specified window, or one of its
+	subwindows. If the sprite is inside a window for which one
+	or more active clients have requested cursor hiding then the
+	cursor image will not be displayed.
+
+	Note that even though cursor hiding causes the cursor image
+	to be invisible, CursorNotify events will still be sent
+	normally, as if the cursor image were visible.
+
+	If, during a grab, one or more active clients have requested
+	cursor hiding for grab window, or one of its ancestors, the
+	cursor image of the grab cursor will not be displayed during
+	the lifetime of that grab.
+
+	When a client with outstanding cursor hiding requests
+	terminates its connection these requests will be deleted.
+
+ShowCursor
+
+		window:			WINDOW
+
+	A client sends this request to indicate that it wants the
+	cursor image to be displayed when the sprite is inside the
+	specified window, or one of its subwindows. If the sprite
+	is inside a window for which no active clients have requested
+	cursor hiding then the cursor image for that window will be
+	displayed. In other words, if a client calls HideCursor for
+	a specified window, or window subtree, this request reverses
+	the effects of the HideCursor request.
+
+	If the client has made no outstanding HideCursor requests
+	a BadMatch error is generated.
+
 		
 99. Future compatibility
 
