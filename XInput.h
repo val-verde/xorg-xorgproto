@@ -1195,6 +1195,20 @@ extern void	XFreeDeviceControl(
     XDeviceControl*	/* control */
 );
 
+extern Bool     XQueryDevicePointer(
+    Display*            /* display */,
+    XDevice*            /* device */,
+    Window              /* win */,
+    Window*             /* root */,
+    Window*             /* child */,
+    int*                /* root_x */,
+    int*                /* root_y */,
+    int*                /* win_x */,
+    int*                /* win_y */,
+    unsigned int*       /* mask */,
+    Bool*               /* shared */
+);
+
 _XFUNCPROTOEND
 
 #endif /* _XINPUT_H_ */

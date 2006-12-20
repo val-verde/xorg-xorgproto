@@ -1,0 +1,7 @@
+MPX changelog
+
+== 20.12.06 ==
+add QueryDevicePointer request + reply
+add WarpDevicePointer request
+
+

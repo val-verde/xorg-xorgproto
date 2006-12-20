@@ -156,6 +156,8 @@ struct tmask
 #define X_SetDeviceValuators		33
 #define X_GetDeviceControl		34
 #define X_ChangeDeviceControl		35
+#define X_QueryDevicePointer            36
+#define X_WarpDevicePointer             37
 
 /*********************************************************
  *
@@ -1415,6 +1417,65 @@ typedef struct {
 
 /**********************************************************
  *
+ * QueryDevicePointer.
+ *
+ */
+
+typedef struct {
+    CARD8 	reqType;	/* input extension major code	*/
+    CARD8 	ReqType;     	/* always X_QueryDevicePointer 	*/
+    CARD16 	length B16;
+    Window      win;
+    CARD8       deviceid;
+    CARD8 	pad0;
+    CARD16      pad1 B16;
+} xQueryDevicePointerReq;
+
+
+typedef struct {
+    CARD8  	repType;  		/* X_Reply */
+    CARD8  	RepType;        	/* always X_QueryDevicePointer */
+    CARD16 	sequenceNumber B16;
+    CARD32 	length B32;
+    Window 	root B32;
+    Window 	child B32;
+    INT16       rootX B16;
+    INT16       rootY B16;
+    INT16       winX B16;
+    INT16       winY B16;
+    CARD16      mask B16;
+    BYTE        sameScreen;
+    BYTE        shared; /* sharing the core cursor? */ 
+    CARD32      pad0 B32;
+} xQueryDevicePointerReply;
+
+
+/**********************************************************
+ *
+ * WarpDevicePointer.
+ *
+ */
+
+typedef struct {
+    CARD8 	reqType;	/* input extension major code	*/
+    CARD8 	ReqType;     	/* always X_WarpDevicePointer 	*/
+    CARD16 	length B16;
+    Window      src_win B32;
+    Window      dst_win B32;
+    INT16       src_x B16;
+    INT16       src_y B16;
+    CARD16      src_width B16;
+    CARD16      src_height B16;
+    INT16       dst_x B16;
+    INT16       dst_y B16;
+    CARD8       deviceid;
+    CARD8       pad0;
+    CARD16      pad1 B16;
+} xWarpDevicePointerReq;
+
+
+/**********************************************************
+ *
  * Input extension events.
  *
  * DeviceValuator
@@ -1609,6 +1670,7 @@ typedef struct
     CARD32	pad05 B32;
     CARD32	pad06 B32;
     }  devicePresenceNotify;
+
 
 #undef Window
 #undef Time

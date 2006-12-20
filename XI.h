@@ -110,6 +110,9 @@ SOFTWARE.
 #define sz_xGetDeviceControlReply		32
 #define sz_xChangeDeviceControlReq		8
 #define sz_xChangeDeviceControlReply		32
+#define sz_xQueryDevicePointerReq               12 
+#define sz_xQueryDevicePointerReply             32
+#define sz_xWarpDevicePointerReq                28
 
 #define INAME 			"XInputExtension"
 
