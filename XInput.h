@@ -1209,6 +1209,20 @@ extern Bool     XQueryDevicePointer(
     Bool*               /* shared */
 );
 
+extern Status   XDefineDeviceCursor(
+    Display*            /* display */,
+    XDevice*            /* device */,
+    Window              /* win */,
+    Cursor              /* cursor */
+);
+
+extern Status   XUndefineDeviceCursor(
+    Display*            /* display */,
+    XDevice*            /* device */,
+    Window              /* win */
+);
+
+
 _XFUNCPROTOEND
 
 #endif /* _XINPUT_H_ */

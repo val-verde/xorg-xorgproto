@@ -158,6 +158,7 @@ struct tmask
 #define X_ChangeDeviceControl		35
 #define X_QueryDevicePointer            36
 #define X_WarpDevicePointer             37
+#define X_ChangeDeviceCursor            38
 
 /*********************************************************
  *
@@ -1472,6 +1473,23 @@ typedef struct {
     CARD8       pad0;
     CARD16      pad1 B16;
 } xWarpDevicePointerReq;
+
+/**********************************************************
+ *
+ * ChangeDeviceCursor.
+ *
+ */
+
+typedef struct {
+    CARD8 	reqType;	/* input extension major code	*/
+    CARD8 	ReqType;     	/* always X_ChangeDeviceCursor 	*/
+    CARD16 	length B16;
+    Window      win B32;
+    Cursor      cursor B32;
+    CARD8       deviceid;
+    CARD8       pad0;
+    CARD16      pad1;
+} xChangeDeviceCursorReq;
 
 
 /**********************************************************

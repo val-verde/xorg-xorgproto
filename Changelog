@@ -1,7 +1,10 @@
 MPX changelog
 
+== 08.01.07 ==
+	add ChangeDeviceCursor request
+
 == 20.12.06 ==
-add QueryDevicePointer request + reply
-add WarpDevicePointer request
+	add QueryDevicePointer request + reply
+	add WarpDevicePointer request
 
 
