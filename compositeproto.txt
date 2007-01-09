@@ -1,8 +1,13 @@
 		        Composite Extension
-			    Version 0.3
-			      2006-1-22
+			    Version 0.4
+			      2006-2-24
 			    Keith Packard
 			  keithp@keithp.com
+
+			    Version 0.3
+			      2006-5-13
+			    Deron Johnson
+     		        deron.johnson@sun.com
 
 1. Introduction
 
@@ -65,6 +70,8 @@ may be done with the Damage extension.
 The off-screen storage includes the window contents, its borders and the
 contents of all descendants.
 
+3.1 NameWindowPixmap
+
 Version 0.2 of the protocol introduces a mechanism for associating an XID
 with the off-screen pixmap used to store these contents. This can be used
 to hold onto window contents after the window is unmapped (and hence animate
@@ -97,7 +104,37 @@ GrabServer/UngrabServer will permit atomic sequences that can update the
 screen without artifact. As all of these operations are asynchronous,
 network latency should not adversely affect update latency.
 
-Version 0.3 of the protocol adds the coordinate transformation redirection
+3.2 Composite Overlay Window
+
+Version 0.3 of the protocol adds the Composite Overlay Window, which
+provides compositing managers with a surface on which to draw without
+interference. This window is always above normal windows and is always
+below the screen saver window. It is an InputOutput window whose width
+and height are the screen dimensions. Its visual is the root visual
+and its border width is zero.  Attempts to redirect it using the
+composite extension are ignored.  This window does not appear in the
+reply of the QueryTree request. It is also an override redirect window.
+These last two features make it invisible to window managers and other X11
+clients. The only way to access the XID of this window is via the
+CompositeGetOverlayWindow request. Initially, the Composite Overlay
+Window is unmapped.
+
+CompositeGetOverlayWindow returns the XID of the Composite Overlay
+Window. If the window has not yet been mapped, it is mapped by this
+request. When all clients who have called this request have terminated
+their X11 connections the window is unmapped.
+
+Composite managers may render directly to the Composite Overlay
+Window, or they may reparent other windows to be children of this
+window and render to these. Multiple clients may render to the
+Composite Overlay Window, create child windows of it, reshape it, and
+redefine its input region, but the specific arbitration rules followed
+by these clients is not defined by this specification; these policies
+should be defined by the clients themselves.
+
+3.3 Coordinate transform redirection
+
+Version 0.4 of the protocol adds the coordinate transformation redirection
 portions of the protocol which externalize the relationship between
 parent and child positions with respect to pointer coordinates.
 
@@ -251,7 +288,40 @@ operations other than QueryVersion.
 	window contents. Generates a 'Match' error if 'window' is not
 	redirected or is not visible.
 
-11. External coordinate transformation (0.3 and later)
+11. Composite Overlay Window (0.3 and later)
+
+    CompositeGetOverlayWindow
+
+	        window:				Window
+
+	        ->
+
+	        overlayWin:			Window
+
+    This request returns the XID of the Composite Overlay Window for 
+    the screen specified by the argument 'window'. This request 
+    indicates that the client wishes to use the Composite Overlay 
+    Window of this screen. If this Composite Overlay Window has not 
+    yet been mapped, it is mapped by this request.
+
+    The Composite Overlay Window for a particular screen will be 
+    unmapped when all clients who have invoked this request have 
+    also invoked CompositeReleaseOverlayWindow for that screen. Also,
+    CompositeReleaseOverlayWindow for a screen will be implicitly 
+    called when a client using the Composite Overlay Window on that 
+    screen terminates its X11 connection.
+
+
+    CompositeReleaseOverlayWindow
+
+		window:				Window
+
+    This request specifies that the client is no longer using the 
+    Composite Overlay Window on the screen specified by the 
+    argument 'window'. A screen's Composite Overlay Window is 
+    unmapped when there are no longer any clients using it.
+
+12. External coordinate transformation (0.4 and later)
 
     RedirectCoordinate
 
