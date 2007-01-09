@@ -26,8 +26,8 @@ fixes_HEADERS = \
 	xfixesproto.h \
 	xfixeswire.h
 
-fixesdocdir = $(datadir)/doc/XFixes
-fixesdoc_DATA = protocol
+fixesdocdir = $(datadir)/doc/$(PACKAGE)
+fixesdoc_DATA = fixesproto.txt
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = fixesproto.pc
