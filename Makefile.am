@@ -29,7 +29,7 @@ composite_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = compositeproto.pc
 
-compositedocdir = $(datadir)/doc/Composite
-compositedoc_DATA = protocol
+compositedocdir = $(datadir)/doc/$(PACKAGE)
+compositedoc_DATA = compositeproto.txt
 
 EXTRA_DIST = autogen.sh compositeproto.pc.in $(compositedoc_DATA)
