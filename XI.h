@@ -161,6 +161,9 @@ SOFTWARE.
 #define XI_Add_DevicePresenceNotify_Major	1
 #define XI_Add_DevicePresenceNotify_Minor	4
 
+#define XI_Add_MPX_Major                        1
+#define XI_Add_MPX_Minor                        5
+
 #define DEVICE_RESOLUTION	1
 #define DEVICE_ABS_CALIB        2
 #define DEVICE_CORE             3
@@ -253,6 +256,9 @@ SOFTWARE.
 #define _noExtensionEvent	 9
 
 #define _devicePresence		 0
+
+#define _deviceEnter             0
+#define _deviceLeave             1
 
 #define XI_BadDevice	0
 #define XI_BadEvent	1

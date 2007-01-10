@@ -72,7 +72,7 @@ SOFTWARE.
 
 #define numInputClasses 7
 
-#define IEVENTS		16
+#define IEVENTS		18
 #define IERRORS		5
 
 #define CLIENT_REQ		1
@@ -114,6 +114,8 @@ struct tmask
 #define XI_DeviceKeystateNotify		13
 #define XI_DeviceButtonstateNotify	14
 #define XI_DevicePresenceNotify		15
+#define XI_DeviceEnterNotify            16
+#define XI_DeviceLeaveNotify            17
 
 /*********************************************************
  *
@@ -1688,6 +1690,34 @@ typedef struct
     CARD32	pad05 B32;
     CARD32	pad06 B32;
     }  devicePresenceNotify;
+
+
+/**********************************************************
+ *
+ * deviceEnterNotify.
+ *
+ */
+
+typedef struct
+    {
+    BYTE 	type;
+    BYTE        pad00;
+    CARD16 	sequenceNumber B16;
+    Time        time B32;
+    Window      root B32;
+    Window      event B32;
+    Window      child B32;
+    INT16       rootX B16;
+    INT16       rootY B16;
+    INT16       eventX B16;
+    INT16       eventY B16;
+    KeyButMask  state B16;
+    BYTE        mode;
+    /* flags are missing */
+    CARD8       deviceid;
+    }  deviceEnterNotify;
+
+typedef deviceEnterNotify deviceLeaveNotify;
 
 
 #undef Window

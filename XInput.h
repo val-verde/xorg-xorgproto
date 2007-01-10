@@ -72,6 +72,9 @@ SOFTWARE.
 #define _deviceStateNotify	0
 #define _deviceMappingNotify	1
 #define _changeDeviceNotify	2
+/* Space of 4 between is necessary! */
+#define _deviceEnterNotify      6
+#define _deviceLeaveNotify      7
 
 #define FindTypeAndClass(d,type,_class,classid,offset) \
     { int _i; XInputClassInfo *_ip; \
@@ -155,6 +158,12 @@ SOFTWARE.
         type = _XiGetDevicePresenceNotifyEvent(dpy);            \
         _class =  (0x10000 | _devicePresence);                  \
     }
+
+#define DeviceEnterNotify(d, type, _class) \
+    FindTypeAndClass(d, type, _class, OtherClass, _deviceEnterNotify);
+
+#define DeviceLeaveNotify(d, type, _class) \
+    FindTypeAndClass(d, type, _class, OtherClass, _deviceLeaveNotify);
 
 #define BadDevice(dpy,error) _xibaddevice(dpy, &error)
 
@@ -447,6 +456,31 @@ typedef struct {
     XID           deviceid;
     XID           control;
 } XDevicePresenceNotifyEvent;
+
+
+typedef struct {
+    int           type;
+    unsigned long serial;       /* # of last request processed by server */
+    Bool          send_event;   /* true if this came from a SendEvent request */
+    Display       *display;     /* Display the event was read from */
+    Window window;	        /* "event" window reported relative to */
+    Window root;	        /* root window that the event occurred on */
+    Window subwindow;	        /* child window */
+    XID deviceid;
+    Time time;		        /* milliseconds */
+    int x, y;		        /* pointer x, y coordinates in event window */
+    int x_root, y_root;	        /* coordinates relative to root */
+    int mode;		        /* NotifyNormal, NotifyGrab, NotifyUngrab */
+    int detail;
+    /*
+     * NotifyAncestor, NotifyVirtual, NotifyInferior, 
+     * NotifyNonlinear,NotifyNonlinearVirtual
+     */
+    unsigned int state;	/* key or button mask */
+} XDeviceCrossingEvent;
+
+typedef XDeviceCrossingEvent XDeviceLeaveWindowEvent;
+typedef XDeviceCrossingEvent XDeviceEnterWindowEvent;
 
 /*******************************************************************
  *
