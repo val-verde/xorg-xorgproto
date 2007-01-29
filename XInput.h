@@ -159,6 +159,13 @@ SOFTWARE.
         _class =  (0x10000 | _devicePresence);                  \
     }
 
+#define PointerKeyboardPairing(dpy, type, _class)                       \
+    {                                                                   \
+    extern int _XiGetPointerKeyboardPairingNotifyEvent(Display *);      \
+    type = _XiGetPointerKeyboardPairingNotifyEvent(Display *);          \
+    _class = (0x10000 | _pairingNotify);                                \
+    }
+
 #define DeviceEnterNotify(d, type, _class) \
     FindTypeAndClass(d, type, _class, OtherClass, _deviceEnterNotify);
 
@@ -481,6 +488,23 @@ typedef struct {
 
 typedef XDeviceCrossingEvent XDeviceLeaveWindowEvent;
 typedef XDeviceCrossingEvent XDeviceEnterWindowEvent;
+
+/*
+ * Notifies the client that a mouse/keyboard mapping has changed. A mouse may
+ * have several keyboards mapped to it, but a keyboard can only map to one
+ * mouse.
+ * Keyboard events will follow the focus of the given mouse.
+ */
+typedef struct {
+    int           type;
+    unsigned long serial;       /* # of last request processed by server */
+    Bool          send_event;   /* true if this came from a SendEvent request */
+    Display       *display;     /* Display the event was read from */
+    Window        window;       /* unused */
+    Time          time;
+    XID           pointerid;    /* pointer deviceid */
+    XID           keyboardid;   /* keyboard deviceid */
+} XPointerKeyboardPairingChangedNotifyEvent;
 
 /*******************************************************************
  *
@@ -1254,6 +1278,12 @@ extern Status   XUndefineDeviceCursor(
     Display*            /* display */,
     XDevice*            /* device */,
     Window              /* win */
+);
+
+extern Status   XChangePointerKeyboardPairing(
+    Display*            /* display */,
+    XDevice*            /* pointer */,
+    XDevice*            /* keyboard*/
 );
 
 

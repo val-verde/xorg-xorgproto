@@ -72,7 +72,7 @@ SOFTWARE.
 
 #define numInputClasses 7
 
-#define IEVENTS		18
+#define IEVENTS		19
 #define IERRORS		5
 
 #define CLIENT_REQ		1
@@ -116,6 +116,7 @@ struct tmask
 #define XI_DevicePresenceNotify		15
 #define XI_DeviceEnterNotify            16
 #define XI_DeviceLeaveNotify            17
+#define XI_PointerKeyboardPairingChangedNotify 18
 
 /*********************************************************
  *
@@ -161,6 +162,7 @@ struct tmask
 #define X_QueryDevicePointer            36
 #define X_WarpDevicePointer             37
 #define X_ChangeDeviceCursor            38
+#define X_ChangePointerKeyboardPairing  39
 
 /*********************************************************
  *
@@ -1493,6 +1495,20 @@ typedef struct {
     CARD16      pad1;
 } xChangeDeviceCursorReq;
 
+/**********************************************************
+ *
+ * ChangePointerKeyboardPairing.
+ *
+ */
+
+typedef struct {
+    CARD8       reqType;        /* input extension major code */
+    CARD8       ReqType;        /* always X_ChangePointerKeyboardPairing */
+    CARD16      length B16;
+    CARD8       pointer;        /* ID of pointer devices */
+    CARD8       keyboard;       /* ID of keyboard device */               
+    CARD16      pad0;
+} xChangePointerKeyboardPairingReq;
 
 /**********************************************************
  *
@@ -1718,6 +1734,29 @@ typedef struct
     }  deviceEnterNotify;
 
 typedef deviceEnterNotify deviceLeaveNotify;
+
+/**********************************************************
+ *
+ * pairingChangedNotify.
+ *
+ */
+
+typedef struct
+    {
+    BYTE 	type;
+    BYTE        pad00;
+    CARD16 	sequenceNumber B16;
+    Time        time B32;
+    CARD8       pointer;
+    CARD8       keyboard;
+    CARD16      pad0;
+    CARD32      pad1;
+    CARD32      pad2;
+    CARD32      pad3;
+    CARD32      pad4;
+    CARD32      pad5;
+    CARD32      pad6;
+    }  pairingChangedNotify;
 
 
 #undef Window

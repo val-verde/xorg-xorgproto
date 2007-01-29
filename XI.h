@@ -114,6 +114,7 @@ SOFTWARE.
 #define sz_xQueryDevicePointerReply             32
 #define sz_xWarpDevicePointerReq                28
 #define sz_xChangeDeviceCursorReq               16
+#define sz_xChangePointerKeyboardPairingReq      8
 
 #define INAME 			"XInputExtension"
 
@@ -256,9 +257,11 @@ SOFTWARE.
 #define _noExtensionEvent	 9
 
 #define _devicePresence		 0
+#define _pairingChanged          1
 
 #define _deviceEnter             0
 #define _deviceLeave             1
+
 
 #define XI_BadDevice	0
 #define XI_BadEvent	1
