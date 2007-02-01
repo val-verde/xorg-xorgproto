@@ -539,11 +539,11 @@ typedef struct {
     CARD32	length B32;
     CARD16	size B16;
     CARD16	pad1 B16;
-    CARD16	pad2 B32;
-    CARD16	pad3 B32;
-    CARD16	pad4 B32;
-    CARD16	pad5 B32;
-    CARD16	pad6 B32;
+    CARD32	pad2 B32;
+    CARD32	pad3 B32;
+    CARD32	pad4 B32;
+    CARD32	pad5 B32;
+    CARD32	pad6 B32;
 } xRRGetCrtcGammaReply;
 #define sz_xRRGetCrtcGammaReply		32
 
