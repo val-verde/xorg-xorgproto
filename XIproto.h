@@ -1717,7 +1717,7 @@ typedef struct
 typedef struct
     {
     BYTE 	type;
-    BYTE        pad00;
+    CARD8       deviceid;
     CARD16 	sequenceNumber B16;
     Time        time B32;
     Window      root B32;
@@ -1729,8 +1729,7 @@ typedef struct
     INT16       eventY B16;
     KeyButMask  state B16;
     BYTE        mode;
-    /* flags are missing */
-    CARD8       deviceid;
+    BYTE        flags;
     }  deviceEnterNotify;
 
 typedef deviceEnterNotify deviceLeaveNotify;

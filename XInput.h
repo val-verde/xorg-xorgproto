@@ -483,6 +483,8 @@ typedef struct {
      * NotifyAncestor, NotifyVirtual, NotifyInferior, 
      * NotifyNonlinear,NotifyNonlinearVirtual
      */
+    Bool same_screen;   /* same screen flag */
+    Bool focus;         /* boolean focus */
     unsigned int state;	/* key or button mask */
 } XDeviceCrossingEvent;
 
