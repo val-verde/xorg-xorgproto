@@ -1269,6 +1269,19 @@ extern Bool     XQueryDevicePointer(
     Bool*               /* shared */
 );
 
+extern Bool     XWarpDevicePointer(
+    Display*            /* display */,
+    XDevice*            /* device */,
+    Window              /* src_win */,
+    Window              /* dst_win */,
+    int                 /* src_x */,
+    int                 /* src_y */,
+    unsigned int        /* src_width */,
+    unsigned int        /* src_height */,
+    int                 /* dst_x */,
+    int                 /* dst_y */
+);
+
 extern Status   XDefineDeviceCursor(
     Display*            /* display */,
     XDevice*            /* device */,
