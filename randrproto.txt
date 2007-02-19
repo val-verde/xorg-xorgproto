@@ -974,7 +974,7 @@ dynamic changes in the display environment.
 
 Clients MAY select for ConfigureNotify on the root window to be
 informed of screen changes. This may be advantageous if all your
-clients need to know is the size of the root window, as it avoids
+client needs to know is the size of the root window, as it avoids
 round trips to set up the extension.
 
 RRScreenChangeNotify is sent if RRSelectInput has requested it
