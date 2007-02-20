@@ -1301,6 +1301,13 @@ extern Status   XChangePointerKeyboardPairing(
     XDevice*            /* keyboard*/
 );
 
+extern Bool     XRegisterPairingClient(
+    Display*            /* display */
+);
+
+extern Bool     XUnregisterPairingClient(
+    Display*            /* display */
+);
 
 _XFUNCPROTOEND
 

@@ -163,6 +163,7 @@ struct tmask
 #define X_WarpDevicePointer             37
 #define X_ChangeDeviceCursor            38
 #define X_ChangePointerKeyboardPairing  39
+#define X_RegisterPairingClient         40
 
 /*********************************************************
  *
@@ -1509,6 +1510,36 @@ typedef struct {
     CARD8       keyboard;       /* ID of keyboard device */               
     CARD16      pad0;
 } xChangePointerKeyboardPairingReq;
+
+/**********************************************************
+ *
+ * ChangePointerKeyboardPairing.
+ *
+ */
+
+typedef struct {
+    CARD8       reqType;        /* input extension major code */
+    CARD8       ReqType;        /* always X_RegisterPairingClient */
+    CARD16      length B16;
+    CARD8       disable;        /* True to disable registration */
+    CARD8       pad0;
+    CARD16      pad1;
+} xRegisterPairingClientReq;
+
+typedef struct {
+    CARD8       repType;        /* input extension major code */
+    CARD8       RepType;        /* always X_RegisterPairingClient */
+    CARD16 	sequenceNumber B16;
+    CARD32      length B16;     /* 0 */
+    CARD8       success;        /* True on success, false otherwise */
+    CARD8       pad0;
+    CARD16      pad1 B16;
+    CARD32      pad2 B32;
+    CARD32      pad3 B32;
+    CARD32      pad4 B32;
+    CARD32      pad5 B32;
+    CARD32      pad6 B32;
+} xRegisterPairingClientReply;
 
 /**********************************************************
  *

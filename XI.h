@@ -115,6 +115,8 @@ SOFTWARE.
 #define sz_xWarpDevicePointerReq                28
 #define sz_xChangeDeviceCursorReq               16
 #define sz_xChangePointerKeyboardPairingReq      8
+#define sz_xRegisterPairingClientReq             8
+#define sz_xRegisterPairingClientReply          32 
 
 #define INAME 			"XInputExtension"
 
