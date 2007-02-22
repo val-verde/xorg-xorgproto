@@ -114,9 +114,14 @@ SOFTWARE.
 #define sz_xQueryDevicePointerReply             32
 #define sz_xWarpDevicePointerReq                28
 #define sz_xChangeDeviceCursorReq               16
-#define sz_xChangePointerKeyboardPairingReq      8
-#define sz_xRegisterPairingClientReq             8
+#define sz_xChangePointerKeyboardPairingReq     8
+#define sz_xRegisterPairingClientReq            8
 #define sz_xRegisterPairingClientReply          32 
+#define sz_xGrabAccessControlReq                8
+#define sz_xGrabAccessControlReply              32
+#define sz_xChangeWindowAccessReq               12 
+#define sz_xQueryWindowAccessReq                8
+#define sz_xQueryWindowAccessReply              32
 
 #define INAME 			"XInputExtension"
 
@@ -264,6 +269,18 @@ SOFTWARE.
 #define _deviceEnter             0
 #define _deviceLeave             1
 
+/* Flags for ChangeWindowAccess defaultRule. Pick one. */
+#define WindowAccessNoRule       0
+#define WindowAccessKeepRule     1
+#define WindowAccessDenyAll      2
+
+/* Flags for ChangeWindowAccess. */
+#define WindowAccessClearNone    0
+#define WindowAccessClearPerm   (1)
+#define WindowAccessClearDeny   (1 << 1)
+#define WindowAccessClearRule   (1 << 2)
+#define WindowAccessClearAll \
+    WindowAccessClearPerm | WindowAccessClearDeny | WindowAccessClearRule
 
 #define XI_BadDevice	0
 #define XI_BadEvent	1

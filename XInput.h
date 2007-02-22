@@ -1309,6 +1309,49 @@ extern Bool     XUnregisterPairingClient(
     Display*            /* display */
 );
 
+extern Bool     XGrabAccessControl(
+    Display*            /* display */
+);
+
+extern Bool     XUngrabAccessControl(
+    Display*            /* display */
+);
+
+extern Bool     XClearAccessControl(
+    Display*            /* display*/,
+    int                 /* what */
+);
+
+extern Bool     XChangeAcccessRule(
+    Display*            /* display */,
+    int                 /* rule */
+);
+
+extern Status   XPermitDevices(
+    Display*            /* display */,
+    Window              /* win */,
+    char*               /* deviceids */,
+    int                 /* ndevices */
+);
+
+extern Status   XDenyDevices(
+    Display*            /* display */,
+    Window              /* win */,
+    char*               /* deviceids */,
+    int                 /* ndevices */
+);
+
+extern Status   XQueryWindowAccess(
+    Display*            /* dpy */,
+    Window              /* win */,
+    int*                /* rule */,
+    char**               /* permdevices */,
+    int*                /* nperm */,
+    char**               /* denydevices */,
+    int*                /* ndeny */
+);
+
+
 _XFUNCPROTOEND
 
 #endif /* _XINPUT_H_ */

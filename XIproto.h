@@ -164,6 +164,9 @@ struct tmask
 #define X_ChangeDeviceCursor            38
 #define X_ChangePointerKeyboardPairing  39
 #define X_RegisterPairingClient         40
+#define X_GrabAccessControl             41
+#define X_ChangeWindowAccess            42
+#define X_QueryWindowAccess             43
 
 /*********************************************************
  *
@@ -1513,7 +1516,7 @@ typedef struct {
 
 /**********************************************************
  *
- * ChangePointerKeyboardPairing.
+ * RegisterPairingClient.
  *
  */
 
@@ -1523,14 +1526,14 @@ typedef struct {
     CARD16      length B16;
     CARD8       disable;        /* True to disable registration */
     CARD8       pad0;
-    CARD16      pad1;
+    CARD16      pad1 B16;
 } xRegisterPairingClientReq;
 
 typedef struct {
     CARD8       repType;        /* input extension major code */
     CARD8       RepType;        /* always X_RegisterPairingClient */
     CARD16 	sequenceNumber B16;
-    CARD32      length B16;     /* 0 */
+    CARD32      length B32;     /* 0 */
     CARD8       success;        /* True on success, false otherwise */
     CARD8       pad0;
     CARD16      pad1 B16;
@@ -1540,6 +1543,85 @@ typedef struct {
     CARD32      pad5 B32;
     CARD32      pad6 B32;
 } xRegisterPairingClientReply;
+
+/**********************************************************
+ *
+ * GrabAccessControl.
+ *
+ */
+
+typedef struct {
+    CARD8       reqType;        /* input extension major code */
+    CARD8       ReqType;        /* always X_GrabAccessControl */
+    CARD16      length B16;     
+    BOOL        ungrab;         /* true if request is ungrab request */
+    CARD8       pad0, pad1, pad2;
+} xGrabAccessControlReq;
+
+typedef struct {
+    CARD8       repType;        /* input extension major code */
+    CARD8       RepType;        /* always X_GrabAccessControl */
+    CARD16      sequenceNumber B16;
+    CARD32      length B32;
+    CARD8       success;
+    CARD8       pad0,
+                pad1,
+                pad2;
+    CARD32      pad3 B32;
+    CARD32      pad4 B32;
+    CARD32      pad5 B32;
+    CARD32      pad6 B32;
+    CARD32      pad7 B32;
+} xGrabAccessControlReply; 
+
+/**********************************************************
+ *
+ * ChangeWindowAccess.
+ *
+ */
+
+typedef struct {
+    CARD8       reqType;        /* input extension major opcode */
+    CARD8       ReqType;        /* Always X_ChangeWindowAccess */
+    CARD16      length B16;
+    Window      win B32;
+    CARD8       npermit;       /* number of devices for permit rule */
+    CARD8       ndeny;         /* number of devices for deny rule */
+    CARD8       defaultRule;   /* default rule */
+    CARD8       clear;         /* WindowAccessClearPerm,
+                                  WindowAccessClearDeny,
+                                  WindowAccessClearRule,
+                                  WindowAccessClearAll */
+} xChangeWindowAccessReq;
+
+/**********************************************************
+ *
+ * QueryAccessToWindow.
+ *
+ */
+
+typedef struct {
+    CARD8       reqType;        /* input extension major code */
+    CARD8       ReqType;        /* always X_RegisterAccessControl */
+    CARD16      length B16;
+    Window      win B32;
+} xQueryWindowAccessReq;
+
+typedef struct {
+    CARD8       repType;        /* input extension major opcode */
+    CARD8       RepType;        /* Always X_ChangeAccessToWindow */
+    CARD16      sequenceNumber B16;
+    CARD32      length B32;
+    CARD8       defaultRule;    /* default rule setting */
+    CARD8       npermit;        /* number of devices in permit */
+    CARD8       ndeny;          /* number of devices in deny */
+    CARD8       pad0; 
+    CARD32      pad1 B32;
+    CARD32      pad2 B32;
+    CARD32      pad3 B32;
+    CARD32      pad4 B32;
+    CARD32      pad5 B32;
+} xQueryWindowAccessReply;
 
 /**********************************************************
  *
