@@ -1317,13 +1317,15 @@ extern Bool     XUngrabAccessControl(
     Display*            /* display */
 );
 
-extern Bool     XClearAccessControl(
+extern Bool     XWindowClearAccess(
     Display*            /* display*/,
+    Window              /* win */,
     int                 /* what */
 );
 
-extern Bool     XChangeAcccessRule(
+extern Bool     XChangeAccessRule(
     Display*            /* display */,
+    Window              /* win */,
     int                 /* rule */
 );
 
@@ -1349,6 +1351,12 @@ extern Status   XQueryWindowAccess(
     int*                /* nperm */,
     char**               /* denydevices */,
     int*                /* ndeny */
+);
+
+extern Status   XSetClientPointer(
+    Display*            /* dpy */,
+    Window              /* win */,
+    char                /* deviceid */
 );
 
 

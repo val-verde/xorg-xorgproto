@@ -122,6 +122,7 @@ SOFTWARE.
 #define sz_xChangeWindowAccessReq               12 
 #define sz_xQueryWindowAccessReq                8
 #define sz_xQueryWindowAccessReply              32
+#define sz_xSetClientPointerReq                 12
 
 #define INAME 			"XInputExtension"
 

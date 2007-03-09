@@ -167,6 +167,7 @@ struct tmask
 #define X_GrabAccessControl             41
 #define X_ChangeWindowAccess            42
 #define X_QueryWindowAccess             43
+#define X_SetClientPointer              44
 
 /*********************************************************
  *
@@ -1596,20 +1597,20 @@ typedef struct {
 
 /**********************************************************
  *
- * QueryAccessToWindow.
+ * QueryWindowAccess
  *
  */
 
 typedef struct {
     CARD8       reqType;        /* input extension major code */
-    CARD8       ReqType;        /* always X_RegisterAccessControl */
+    CARD8       ReqType;        /* always X_QueryWindowAccess */
     CARD16      length B16;
     Window      win B32;
 } xQueryWindowAccessReq;
 
 typedef struct {
     CARD8       repType;        /* input extension major opcode */
-    CARD8       RepType;        /* Always X_ChangeAccessToWindow */
+    CARD8       RepType;        /* Always X_QueryWindowAccess */
     CARD16      sequenceNumber B16;
     CARD32      length B32;
     CARD8       defaultRule;    /* default rule setting */
@@ -1622,6 +1623,25 @@ typedef struct {
     CARD32      pad4 B32;
     CARD32      pad5 B32;
 } xQueryWindowAccessReply;
+
+
+
+/**********************************************************
+ *
+ * SetClientPointer.
+ *
+ */
+
+typedef struct {
+    CARD8       reqType;
+    CARD8       ReqType;        /* Always X_SetClientPointer */
+    CARD16      length B16;
+    Window      win B32;
+    CARD8       deviceid;
+    CARD8       pad0;
+    CARD16      pad1 B16;
+} xSetClientPointerReq;
+
 
 /**********************************************************
  *
