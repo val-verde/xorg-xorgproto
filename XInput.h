@@ -1371,7 +1371,7 @@ extern Status   XQueryWindowAccess(
 extern Status   XSetClientPointer(
     Display*            /* dpy */,
     Window              /* win */,
-    char                /* deviceid */
+    XDevice*            /* device */
 );
 
 extern Bool     XGetClientPointer(
