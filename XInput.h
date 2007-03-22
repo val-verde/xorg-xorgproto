@@ -152,9 +152,18 @@ SOFTWARE.
 #define NoExtensionEvent(d,type,_class) \
     { _class =  ((XDevice *) d)->device_id << 8 | _noExtensionEvent;}
 
+
+/* We need the declaration for DevicePresence. */
+#if defined(__cplusplus) || defined(c_plusplus)
+extern "C" {
+#endif
+    extern int _XiGetDevicePresenceNotifyEvent(Display *);
+#if defined(__cplusplus) || defined(c_plusplus)
+}
+#endif
+
 #define DevicePresence(dpy, type, _class)                       \
     {                                                           \
-        extern int _XiGetDevicePresenceNotifyEvent(Display *);  \
         type = _XiGetDevicePresenceNotifyEvent(dpy);            \
         _class =  (0x10000 | _devicePresence);                  \
     }
@@ -1301,6 +1310,12 @@ extern Status   XChangePointerKeyboardPairing(
     XDevice*            /* keyboard*/
 );
 
+extern Bool   XGetPairedPointer(
+    Display*        /* display */,
+    XDevice*        /* keyboard */,
+    int*            /* deviceid */
+);
+
 extern Bool     XRegisterPairingClient(
     Display*            /* display */
 );
@@ -1357,6 +1372,12 @@ extern Status   XSetClientPointer(
     Display*            /* dpy */,
     Window              /* win */,
     char                /* deviceid */
+);
+
+extern Bool     XGetClientPointer(
+    Display*            /* dpy */,
+    Window              /* win */,
+    int*                /* deviceid */
 );
 
 

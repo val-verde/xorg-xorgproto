@@ -50,7 +50,6 @@ SOFTWARE.
 /* Definitions used by the server, library and client */
 
 #ifndef _XI_H_
-
 #define _XI_H_
 
 #define sz_xGetExtensionVersionReq		8
@@ -123,6 +122,10 @@ SOFTWARE.
 #define sz_xQueryWindowAccessReq                8
 #define sz_xQueryWindowAccessReply              32
 #define sz_xSetClientPointerReq                 12
+#define sz_xGetClientPointerReq                 8
+#define sz_xGetClientPointerReply               32
+#define sz_xGetPairedPointerReq                 8
+#define sz_xGetPairedPointerReply               32
 
 #define INAME 			"XInputExtension"
 
