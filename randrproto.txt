@@ -547,7 +547,7 @@ dynamic changes in the display environment.
         widthInMillimeters, heightInMillimeters: CARD32
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
-	modes: LISTofOUTPUT
+	modes: LISTofMODE
 	num-preferred: CARD16
 └───
 	Errors: Output
