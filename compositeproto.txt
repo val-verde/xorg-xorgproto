@@ -1,11 +1,8 @@
-		        Composite Extension
-			    Version 0.4
-			      2006-2-24
+		         Composite Extension
+			     Version 0.4
+			      2007-4-17
 			    Keith Packard
 			  keithp@keithp.com
-
-			    Version 0.3
-			      2006-5-13
 			    Deron Johnson
      		        deron.johnson@sun.com
 
@@ -152,7 +149,7 @@ The composite extension does not define any new errors.
 
 6. Events
 
-Version 0.3 of the Composite protocol defines one new event
+Version 0.4 of the Composite protocol defines one new event
 
     TransformCoordinateNotify
     
@@ -213,9 +210,9 @@ operations other than QueryVersion.
 		errors: Window, Access, Match
 
 	The hierarchy starting at 'window' is directed to off-screen
-	storage. 'automatic-update' specifies whether the contents
-	are mirrored to the parent window automatically or not. Only
-	one client may specify this flag, another attempt will result in an
+	storage. 'update' specifies whether the contents are mirrored to 
+	the parent window automatically or not. Only one client may specify 
+	an update type of Manual, another attempt will result in an
 	Access error. When all clients enabling redirection terminate,
 	the redirection will automatically be disabled.
 
