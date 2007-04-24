@@ -250,6 +250,12 @@ SOFTWARE.
 
 #define _devicePresence		 0
 
+#define DeviceAdded              0
+#define DeviceRemoved            1
+#define DeviceEnabled            2
+#define DeviceDisabled           3
+#define DeviceUnrecoverable      4  
+
 #define XI_BadDevice	0
 #define XI_BadEvent	1
 #define XI_BadMode	2
