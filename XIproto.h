@@ -57,6 +57,7 @@ SOFTWARE.
 #define Window CARD32
 #define Time CARD32
 #define KeyCode CARD8
+#define Mask CARD32
 
 /*********************************************************
  *
@@ -72,7 +73,7 @@ SOFTWARE.
 
 #define numInputClasses 7
 
-#define IEVENTS		19
+#define IEVENTS		18
 #define IERRORS		5
 
 #define CLIENT_REQ		1
@@ -116,7 +117,12 @@ struct tmask
 #define XI_DevicePresenceNotify		15
 #define XI_DeviceEnterNotify            16
 #define XI_DeviceLeaveNotify            17
-#define XI_PointerKeyboardPairingChangedNotify 18
+
+/* GE events */
+#define XI_PointerKeyboardPairingChangedNotify 0
+#define XI_RandomStringEvent                   1
+#define XI_RawDeviceEvent                      2
+
 
 /*********************************************************
  *
@@ -170,6 +176,7 @@ struct tmask
 #define X_SetClientPointer              44
 #define X_GetClientPointer              45
 #define X_GetPairedPointer              46
+#define X_XiSelectEvent                 47
 
 /*********************************************************
  *
@@ -1702,6 +1709,22 @@ typedef struct {
     CARD32      pad5 B32;
 } xGetPairedPointerReply;
 
+
+/**********************************************************
+ *
+ * XiSelectevent.
+ *
+ */
+
+typedef struct {
+    CARD8       reqType;        /* input extension major opcode */ 
+    CARD8       ReqType;        /* always X_XiSelectEvent */
+    CARD16      length B16;
+    Window      window B32;     /* window to be changed */
+    Mask        mask B32;       /* mask to be applied */
+} xXiSelectEventReq;
+
+
 /**********************************************************
  *
  * Input extension events.
@@ -1934,10 +1957,12 @@ typedef deviceEnterNotify deviceLeaveNotify;
 
 typedef struct
     {
-    BYTE 	type;
-    BYTE        pad00;
+    BYTE 	type;                   /* always GenericEvent */
+    BYTE        extension;              /* Xi extension offset */
     CARD16 	sequenceNumber B16;
-    Time        time B32;
+    CARD32      length B32;
+    CARD16      evtype B16;
+    CARD32      time B32;
     CARD8       pointer;
     CARD8       keyboard;
     CARD16      pad0;
@@ -1945,13 +1970,62 @@ typedef struct
     CARD32      pad2;
     CARD32      pad3;
     CARD32      pad4;
-    CARD32      pad5;
-    CARD32      pad6;
     }  pairingChangedNotify;
+
+
+/**********************************************************
+ *
+ * RandomStringEvent.
+ * GE event, != 32 bytes.
+ *
+ * FOR TESTING, DO NOT USE THIS.
+ */
+
+typedef struct 
+    {
+    BYTE        type;                          /* always GenericEvent */
+    BYTE        extension;                     /* XI extension offset */
+    CARD16      sequenceNumber B16;
+    CARD32      length B32;
+    CARD16      evtype B16;                     /* XI_RandomStringEvent */
+    CARD16      slen B16;
+    CARD32      pad1 B32;
+    CARD32      pad2 B32;
+    CARD32      pad3 B32;
+    CARD32      pad4 B32;
+    CARD32      pad5 B32;
+    } randomStringEvent;
+
+/*********************************************************
+ * RawDeviceEvent.
+ * 
+ * GE event, may be larger than 32 bytes. If length is > 0, then the event is
+ * followed by (length * CARD32) fields denoting the values of valuator4 to 
+ * valuator(num_valuators-1).
+ */
+
+typedef struct 
+    {
+    BYTE        type;                          /* always GenericEvent */
+    BYTE        extension;                     /* XI extension offset */
+    CARD16      sequenceNumber B16;
+    CARD32      length B32;
+    CARD16      evtype B16;                     /* XI_RawDeviceEvent */
+    CARD8       buttons;
+    CARD8       num_valuators;
+    CARD8       first_valuator;
+    CARD8       pad0;
+    CARD16      pad1;
+    CARD32      valuator0 B32;
+    CARD32      valuator1 B32;
+    CARD32      valuator2 B32;
+    CARD32      valuator3 B32;
+    } rawDeviceEvent;
 
 
 #undef Window
 #undef Time
 #undef KeyCode
+#undef Mask
 
 #endif

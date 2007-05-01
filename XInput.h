@@ -168,19 +168,13 @@ extern "C" {
         _class =  (0x10000 | _devicePresence);                  \
     }
 
-#define PointerKeyboardPairing(dpy, type, _class)                       \
-    {                                                                   \
-    extern int _XiGetPointerKeyboardPairingNotifyEvent(Display *);      \
-    type = _XiGetPointerKeyboardPairingNotifyEvent(Display *);          \
-    _class = (0x10000 | _pairingNotify);                                \
-    }
-
 #define DeviceEnterNotify(d, type, _class) \
     FindTypeAndClass(d, type, _class, OtherClass, _deviceEnterNotify);
 
 #define DeviceLeaveNotify(d, type, _class) \
     FindTypeAndClass(d, type, _class, OtherClass, _deviceLeaveNotify);
 
+/* Errors */
 #define BadDevice(dpy,error) _xibaddevice(dpy, &error)
 
 #define BadClass(dpy,error) _xibadclass(dpy, &error)
@@ -507,15 +501,50 @@ typedef XDeviceCrossingEvent XDeviceEnterWindowEvent;
  * Keyboard events will follow the focus of the given mouse.
  */
 typedef struct {
-    int           type;
+    int           type;         /* GenericEvent */
     unsigned long serial;       /* # of last request processed by server */
     Bool          send_event;   /* true if this came from a SendEvent request */
     Display       *display;     /* Display the event was read from */
-    Window        window;       /* unused */
+    int           extension;    /* XI extension offset */
+    int           evtype;       /* PointerKeyboardPairingCHangedNotify */
     Time          time;
     XID           pointerid;    /* pointer deviceid */
     XID           keyboardid;   /* keyboard deviceid */
 } XPointerKeyboardPairingChangedNotifyEvent;
+
+
+/*
+ * XRandomStringEvent.
+ * FOR TESTING ONLY. DO NOT USE.
+ */
+
+typedef struct {
+    int            type;        /* GenericEvent */
+    unsigned long serial;       /* # of last request processed by server */
+    Bool          send_event;   /* true if this came from a SendEvent request */
+    Display       *display;     /* Display the event was read from */
+    int           extension;    /* XI extension offset */
+    int           evtype;       /* RandomStringEvent */
+    char*         string;
+} XRandomStringEvent;
+
+/*
+ * RawDeviceEvent. 
+ * Data as received directly from the device.
+ */
+typedef struct {
+    int           type;         /* GenericEvent */
+    unsigned long serial;       /* # of last request processed by server */
+    Bool          send_event;   /* true if this came from a SendEvent request */
+    Display       *display;     /* Display the event was read from */
+    int           extension;    /* XI extension offset */
+    int           evtype;       /* XI_RawDeviceEvent */
+    int           buttons;
+    int           num_valuators;
+    int           first_valuator;
+    int*          valuators;
+} XRawDeviceEvent;
+
 
 /*******************************************************************
  *
@@ -1380,6 +1409,11 @@ extern Bool     XGetClientPointer(
     int*                /* deviceid */
 );
 
+extern Status   XiSelectEvent(
+    Display*            /* dpy */,
+    Window              /* win */,
+    Mask                /* mask */
+);
 
 _XFUNCPROTOEND
 

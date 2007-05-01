@@ -126,6 +126,7 @@ SOFTWARE.
 #define sz_xGetClientPointerReply               32
 #define sz_xGetPairedPointerReq                 8
 #define sz_xGetPairedPointerReply               32
+#define sz_xXiSelectEventReq                    12
 
 #define INAME 			"XInputExtension"
 
@@ -297,6 +298,11 @@ SOFTWARE.
 #define XI_BadMode	2
 #define XI_DeviceBusy	3
 #define XI_BadClass	4
+
+/* GE masks */
+#define XI_PointerKeyboardPairingChangedMask (1 << 0)
+#define XI_RandomStringMask                  (1 << 1)
+#define XI_RawDeviceEventMask                (1 << 2)
 
 /* Make XEventClass be a CARD32 for 64 bit servers.  Don't affect client
  * definition of XEventClass since that would be a library interface change.
