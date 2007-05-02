@@ -2014,7 +2014,7 @@ typedef struct
     CARD8       buttons;
     CARD8       num_valuators;
     CARD8       first_valuator;
-    CARD8       pad0;
+    CARD8       deviceid;
     CARD16      pad1;
     CARD32      valuator0 B32;
     CARD32      valuator1 B32;

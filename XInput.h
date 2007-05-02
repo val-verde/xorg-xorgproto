@@ -539,6 +539,7 @@ typedef struct {
     Display       *display;     /* Display the event was read from */
     int           extension;    /* XI extension offset */
     int           evtype;       /* XI_RawDeviceEvent */
+    int           deviceid; 
     int           buttons;
     int           num_valuators;
     int           first_valuator;
