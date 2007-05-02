@@ -177,6 +177,7 @@ struct tmask
 #define X_GetClientPointer              45
 #define X_GetPairedPointer              46
 #define X_XiSelectEvent                 47
+#define X_FakeDeviceData                48
 
 /*********************************************************
  *
@@ -1723,6 +1724,29 @@ typedef struct {
     Window      window B32;     /* window to be changed */
     Mask        mask B32;       /* mask to be applied */
 } xXiSelectEventReq;
+
+
+/**********************************************************
+ *
+ * FakeDeviceData.
+ *
+ * Followed by num_valuators * CARD32 fields that represent valuator data.
+ *
+ */
+
+typedef struct {
+    CARD8       reqType;        /* input extension major opcode */ 
+    CARD8       ReqType;        /* always X_XiSelectEvent */
+    CARD16      length B16;
+    CARD8       type;
+    CARD8       buttons;
+    CARD8       num_valuators;
+    CARD8       first_valuator;
+    CARD8       deviceid;
+    CARD8       pad0;
+    CARD16      pad1;
+} xFakeDeviceDataReq;
+
 
 
 /**********************************************************

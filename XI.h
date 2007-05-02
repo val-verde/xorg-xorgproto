@@ -127,6 +127,7 @@ SOFTWARE.
 #define sz_xGetPairedPointerReq                 8
 #define sz_xGetPairedPointerReply               32
 #define sz_xXiSelectEventReq                    12
+#define sz_xFakeDeviceDataReq                   12
 
 #define INAME 			"XInputExtension"
 
@@ -304,14 +305,17 @@ SOFTWARE.
 #define XI_RandomStringMask                  (1 << 1)
 #define XI_RawDeviceEventMask                (1 << 2)
 
+
 /* Make XEventClass be a CARD32 for 64 bit servers.  Don't affect client
  * definition of XEventClass since that would be a library interface change.
  * See the top of X.h for more _XSERVER64 magic.
  */
 #ifdef _XSERVER64
 typedef	CARD32		XEventClass;
+typedef	CARD32		ValuatorData;
 #else
 typedef	unsigned long	XEventClass;
+typedef	unsigned long	ValuatorData;
 #endif
 
 /*******************************************************************

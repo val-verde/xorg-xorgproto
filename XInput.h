@@ -1416,6 +1416,16 @@ extern Status   XiSelectEvent(
     Mask                /* mask */
 );
 
+extern Status   XFakeDeviceData(
+    Display*            /* dpy */,
+    XDevice*            /* dev */,
+    int                 /* type */,
+    int                 /* buttons */,
+    int                 /* num_valuators */,
+    int                 /* first_valuator */,
+    ValuatorData*       /* valuators */
+);
+
 _XFUNCPROTOEND
 
 #endif /* _XINPUT_H_ */
