@@ -51,6 +51,7 @@ SOFTWARE.
 
 #ifndef _XI_H_
 #define _XI_H_
+#include <X11/Xmd.h>
 
 #define sz_xGetExtensionVersionReq		8
 #define sz_xGetExtensionVersionReply		32
@@ -128,6 +129,8 @@ SOFTWARE.
 #define sz_xGetPairedPointerReply               32
 #define sz_xXiSelectEventReq                    12
 #define sz_xFakeDeviceDataReq                   12
+#define sz_xExtendedGrabDeviceReq               28
+#define sz_xExtendedGrabDeviceReply             32
 
 #define INAME 			"XInputExtension"
 

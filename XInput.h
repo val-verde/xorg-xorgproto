@@ -54,6 +54,7 @@ SOFTWARE.
 
 #include <X11/Xlib.h>
 #include <X11/extensions/XI.h>
+#include <X11/extensions/Xge.h>
 
 #define _deviceKeyPress		0
 #define _deviceKeyRelease	1
@@ -1425,6 +1426,24 @@ extern Status   XFakeDeviceData(
     int                 /* first_valuator */,
     ValuatorData*       /* valuators */
 );
+
+extern Status   XExtendedGrabDevice(
+    Display*            /* dpy */,
+    XDevice*            /* dev */,
+    Window              /* grab_win */,
+    int                 /* device_mode */,
+    Bool                /* ownerEvents */,
+    Window              /* confineTo */,
+    Cursor              /* cursor */,
+    int                 /* event_count */,
+    XEventClass*        /* event_list */,
+    int                 /* generic_event_count */,
+    XGenericEventMask*  /* generic_events */
+);
+
+extern Status   XExtendedUngrabDevice(
+    Display*            /* dpy */,
+    XDevice*            /* dev */);
 
 _XFUNCPROTOEND
 

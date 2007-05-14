@@ -178,6 +178,7 @@ struct tmask
 #define X_GetPairedPointer              46
 #define X_XiSelectEvent                 47
 #define X_FakeDeviceData                48
+#define X_ExtendedGrabDevice            49
 
 /*********************************************************
  *
@@ -1747,6 +1748,46 @@ typedef struct {
     CARD16      pad1;
 } xFakeDeviceDataReq;
 
+
+/************************************************************
+ *
+ * ExtendedGrabDevice.
+ *
+ * This is a grab request to acommodate GE events.
+ * Event is followed by (event_count * XEventClass) bytes, followed by
+ * (ge_event_masks * GenericEventMask) bytes.
+ * 
+ */
+
+typedef struct {
+    CARD8       reqType;        /* input extension major opcode */
+    CARD8       ReqType;        /* always X_ExtendedGrabDevice  */
+    CARD16      length B16;
+    CARD32      grab_window B32;
+    Time        time B32;
+    CARD8       ungrab;        /* True if request is Ungrab request */
+    CARD8       device_mode;    /* GrabModeSync or GrabModeAsync */
+    BOOL        owner_events;
+    CARD8       deviceid;
+    Window      confine_to B32;
+    Cursor      cursor B32;
+    CARD16      event_count B16;
+    CARD16      generic_event_count B16;
+} xExtendedGrabDeviceReq;
+
+typedef struct {
+    CARD8 	repType;  	/* X_Reply 			*/
+    CARD8 	RepType;        /* always X_ExtendedGrabDevice  */
+    CARD16 	sequenceNumber B16;
+    CARD32 	length B32;  /* 0 */
+    CARD8 	status;
+    BYTE	pad1, pad2, pad3;
+    CARD32 	pad01 B32;
+    CARD32 	pad02 B32;
+    CARD32 	pad03 B32;
+    CARD32 	pad04 B32;
+    CARD32 	pad05 B32;
+} xExtendedGrabDeviceReply;
 
 
 /**********************************************************
