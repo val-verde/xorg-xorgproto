@@ -1991,13 +1991,14 @@ typedef struct
 /**********************************************************
  *
  * deviceEnterNotify.
- *
+ * This has a slightly different layout than the core event.
+ * 
  */
 
 typedef struct
     {
     BYTE 	type;
-    CARD8       deviceid;
+    BYTE        detail;
     CARD16 	sequenceNumber B16;
     Time        time B32;
     Window      root B32;
@@ -2009,7 +2010,7 @@ typedef struct
     INT16       eventY B16;
     KeyButMask  state B16;
     BYTE        mode;
-    BYTE        flags;
+    CARD8       deviceid;
     }  deviceEnterNotify;
 
 typedef deviceEnterNotify deviceLeaveNotify;
