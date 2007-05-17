@@ -540,6 +540,8 @@ typedef struct {
     Display       *display;     /* Display the event was read from */
     int           extension;    /* XI extension offset */
     int           evtype;       /* XI_RawDeviceEvent */
+    int           event_type;   /* MotionNotify, ButtonPress or
+                                   ButtonRelease*/
     int           deviceid; 
     int           buttons;
     int           num_valuators;

@@ -2080,7 +2080,9 @@ typedef struct
     CARD8       num_valuators;
     CARD8       first_valuator;
     CARD8       deviceid;
-    CARD16      pad1;
+    CARD8       event_type;                     /* one of MotionNotify, 
+                                                  ButtonPress, ButtonRelase */
+    CARD8       pad0;
     CARD32      valuator0 B32;
     CARD32      valuator1 B32;
     CARD32      valuator2 B32;
