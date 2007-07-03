@@ -1,6 +1,6 @@
 		         Composite Extension
 			     Version 0.4
-			      2007-4-17
+			      2007-7-3
 			    Keith Packard
 			  keithp@keithp.com
 			    Deron Johnson
@@ -33,6 +33,9 @@ both early prototypes and the final design include:
 
  +	Deron Johnson for the Looking Glass implementation and
  	a prototype of the coordinate transformation mechanism.
+
+ +	Ryan Lortie for helping figure out reasonable parent clipping
+ 	semantics in the presense of manual redirected children.
 
 3. Architecture
 
@@ -129,11 +132,16 @@ redefine its input region, but the specific arbitration rules followed
 by these clients is not defined by this specification; these policies
 should be defined by the clients themselves.
 
-3.3 Coordinate transform redirection
+3.3 Clipping semantics redefined
 
-Version 0.4 of the protocol adds the coordinate transformation redirection
-portions of the protocol which externalize the relationship between
-parent and child positions with respect to pointer coordinates.
+Version 0.4 of the protocol changes the semantics of clipping in the
+presense of manual redirect children. In version 0.3, a parent was always
+clipped to child windows, independent of the kind of redirection going on.
+With version 0.4, the parent is no longer clipped to child windows which are
+manually redirected. This means the parent can draw in the child region without using
+IncludeInferiors mode, and (perhaps more importantly), it will receive
+expose events in those regions caused by other actions. This new behaviour
+is not selectable.
 
 4. Errors
 
@@ -146,34 +154,6 @@ The composite extension does not define any new errors.
 	CompositeCoordinate
 		child:			Window
 		x, y:			CARD16
-
-6. Events
-
-Version 0.4 of the Composite protocol defines one new event
-
-    TransformCoordinateNotify
-    
-		subtype:		COORDINATEEVENT
-		window:			Window
-		child:			Window
-		time:			Timestamp
-		serialNumber:		CARD32
-		count:			CARD32
-		x, y:			INT16
-	
-	This event is delivered to the client requesting for coordinate
-	redirection for 'window'. 'x' and 'y' are a location in 'child' if
-	not None, else in 'window'. 'time' is the time of any related
-	pointer event. 'serialNumber' serves to sequence transformations.
-	'count' indicates the number of events still to be delivered for
-	'window' to satisfy a particular operation within the server
-
-	The client must respond to this event with a suitable
-	TransformCoordinate request that includes matching 'window', 'child'
-	and serialNumber fields.
-
-	'serialNumber' may be repeated in multiple events, indicating that
-	the server needs to redo the same transformation for some reason.
 
 7. Extension Initialization
 

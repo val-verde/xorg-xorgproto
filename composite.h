@@ -49,7 +49,7 @@
 
 #define COMPOSITE_NAME				"Composite"
 #define COMPOSITE_MAJOR				0
-#define COMPOSITE_MINOR				3
+#define COMPOSITE_MINOR				4
 
 #define CompositeRedirectAutomatic		0
 #define CompositeRedirectManual			1
@@ -63,13 +63,9 @@
 #define X_CompositeNameWindowPixmap		6
 #define X_CompositeGetOverlayWindow             7
 #define X_CompositeReleaseOverlayWindow         8
-#define X_CompositeRedirectCoordinate		9
-#define X_CompositeTransformCoordinate		10
 
-#define CompositeNumberRequests	    (X_CompositeTransformCoordinate + 1)
+#define CompositeNumberRequests	    (X_CompositeReleaseOverlayWindow + 1)
 
-#define CompositeTransformCoordinateNotify    	0
-
-#define CompositeNumberEvents			1
+#define CompositeNumberEvents			0
 
 #endif /* _COMPOSITE_H_ */
