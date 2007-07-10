@@ -1346,7 +1346,7 @@ extern Status   XChangePointerKeyboardPairing(
 extern Bool   XGetPairedPointer(
     Display*        /* display */,
     XDevice*        /* keyboard */,
-    int*            /* deviceid */
+    XID*            /* deviceid */
 );
 
 extern Bool     XRegisterPairingClient(
@@ -1380,14 +1380,14 @@ extern Bool     XChangeAccessRule(
 extern Status   XPermitDevices(
     Display*            /* display */,
     Window              /* win */,
-    char*               /* deviceids */,
+    XID*                /* deviceids */,
     int                 /* ndevices */
 );
 
 extern Status   XDenyDevices(
     Display*            /* display */,
     Window              /* win */,
-    char*               /* deviceids */,
+    XID*                /* deviceids */,
     int                 /* ndevices */
 );
 
@@ -1395,9 +1395,9 @@ extern Status   XQueryWindowAccess(
     Display*            /* dpy */,
     Window              /* win */,
     int*                /* rule */,
-    char**               /* permdevices */,
+    XID**               /* permdevices */,
     int*                /* nperm */,
-    char**               /* denydevices */,
+    XID**               /* denydevices */,
     int*                /* ndeny */
 );
 
@@ -1410,7 +1410,7 @@ extern Status   XSetClientPointer(
 extern Bool     XGetClientPointer(
     Display*            /* dpy */,
     Window              /* win */,
-    int*                /* deviceid */
+    XID*                /* deviceid */
 );
 
 extern Status   XiSelectEvent(
