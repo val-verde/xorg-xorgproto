@@ -7,4 +7,4 @@ config.status
 configure
 install-sh
 missing
-xf86vidmodeproto.pc
+xf86vidmodeproto.pc*~
