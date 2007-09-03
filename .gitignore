@@ -8,3 +8,4 @@ configure
 install-sh
 missing
 xineramaproto.pc
+*~
