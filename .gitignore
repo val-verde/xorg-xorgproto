@@ -8,3 +8,4 @@ configure
 install-sh
 missing
 scrnsaverproto.pc
+*~
