@@ -254,8 +254,8 @@ typedef struct _xDeviceInfo {
     CARD32	type B32;
     CARD8	id;
     CARD8 	num_classes;
-    CARD8 	use;
-    CARD8 	pad1;
+    CARD8 	use;      /* IsXPointer | IsXKeyboard | IsXExtension... */
+    CARD8 	attached; /* id of master dev (if IsXExtension..) */
     } xDeviceInfo;
 
 typedef struct _xKeyInfo *xKeyInfoPtr;

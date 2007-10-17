@@ -199,6 +199,7 @@ SOFTWARE.
 #define XKEYBOARD		1
 
 #define UseXKeyboard		0xFF
+#define IsFloating              (1 << 7)
 
 #define IsXPointer		0
 #define IsXKeyboard		1
