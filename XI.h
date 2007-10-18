@@ -159,6 +159,7 @@ SOFTWARE.
 #define XInput_Add_XSetDeviceValuators	3
 #define XInput_Add_XChangeDeviceControl	4
 #define XInput_Add_DevicePresenceNotify	5
+#define XInput_2                        6
 
 #define XI_Absent		0
 #define XI_Present		1
@@ -178,8 +179,8 @@ SOFTWARE.
 #define XI_Add_DevicePresenceNotify_Major	1
 #define XI_Add_DevicePresenceNotify_Minor	4
 
-#define XI_Add_MPX_Major                        1
-#define XI_Add_MPX_Minor                        5
+#define XI_2_Major                              2
+#define XI_2_Minor                              0
 
 #define DEVICE_RESOLUTION	1
 #define DEVICE_ABS_CALIB        2
