@@ -255,6 +255,7 @@ SOFTWARE.
 #define ProximityClass  	4
 #define FocusClass  		5
 #define OtherClass  		6
+#define AttachClass             7
 
 #define KbdFeedbackClass  	0
 #define PtrFeedbackClass  	1
