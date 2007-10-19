@@ -168,7 +168,7 @@ struct tmask
 #define X_QueryDevicePointer            36
 #define X_WarpDevicePointer             37
 #define X_ChangeDeviceCursor            38
-#define X_ChangePointerKeyboardPairing  39
+#define X_ChangeDeviceHierarchy         39
 #define X_RegisterPairingClient         40
 #define X_GrabAccessControl             41
 #define X_ChangeWindowAccess            42
@@ -1513,18 +1513,58 @@ typedef struct {
 
 /**********************************************************
  *
- * ChangePointerKeyboardPairing.
+ * ChangeDeviceHierarchy
  *
  */
 
 typedef struct {
     CARD8       reqType;        /* input extension major code */
-    CARD8       ReqType;        /* always X_ChangePointerKeyboardPairing */
+    CARD8       ReqType;        /* always X_ChangeDeviceHierarchy */
     CARD16      length B16;
-    CARD8       pointer;        /* ID of pointer devices */
-    CARD8       keyboard;       /* ID of keyboard device */               
-    CARD16      pad0;
-} xChangePointerKeyboardPairingReq;
+    CARD8       num_changes;
+    CARD8       pad0;
+    CARD16      pad1 B16;
+} xChangeDeviceHierarchyReq;
+
+typedef struct {
+    CARD16      type    B16;
+    CARD16      length  B16;     /* in bytes */
+} xAnyHierarchyChangeInfo;
+
+/* Create a new master device. 
+ * Name of new master follows struct (4-byte padded)
+ */
+typedef struct {
+    CARD16      type    B16;       /* Always CH_CreateMasterDevice */
+    CARD16      length  B16;       /* 8 + (namelen + padding) */
+    CARD16      namelen;
+    CARD8       sendCore;
+    CARD8       enable;
+} xCreateMasterInfo;
+
+/* Delete a master device. Will automatically delete the master device paired
+ * with the given master device. 
+ */
+typedef struct {
+    CARD16      type    B16;     /* Always CH_RemoveMasterDevice */
+    CARD16      length  B16;     /* 8 */
+    CARD8       deviceid;
+    CARD8       returnMode;     /* AttachToMaster, Floating */
+    CARD8       returnPointer;  /* Pointer to attach slave ptr devices to */
+    CARD8       returnKeyboard; /* keyboard to attach slave keybd devices to*/
+} xRemoveMasterInfo;
+
+/* Change a device's attachment. 
+ * NewMaster has to be of same type (pointer->pointer, keyboard->keyboard);
+ */
+typedef struct {
+    CARD16      type    B16;     /* Always CH_ChangeAttachment */
+    CARD16      length  B16;     /* 8 */
+    CARD8       deviceid;
+    CARD8       changeMode;     /* AttachToMaster, Floating */
+    CARD8       newMaster;      /* id of new master device */
+    CARD8       pad0;
+} xChangeAttachmentInfo;
 
 /**********************************************************
  *

@@ -114,7 +114,7 @@ SOFTWARE.
 #define sz_xQueryDevicePointerReply             32
 #define sz_xWarpDevicePointerReq                28
 #define sz_xChangeDeviceCursorReq               16
-#define sz_xChangePointerKeyboardPairingReq     8
+#define sz_xChangeDeviceHierarchyReq            8
 #define sz_xRegisterPairingClientReq            8
 #define sz_xRegisterPairingClientReply          32 
 #define sz_xGrabAccessControlReq                8
@@ -294,12 +294,23 @@ SOFTWARE.
 #define WindowAccessClearAll \
     WindowAccessClearPerm | WindowAccessClearDeny | WindowAccessClearRule
 
+/* Device presence notify states */
 #define DeviceAdded              0
 #define DeviceRemoved            1
 #define DeviceEnabled            2
 #define DeviceDisabled           3
 #define DeviceUnrecoverable      4  
 
+
+/* ChangeHierarchy constants */
+#define CH_CreateMasterDevice    1
+#define CH_RemoveMasterDevice    2
+#define CH_ChangeAttachment      3
+
+#define AttachToMaster           1
+#define Floating                 2
+
+/* XI Errors */
 #define XI_BadDevice	0
 #define XI_BadEvent	1
 #define XI_BadMode	2

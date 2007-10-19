@@ -1018,6 +1018,37 @@ typedef struct {
     char        	buttons[32];
 } XButtonState;
 
+
+/*******************************************************************
+ * 
+ */
+
+typedef struct {
+    int                 type;
+} XAnyHierarchyChangeInfo;
+
+typedef struct {
+    int                 type;
+    char*               name;
+    Bool                sendCore;
+    Bool                enable;
+} XCreateMasterInfo;
+
+typedef struct {
+    int                 type;
+    XDevice*            device;
+    int                 returnMode; /* AttachToMaster, Floating */
+    XDevice*            returnPointer;
+    XDevice*            returnKeyboard;
+} XRemoveMasterInfo;
+
+typedef struct {
+    int                 type;
+    XDevice*            device;
+    int                 changeMode; /* AttachToMaster, Floating */
+    XDevice*            newMaster;                    
+} XChangeAttachmentInfo;
+
 /*******************************************************************
  *
  * Function definitions.
@@ -1354,10 +1385,10 @@ extern Status   XUndefineDeviceCursor(
     Window              /* win */
 );
 
-extern Status   XChangePointerKeyboardPairing(
+extern Status   XChangeDeviceHierarchy(
     Display*            /* display */,
-    XDevice*            /* pointer */,
-    XDevice*            /* keyboard*/
+    int                 /* num_changes */,
+    XAnyHierarchyChangeInfo**  /* changes*/
 );
 
 extern Bool   XGetPairedPointer(
