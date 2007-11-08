@@ -496,10 +496,8 @@ typedef XDeviceCrossingEvent XDeviceLeaveWindowEvent;
 typedef XDeviceCrossingEvent XDeviceEnterWindowEvent;
 
 /*
- * Notifies the client that a mouse/keyboard mapping has changed. A mouse may
- * have several keyboards mapped to it, but a keyboard can only map to one
- * mouse.
- * Keyboard events will follow the focus of the given mouse.
+ * Notifies the client that the device hierarchy has been changed. The client
+ * is expected to re-query the server for the device hierarchy.
  */
 typedef struct {
     int           type;         /* GenericEvent */
@@ -507,27 +505,9 @@ typedef struct {
     Bool          send_event;   /* true if this came from a SendEvent request */
     Display       *display;     /* Display the event was read from */
     int           extension;    /* XI extension offset */
-    int           evtype;       /* PointerKeyboardPairingCHangedNotify */
+    int           evtype;       /* XI_DeviceHierarchyChangedNotify */
     Time          time;
-    XID           pointerid;    /* pointer deviceid */
-    XID           keyboardid;   /* keyboard deviceid */
-} XPointerKeyboardPairingChangedNotifyEvent;
-
-
-/*
- * XRandomStringEvent.
- * FOR TESTING ONLY. DO NOT USE.
- */
-
-typedef struct {
-    int            type;        /* GenericEvent */
-    unsigned long serial;       /* # of last request processed by server */
-    Bool          send_event;   /* true if this came from a SendEvent request */
-    Display       *display;     /* Display the event was read from */
-    int           extension;    /* XI extension offset */
-    int           evtype;       /* RandomStringEvent */
-    char*         string;
-} XRandomStringEvent;
+} XDeviceHierarchyChangedEvent;
 
 /*
  * RawDeviceEvent. 

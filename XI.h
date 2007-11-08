@@ -318,9 +318,8 @@ SOFTWARE.
 #define XI_BadClass	4
 
 /* GE masks */
-#define XI_PointerKeyboardPairingChangedMask (1 << 0)
-#define XI_RandomStringMask                  (1 << 1)
-#define XI_RawDeviceEventMask                (1 << 2)
+#define XI_DeviceHierarchyChangedMask  (1 << 0)
+#define XI_RawDeviceEventMask          (1 << 2)
 
 
 /* Make XEventClass be a CARD32 for 64 bit servers.  Don't affect client

@@ -119,8 +119,7 @@ struct tmask
 #define XI_DeviceLeaveNotify            17
 
 /* GE events */
-#define XI_PointerKeyboardPairingChangedNotify 0
-#define XI_RandomStringEvent                   1
+#define XI_DeviceHierarchyChangedNotify        0
 #define XI_RawDeviceEvent                      2
 
 
@@ -2079,29 +2078,6 @@ typedef struct
     }  pairingChangedNotify;
 
 
-/**********************************************************
- *
- * RandomStringEvent.
- * GE event, != 32 bytes.
- *
- * FOR TESTING, DO NOT USE THIS.
- */
-
-typedef struct 
-    {
-    BYTE        type;                          /* always GenericEvent */
-    BYTE        extension;                     /* XI extension offset */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    CARD16      evtype B16;                     /* XI_RandomStringEvent */
-    CARD16      slen B16;
-    CARD32      pad1 B32;
-    CARD32      pad2 B32;
-    CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-    } randomStringEvent;
-
 /*********************************************************
  * RawDeviceEvent.
  * 
@@ -2129,6 +2105,29 @@ typedef struct
     CARD32      valuator2 B32;
     CARD32      valuator3 B32;
     } rawDeviceEvent;
+
+
+/*********************************************************
+ * DeviceHierarchyChangedEvent.
+ * 
+ * Intended as a notification event only, the client is expected to query the
+ * server for input devices after receipt of this event.
+ */
+
+typedef struct 
+    {
+    BYTE        type;                          /* always GenericEvent */
+    BYTE        extension;                     /* XI extension offset */
+    CARD16      sequenceNumber B16;
+    CARD32      length B32;
+    CARD16      evtype B16;                     /* XI_DeviceHierarchyChangedNotify */
+    CARD16      pad0 B16;
+    CARD32      time B32;
+    CARD32      pad2 B32;
+    CARD32      pad3 B32;
+    CARD32      pad4 B32;
+    CARD32      pad5 B32;
+    } deviceHierarchyChangedEvent;
 
 
 #undef Window
