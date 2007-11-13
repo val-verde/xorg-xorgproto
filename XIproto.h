@@ -120,6 +120,7 @@ struct tmask
 
 /* GE events */
 #define XI_DeviceHierarchyChangedNotify        0
+#define XI_DeviceClassesChangedNotify          1
 #define XI_RawDeviceEvent                      2
 
 
@@ -2128,6 +2129,34 @@ typedef struct
     CARD32      pad4 B32;
     CARD32      pad5 B32;
     } deviceHierarchyChangedEvent;
+
+/*********************************************************
+ * DeviceClassesChangedEvent
+ *
+ * Send whenever a master device changes classes (due to another slave device
+ * sending events).
+ *
+ * Event is followed by the same type of class list as used in the
+ * ListInputDevices request.
+ */
+
+typedef struct
+    {
+    BYTE        type;                /* always GenericEvent */
+    BYTE        extension;           /* XI extension offset */
+    CARD16      sequenceNumber B16;
+    CARD32      length B32;
+    CARD16      evtype B16;          /* XI_DeviceClassesChangedNotify */
+    CARD8       deviceid;            /* id of master */
+    CARD8       new_slave;           /* id of new slave */
+    CARD32      time B32;
+    CARD8       num_classes;
+    CARD8       pad0;
+    CARD16      pad1 B16;
+    CARD32      pad2 B32;
+    CARD32      pad4 B32;
+    CARD32      pad5 B32;
+    } deviceClassesChangedEvent;
 
 
 #undef Window

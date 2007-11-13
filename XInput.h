@@ -186,6 +186,8 @@ extern "C" {
 
 #define DeviceBusy(dpy,error) _xidevicebusy(dpy, &error)
 
+typedef struct _XAnyClassinfo *XAnyClassPtr;
+
 /***************************************************************
  *
  * DeviceKey events.  These events are sent by input devices that
@@ -510,7 +512,26 @@ typedef struct {
 } XDeviceHierarchyChangedEvent;
 
 /*
- * RawDeviceEvent. 
+ * Notifies the client that the classes have been changed. This happens when
+ * the slave device that sends through the master changes.
+ */
+typedef struct {
+    int           type;         /* GenericEvent */
+    unsigned long serial;       /* # of last request processed by server */
+    Bool          send_event;   /* true if this came from a SendEvent request */
+    Display       *display;     /* Display the event was read from */
+    int           extension;    /* XI extension offset */
+    int           evtype;       /* XI_DeviceHierarchyChangedNotify */
+    Time          time;
+    XID           deviceid;     /* id of the device that changed */
+    XID           slaveid;      /* id of the slave device that caused the
+                                   change */
+    int           num_classes;
+    XAnyClassPtr  inputclassinfo; /* same as in XDeviceInfo */
+} XDeviceClassesChangedEvent;
+
+/*
+ * RawDeviceEvent.
  * Data as received directly from the device.
  */
 typedef struct {
@@ -522,7 +543,7 @@ typedef struct {
     int           evtype;       /* XI_RawDeviceEvent */
     int           event_type;   /* MotionNotify, ButtonPress or
                                    ButtonRelease*/
-    int           deviceid; 
+    XID           deviceid;
     int           buttons;
     int           num_valuators;
     int           first_valuator;
@@ -798,8 +819,6 @@ typedef struct {
  * the input device.
  *
  */
-
-typedef struct _XAnyClassinfo *XAnyClassPtr;
 
 typedef struct _XAnyClassinfo {
 #if defined(__cplusplus) || defined(c_plusplus)

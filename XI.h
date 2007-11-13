@@ -319,6 +319,7 @@ SOFTWARE.
 
 /* GE masks */
 #define XI_DeviceHierarchyChangedMask  (1 << 0)
+#define XI_DeviceClassesChangedMask    (1 << 1)
 #define XI_RawDeviceEventMask          (1 << 2)
 
 
