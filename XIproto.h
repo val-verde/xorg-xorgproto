@@ -169,7 +169,6 @@ struct tmask
 #define X_WarpDevicePointer             37
 #define X_ChangeDeviceCursor            38
 #define X_ChangeDeviceHierarchy         39
-#define X_RegisterPairingClient         40
 #define X_GrabAccessControl             41
 #define X_ChangeWindowAccess            42
 #define X_QueryWindowAccess             43
@@ -1566,35 +1565,6 @@ typedef struct {
     CARD8       pad0;
 } xChangeAttachmentInfo;
 
-/**********************************************************
- *
- * RegisterPairingClient.
- *
- */
-
-typedef struct {
-    CARD8       reqType;        /* input extension major code */
-    CARD8       ReqType;        /* always X_RegisterPairingClient */
-    CARD16      length B16;
-    CARD8       disable;        /* True to disable registration */
-    CARD8       pad0;
-    CARD16      pad1 B16;
-} xRegisterPairingClientReq;
-
-typedef struct {
-    CARD8       repType;        /* input extension major code */
-    CARD8       RepType;        /* always X_RegisterPairingClient */
-    CARD16 	sequenceNumber B16;
-    CARD32      length B32;     /* 0 */
-    CARD8       success;        /* True on success, false otherwise */
-    CARD8       pad0;
-    CARD16      pad1 B16;
-    CARD32      pad2 B32;
-    CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-    CARD32      pad6 B32;
-} xRegisterPairingClientReply;
 
 /**********************************************************
  *

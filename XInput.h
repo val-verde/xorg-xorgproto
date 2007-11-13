@@ -1396,14 +1396,6 @@ extern Bool   XGetPairedPointer(
     XID*            /* deviceid */
 );
 
-extern Bool     XRegisterPairingClient(
-    Display*            /* display */
-);
-
-extern Bool     XUnregisterPairingClient(
-    Display*            /* display */
-);
-
 extern Bool     XGrabAccessControl(
     Display*            /* display */
 );
