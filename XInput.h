@@ -477,9 +477,9 @@ typedef struct {
     Bool          send_event;   /* true if this came from a SendEvent request */
     Display       *display;     /* Display the event was read from */
     Window window;	        /* "event" window reported relative to */
+    XID deviceid;
     Window root;	        /* root window that the event occurred on */
     Window subwindow;	        /* child window */
-    XID deviceid;
     Time time;		        /* milliseconds */
     int x, y;		        /* pointer x, y coordinates in event window */
     int x_root, y_root;	        /* coordinates relative to root */
