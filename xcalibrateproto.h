@@ -78,6 +78,31 @@ typedef struct {
 
 #define sz_xXCalibrateRawModeReply	32
 
+typedef struct {
+    CARD8   reqType;
+    CARD8   xCalibrateReqType;
+    CARD16  length B16;
+    CARD32  x B32;
+    CARD32  y B32;
+} xXCalibrateScreenToCoordReq;
+
+#define sz_xXCalibrateScreenToCoordReq	12
+
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    BYTE    pad1;
+    CARD16  sequenceNumber B16;
+    CARD32  x;
+    CARD32  y;
+    CARD32  pad2 B32;
+    CARD32  pad3 B32;
+    CARD32  pad4 B32;
+    CARD32  pad5 B32;
+    CARD32  pad6 B32;
+} xXCalibrateScreenToCoordReply;
+
+#define sz_xXCalibrateScreenToCoordReply	32
+
 /* Events */
 
 typedef struct {

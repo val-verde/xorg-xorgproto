@@ -26,13 +26,14 @@
 #define XCALIBRATEWIRE_H
 
 #define XCALIBRATE_MAJOR_VERSION 0
-#define XCALIBRATE_MINOR_VERSION 0
+#define XCALIBRATE_MINOR_VERSION 1
 #define XCALIBRATE_NAME "XCALIBRATE"
 
 #define X_XCalibrateQueryVersion		0
 #define X_XCalibrateRawMode			1
+#define X_XCalibrateScreenToCoord		2
 
-#define XCalibrateNumberRequests		(X_XCalibrateSetRawMode + 1)
+#define XCalibrateNumberRequests		(X_XCalibrateScreenToCoord + 1)
 
 #define X_XCalibrateRawTouchscreen		0
 
