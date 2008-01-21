@@ -52,7 +52,7 @@ SOFTWARE.
 #ifndef _XI_H_
 #define _XI_H_
 
-#include <X11/X.h> /* CARD32 */
+#include <X11/Xmd.h> /* CARD32 */
 
 #define sz_xGetExtensionVersionReq		8
 #define sz_xGetExtensionVersionReply		32
