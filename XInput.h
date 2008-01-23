@@ -1455,6 +1455,7 @@ extern Bool     XGetClientPointer(
 extern Status   XiSelectEvent(
     Display*            /* dpy */,
     Window              /* win */,
+    XDevice*            /* dev */,
     Mask                /* mask */
 );
 

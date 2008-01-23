@@ -1734,6 +1734,9 @@ typedef struct {
     CARD16      length B16;
     Window      window B32;     /* window to be changed */
     Mask        mask B32;       /* mask to be applied */
+    CARD8       deviceid;
+    CARD8       pad0;
+    CARD16      pad1 B16;
 } xXiSelectEventReq;
 
 
