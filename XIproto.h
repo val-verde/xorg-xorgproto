@@ -121,7 +121,6 @@ struct tmask
 /* GE events */
 #define XI_DeviceHierarchyChangedNotify        0
 #define XI_DeviceClassesChangedNotify          1
-#define XI_RawDeviceEvent                      2
 
 
 /*********************************************************
@@ -2027,35 +2026,6 @@ typedef struct
     }  deviceEnterNotify;
 
 typedef deviceEnterNotify deviceLeaveNotify;
-
-
-/*********************************************************
- * RawDeviceEvent.
- * 
- * GE event, may be larger than 32 bytes. If length is > 0, then the event is
- * followed by (length * CARD32) fields denoting the values of valuator4 to 
- * valuator(num_valuators-1).
- */
-
-typedef struct 
-    {
-    BYTE        type;                          /* always GenericEvent */
-    BYTE        extension;                     /* XI extension offset */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    CARD16      evtype B16;                     /* XI_RawDeviceEvent */
-    CARD8       buttons;
-    CARD8       num_valuators;
-    CARD8       first_valuator;
-    CARD8       deviceid;
-    CARD8       event_type;                     /* one of MotionNotify, 
-                                                  ButtonPress, ButtonRelase */
-    CARD8       pad0;
-    CARD32      valuator0 B32;
-    CARD32      valuator1 B32;
-    CARD32      valuator2 B32;
-    CARD32      valuator3 B32;
-    } rawDeviceEvent;
 
 
 /*********************************************************
