@@ -1354,8 +1354,7 @@ extern Bool     XQueryDevicePointer(
     int*                /* root_y */,
     int*                /* win_x */,
     int*                /* win_y */,
-    unsigned int*       /* mask */,
-    Bool*               /* shared */
+    unsigned int*       /* mask */
 );
 
 extern Bool     XWarpDevicePointer(

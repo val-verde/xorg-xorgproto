@@ -1465,7 +1465,7 @@ typedef struct {
     INT16       winY B16;
     CARD16      mask B16;
     BYTE        sameScreen;
-    BYTE        shared; /* sharing the core cursor? */ 
+    BYTE        pad;
     CARD32      pad0 B32;
 } xQueryDevicePointerReply;
 
