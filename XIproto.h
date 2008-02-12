@@ -2028,29 +2028,6 @@ typedef struct
 
 typedef deviceEnterNotify deviceLeaveNotify;
 
-/**********************************************************
- *
- * pairingChangedNotify.
- *
- */
-
-typedef struct
-    {
-    BYTE 	type;                   /* always GenericEvent */
-    BYTE        extension;              /* Xi extension offset */
-    CARD16 	sequenceNumber B16;
-    CARD32      length B32;
-    CARD16      evtype B16;
-    CARD32      time B32;
-    CARD8       pointer;
-    CARD8       keyboard;
-    CARD16      pad0;
-    CARD32      pad1;
-    CARD32      pad2;
-    CARD32      pad3;
-    CARD32      pad4;
-    }  pairingChangedNotify;
-
 
 /*********************************************************
  * RawDeviceEvent.

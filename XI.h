@@ -276,7 +276,6 @@ SOFTWARE.
 #define _noExtensionEvent	 9
 
 #define _devicePresence		 0
-#define _pairingChanged          1
 
 #define _deviceEnter             0
 #define _deviceLeave             1
