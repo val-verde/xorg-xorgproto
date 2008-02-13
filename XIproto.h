@@ -168,14 +168,12 @@ struct tmask
 #define X_WarpDevicePointer             37
 #define X_ChangeDeviceCursor            38
 #define X_ChangeDeviceHierarchy         39
-#define X_GrabAccessControl             41
 #define X_ChangeWindowAccess            42
 #define X_QueryWindowAccess             43
 #define X_SetClientPointer              44
 #define X_GetClientPointer              45
 #define X_GetPairedPointer              46
 #define X_XiSelectEvent                 47
-#define X_FakeDeviceData                48
 #define X_ExtendedGrabDevice            49
 
 /*********************************************************
@@ -1567,36 +1565,6 @@ typedef struct {
 
 /**********************************************************
  *
- * GrabAccessControl.
- *
- */
-
-typedef struct {
-    CARD8       reqType;        /* input extension major code */
-    CARD8       ReqType;        /* always X_GrabAccessControl */
-    CARD16      length B16;     
-    BOOL        ungrab;         /* true if request is ungrab request */
-    CARD8       pad0, pad1, pad2;
-} xGrabAccessControlReq;
-
-typedef struct {
-    CARD8       repType;        /* input extension major code */
-    CARD8       RepType;        /* always X_GrabAccessControl */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    CARD8       success;
-    CARD8       pad0,
-                pad1,
-                pad2;
-    CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-    CARD32      pad6 B32;
-    CARD32      pad7 B32;
-} xGrabAccessControlReply; 
-
-/**********************************************************
- *
  * ChangeWindowAccess.
  *
  */
@@ -1737,28 +1705,6 @@ typedef struct {
     CARD8       pad0;
     CARD16      pad1 B16;
 } xXiSelectEventReq;
-
-
-/**********************************************************
- *
- * FakeDeviceData.
- *
- * Followed by num_valuators * CARD32 fields that represent valuator data.
- *
- */
-
-typedef struct {
-    CARD8       reqType;        /* input extension major opcode */ 
-    CARD8       ReqType;        /* always X_XiSelectEvent */
-    CARD16      length B16;
-    CARD8       type;
-    CARD8       buttons;
-    CARD8       num_valuators;
-    CARD8       first_valuator;
-    CARD8       deviceid;
-    CARD8       pad0;
-    CARD16      pad1;
-} xFakeDeviceDataReq;
 
 
 /************************************************************

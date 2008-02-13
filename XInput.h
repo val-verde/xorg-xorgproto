@@ -1375,14 +1375,6 @@ extern Bool   XGetPairedPointer(
     XID*            /* deviceid */
 );
 
-extern Bool     XGrabAccessControl(
-    Display*            /* display */
-);
-
-extern Bool     XUngrabAccessControl(
-    Display*            /* display */
-);
-
 extern Bool     XWindowClearAccess(
     Display*            /* display*/,
     Window              /* win */,
@@ -1438,15 +1430,6 @@ extern Status   XiSelectEvent(
     Mask                /* mask */
 );
 
-extern Status   XFakeDeviceData(
-    Display*            /* dpy */,
-    XDevice*            /* dev */,
-    int                 /* type */,
-    int                 /* buttons */,
-    int                 /* num_valuators */,
-    int                 /* first_valuator */,
-    ValuatorData*       /* valuators */
-);
 
 extern Status   XExtendedGrabDevice(
     Display*            /* dpy */,

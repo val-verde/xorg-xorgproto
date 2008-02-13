@@ -117,8 +117,6 @@ SOFTWARE.
 #define sz_xChangeDeviceHierarchyReq            8
 #define sz_xRegisterPairingClientReq            8
 #define sz_xRegisterPairingClientReply          32 
-#define sz_xGrabAccessControlReq                8
-#define sz_xGrabAccessControlReply              32
 #define sz_xChangeWindowAccessReq               12 
 #define sz_xQueryWindowAccessReq                8
 #define sz_xQueryWindowAccessReply              32
@@ -128,7 +126,6 @@ SOFTWARE.
 #define sz_xGetPairedPointerReq                 8
 #define sz_xGetPairedPointerReply               32
 #define sz_xXiSelectEventReq                    16
-#define sz_xFakeDeviceDataReq                   12
 #define sz_xExtendedGrabDeviceReq               28
 #define sz_xExtendedGrabDeviceReply             32
 
