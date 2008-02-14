@@ -1368,8 +1368,8 @@ extern Status   XUndefineDeviceCursor(
 
 extern Status   XChangeDeviceHierarchy(
     Display*            /* display */,
-    int                 /* num_changes */,
-    XAnyHierarchyChangeInfo**  /* changes*/
+    XAnyHierarchyChangeInfo*  /* changes*/,
+    int                 /* num_changes */
 );
 
 extern Bool   XGetPairedPointer(
