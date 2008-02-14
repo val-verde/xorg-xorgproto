@@ -999,13 +999,8 @@ typedef struct {
 
 
 /*******************************************************************
- * 
+ *
  */
-
-typedef struct {
-    int                 type;
-} XAnyHierarchyChangeInfo;
-
 typedef struct {
     int                 type;
     char*               name;
@@ -1025,8 +1020,16 @@ typedef struct {
     int                 type;
     XDevice*            device;
     int                 changeMode; /* AttachToMaster, Floating */
-    XDevice*            newMaster;                    
+    XDevice*            newMaster;
 } XChangeAttachmentInfo;
+
+typedef union {
+    int                   type; /* must be first element */
+    XCreateMasterInfo     create;
+    XRemoveMasterInfo     remove;
+    XChangeAttachmentInfo change;
+} XAnyHierarchyChangeInfo;
+
 
 /*******************************************************************
  *
