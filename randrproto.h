@@ -31,6 +31,7 @@
 #define _XRANDRP_H_
 
 #include <X11/extensions/randr.h>
+#include <X11/extensions/renderproto.h>
 
 #define Window CARD32
 #define Drawable CARD32
@@ -558,6 +559,51 @@ typedef struct {
 #define sz_xRRSetCrtcGammaReq		12
 
 /*
+ * Additions for RandR 1.3
+ */
+
+typedef struct {
+    CARD8		reqType;
+    CARD8		randrReqType;
+    CARD16		length B16;
+    RRCrtc		crtc B32;
+    xRenderTransform	transform;
+    CARD32		pad0 B32;
+    xRenderTransform	inverse;
+    CARD32		pad1 B32;
+} xRRSetCrtcTransformReq;
+
+#define sz_xRRSetCrtcTransformReq	88
+
+typedef struct {
+    CARD8		reqType;
+    CARD8		randrReqType;
+    CARD16		length B16;
+    RRCrtc		crtc B32;
+} xRRGetCrtcTransformReq;
+
+#define sz_xRRGetCrtcTransformReq	8
+
+typedef struct {
+    BYTE		type;
+    CARD8		status;
+    CARD16		sequenceNumber B16;
+    CARD32		length B32;
+    xRenderTransform	pendingTransform;
+    BYTE		hasTransforms;
+    CARD8		pad0a;
+    CARD16		pad0b B16;
+    xRenderTransform	pendingInverse;
+    CARD32		pad1 B32;
+    xRenderTransform	currentTransform;
+    CARD32		pad2 B32;
+    xRenderTransform	currentInverse;
+    CARD32		pad3 B32;
+} xRRGetCrtcTransformReply;
+
+#define sz_xRRGetCrtcTransformReply	168
+
+/*
  * event
  */
 typedef struct {
@@ -598,8 +644,8 @@ typedef struct {
     CARD8 type;				/* always evBase + RRNotify */
     CARD8 subCode;			/* RRNotify_OutputChange */
     CARD16 sequenceNumber B16;
-    Time timestamp B32;			/* time crtc was changed */
-    Time configTimestamp B32;		/* time crtc was changed */
+    Time timestamp B32;			/* time output was changed */
+    Time configTimestamp B32;		/* time config was changed */
     Window window B32;			/* window requesting notification */
     RROutput output B32;		/* affected output */
     RRCrtc crtc B32;			/* current crtc */

@@ -39,11 +39,11 @@ typedef unsigned long	XRandrModeFlags;
 
 #define RANDR_NAME		"RANDR"
 #define RANDR_MAJOR		1
-#define RANDR_MINOR		2
+#define RANDR_MINOR		3
 
 #define RRNumberErrors		3
 #define RRNumberEvents		2
-#define RRNumberRequests	25
+#define RRNumberRequests	27
 
 #define X_RRQueryVersion	0
 /* we skip 1 to make old clients fail pretty immediately */
@@ -76,6 +76,15 @@ typedef unsigned long	XRandrModeFlags;
 #define X_RRGetCrtcGammaSize	    22
 #define X_RRGetCrtcGamma	    23
 #define X_RRSetCrtcGamma	    24
+
+/* V1.3 additions */
+#define X_RRSetCrtcTransform	    25
+#define X_RRGetCrtcTransform	    26
+
+#define RRTransformUnit		    (1L << 0)
+#define RRTransformScaleUp	    (1L << 1)
+#define RRTransformScaleDown	    (1L << 2)
+#define RRTransformProjective	    (1L << 3)
 
 /* Event selection bits */
 #define RRScreenChangeNotifyMask  (1L << 0)

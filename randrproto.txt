@@ -1,6 +1,6 @@
 	       The X Resize, Rotate and Reflect Extension
-			      Version 1.2
-			       2006-4-13
+			      Version 1.3
+			       2006-20-7
       
 			      Jim Gettys
 			   Jim.Gettys@hp.com
@@ -109,6 +109,13 @@ For instance, dual-link DVI gangs two CRTC outputs together to provide higher
 bandwidth for large resolution screens. This is exposed in RandR by
 requiring that nothing be connected to the second CRTC when driving a high
 resolution screen on the first.
+
+1.3 Introduction to version 1.3 of the extension
+
+Version 1.3 builds on the changes made with version 1.2 and adds some new
+capabilities without fundmentally changing the extension again. This version
+adds 'panning regions' and projective transforms, plus defines some standard
+output properties to help clients describe the systme more accurately.
 
 1.1 Acknowledgements
 
@@ -846,8 +853,10 @@ dynamic changes in the display environment.
 	'x' and 'y' indicate the position of this CRTC within the screen
 	region. They will be set to 0 when the CRTC is disabled.
 
-	'width' and 'height' indicate the size of the area presented by this
-	CRTC.
+	'width' and 'height' indicate the size of the area within the screen
+	presented by this CRTC. This may be different than the size of the
+	mode due to rotation. They will be set to 0 when the CRTC is
+	disabled.
 	
 	'mode' indicates which mode is active, or None indicating that the
 	CRTC has been disabled and is not displaying the screen contents.
@@ -968,6 +977,47 @@ dynamic changes in the display environment.
 	must be the size returned by RRGetCrtcGammaSize else a Value error
 	results.
 
+7.2. Extension Requests added in version 1.3 of the extension
+
+┌───
+    RRSetCrtcTransform
+	crtc: CRTC
+	transform: TRANSFORM
+	inverse: TRANSFORM
+└───
+	Errors: Crtc, Match
+
+This request provides a mechanism that is more general than the existing
+rotation and reflection values for describing the transformation from frame
+buffer image to crtc presentation. 'transform' is a full 2D projective
+transformations from screen coordinate space to crtc coordinate space. This
+transformation is applied before the rotation and reflection values to
+compute the complete transform. 'inverse' must be the
+multiplicative inverse of 'transform' or a Match error results.
+
+This request sets the transform to be used at the next RRSetCrtcConfig
+request execution; it does not cause any change to occur in the current
+configuration.
+
+When a non-identity transformation is in use, the rectangle returned by
+RRGetCrtcInfo defines the bounding rectangle of the screen that is projected
+to the crtc. It is this projected rectangle which must be within the area of
+the screen when the mode is set.
+
+┌───
+    RRGetCrtcTransform
+	crtc: CRTC
+      ▶
+	pending-transform: TRANSFORM
+	pending-inverse: TRANSFORM
+	current-transform: TRANSFORM
+	current-inverse: TRANSFORM
+└───
+
+This request returns the pending and current transforms for the specified
+CRTC. The pending transform will be the same as the current transform if no
+new pending transform has been set since the last call to RRSetCrtcConfig.
+
                               ❧❧❧❧❧❧❧❧❧❧❧
 
 8. Extension Events
@@ -990,12 +1040,12 @@ factors, such as re-cabling a monitor, etc.
 	configTimestamp: TIMESTAMP	time config data was changed
 	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
-	size-id: SIZEID			index of new size
+	size-id: SIZEID			index of new SCREENSIZE
 	subpixelOrder: SUBPIXELORDER	order of subpixels
-	widthInPixels: CARD16
-	heightInPixels: CARD16
-	widthInMillimeters: CARD16
-	heightInMillimeters: CARD16
+	widthInPixels: CARD16		width in pixels of the new SCREENSIZE
+	heightInPixels: CARD16		height in pixels of the new SCREENSIZE
+	widthInMillimeters: CARD16	width in mm of the new SCREENSIZE
+	heightInMillimeters: CARD16	height in mm of the new SCREENSIZE
 └───
 	This event is generated whenever the screen configuration is changed
 	and sent to requesting clients. 'timestamp' indicates when the
@@ -1020,6 +1070,13 @@ factors, such as re-cabling a monitor, etc.
 	that might occur on log-in, where many applications start up
 	just at the time when a display manager or log in script might
 	be changing the screen size or configuration.
+
+	Note that the sizes in this event reflect the new SCREENSIZE and
+	thus will appear rotated by the 'rotation' parameter from the sizes
+	of the screen itself. In other words, when rotation is 90 or 270,
+	widthInPixels in this event will be the same as the height value
+	from a ConfigureNotify that reflects the same size change. This
+	will probably confuse developers.
 
 8.1 Events added in version 1.2 of the RandR extension
 
@@ -1065,27 +1122,26 @@ factors, such as re-cabling a monitor, etc.
 ┌───
     RRCrtcChangeNotify
 	timestamp: TIMESTAMP		time monitor was changed
-	config-timestamp: TIMESTAMP	time config data was changed
-	root: WINDOW			root window of screen
 	window: WINDOW			window requesting notification
 	crtc: CRTC			CRTC which changed
 	mode: MODE			new mode
 	rotation: ROTATION;		new rotation
 	x: INT16			x position of CRTC within screen
 	y: INT16			y position of CRTC within screen
+	width: CARD16			width of new mode
+	height: CARD16			height of new mode
 └───
 	This event is generated whenever the CRTC configuration is changed
 	and sent to requesting clients. 'timestamp' indicates when the
-	CRTC configuration was changed. 'config-timestamp' says when the
-	last time the configuration was changed. 'root' is the root of the
-	screen the change occurred on, 'window' is window selecting for this
-	event.
+	CRTC configuration was changed. 'window' is window selecting for this
+	event. 'mode' is the new mode, or None if the crtc is disabled.
+	'x' and 'y' mark the location in the screen where this CRTC
+	is reading data. 'width' and 'height' indicate the size of the
+	mode. 'x', 'y, 'width' and 'height' are all zero when 'mode' is None.
 
 	This event is sent whenever the monitor's configuration changes
 	or if a new monitor configuration becomes available that was
-	not available in the past. In this case (config-timestamp in
-	the event not being equal to the config-timestamp returned in
-	the last call to RRGetCrtcModes), the client MUST call
+	not available in the past. In this case, the client MUST call
 	RRGetCrtcModes to update its view of possible monitor
 	configurations to have a correct view of possible monitor
 	organizations.
