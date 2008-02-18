@@ -279,6 +279,7 @@ SOFTWARE.
 #define WindowAccessNoRule       0
 #define WindowAccessKeepRule     1
 #define WindowAccessDenyAll      2
+#define WindowAccessAllowAll     3
 
 /* Flags for ChangeWindowAccess. */
 #define WindowAccessClearNone    0
