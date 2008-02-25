@@ -1448,10 +1448,6 @@ extern Status   XExtendedGrabDevice(
     XGenericEventMask*  /* generic_events */
 );
 
-extern Status   XExtendedUngrabDevice(
-    Display*            /* dpy */,
-    XDevice*            /* dev */);
-
 _XFUNCPROTOEND
 
 #endif /* _XINPUT_H_ */

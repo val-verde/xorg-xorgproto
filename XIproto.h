@@ -1723,10 +1723,10 @@ typedef struct {
     CARD16      length B16;
     CARD32      grab_window B32;
     Time        time B32;
-    CARD8       ungrab;        /* True if request is Ungrab request */
+    CARD8       deviceid;
     CARD8       device_mode;    /* GrabModeSync or GrabModeAsync */
     BOOL        owner_events;
-    CARD8       deviceid;
+    CARD8       pad0;
     Window      confine_to B32;
     Cursor      cursor B32;
     CARD16      event_count B16;
