@@ -1372,12 +1372,6 @@ extern Status   XChangeDeviceHierarchy(
     int                 /* num_changes */
 );
 
-extern Bool   XGetPairedPointer(
-    Display*        /* display */,
-    XDevice*        /* keyboard */,
-    XID*            /* deviceid */
-);
-
 extern Bool     XWindowClearAccess(
     Display*            /* display*/,
     Window              /* win */,

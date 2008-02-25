@@ -172,7 +172,6 @@ struct tmask
 #define X_QueryWindowAccess             43
 #define X_SetClientPointer              44
 #define X_GetClientPointer              45
-#define X_GetPairedPointer              46
 #define X_XiSelectEvent                 47
 #define X_ExtendedGrabDevice            49
 
@@ -1657,36 +1656,6 @@ typedef struct {
     CARD32      pad4 B32;
     CARD32      pad5 B32;
 } xGetClientPointerReply;
-
-/**********************************************************
- *
- * GetPairedPointer.
- *
- */
-
-typedef struct {
-    CARD8       reqType;
-    CARD8       ReqType;        /* Always X_GetPairedPointer */
-    CARD16      length B16;
-    CARD8       deviceid;
-    CARD8       pad0;
-    CARD16      pad1 B16;
-} xGetPairedPointerReq;
-
-typedef struct {
-    CARD8       repType;        /* input extension major opcode */
-    CARD8       RepType;        /* Always X_GetClientPointer */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    BOOL        paired;         /* keyboard is paired */
-    CARD8       deviceid;
-    CARD16      pad0 B16;
-    CARD32      pad1 B32;
-    CARD32      pad2 B32;
-    CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-} xGetPairedPointerReply;
 
 
 /**********************************************************
