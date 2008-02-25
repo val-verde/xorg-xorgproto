@@ -168,12 +168,12 @@ struct tmask
 #define X_WarpDevicePointer             37
 #define X_ChangeDeviceCursor            38
 #define X_ChangeDeviceHierarchy         39
-#define X_ChangeWindowAccess            42
-#define X_QueryWindowAccess             43
-#define X_SetClientPointer              44
-#define X_GetClientPointer              45
-#define X_XiSelectEvent                 47
-#define X_ExtendedGrabDevice            49
+#define X_ChangeWindowAccess            40
+#define X_QueryWindowAccess             41
+#define X_SetClientPointer              42
+#define X_GetClientPointer              43
+#define X_XiSelectEvent                 44
+#define X_ExtendedGrabDevice            45
 
 /*********************************************************
  *
