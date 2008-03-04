@@ -1461,7 +1461,7 @@ typedef struct {
     INT16       winY B16;
     CARD16      mask B16;
     BYTE        sameScreen;
-    BYTE        pad;
+    CARD8       deviceid;
     CARD32      pad0 B32;
 } xQueryDevicePointerReply;
 
