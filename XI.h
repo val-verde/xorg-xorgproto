@@ -49,6 +49,8 @@ SOFTWARE.
 #ifndef _XI_H_
 #define _XI_H_
 
+#define sz_xGetExtensionVersionReq             8
+#define sz_xGetExtensionVersionReply           32
 #define sz_xListInputDevicesReq			4
 #define sz_xListInputDevicesReply		32
 #define sz_xOpenDeviceReq			8
