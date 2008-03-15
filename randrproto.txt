@@ -984,6 +984,8 @@ dynamic changes in the display environment.
 	crtc: CRTC
 	transform: TRANSFORM
 	inverse: TRANSFORM
+	filter: STRING8
+	values: LISTofFIXED
 └───
 	Errors: Crtc, Match
 
@@ -994,6 +996,9 @@ transformations from screen coordinate space to crtc coordinate space. This
 transformation is applied before the rotation and reflection values to
 compute the complete transform. 'inverse' must be the
 multiplicative inverse of 'transform' or a Match error results.
+
+'filter' and 'values' specify a Render filter that may be used by the server
+when transforming data from frame buffer to crtc.
 
 This request sets the transform to be used at the next RRSetCrtcConfig
 request execution; it does not cause any change to occur in the current
@@ -1010,8 +1015,12 @@ the screen when the mode is set.
       ▶
 	pending-transform: TRANSFORM
 	pending-inverse: TRANSFORM
+	pending-filter: STRING8
+	pending-values: LISTofFIXED
 	current-transform: TRANSFORM
 	current-inverse: TRANSFORM
+	current-filter: STRING8
+	current-values: LISTofFIXED
 └───
 
 This request returns the pending and current transforms for the specified
