@@ -568,13 +568,11 @@ typedef struct {
     CARD16		length B16;
     RRCrtc		crtc B32;
     xRenderTransform	transform;
-    CARD32		pad0 B32;
-    xRenderTransform	inverse;
     CARD16		nbytesFilter;	/* number of bytes in filter name */
     CARD16		pad B16;
 } xRRSetCrtcTransformReq;
 
-#define sz_xRRSetCrtcTransformReq	88
+#define sz_xRRSetCrtcTransformReq	48
 
 typedef struct {
     CARD8		reqType;
@@ -592,19 +590,17 @@ typedef struct {
     CARD32		length B32;
     xRenderTransform	pendingTransform;
     BYTE		hasTransforms;
-    CARD8		pad0a;
-    CARD16		pad0 B16;
-    xRenderTransform	pendingInverse;
-    CARD16		pendingNbytesFilter B16;    /* number of bytes in filter name */
-    CARD16		pendingNparamsFilter B16;   /* number of filter params */
+    CARD8		pad0;
+    CARD16		pad1 B16;
     xRenderTransform	currentTransform;
     CARD32		pad2 B32;
-    xRenderTransform	currentInverse;
+    CARD16		pendingNbytesFilter B16;    /* number of bytes in filter name */
+    CARD16		pendingNparamsFilter B16;   /* number of filter params */
     CARD16		currentNbytesFilter B16;    /* number of bytes in filter name */
     CARD16		currentNparamsFilter B16;   /* number of filter params */
 } xRRGetCrtcTransformReply;
 
-#define sz_xRRGetCrtcTransformReply	168
+#define sz_xRRGetCrtcTransformReply	96
 
 /*
  * event

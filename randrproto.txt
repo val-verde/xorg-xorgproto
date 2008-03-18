@@ -983,7 +983,6 @@ dynamic changes in the display environment.
     RRSetCrtcTransform
 	crtc: CRTC
 	transform: TRANSFORM
-	inverse: TRANSFORM
 	filter: STRING8
 	values: LISTofFIXED
 └───
@@ -994,8 +993,7 @@ rotation and reflection values for describing the transformation from frame
 buffer image to crtc presentation. 'transform' is a full 2D projective
 transformations from screen coordinate space to crtc coordinate space. This
 transformation is applied before the rotation and reflection values to
-compute the complete transform. 'inverse' must be the
-multiplicative inverse of 'transform' or a Match error results.
+compute the complete transform.
 
 'filter' and 'values' specify a Render filter that may be used by the server
 when transforming data from frame buffer to crtc.
@@ -1014,11 +1012,9 @@ the screen when the mode is set.
 	crtc: CRTC
       ▶
 	pending-transform: TRANSFORM
-	pending-inverse: TRANSFORM
 	pending-filter: STRING8
 	pending-values: LISTofFIXED
 	current-transform: TRANSFORM
-	current-inverse: TRANSFORM
 	current-filter: STRING8
 	current-values: LISTofFIXED
 └───
