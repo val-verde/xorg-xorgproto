@@ -1,7 +1,6 @@
 inputdir = $(includedir)/X11/extensions
 input_HEADERS = \
 	XI.h \
-	XInput.h \
 	XIproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
