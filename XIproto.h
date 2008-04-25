@@ -75,6 +75,7 @@ SOFTWARE.
 
 #define IEVENTS		18
 #define IERRORS		5
+#define IREQUESTS	45
 
 #define CLIENT_REQ		1
 
