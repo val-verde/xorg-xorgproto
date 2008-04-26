@@ -182,6 +182,10 @@ struct tmask
  *
  * GetExtensionVersion.
  *
+ * For versioning support and to not break old clients, note that if nbytes is
+ * non-zero, majorVersion and minorVersion will be ignored. Otherwise, if
+ * nbytes is zero, majorVersion and minorVersion specify the version the
+ * client supports.
  */
 
 typedef struct {
@@ -189,7 +193,8 @@ typedef struct {
     CARD8 	ReqType;       /* always X_GetExtensionVersion */
     CARD16 	length B16;
     CARD16 	nbytes B16;
-    CARD8 	pad1, pad2;
+    CARD8       majorVersion;  /* As supported by client if nbytes is 0 */
+    CARD8       minorVersion;  /* As supported by client if nbytes is 0 */
 } xGetExtensionVersionReq;
 
 typedef struct {
