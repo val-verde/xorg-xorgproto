@@ -322,10 +322,8 @@ SOFTWARE.
  */
 #ifdef _XSERVER64
 typedef	unsigned int	XEventClass;
-typedef	unsigned int	ValuatorData;
 #else
 typedef	unsigned long	XEventClass;
-typedef	unsigned long	ValuatorData;
 #endif
 
 /*******************************************************************
