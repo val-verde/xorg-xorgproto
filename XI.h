@@ -1,5 +1,3 @@
-/* $Xorg: XI.h,v 1.4 2001/02/09 02:03:23 xorgcvs Exp $ */
-
 /************************************************************
 
 Copyright 1989, 1998  The Open Group
@@ -45,7 +43,6 @@ ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 SOFTWARE.
 
 ********************************************************/
-/* $XFree86: xc/include/extensions/XI.h,v 1.4 2001/01/17 17:53:16 dawes Exp $ */
 
 /* Definitions used by the server, library and client */
 
@@ -53,8 +50,8 @@ SOFTWARE.
 #define _XI_H_
 #include <X11/Xmd.h>
 
-#define sz_xGetExtensionVersionReq		8
-#define sz_xGetExtensionVersionReply		32
+#define sz_xGetExtensionVersionReq             8
+#define sz_xGetExtensionVersionReply           32
 #define sz_xListInputDevicesReq			4
 #define sz_xListInputDevicesReply		32
 #define sz_xOpenDeviceReq			8
@@ -315,13 +312,17 @@ SOFTWARE.
 #define XI_DeviceClassesChangedMask    (1 << 1)
 
 
-/* Make XEventClass be a CARD32 for 64 bit servers.  Don't affect client
+/*
+ * Make XEventClass be a CARD32 for 64 bit servers.  Don't affect client
  * definition of XEventClass since that would be a library interface change.
  * See the top of X.h for more _XSERVER64 magic.
+ *
+ * But, don't actually use the CARD32 type.  We can't get it defined here
+ * without polluting the namespace.
  */
 #ifdef _XSERVER64
-typedef	CARD32		XEventClass;
-typedef	CARD32		ValuatorData;
+typedef	unsigned int	XEventClass;
+typedef	unsigned int	ValuatorData;
 #else
 typedef	unsigned long	XEventClass;
 typedef	unsigned long	ValuatorData;
