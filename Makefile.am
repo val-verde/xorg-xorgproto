@@ -1,8 +1,7 @@
 scrnsaverdir = $(includedir)/X11/extensions
 scrnsaver_HEADERS = \
 	saver.h \
-	saverproto.h \
-	scrnsaver.h
+	saverproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = scrnsaverproto.pc
