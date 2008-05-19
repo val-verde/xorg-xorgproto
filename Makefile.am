@@ -1,8 +1,6 @@
 xineramadir = $(includedir)/X11/extensions
 xinerama_HEADERS = \
-	panoramiXext.h \
-	panoramiXproto.h \
-	Xinerama.h
+	panoramiXproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = xineramaproto.pc
