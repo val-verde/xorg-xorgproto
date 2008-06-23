@@ -376,7 +376,11 @@ typedef struct {
     Atom	type B32;
     CARD32	longOffset B32;
     CARD32	longLength B32;
+#ifdef __cplusplus
+    BOOL	_delete;
+#else
     BOOL	delete;
+#endif
     BOOL	pending;
     CARD16	pad1 B16;
 } xRRGetOutputPropertyReq;
