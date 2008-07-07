@@ -121,8 +121,17 @@ SOFTWARE.
 #define sz_xXiSelectEventReq                    16
 #define sz_xExtendedGrabDeviceReq               28
 #define sz_xExtendedGrabDeviceReply             32
+#define sz_xListDevicePropertiesReq             8
+#define sz_xListDevicePropertiesReply           32
+#define sz_xQueryDevicePropertyReq              12
+#define sz_xQueryDevicePropertyReply            32
+#define sz_xConfigureDevicePropertyReq          12
+#define sz_xChangeDevicePropertyReq             20
+#define sz_xDeleteDevicePropertyReq             12
+#define sz_xGetDevicePropertyReq                24
+#define sz_xGetDevicePropertyReply              32
 
-#define INAME 			"XInputExtension"
+#define INAME		"XInputExtension"
 
 #define XI_KEYBOARD	"KEYBOARD"
 #define XI_MOUSE	"MOUSE"
@@ -310,7 +319,7 @@ SOFTWARE.
 /* GE masks */
 #define XI_DeviceHierarchyChangedMask  (1 << 0)
 #define XI_DeviceClassesChangedMask    (1 << 1)
-
+#define XI_DevicePropertyNotifyMask    (1 << 2)
 
 /*
  * Make XEventClass be a CARD32 for 64 bit servers.  Don't affect client
