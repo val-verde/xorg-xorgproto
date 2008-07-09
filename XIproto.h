@@ -73,7 +73,7 @@ SOFTWARE.
 
 #define numInputClasses 7
 
-#define IEVENTS         8       /* does NOT include generic events */
+#define IEVENTS         18       /* does NOT include generic events */
 #define IERRORS         5
 #define IREQUESTS       51
 
