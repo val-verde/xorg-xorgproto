@@ -1434,6 +1434,7 @@ A.2.1 Protocol Requests added with version 1.2
 	2	n			length of name
 	4c	LISTofCRTC		crtcs
 	4m	LISTofMODE		modes
+	4o	LISTofOUTPUT		clones
 	n	STRING8			name
 	p				unused, p=pad(n)
 └───
