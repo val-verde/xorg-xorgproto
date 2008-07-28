@@ -303,7 +303,8 @@ SOFTWARE.
 #define DeviceRemoved            1
 #define DeviceEnabled            2
 #define DeviceDisabled           3
-#define DeviceUnrecoverable      4  
+#define DeviceUnrecoverable      4
+#define DeviceControlChanged     5
 
 
 /* ChangeHierarchy constants */
