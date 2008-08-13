@@ -107,6 +107,15 @@ SOFTWARE.
 #define sz_xGetDeviceControlReply		32
 #define sz_xChangeDeviceControlReq		8
 #define sz_xChangeDeviceControlReply		32
+#define sz_xListDevicePropertiesReq             8
+#define sz_xListDevicePropertiesReply           32
+#define sz_xQueryDevicePropertyReq              12
+#define sz_xQueryDevicePropertyReply            32
+#define sz_xConfigureDevicePropertyReq          12
+#define sz_xChangeDevicePropertyReq             20
+#define sz_xDeleteDevicePropertyReq             12
+#define sz_xGetDevicePropertyReq                24
+#define sz_xGetDevicePropertyReply              32
 #define sz_xQueryDevicePointerReq               12
 #define sz_xQueryDevicePointerReply             32
 #define sz_xWarpDevicePointerReq                28
@@ -121,15 +130,6 @@ SOFTWARE.
 #define sz_xXiSelectEventReq                    16
 #define sz_xExtendedGrabDeviceReq               28
 #define sz_xExtendedGrabDeviceReply             32
-#define sz_xListDevicePropertiesReq             8
-#define sz_xListDevicePropertiesReply           32
-#define sz_xQueryDevicePropertyReq              12
-#define sz_xQueryDevicePropertyReply            32
-#define sz_xConfigureDevicePropertyReq          12
-#define sz_xChangeDevicePropertyReq             20
-#define sz_xDeleteDevicePropertyReq             12
-#define sz_xGetDevicePropertyReq                24
-#define sz_xGetDevicePropertyReply              32
 
 #define INAME		"XInputExtension"
 
@@ -163,7 +163,8 @@ SOFTWARE.
 #define XInput_Add_XSetDeviceValuators	3
 #define XInput_Add_XChangeDeviceControl	4
 #define XInput_Add_DevicePresenceNotify	5
-#define XInput_2                        6
+#define XInput_Add_DeviceProperties	6
+#define XInput_2			7
 
 #define XI_Absent		0
 #define XI_Present		1
@@ -183,8 +184,11 @@ SOFTWARE.
 #define XI_Add_DevicePresenceNotify_Major	1
 #define XI_Add_DevicePresenceNotify_Minor	4
 
-#define XI_2_Major                              2
-#define XI_2_Minor                              0
+#define XI_Add_DeviceProperties_Major		1
+#define XI_Add_DeviceProperties_Minor		5
+
+#define XI_2_Major				2
+#define XI_2_Minor				0
 
 #define DEVICE_RESOLUTION	1
 #define DEVICE_ABS_CALIB        2
@@ -325,7 +329,6 @@ SOFTWARE.
 /* GE masks */
 #define XI_DeviceHierarchyChangedMask  (1 << 0)
 #define XI_DeviceClassesChangedMask    (1 << 1)
-#define XI_DevicePropertyNotifyMask    (1 << 2)
 
 /*
  * Make XEventClass be a CARD32 for 64 bit servers.  Don't affect client
