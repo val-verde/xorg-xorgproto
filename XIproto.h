@@ -1572,7 +1572,11 @@ typedef struct {
     CARD32      longOffset B32;
     CARD32      longLength B32;
     CARD8       deviceid;
+#if defined(__cplusplus) || defined(c_plusplus)
+    BOOL        c_delete;
+#else
     BOOL        delete;
+#endif
     BOOL        pending;
     CARD8       pad;
 } xGetDevicePropertyReq;
