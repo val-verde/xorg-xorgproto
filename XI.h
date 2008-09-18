@@ -108,9 +108,6 @@ SOFTWARE.
 #define sz_xChangeDeviceControlReply		32
 #define sz_xListDevicePropertiesReq             8
 #define sz_xListDevicePropertiesReply           32
-#define sz_xQueryDevicePropertyReq              12
-#define sz_xQueryDevicePropertyReply            32
-#define sz_xConfigureDevicePropertyReq          12
 #define sz_xChangeDevicePropertyReq             20
 #define sz_xDeleteDevicePropertyReq             12
 #define sz_xGetDevicePropertyReq                24
