@@ -150,6 +150,7 @@ SOFTWARE.
 #define XI_EYETRACKER	"EYETRACKER"
 #define XI_CURSORKEYS	"CURSORKEYS"
 #define XI_FOOTMOUSE	"FOOTMOUSE"
+#define XI_JOYSTICK	"JOYSTICK"
 
 /* Properties understood by the server */
 #define XI_PROP_ENABLED      "Device Enabled"
