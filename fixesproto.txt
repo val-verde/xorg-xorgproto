@@ -86,8 +86,9 @@ to a window which won't be affected by the underlying window destruction.
 XFIXES chooses the root window as the target.
 
 Having embedded windows suddenly appear at the top level can confuse users,
-so XFIXES also permits these windows to remain unmapped instead of being
-remapped.
+so XFIXES also lets the client select whether the window should end up
+unmapped after the save set processing instead of unconditionally making
+them be mapped.
 
 5.1 Requests
 
