@@ -149,11 +149,6 @@ SOFTWARE.
 #define XI_FOOTMOUSE	"FOOTMOUSE"
 #define XI_JOYSTICK	"JOYSTICK"
 
-/* Properties understood by the server */
-#define XI_PROP_ENABLED      "Device Enabled"
-#define XI_PROP_MODE         "Device Mode"
-
-
 #define Dont_Check			0
 #define XInput_Initial_Release		1
 #define XInput_Add_XDeviceBell		2
