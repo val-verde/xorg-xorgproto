@@ -173,12 +173,10 @@ struct tmask
 #define X_WarpDevicePointer             41
 #define X_ChangeDeviceCursor            42
 #define X_ChangeDeviceHierarchy         43
-#define X_ChangeWindowAccess            44
-#define X_QueryWindowAccess             45
-#define X_SetClientPointer              46
-#define X_GetClientPointer              47
-#define X_XiSelectEvent                 48
-#define X_ExtendedGrabDevice            49
+#define X_SetClientPointer              44
+#define X_GetClientPointer              45
+#define X_XiSelectEvent                 46
+#define X_ExtendedGrabDevice            47
 
 /*********************************************************
  *
@@ -1677,56 +1675,6 @@ typedef struct {
     CARD8       newMaster;      /* id of new master device */
     CARD8       pad0;
 } xChangeAttachmentInfo;
-
-
-/**********************************************************
- *
- * ChangeWindowAccess.
- *
- */
-
-typedef struct {
-    CARD8       reqType;        /* input extension major opcode */
-    CARD8       ReqType;        /* Always X_ChangeWindowAccess */
-    CARD16      length B16;
-    Window      win B32;
-    CARD8       npermit;       /* number of devices for permit rule */
-    CARD8       ndeny;         /* number of devices for deny rule */
-    CARD8       defaultRule;   /* default rule */
-    CARD8       clear;         /* WindowAccessClearPerm,
-                                  WindowAccessClearDeny,
-                                  WindowAccessClearRule,
-                                  WindowAccessClearAll */
-} xChangeWindowAccessReq;
-
-/**********************************************************
- *
- * QueryWindowAccess
- *
- */
-
-typedef struct {
-    CARD8       reqType;        /* input extension major code */
-    CARD8       ReqType;        /* always X_QueryWindowAccess */
-    CARD16      length B16;
-    Window      win B32;
-} xQueryWindowAccessReq;
-
-typedef struct {
-    CARD8       repType;        /* input extension major opcode */
-    CARD8       RepType;        /* Always X_QueryWindowAccess */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    CARD8       defaultRule;    /* default rule setting */
-    CARD8       npermit;        /* number of devices in permit */
-    CARD8       ndeny;          /* number of devices in deny */
-    CARD8       pad0; 
-    CARD32      pad1 B32;
-    CARD32      pad2 B32;
-    CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-} xQueryWindowAccessReply;
 
 
 
