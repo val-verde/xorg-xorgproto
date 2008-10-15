@@ -2140,5 +2140,6 @@ typedef struct
 #undef Time
 #undef KeyCode
 #undef Mask
+#undef Atom
 
 #endif
