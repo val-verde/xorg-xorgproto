@@ -55,6 +55,7 @@ SOFTWARE.
 #define Time CARD32
 #define KeyCode CARD8
 #define Mask CARD32
+#define Atom CARD32
 
 /*********************************************************
  *
