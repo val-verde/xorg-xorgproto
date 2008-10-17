@@ -36,8 +36,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define APPLEWMNAME "Apple-WM"
 
 #define APPLE_WM_MAJOR_VERSION	1	/* current version numbers */
-#define APPLE_WM_MINOR_VERSION	0
-#define APPLE_WM_PATCH_VERSION	0
+#define APPLE_WM_MINOR_VERSION	1
+#define APPLE_WM_PATCH_VERSION	1
 
 typedef struct _AppleWMQueryVersion {
     CARD8	reqType;		/* always WMReqCode */
