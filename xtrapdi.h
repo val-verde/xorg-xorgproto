@@ -45,9 +45,7 @@ SOFTWARE.
 
 #define NEED_REPLIES
 #define NEED_EVENTS
-#ifndef IN_MODULE
 #include <stdio.h>
-#endif
 #include <X11/X.h>
 #include <X11/Xmd.h>
 #ifdef SMT
