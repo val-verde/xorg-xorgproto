@@ -42,6 +42,8 @@ SOFTWARE.
  *      routines sorted by module (globally defined routines *only*).
  */
 
+#include <stdio.h>
+
 /* XEConTxt.c */
 XETC *XECreateTC (Display *dpy , CARD32 valuemask , XETCValues *value );
 int XEChangeTC (XETC *tc , CARD32 mask , XETCValues *values );
