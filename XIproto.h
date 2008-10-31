@@ -2017,18 +2017,18 @@ typedef deviceEnterNotify deviceLeaveNotify;
 
 typedef struct
     {
-    BYTE        type;                /* always GenericEvent */
+    BYTE        type;
     BYTE        state;               /* NewValue or Deleted */
     CARD16      sequenceNumber B16;
     CARD32      time B32;
     Atom        atom B32;            /* affected property */
-    CARD8       deviceid;            /* id of device */
-    CARD8       pad0;
-    CARD16      pad1 B16;
+    CARD32      pad0 B32;
+    CARD32      pad1 B32;
     CARD32      pad2 B32;
     CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
+    CARD16      pad5 B16;
+    CARD8       pad4;
+    CARD8       deviceid;            /* id of device */
     } devicePropertyNotify;
 
 
