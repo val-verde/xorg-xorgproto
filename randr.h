@@ -44,7 +44,7 @@ typedef unsigned long	XRandrModeFlags;
 
 #define RRNumberErrors		3
 #define RRNumberEvents		2
-#define RRNumberRequests	25
+#define RRNumberRequests	26
 
 #define X_RRQueryVersion	0
 /* we skip 1 to make old clients fail pretty immediately */
