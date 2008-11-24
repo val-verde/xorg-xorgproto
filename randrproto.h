@@ -2,6 +2,7 @@
  * Copyright © 2000 Compaq Computer Corporation
  * Copyright © 2002 Hewlett-Packard Company
  * Copyright © 2006 Intel Corporation
+ * Copyright © 2008 Red Hat, Inc.
  *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is hereby granted without fee, provided that
@@ -560,6 +561,34 @@ typedef struct {
     CARD16	pad1 B16;
 } xRRSetCrtcGammaReq;
 #define sz_xRRSetCrtcGammaReq		12
+
+/*
+ * Additions for V1.3
+ */
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   randrReqType;
+    CARD16  length B16;
+    Window  window B32;
+} xRRGetScreenResourcesCurrentReq;
+#define sz_xRRGetScreenResourcesCurrentReq 8
+
+typedef struct {
+    BYTE	type;
+    CARD8	pad;
+    CARD16	sequenceNumber B16;
+    CARD32	length B32;
+    Time	timestamp B32;
+    Time	configTimestamp B32;
+    CARD16	nCrtcs B16;
+    CARD16	nOutputs B16;
+    CARD16	nModes B16;
+    CARD16	nbytesNames B16;
+    CARD32	pad1 B32;
+    CARD32	pad2 B32;
+} xRRGetScreenResourcesCurrentReply;
+#define sz_xRRGetScreenResourcesCurrentReply	32
 
 /*
  * event

@@ -528,10 +528,10 @@ dynamic changes in the display environment.
 	
 	This request explicitly asks the server to ensure that the
 	configuration data is up-to-date wrt the hardware. If that requires
-	polling, this is when such polling would take place. Requests for
-	further information should not poll, but rather return the data
-	collected at this point.
-	
+	polling, this is when such polling would take place.  If the
+	current configuration is all that's required, use
+	RRGetScreenResourcesCurrent instead.
+
 ┌───
     RRGetOutputInfo
 	output: OUTPUT
@@ -968,6 +968,40 @@ dynamic changes in the display environment.
 	must be the size returned by RRGetCrtcGammaSize else a Value error
 	results.
 
+7.2. Extension Requests added in version 1.3 of the extension
+
+┌───
+    RRGetScreenResourcesCurrent
+	window: WINDOW
+      ▶
+	timestamp: TIMESTAMP
+	config-timestamp: TIMESTAMP
+	crtcs: LISTofCRTC
+	outputs: LISTofOUTPUT
+	modes: LISTofMODEINFO
+└───
+	Errors: Window
+
+	RRGetScreenResourcesCurrent returns the list of outputs and crtcs
+	connected to the screen associated with 'window'.
+
+	'timestamp' indicates when the configuration was last set.
+	
+	'config-timestamp' indicates when the configuration information last
+	changed. Requests to configure the output will fail unless the
+	timestamp indicates that the information the client is using is up
+	to date, to ensure clients can be well behaved in the face of race
+	conditions.
+
+	'crtcs' contains the list of CRTCs associated with the screen.
+
+	'outputs' contains the list of outputs associated with the screen.
+
+	'modes' contains the list of modes associated with the screen
+	
+	Unlike RRGetScreenResources, this merely returns the current
+	configuration, and does not poll for hardware changes.
+
                               ❧❧❧❧❧❧❧❧❧❧❧
 
 8. Extension Events
@@ -1128,6 +1162,8 @@ list of what each version provided:
 	1.2: Separate screens from CRTCs and outputs, switch to full VESA
 	     modes
 
+	1.3: Added cheap version of RRGetScreenResources.
+
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
 will fail against 1.0 servers. The wire encoding op-codes were
 changed for GetScreenInfo to ensure this failure in a relatively
@@ -1135,7 +1171,8 @@ graceful way. Version 1.1 servers and clients are cross compatible with
 1.0. Version 1.1 is considered to be stable and we intend upward
 compatibility from this point. Version 1.2 offers an extended model of the
 system with multiple output support. It offers backward compatibility with
-version 1.1.
+version 1.1. Version 1.3 adds a cheap version of GetScreenResources to
+avoid expensive DDC operations.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -1679,6 +1716,33 @@ A.2.1 Protocol Requests added with version 1.2
 	2n	LISTofCARD16		green
 	2n	LISTofCARD16		blue
 	p				unused, p=pad(6n)
+└───
+
+A.2.2 Protocol Requests added with version 1.2
+
+┌───
+    RRGetScreenResourcesCurrent
+	1	CARD8			major opcode
+	1	8			RandR opcode
+	2	2			length
+	4	WINDOW			window
+      ▶
+	1	1			Reply
+	1				unused
+	2	CARD16			sequence number
+	4	c+o+8m+(b+p)/4		reply length
+	4	TIMESTAMP		timestamp
+	4	TIMESTAMP		config-timestamp
+	2	c			number of CRTCs
+	2	o			number of outputs
+	2	m			number of modeinfos
+	2	b			total bytes in mode names
+	8				unused
+	4c	LISTofCRTC		crtcs
+	4o	LISTofOUTPUT		outputs
+	32m	LISTofMODEINFO		modeinfos
+	b	STRING8			mode names
+	p				unused, p=pad(b)
 └───
 
 A.3 Protocol Events

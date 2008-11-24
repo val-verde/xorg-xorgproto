@@ -2,6 +2,7 @@
  * Copyright © 2000 Compaq Computer Corporation
  * Copyright © 2002 Hewlett Packard Company
  * Copyright © 2006 Intel Corporation
+ * Copyright © 2008 Red Hat, Inc.
  *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is hereby granted without fee, provided that
@@ -76,6 +77,9 @@ typedef unsigned long	XRandrModeFlags;
 #define X_RRGetCrtcGammaSize	    22
 #define X_RRGetCrtcGamma	    23
 #define X_RRSetCrtcGamma	    24
+
+/* V1.3 additions */
+#define X_RRGetScreenResourcesCurrent	25
 
 /* Event selection bits */
 #define RRScreenChangeNotifyMask  (1L << 0)
