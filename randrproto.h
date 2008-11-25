@@ -32,6 +32,7 @@
 #define _XRANDRP_H_
 
 #include <X11/extensions/randr.h>
+#include <X11/extensions/renderproto.h>
 
 #define Window CARD32
 #define Drawable CARD32
@@ -590,6 +591,46 @@ typedef struct {
 } xRRGetScreenResourcesCurrentReply;
 #define sz_xRRGetScreenResourcesCurrentReply	32
 
+typedef struct {
+    CARD8		reqType;
+    CARD8		randrReqType;
+    CARD16		length B16;
+    RRCrtc		crtc B32;
+    xRenderTransform	transform;
+    CARD16		nbytesFilter;	/* number of bytes in filter name */
+    CARD16		pad B16;
+} xRRSetCrtcTransformReq;
+
+#define sz_xRRSetCrtcTransformReq	48
+
+typedef struct {
+    CARD8		reqType;
+    CARD8		randrReqType;
+    CARD16		length B16;
+    RRCrtc		crtc B32;
+} xRRGetCrtcTransformReq;
+
+#define sz_xRRGetCrtcTransformReq	8
+
+typedef struct {
+    BYTE		type;
+    CARD8		status;
+    CARD16		sequenceNumber B16;
+    CARD32		length B32;
+    xRenderTransform	pendingTransform;
+    BYTE		hasTransforms;
+    CARD8		pad0;
+    CARD16		pad1 B16;
+    xRenderTransform	currentTransform;
+    CARD32		pad2 B32;
+    CARD16		pendingNbytesFilter B16;    /* number of bytes in filter name */
+    CARD16		pendingNparamsFilter B16;   /* number of filter params */
+    CARD16		currentNbytesFilter B16;    /* number of bytes in filter name */
+    CARD16		currentNparamsFilter B16;   /* number of filter params */
+} xRRGetCrtcTransformReply;
+
+#define sz_xRRGetCrtcTransformReply	96
+
 /*
  * event
  */
@@ -631,8 +672,8 @@ typedef struct {
     CARD8 type;				/* always evBase + RRNotify */
     CARD8 subCode;			/* RRNotify_OutputChange */
     CARD16 sequenceNumber B16;
-    Time timestamp B32;			/* time crtc was changed */
-    Time configTimestamp B32;		/* time crtc was changed */
+    Time timestamp B32;			/* time output was changed */
+    Time configTimestamp B32;		/* time config was changed */
     Window window B32;			/* window requesting notification */
     RROutput output B32;		/* affected output */
     RRCrtc crtc B32;			/* current crtc */
