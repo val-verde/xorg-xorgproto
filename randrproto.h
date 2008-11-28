@@ -700,6 +700,72 @@ typedef struct {
 } xRROutputPropertyNotifyEvent;
 #define sz_xRROutputPropertyNotifyEvent	32
 
+typedef struct {
+    CARD8	reqType;
+    CARD8	randrReqType;
+    CARD16	length B16;
+    RRCrtc	crtc B32;
+    Time	configTimestamp B32;
+} xRRGetPanningReq; 
+#define sz_xRRGetPanningReq		12
+
+typedef struct {
+    BYTE	type;
+    CARD8	status;
+    CARD16	sequenceNumber B16;
+    CARD32	length B32;
+    Time	timestamp B32;
+    CARD16	left B16;
+    CARD16	top B16;
+    CARD16	width B16;
+    CARD16	height B16;
+    CARD16	track_left B16;
+    CARD16	track_top B16;
+    CARD16	track_width B16;
+    CARD16	track_height B16;
+    INT16	border_left B16;
+    INT16	border_top B16;
+    INT16	border_right B16;
+    INT16	border_bottom B16;
+} xRRGetPanningReply;
+#define sz_xRRGetPanningReply		36
+
+typedef struct {
+    CARD8	reqType;
+    CARD8	randrReqType;
+    CARD16	length B16;
+    RRCrtc	crtc B32;
+    Time	timestamp B32;
+    Time    	configTimestamp B32;
+    CARD16	left B16;
+    CARD16	top B16;
+    CARD16	width B16;
+    CARD16	height B16;
+    CARD16	track_left B16;
+    CARD16	track_top B16;
+    CARD16	track_width B16;
+    CARD16	track_height B16;
+    INT16	border_left B16;
+    INT16	border_top B16;
+    INT16	border_right B16;
+    INT16	border_bottom B16;
+} xRRSetPanningReq; 
+#define sz_xRRSetPanningReq		40
+
+typedef struct {
+    BYTE	type;
+    CARD8	status;
+    CARD16	sequenceNumber B16;
+    CARD32	length B32;
+    Time	newTimestamp B32;
+    CARD32      pad1 B32;
+    CARD32      pad2 B32;
+    CARD32      pad3 B32;
+    CARD32      pad4 B32;
+    CARD32      pad5 B32;
+} xRRSetPanningReply;
+#define sz_xRRSetPanningReply	32
+
 #undef RRModeFlags
 #undef RRCrtc
 #undef RRMode

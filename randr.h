@@ -44,7 +44,7 @@ typedef unsigned long	XRandrModeFlags;
 
 #define RRNumberErrors		3
 #define RRNumberEvents		2
-#define RRNumberRequests	28
+#define RRNumberRequests	30
 
 #define X_RRQueryVersion	0
 /* we skip 1 to make old clients fail pretty immediately */
@@ -82,6 +82,8 @@ typedef unsigned long	XRandrModeFlags;
 #define X_RRGetScreenResourcesCurrent	25
 #define X_RRSetCrtcTransform	    26
 #define X_RRGetCrtcTransform	    27
+#define X_RRGetPanning		    28
+#define X_RRSetPanning		    29
 
 #define RRTransformUnit		    (1L << 0)
 #define RRTransformScaleUp	    (1L << 1)
