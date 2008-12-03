@@ -1225,7 +1225,8 @@ list of what each version provided:
 	1.2: Separate screens from CRTCs and outputs, switch to full VESA
 	     modes
 
-	1.3: Added cheap version of RRGetScreenResources.
+	1.3: Added cheap version of RRGetScreenResources.  Added CRTC
+	     transformations.
 
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
 will fail against 1.0 servers. The wire encoding op-codes were
@@ -1233,9 +1234,9 @@ changed for GetScreenInfo to ensure this failure in a relatively
 graceful way. Version 1.1 servers and clients are cross compatible with
 1.0. Version 1.1 is considered to be stable and we intend upward
 compatibility from this point. Version 1.2 offers an extended model of the
-system with multiple output support. It offers backward compatibility with
-version 1.1. Version 1.3 adds a cheap version of GetScreenResources to
-avoid expensive DDC operations.
+system with multiple output support. Version 1.3 adds a cheap version of
+GetScreenResources to avoid expensive DDC operations, and CRTC
+transformations. 1.2 and 1.3 are backward-compatible with 1.1.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
