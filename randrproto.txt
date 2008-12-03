@@ -1024,24 +1024,25 @@ dynamic changes in the display environment.
 └───
 	Errors: Crtc, Match
 
-This request provides a mechanism that is more general than the existing
-rotation and reflection values for describing the transformation from frame
-buffer image to crtc presentation. 'transform' is a full 2D projective
-transformations from screen coordinate space to crtc coordinate space. This
-transformation is applied before the rotation and reflection values to
-compute the complete transform.
+	This request provides a mechanism that is more general than the
+	existing rotation and reflection values for describing the
+	transformation from frame buffer image to crtc presentation.
+	'transform' is a full 2D projective transformation from screen
+	coordinate space to crtc coordinate space. This transformation is
+	applied before the rotation and reflection values to compute the
+	complete transform.
 
-'filter' and 'values' specify a Render filter that may be used by the server
-when transforming data from frame buffer to crtc.
+	'filter' and 'values' specify a Render filter that may be used by the
+	server when transforming data from frame buffer to crtc.
 
-This request sets the transform to be used at the next RRSetCrtcConfig
-request execution; it does not cause any change to occur in the current
-configuration.
+	This request sets the transform to be used at the next
+	RRSetCrtcConfig request execution; it does not cause any change to
+	occur in the current configuration.
 
-When a non-identity transformation is in use, the rectangle returned by
-RRGetCrtcInfo defines the bounding rectangle of the screen that is projected
-to the crtc. It is this projected rectangle which must be within the area of
-the screen when the mode is set.
+	When a non-identity transformation is in use, the rectangle returned
+	by RRGetCrtcInfo defines the bounding rectangle of the screen that is
+	projected to the crtc. It is this projected rectangle which must be
+	within the area of the screen when the mode is set.
 
 ┌───
     RRGetCrtcTransform
@@ -1055,9 +1056,10 @@ the screen when the mode is set.
 	current-values: LISTofFIXED
 └───
 
-This request returns the pending and current transforms for the specified
-CRTC. The pending transform will be the same as the current transform if no
-new pending transform has been set since the last call to RRSetCrtcConfig.
+	This request returns the pending and current transforms for the
+	specified CRTC. The pending transform will be the same as the current
+	transform if no new pending transform has been set since the last call
+	to RRSetCrtcConfig.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
