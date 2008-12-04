@@ -705,9 +705,8 @@ typedef struct {
     CARD8	randrReqType;
     CARD16	length B16;
     RRCrtc	crtc B32;
-    Time	configTimestamp B32;
 } xRRGetPanningReq; 
-#define sz_xRRGetPanningReq		12
+#define sz_xRRGetPanningReq		8
 
 typedef struct {
     BYTE	type;
@@ -736,7 +735,6 @@ typedef struct {
     CARD16	length B16;
     RRCrtc	crtc B32;
     Time	timestamp B32;
-    Time    	configTimestamp B32;
     CARD16	left B16;
     CARD16	top B16;
     CARD16	width B16;
@@ -750,7 +748,7 @@ typedef struct {
     INT16	border_right B16;
     INT16	border_bottom B16;
 } xRRSetPanningReq; 
-#define sz_xRRSetPanningReq		40
+#define sz_xRRSetPanningReq		36
 
 typedef struct {
     BYTE	type;

@@ -508,12 +508,11 @@ dynamic changes in the display environment.
 	extension and the core protocol. They must be non-zero, or Value
 	error results.
 
-	Note that changes to the screen size might invalidate panning
-	parameters.  In these cases panning might be silently disabled, or the
-	panning parameters are updated automatically as necessary.  The exact
-	behavior of the implementation is undefined.  If the panning parameters
-	do not conflict with new screen size, panning remains enabled
-	unchanged.
+	If panning is enabled, the width and height of the panning and the
+	tracking areas are adapted to the new size and clamped afterwards.
+	Disabled panning axes remain disabled.
+	Panning borders are disabled if their requirements are no longer met
+	(see RRSetPanning).
 
 ┌───
     RRGetScreenResources
@@ -945,11 +944,11 @@ dynamic changes in the display environment.
 	then re-enabling the CRTC at the new configuration to avoid an
 	invalid intermediate configuration.
 
-	Note that changes to the CRTC might invalidate panning parameters.  In
-	these cases panning might be silently disabled, or the panning
-	parameters are updated automatically as necessary.  The exact behavior
-	of the implementation is undefined.  If the panning parameters do not
-	conflict with new CRTC parameters, panning remains enabled unchanged.
+	If panning is enabled, the width and height of the panning and the
+	tracking areas are clamped to the new mode size.
+	Disabled panning axes remain disabled.
+	Panning borders are disabled if their requirements are no longer met
+	(see RRSetPanning).
 
 	When this request succeeds, 'status' contains Success and the
 	requested changes to configuration will have been made.
@@ -1077,7 +1076,6 @@ dynamic changes in the display environment.
 ┌───
     RRGetPanning
 	crtc: CRTC
-	config-timestamp: TIMESTAMP
       ▶
 	status: RRCONFIGSTATUS
 	timestamp: TIMESTAMP
@@ -1093,11 +1091,6 @@ dynamic changes in the display environment.
 	RRGetPanning returns information about the currently set panning
 	configuration for the specified crtc.
 
-	If 'config-timestamp' does not match the current configuration
-	timestamp (as returned by RRGetScreenResources), 'status' is set to
-	InvalidConfigTime and the remaining reply data is empty. Otherwise,
-	'status' is set to Success.
-
 	'timestamp' indicates when the configuration was last set.
 
 	All other entries are explained for RRSetPanning.
@@ -1106,7 +1099,6 @@ dynamic changes in the display environment.
     RRSetPanning
 	crtc: CRTC
 	timestamp: TIMESTAMP
-	config-timestamp: TIMESTAMP
 	left, top, width, height: CARD16
 	track_left, track_top, track_width, track_height: CARD16
 	border_left, border_top, border_right, border_bottom: INT16
@@ -1116,23 +1108,23 @@ dynamic changes in the display environment.
 └───
 	Errors: Crtc, Match
 
+	This request sets the panning parameters.  As soon as panning is
+	enabled, the CRTC position can change with every pointer move.
+	RRCrtcChangeNotify events are sent to the clients requesting those.
+
 	If 'timestamp' is less than the time when the configuration was last
 	successfully set, the request is ignored and InvalidTime returned in
 	status.
-	
-	If 'config-timestamp' is not equal to when the CRTC's configuration
-	last changed, the request is ignored and InvalidConfigTime returned in
-	status. This could occur if the CRTC changed since you last made a
-	RRGetCrtcInfo request, perhaps by setting a different mode.  Rather
-	than allowing an incorrect call to be executed based on stale data,
-	the server will ignore the request.
 
 	'left', 'top', 'width', and 'height' contain the total panning area
-	for this CRTC.  'width' has to be larger than the CRTC's width, and
-	'left'+'width' must be within the screen size, else a Match error
-	results.  Equivalent restrictions for the height exist.  The exception
-	is 'width' == 'height' == 0 which indicates that panning should be
-	disabled.
+	for this CRTC.  'width' has to be larger than or equal to the CRTC's
+	width or 0, and 'left'+'width' must be within the screen size, else a
+	Match error results.  Equivalent restrictions for the height exist.
+	'width' or 'height' set to 0 indicate that panning should be disabled
+	on the according axis.  Setting 'width'/'height' to the CRTC's
+	width/height will disable panning on the X/Y axis as well, but
+	RRSetScreenSize will silently enable panning if the screen size is
+	increased. This does not happen if set to 0.
 
 	'track_left', 'track_top', 'track_width', and 'track_height' contain
 	the pointer area for which the panning region is updated.  For normal
@@ -1149,21 +1141,16 @@ dynamic changes in the display environment.
 	panning).  If the borders are positive, the screen will pan when the
 	pointer gets close to the CRTC borders, if they are negative, the
 	screen will only pan when the pointer is already way past the CRTC 
-	borders.  Negative values might confuse users and are discouraged.
+	borders.  Negative values might confuse users and disable panning to
+	the very edges of the screen.  Thus they are discouraged.
 	border_left + border_right has to be lower or equal than the CRTC's
 	width, else a Match error results.  An equivalent restriction for the
 	height exists.
 
-	This request sets the panning parameters.  As soon as panning is
-	enabled, the CRTC position can change with every pointer move.
-	RRCrtcChangeNotify events are sent to the clients requesting those.
-
-	Note that changes to the CRTC or screen might invalidate panning
-	parameters.  In these cases panning might be silently disabled, or the
-	panning parameters are updated automatically as necessary.  The exact
-	behavior of the implementation is undefined.  If the panning parameters
-	do not conflict with new CRTC parameters or screen size, panning
-	remains enabled unchanged.
+	Screen size changes update the panning and the tracking areas to the
+	new size. Both screen size changes and mode changes clamp these areas
+	to the current CRTC size.  In these cases panning borders are disabled
+	if their requirements are no longer met.
 
 	When this request succeeds, 'status' contains Success and the
 	requested changes to configuration will have been made.
@@ -1967,9 +1954,8 @@ A.2.2 Protocol Requests added with version 1.3
     RRGetPanning
 	1	CARD8			major opcode
 	1	28			RandR opcode
-	2	3			length
+	2	2			length
 	4	CRTC			crtc
-	4	TIMESTAMP		config-timestamp
       ▶
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
@@ -1993,10 +1979,9 @@ A.2.2 Protocol Requests added with version 1.3
     RRSetPanning
 	1	CARD8			major opcode
 	1	29			RandR opcode
-	2	10			length
+	2	9			length
 	4	CRTC			crtc
 	4	TIMESTAMP		timestamp
-	4	TIMESTAMP		config-timestamp
 	2	CARD16			left
 	2	CARD16			top
 	2	CARD16			width
