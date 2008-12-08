@@ -120,7 +120,10 @@ following features are added in this version:
      support made it trivial to add full projective transformations. These
      can be used to scale the screen up/down as well as perform projector
      keystone correct or other effects.
-     
+
+   • Panning. It was removed with RandR 1.2 because the old semantics didn't
+     fit any longer. With RandR 1.3 panning can be specified per crtc.
+
 1.1 Acknowledgements
 
 Our thanks to the contributors to the design found on the xpert mailing
@@ -1116,6 +1119,16 @@ dynamic changes in the display environment.
 	successfully set, the request is ignored and InvalidTime returned in
 	status.
 
+	┌──┳━━━━━━━━━━━━━━┳─────┬ ─ ─ ─ ─ ─ ┐
+	│  ┃     CRTC     ┃     │
+	│  ┃              ┃     │           │
+	│  ┃             X┃→    │
+	│  ┃              ┃     │           │  framebuffer
+	│  ┗━━━━━━━━━━━━━━┛     │
+	│                       │           │
+	│panning area           │
+	└───────────────────────┴ ─ ─ ─ ─ ─ ┘
+
 	'left', 'top', 'width', and 'height' contain the total panning area
 	for this CRTC.  'width' has to be larger than or equal to the CRTC's
 	width or 0, and 'left'+'width' must be within the screen size, else a
@@ -1126,13 +1139,35 @@ dynamic changes in the display environment.
 	RRSetScreenSize will silently enable panning if the screen size is
 	increased. This does not happen if set to 0.
 
+	┌────────┳━━━━━━━━━━━━━━┳ ─ ─ ─ ─ ─ ┐
+	│        ┃     CRTC     ┃
+	│        ┃              ┃           │
+	│        ┃              ┃
+	│        ┃              ┃           │  tracking area
+	│        ┗━━━━━━━━━━━━━━┫     X
+	│               ↓       │     ↓     │
+	│panning area           │
+	└───────────────────────┴ ─ ─ ─ ─ ─ ┘
+
 	'track_left', 'track_top', 'track_width', and 'track_height' contain
 	the pointer area for which the panning region is updated.  For normal
 	use cases it should enclose the panning area minus borders, and is
 	typically set to either the panning area minus borders, or to the
 	total screen size. If set to the total screen size, the CRTC will pan
 	in the remaining axis even if the pointer is outside the panning area
-	on a different CRTC.
+	on a different CRTC, as shown in the figure above. If the pointer is
+	outside the tracking area, the CRTC will not pan.
+
+	┌──┳━━━━━━━━━━━━━━┳────────────┐
+	│  ┃     CRTC     ┃            │
+	│  ┃              ┃            │
+	│  ┃              ┃→           │
+	│  ┃           X←→┃            │
+	│  ┃       border_right        │
+	│  ┗━━━━━━━━━━━━━━┛            │
+	│                              │
+	│panning area                  │
+	└──────────────────────────────┘
 
 	'border_left', 'border_top', 'border_right', and 'border_bottom'
 	define the distances from the CRTC borders that will activate panning
@@ -1140,7 +1175,7 @@ dynamic changes in the display environment.
 	when the pointer hits the CRTC borders (behavior of pre-RandR Xserver
 	panning).  If the borders are positive, the screen will pan when the
 	pointer gets close to the CRTC borders, if they are negative, the
-	screen will only pan when the pointer is already way past the CRTC 
+	screen will only pan when the pointer is already way past the CRTC
 	borders.  Negative values might confuse users and disable panning to
 	the very edges of the screen.  Thus they are discouraged.
 	border_left + border_right has to be lower or equal than the CRTC's
