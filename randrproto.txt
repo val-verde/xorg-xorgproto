@@ -120,7 +120,10 @@ following features are added in this version:
      support made it trivial to add full projective transformations. These
      can be used to scale the screen up/down as well as perform projector
      keystone correct or other effects.
-     
+
+   • Panning. It was removed with RandR 1.2 because the old semantics didn't
+     fit any longer. With RandR 1.3 panning can be specified per crtc.
+
 1.1 Acknowledgements
 
 Our thanks to the contributors to the design found on the xpert mailing
@@ -507,6 +510,12 @@ dynamic changes in the display environment.
 	reflect the physical size of the screen reported both through this
 	extension and the core protocol. They must be non-zero, or Value
 	error results.
+
+	If panning is enabled, the width and height of the panning and the
+	tracking areas are adapted to the new size and clamped afterwards.
+	Disabled panning axes remain disabled.
+	Panning borders are disabled if their requirements are no longer met
+	(see RRSetPanning).
 
 ┌───
     RRGetScreenResources
@@ -938,6 +947,12 @@ dynamic changes in the display environment.
 	then re-enabling the CRTC at the new configuration to avoid an
 	invalid intermediate configuration.
 
+	If panning is enabled, the width and height of the panning and the
+	tracking areas are clamped to the new mode size.
+	Disabled panning axes remain disabled.
+	Panning borders are disabled if their requirements are no longer met
+	(see RRSetPanning).
+
 	When this request succeeds, 'status' contains Success and the
 	requested changes to configuration will have been made.
 	
@@ -1024,24 +1039,25 @@ dynamic changes in the display environment.
 └───
 	Errors: Crtc, Match
 
-This request provides a mechanism that is more general than the existing
-rotation and reflection values for describing the transformation from frame
-buffer image to crtc presentation. 'transform' is a full 2D projective
-transformations from screen coordinate space to crtc coordinate space. This
-transformation is applied before the rotation and reflection values to
-compute the complete transform.
+	This request provides a mechanism that is more general than the
+	existing rotation and reflection values for describing the
+	transformation from frame buffer image to crtc presentation.
+	'transform' is a full 2D projective transformation from screen
+	coordinate space to crtc coordinate space. This transformation is
+	applied before the rotation and reflection values to compute the
+	complete transform.
 
-'filter' and 'values' specify a Render filter that may be used by the server
-when transforming data from frame buffer to crtc.
+	'filter' and 'values' specify a Render filter that may be used by the
+	server when transforming data from frame buffer to crtc.
 
-This request sets the transform to be used at the next RRSetCrtcConfig
-request execution; it does not cause any change to occur in the current
-configuration.
+	This request sets the transform to be used at the next
+	RRSetCrtcConfig request execution; it does not cause any change to
+	occur in the current configuration.
 
-When a non-identity transformation is in use, the rectangle returned by
-RRGetCrtcInfo defines the bounding rectangle of the screen that is projected
-to the crtc. It is this projected rectangle which must be within the area of
-the screen when the mode is set.
+	When a non-identity transformation is in use, the rectangle returned
+	by RRGetCrtcInfo defines the bounding rectangle of the screen that is
+	projected to the crtc. It is this projected rectangle which must be
+	within the area of the screen when the mode is set.
 
 ┌───
     RRGetCrtcTransform
@@ -1055,9 +1071,127 @@ the screen when the mode is set.
 	current-values: LISTofFIXED
 └───
 
-This request returns the pending and current transforms for the specified
-CRTC. The pending transform will be the same as the current transform if no
-new pending transform has been set since the last call to RRSetCrtcConfig.
+	This request returns the pending and current transforms for the
+	specified CRTC. The pending transform will be the same as the current
+	transform if no new pending transform has been set since the last call
+	to RRSetCrtcConfig.
+
+┌───
+    RRGetPanning
+	crtc: CRTC
+      ▶
+	status: RRCONFIGSTATUS
+	timestamp: TIMESTAMP
+	left, top, width, height: CARD16
+	track_left, track_top, track_width, track_height: CARD16
+	border_left, border_top, border_right, border_bottom: INT16
+└───
+
+	Errors: Crtc
+
+	Version 1.3 adds panning support again. If multiple crtcs are active
+	the panning behavior can be defined per crtc individually.
+	RRGetPanning returns information about the currently set panning
+	configuration for the specified crtc.
+
+	'timestamp' indicates when the configuration was last set.
+
+	All other entries are explained for RRSetPanning.
+
+┌───
+    RRSetPanning
+	crtc: CRTC
+	timestamp: TIMESTAMP
+	left, top, width, height: CARD16
+	track_left, track_top, track_width, track_height: CARD16
+	border_left, border_top, border_right, border_bottom: INT16
+      ▶
+	status: RRCONFIGSTATUS
+	new-timestamp: TIMESTAMP
+└───
+	Errors: Crtc, Match
+
+	This request sets the panning parameters.  As soon as panning is
+	enabled, the CRTC position can change with every pointer move.
+	RRCrtcChangeNotify events are sent to the clients requesting those.
+
+	If 'timestamp' is less than the time when the configuration was last
+	successfully set, the request is ignored and InvalidTime returned in
+	status.
+
+	┌──┳━━━━━━━━━━━━━━┳─────┬ ─ ─ ─ ─ ─ ┐
+	│  ┃     CRTC     ┃     │
+	│  ┃              ┃     │           │
+	│  ┃             X┃→    │
+	│  ┃              ┃     │           │  framebuffer
+	│  ┗━━━━━━━━━━━━━━┛     │
+	│                       │           │
+	│panning area           │
+	└───────────────────────┴ ─ ─ ─ ─ ─ ┘
+
+	'left', 'top', 'width', and 'height' contain the total panning area
+	for this CRTC.  'width' has to be larger than or equal to the CRTC's
+	width or 0, and 'left'+'width' must be within the screen size, else a
+	Match error results.  Equivalent restrictions for the height exist.
+	'width' or 'height' set to 0 indicate that panning should be disabled
+	on the according axis.  Setting 'width'/'height' to the CRTC's
+	width/height will disable panning on the X/Y axis as well, but
+	RRSetScreenSize will silently enable panning if the screen size is
+	increased. This does not happen if set to 0.
+
+	┌────────┳━━━━━━━━━━━━━━┳ ─ ─ ─ ─ ─ ┐
+	│        ┃     CRTC     ┃
+	│        ┃              ┃           │
+	│        ┃              ┃
+	│        ┃              ┃           │  tracking area
+	│        ┗━━━━━━━━━━━━━━┫     X
+	│               ↓       │     ↓     │
+	│panning area           │
+	└───────────────────────┴ ─ ─ ─ ─ ─ ┘
+
+	'track_left', 'track_top', 'track_width', and 'track_height' contain
+	the pointer area for which the panning region is updated.  For normal
+	use cases it should enclose the panning area minus borders, and is
+	typically set to either the panning area minus borders, or to the
+	total screen size. If set to the total screen size, the CRTC will pan
+	in the remaining axis even if the pointer is outside the panning area
+	on a different CRTC, as shown in the figure above. If the pointer is
+	outside the tracking area, the CRTC will not pan.
+
+	┌──┳━━━━━━━━━━━━━━┳────────────┐
+	│  ┃     CRTC     ┃            │
+	│  ┃              ┃            │
+	│  ┃              ┃→           │
+	│  ┃           X←→┃            │
+	│  ┃       border_right        │
+	│  ┗━━━━━━━━━━━━━━┛            │
+	│                              │
+	│panning area                  │
+	└──────────────────────────────┘
+
+	'border_left', 'border_top', 'border_right', and 'border_bottom'
+	define the distances from the CRTC borders that will activate panning
+	if the pointer hits them.  If the borders are 0, the screen will pan
+	when the pointer hits the CRTC borders (behavior of pre-RandR Xserver
+	panning).  If the borders are positive, the screen will pan when the
+	pointer gets close to the CRTC borders, if they are negative, the
+	screen will only pan when the pointer is already way past the CRTC
+	borders.  Negative values might confuse users and disable panning to
+	the very edges of the screen.  Thus they are discouraged.
+	border_left + border_right has to be lower or equal than the CRTC's
+	width, else a Match error results.  An equivalent restriction for the
+	height exists.
+
+	Screen size changes update the panning and the tracking areas to the
+	new size. Both screen size changes and mode changes clamp these areas
+	to the current CRTC size.  In these cases panning borders are disabled
+	if their requirements are no longer met.
+
+	When this request succeeds, 'status' contains Success and the
+	requested changes to configuration will have been made.
+
+	'new-time-stamp' contains the time at which this request was
+	executed.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -1225,7 +1359,8 @@ list of what each version provided:
 	1.2: Separate screens from CRTCs and outputs, switch to full VESA
 	     modes
 
-	1.3: Added cheap version of RRGetScreenResources.
+	1.3: Added cheap version of RRGetScreenResources.  Added CRTC
+	     transformations.  Added panning.
 
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
 will fail against 1.0 servers. The wire encoding op-codes were
@@ -1233,9 +1368,9 @@ changed for GetScreenInfo to ensure this failure in a relatively
 graceful way. Version 1.1 servers and clients are cross compatible with
 1.0. Version 1.1 is considered to be stable and we intend upward
 compatibility from this point. Version 1.2 offers an extended model of the
-system with multiple output support. It offers backward compatibility with
-version 1.1. Version 1.3 adds a cheap version of GetScreenResources to
-avoid expensive DDC operations.
+system with multiple output support. Version 1.3 adds a cheap version of
+GetScreenResources to avoid expensive DDC operations, and CRTC
+transformations. 1.2 and 1.3 are backward-compatible with 1.1.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -1850,6 +1985,59 @@ A.2.2 Protocol Requests added with version 1.3
 	4*cf	FIXED			current filter params
 └───
     
+┌───
+    RRGetPanning
+	1	CARD8			major opcode
+	1	28			RandR opcode
+	2	2			length
+	4	CRTC			crtc
+      ▶
+	1	1			Reply
+	1	RRCONFIGSTATUS		status
+	2	CARD16			sequence number
+	4	1			reply length
+	4	TIMESTAMP		timestamp
+	2	CARD16			left
+	2	CARD16			top
+	2	CARD16			width
+	2	CARD16			height
+	2	CARD16			track_left
+	2	CARD16			track_top
+	2	CARD16			track_width
+	2	CARD16			track_height
+	2	INT16			border_left
+	2	INT16			border_top
+	2	INT16			border_right
+	2	INT16			border_bottom
+└───
+┌───
+    RRSetPanning
+	1	CARD8			major opcode
+	1	29			RandR opcode
+	2	9			length
+	4	CRTC			crtc
+	4	TIMESTAMP		timestamp
+	2	CARD16			left
+	2	CARD16			top
+	2	CARD16			width
+	2	CARD16			height
+	2	CARD16			track_left
+	2	CARD16			track_top
+	2	CARD16			track_width
+	2	CARD16			track_height
+	2	INT16			border_left
+	2	INT16			border_top
+	2	INT16			border_right
+	2	INT16			border_bottom
+      ▶
+	1	1			Reply
+	1	RRCONFIGSTATUS		status
+	2	CARD16			sequence number
+	4	0			reply length
+	4	TIMESTAMP		new timestamp
+	20				unused
+└───
+
 A.3 Protocol Events
 
 ┌───
