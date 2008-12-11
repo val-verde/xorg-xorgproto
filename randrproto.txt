@@ -1156,7 +1156,8 @@ dynamic changes in the display environment.
 	total screen size. If set to the total screen size, the CRTC will pan
 	in the remaining axis even if the pointer is outside the panning area
 	on a different CRTC, as shown in the figure above. If the pointer is
-	outside the tracking area, the CRTC will not pan.
+	outside the tracking area, the CRTC will not pan. Zero can be used as
+	an alias for the total screen size.
 
 	┌──┳━━━━━━━━━━━━━━┳────────────┐
 	│  ┃     CRTC     ┃            │
