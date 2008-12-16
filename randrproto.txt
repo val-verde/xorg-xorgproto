@@ -1400,7 +1400,7 @@ doesn't handle a mandatory property correctly.
 
 9.1 Known properties
 
-    "EdidData"			aka RR_PROPERTY_RANDR_EDIDDATA
+    "EDID"			aka RR_PROPERTY_RANDR_EDID
 	Type:			int8 [n]
 	Flags:			Immutable
 	Range/List:		-
