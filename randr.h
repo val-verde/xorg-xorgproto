@@ -153,7 +153,7 @@ typedef unsigned long	XRandrModeFlags;
 
 #define RR_PROPERTY_RANDR_EDID		"EDID"
 #define RR_PROPERTY_SIGNAL_FORMAT	"SignalFormat"
-#define RR_PROPERTY_SIGNAL_FORMAT	"SignalProperties"
+#define RR_PROPERTY_SIGNAL_PROPERTIES	"SignalProperties"
 #define RR_PROPERTY_CONNECTOR_TYPE	"ConnectorType"
 #define RR_PROPERTY_CONNECTOR_NUMBER	"ConnectorNumber"
 #define RR_PROPERTY_COMPATIBILITY_LIST	"CompatibilityList"
