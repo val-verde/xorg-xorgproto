@@ -1377,7 +1377,173 @@ factors, such as re-cabling a monitor, etc.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
-9. Extension Versioning
+9. Properties
+
+Properties are used for output specific parameters, and for announcing
+static or rarely changing data.  Announced data is typically
+immutable.  Properties are also used for evaluating new parameters
+before adding them to the RandR protocol.
+
+The following properties are hereby declared official, and drivers SHOULD
+prefix driver specific properties with '_', unless they are planned to be
+added to this specification.  List values, that are not declared by the table
+below, and will remain driver specific or are not planned to be added to this
+specification, SHOULD be prefixed with "_" as well in order to avoid name
+space or semantics clashes with future extensions of these values.
+
+Beginning with version 1.3 of the RandR extension, certain properties
+are mandatory and MUST be provided by implementations.  Earlier
+versions of the RandR extension MAY provide these properties as well,
+as long as the semantics are not altered.  Clients SHOULD fall back
+gracefully to lower version functionality, though, if the driver
+doesn't handle a mandatory property correctly.
+
+9.1 Known properties
+
+    "EdidData"			aka RR_PROPERTY_RANDR_EDIDDATA
+	Type:			int8 [n]
+	Flags:			Immutable
+	Range/List:		-
+
+	Raw EDID data from the device attached to the according
+	output. Should include main EDID data and all extension
+	blocks.
+
+    "SignalFormat"		aka RR_PROPERTY_SIGNAL_FORMAT
+	Type:			int32 / Atom
+	Flags:			-
+	Range/List:		unknown VGA TMDS LVDS Composite Composite-PAL
+				Composite-NTSC Composite-SECAM SVideo
+				Component DisplayPort
+
+	Signal format / physical protocol format that is used for the
+	specified output. valid-values lists all possible formats on this
+	output, which SHOULD be a subset of the list above and MUST be static.
+	Values with dashes (Composite-PAL) describe more specific versions of
+	the base values (Composite) and SHOULD be used if known to the driver.
+	A driver MAY change this property of an output if the underlying
+	hardware indicates a protocol change (e.g. TV formats).  Clients are
+	allowed to change the signal format in order to select a different
+	signal format (e.g. Composite etc.) or physical protocol (e.g. VGA or
+	TMDS on DVI-I).
+	Laptop panels SHOULD not be detected with this property, but rather by
+	ConnectorType.
+
+    "SignalProperties"		aka RR_PROPERTY_SIGNAL_FORMAT
+	Type:			int32 [n] / Atom
+	Flags:			-
+	Range/List:		For Composite signals:
+				  NTSC NTSC-M NTSC-J NTSC-N NTSC-4.43 NTSC-film
+				  PAL PAL-B PAL-G PAL-H PAL-H PAL-I PAL-M PAL-D
+				  PAL-N PAL-Nc PAL-L PAL-60
+				  SECAM SECAM-L SECAM-B SECAM-G SECAM-D SECAM-K
+				  SECAM-H SECAM-K
+				For TMDS signals:
+				  SingleLink DualLink
+				For DisplayPort signals:
+				  Lane1 Lane2 Lane4 LowSpeed HiSpeed
+
+	Properties of the signal format that is currently used for the
+	specified output. valid-values lists all possible properties on this
+	output, which SHOULD be a subset of the list above. It will change if
+	SignalFormat changes.  Multiple properties are allowed.
+	Values with dashes (PAL-B) describe more specific versions of the base
+	values (PAL) and SHOULD be used if known to the driver.  A driver MAY
+	change this property of an output if the underlying hardware indicates
+	a signal change (e.g. TV formats).  Clients are allowed to change the
+	properties in order to select a different signal subformat.
+
+    "ConnectorType"		aka RR_PROPERTY_CONNECTOR_TYPE
+	Type:			int32 / Atom
+	Flags:			Immutable, Static
+	Range/List:		unknown VGA DVI DVI‐I DVI‐A DVI‐D HDMI Panel
+				TV TV-Composite TV-SVideo TV-Component
+				TV-SCART TV-C4 DisplayPort
+
+	Connector type, as far as known to the driver.
+	Values with dashes (TV‐Composite) describe more specific versions of
+	the base values (TV). The former SHOULD be used if the connector is
+	not capable of producing other signal formats. The later SHOULD be
+	used if the exact connector is unknown, or the connector is a
+	multi‐format connector that is not described otherwise. DVI, for
+	instance, SHOULD be handled like a DVI‐I connector, unless additional
+	information is available to the user agent. PANEL describes
+	laptop‐internal (normally LVDS) displays. TV, TV‐SCART, TV‐Component,
+	and TV‐C4 with signal format VGA are valid combinations and describe
+	RGB TV signals.
+
+    "ConnectorNumber"		aka RR_PROPERTY_CONNECTOR_NUMBER
+	Type:			int32
+	Flags:			Immutable, Static
+	Range/List:		0-
+
+	Outputs that route their signal to the same connector MUST
+	have the same connector number. Outputs with the same
+	connector number MUST route their signal to the same
+	connector, except if it is 0, which indicates unknown
+	connectivity. 1 is called the primary connector, 2 the
+	secondary. 3 is typically a TV connector, but that is completely
+	driver / hardware dependent.
+	Outputs with the same connector number SHOULD have the same
+	connector type. Meaning and client behavior for mismatching
+	connector types is undefined at the moment.
+
+    "CompatibilityList"		aka RR_PROPERTY_COMPATIBILITY_LIST
+	Type:			int32 [2*n] / Atom pairs
+	Flags:			Immutable
+	Range/List:		0-
+
+	Some combinations of outputs on some cards cannot be served at all,
+	because the according encoder is only capable of driving one output at
+	a time.
+	This property lists all output + signal format pairs that can be
+	driven together with this output. NULL atoms specify any output / any
+	signal format, respectively.
+	This property MUST be symmetric, but may change with changing signal
+	format. I.e. if the property for DVI-1/TMDS specifies VGA-1/VGA to be
+	available, VGA-1/VGA has to list DVI-1/TMDS as well.
+
+    "CloneList"			aka RR_PROPERTY_CLONE_LIST
+	Type:			int32 [2*n] / Atom pairs
+	Flags:			Immutable
+	Range/List:		0-
+
+	Some combinations of outputs on some cards cannot be served
+	independently from each other, because they are wired up to the same
+	encoder outputs.
+	This property lists all output + signal format pairs that are
+	driven together with this output, and thus can only be programmed in
+	clone mode with the same CRTC.
+	This property MUST be symmetric, but may change with changing signal
+	format. I.e. if the property for DVI-1/VGA specifies VGA-1/VGA to be
+	cloned, VGA-1/VGA has to list DVI-1/VGA as well.
+	Outputs / format pairs listed in this property MUST be included in the
+	CompatibilityList.
+
+
+9.2 Properties introduced with version 1.2 of the RandR extension
+
+Property			Immutable	Mandatory since
+────────			─────────	───────────────
+EdidData			yes		n/a
+
+EdidData is provided by the RandR frontend, thus not driver specific.
+
+
+9.3 Properties introduced with version 1.3 of the RandR extension
+
+Property			Immutable	Mandatory since
+────────			─────────	───────────────
+SignalFormat			no		RandR 1.3
+SignalProperties		no		not mandatory
+ConnectorType			yes: static	RandR 1.3
+ConnectorNumber			yes: static	not mandatory
+CompatibilityList		yes		not mandatory
+CloneList			yes		not mandatory
+
+                              ❧❧❧❧❧❧❧❧❧❧❧
+
+10. Extension Versioning
 
 The RandR extension was developed in parallel with the implementation
 to ensure the feasibility of various portions of the design. As
@@ -1407,6 +1573,7 @@ list of what each version provided:
 
 	1.3: Added cheap version of RRGetScreenResources.  Added CRTC
 	     transformations.  Added panning.  Added primary outputs.
+	     Added standard properties.
 
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
 will fail against 1.0 servers. The wire encoding op-codes were
@@ -1421,12 +1588,12 @@ with 1.1.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
-10. Relationship with other extensions
+11. Relationship with other extensions
 
 Two other extensions have a direct relationship with this extension. This
 section attempts to explain how these three are supposed to work together.
 
-10.1 XFree86-VidModeExtension
+11.1 XFree86-VidModeExtension
 
 XFree86-VidModeExtension changes the configuration of a single monitor
 attached to the screen without changing the configuration of the screen
@@ -1443,7 +1610,7 @@ All of the utility of this extension is subsumed by RandR version 1.2, RandR
 should be used in preference to XFree86-VidModeExtension where both are
 present.
 
-10.2 Xinerama
+11.2 Xinerama
 
 Xinerama provides a mechanism for describing the relationship between the
 overall screen display and monitors placed within that area. As such, it
