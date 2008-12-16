@@ -151,6 +151,12 @@ typedef unsigned long	XRandrModeFlags;
 
 /* Conventional RandR output properties */
 
-#define RR_PROPERTY_RANDR_EDID		"RANDR_EDID"
+#define RR_PROPERTY_RANDR_EDID		"EDID"
+#define RR_PROPERTY_SIGNAL_FORMAT	"SignalFormat"
+#define RR_PROPERTY_SIGNAL_FORMAT	"SignalProperties"
+#define RR_PROPERTY_CONNECTOR_TYPE	"ConnectorType"
+#define RR_PROPERTY_CONNECTOR_NUMBER	"ConnectorNumber"
+#define RR_PROPERTY_COMPATIBILITY_LIST	"CompatibilityList"
+#define RR_PROPERTY_CLONE_LIST		"CloneList"
 
 #endif	/* _RANDR_H_ */
