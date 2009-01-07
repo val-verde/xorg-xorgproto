@@ -39,6 +39,24 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define APPLE_WM_MINOR_VERSION	1
 #define APPLE_WM_PATCH_VERSION	1
 
+/* For the purpose of the structure definitions in this file,
+we must redefine the following types in terms of Xmd.h's types, which may
+include bit fields.  All of these are #undef'd at the end of this file,
+restoring the definitions in X.h.  */
+
+#define Window CARD32
+#define Drawable CARD32
+#define Font CARD32
+#define Pixmap CARD32
+#define Cursor CARD32
+#define Colormap CARD32
+#define GContext CARD32
+#define Atom CARD32
+#define VisualID CARD32
+#define Time CARD32
+#define KeyCode CARD8
+#define KeySym CARD32
+
 typedef struct _AppleWMQueryVersion {
     CARD8	reqType;		/* always WMReqCode */
     CARD8	wmReqType;		/* always X_AppleWMQueryVersion */
@@ -222,5 +240,19 @@ typedef struct _AppleWMFrameDraw {
     CARD32	title_length B32;
 } xAppleWMFrameDrawReq;
 #define sz_xAppleWMFrameDrawReq	36
+
+/* restore these definitions back to the typedefs in X.h */
+#undef Window
+#undef Drawable
+#undef Font
+#undef Pixmap
+#undef Cursor
+#undef Colormap
+#undef GContext
+#undef Atom
+#undef VisualID
+#undef Time
+#undef KeyCode
+#undef KeySym
 
 #endif /* _APPLEWMSTR_H_ */
