@@ -122,24 +122,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #ifndef _APPLEWM_SERVER_
 
-/* For the purpose of the structure definitions in this file,
-we must redefine the following types in terms of Xmd.h's types, which may
-include bit fields.  All of these are #undef'd at the end of this file,
-restoring the definitions in X.h.  */
-
-#define Window CARD32
-#define Drawable CARD32
-#define Font CARD32
-#define Pixmap CARD32
-#define Cursor CARD32
-#define Colormap CARD32
-#define GContext CARD32
-#define Atom CARD32
-#define VisualID CARD32
-#define Time CARD32
-#define KeyCode CARD8
-#define KeySym CARD32
-
 typedef struct {
     int	type;		    /* of event */
     unsigned long serial;   /* # of last request processed by server */
@@ -204,20 +186,6 @@ Bool XAppleWMFrameDraw (Display *dpy, int screen, Window window,
                         const unsigned char * title_bytes);
 
 _XFUNCPROTOEND
-
-/* restore these definitions back to the typedefs in X.h */
-#undef Window
-#undef Drawable
-#undef Font
-#undef Pixmap
-#undef Cursor
-#undef Colormap
-#undef GContext
-#undef Atom
-#undef VisualID
-#undef Time
-#undef KeyCode
-#undef KeySym
 
 #endif /* _APPLEWM_SERVER_ */
 #endif /* _APPLEWM_H_ */
