@@ -9,3 +9,6 @@ install-sh
 missing
 inputproto.pc
 *~
+inputproto-*.tar.*
+ChangeLog
+tags
