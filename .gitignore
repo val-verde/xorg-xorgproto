@@ -9,3 +9,6 @@ install-sh
 missing
 recordproto.pc
 *~
+recordproto-*.tar.*
+ChangeLog
+tags
