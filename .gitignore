@@ -9,3 +9,6 @@ install-sh
 missing
 bigreqsproto.pc
 *~
+bigreqsproto-*.tar.*
+ChangeLog
+tags
