@@ -9,3 +9,6 @@ install-sh
 missing
 xf86dgaproto.pc
 *~
+xf86dgaproto-*.tar.*
+ChangeLog
+tags
