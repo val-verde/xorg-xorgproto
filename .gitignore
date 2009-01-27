@@ -9,3 +9,6 @@ install-sh
 missing
 xineramaproto.pc
 *~
+xineramaproto-*.tar.*
+ChangeLog
+tags
