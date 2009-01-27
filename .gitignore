@@ -9,3 +9,6 @@ install-sh
 missing
 glproto.pc
 *~
+glproto-*.tar.*
+ChangeLog
+tags
