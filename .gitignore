@@ -9,3 +9,6 @@ install-sh
 missing
 xproxymngproto.pc
 *~
+xproxymanagementprotocol-*.tar.*
+ChangeLog
+tags
