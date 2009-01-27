@@ -9,3 +9,6 @@ install-sh
 missing
 windowswmproto.pc
 *~
+windowswmproto-*.tar.*
+ChangeLog
+tags
