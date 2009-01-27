@@ -9,3 +9,6 @@ install-sh
 missing
 resourceproto.pc
 *~
+resourceproto-*.tar.*
+ChangeLog
+tags
