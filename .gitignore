@@ -9,3 +9,6 @@ install-sh
 missing
 dmxproto.pc
 *~
+dmxproto-*.tar.*
+ChangeLog
+tags
