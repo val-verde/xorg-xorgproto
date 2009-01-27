@@ -9,3 +9,6 @@ install-sh
 missing
 videoproto.pc
 *~
+videoproto-*.tar.*
+ChangeLog
+tags
