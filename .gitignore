@@ -9,3 +9,6 @@ configure
 install-sh
 missing
 randrproto.pc
+randrproto-*.tar.*
+ChangeLog
+tags
