@@ -9,3 +9,6 @@ install-sh
 missing
 xf86miscproto.pc
 *~
+xf86miscproto-*.tar.*
+ChangeLog
+tags
