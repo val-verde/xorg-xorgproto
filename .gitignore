@@ -9,3 +9,6 @@ install-sh
 missing
 printproto.pc
 *~
+printproto-*.tar.*
+ChangeLog
+tags
