@@ -32,5 +32,14 @@ fixesdoc_DATA = fixesproto.txt
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = fixesproto.pc
 
-EXTRA_DIST = autogen.sh fixesproto.pc.in $(fixesdoc_DATA)
+EXTRA_DIST = fixesproto.pc.in $(fixesdoc_DATA)
 
+EXTRA_DIST += ChangeLog
+MAINTAINERCLEANFILES = ChangeLog
+
+.PHONY: ChangeLog
+
+ChangeLog:
+	$(CHANGELOG_CMD)
+
+dist-hook: ChangeLog

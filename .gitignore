@@ -5,7 +5,11 @@ autom4te.cache
 config.log
 config.status
 configure
-fixesext.pc
+fixesproto.pc
 install-sh
 missing
 mkinstalldirs
+*~
+fixesproto-*.tar.*
+ChangeLog
+tags
