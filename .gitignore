@@ -9,3 +9,6 @@ install-sh
 missing
 evieproto.pc
 *~
+evieext-*.tar.*
+ChangeLog
+tags
