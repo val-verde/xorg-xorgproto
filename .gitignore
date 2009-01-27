@@ -9,3 +9,6 @@ install-sh
 missing
 trapproto.pc
 *~
+trapproto-*.tar.*
+ChangeLog
+tags
