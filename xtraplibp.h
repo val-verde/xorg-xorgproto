@@ -42,7 +42,11 @@ SOFTWARE.
  *      routines sorted by module (globally defined routines *only*).
  */
 
+#include <X11/Xfuncproto.h>
+
 #include <stdio.h>
+
+_XFUNCPROTOBEGIN
 
 /* XEConTxt.c */
 XETC *XECreateTC (Display *dpy , CARD32 valuemask , XETCValues *value );
@@ -102,6 +106,7 @@ XtInputMask XETrapAppPending (XtAppContext app);
 void XETrapAppMainLoop (XtAppContext app , XETC *tc );
 int XETrapAppWhileLoop (XtAppContext app , XETC *tc , Bool *done );
 int XETrapWaitForSomething (XtAppContext app );
+Boolean (*XETrapGetEventHandler(XETC *tc, CARD32 id))(XETrapDataEvent *event, XETC *tc);
 Boolean (*XETrapSetEventHandler(XETC *tc, CARD32 id, Boolean (*pfunc)(XETrapDataEvent *event, XETC *tc))) (XETrapDataEvent *event, XETC *tc);
 
 /* XEPrInfo.c */
@@ -140,5 +145,7 @@ char *XEPlatformIDToString (CARD32 id );
 Bool XETrapQueryExtension (Display *dpy,INT32 *event_base_return,
 			  INT32 *error_base_return, INT32 *opcode_return);
 
+
+_XFUNCPROTOEND
 
 #endif /* __XTRAPLIBP__ */

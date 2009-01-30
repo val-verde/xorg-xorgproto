@@ -80,9 +80,6 @@ SOFTWARE.
 # define False 0L
 #endif
 
-typedef int  (*int_function)();
-typedef void (*void_function)();
-
 /* This is used as flags to indicate desired request traps
  * Note:  This has been padded to a CARD32 to keep structure aligned
  */

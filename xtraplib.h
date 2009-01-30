@@ -52,6 +52,11 @@ SOFTWARE.
 #include <X11/extensions/xtrapdi.h>
 #include <X11/extensions/xtrapemacros.h>
 
+typedef struct _XETC XETC;
+
+typedef int  (*int_function)(XETC *tc, XETrapDatum *pdatum, BYTE *userp);
+typedef void (*void_function)(XETC *tc, XETrapDatum *pdatum, BYTE *userp);
+
 typedef struct  /* Callback structure */
 {
     void_function func;
@@ -100,7 +105,7 @@ typedef struct {
 } XETrapDataEvent;
 
 /* Trap Context structure for maintaining XTrap State for client */
-typedef struct _XETC 
+struct _XETC 
 {
     struct _XETC *next;         /* Ptr to next linked-listed TC */
     Display      *dpy;          /* Display ptr of current TC */
@@ -122,7 +127,7 @@ typedef struct _XETC
     unsigned     dirty /*B32*/;     /* cache dirty bits */
     XETCValues   values;        /* shadow structure of values */
     Boolean      (*eventFunc[XETrapNumberEvents])(XETrapDataEvent *event, struct _XETC *tc);
-} XETC;
+};
 
 
 #endif /* __XTRAPLIB__ */
