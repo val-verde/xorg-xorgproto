@@ -112,17 +112,6 @@ SOFTWARE.
 #define sz_xDeleteDevicePropertyReq             12
 #define sz_xGetDevicePropertyReq                24
 #define sz_xGetDevicePropertyReply              32
-#define sz_xQueryDevicePointerReq               12
-#define sz_xQueryDevicePointerReply             32
-#define sz_xWarpDevicePointerReq                28
-#define sz_xChangeDeviceCursorReq               16
-#define sz_xChangeDeviceHierarchyReq            8
-#define sz_xSetClientPointerReq                 12
-#define sz_xGetClientPointerReq                 8
-#define sz_xGetClientPointerReply               32
-#define sz_xXiSelectEventReq                    16
-#define sz_xExtendedGrabDeviceReq               28
-#define sz_xExtendedGrabDeviceReply             32
 
 #define INAME		"XInputExtension"
 
@@ -292,10 +281,6 @@ SOFTWARE.
 #define CH_AttachSlave           3
 #define CH_DetachSlave           4
 
-/* XXX: do not use, will be removed */
-#define CH_ChangeAttachment      3
-
-
 #define AttachToMaster           1
 #define Floating                 2
 
@@ -305,10 +290,6 @@ SOFTWARE.
 #define XI_BadMode	2
 #define XI_DeviceBusy	3
 #define XI_BadClass	4
-
-/* GE masks */
-#define XI_DeviceHierarchyChangedMask  (1 << 0)
-#define XI_DeviceClassesChangedMask    (1 << 1)
 
 /*
  * Make XEventClass be a CARD32 for 64 bit servers.  Don't affect client

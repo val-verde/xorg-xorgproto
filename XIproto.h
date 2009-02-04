@@ -71,9 +71,9 @@ SOFTWARE.
 
 #define numInputClasses 7
 
-#define IEVENTS         19       /* does NOT include generic events */
+#define IEVENTS         17       /* does NOT include generic events */
 #define IERRORS         5
-#define IREQUESTS       49
+#define IREQUESTS       48
 
 #define CLIENT_REQ      1
 
@@ -115,12 +115,6 @@ struct tmask
 #define XI_DeviceButtonstateNotify	14
 #define XI_DevicePresenceNotify		15
 #define XI_DevicePropertyNotify         16
-#define XI_DeviceEnterNotify            17
-#define XI_DeviceLeaveNotify            18
-
-/* GE events */
-#define XI_DeviceHierarchyChangedNotify        0
-#define XI_DeviceClassesChangedNotify          1
 
 /*********************************************************
  *
@@ -168,15 +162,6 @@ struct tmask
 #define X_ChangeDeviceProperty          37
 #define X_DeleteDeviceProperty          38
 #define X_GetDeviceProperty             39
-/* XI 2 */
-#define X_QueryDevicePointer            40
-#define X_WarpDevicePointer             41
-#define X_ChangeDeviceCursor            42
-#define X_ChangeDeviceHierarchy         43
-#define X_SetClientPointer              44
-#define X_GetClientPointer              45
-#define X_XiSelectEvent                 46
-#define X_ExtendedGrabDevice            47
 
 /*********************************************************
  *
@@ -1543,244 +1528,6 @@ typedef struct {
     CARD32      pad3 B32;
 } xGetDevicePropertyReply;
 
-/* XI 2.0 */
-
-
-/**********************************************************
- *
- * QueryDevicePointer.
- *
- */
-
-typedef struct {
-    CARD8	reqType;	/* input extension major code	*/
-    CARD8	ReqType;	/* always X_QueryDevicePointer	*/
-    CARD16	length B16;
-    Window      win;
-    CARD8       deviceid;
-    CARD8 	pad0;
-    CARD16      pad1 B16;
-} xQueryDevicePointerReq;
-
-
-typedef struct {
-    CARD8	repType;		/* X_Reply */
-    CARD8	RepType;	/* always X_QueryDevicePointer */
-    CARD16	sequenceNumber B16;
-    CARD32	length B32;
-    Window	root B32;
-    Window	child B32;
-    INT16       rootX B16;
-    INT16       rootY B16;
-    INT16       winX B16;
-    INT16       winY B16;
-    CARD16      mask B16;
-    BYTE        sameScreen;
-    CARD8       deviceid;
-    CARD32      pad0 B32;
-} xQueryDevicePointerReply;
-
-
-/**********************************************************
- *
- * WarpDevicePointer.
- *
- */
-
-typedef struct {
-    CARD8	reqType;	/* input extension major code	*/
-    CARD8	ReqType;	/* always X_WarpDevicePointer	*/
-    CARD16	length B16;
-    Window      src_win B32;
-    Window      dst_win B32;
-    INT16       src_x B16;
-    INT16       src_y B16;
-    CARD16      src_width B16;
-    CARD16      src_height B16;
-    INT16       dst_x B16;
-    INT16       dst_y B16;
-    CARD8       deviceid;
-    CARD8       pad0;
-    CARD16      pad1 B16;
-} xWarpDevicePointerReq;
-
-/**********************************************************
- *
- * ChangeDeviceCursor.
- *
- */
-
-typedef struct {
-    CARD8	reqType;	/* input extension major code	*/
-    CARD8	ReqType;	/* always X_ChangeDeviceCursor	*/
-    CARD16	length B16;
-    Window      win B32;
-    Cursor      cursor B32;
-    CARD8       deviceid;
-    CARD8       pad0;
-    CARD16      pad1;
-} xChangeDeviceCursorReq;
-
-/**********************************************************
- *
- * ChangeDeviceHierarchy
- *
- */
-
-typedef struct {
-    CARD8       reqType;        /* input extension major code */
-    CARD8       ReqType;        /* always X_ChangeDeviceHierarchy */
-    CARD16      length B16;
-    CARD8       num_changes;
-    CARD8       pad0;
-    CARD16      pad1 B16;
-} xChangeDeviceHierarchyReq;
-
-typedef struct {
-    CARD16      type    B16;
-    CARD16      length  B16;     /* in bytes */
-} xAnyHierarchyChangeInfo;
-
-/* Create a new master device.
- * Name of new master follows struct (4-byte padded)
- */
-typedef struct {
-    CARD16      type    B16;       /* Always CH_CreateMasterDevice */
-    CARD16      length  B16;       /* 8 + (namelen + padding) */
-    CARD16      namelen;
-    CARD8       sendCore;
-    CARD8       enable;
-} xCreateMasterInfo;
-
-/* Delete a master device. Will automatically delete the master device paired
- * with the given master device.
- */
-typedef struct {
-    CARD16      type    B16;     /* Always CH_RemoveMasterDevice */
-    CARD16      length  B16;     /* 8 */
-    CARD8       deviceid;
-    CARD8       returnMode;     /* AttachToMaster, Floating */
-    CARD8       returnPointer;  /* Pointer to attach slave ptr devices to */
-    CARD8       returnKeyboard; /* keyboard to attach slave keybd devices to*/
-} xRemoveMasterInfo;
-
-/* Change a device's attachment.
- * NewMaster has to be of same type (pointer->pointer, keyboard->keyboard);
- */
-typedef struct {
-    CARD16      type    B16;     /* Always CH_ChangeAttachment */
-    CARD16      length  B16;     /* 8 */
-    CARD8       deviceid;
-    CARD8       changeMode;     /* AttachToMaster, Floating */
-    CARD8       newMaster;      /* id of new master device */
-    CARD8       pad0;
-} xChangeAttachmentInfo;
-
-
-
-/**********************************************************
- *
- * SetClientPointer.
- *
- */
-
-typedef struct {
-    CARD8       reqType;
-    CARD8       ReqType;        /* Always X_SetClientPointer */
-    CARD16      length B16;
-    Window      win B32;
-    CARD8       deviceid;
-    CARD8       pad0;
-    CARD16      pad1 B16;
-} xSetClientPointerReq;
-
-
-/**********************************************************
- *
- * GetClientPointer.
- *
- */
-typedef struct {
-    CARD8       reqType;
-    CARD8       ReqType;        /* Always X_GetClientPointer */
-    CARD16      length B16;
-    Window      win B32;
-} xGetClientPointerReq;
-
-typedef struct {
-    CARD8       repType;        /* input extension major opcode */
-    CARD8       RepType;        /* Always X_GetClientPointer */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    BOOL        set;            /* client pointer is set */
-    CARD8       deviceid;
-    CARD16      pad0 B16;
-    CARD32      pad1 B32;
-    CARD32      pad2 B32;
-    CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-} xGetClientPointerReply;
-
-
-/**********************************************************
- *
- * XiSelectevent.
- *
- */
-
-typedef struct {
-    CARD8       reqType;        /* input extension major opcode */ 
-    CARD8       ReqType;        /* always X_XiSelectEvent */
-    CARD16      length B16;
-    Window      window B32;     /* window to be changed */
-    Mask        mask B32;       /* mask to be applied */
-    CARD8       deviceid;
-    CARD8       pad0;
-    CARD16      pad1 B16;
-} xXiSelectEventReq;
-
-
-/************************************************************
- *
- * ExtendedGrabDevice.
- *
- * This is a grab request to acommodate GE events.
- * Event is followed by (event_count * XEventClass) bytes, followed by
- * (ge_event_masks * GenericEventMask) bytes.
- * 
- */
-
-typedef struct {
-    CARD8       reqType;        /* input extension major opcode */
-    CARD8       ReqType;        /* always X_ExtendedGrabDevice  */
-    CARD16      length B16;
-    CARD32      grab_window B32;
-    Time        time B32;
-    CARD8       deviceid;
-    CARD8       device_mode;    /* GrabModeSync or GrabModeAsync */
-    BOOL        owner_events;
-    CARD8       pad0;
-    Window      confine_to B32;
-    Cursor      cursor B32;
-    CARD16      event_count B16;
-    CARD16      generic_event_count B16;
-} xExtendedGrabDeviceReq;
-
-typedef struct {
-    CARD8 	repType;  	/* X_Reply 			*/
-    CARD8 	RepType;        /* always X_ExtendedGrabDevice  */
-    CARD16 	sequenceNumber B16;
-    CARD32 	length B32;  /* 0 */
-    CARD8 	status;
-    BYTE	pad1, pad2, pad3;
-    CARD32 	pad01 B32;
-    CARD32 	pad02 B32;
-    CARD32 	pad03 B32;
-    CARD32 	pad04 B32;
-    CARD32 	pad05 B32;
-} xExtendedGrabDeviceReply;
-
 
 /**********************************************************
  *
@@ -1980,34 +1727,6 @@ typedef struct
     }  devicePresenceNotify;
 
 
-/**********************************************************
- *
- * deviceEnterNotify.
- * This has a slightly different layout than the core event.
- *
- */
-
-typedef struct
-    {
-    BYTE	type;
-    BYTE        detail;
-    CARD16	sequenceNumber B16;
-    Time        time B32;
-    Window      root B32;
-    Window      event B32;
-    Window      child B32;
-    INT16       rootX B16;
-    INT16       rootY B16;
-    INT16       eventX B16;
-    INT16       eventY B16;
-    KeyButMask  state B16;
-    BYTE        mode;
-    CARD8       deviceid;
-    }  deviceEnterNotify;
-
-typedef deviceEnterNotify deviceLeaveNotify;
-
-
 /*********************************************************
  * DevicePropertyNotifyEvent
  *
@@ -2030,59 +1749,6 @@ typedef struct
     CARD8       pad4;
     CARD8       deviceid;            /* id of device */
     } devicePropertyNotify;
-
-
-
-/*********************************************************
- * DeviceHierarchyChangedEvent.
- *
- * Intended as a notification event only, the client is expected to query the
- * server for input devices after receipt of this event.
- */
-
-typedef struct
-    {
-    BYTE        type;                          /* always GenericEvent */
-    BYTE        extension;                     /* XI extension offset */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    CARD16      evtype B16;                     /* XI_DeviceHierarchyChangedNotify */
-    CARD16      pad0 B16;
-    CARD32      time B32;
-    CARD32      pad2 B32;
-    CARD32      pad3 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-    } deviceHierarchyChangedEvent;
-
-/*********************************************************
- * DeviceClassesChangedEvent
- *
- * Send whenever a master device changes classes (due to another slave device
- * sending events).
- *
- * Event is followed by the same type of class list as used in the
- * ListInputDevices request.
- */
-
-typedef struct
-    {
-    BYTE        type;                /* always GenericEvent */
-    BYTE        extension;           /* XI extension offset */
-    CARD16      sequenceNumber B16;
-    CARD32      length B32;
-    CARD16      evtype B16;          /* XI_DeviceClassesChangedNotify */
-    CARD8       deviceid;            /* id of master */
-    CARD8       new_slave;           /* id of new slave */
-    CARD32      time B32;
-    CARD8       num_classes;
-    CARD8       pad0;
-    CARD16      pad1 B16;
-    CARD32      pad2 B32;
-    CARD32      pad4 B32;
-    CARD32      pad5 B32;
-    } deviceClassesChangedEvent;
-
 
 #undef Window
 #undef Time
