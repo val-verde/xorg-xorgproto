@@ -1092,7 +1092,8 @@ dynamic changes in the display environment.
 	Version 1.3 adds panning support again. If multiple crtcs are active
 	the panning behavior can be defined per crtc individually.
 	RRGetPanning returns information about the currently set panning
-	configuration for the specified crtc.
+	configuration for the specified crtc.  If the CRTC does not support
+	panning, all fields (except timestamp) will be 0.
 
 	'timestamp' indicates when the configuration was last set.
 
