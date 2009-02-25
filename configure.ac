@@ -22,7 +22,7 @@ dnl
 dnl Process this file with autoconf to create configure.
 
 AC_PREREQ([2.57])
-AC_INIT([RandrProto], [1.2.99.3], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
+AC_INIT([RandrProto], [1.2.99.4], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 
 # Require xorg-macros: XORG_CHANGELOG
