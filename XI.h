@@ -289,7 +289,12 @@ SOFTWARE.
 /* ChangeHierarchy constants */
 #define CH_CreateMasterDevice    1
 #define CH_RemoveMasterDevice    2
+#define CH_AttachSlave           3
+#define CH_DetachSlave           4
+
+/* XXX: do not use, will be removed */
 #define CH_ChangeAttachment      3
+
 
 #define AttachToMaster           1
 #define Floating                 2
