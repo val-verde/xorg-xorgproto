@@ -274,9 +274,6 @@ SOFTWARE.
 #define DeviceUnrecoverable      4
 #define DeviceControlChanged     5
 
-#define AttachToMaster           1
-#define Floating                 2
-
 /* XI Errors */
 #define XI_BadDevice	0
 #define XI_BadEvent	1
