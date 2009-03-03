@@ -165,9 +165,6 @@ SOFTWARE.
 #define XI_Add_DeviceProperties_Major		1
 #define XI_Add_DeviceProperties_Minor		5
 
-#define XI_2_Major				2
-#define XI_2_Minor				0
-
 #define DEVICE_RESOLUTION	1
 #define DEVICE_ABS_CALIB        2
 #define DEVICE_CORE             3

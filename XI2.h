@@ -25,6 +25,10 @@
 #ifndef _XI2_H_
 #define _XI2_H_
 
+#define XI_2_Major				2
+#define XI_2_Minor				0
+
+
 /* DeviceChangedEvent change reasons */
 #define SlaveSwitch                     1
 #define DeviceChange                    2
