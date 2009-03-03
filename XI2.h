@@ -39,6 +39,12 @@
 #define HF_DeviceEnabled            (1 << 6)
 #define HF_DeviceDisabled           (1 << 7)
 
+/* ChangeHierarchy constants */
+#define CH_CreateMasterDevice    1
+#define CH_RemoveMasterDevice    2
+#define CH_AttachSlave           3
+#define CH_DetachSlave           4
+
 /* Valuator modes */
 #define ModeRelative                    0
 #define ModeAbsolute                    1
