@@ -147,6 +147,15 @@ typedef struct _AppleWMSetWindowLevel {
 } xAppleWMSetWindowLevelReq;
 #define sz_xAppleWMSetWindowLevelReq 12
 
+typedef struct _AppleWMSendPSN {
+    CARD8	reqType;		/* always WMReqCode */
+    CARD8	wmReqType;		/* always X_AppleWMSendPSN */
+    CARD16	length B16;
+    CARD32	psn_hi;
+    CARD32	psn_lo;
+} xAppleWMSendPSNReq;
+#define sz_xAppleWMSendPSNReq 12
+
 typedef struct _AppleWMSetCanQuit {
     CARD8	reqType;		/* always WMReqCode */
     CARD8	wmReqType;		/* always X_AppleWMSetCanQuit */
