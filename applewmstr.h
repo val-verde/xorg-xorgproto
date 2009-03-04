@@ -36,8 +36,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define APPLEWMNAME "Apple-WM"
 
 #define APPLE_WM_MAJOR_VERSION	1	/* current version numbers */
-#define APPLE_WM_MINOR_VERSION	1
-#define APPLE_WM_PATCH_VERSION	1
+#define APPLE_WM_MINOR_VERSION	2
+#define APPLE_WM_PATCH_VERSION	0
 
 /* For the purpose of the structure definitions in this file,
 we must redefine the following types in terms of Xmd.h's types, which may
