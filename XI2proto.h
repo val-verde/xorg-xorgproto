@@ -65,6 +65,11 @@
  *                               COMMON STRUCTS                                      *
  *                                                                                   *
  *************************************************************************************/
+/* Fixed point 32.32 */
+typedef struct {
+    int32_t     integral;
+    uint32_t    frac;
+} FP3232;
 
 /**
  * Struct to describe a device.
