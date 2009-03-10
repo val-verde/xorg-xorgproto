@@ -144,10 +144,8 @@ typedef struct {
     uint16_t    type;           /**< Always ValuatorClass       */
     uint16_t    length;         /**< Length in 4 byte units     */
     Atom        name;           /**< Valuator name              */
-    int32_t     min;            /**< Min value, integral part   */
-    uint32_t    min_frac;       /**< Min value, fractional part */
-    int32_t     max;            /**< Max value, integral part   */
-    uint32_t    max_frac;       /**< Max value, fractional part */
+    FP3232      min;            /**< Min value                  */
+    FP3232      max;            /**< Max value                  */
     uint32_t    resolution;     /**< Resolutions in units/m     */
     uint16_t    number;         /**< Valuator number            */
     uint8_t     mode;           /**< ModeRelative or ModeAbsolute */
