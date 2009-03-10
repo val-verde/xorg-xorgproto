@@ -803,9 +803,7 @@ EVENTHEADER { type:                       BYTE
             EVENTHEADER
             eventtype:                 RAWTYPE
             detail:                    CARD32
-            buttons_len:               CARD16
             valuators_len:             CARD16
-            buttons:                   SETofBUTTONMASK
             valuators:                 SETofVALUATORMASK
             axisvalues:                LISTofFP3232
             axisvalues_raw:            LISTofFP3232
@@ -827,12 +825,8 @@ EVENTHEADER { type:                       BYTE
         The type of event that occured on the device.
     detail
         The button number or keycode.
-    buttons_len
-        The length of 'buttons' in 4 byte units.
     valuators_len
         The length of 'valuators' in 4 byte units.
-    buttons
-        Button state before the event.
     valuators
         Bitmask of valuators provided in 'axisvalues' and 'axisvalues_raw'.
     axisvalues

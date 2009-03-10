@@ -573,10 +573,9 @@ typedef struct
     uint16_t    eventtype;              /* XI_Motion, XI_ButtonPress,
                                            XI_ButtonRelease, XI_KeyPress,
                                            XI_KeyRelease */
-    uint16_t    buttons_len;
     uint16_t    valuators_len;
-    uint16_t    pad0;
     uint32_t    pad1;
+    uint32_t    pad2;
 } xXIRawDeviceEvent;
 
 /***********************************************************
