@@ -835,7 +835,7 @@ EVENTHEADER { type:                       BYTE
         Untransformed valuator data in device-native resolution.
 
     ┌───
-        Enter or Leave
+        Enter or Leave or FocusIn or FocusOut
             EVENTHEADER
             root:               Window
             event:              Window
@@ -861,8 +861,20 @@ EVENTHEADER { type:                       BYTE
 
     Enter or Leave events are sent whenever a device's pointer enters or
     leaves a window.
-    The enter/leave model is described in the core protocol specification,
-    Section 11. (EnterNotify, LeaveNotify events).
+    FocusIn or FocusOut events are sent whenever a device's focus is set to or
+    away from a window.
+    The enter/leave and focus in/out model is described in the core protocol
+    specification, Section 11. (EnterNotify, LeaveNotify events).
+
+    For enter and leave events, the modifier and group state is the state of
+    the paired master device if the device is a master device, or the state of
+    the attached master keyboard if the device is an attached slave device, or
+    zero if the device is a floating slave device.
+
+    For focus in and out events, the button state is the state of the paired
+    master device if the device is a master device, or the state of the
+    attached master keyboard if the device is an attached slave device, or
+    zero if the device is a floating slave device.
 
     root
     event
@@ -889,7 +901,8 @@ EVENTHEADER { type:                       BYTE
         window.
     focus
         If the event window is the focus window or an inferior of the focus
-        window, then focus is True. Otherwise, focus is False.
+        window, then focus is True. Otherwise, focus is False. This field is
+        unspecified for focus in/out events.
     mods
         XKB modifier state before the event occured.
     group

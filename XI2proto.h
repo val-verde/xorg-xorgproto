@@ -623,5 +623,7 @@ typedef struct
 } xXIEnterEvent;
 
 typedef xXIEnterEvent xXILeaveEvent;
+typedef xXIEnterEvent xXIFocusInEvent;
+typedef xXIEnterEvent xXIFocusOutEvent;
 
 #endif /* _XI2PROTO_H_ */
