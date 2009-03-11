@@ -44,7 +44,6 @@
 #define KeyCode CARD8
 #define Mask    CARD32
 #define Atom    CARD32
-#define FP1616  INT32 /* 16.16 packed fixed point */
 
 /* Request opcodes */
 #define X_XIQueryDevicePointer          40
@@ -65,6 +64,13 @@
  *                               COMMON STRUCTS                                      *
  *                                                                                   *
  *************************************************************************************/
+/* Fixed point 16.16 */
+typedef struct
+{
+    int16_t     integral;
+    uint16_t    frac;
+} FP1616;
+
 /* Fixed point 32.32 */
 typedef struct {
     int32_t     integral;

@@ -130,9 +130,9 @@ EVENTMASK
         A SETofEVENTMASK is a binary OR of zero or more EVENTMASK.
 
 FP1616
-        Fixed point decimal in 16.16 format as 32 bit integer in the form of
-        (value * 10e15). The client is required to convert to 16.16 decimal
-        format.
+        Fixed point decimal in 16.16 format as one INT16 and one CARD16.
+        The INT16 contains the integral part, the CARD32 the decimal fraction
+        shifted by 16.
 
 FP3232
         Fixed point decimal in 32.32 format as one INT32 and one CARD32.
