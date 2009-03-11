@@ -849,6 +849,10 @@ EVENTHEADER { type:                       BYTE
             detail:             NOTIFYDETAIL
             same_screen:        BOOL
             focus:              BOOL
+            mods:               MODIFIERINFO
+            group:              GROUPINFO
+            buttons_len:        CARD16
+            buttons:            SETofBUTTONMASK
     └───
 
     NOTIFYMODE { Normal, Grab, Ungrab }
@@ -886,5 +890,13 @@ EVENTHEADER { type:                       BYTE
     focus
         If the event window is the focus window or an inferior of the focus
         window, then focus is True. Otherwise, focus is False.
+    mods
+        XKB modifier state before the event occured.
+    group
+        XKB group state before the event.
+    buttons_len
+        The length of 'buttons' in 4 byte units.
+    buttons
+        Button state before the event.
 
                               ❧❧❧❧❧❧❧❧❧❧❧

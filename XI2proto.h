@@ -617,7 +617,9 @@ typedef struct
     FP1616      event_y;
     BOOL        same_screen;
     BOOL        focus;
-    uint16_t    pad0;
+    uint16_t    buttons_len;
+    xXIModifierInfo     mods;
+    xXIGroupInfo        group;
 } xXIEnterEvent;
 
 typedef xXIEnterEvent xXILeaveEvent;
