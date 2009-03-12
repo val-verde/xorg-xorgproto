@@ -55,8 +55,10 @@
 #define X_XISelectEvents                46
 #define X_XIQueryVersion                47
 #define X_XIQueryDevice                 48
+#define X_XISetDeviceFocus              49
+#define X_XIGetDeviceFocus              50
 
-#define XI2REQUESTS (X_XIQueryDevice - X_XIQueryDevicePointer + 1)
+#define XI2REQUESTS (X_XIGetDeviceFocus - X_XIQueryDevicePointer + 1)
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
 /*************************************************************************************
@@ -443,6 +445,50 @@ typedef struct {
     uint32_t    pad5;
 } xXIGetClientPointerReply;
 #define sz_xXIGetClientPointerReply               32
+
+/**********************************************************
+ *
+ * SetDeviceFocus.
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XISetDeviceFocus */
+    uint16_t    length;
+    Window      focus;
+    Time        time;
+    uint16_t    deviceid;
+    uint16_t    pad0;
+} xXISetDeviceFocusReq;
+#define sz_xXISetDeviceFocusReq                 16
+
+/**********************************************************
+ *
+ * GetDeviceFocus.
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIGetDeviceFocus */
+    uint16_t    length;
+    uint16_t    deviceid;
+    uint16_t    pad0;
+} xXIGetDeviceFocusReq;
+#define sz_xXIGetDeviceFocusReq                 8
+
+typedef struct {
+    uint8_t     repType;                /* input extension major opcode */
+    uint8_t     RepType;                /* Always X_XIGetDeviceFocus */
+    uint16_t    sequenceNumber;
+    uint32_t    length;
+    Window      focus;
+    uint32_t    pad1;
+    uint32_t    pad2;
+    uint32_t    pad3;
+    uint32_t    pad4;
+    uint32_t    pad5;
+} xXIGetDeviceFocusReply;
+#define sz_xXIGetDeviceFocusReply               32
 
 /*************************************************************************************
  *                                                                                   *

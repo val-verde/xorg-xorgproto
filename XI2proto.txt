@@ -585,6 +585,46 @@ XI2. Clients should ignore this data.
     deviceid
         The master pointer that acts as a ClientPointer if 'set' is TRUE.
 
+    ┌───
+        XISetDeviceFocus
+            focus:           Window
+            deviceid:        DEVICEID
+            time:            Time
+    └───
+
+    Set the focus for the given device to the given window. Future key events
+    from this device are sent to this window.
+    This request generates FocusIn and FocusOut events.
+
+    focus
+        A viewable window or None.
+    deviceid
+        The device to modify the focus window for.
+    time
+        Specifies the time to change the focus or CurrentTime.
+
+    If focus is None, key events from this device are discarded until a new
+    focus window is set. If focus is a viewable window, key events from this
+    device are sent to this window. If the window becomes unviewable, the
+    window's first viewable ancestor automatically becomes the focus window
+    and FocusIn and FocusOut events are sent as if a client had changed the
+    focus window.
+    This is equivalent to RevertToParent in the core XSetInputFocus window.
+
+    This request has no effect if the specified time is earlier than the
+    current last-focus-change time or is later than the current X server time.
+    Otherwise, the last-focus-change time is set to the specified time.
+
+    ┌───
+        XIGetDeviceFocus
+            deviceid:        DEVICEID
+            ▶
+            focus:           Window
+    └───
+
+    Return the current focus window for the given device.
+
+
 8. Events:
 
 An event specifies its length in 4-byte units after the initial 32 bytes.
