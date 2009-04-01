@@ -2364,4 +2364,4 @@ Bibliography
 
 [RENDER] 
 	Packard, Keith, "The X Rendering Extension", work in progress,
-	documents found in xc/specs/Render.
+	http://cgit.freedesktop.org/xorg/proto/renderproto/tree/renderproto.txt
