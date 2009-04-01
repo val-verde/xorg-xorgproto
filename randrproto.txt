@@ -1025,7 +1025,7 @@ dynamic changes in the display environment.
 
 	'outputs' contains the list of outputs associated with the screen.
 
-	'modes' contains the list of modes associated with the screen
+	'modes' contains the list of modes associated with the screen.
 	
 	Unlike RRGetScreenResources, this merely returns the current
 	configuration, and does not poll for hardware changes.
