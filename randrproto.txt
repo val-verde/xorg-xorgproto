@@ -1238,7 +1238,7 @@ dynamic changes in the display environment.
 └───
 	Errors: Window
 
-	RRGetOutputPrimary returns the primary output for the system.
+	RRGetOutputPrimary returns the primary output for the screen.
 
                               ❧❧❧❧❧❧❧❧❧❧❧
 
