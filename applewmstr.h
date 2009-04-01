@@ -111,8 +111,11 @@ typedef struct _AppleWMNotify {
 	CARD16	pad1 B16;
 	CARD32	arg B32;
 	CARD32	pad3 B32;
+	CARD32  pad4 B32;
+	CARD32  pad5 B32;
+	CARD32  pad6 B32;
 } xAppleWMNotifyEvent;
-#define sz_xAppleWMNotifyEvent	20
+#define sz_xAppleWMNotifyEvent	32
 
 typedef struct _AppleWMSetWindowMenu {
     CARD8	reqType;		/* always WMReqCode */
