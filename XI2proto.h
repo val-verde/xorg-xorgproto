@@ -41,8 +41,6 @@
 /* make sure types have right sizes for protocol structures. */
 #define Window  CARD32
 #define Time    CARD32
-#define KeyCode CARD8
-#define Mask    CARD32
 #define Atom    CARD32
 
 /* Request opcodes */
@@ -675,8 +673,6 @@ typedef xXIEnterEvent xXIFocusOutEvent;
 
 #undef Window
 #undef Time
-#undef KeyCode
-#undef Mask
 #undef Atom
 
 #endif /* _XI2PROTO_H_ */
