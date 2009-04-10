@@ -672,4 +672,11 @@ typedef xXIEnterEvent xXILeaveEvent;
 typedef xXIEnterEvent xXIFocusInEvent;
 typedef xXIEnterEvent xXIFocusOutEvent;
 
+
+#undef Window
+#undef Time
+#undef KeyCode
+#undef Mask
+#undef Atom
+
 #endif /* _XI2PROTO_H_ */
