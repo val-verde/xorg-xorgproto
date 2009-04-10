@@ -55,8 +55,10 @@
 #define X_XIQueryDevice                 48
 #define X_XISetDeviceFocus              49
 #define X_XIGetDeviceFocus              50
+#define X_XIGrabDevice                  51
+#define X_XIUngrabDevice                52
 
-#define XI2REQUESTS (X_XIGetDeviceFocus - X_XIQueryDevicePointer + 1)
+#define XI2REQUESTS (X_XIUngrabDevice - X_XIQueryDevicePointer + 1)
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
 /*************************************************************************************
@@ -487,6 +489,59 @@ typedef struct {
     uint32_t    pad5;
 } xXIGetDeviceFocusReply;
 #define sz_xXIGetDeviceFocusReply               32
+
+
+/**********************************************************
+ *
+ * GrabDevice
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIGrabDevice */
+    uint16_t    length;
+    Window      grab_window;
+    Time        time;
+    Cursor      cursor;
+    uint16_t    deviceid;
+    uint8_t     grab_mode;
+    uint8_t     paired_device_mode;
+    uint8_t     owner_events;
+    uint8_t     pad;
+    uint16_t    mask_len;
+} xXIGrabDeviceReq;
+#define sz_xXIGrabDeviceReq                     24
+
+typedef struct {
+    uint8_t     repType;                /* input extension major opcode */
+    uint8_t     RepType;                /* Always X_XIGrabDevice */
+    uint16_t    sequenceNumber;
+    uint32_t    length;
+    uint8_t     status;
+    uint8_t     pad0;
+    uint16_t    pad1;
+    uint32_t    pad2;
+    uint32_t    pad3;
+    uint32_t    pad4;
+    uint32_t    pad5;
+    uint32_t    pad6;
+} xXIGrabDeviceReply;
+#define sz_xXIGrabDeviceReply                  32
+
+/**********************************************************
+ *
+ * UngrabDevice
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIUngrabDevice */
+    uint16_t    length;
+    Time        time;
+    uint16_t    deviceid;
+    uint16_t    pad;
+} xXIUngrabDeviceReq;
+#define sz_xXIUngrabDeviceReq                   12
 
 /*************************************************************************************
  *                                                                                   *

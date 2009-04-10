@@ -73,7 +73,7 @@ SOFTWARE.
 
 #define IEVENTS         17       /* does NOT include generic events */
 #define IERRORS         5
-#define IREQUESTS       48
+#define IREQUESTS       39
 
 #define CLIENT_REQ      1
 
