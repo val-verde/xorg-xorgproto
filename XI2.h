@@ -28,6 +28,13 @@
 #define XI_2_Major				2
 #define XI_2_Minor				0
 
+/* XIAllowEvents event-modes */
+#define AsyncDevice             0
+#define SyncDevice              1
+#define ReplayDevice            2
+#define AsyncPairedDevice       3
+#define AsyncPair               4
+#define SyncPair                5
 
 /* DeviceChangedEvent change reasons */
 #define SlaveSwitch                     1

@@ -57,8 +57,9 @@
 #define X_XIGetDeviceFocus              50
 #define X_XIGrabDevice                  51
 #define X_XIUngrabDevice                52
+#define X_XIAllowEvents                 53
 
-#define XI2REQUESTS (X_XIUngrabDevice - X_XIQueryDevicePointer + 1)
+#define XI2REQUESTS (X_XIAllowEvents - X_XIQueryDevicePointer + 1)
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
 /*************************************************************************************
@@ -538,6 +539,23 @@ typedef struct {
     uint16_t    pad;
 } xXIUngrabDeviceReq;
 #define sz_xXIUngrabDeviceReq                   12
+
+
+/**********************************************************
+ *
+ * AllowEvents
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIAllowEvents */
+    uint16_t    length;
+    Time        time;
+    uint16_t    deviceid;
+    uint8_t     mode;
+    uint8_t     pad;
+} xXIAllowEventsReq;
+#define sz_xXIAllowEventsReq                   12
 
 /*************************************************************************************
  *                                                                                   *

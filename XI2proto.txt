@@ -704,6 +704,92 @@ XI2. Clients should ignore this data.
     An XIUngrabDevice is performed automatically if the event window for an
     active device grab becomes not viewable.
 
+    ┌───
+        XIAllowEvents:
+            deviceid:        DEVICEID
+            time:            TIMESTAMP or CurrentTime
+            event-mode:      { AsyncDevice, SyncDevice,
+                               AsyncPairedDevice, SyncPairedDevice,
+                               ReplayDevice, AsyncPair, SyncPair }
+    └───
+
+    Errors: Device, Value
+
+    The AllowDeviceEvents request releases some queued events if the client
+    has caused a device to freeze. The request has no effect if the specified
+    time is earlier than the last-grab time of the most recent active grab for
+    the client, or if the specified time is later than the current X server
+    time.
+
+    The following describes the processing that occurs depending on what constant
+    you pass to the event-mode argument:
+    AsyncDevice:
+        If the specified device is frozen by the client, event processing for that
+        device continues as usual. If the device is frozen multiple times  by the
+        client on behalf of multiple separate grabs, AsyncThisDevice thaws for
+        all.
+        AsyncDevice has no effect if the specified device is not frozen by the
+        client, but the device need not be grabbed by the client.
+    SyncDevice:
+        If the specified device is frozen and actively grabbed by the client,
+        event processing for that device continues normally until the next
+        event is reported to the client. At this time, the specified device
+        again appears to freeze. However, if the reported event causes the
+        grab to be released, the specified device does not freeze.
+        SyncDevice has no effect if the specified device is not frozen by the
+        client or is not grabbed by the client.
+     ReplayDevice:
+        If the specified device is actively grabbed by the client and is frozen
+        as the result of an event having been sent to the client (either from
+        the activation of a XIGrabButton or from a previous XIAllowEvents with
+        mode SyncDevice, but not from a Grab), the grab is released and
+        that event is completely reprocessed.  This time, however, the request
+        ignores any passive grabs at or above (towards the root) the
+        grab-window of the grab just released.
+        The request has no effect if the specified device is not grabbed by
+        the client or if it is not frozen as the result of an event.
+     AsyncPairedDevice
+        If the paired master device is frozen by the client, event processing
+        for it continues as usual. If the paired device is frozen multiple
+        times by the client on behalf of multiple separate grabs,
+        AsyncPairedDevice thaws for all.
+        AsyncPairedDevice has no effect if the device is not frozen by the
+        client, but those devices need not be grabbed by the client.
+        AsyncPairedDevice has no effect if deviceid specifies a slave device.
+     SyncPairedDevice
+        If the paired master device is frozen by the client, event processing (for
+        the paired master device) continues normally until the next button or key
+        event is reported to the client for the grabbed device (button event for
+        the grabbed device, key or motion event for the device), at which time
+        the device again appears to freeze. However, if the reported event causes
+        the grab to be released, then the device does not freeze.
+        SyncPairedDevice has no effect if the specified device is not grabbed
+        by the client or if it is no frozen as the result of an event.
+        SyncPairedDevice has no effect if deviceid specifies a slave device.
+     SyncPair
+        If both the device and the paired master device are frozen by the
+        client, event processing (for both devices) continues normally until
+        the next XIButtonPress, XIButtonRelease, XIKeyPress, or XIKeyRelease
+        event is reported to the client for a grabbed device (button event for
+        a pointer, key event for a keyboard), at which time the devices again
+        appear to freeze. However, if the reported event causes the grab to be
+        released, then the devices do not freeze (but if the other device is
+        still grabbed, then a subsequent event for it will still cause both
+        devices to freeze).
+        SyncPair has no effect unless both the device and the paired master
+        device are frozen by the client. If the device or paired master device
+        is frozen twice by the client on behalf of two separate grabs,
+        SyncPair thaws for both (but a subsequent freeze for SyncPair will
+        only freeze each device once).
+        SyncPair has no effect if deviceid specifies a slave device.
+     AsyncPair
+        If the device and the paired master device are frozen by the client,
+        event processing for both devices continues normally. If a device is
+        frozen twice by the client on behalf of two separate grabs, AsyncBoth
+        thaws for both. AsyncPair has no effect unless both the device and the
+        paired master device frozen by the client.
+        AsyncPair has no effect if deviceid specifies a slave device.
+
 8. Events:
 
 An event specifies its length in 4-byte units after the initial 32 bytes.
