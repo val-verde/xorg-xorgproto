@@ -67,11 +67,7 @@
  *                                                                                   *
  *************************************************************************************/
 /* Fixed point 16.16 */
-typedef struct
-{
-    int16_t     integral;
-    uint16_t    frac;
-} FP1616;
+typedef int32_t FP1616;
 
 /* Fixed point 32.32 */
 typedef struct {
