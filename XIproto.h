@@ -56,6 +56,7 @@ SOFTWARE.
 #define KeyCode CARD8
 #define Mask CARD32
 #define Atom CARD32
+#define Cursor CARD32
 
 /*********************************************************
  *
@@ -1750,5 +1751,6 @@ typedef struct
 #undef KeyCode
 #undef Mask
 #undef Atom
+#undef Cursor
 
 #endif
