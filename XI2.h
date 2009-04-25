@@ -28,6 +28,13 @@
 #define XI_2_Major				2
 #define XI_2_Minor				0
 
+/* Passive grab types */
+#define GrabtypeButton          0
+#define GrabtypeKeysym          1
+
+/* Passive grab modifier */
+#define XIAnyModifier                           (1 << 31)
+
 /* XIAllowEvents event-modes */
 #define AsyncDevice             0
 #define SyncDevice              1

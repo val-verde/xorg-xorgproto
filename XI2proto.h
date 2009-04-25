@@ -58,8 +58,10 @@
 #define X_XIGrabDevice                  51
 #define X_XIUngrabDevice                52
 #define X_XIAllowEvents                 53
+#define X_XIPassiveGrabDevice           54
+#define X_XIPassiveUngrabDevice         55
 
-#define XI2REQUESTS (X_XIAllowEvents - X_XIQueryDevicePointer + 1)
+#define XI2REQUESTS (X_XIPassiveUngrabDevice - X_XIQueryDevicePointer + 1)
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
 /*************************************************************************************
@@ -170,6 +172,15 @@ typedef struct {
     uint16_t    deviceid;       /**< Device id to select for        */
     uint16_t    mask_len;       /**< Length of mask in 4 byte units */
 } xXIDeviceEventMask;
+
+
+
+typedef struct {
+    uint32_t    modifiers;
+    uint8_t     status;
+    uint8_t     pad0;
+    uint16_t    pad1;
+} xXIGrabModifierInfo;
 
 /*************************************************************************************
  *                                                                                   *
@@ -556,6 +567,60 @@ typedef struct {
     uint8_t     pad;
 } xXIAllowEventsReq;
 #define sz_xXIAllowEventsReq                   12
+
+
+/**********************************************************
+ *
+ * PassiveGrabDevice
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIPassiveGrabDevice */
+    uint16_t    length;
+    Time        time;
+    Window      grab_window;
+    Cursor      cursor;
+    uint32_t    detail;
+    uint16_t    deviceid;
+    uint16_t    num_modifiers;
+    uint16_t    mask_len;
+    uint8_t     grab_type;
+    uint8_t     grab_mode;
+    uint8_t     paired_device_mode;
+    uint8_t     owner_events;
+    uint16_t    pad1;
+} xXIPassiveGrabDeviceReq;
+#define sz_xXIPassiveGrabDeviceReq              32
+
+typedef struct {
+    uint8_t     repType;                /* input extension major opcode */
+    uint8_t     RepType;                /* Always X_XIPassiveGrabDevice */
+    uint16_t    sequenceNumber;
+    uint32_t    length;
+    uint16_t    num_modifiers;
+    uint16_t    pad1;
+    uint32_t    pad2;
+    uint32_t    pad3;
+    uint32_t    pad4;
+    uint32_t    pad5;
+    uint32_t    pad6;
+} xXIPassiveGrabDeviceReply;
+#define sz_xXIPassiveGrabDeviceReply            32
+
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIPassiveUngrabDevice */
+    uint16_t    length;
+    Window      grab_window;
+    uint32_t    detail;
+    uint16_t    deviceid;
+    uint16_t    num_modifiers;
+    uint8_t     grab_type;
+    uint8_t     pad0;
+    uint16_t    pad1;
+} xXIPassiveUngrabDeviceReq;
+#define sz_xXIPassiveUngrabDeviceReq            20
 
 /*************************************************************************************
  *                                                                                   *
