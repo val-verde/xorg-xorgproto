@@ -627,11 +627,12 @@ XI2. Clients should ignore this data.
     ┌───
         XIGrabDevice
             deviceid:        DEVICEID
-            grab-window:     Window
-            owner-events:    BOOL
-            grab-mode:       { Synchronous, Asynchronous }
-            paired-device-mode: { Synchronous, Asynchronous }
+            grab_window:     Window
+            owner_events:    BOOL
+            grab_mode:       { Synchronous, Asynchronous }
+            paired_device_mode: { Synchronous, Asynchronous }
             time:            TIMESTAMP or CurrentTime
+            cursor:          Cursor
             mask_len:        CARD16
             masks:           SETofEVENTMASK
             ▶
@@ -642,6 +643,30 @@ XI2. Clients should ignore this data.
     input events from this device are reported only to the grabbing client.
     This request overides any previous active grab by this client for this
     device.
+
+    deviceid
+        The device to grab.
+    grab_window
+        Events are reported relative to the grab window.
+    owner_events
+        Specifies whether event will be reported normally or relative to the
+        grab window.
+    grab_mode
+        Specifies if this device will be frozen as a result of the grab.
+    paired_device_mode
+        Specifies if the master device paired with this device will be frozen
+        as a result of the grab.
+    time
+        A valid server time or CurrentTime.
+    cursor
+        The cursor to display for the duration of the grab or None.
+    mask_len
+        Length of mask in 4 byte units.
+    mask
+        Event mask. An event mask for an event type T is defined as (1 << T).
+    status
+        Success or the reason why the grab could not be established.
+
 
     The masks parameter specifies which events the client wishes to receive
     while the device is grabbed.
@@ -673,6 +698,9 @@ XI2. Clients should ignore this data.
     or until the device grab is released. Actual events are not lost while the
     devices are frozen; they are simply queued for later processing.
 
+    If the cursor is not None and the device is a master pointer device, the
+    cursor will be displayed until the device is ungrabbed.
+
     This request fails and returns:
     AlreadyGrabbed: If the device is actively grabbed by some other client.
     NotViewable: If grab-window is not viewable.
@@ -683,7 +711,7 @@ XI2. Clients should ignore this data.
                  current X server time.
     Frozen: If the device is frozen by an active grab of another client.
 
-    To release a grab of an extension device, use UngrabDevice.
+    To release a grab of a device, use XIUngrabDevice.
 
     ┌───
         XIUngrabDevice
@@ -691,12 +719,15 @@ XI2. Clients should ignore this data.
             time:            TIMESTAMP or CurrentTime
     └───
 
-    Errors: Device
-
     This request releases the device if this client has it actively grabbed
     (from either XIGrabDevice,  XIGrabDeviceKey or XIGrabDeviceButton) and
     releases any queued events. If any devices were frozen by the grab,
     XIUngrabDevice thaws them.
+
+    deviceid
+        The device to grab.
+    time
+        A valid server time or CurrentTime.
 
     The request has no effect if the specified time is earlier
     than the last-device-grab time or is later than the current server time.
@@ -708,18 +739,25 @@ XI2. Clients should ignore this data.
         XIAllowEvents:
             deviceid:        DEVICEID
             time:            TIMESTAMP or CurrentTime
-            event-mode:      { AsyncDevice, SyncDevice,
+            event_mode:      { AsyncDevice, SyncDevice,
                                AsyncPairedDevice, SyncPairedDevice,
                                ReplayDevice, AsyncPair, SyncPair }
     └───
 
-    Errors: Device, Value
-
     The XIAllowEvents request releases some queued events if the client
-    has caused a device to freeze. The request has no effect if the specified
-    time is earlier than the last-grab time of the most recent active grab for
-    the client, or if the specified time is later than the current X server
-    time.
+    has caused a device to freeze.
+
+    deviceid
+        The device to grab.
+    time
+        A valid server time or CurrentTime.
+    event_mode
+        Specifies whether a device is to be thawed and events are to be
+        replayed.
+
+    The request has no effect if the specified time is earlier than the
+    last-grab time of the most recent active grab for the client, or if the
+    specified time is later than the current X server time.
 
     The following describes the processing that occurs depending on what constant
     you pass to the event-mode argument:
