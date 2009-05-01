@@ -349,20 +349,27 @@ alpha channel is used in the final image composition.
 
 9. Source and Mask Transformations
 
-When fetching pixels from the source or mask pictures, Render provides three
+When fetching pixels from the source or mask pictures, Render provides four
 options for pixel values which fall outside the drawable (this includes
-pixels within a window geometry obscured by other windows).
+pixels within a window geometry obscured by other windows). 
 
- +	Transparent.  Missing values are replaced with transparent.
+ +	None.  Missing values are replaced with transparent.
  
- +	Nearest.  Replace missing pixels with the nearest available
+ +	Pad.  Replace missing pixels with the nearest available
  	pixel.  Where multiple pixels are equidistant, select
 	those with smallest Y and then smallest X coordinates
 
- +	Tile.  Select the pixel which would appear were the
+ +	Normal.  Select the pixel which would appear were the
  	drawable tiled to enclose the missing coordinate.  If
 	the tiling doesn't cover the coordinate, use the
 	selected Constant or Nearest mode.
+
+ *	Reflect.  Select the pixel which would appear were the
+	drawable tiled to enclose the missing coordinate in such a
+	way that tiles in even numbered columns are reflected in the Y
+	axis, and tiles in even numbered rows are reflected in the X
+	axis. Tiles that in both an even numbered row and an even
+	numbered column are reflected in both axes.
 
 When GraphicsExposures are selected in the destination picture, a region
 containing at least the union of all destination pixel values affected by
