@@ -216,12 +216,6 @@ TRAPEZOID	[
 			left, right:	LINEFIX
 		]
 (TRAPEZOID is deprecated)
-COLORTRIANGLE	[
-			p1, p2, p3:	COLORPOINT
-		]
-COLORTRAP	[
-			top, bottom:	COLORSPANFIX
-		]
 GLYPHSET	32-bit value (top three bits guaranteed to be zero)
 GLYPH		32-bit value
 GLYPHINFO	[
@@ -840,6 +834,8 @@ Trapezoids
 		for each trapezoid
 			Combine (op, dst, source, trapezoid)
 
+	(The Trapezoids request is deprecated)
+
 Triangles
 
 	op:		PICTOP
@@ -924,31 +920,6 @@ TriFan
 		for each triangle
 			Combine (op, dst, source, triangle)
 
-ColorTrapezoids
-
-	op:		PICTOP
-	dst:		PICTURE
-	trapezoids:	LISTofCOLORTRAP
-
-	The geometry of the trapezoids must meet the same requirements as
-	for the Trapezoids request.  The trapezoids are filled in the order
-	they occur in the list.
-
-ColorTriangles
-
-	op:		PICTOP
-	dst:		PICTURE
-	triangles:	LISTofCOLORTRIANGLE
-
-	The colored triangles are rasterized in the order they occur in the
-	list.
-
-???
-
-Should I included compressed triangle representations here?
-
-???
-
 CreateGlyphSet
 
 	gsid:		GLYPHSET
@@ -999,21 +970,6 @@ AddGlyphs
 	are stored with each glyph in a separate Z-format image padded to a
 	32-bit boundary.  Existing glyphs with the same names are replaced.
 
-AddGlyphsFromPicture
-
-	glyphset:	GLYPHSET
-	src:		PICTURE
-	glyphs:		LISTofPICTGLYPH
-
-	Errors:
-		GlyphSet, Alloc
-
-	This request adds glyphs to glyphset by copying them from src from
-	the locations included in glyphs.  Existing glyphs with the same
-	names are replaced.  Src may be in a different PictFormat than
-	glyphset, in which case the images are converted to the glyphset
-	format.
-	
 FreeGlyphs
 
 	glyphset:	GLYPHSET
