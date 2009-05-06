@@ -955,6 +955,151 @@ XI2. Clients should ignore this data.
         This request has no effect if the matching button/keycode/keysym and
         modifier combination is not grabbed b this client.
 
+    ┌───
+        XIListProperties
+            deviceid:        DEVICEID
+            ▶
+            num_properties:  INT16
+            properties:      LISTofATOM
+    └───
+
+        List the properties associated with the given device.
+
+        deviceid
+            The device to list the properties for.
+        num_atoms
+            Number of atoms in the reply
+        atoms
+            All properties on the device.
+
+    ┌───
+        XIChangeProperty
+            deviceid:        DEVICEID
+            property:        ATOM
+            type:            ATOM
+            format:          { 8, 16, 32 }
+            mode:            { Append, Prepend, Replace }
+            num_items:       CARD32
+            data:            LISTofINT8, or LISTofINT16, or LISTofINT32
+    └───
+
+        Change the given property on the given device.
+
+        deviceid
+            The device to change the property on.
+        property
+            The property to modify.
+        type
+            The property's type.
+        mode
+            One of Append, Prepend, or Replace
+        num_items
+            Number of items following this request.
+        data
+            Property data (nitems * format/8 bytes)
+
+        The type is uninterpreted by the server. The format specifies whether
+        the data should be viewed as a list of 8-bit, 16-bit, or 32-bit
+        quantities so that the server can correctly byte-swap as necessary.
+
+        If the mode is Replace, the previous propert y value is discarded.  If
+        the mode is Prepend or Append, then the type and format must match the
+        existing property value (or a Match error results). If the property is
+        undefined, it is treated as defined with the correct type and format
+        with zero-length data. For Prepend, the data is tacked on to the
+        beginning of the existing data, and for Append, it is tacked on to the
+        end of the existing data.
+
+        The lifetime of a property is not tied to the storing client. Properties
+        remain until explicitly deleted, until the device is removed, or
+        until server reset.
+
+        A property cannot be deleted by setting nitems to zero. To delete a
+        property, use XIDeleteDeviceProperty.
+
+        This request generates an XIPropertyEvent.
+
+    ┌───
+        XIDeleteProperty
+            deviceid:        DEVICEID
+            property:        ATOM
+    └───
+
+        Deletes the given property on the given device.
+
+        deviceid
+            The device to delete the property on.
+        property
+            The property to delete.
+
+        If the property is deleted, an XIPropertyEvent is generated on the device.
+        If the property does not exist, this request does nothing.
+
+    ┌───
+        XIGetProperty
+            deviceid:        DEVICEID
+            property:        ATOM
+            type:            Atom or AnyPropertyType
+            offset:          CARD32
+            len:             CARD32
+            delete:          BOOL
+            ▶
+            type:            Atom
+            bytes_after:     CARD32
+            num_items:       CARD32
+            format:          { 8, 16, 32 }
+            data:            LISTofINT8, or LISTofINT16, or LISTofINT32
+    └───
+        
+        Get the data for the given property on the given device.
+
+        deviceid
+            The device to retrieve the property data from.
+        property
+            The property to retrieve the data from..
+        type
+            The property type to retrieve or AnyPropertyType
+        offset
+            The offset in 4-byte units.
+        len
+            Number of bytes to receive in 4-byte units.
+        delete
+            Delete the property after retrieving the data.
+        bytes_after
+            Number of unread bytes in the stored property
+        num_items
+            Number of items in data
+        format
+            8, 16, or 32
+        data
+            Property data (nitems * format/8 bytes)
+
+        If the specified property does not exist for the specified device, then
+        the return type is None, the format and bytes-after are zero, and the value is
+        empty. The delete argument is ignored in this case. If the specified property
+        exists but its type does not match the specified type, then the return
+        type is the actual type of the property, the format is the actual format of the
+        property (never zero), the bytes-after is the length of the property in bytes
+        (even if the format is 16 or 32), and the value is empty. The delete
+        argument is ignored in this case. If the specified property exists and
+        either AnyPropertyType is specified or the specified type matches the actual
+        type of the property, then the return type is the actual type of the property,
+        the format is the actual format of the property
+        (never zero), and the bytes-after and value are as follows, given:
+                 N = actual length of the stored property in bytes
+                    (even if the format is 16 or 32)
+                 I = 4 * long-offset
+                 T = N−I
+                 L = MINIMUM(T, 4 * long-length)
+                 A = N − (I + L)
+        The returned value starts at byte index I in the property (indexing
+        from 0), and its length in bytes is L. However, it is a Value error if
+        offset is given such that L is negative. The value of bytes_after is A,
+        giving the number of trailing unread bytes in the stored property. If
+        delete is True and the bytes_after is zero, the property is also
+        deleted from the device, and a XIPropertyNotify event is generated on
+        the device.  
+     
 
 8. Events:
 
@@ -1282,5 +1427,21 @@ EVENTHEADER { type:                       BYTE
         The length of 'buttons' in 4 byte units.
     buttons
         Button state before the event.
+
+    ┌───
+        XIPropertyEvent
+            EVENTHEADER
+            property:           ATOM
+            what:               { PropertyCreated, PropertyDeleted, PropertyModified }
+    └───
+
+    XIPropertyEvents are sent whenever a device property is created, deleted or
+    modified by a client.
+
+    property
+        The property that has been created, deleted, or modified
+    what
+        Specifies what has been changed.
+     
 
                               ❧❧❧❧❧❧❧❧❧❧❧

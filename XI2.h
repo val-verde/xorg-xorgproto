@@ -28,6 +28,10 @@
 #define XI_2_Major				2
 #define XI_2_Minor				0
 
+#define XIPropertyDeleted       0
+#define XIPropertyCreated       1
+#define XIPropertyModified      2
+
 /* Passive grab types */
 #define GrabtypeButton          0
 #define GrabtypeKeysym          1
@@ -108,7 +112,8 @@
 #define XI_FocusOut                      10
 #define XI_HierarchyChanged              11
 #define XI_RawEvent                      12
-#define XI_LASTEVENT                     XI_RawEvent
+#define XI_PropertyEvent                 13
+#define XI_LASTEVENT                     XI_PropertyEvent
 
 /* Event masks.
  * Note: the protocol spec defines a mask to be of (1 << type). Clients are
@@ -126,5 +131,6 @@
 #define XI_FocusOutMask                  (1 << XI_FocusOut)
 #define XI_HierarchyChangedMask          (1 << XI_HierarchyChanged)
 #define XI_RawEventMask                  (1 << XI_RawEvent)
+#define XI_PropertyEventMask             (1 << XI_PropertyEvent)
 
 #endif /* _XI2_H_ */

@@ -60,8 +60,12 @@
 #define X_XIAllowEvents                 53
 #define X_XIPassiveGrabDevice           54
 #define X_XIPassiveUngrabDevice         55
+#define X_XIListProperties              56
+#define X_XIChangeProperty              57
+#define X_XIDeleteProperty              58
+#define X_XIGetProperty                 59
 
-#define XI2REQUESTS (X_XIPassiveUngrabDevice - X_XIQueryDevicePointer + 1)
+#define XI2REQUESTS (X_XIGetProperty - X_XIQueryDevicePointer + 1)
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
 /*************************************************************************************
@@ -622,6 +626,107 @@ typedef struct {
 } xXIPassiveUngrabDeviceReq;
 #define sz_xXIPassiveUngrabDeviceReq            20
 
+/**********************************************************
+ *
+ * XIListProperties
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIListProperties */
+    uint16_t    length;
+    uint16_t    deviceid;
+    uint16_t    pad;
+} xXIListPropertiesReq;
+#define sz_xXIListPropertiesReq                 8
+
+typedef struct {
+    uint8_t     repType;                /* input extension major opcode */
+    uint8_t     RepType;                /* Always X_XIListProperties */
+    uint16_t    sequenceNumber;
+    uint32_t    length;
+    uint16_t    num_properties;
+    uint16_t    pad0;
+    uint32_t    pad1;
+    uint32_t    pad2;
+    uint32_t    pad3;
+    uint32_t    pad4;
+    uint32_t    pad5;
+} xXIListPropertiesReply;
+#define sz_xXIListPropertiesReply               32
+
+/**********************************************************
+ *
+ * XIChangeDeviceProperty
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIChangeProperty */
+    uint16_t    length;
+    uint16_t    deviceid;
+    uint8_t     mode;
+    uint8_t     format;
+    Atom        property;
+    Atom        type;
+    uint32_t    num_items;
+} xXIChangePropertyReq;
+#define sz_xXIChangePropertyReq                 20
+
+/**********************************************************
+ *
+ * XIDeleteProperty
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIDeleteProperty */
+    uint16_t    length;
+    uint16_t    deviceid;
+    uint16_t    pad0;
+    Atom        property;
+} xXIDeletePropertyReq;
+#define sz_xXIDeletePropertyReq                 12
+
+/**********************************************************
+ *
+ * XIGetProperty
+ *
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;                /* Always X_XIGetProperty */
+    uint16_t    length;
+    uint16_t    deviceid;
+#if defined(__cplusplus) || defined(c_plusplus)
+    uint8_t     c_delete;
+#else
+    uint8_t     delete;
+#endif
+    uint8_t     pad0;
+    Atom        property;
+    Atom        type;
+    uint32_t    offset;
+    uint32_t    len;
+} xXIGetPropertyReq;
+#define sz_xXIGetPropertyReq                    24
+
+typedef struct {
+    uint8_t     repType;                /* input extension major opcode */
+    uint8_t     RepType;                /* Always X_XIGetProperty */
+    uint16_t    sequenceNumber;
+    uint32_t    length;
+    Atom        type;
+    uint32_t    bytes_after;
+    uint32_t    num_items;
+    uint8_t     format;
+    uint8_t     pad0;
+    uint16_t    pad1;
+    uint32_t    pad2;
+    uint32_t    pad3;
+} xXIGetPropertyReply;
+#define sz_xXIGetPropertyReply               32
+
 /*************************************************************************************
  *                                                                                   *
  *                                      EVENTS                                       *
@@ -803,6 +908,28 @@ typedef struct
 typedef xXIEnterEvent xXILeaveEvent;
 typedef xXIEnterEvent xXIFocusInEvent;
 typedef xXIEnterEvent xXIFocusOutEvent;
+
+/***********************************************************
+ *  PropertyEvents
+ *
+ */
+
+typedef struct
+{
+    uint8_t     type;                   /* always GenericEvent */
+    uint8_t     extension;              /* XI extension offset */
+    uint16_t    sequenceNumber;
+    uint32_t    length;
+    uint16_t    evtype;                 /* XI_PropertyEvent */
+    uint16_t    deviceid;
+    Time        time;
+    Atom        property;
+    uint8_t     what;
+    uint8_t     pad0;
+    uint16_t    pad1;
+    uint32_t    pad2;
+    uint32_t    pad3;
+} xXIPropertyEvent;
 
 
 #undef Window
