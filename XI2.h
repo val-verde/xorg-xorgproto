@@ -28,76 +28,69 @@
 #define XI_2_Major				2
 #define XI_2_Minor				0
 
-#define XIPropertyDeleted       0
-#define XIPropertyCreated       1
-#define XIPropertyModified      2
+#define XIPropertyDeleted                       0
+#define XIPropertyCreated                       1
+#define XIPropertyModified                      2
 
 /* Passive grab types */
-#define GrabtypeButton          0
-#define GrabtypeKeysym          1
+#define XIGrabtypeButton                        0
+#define XIGrabtypeKeysym                        1
 
 /* Passive grab modifier */
 #define XIAnyModifier                           (1 << 31)
 
 /* XIAllowEvents event-modes */
-#define AsyncDevice             0
-#define SyncDevice              1
-#define ReplayDevice            2
-#define AsyncPairedDevice       3
-#define AsyncPair               4
-#define SyncPair                5
+#define XIAsyncDevice                           0
+#define XISyncDevice                            1
+#define XIReplayDevice                          2
+#define XIAsyncPairedDevice                     3
+#define XIAsyncPair                             4
+#define XISyncPair                              5
 
 /* DeviceChangedEvent change reasons */
-#define SlaveSwitch                     1
-#define DeviceChange                    2
+#define XISlaveSwitch                           1
+#define XIDeviceChange                          2
 
 /* Hierarchy flags */
-#define HF_MasterAdded              (1 << 0)
-#define HF_MasterRemoved            (1 << 1)
-#define HF_SlaveAdded               (1 << 2)
-#define HF_SlaveRemoved             (1 << 3)
-#define HF_SlaveAttached            (1 << 4)
-#define HF_SlaveDetached            (1 << 5)
-#define HF_DeviceEnabled            (1 << 6)
-#define HF_DeviceDisabled           (1 << 7)
+#define XIMasterAdded                           (1 << 0)
+#define XIMasterRemoved                         (1 << 1)
+#define XISlaveAdded                            (1 << 2)
+#define XISlaveRemoved                          (1 << 3)
+#define XISlaveAttached                         (1 << 4)
+#define XISlaveDetached                         (1 << 5)
+#define XIDeviceEnabled                         (1 << 6)
+#define XIDeviceDisabled                        (1 << 7)
 
 /* ChangeHierarchy constants */
-#define CH_CreateMasterDevice    1
-#define CH_RemoveMasterDevice    2
-#define CH_AttachSlave           3
-#define CH_DetachSlave           4
+#define XICreateMasterDevice                    1
+#define XIRemoveMasterDevice                    2
+#define XIAttachSlave                           3
+#define XIDetachSlave                           4
 
-#define AttachToMaster           1
-#define Floating                 2
+#define XIAttachToMaster                        1
+#define XIFloating                              2
 
 /* Valuator modes */
-#define ModeRelative                    0
-#define ModeAbsolute                    1
+#define XIModeRelative                          0
+#define XIModeAbsolute                          1
 
 /* Device types */
-#define MasterPointer                   1
-#define MasterKeyboard                  2
-#define SlavePointer                    3
-#define SlaveKeyboard                   4
-#define FloatingSlave                   5
+#define XIMasterPointer                         1
+#define XIMasterKeyboard                        2
+#define XISlavePointer                          3
+#define XISlaveKeyboard                         4
+#define XIFloatingSlave                         5
 
 /* Device classes */
-/* These may be defined if XI.h is included first */
-#ifndef KeyClass
-#define KeyClass                        0
-#endif
-#ifndef ButtonClass
-#define ButtonClass                     1
-#endif
-#ifndef ValuatorClass
-#define ValuatorClass                   2
-#endif
+#define XIKeyClass                              0
+#define XIButtonClass                           1
+#define XIValuatorClass                         2
 
 /* XI2 mask macro */
-#define XIMASK(event)   (1 << (event))
+#define XIMASK(event)                           (1 << (event))
 
-#define AllDevices                      0
-#define AllMasterDevices                1
+#define XIAllDevices                            0
+#define XIAllMasterDevices                      1
 
 /* Event types */
 #define XI_DeviceChanged                 1
