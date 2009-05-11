@@ -28,6 +28,7 @@
 #define XI_2_Major				2
 #define XI_2_Minor				0
 
+/* Property event flags */
 #define XIPropertyDeleted                       0
 #define XIPropertyCreated                       1
 #define XIPropertyModified                      2
