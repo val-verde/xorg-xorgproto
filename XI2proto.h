@@ -741,7 +741,7 @@ typedef struct
     uint32_t    length;
     uint16_t    evtype;
     uint16_t    deviceid;
-    uint32_t    time;
+    Time        time;
 } xXIGenericDeviceEvent;
 
 /***********************************************************
@@ -765,7 +765,7 @@ typedef struct
     uint32_t    length;
     uint16_t    evtype;                 /* XI_Hierarchy */
     uint16_t    deviceid;
-    uint32_t    time;
+    Time        time;
     uint32_t    flags;                  /* MasterAdded, MasterDeleted,
                                            SlaveAttached, SlaveDetached,
                                            SlaveAdded, SlaveRemoved,
@@ -789,7 +789,7 @@ typedef struct
     uint32_t    length;
     uint16_t    evtype;              /* XI_DeviceChanged */
     uint16_t    deviceid;            /* id of master */
-    uint32_t    time;
+    Time        time;
     uint16_t    num_classes;         /* classes that have changed */
     uint16_t    sourceid;            /* Source for the new classes*/
     uint8_t     reason;              /* SlaveSwitch, DeviceChange */
