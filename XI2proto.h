@@ -45,6 +45,7 @@
 #define Window  CARD32
 #define Time    CARD32
 #define Atom    CARD32
+#define Cursor  CARD32
 
 /**
  * XI2 Request opcodes
@@ -967,5 +968,6 @@ typedef struct
 #undef Window
 #undef Time
 #undef Atom
+#undef Cursor
 
 #endif /* _XI2PROTO_H_ */
