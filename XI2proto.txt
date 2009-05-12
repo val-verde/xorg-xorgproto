@@ -1166,7 +1166,8 @@ EVENTHEADER { type:                       BYTE
     HIERARCHYINFO { deviceid:           DEVICEID,
                     attachment:         DEVICEID,
                     type:               DEVICEUSE
-                    enabled:            BOOL }
+                    enabled:            BOOL
+                    flags:              SETofHIERARCHYMASK}
 
     flags
         Set of the changes that have occured, causing this event.

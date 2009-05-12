@@ -778,6 +778,10 @@ typedef struct
                                              ::XIFloatingSlave */
     BOOL        enabled;                /**< TRUE if the device is enabled */
     uint16_t    pad;
+    uint32_t    flags;                  /**< ::XIMasterAdded, ::XIMasterDeleted,
+                                             ::XISlaveAttached, ::XISlaveDetached,
+                                             ::XISlaveAdded, ::XISlaveRemoved,
+                                             ::XIDeviceEnabled, ::XIDeviceDisabled */
 } xXIHierarchyInfo;
 
 typedef struct
@@ -789,10 +793,10 @@ typedef struct
     uint16_t    evtype;                 /**< ::XI_Hierarchy */
     uint16_t    deviceid;
     Time        time;
-    uint32_t    flags;                  /* ::XIMasterAdded, ::XIMasterDeleted,
-                                           ::XISlaveAttached, ::XISlaveDetached,
-                                           ::XISlaveAdded, ::XISlaveRemoved,
-                                           ::XIDeviceEnabled, ::XIDeviceDisabled */
+    uint32_t    flags;                  /**< ::XIMasterAdded, ::XIMasterDeleted,
+                                             ::XISlaveAttached, ::XISlaveDetached,
+                                             ::XISlaveAdded, ::XISlaveRemoved,
+                                             ::XIDeviceEnabled, ::XIDeviceDisabled */
     uint16_t    num_devices;
     uint16_t    pad0;
     uint32_t    pad1;
