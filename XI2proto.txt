@@ -850,7 +850,7 @@ XI2. Clients should ignore this data.
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
 
-        Establish an explicit passive grab for a button or keycode or keysym
+        Establish an explicit passive grab for a button or keysym
         on the specified input device.
 
         cursor
@@ -906,7 +906,7 @@ XI2. Clients should ignore this data.
           is logically pressed or the grab_type is GrabtypeKeysym and the
           keysym specified in detail is logically pressed, and
         - the grab_window contains the pointer, and
-        - a passive grab on the same button/keycode/keysym + modifier
+        - a passive grab on the same button/keysym + modifier
           combination does not exist on an ancestor of grab_window.
 
         A modifier of GrabAnyModifier is equivalent to issuing the request for
@@ -914,7 +914,7 @@ XI2. Clients should ignore this data.
         may request a grab for GrabAnyModifier and explicit modifier
         combinations in the same request.
 
-        The grab is released when all buttons or keycodes or keysyms are
+        The grab is released when all buttons or keysyms are
         released, independent of the state of modifier keys. Note that the
         logical state of a device (as seen by means of the protocol) may lag
         the physical state if device event processing is frozen.
@@ -922,7 +922,7 @@ XI2. Clients should ignore this data.
         on the same button/key combinations on the same window.
 
         If some other client already has issued a XIPassiveGrabDevice request
-        with the same button/keycode/keysym and modifier combination, the
+        with the same button or keysym and modifier combination, the
         failed modifier combinations is returned in modifiers_return. If
         num_modifiers_return is zero, all passive grabs have been successful.
 
@@ -936,7 +936,7 @@ XI2. Clients should ignore this data.
             modifiers:       MODIFIERINFO
     └───
 
-        Release an explicit passive grab for a button or keycode or keysym on
+        Release an explicit passive grab for a button or keysym on
         the specified input device.
 
         deviceid
@@ -952,7 +952,7 @@ XI2. Clients should ignore this data.
         num_modifiers
             Number of elements in modifiers.
 
-        This request has no effect if the matching button/keycode/keysym and
+        This request has no effect if the matching button or keysym and
         modifier combination is not grabbed b this client.
 
     ┌───
