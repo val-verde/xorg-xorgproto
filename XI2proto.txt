@@ -315,13 +315,13 @@ XI2. Clients should ignore this data.
         XISelectEvents
             window:         Window
             num_masks:      CARD16
-            masks:          LISTofDEVICEEVENTMASK
+            masks:          LISTofEVENTMASK
 
     └───
 
-    DEVICEEVENTMASK { deviceid:          DEVICE,
-                      mask_len:          CARD16,
-                      mask:              SETofEVENTMASK
+    EVENTMASK { deviceid:          DEVICE,
+                mask_len:          CARD16,
+                mask:              SETofEVENTMASK
 
     window
         The window to select the events on.
@@ -351,7 +351,7 @@ XI2. Clients should ignore this data.
     If 'mask_len' is 0, the event mask for the given device is cleared.
 
     ┌───
-        XIQueryDevicePointer
+        XIQueryPointer
             window:         Window
             deviceid:       DEVICEID
             ▶
@@ -380,7 +380,7 @@ XI2. Clients should ignore this data.
         TRUE if 'window' is on the same screen as the pointer.
 
     ┌───
-        XIWarpDevicePointer
+        XIWarpPointer
             src_win:         Window
             dst_win:         Window
             src_x:           FP1616
@@ -392,8 +392,8 @@ XI2. Clients should ignore this data.
             deviceid:        DEVICEID
     └───
 
-    WarpDevicePointer moves the pointer of 'deviceid' as if the user had moved
-    the pointer. WarpDevicePointer can only be called for MasterPointer and
+    WarpPointer moves the pointer of 'deviceid' as if the user had moved
+    the pointer. WarpPointer can only be called for MasterPointer and
     FloatingSlave devices.
 
     src_win
@@ -425,7 +425,7 @@ XI2. Clients should ignore this data.
     moved the pointer.
 
     ┌───
-        XIChangeDeviceCursor
+        XIChangeCursor
             win:             Window
             cursor:          Cursor
             deviceid:        DEVICEID
@@ -449,7 +449,7 @@ XI2. Clients should ignore this data.
     - repeat on parent window until a cursor has been found.
 
     ┌───
-        XIChangeDeviceHierarchy
+        XIChangeHierarchy
             num_changes:     CARD8
             changes:         LISTofHIERARCHYCHANGES
     └───
@@ -483,7 +483,7 @@ XI2. Clients should ignore this data.
                   length:     CARD16
                   deviceid:   DEVICEID }
 
-    XIChangeDeviceHierarchy allows a client to modify the MD/SD device
+    XIChangeHierarchy allows a client to modify the MD/SD device
     hierarchy (see Section 4).
 
     num_changes
@@ -586,7 +586,7 @@ XI2. Clients should ignore this data.
         The master pointer that acts as a ClientPointer if 'set' is TRUE.
 
     ┌───
-        XISetDeviceFocus
+        XISetFocus
             focus:           Window
             deviceid:        DEVICEID
             time:            Time
@@ -616,7 +616,7 @@ XI2. Clients should ignore this data.
     Otherwise, the last-focus-change time is set to the specified time.
 
     ┌───
-        XIGetDeviceFocus
+        XIGetFocus
             deviceid:        DEVICEID
             ▶
             focus:           Window
@@ -731,7 +731,7 @@ XI2. Clients should ignore this data.
 
     The request has no effect if the specified time is earlier
     than the last-device-grab time or is later than the current server time.
-    This request generates DeviceFocusIn and DeviceFocusOut events.
+    This request generates FocusIn and FocusOut events.
     An XIUngrabDevice is performed automatically if the event window for an
     active device grab becomes not viewable.
 
@@ -1152,7 +1152,7 @@ EVENTHEADER { type:                       BYTE
 
 
     ┌───
-        DeviceHierarchyEvent:
+        HierarchyEvent:
             EVENTHEADER
             flags:                      SETofHIERARCHYMASK
             num_devices:                CARD16
@@ -1176,7 +1176,7 @@ EVENTHEADER { type:                       BYTE
     devices
         The current hierarchy layout for each device.
 
-    An XDeviceHierarchyEvent is sent whenever the device hierarchy been
+    An XIHierarchyEvent is sent whenever the device hierarchy been
     changed. The 'flags' specify all types of hierarchy modifiations that have
     occured.
     For all devices, 'deviceinfo' details the hierarchy information after the
@@ -1194,7 +1194,7 @@ EVENTHEADER { type:                       BYTE
          device.
 
     Note: Multiple devices may be affected in one hierarchy change,
-    'deviceid' in an XDeviceHierarchyChangedEvent is always the first affected
+    'deviceid' in an XIHierarchyEvent is always the first affected
     device. Clients should ignore deviceid and instead use the 'devices' list.
 
     ┌───
@@ -1263,7 +1263,7 @@ EVENTHEADER { type:                       BYTE
                     latched_group:       CARD8,
                     locked_group:        CARD8 }
 
-    An XDeviceEvent is generated whenever the logical state of a device
+    An XIDeviceEvent is generated whenever the logical state of a device
     changes in response to a button press, a button release, a motion, a key
     press or a key release.
 
@@ -1335,7 +1335,7 @@ EVENTHEADER { type:                       BYTE
     clipping and acceleration.
     Transformed valuator data may be equivalent to raw data. In this case,
     both raw and transformed valuator data is provided.
-    RawDeviceEvents are sent exclusively to all root windows or to the client
+    RawEvents are sent exclusively to all root windows or to the client
     that grabbed the device only.
 
     eventtype

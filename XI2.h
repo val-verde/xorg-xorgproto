@@ -63,8 +63,8 @@
 #define XIDeviceDisabled                        (1 << 7)
 
 /* ChangeHierarchy constants */
-#define XICreateMasterDevice                    1
-#define XIRemoveMasterDevice                    2
+#define XICreateMaster                          1
+#define XIRemoveMaster                          2
 #define XIAttachSlave                           3
 #define XIDetachSlave                           4
 

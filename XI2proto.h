@@ -52,17 +52,17 @@
  * @addtogroup XI2Requests
  * @{
  */
-#define X_XIQueryDevicePointer          40
-#define X_XIWarpDevicePointer           41
-#define X_XIChangeDeviceCursor          42
-#define X_XIChangeDeviceHierarchy       43
+#define X_XIQueryPointer                40
+#define X_XIWarpPointer                 41
+#define X_XIChangeCursor                42
+#define X_XIChangeHierarchy             43
 #define X_XISetClientPointer            44
 #define X_XIGetClientPointer            45
 #define X_XISelectEvents                46
 #define X_XIQueryVersion                47
 #define X_XIQueryDevice                 48
-#define X_XISetDeviceFocus              49
-#define X_XIGetDeviceFocus              50
+#define X_XISetFocus                    49
+#define X_XIGetFocus                    50
 #define X_XIGrabDevice                  51
 #define X_XIUngrabDevice                52
 #define X_XIAllowEvents                 53
@@ -75,7 +75,7 @@
 /*@}*/
 
 /** Number of XI requests */
-#define XI2REQUESTS (X_XIGetProperty - X_XIQueryDevicePointer + 1)
+#define XI2REQUESTS (X_XIGetProperty - X_XIQueryPointer + 1)
 /** Number of XI2 events */
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
@@ -192,7 +192,7 @@ typedef struct {
 typedef struct {
     uint16_t    deviceid;       /**< Device id to select for        */
     uint16_t    mask_len;       /**< Length of mask in 4 byte units */
-} xXIDeviceEventMask;
+} xXIEventMask;
 
 
 
@@ -278,24 +278,24 @@ typedef struct {
 
 
 /**
- * @struct xXIQueryDevicePointerReq
+ * @struct xXIQueryPointerReq
  * Query the given device's screen/window coordinates.
  */
 
 typedef struct {
     uint8_t     reqType;                /**< Input extension major code */
-    uint8_t     ReqType;                /**< Always ::X_XIQueryDevicePointer */
+    uint8_t     ReqType;                /**< Always ::X_XIQueryPointer */
     uint16_t    length;                 /**< Length in 4 byte units */
     Window      win;
     uint16_t    deviceid;
     uint16_t    pad1;
-} xXIQueryDevicePointerReq;
-#define sz_xXIQueryDevicePointerReq               12
+} xXIQueryPointerReq;
+#define sz_xXIQueryPointerReq                   12
 
 
 typedef struct {
     uint8_t     repType;                /**< Input extension major opcode */
-    uint8_t     RepType;                /**< Always ::X_XIQueryDevicePointer */
+    uint8_t     RepType;                /**< Always ::X_XIQueryPointer */
     uint16_t    sequenceNumber;
     uint32_t    length;
     Window      root;
@@ -309,17 +309,17 @@ typedef struct {
     uint8_t     same_screen;
     uint8_t     pad0;
     uint16_t    pad1;
-} xXIQueryDevicePointerReply;
-#define sz_xXIQueryDevicePointerReply             40
+} xXIQueryPointerReply;
+#define sz_xXIQueryPointerReply                 40
 
 /**
- * @struct xXIWarpDevicePointerReq
+ * @struct xXIWarpPointerReq
  * Warp the given device's pointer to the specified position.
  */
 
 typedef struct {
     uint8_t     reqType;                /**< Input extension major code */
-    uint8_t     ReqType;                /**< Always ::X_XIWarpDevicePointer   */
+    uint8_t     ReqType;                /**< Always ::X_XIWarpPointer   */
     uint16_t    length;                 /**< Length in 4 byte units */
     Window      src_win;
     Window      dst_win;
@@ -331,39 +331,39 @@ typedef struct {
     INT16       dst_y;
     uint16_t    deviceid;
     uint16_t    pad1;
-} xXIWarpDevicePointerReq;
-#define sz_xXIWarpDevicePointerReq                28
+} xXIWarpPointerReq;
+#define sz_xXIWarpPointerReq                    28
 
 /**
- * @struct xXIChangeDeviceCursorReq
+ * @struct xXIChangeCursorReq
  * Change the given device's sprite to the given cursor.
  */
 
 typedef struct {
     uint8_t     reqType;                /**< Input extension major code */
-    uint8_t     ReqType;                /**< Always ::X_XIChangeDeviceCursor  */
+    uint8_t     ReqType;                /**< Always ::X_XIChangeCursor  */
     uint16_t    length;                 /**< Length in 4 byte units */
     Window      win;
     Cursor      cursor;
     uint16_t    deviceid;
     uint16_t    pad1;
-} xXIChangeDeviceCursorReq;
-#define sz_xXIChangeDeviceCursorReq               16
+} xXIChangeCursorReq;
+#define sz_xXIChangeCursorReq                           16
 
 /**
- * @struct xXIChangeDeviceHierarchyReq
+ * @struct xXIChangeHierarchyReq
  * Modify the device hierarchy.
  */
 
 typedef struct {
     uint8_t     reqType;                /**< Input extension major code */
-    uint8_t     ReqType;                /**< Always ::X_XIChangeDeviceHierarchy */
+    uint8_t     ReqType;                /**< Always ::X_XIChangeHierarchy */
     uint16_t    length;                 /**< Length in 4 byte units */
     uint8_t     num_changes;
     uint8_t     pad0;
     uint16_t    pad1;
-} xXIChangeDeviceHierarchyReq;
-#define sz_xXIChangeDeviceHierarchyReq            8
+} xXIChangeHierarchyReq;
+#define sz_xXIChangeHierarchyReq                        8
 
 /**
  * Generic header for any hierarchy change.
@@ -464,19 +464,19 @@ typedef struct {
 #define sz_xXIGetClientPointerReply               32
 
 /**
- * @struct xXISetDeviceFocusReq
+ * @struct xXISetFocusReq
  * Set the input focus to the specified window.
  */
 typedef struct {
     uint8_t     reqType;
-    uint8_t     ReqType;                /**< Always ::X_XISetDeviceFocus */
+    uint8_t     ReqType;                /**< Always ::X_XISetFocus */
     uint16_t    length;                 /**< Length in 4 byte units */
     Window      focus;
     Time        time;
     uint16_t    deviceid;
     uint16_t    pad0;
-} xXISetDeviceFocusReq;
-#define sz_xXISetDeviceFocusReq                 16
+} xXISetFocusReq;
+#define sz_xXISetFocusReq                       16
 
 /**
  * @struct xXIGetDeviceFocusReq
@@ -488,12 +488,12 @@ typedef struct {
     uint16_t    length;                 /**< Length in 4 byte units */
     uint16_t    deviceid;
     uint16_t    pad0;
-} xXIGetDeviceFocusReq;
-#define sz_xXIGetDeviceFocusReq                 8
+} xXIGetFocusReq;
+#define sz_xXIGetFocusReq                       8
 
 typedef struct {
     uint8_t     repType;                /**< Input extension major opcode */
-    uint8_t     RepType;                /**< Always ::X_XIGetDeviceFocus */
+    uint8_t     RepType;                /**< Always ::X_XIGetFocus */
     uint16_t    sequenceNumber;
     uint32_t    length;
     Window      focus;
@@ -502,8 +502,8 @@ typedef struct {
     uint32_t    pad3;
     uint32_t    pad4;
     uint32_t    pad5;
-} xXIGetDeviceFocusReply;
-#define sz_xXIGetDeviceFocusReply               32
+} xXIGetFocusReply;
+#define sz_xXIGetFocusReply                     32
 
 
 /**
@@ -759,7 +759,7 @@ typedef struct
 } xXIGenericDeviceEvent;
 
 /**
- * @struct xXIDeviceHierarchyEvent
+ * @struct xXIHierarchyEvent
  * The device hierarchy has been modified. This event includes the device
  * hierarchy after the modification has been applied.
  */
@@ -801,7 +801,7 @@ typedef struct
     uint16_t    pad0;
     uint32_t    pad1;
     uint32_t    pad2;
-} xXIDeviceHierarchyEvent;
+} xXIHierarchyEvent;
 
 /**
  * @struct xXIDeviceChangedEvent
@@ -883,7 +883,7 @@ typedef struct
 
 
 /**
- * @struct xXIRawDeviceEvent
+ * @struct xXIRawEvent
  * Sent when an input event is generated. RawEvents include valuator
  * information in both device-specific data (i.e. unaccelerated) and
  * processed data (i.e. accelerated, if applicable).
@@ -905,7 +905,7 @@ typedef struct
                                              mask in 4 byte units */
     uint32_t    pad1;
     uint32_t    pad2;
-} xXIRawDeviceEvent;
+} xXIRawEvent;
 
 /**
  * @struct xXIEnterEvent
