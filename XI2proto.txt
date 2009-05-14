@@ -379,6 +379,10 @@ XI2. Clients should ignore this data.
             win_x:          FP1616
             win_y:          FP1616
             same_screen:    BOOL
+            mods:           MODIFIERINFO
+            group:          GROUPINFO
+            buttons_len:    CARD16
+            buttons:        SETofBUTTONMASK
     └───
 
     Query a master pointer device for its current position.
@@ -395,6 +399,14 @@ XI2. Clients should ignore this data.
         Pointer position relative to 'window' or 0 if 'same_screen' is false.
     same_screen
         TRUE if 'window' is on the same screen as the pointer.
+    mods
+        XKB modifier state on the paired device.
+    group
+        XKB group state on the paired device.
+    buttons_len
+        The length of 'buttons' in 4 byte units.
+    buttons
+        Button state.
 
     ┌───
         XIWarpPointer

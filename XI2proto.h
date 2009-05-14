@@ -194,6 +194,30 @@ typedef struct {
     uint16_t    mask_len;       /**< Length of mask in 4 byte units */
 } xXIEventMask;
 
+/**
+ * XKB modifier information.
+ * The effective modifier is a binary mask of base, latched, and locked
+ * modifiers.
+ */
+typedef struct
+{
+    uint32_t    base_mods;              /**< Logically pressed modifiers */
+    uint32_t    latched_mods;           /**< Logically latched modifiers */
+    uint32_t    locked_mods;            /**< Logically locked modifiers */
+} xXIModifierInfo;
+
+/**
+ * XKB group information.
+ * The effective group is the mathematical sum of base, latched, and locked
+ * group after group wrapping is taken into account.
+ */
+typedef struct
+{
+    uint8_t     base_group;             /**< Logically "pressed" group */
+    uint8_t     latched_group;          /**< Logically latched group */
+    uint8_t     locked_group;           /**< Logically locked group */
+    uint8_t     pad0;
+} xXIGroupInfo;
 
 
 /*************************************************************************************
@@ -304,13 +328,13 @@ typedef struct {
     FP1616      root_y;
     FP1616      win_x;
     FP1616      win_y;
-    uint16_t    mask;
-    uint16_t    deviceid;
     uint8_t     same_screen;
     uint8_t     pad0;
-    uint16_t    pad1;
+    uint16_t    buttons_len;
+    xXIModifierInfo mods;
+    xXIGroupInfo group;
 } xXIQueryPointerReply;
-#define sz_xXIQueryPointerReply                 40
+#define sz_xXIQueryPointerReply                 52
 
 /**
  * @struct xXIWarpPointerReq
@@ -829,31 +853,6 @@ typedef struct
  * @struct xXIDeviceEvent
  * Default input event for pointer or keyboard input.
  */
-
-/**
- * XKB modifier information.
- * The effective modifier is a binary mask of base, latched, and locked
- * modifiers.
- */
-typedef struct
-{
-    uint32_t    base_mods;              /**< Logically pressed modifiers */
-    uint32_t    latched_mods;           /**< Logically latched modifiers */
-    uint32_t    locked_mods;            /**< Logically locked modifiers */
-} xXIModifierInfo;
-
-/**
- * XKB group information.
- * The effective group is the mathematical sum of base, latched, and locked
- * group after group wrapping is taken into account.
- */
-typedef struct
-{
-    uint8_t     base_group;             /**< Logically "pressed" group */
-    uint8_t     latched_group;          /**< Logically latched group */
-    uint8_t     locked_group;           /**< Logically locked group */
-    uint8_t     pad0;
-} xXIGroupInfo;
 
 typedef struct
 {
