@@ -1,10 +1,10 @@
 
-                The X Input Extension
-                   Version 2.0
+                            The X Input Extension
+                                Version 2.0
 
-                   Peter Hutterer
-               peter.hutterer@redhat.com
-                    Red Hat, Inc.
+                              Peter Hutterer
+                         peter.hutterer@redhat.com
+                               Red Hat, Inc.
 
 
 
@@ -13,7 +13,24 @@
 The X Input Extension version 2.0 (XI2) is the second major release of the X
 Input Extension.
 
-FIXME
+XI2 provides a number of enhancements over version 1.5, including:
+- use of XGE and GenericEvents. GenericEvents are of flexible length with a
+  minimum length of 32 bytes.
+- explicit device hierarchy of master and slave devices. See Section 4.
+- use of multiple independent master devices (Multi-Poiner X or MPX).
+- the ability for devices to change capabilities at runtime.
+- raw device events
+
+XI2's intent is to replace both core input processing and prior versions of
+the X Input Extension. Historically, the majority of applications employed the
+core protocol requests and events to handle user input. The core protocol does
+not provide information about which device generated the event. The X Input
+Extension version up to 1.5 requires the differentiation between core and
+extended devices. Extended devices may not be core devices and thus cannot be
+used on applications employing the core protocol. XI2 addresses both of these
+issues by enabling devices to be both extended and core devices and providing
+device information in each event (with the exception of core events).
+
                               ❧❧❧❧❧❧❧❧❧❧❧
 
 2. Notations used in this document
