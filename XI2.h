@@ -89,9 +89,13 @@
 #define XIButtonClass                           1
 #define XIValuatorClass                         2
 
-/* XI2 mask macro */
-#define XIMASK(event)                           (1 << (event))
+/* XI2 event mask macros */
+#define XISetMask(ptr, event)   (((unsigned char*)(ptr))[(event)>>3] |=  (1 << ((event) & 7)))
+#define XIClearMask(ptr, event) (((unsigned char*)(ptr))[(event)>>3] &= ~(1 << ((event) & 7)))
+#define XIMaskIsSet(ptr, event) (((unsigned char*)(ptr))[(event)>>3] &   (1 << ((event) & 7)))
+#define XIMaskLen(event)        ((event >> 3))
 
+/* Fake device ID's for event selection */
 #define XIAllDevices                            0
 #define XIAllMasterDevices                      1
 
