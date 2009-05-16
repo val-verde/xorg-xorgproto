@@ -39,6 +39,8 @@
 
 /* Passive grab modifier */
 #define XIAnyModifier                           (1 << 31)
+#define XIAnyButton                             0
+#define XIAnyKeysym                             0
 
 /* XIAllowEvents event-modes */
 #define XIAsyncDevice                           0
