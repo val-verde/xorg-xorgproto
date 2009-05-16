@@ -42,10 +42,10 @@
 #include <X11/extensions/XI2.h>
 
 /* make sure types have right sizes for protocol structures. */
-#define Window  CARD32
-#define Time    CARD32
-#define Atom    CARD32
-#define Cursor  CARD32
+#define Window  uint32_t
+#define Time    uint32_t
+#define Atom    uint32_t
+#define Cursor  uint32_t
 
 /**
  * XI2 Request opcodes
