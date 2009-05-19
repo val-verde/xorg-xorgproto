@@ -428,7 +428,7 @@ typedef struct {
  * Name of new master follows struct (4-byte padded)
  */
 typedef struct {
-    uint16_t    type;                   /**< Always ::XICreateMasterDevice */
+    uint16_t    type;                   /**< Always ::XICreateMaster */
     uint16_t    length;                 /**< 2 + (namelen + padding)/4 */
     uint16_t    name_len;
     uint8_t     send_core;
@@ -440,7 +440,7 @@ typedef struct {
  * with the given master device.
  */
 typedef struct {
-    uint16_t    type;            /**< Always ::XIRemoveMasterDevice */
+    uint16_t    type;            /**< Always ::XIRemoveMaster */
     uint16_t    length;          /**< 3 */
     uint16_t    deviceid;
     uint8_t     return_mode;     /**< ::XIAttachToMaster, ::XIFloating */
