@@ -36,6 +36,8 @@
 /* Passive grab types */
 #define XIGrabtypeButton                        0
 #define XIGrabtypeKeysym                        1
+#define XIGrabtypeEnter                         2
+#define XIGrabtypeFocusIn                       3
 
 /* Passive grab modifier */
 #define XIAnyModifier                           (1 << 31)
