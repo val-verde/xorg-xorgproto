@@ -368,6 +368,28 @@ XI2. Clients should ignore this data.
     If 'mask_len' is 0, the event mask for the given device is cleared.
 
     ┌───
+        XIGetSelectedEvents
+            window:         Window
+            ▶
+            num_masks:      CARD16
+            masks:          LISTofEVENTMASK
+    └───
+
+
+    window
+        The window to select the events on.
+    num_masks
+        Number of items in mask.
+    masks
+        Selected event masks by this client.
+
+    Masks are returned on a per-device basis, with masks for 'AllDevices' and
+    'AllMasterDevices' returned separately.
+
+    If 'num_masks' is 0, no events have been selected by this client on the
+    given window.
+
+    ┌───
         XIQueryPointer
             window:         Window
             deviceid:       DEVICEID

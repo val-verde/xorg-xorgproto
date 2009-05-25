@@ -98,10 +98,11 @@
 #define X_XIChangeProperty              57
 #define X_XIDeleteProperty              58
 #define X_XIGetProperty                 59
+#define X_XIGetSelectedEvents           60
 /*@}*/
 
 /** Number of XI requests */
-#define XI2REQUESTS (X_XIGetProperty - X_XIQueryPointer + 1)
+#define XI2REQUESTS (X_XIGetSelectedEvents - X_XIQueryPointer + 1)
 /** Number of XI2 events */
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
@@ -326,6 +327,33 @@ typedef struct {
 } xXISelectEventsReq;
 #define sz_xXISelectEventsReq                  12
 
+/**
+ * @struct xXIGetSelectedEventsReq
+ * Query for selected events on a given window.
+ */
+typedef struct {
+    uint8_t     reqType;                /**< Input extension major code */
+    uint8_t     ReqType;                /**< Always ::X_XIGetSelectedEvents */
+    uint16_t    length;                 /**< Length in 4 byte units */
+    Window      window;
+} xXIGetSelectedEventsReq;
+#define sz_xXIGetSelectedEventsReq              8
+
+typedef struct {
+    uint8_t     repType;                /**< Input extension major opcode */
+    uint8_t     RepType;                /**< Always ::X_XIGetSelectedEvents */
+    uint16_t    sequenceNumber;
+    uint32_t    length;
+    uint16_t    num_masks;              /**< Number of xXIEventMask structs
+                                             trailing the reply */
+    uint16_t    pad0;
+    uint32_t    pad1;
+    uint32_t    pad2;
+    uint32_t    pad3;
+    uint32_t    pad4;
+    uint32_t    pad5;
+} xXIGetSelectedEventsReply;
+#define sz_xXIGetSelectedEventsReply            32
 
 /**
  * @struct xXIQueryPointerReq
