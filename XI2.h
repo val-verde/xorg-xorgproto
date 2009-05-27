@@ -33,6 +33,14 @@
 #define XIPropertyCreated                       1
 #define XIPropertyModified                      2
 
+/* Enter/Leave and Focus In/Out modes */
+#define XINotifyNormal                          0
+#define XINotifyGrab                            1
+#define XINotifyUngrab                          2
+#define XINotifyWhileGrabbed                    3
+#define XINotifyPassiveGrab                     4
+#define XINotifyPassiveUngrab                   5
+
 /* Passive grab types */
 #define XIGrabtypeButton                        0
 #define XIGrabtypeKeysym                        1

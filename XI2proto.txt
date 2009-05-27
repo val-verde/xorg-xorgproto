@@ -1013,6 +1013,15 @@ XI2. Clients should ignore this data.
         with mode Grab are generated as if the focus were to change from the
         current window to the grab_window.
 
+        If an enter or focus in grab activates, additional EnterNotify events
+        with mode XIPassiveGrabNotify are generated as if the pointer or focus
+        were to suddenly warp from its current position to some position in
+        the grab window.  These events are sent to the grabbing client only
+        and only if the grab event mask has selected for it. If such a passive
+        grab deactivates, addional LeaveNotify events with mode
+        XIPassiveUngrabNotify are generated and sent to the grabbing client
+        before the grab deactivates.
+
     ┌───
         XIPassiveUngrabDevice
             deviceid:        DEVICEID
@@ -1497,7 +1506,9 @@ EVENTHEADER { type:                       BYTE
     mode
         Normal pointer motion events have mode Normal. Pseudo-motion events
         when a grab activates have mode Grab, and pseudo-motion events when a
-        grab deactivates have mode Ungrab.
+        grab deactivates have mode Ungrab. Pseudo-motion events caused by the
+        activation or deactivation of a passive enter or focus in grab have mode
+        XIPassiveGrabNotify or XIPassiveUngrabNotify.
     detail
         Specifies the relation of the event window to the window the pointer
         entered or left. See the core protocol spec for details.
