@@ -981,7 +981,7 @@ XI2. Clients should ignore this data.
         XIPassiveUngrabDevice
             deviceid:        DEVICEID
             detail:          CARD32
-            grab_type:       { ButtonGrab, KeycodeGrab, KeysymGrab }
+            grab_type:       { ButtonGrab, KeysymGrab }
             grab_window:     Window
             num_modifiers:   INT16
             modifiers:       MODIFIERINFO
@@ -1004,7 +1004,7 @@ XI2. Clients should ignore this data.
             Number of elements in modifiers.
 
         This request has no effect if the matching button or keysym and
-        modifier combination is not grabbed b this client.
+        modifier combination is not grabbed by this client.
 
     ┌───
         XIListProperties
