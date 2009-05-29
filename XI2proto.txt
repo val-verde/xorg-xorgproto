@@ -954,6 +954,16 @@ XI2. Clients should ignore this data.
         by being included in the event-list. For either value of
         owner-events, unreported events are discarded.
 
+        If deviceid specifies a master pointer, the modifiers of the paired
+        master keyboard are used. If deviceid specifies a slave pointer
+        the modifiers of the master keyboard paired with the attached master
+        pointers are used. If deviceid specifies a slave keyboard, the
+        modifiers of the attached master keyboard are used. Note that
+        activating a grab on a slave device detaches the device from its
+        master. In this case, the modifiers after activation of the grab are
+        from the slave device only and may be different to the modifier state
+        when the grab was triggered.
+
         In the future, if grab_type is GrabtypeButton or GrabtypeKeyboard, the
         device is actively grabbed if:
         - the device is not grabbed, and
