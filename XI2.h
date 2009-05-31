@@ -25,6 +25,15 @@
 #ifndef _XI2_H_
 #define _XI2_H_
 
+/* Indices into the versions[] array (XExtInt.c). Used as a index to
+ * retrieve the minimum version of XI from _XiCheckExtInit.
+ * For indices 0 to 6 see XI.h */
+#ifndef Dont_Check /* defined in XI.h */
+#define Dont_Check                              0
+#endif
+#define XInput_2_0                              7
+
+
 #define XI_2_Major				2
 #define XI_2_Minor				0
 
