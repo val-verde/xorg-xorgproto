@@ -201,6 +201,8 @@ XI2. Clients should ignore this data.
     minor_version
         Minor XI2 version.
 
+    If major_version is less than 2, a BadValue error occurs.
+
     ┌───
         XIQueryDevice
         DEVICE                  deviceid
