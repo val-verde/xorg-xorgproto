@@ -868,8 +868,8 @@ dynamic changes in the display environment.
 
 	'width' and 'height' indicate the size of the area within the screen
 	presented by this CRTC. This may be different than the size of the
-	mode due to rotation. They will be set to 0 when the CRTC is
-	disabled.
+	mode due to rotation. They will be set to 0 when the CRTC
+	is disabled. 
 	
 	'mode' indicates which mode is active, or None indicating that the
 	CRTC has been disabled and is not displaying the screen contents.
@@ -1210,10 +1210,6 @@ dynamic changes in the display environment.
 	to RRSetOutputPrimary. This request is expected to be used by
 	desktop environments to mark the screen that should hold the primary
 	menu bar or panel.
-
-	If the named output is not connected to any CRTC, or if the Window
-	and Output are not attached to the same screen, BadMatch is generated.
-	In the latter case, errorValue will be the Window, not the Output.
 
 	As this changes the logical layout of the screen, ConfigureNotify
 	and RRScreenChangeNotify will be generated on the appropriate root
