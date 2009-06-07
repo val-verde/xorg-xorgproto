@@ -369,6 +369,9 @@ XI2. Clients should ignore this data.
 
     If 'mask_len' is 0, the event mask for the given device is cleared.
 
+    The mask for XIHierarchyEvents may only be selected for XIAllDevices.
+    Setting it for any other device results in a BadValue error.
+
     ┌───
         XIGetSelectedEvents
             window:         Window
