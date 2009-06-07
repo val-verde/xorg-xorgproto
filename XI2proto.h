@@ -156,6 +156,8 @@ typedef struct {
 typedef struct {
     uint16_t    type;           /**< One of *class */
     uint16_t    length;         /**< Length in 4 byte units */
+    uint16_t    sourceid;       /**< source device for this class */
+    uint16_t    pad;
 } xXIAnyInfo;
 
 /**
@@ -169,8 +171,8 @@ typedef struct {
 typedef struct {
     uint16_t    type;           /**< Always ButtonClass */
     uint16_t    length;         /**< Length in 4 byte units */
+    uint16_t    sourceid;       /**< source device for this class */
     uint16_t    num_buttons;    /**< Number of buttons provide */
-    uint16_t    pad;
 } xXIButtonInfo;
 
 /**
@@ -184,8 +186,8 @@ typedef struct {
 typedef struct {
     uint16_t    type;           /**< Always KeyClass */
     uint16_t    length;         /**< Length in 4 byte units */
+    uint16_t    sourceid;       /**< source device for this class */
     uint16_t    num_keycodes;   /**< Number of keys provided */
-    uint16_t    pad;
 } xXIKeyInfo;
 
 /**
@@ -198,13 +200,15 @@ typedef struct {
 typedef struct {
     uint16_t    type;           /**< Always ValuatorClass       */
     uint16_t    length;         /**< Length in 4 byte units */
+    uint16_t    sourceid;       /**< source device for this class */
+    uint16_t    number;         /**< Valuator number            */
     Atom        name;           /**< Valuator name              */
     FP3232      min;            /**< Min value                  */
     FP3232      max;            /**< Max value                  */
     uint32_t    resolution;     /**< Resolutions in units/m     */
-    uint16_t    number;         /**< Valuator number            */
     uint8_t     mode;           /**< ModeRelative or ModeAbsolute */
-    uint8_t     pad;
+    uint8_t     pad1;
+    uint16_t    pad2;
 } xXIValuatorInfo;
 
 

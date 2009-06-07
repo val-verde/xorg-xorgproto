@@ -224,16 +224,19 @@ XI2. Clients should ignore this data.
 
     BUTTONCLASS { type:                 ButtonClass
                   length:               CARD16
+                  sourceid:             CARD16
                   num_buttons:          CARD16
                   buttons:              LISTofATOM }
 
     KEYCLASS    { type:                 KeyClass
                   length:               CARD16
+                  sourceid:             CARD16
                   num_keys:             CARD16
                   keys:                 LISTofCARD32 }
 
     AXISCLASS   { type:                 AxisClass
                   length:               CARD16
+                  sourceid:             CARD16
                   axisnumber:           CARD16
                   axisname:             ATOM
                   min:                  FP3232
@@ -290,6 +293,8 @@ XI2. Clients should ignore this data.
         Always ButtonClass.
     length
         Length in 4 byte units.
+    sourceid
+        The device this class originates from.
     num_buttons
         Number of buttons provided by the device.
     buttons
@@ -302,6 +307,8 @@ XI2. Clients should ignore this data.
         Always KeyClass.
     length
         Length in 4 byte units.
+    sourceid
+        The device this class originates from.
     num_keys
         Number of keycodes provided by the device.
     keys
@@ -312,6 +319,8 @@ XI2. Clients should ignore this data.
         Always AxisClass.
     length
         Length in 4 byte units.
+    sourceid
+        The device this class originates from.
     axisnumber
         Axis number of this axis. The axis number is in device-native
         order and potential axis mappings are ignored.
