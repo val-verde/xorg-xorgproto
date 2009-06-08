@@ -510,18 +510,18 @@ XI2. Clients should ignore this data.
             changes:         LISTofHIERARCHYCHANGES
     └───
 
-    HIERARCHYCHANGE { CREATEMASTER, REMOVEMASTER, ATTACHSLAVE, DETACHSLAVE }
+    HIERARCHYCHANGE { ADDMASTER, REMOVEMASTER, ATTACHSLAVE, DETACHSLAVE }
 
-    HIERARCHYCHANGETYPE { CreateMaster, RemoveMaster, AttachSlave, DetachSlave }
+    HIERARCHYCHANGETYPE { AddMaster, RemoveMaster, AttachSlave, DetachSlave }
 
     CHANGEMODE { Float, Attach }
 
-    CREATEMASTER { type:        HIERARCHYCHANGETYPE
-                   length:      CARD16
-                   name_len:    CARD16
-                   send_core:   BOOL
-                   enable:      BOOL
-                   name:        LISTofCHAR8 }
+    ADDMASTER { type:        HIERARCHYCHANGETYPE
+                length:      CARD16
+                name_len:    CARD16
+                send_core:   BOOL
+                enable:      BOOL
+                name:        LISTofCHAR8 }
 
     REMOVEMASTER { type:            HIERARCHYCHANGETYPE
                    length:          CARD16
@@ -551,9 +551,9 @@ XI2. Clients should ignore this data.
     immediately. If an error occurs, processing stops at the current change
     and returns the number of successfully applied changes in the error.
 
-    CREATEMASTER creates a pair of master devices.
+    ADDMASTER creates a pair of master devices.
     type
-        Always CreateMaster.
+        Always AddMaster.
     length
         Length in 4 byte units.
     name_len
