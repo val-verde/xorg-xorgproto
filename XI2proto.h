@@ -856,7 +856,7 @@ typedef struct
                                              ::XIFloatingSlave */
     BOOL        enabled;                /**< TRUE if the device is enabled */
     uint16_t    pad;
-    uint32_t    flags;                  /**< ::XIMasterAdded, ::XIMasterDeleted,
+    uint32_t    flags;                  /**< ::XIMasterAdded, ::XIMasterRemoved,
                                              ::XISlaveAttached, ::XISlaveDetached,
                                              ::XISlaveAdded, ::XISlaveRemoved,
                                              ::XIDeviceEnabled, ::XIDeviceDisabled */
