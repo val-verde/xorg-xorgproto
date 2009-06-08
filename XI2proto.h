@@ -843,7 +843,7 @@ typedef struct
  */
 
 /**
- * Device hierarch information.
+ * Device hierarchy information.
  */
 typedef struct
 {
@@ -875,7 +875,7 @@ typedef struct
                                              ::XISlaveAttached, ::XISlaveDetached,
                                              ::XISlaveAdded, ::XISlaveRemoved,
                                              ::XIDeviceEnabled, ::XIDeviceDisabled */
-    uint16_t    num_devices;
+    uint16_t    num_info;
     uint16_t    pad0;
     uint32_t    pad1;
     uint32_t    pad2;

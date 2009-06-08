@@ -1267,8 +1267,8 @@ EVENTHEADER { type:                       BYTE
         HierarchyEvent:
             EVENTHEADER
             flags:                      SETofHIERARCHYMASK
-            num_devices:                CARD16
-            deviceinfo:                 LISTofHIERARCHYINFO
+            num_info:                   CARD16
+            info:                       LISTofHIERARCHYINFO
     └───
 
 
@@ -1283,15 +1283,15 @@ EVENTHEADER { type:                       BYTE
 
     flags
         Set of the changes that have occured, causing this event.
-    num_devices
-        The number of devices present in the hierarchy.
-    devices
-        The current hierarchy layout for each device.
+    num_info
+        The number of device info structs following the request.
+    info:
+        The current hierarchy information.
 
     An XIHierarchyEvent is sent whenever the device hierarchy been
     changed. The 'flags' specify all types of hierarchy modifiations that have
     occured.
-    For all devices, 'deviceinfo' details the hierarchy information after the
+    For all devices, 'info' details the hierarchy information after the
     modification of the hierarchy has occured. For each device specified with
     'deviceid':
     - if 'type' is MasterPointer or MasterKeyboard, 'attachment' decribes the
