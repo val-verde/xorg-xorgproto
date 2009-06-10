@@ -57,7 +57,7 @@
 #define XIGrabtypeFocusIn                       3
 
 /* Passive grab modifier */
-#define XIAnyModifier                           (1 << 31)
+#define XIAnyModifier                           (1U << 31)
 #define XIAnyButton                             0
 #define XIAnyKeysym                             0
 
