@@ -133,6 +133,9 @@
 #define XI_RawEvent                      12
 #define XI_PropertyEvent                 13
 #define XI_LASTEVENT                     XI_PropertyEvent
+/* NOTE: XI2LASTEVENT in xserver/include/inputstr.h must be the same value
+ * as XI_LASTEVENT if the server is supposed to handle masks etc. for this
+ * type of event. */
 
 /* Event masks.
  * Note: the protocol spec defines a mask to be of (1 << type). Clients are
