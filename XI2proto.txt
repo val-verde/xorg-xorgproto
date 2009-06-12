@@ -624,6 +624,18 @@ XI2. Clients should ignore this data.
     choose a client's ClientPointer device to provide the data, unless the
     client currently has a grab on another device.
 
+    If win is None, the ClientPointer for this client is set to the given
+    device. Otherwise, if win is a valid window, the ClientPointer for the
+    client owning this window is set to the given device. Otherwise, if win is
+    not a valid window but a client with the client mask equal to win exists,
+    this client's ClientPointer is set to the given device.
+
+    If deviceid does not specify a master pointer or master keyboard, a
+    BadDevice error returned.
+
+    If window does not specify a valid window or client ID and is not None, a
+    BadWindow error is returned.
+
     ┌───
         XIGetClientPointer
             win:             Window
