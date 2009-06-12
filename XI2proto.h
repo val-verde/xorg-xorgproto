@@ -321,7 +321,7 @@ typedef struct {
     uint8_t     reqType;                /**< Input extension major code */
     uint8_t     ReqType;                /**< Always ::X_XISelectEvents */
     uint16_t    length;                 /**< Length in 4 byte units */
-    Window      window;
+    Window      win;
     uint16_t    num_masks;
     uint16_t    pad;
 } xXISelectEventsReq;
@@ -335,7 +335,7 @@ typedef struct {
     uint8_t     reqType;                /**< Input extension major code */
     uint8_t     ReqType;                /**< Always ::X_XIGetSelectedEvents */
     uint16_t    length;                 /**< Length in 4 byte units */
-    Window      window;
+    Window      win;
 } xXIGetSelectedEventsReq;
 #define sz_xXIGetSelectedEventsReq              8
 
