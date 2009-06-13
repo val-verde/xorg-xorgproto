@@ -225,7 +225,8 @@ XI2. Clients should ignore this data.
     BUTTONCLASS { type:                 ButtonClass
                   length:               CARD16
                   sourceid:             CARD16
-                  num_buttons:          CARD16
+                  buttons_len:          CARD16
+                  state:                SETofBUTTONMASK
                   buttons:              LISTofATOM }
 
     KEYCLASS    { type:                 KeyClass
@@ -301,6 +302,11 @@ XI2. Clients should ignore this data.
         List of Atoms specifying the type of each button. An atom of None
         specifies an unnamed button. Buttons are listed in the device-native
         order and potential button mappings are ignored.
+    state
+        The current button mask for this device. Each bit representing a
+        button is 1 if this button is logically down, or 0 otherwise. State a
+        multiple of 4-byte units and always contains at least num_buttons
+        bits.
 
     KeyClass:
     type
