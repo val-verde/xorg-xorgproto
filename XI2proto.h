@@ -202,7 +202,7 @@ typedef struct {
     uint16_t    length;         /**< Length in 4 byte units */
     uint16_t    sourceid;       /**< source device for this class */
     uint16_t    number;         /**< Valuator number            */
-    Atom        name;           /**< Valuator name              */
+    Atom        label;          /**< Axis label                 */
     FP3232      min;            /**< Min value                  */
     FP3232      max;            /**< Max value                  */
     FP3232      value;          /**< Last published value       */

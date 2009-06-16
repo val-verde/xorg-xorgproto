@@ -227,7 +227,7 @@ XI2. Clients should ignore this data.
                   sourceid:             CARD16
                   buttons_len:          CARD16
                   state:                SETofBUTTONMASK
-                  buttons:              LISTofATOM }
+                  labels:               LISTofATOM }
 
     KEYCLASS    { type:                 KeyClass
                   length:               CARD16
@@ -239,7 +239,7 @@ XI2. Clients should ignore this data.
                   length:               CARD16
                   sourceid:             CARD16
                   axisnumber:           CARD16
-                  axisname:             ATOM
+                  label:                ATOM
                   min:                  FP3232
                   max:                  FP3232
                   value:                FP3232
@@ -299,9 +299,9 @@ XI2. Clients should ignore this data.
         The device this class originates from.
     num_buttons
         Number of buttons provided by the device.
-    buttons
-        List of Atoms specifying the type of each button. An atom of None
-        specifies an unnamed button. Buttons are listed in the device-native
+    labels
+        List of Atoms specifying the label for each button. An atom of None
+        specifies an unlabeled button. Buttons are listed in the device-native
         order and potential button mappings are ignored.
     state
         The current button mask for this device. Each bit representing a
@@ -331,8 +331,8 @@ XI2. Clients should ignore this data.
     axisnumber
         Axis number of this axis. The axis number is in device-native
         order and potential axis mappings are ignored.
-    axisname
-        Atom specifying the axis name. An Atom of None specifies an unnamed
+    label
+        Atom specifying the axis name. An Atom of None specifies an unlabeled
         axis.
     min
         Minimum value.
