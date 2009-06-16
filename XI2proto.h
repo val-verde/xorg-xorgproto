@@ -205,6 +205,7 @@ typedef struct {
     Atom        name;           /**< Valuator name              */
     FP3232      min;            /**< Min value                  */
     FP3232      max;            /**< Max value                  */
+    FP3232      value;          /**< Last published value       */
     uint32_t    resolution;     /**< Resolutions in units/m     */
     uint8_t     mode;           /**< ModeRelative or ModeAbsolute */
     uint8_t     pad1;

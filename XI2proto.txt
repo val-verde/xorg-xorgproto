@@ -242,6 +242,7 @@ XI2. Clients should ignore this data.
                   axisname:             ATOM
                   min:                  FP3232
                   max:                  FP3232
+                  value:                FP3232
                   resolution:           CARD32 }
 
     XIQueryDevices details information about the requested input devices.
@@ -341,6 +342,8 @@ XI2. Clients should ignore this data.
         Resolution in counts/meter.
     mode
         Relative or Absolute.
+    value
+        Last published axis value (if mode is absolute).
 
     An axis in Relative mode may specify 'min' and 'max' as a hint to the
     client. If no 'min' and 'max' information is available, both must be 0.
