@@ -1361,7 +1361,7 @@ EVENTHEADER { type:                       BYTE
         A SlaveSwitch 'reason' can only occur on a master device.
         If 'reason' is DeviceChange, the device itself has changed through
         other means (e.g. a physical device change) and 'source' is
-        undefined. A DeviceChange can only occur on a slave device.
+        undefined.
     source
         The source of the new classes. Only defined in 'reason' is
         SlaveSwitch.
