@@ -1400,10 +1400,12 @@ EVENTHEADER { type:                       BYTE
 
     MODIFIERINFO  { base_mods:           CARD32,
                     latched_mods:        CARD32,
-                    locked_mods:         CARD32}
+                    locked_mods:         CARD32,
+                    effective_mods:      CARD32}
     GROUPINFO     { base_group:          CARD8,
                     latched_group:       CARD8,
-                    locked_group:        CARD8 }
+                    locked_group:        CARD8,
+                    effective_group:     CARD8}
 
     An XIDeviceEvent is generated whenever the logical state of a device
     changes in response to a button press, a button release, a motion, a key

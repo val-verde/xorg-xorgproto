@@ -236,6 +236,7 @@ typedef struct
     uint32_t    base_mods;              /**< Logically pressed modifiers */
     uint32_t    latched_mods;           /**< Logically latched modifiers */
     uint32_t    locked_mods;            /**< Logically locked modifiers */
+    uint32_t    effective_mods;         /**< Effective modifiers */
 } xXIModifierInfo;
 
 /**
@@ -248,7 +249,7 @@ typedef struct
     uint8_t     base_group;             /**< Logically "pressed" group */
     uint8_t     latched_group;          /**< Logically latched group */
     uint8_t     locked_group;           /**< Logically locked group */
-    uint8_t     pad0;
+    uint8_t     effective_group;        /**< Effective group */
 } xXIGroupInfo;
 
 
@@ -393,7 +394,7 @@ typedef struct {
     xXIModifierInfo mods;
     xXIGroupInfo group;
 } xXIQueryPointerReply;
-#define sz_xXIQueryPointerReply                 52
+#define sz_xXIQueryPointerReply                 56
 
 /**
  * @struct xXIWarpPointerReq
