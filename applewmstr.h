@@ -159,6 +159,15 @@ typedef struct _AppleWMSendPSN {
 } xAppleWMSendPSNReq;
 #define sz_xAppleWMSendPSNReq 12
 
+typedef struct _AppleWMAttachTransient {
+    CARD8	reqType;		/* always WMReqCode */
+    CARD8	wmReqType;		/* always X_AppleWMAttachTransient */
+    CARD16	length B16;
+    CARD32	child;
+    CARD32	parent;
+} xAppleWMAttachTransientReq;
+#define sz_xAppleWMAttachTransientReq 12
+
 typedef struct _AppleWMSetCanQuit {
     CARD8	reqType;		/* always WMReqCode */
     CARD8	wmReqType;		/* always X_AppleWMSetCanQuit */
