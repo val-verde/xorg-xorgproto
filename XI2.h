@@ -130,9 +130,13 @@
 #define XI_FocusIn                       9
 #define XI_FocusOut                      10
 #define XI_HierarchyChanged              11
-#define XI_RawEvent                      12
-#define XI_PropertyEvent                 13
-#define XI_LASTEVENT                     XI_PropertyEvent
+#define XI_PropertyEvent                 12
+#define XI_RawKeyPress                   13
+#define XI_RawKeyRelease                 14
+#define XI_RawButtonPress                15
+#define XI_RawButtonRelease              16
+#define XI_RawMotion                     17
+#define XI_LASTEVENT                     XI_RawMotion
 /* NOTE: XI2LASTEVENT in xserver/include/inputstr.h must be the same value
  * as XI_LASTEVENT if the server is supposed to handle masks etc. for this
  * type of event. */
@@ -152,7 +156,11 @@
 #define XI_FocusInMask                   (1 << XI_FocusIn)
 #define XI_FocusOutMask                  (1 << XI_FocusOut)
 #define XI_HierarchyChangedMask          (1 << XI_HierarchyChanged)
-#define XI_RawEventMask                  (1 << XI_RawEvent)
 #define XI_PropertyEventMask             (1 << XI_PropertyEvent)
+#define XI_RawKeyPressMask               (1 << XI_RawKeyPress)
+#define XI_RawKeyReleaseMask             (1 << XI_RawKeyRelease)
+#define XI_RawButtonPressMask            (1 << XI_RawButtonPress)
+#define XI_RawButtonReleaseMask          (1 << XI_RawButtonRelease)
+#define XI_RawMotionMask                 (1 << XI_RawMotion)
 
 #endif /* _XI2_H_ */

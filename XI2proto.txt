@@ -1462,7 +1462,6 @@ EVENTHEADER { type:                       BYTE
     ┌───
         RawEvent
             EVENTHEADER
-            eventtype:                 RAWTYPE
             detail:                    CARD32
             valuators_len:             CARD16
             valuators:                 SETofVALUATORMASK
@@ -1470,13 +1469,10 @@ EVENTHEADER { type:                       BYTE
             axisvalues_raw:            LISTofFP3232
     └───
 
-    RAWTYPE { Motion, KeyPress, KeyRelease, ButtonPress, ButtonRelease }
-
     A RawDevice event provides the information provided by the driver to the
-    client. RawDevice events are only generated for slave devices and provide
-    both the raw data as supplied by the driver and transformed data as used
-    in the server. Transformations include, but are not limited to, axis
-    clipping and acceleration.
+    client. RawDevice provide both the raw data as supplied by the driver and
+    transformed data as used in the server. Transformations include, but are
+    not limited to, axis clipping and acceleration.
     Transformed valuator data may be equivalent to raw data. In this case,
     both raw and transformed valuator data is provided.
     RawEvents are sent exclusively to all root windows or to the client
