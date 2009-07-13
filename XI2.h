@@ -108,6 +108,11 @@
 #define XIButtonClass                           1
 #define XIValuatorClass                         2
 
+/* Device event flags (common) */
+/* Device event flags (key events only) */
+#define XIKeyRepeat                             (1 << 16)
+/* Device event flags (pointer events only) */
+
 /* XI2 event mask macros */
 #define XISetMask(ptr, event)   (((unsigned char*)(ptr))[(event)>>3] |=  (1 << ((event) & 7)))
 #define XIClearMask(ptr, event) (((unsigned char*)(ptr))[(event)>>3] &= ~(1 << ((event) & 7)))

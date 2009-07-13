@@ -936,6 +936,7 @@ typedef struct
     uint16_t    valuators_len;          /**< Len of val. flags in 4 b units */
     uint16_t    sourceid;               /**< The source device */
     uint16_t    pad0;
+    uint32_t    flags;                  /**< ::XIKeyRepeat */
     xXIModifierInfo     mods;
     xXIGroupInfo        group;
 } xXIDeviceEvent;
@@ -962,7 +963,7 @@ typedef struct
                                              ::XI_KeyRelease */
     uint16_t    valuators_len;          /**< Length of trailing valuator
                                              mask in 4 byte units */
-    uint32_t    pad1;
+    uint32_t    flags;                  /**< ::XIKeyRepeat */
     uint32_t    pad2;
 } xXIRawEvent;
 

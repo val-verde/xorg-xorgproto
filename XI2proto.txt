@@ -1390,6 +1390,7 @@ EVENTHEADER { type:                       BYTE
             sourceid:                   DEVICEID
             mods:                       MODIFIERINFO
             group:                      GROUPINFO
+            flags:                      DEVICEEEVENTFLAGS
             buttons:                    SETofBUTTONMASK
             valuators:                  SETofVALUATORMASK
             axisvalues:                 LISTofFP3232
@@ -1406,6 +1407,10 @@ EVENTHEADER { type:                       BYTE
                     latched_group:       CARD8,
                     locked_group:        CARD8,
                     effective_group:     CARD8}
+
+    DEVICEEVENTFLAGS (all events): none
+    DEVICEEVENTFLAGS (key events only): { KeyRepeat }
+    DEVICEEVENTFLAGS (pointer events only): none
 
     An XIDeviceEvent is generated whenever the logical state of a device
     changes in response to a button press, a button release, a motion, a key
@@ -1442,6 +1447,13 @@ EVENTHEADER { type:                       BYTE
         Bitmask of valuators provided in 'axisvalues'.
     axisvalues
         Valuator data in device-native resolution.
+    flags
+        Miscellaneous information about this event; the union of the
+        common flag set and either the key or pointer flag set,
+        depending on the event type.
+        KeyRepeat means that this event is for repeating purposes, and
+        the physical state of the key has not changed.  This is only
+        valid for KeyPress events.
 
     Modifier state in 'mods' is detailed as follows:
     base_mods
@@ -1463,6 +1475,7 @@ EVENTHEADER { type:                       BYTE
         RawEvent
             EVENTHEADER
             detail:                    CARD32
+            flags:                     DEVICEEVENTFLAGS
             valuators_len:             CARD16
             valuators:                 SETofVALUATORMASK
             axisvalues:                LISTofFP3232
@@ -1482,6 +1495,8 @@ EVENTHEADER { type:                       BYTE
         The type of event that occured on the device.
     detail
         The button number or keycode.
+    flags
+        Flags as described in DeviceEvent::flags.
     valuators_len
         The length of 'valuators' in 4 byte units.
     valuators
