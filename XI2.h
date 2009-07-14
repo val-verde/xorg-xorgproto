@@ -50,6 +50,16 @@
 #define XINotifyPassiveGrab                     4
 #define XINotifyPassiveUngrab                   5
 
+/* Enter/Leave and focus In/out detail */
+#define XINotifyAncestor                        0
+#define XINotifyVirtual                         1
+#define XINotifyInferior                        2
+#define XINotifyNonlinear                       3
+#define XINotifyNonlinearVirtual                4
+#define XINotifyPointer                         5
+#define XINotifyPointerRoot                     6
+#define XINotifyDetailNone                      7
+
 /* Passive grab types */
 #define XIGrabtypeButton                        0
 #define XIGrabtypeKeysym                        1
