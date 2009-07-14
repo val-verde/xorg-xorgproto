@@ -34,8 +34,8 @@
 #define XInput_2_0                              7
 
 
-#define XI_2_Major				2
-#define XI_2_Minor				0
+#define XI_2_Major                              2
+#define XI_2_Minor                              0
 
 /* Property event flags */
 #define XIPropertyDeleted                       0
