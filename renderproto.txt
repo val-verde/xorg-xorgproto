@@ -139,7 +139,11 @@ PICTOP		{ Clear, Src, Dst, Over, OverReverse, In, InReverse,
 		  ConjointClear, ConjointSrc, ConjointDst, ConjointOver,
 		  ConjointOverReverse, ConjointIn, ConjointInReverse,
 		  ConjointOut, ConjointOutReverse, ConjointAtop,
-		  ConjointAtopReverse, ConjointXor }
+		  ConjointAtopReverse, ConjointXor,
+		  Multiply, Screen, Overlay, Darken, Lighten, ColorDodge,
+		  ColorBurn, HardLight, SoftLight, Difference, Exclusion,
+		  HSLHue, HSLSaturation, HSLColor, HSLLuminosity
+		}
 SUBPIXEL	{ Unknown, HorizontalRGB, HorizontalBGR, 
 		  VerticalRGB, VerticalBGR, None
 		}
@@ -1197,3 +1201,7 @@ what each version before 1.0 implemented:
 
 		The repeat picture attribute now supports Pad and
 		Reflect, older versions only supported None and Normal.
+
+	0.11:
+		Blend mode operators
+
