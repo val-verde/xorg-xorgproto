@@ -47,9 +47,7 @@
 
 #include <X11/Xmd.h>
 #include <X11/extensions/xfixeswire.h>
-#define _SHAPE_SERVER_
-#include <X11/extensions/shape.h>
-#undef _SHAPE_SERVER_
+#include <X11/extensions/shapeconst.h>
 
 #define Window CARD32
 #define Drawable CARD32

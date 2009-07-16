@@ -7,3 +7,4 @@ Name: FixesProto
 Description: X Fixes extension headers
 Version: @PACKAGE_VERSION@
 Cflags: -I${includedir}
+Requires: xextproto >= 7.0.99.1
