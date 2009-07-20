@@ -933,13 +933,13 @@ XI2. Clients should ignore this data.
             modifiers_return:        GRABMODIFIERINFO
     └───
 
-        GRABTYPE         { GrabtypeButton, GrabtypeKeysym, GrabtypeEnter,
+        GRABTYPE         { GrabtypeButton, GrabtypeKeycode, GrabtypeEnter,
                            GrabTypeFocusIn}
 
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
 
-        Establish an explicit passive grab for a button or keysym
+        Establish an explicit passive grab for a button or keycode
         on the specified input device.
 
         cursor
@@ -1004,10 +1004,10 @@ XI2. Clients should ignore this data.
         - the device is not grabbed, and
         - the specified modifier keys are down, and
         - the grab_type is GrabtypeButton and the button specified in detail
-          is logically pressed or the grab_type is GrabtypeKeysym and the
-          keysym specified in detail is logically pressed, and
+          is logically pressed or the grab_type is GrabtypeKeycode and the
+          keycode specified in detail is logically pressed, and
         - the grab_window contains the pointer, and
-        - a passive grab on the same button/keysym + modifier
+        - a passive grab on the same button/keycode + modifier
           combination does not exist on an ancestor of grab_window.
 
         Otherwise, if grab_type is GrabtypeEnter or GrabtypeFocusIn, the
@@ -1027,7 +1027,7 @@ XI2. Clients should ignore this data.
         combinations in the same request.
 
         A GrabtypeButton or GrabtypeKeyboard grab is released when all buttons
-        or keysyms are released, independent of the state of modifier keys.
+        or keycode are released, independent of the state of modifier keys.
         A GrabtypeEnter or GrabtypeFocusIn grab is released when the
         pointer or focus leaves the window and all of its descendants,
         independent of the state of modifier keys.
@@ -1040,7 +1040,7 @@ XI2. Clients should ignore this data.
         on the same window.
 
         If some other client already has issued a XIPassiveGrabDevice request
-        with the same button or keysym and modifier combination, the
+        with the same button or keycode and modifier combination, the
         failed modifier combinations is returned in modifiers_return. If some
         other client already has issued an XIPassiveGrabDevice request of
         grab_type  XIGrabtypeEnter or XIGrabtypeFocusIn with the same
@@ -1054,7 +1054,7 @@ XI2. Clients should ignore this data.
         However, the pointer does not warp, and the pointer position is used
         as both the initial and final positions for the events.
 
-        If a keysym grab or focus grab activates, FocusIn and FocusOut events
+        If a keycode grab or focus grab activates, FocusIn and FocusOut events
         with mode Grab are generated as if the focus were to change from the
         current window to the grab_window.
 
@@ -1094,7 +1094,7 @@ XI2. Clients should ignore this data.
             Number of elements in modifiers.
 
         This request has no effect if the client does not have a passive grab
-        of the same type, same button or keysym (if applicable) and modifier
+        of the same type, same button or keycode (if applicable) and modifier
         combination on the grab_window.
 
     ┌───

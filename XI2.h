@@ -62,14 +62,14 @@
 
 /* Passive grab types */
 #define XIGrabtypeButton                        0
-#define XIGrabtypeKeysym                        1
+#define XIGrabtypeKeycode                       1
 #define XIGrabtypeEnter                         2
 #define XIGrabtypeFocusIn                       3
 
 /* Passive grab modifier */
 #define XIAnyModifier                           (1U << 31)
 #define XIAnyButton                             0
-#define XIAnyKeysym                             0
+#define XIAnyKeycode                            0
 
 /* XIAllowEvents event-modes */
 #define XIAsyncDevice                           0
