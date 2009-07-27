@@ -1262,9 +1262,16 @@ Version 2.0:
         ButtonPress
         ButtonRelease
         Motion
-        RawEvent
+        RawKeyPress
+        RawKeyRelease
+        RawButtonPress
+        RawButtonRelease
+        RawMotion
         Enter
         Leave
+        FocusIn
+        FocusOut
+        PropertyEvent
 
 All events have a set of common fields specified as EVENTHEADER.
 
