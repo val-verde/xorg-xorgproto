@@ -698,9 +698,13 @@ are required to be 0.
     win
         The window or client ID.
     set
-        TRUE if the client has an explicitly set ClientPointer.
+        TRUE if the client has a ClientPointer set.
     deviceid
         The master pointer that acts as a ClientPointer if 'set' is TRUE.
+
+    No difference is made between a ClientPointer set explicitly through
+    XISetClientPointer and a ClientPointer implicitly assigned by the server
+    in response to an ambiguous request.
 
     ┌───
         XISetFocus
