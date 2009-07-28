@@ -951,7 +951,7 @@ are required to be 0.
 
     ┌───
         XIPassiveGrabDevice
-            deviceid:        DEVICEID
+            deviceid:        DEVICE
             detail:          CARD32
             grab_type:       GRABTYPE
             grab_window:     Window
@@ -981,7 +981,8 @@ are required to be 0.
             The cursor to display for the duration of the grab. If grab_type
             is not GrabtypeButton, this argument is ignored.
         deviceid
-            The device to establish the passive grab on.
+            The device to establish the passive grab on or AllDevices or
+            AllMasterDevices.
         detail
             The button number, or key symbol to grab for.
             Must be 0 for GrabtypeEnter and GrabtypeFocusIn.
