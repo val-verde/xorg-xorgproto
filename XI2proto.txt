@@ -1028,11 +1028,7 @@ are required to be 0.
         master keyboard are used. If deviceid specifies a slave pointer
         the modifiers of the master keyboard paired with the attached master
         pointers are used. If deviceid specifies a slave keyboard, the
-        modifiers of the attached master keyboard are used. Note that
-        activating a grab on a slave device detaches the device from its
-        master. In this case, the modifiers after activation of the grab are
-        from the slave device only and may be different to the modifier state
-        when the grab was triggered.
+        modifiers of the attached master keyboard are used.
 
         In the future, if grab_type is GrabtypeButton or GrabtypeKeyboard, the
         device is actively grabbed if:
