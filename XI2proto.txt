@@ -279,33 +279,33 @@ are required to be 0.
     XIQueryDevices details information about the requested input devices.
 
     devices
-        The device to list. If 'devices' is AllDevices, all enabled and
-        disabled devices are listed. If 'devices' is AllMasterDevices, all
-        enabled and disabled master devices are listed. If 'devices' is a
-        valid DEVICE, only this DEVICE is listed and 'num_devices' is 1.
+        The device to list. If devices is AllDevices, all enabled and
+        disabled devices are listed. If devices is AllMasterDevices, all
+        enabled and disabled master devices are listed. If devices is a
+        valid DEVICE, only this DEVICE is listed and num_devices is 1.
     num_devices
-        The number of 'deviceinfos' returned.
+        The number of deviceinfos returned.
 
-    Each 'deviceinfo' is detailed as follows:
+    Each deviceinfo is detailed as follows:
     deviceid
         The unique ID of the device. Device IDs may get re-used when a device
         is removed.
     use
-        If the device is a master pointer, 'use' is MasterPointer.
-        If the device is a master keyboard, 'use' is MasterKeyboard.
-        If the device is a slave pointer, 'use' is SlavePointer.
-        If the device is a slave keyboard, 'use' is SlaveKeyboard.
-        If the device is a floating slave, 'use' is FloatingSlave.
+        If the device is a master pointer, use is MasterPointer.
+        If the device is a master keyboard, use is MasterKeyboard.
+        If the device is a slave pointer, use is SlavePointer.
+        If the device is a slave keyboard, use is SlaveKeyboard.
+        If the device is a floating slave, use is FloatingSlave.
     attachment
-        If the device is a master pointer or a master keyboard, 'attachment'
+        If the device is a master pointer or a master keyboard, attachment
         specifies the paired master keyboard, or the paired master pointer,
         respectively.  If the device is a non-floating slave device
-        'attachment' specifies the master device this device is attached to.
-        If the device is a floating slave, 'attachment' is undefined.
+        attachment specifies the master device this device is attached to.
+        If the device is a floating slave, attachment is undefined.
     enabled
         Zero if the device is disabled, non-zero otherwise.
     num_classes
-        Number of 'classes' provided.
+        Number of classes provided.
     name_len
         Length of the name in bytes not including padding.
     classes
@@ -314,8 +314,8 @@ are required to be 0.
     name
         The device's name. padded to a multiple of 4 bytes.
 
-    For all classes, 'type' specifies the device class. Clients are required
-    to ignore unknown device classes. The 'length' field specifies the length
+    For all classes, type specifies the device class. Clients are required
+    to ignore unknown device classes. The length field specifies the length
     of the class in 4 byte units.
     The following classes may occur only once: ButtonClass, KeyClass
 
@@ -374,8 +374,8 @@ are required to be 0.
     value
         Last published axis value (if mode is absolute).
 
-    An axis in Relative mode may specify 'min' and 'max' as a hint to the
-    client. If no 'min' and 'max' information is available, both must be 0.
+    An axis in Relative mode may specify min and max as a hint to the
+    client. If no min and max information is available, both must be 0.
 
     ┌───
         XISelectEvents
@@ -392,29 +392,29 @@ are required to be 0.
     window
         The window to select the events on.
     num_masks
-        Number of items in 'masks'.
+        Number of items in masks.
     deviceid
         Numerical deviceid, or AllDevices, or AllMasterDevices.
     mask_len
-        Length of 'mask' in 4 byte units.
+        Length of mask in 4 byte units.
     mask
         Event mask. An event mask for an event type T is defined as (1 << T).
 
-    XISelectEvents selects for XI2 events on 'window'.
+    XISelectEvents selects for XI2 events on window.
 
-    If 'num_masks' is 0, a BadValue error occurs.
+    If num_masks is 0, a BadValue error occurs.
 
-    Each 'mask' sets the (and overwrites a previous) event mask for the DEVICE
-    specified through 'deviceid'. The device 'AllDevices' or
-    'AllMasterDevices' is treated as a separate device by server. A client's
-    event mask is the union of 'AllDevices', 'AllMasterDevices' and the
+    Each mask sets the (and overwrites a previous) event mask for the DEVICE
+    specified through deviceid. The device AllDevices or
+    AllMasterDevices is treated as a separate device by server. A client's
+    event mask is the union of AllDevices, AllMasterDevices and the
     per-device event mask.
     The removal of device from the server unsets the event masks for the
     device. If an event mask is set for AllDevices or AllMasterDevices, the
     event mask is not cleared on device removal and affects all future
     devices.
 
-    If 'mask_len' is 0, the event mask for the given device is cleared.
+    If mask_len is 0, the event mask for the given device is cleared.
 
     The mask for XIHierarchyEvents may only be selected for XIAllDevices.
     Setting it for any other device results in a BadValue error.
@@ -430,16 +430,16 @@ are required to be 0.
     window
         The window to select the events on.
     num_masks
-        Number of items in 'masks'.
+        Number of items in masks.
     masks
         Selected event masks by this client.
 
-    Masks are returned on a per-device basis, with masks for 'AllDevices' and
-    'AllMasterDevices' returned separately. A client can calculate the
+    Masks are returned on a per-device basis, with masks for AllDevices and
+    AllMasterDevices returned separately. A client can calculate the
     effective mask for a device with a bitwise OR of the AllDevices, the
     AllMasterDevices and the device-specific mask.
 
-    If 'num_masks' is 0, no events have been selected by this client on the
+    If num_masks is 0, no events have been selected by this client on the
     given window.
 
     ┌───
@@ -465,21 +465,21 @@ are required to be 0.
     root
         The root window the pointer is logically on.
     child
-        The child window of 'window' that contains the pointer or None.
+        The child window of window that contains the pointer or None.
     root_x
     root_y
         Pointer position relative to the root window's origin.
     win_x
     win_y
-        Pointer position relative to 'window' or 0 if 'same_screen' is false.
+        Pointer position relative to window or 0 if same_screen is false.
     same_screen
-        True if 'window' is on the same screen as the pointer.
+        True if window is on the same screen as the pointer.
     mods
         XKB modifier state on the paired device.
     group
         XKB group state on the paired device.
     buttons_len
-        The length of 'buttons' in 4 byte units.
+        The length of buttons in 4 byte units.
     buttons
         Button state.
 
@@ -496,7 +496,7 @@ are required to be 0.
             deviceid:        DEVICEID
     └───
 
-    WarpPointer moves the pointer of 'deviceid' as if the user had moved
+    WarpPointer moves the pointer of deviceid as if the user had moved
     the pointer. WarpPointer can only be called for MasterPointer and
     FloatingSlave devices.
 
@@ -506,9 +506,9 @@ are required to be 0.
        rectangle of src_window.
     dst_win
        If dst_win is None, this request moves the pointer by offsets
-       'dst_x'/'dst_y' relative to the current position of the pointer. If
+       dst_x/dst_y relative to the current position of the pointer. If
         dst_window is a window, this request moves the pointer to
-       'dst_x'/'dst_y' relative to dst_win's origin.
+       dst_x/dst_y relative to dst_win's origin.
     src_x
     src_y
     src_width
@@ -516,8 +516,8 @@ are required to be 0.
        Specifies the source window rectangle.
     dst_x
     dst_y
-        The relative coordinates to move the pointer if 'dst_win' is None, or
-        the absolute coordinates if 'dst_win' is a window.
+        The relative coordinates to move the pointer if dst_win is None, or
+        the absolute coordinates if dst_win is a window.
     deviceid
         The device to warp.
 
@@ -544,9 +544,9 @@ are required to be 0.
     deviceid
         The master pointer device.
 
-    Whenever 'device' enters a window W, the cursor shape is selected in the
+    Whenever device enters a window W, the cursor shape is selected in the
     following order:
-    - if the current window has a device cursor C(d) defined for 'device',
+    - if the current window has a device cursor C(d) defined for device,
       display this cursor C(d).
     - otherwise, if the current window has a cursor C(w) defined in the core
       protocol's window attributes, display cursor C(w).
@@ -606,7 +606,7 @@ are required to be 0.
     length
         Length in 4 byte units.
     name_len
-        Length of 'name' in bytes.
+        Length of name in bytes.
     send_core
         True if the device should send core events.
     enable
@@ -625,15 +625,15 @@ are required to be 0.
         The device to remove.
     return_mode
         Return mode for attached slave devices.
-        If 'return_mode' is Float, all slave devices are set to floating.
-        If 'return_mode' is Attach, slave pointers are attached to
-        'return_pointer' and slave keyboards are attached to
-        'return_keyboard'.
+        If return_mode is Float, all slave devices are set to floating.
+        If return_mode is Attach, slave pointers are attached to
+        return_pointer and slave keyboards are attached to
+        return_keyboard.
     return_pointer
     return_keyboard
         The master pointer and master keyboard to attach slave devices to, if
-        'return_mode' is Attach. If 'return_mode' is Float, 'return_pointer'
-        and 'return_keyboard' are undefined.
+        return_mode is Attach. If return_mode is Float, return_pointer
+        and return_keyboard are undefined.
 
     Removing a master pointer removes the paired master keyboard and vice
     versa.
@@ -662,7 +662,7 @@ are required to be 0.
             deviceid:        DEVICEID
     └───
 
-    Set the ClientPointer for the client owning 'win' to the given device.
+    Set the ClientPointer for the client owning win to the given device.
 
     win
          Window or client ID.
@@ -694,14 +694,14 @@ are required to be 0.
             deviceid:        DEVICEID
     └───
 
-    Query the ClientPointer for the client owning 'win'.
+    Query the ClientPointer for the client owning win.
 
     win
         The window or client ID.
     set
         True if the client has a ClientPointer set.
     deviceid
-        The master pointer that acts as a ClientPointer if 'set' is True.
+        The master pointer that acts as a ClientPointer if set is True.
 
     No difference is made between a ClientPointer set explicitly through
     XISetClientPointer and a ClientPointer implicitly assigned by the server
@@ -1358,16 +1358,16 @@ EVENTHEADER { type:                       BYTE
         The current hierarchy information.
 
     An XIHierarchyEvent is sent whenever the device hierarchy been
-    changed. The 'flags' specify all types of hierarchy modifiations that have
+    changed. The flags specify all types of hierarchy modifiations that have
     occured.
-    For all devices, 'info' details the hierarchy information after the
+    For all devices, info details the hierarchy information after the
     modification of the hierarchy has occured. For each device specified with
-    'deviceid':
-    - if 'type' is MasterPointer or MasterKeyboard, 'attachment' decribes the
+    deviceid:
+    - if type is MasterPointer or MasterKeyboard, attachment decribes the
       pairing of this device.
-    - if 'type' is SlavePointer or SlaveKeyboard, 'attachment' describes the
+    - if type is SlavePointer or SlaveKeyboard, attachment describes the
       master device this device is attached to.
-    - if 'type' is FloatingSlave device, 'attachment' is undefined.
+    - if type is FloatingSlave device, attachment is undefined.
 
     enabled
          True if the device is enabled and can send events. A disabled master
@@ -1375,8 +1375,8 @@ EVENTHEADER { type:                       BYTE
          device.
 
     Note: Multiple devices may be affected in one hierarchy change,
-    'deviceid' in an XIHierarchyEvent is always the first affected
-    device. Clients should ignore deviceid and instead use the 'devices' list.
+    deviceid in an XIHierarchyEvent is always the first affected
+    device. Clients should ignore deviceid and instead use the devices list.
 
     ┌───
         DeviceChangedEvent:
@@ -1395,21 +1395,21 @@ EVENTHEADER { type:                       BYTE
 
     reason
         The reason for generating this event.
-        If 'reason' is SlaveSwitch, the slave device sending events through
-        this device has changed and 'source' specifies the new slave device.
-        A SlaveSwitch 'reason' can only occur on a master device.
-        If 'reason' is DeviceChange, the device itself has changed through
-        other means (e.g. a physical device change) and 'source' is
+        If reason is SlaveSwitch, the slave device sending events through
+        this device has changed and source specifies the new slave device.
+        A SlaveSwitch reason can only occur on a master device.
+        If reason is DeviceChange, the device itself has changed through
+        other means (e.g. a physical device change) and source is
         the device itself.
     source
         The source of the new classes.
     num_classes
-        Number of 'classes' provided.
+        Number of classes provided.
     classes
         Details the available classes provided by the device.  The order the
         classes are provided in is undefined.
 
-    For a detailed description of 'classes', see the XQueryInputDevice
+    For a detailed description of classes, see the XQueryInputDevice
     request.
 
     ┌───
@@ -1470,9 +1470,9 @@ EVENTHEADER { type:                       BYTE
         event window (16.16 fixed point).
 
     buttons_len
-        The length of 'buttons' in 4 byte units.
+        The length of buttons in 4 byte units.
     valuators_len
-        The length of 'valuators' in 4 byte units.
+        The length of valuators in 4 byte units.
     sourceid
         The source device that originally generated the event.
     mods
@@ -1482,7 +1482,7 @@ EVENTHEADER { type:                       BYTE
     buttons
         Button state before the event.
     valuators
-        Bitmask of valuators provided in 'axisvalues'.
+        Bitmask of valuators provided in axisvalues.
     axisvalues
         Valuator data in device-native resolution.
     flags
@@ -1493,7 +1493,7 @@ EVENTHEADER { type:                       BYTE
         the physical state of the key has not changed.  This is only
         valid for KeyPress events.
 
-    Modifier state in 'mods' is detailed as follows:
+    Modifier state in mods is detailed as follows:
     base_mods
         XKB base modifier state.
     latched_mods
@@ -1501,7 +1501,7 @@ EVENTHEADER { type:                       BYTE
     locked_mods
         XKB locked modifier state.
 
-    Group state in 'group' is detailed as follows:
+    Group state in group is detailed as follows:
     base_group
         XKB base group state.
     latched_group
@@ -1536,9 +1536,9 @@ EVENTHEADER { type:                       BYTE
     flags
         Flags as described in DeviceEvent.
     valuators_len
-        The length of 'valuators' in 4 byte units.
+        The length of valuators in 4 byte units.
     valuators
-        Bitmask of valuators provided in 'axisvalues' and 'axisvalues_raw'.
+        Bitmask of valuators provided in axisvalues and axisvalues_raw.
     axisvalues
         Valuator data in device-native resolution.
     axisvalues_raw
@@ -1620,7 +1620,7 @@ EVENTHEADER { type:                       BYTE
     group
         XKB group state before the event.
     buttons_len
-        The length of 'buttons' in 4 byte units.
+        The length of buttons in 4 byte units.
     buttons
         Button state before the event.
 
