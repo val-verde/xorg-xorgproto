@@ -224,7 +224,7 @@ are required to be 0.
     server sends the highest version it supports, but no higher than the
     requested version. Major versions changes can introduce incompatibilities
     in existing functionality, minor version changes introduce only backward
-    compatible changes.  It is the clients responsibility to ensure that the
+    compatible changes.  It is the client's responsibility to ensure that the
     server supports a version which is compatible with its expectations.
 
     major_version
@@ -251,7 +251,7 @@ are required to be 0.
                  name:                  LISTofCHAR8
                  classes:               LISTofCLASS }
 
-    CLASS { BUTTONCLASS KEYCLASS, AXISCLASS }
+    CLASS { BUTTONCLASS, KEYCLASS, AXISCLASS }
 
     BUTTONCLASS { type:                 ButtonClass
                   length:               CARD16
@@ -296,25 +296,23 @@ are required to be 0.
         If the device is a slave pointer, 'use' is SlavePointer.
         If the device is a slave keyboard, 'use' is SlaveKeyboard.
         If the device is a floating slave, 'use' is FloatingSlave.
-
     attachment
         If the device is a master pointer or a master keyboard, 'attachment'
         specifies the paired master keyboard, or the paired master pointer,
         respectively.  If the device is a non-floating slave device
         'attachment' specifies the master device this device is attached to.
         If the device is a floating slave, 'attachment' is undefined.
-
     enabled
         Zero if the device is disabled, non-zero otherwise.
     num_classes
         Number of 'classes' provided.
     name_len
-        Length of the name in bytes.
+        Length of the name in bytes not including padding.
     classes
         Details the available classes provided by the device in an undefined
         order.
     name
-        The device's name, padded to a multiple of 4 bytes.
+        The device's name. padded to a multiple of 4 bytes.
 
     For all classes, 'type' specifies the device class. Clients are required
     to ignore unknown device classes. The 'length' field specifies the length
@@ -331,14 +329,14 @@ are required to be 0.
     num_buttons
         Number of buttons provided by the device.
     labels
-        List of Atoms specifying the label for each button. An atom of None
+        List of Atoms specifying the label for each button. An Atom of None
         specifies an unlabeled button. Buttons are listed in the device-native
-        order and potential button mappings are ignored.
+        order regardless of the current button mapping.
     state
-        The current button mask for this device. Each bit representing a
-        button is 1 if this button is logically down, or 0 otherwise. State a
-        multiple of 4-byte units and always contains at least num_buttons
-        bits.
+        The current button mask for this device after button mapping is
+        applied. Each bit representing a button is 1 if this button is
+        logically down, or 0 otherwise. State is a multiple of 4-byte units
+        and always contains at least num_buttons bits.
 
     KeyClass:
     type
@@ -394,11 +392,11 @@ are required to be 0.
     window
         The window to select the events on.
     num_masks
-        Number of items in mask.
+        Number of items in 'masks'.
     deviceid
         Numerical deviceid, or AllDevices, or AllMasterDevices.
     mask_len
-        Length of mask in 4 byte units.
+        Length of 'mask' in 4 byte units.
     mask
         Event mask. An event mask for an event type T is defined as (1 << T).
 
@@ -429,16 +427,17 @@ are required to be 0.
             masks:          LISTofEVENTMASK
     └───
 
-
     window
         The window to select the events on.
     num_masks
-        Number of items in mask.
+        Number of items in 'masks'.
     masks
         Selected event masks by this client.
 
     Masks are returned on a per-device basis, with masks for 'AllDevices' and
-    'AllMasterDevices' returned separately.
+    'AllMasterDevices' returned separately. A client can calculate the
+    effective mask for a device with a bitwise OR of the AllDevices, the
+    AllMasterDevices and the device-specific mask.
 
     If 'num_masks' is 0, no events have been selected by this client on the
     given window.
@@ -474,7 +473,7 @@ are required to be 0.
     win_y
         Pointer position relative to 'window' or 0 if 'same_screen' is false.
     same_screen
-        TRUE if 'window' is on the same screen as the pointer.
+        True if 'window' is on the same screen as the pointer.
     mods
         XKB modifier state on the paired device.
     group
@@ -596,9 +595,10 @@ are required to be 0.
     changes
         The list of changes.
 
-    The server processes the changes one by one and applies changes
-    immediately. If an error occurs, processing stops at the current change
-    and returns the number of successfully applied changes in the error.
+    The server processes the changes in the order received from the client and
+    applies each requested change immediately. If an error occurs, processing
+    stops at the current change and returns the number of successfully applied
+    changes in the error.
 
     ADDMASTER creates a pair of master devices.
     type
@@ -608,9 +608,9 @@ are required to be 0.
     name_len
         Length of 'name' in bytes.
     send_core
-        TRUE if the device should send core events.
+        True if the device should send core events.
     enable
-        TRUE if the device is to be enabled immediately.
+        True if the device is to be enabled immediately.
     name
         The name for the new master devices. The master pointer's name is
         automatically appended with " pointer", the master keyboard's name is
@@ -632,7 +632,8 @@ are required to be 0.
     return_pointer
     return_keyboard
         The master pointer and master keyboard to attach slave devices to, if
-        'return_mode' is Attach.
+        'return_mode' is Attach. If 'return_mode' is Float, 'return_pointer'
+        and 'return_keyboard' are undefined.
 
     Removing a master pointer removes the paired master keyboard and vice
     versa.
@@ -698,9 +699,9 @@ are required to be 0.
     win
         The window or client ID.
     set
-        TRUE if the client has a ClientPointer set.
+        True if the client has a ClientPointer set.
     deviceid
-        The master pointer that acts as a ClientPointer if 'set' is TRUE.
+        The master pointer that acts as a ClientPointer if 'set' is True.
 
     No difference is made between a ClientPointer set explicitly through
     XISetClientPointer and a ClientPointer implicitly assigned by the server
@@ -788,7 +789,6 @@ are required to be 0.
     status
         Success or the reason why the grab could not be established.
 
-
     The masks parameter specifies which events the client wishes to receive
     while the device is grabbed.
 
@@ -850,8 +850,8 @@ are required to be 0.
     time
         A valid server time or CurrentTime.
 
-    The request has no effect if the specified time is earlier
-    than the last-device-grab time or is later than the current server time.
+    The request has no effect if the specified time is earlier than the
+    last-device-grab time or is later than the current server time.
     This request generates FocusIn and FocusOut events.
     An XIUngrabDevice is performed automatically if the event window for an
     active device grab becomes not viewable.
@@ -1370,7 +1370,7 @@ EVENTHEADER { type:                       BYTE
     - if 'type' is FloatingSlave device, 'attachment' is undefined.
 
     enabled
-         TRUE if the device is enabled and can send events. A disabled master
+         True if the device is enabled and can send events. A disabled master
          device will not forward events from an attached, enabled slave
          device.
 
@@ -1534,7 +1534,7 @@ EVENTHEADER { type:                       BYTE
     detail
         The button number or keycode.
     flags
-        Flags as described in DeviceEvent::flags.
+        Flags as described in DeviceEvent.
     valuators_len
         The length of 'valuators' in 4 byte units.
     valuators
@@ -1609,7 +1609,7 @@ EVENTHEADER { type:                       BYTE
         Specifies the relation of the event window to the window the pointer
         entered or left. See the core protocol spec for details.
     same_screen
-        TRUE if the event window is on the same screen as the pointer's root
+        True if the event window is on the same screen as the pointer's root
         window.
     focus
         If the event window is the focus window or an inferior of the focus
