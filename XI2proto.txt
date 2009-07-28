@@ -206,7 +206,8 @@ future revisions of XI2. A client must always retrieve the exact length of the
 protocol reply from the connection, even if the reply is longer than defined
 for the XI2 version supported by the client.
 Additional bytes in a request may include data supported in later versions of
-XI2. Clients should ignore this data.
+XI2. Clients should ignore this data. Padding bytes in XI2 protocol requests
+are required to be 0.
 
 7.1 Requests introduced in version 2.0
 
