@@ -537,6 +537,11 @@ HideCursor
 	When a client with outstanding cursor hiding requests
 	terminates its connection these requests will be deleted.
 
+	Servers supporting the X Input Extension Version 2.0 or higher hide
+	all visible cursors in response to a HideCursor request. If a master
+	pointer is created while the cursors are hidden, this master pointer's
+	cursor will be hidden as well.
+
 ShowCursor
 
 		window:			WINDOW
@@ -553,7 +558,9 @@ ShowCursor
 	If the client has made no outstanding HideCursor requests
 	a BadMatch error is generated.
 
-		
+	Servers supporting the X Input Extension Version 2.0 or higher show
+	all visible cursors in response to a ShowCursor request.
+
 99. Future compatibility
 
 This extension is not expected to remain fixed.  Future changes will
