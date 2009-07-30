@@ -1,6 +1,6 @@
                         The XFIXES Extension
 			    Version 4.0
-			 Document Revision 1
+			 Document Revision 2
 			     2006-12-14
 			    Keith Packard
 			  keithp@keithp.com
@@ -186,6 +186,11 @@ SelectCursorInput
 	assigned to the cursor image which identifies the image.  Cursors
 	with different serial numbers may have different images.  Timestamp
 	is the time of the cursor change.
+
+	Servers supporting the X Input Extension Version 2.0 or higher only
+	notify the clients of cursor change events for the ClientPointer, not
+	of any other master pointer (see Section 4.4. in the XI2 protocol
+	specificiation).
 
 GetCursorImage
 
