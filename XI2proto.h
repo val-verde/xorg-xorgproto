@@ -901,9 +901,7 @@ typedef struct
     uint16_t    deviceid;
     Time        time;
     uint32_t    detail;
-    uint16_t    eventtype;              /**< ::XI_Motion, ::XI_ButtonPress,
-                                             ::XI_ButtonRelease, ::XI_KeyPress,
-                                             ::XI_KeyRelease */
+    uint16_t    pad0;
     uint16_t    valuators_len;          /**< Length of trailing valuator
                                              mask in 4 byte units */
     uint32_t    flags;                  /**< ::XIKeyRepeat */
