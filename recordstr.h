@@ -21,13 +21,8 @@
 #ifndef _RECORDSTR_H_
 #define _RECORDSTR_H_
 
-#include <X11/extensions/record.h>
+#include <X11/extensions/recordconst.h>
 
-#define RECORD_NAME			"RECORD"
-#define RECORD_MAJOR_VERSION		1
-#define RECORD_MINOR_VERSION		13
-#define RECORD_LOWEST_MAJOR_VERSION	1
-#define RECORD_LOWEST_MINOR_VERSION	12
 /* only difference between 1.12 and 1.13 is byte order of device events,
    which the library doesn't deal with. */
 
@@ -44,9 +39,6 @@
 #define X_RecordEnableContext   5     /* Enable interception and reporting */
 #define X_RecordDisableContext  6     /* Disable interception and reporting */
 #define X_RecordFreeContext     7     /* Free client RC */
-
-#define RecordNumErrors         (XRecordBadContext + 1) 
-#define RecordNumEvents      	0L
 
 #define sz_XRecordRange		32
 #define sz_XRecordClientInfo 	12
