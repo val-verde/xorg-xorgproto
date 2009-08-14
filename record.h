@@ -1,7 +1,3 @@
-/* 
-$Xorg: record.h,v 1.3 2000/08/18 04:05:46 coskrey Exp $
-*/
-
 /***************************************************************************
  * Copyright 1995 Network Computing Devices
  *
@@ -21,7 +17,6 @@ $Xorg: record.h,v 1.3 2000/08/18 04:05:46 coskrey Exp $
  * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING 
  * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  **************************************************************************/
-/* $XFree86$ */
 
 #ifndef _RECORD_H_
 #define _RECORD_H_
