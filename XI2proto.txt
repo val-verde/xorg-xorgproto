@@ -572,6 +572,9 @@ are required to be 0.
       protocol's window attributes, display cursor C(w).
     - repeat on parent window until a cursor has been found.
 
+    If deviceid does not specify a master pointer, a BadDevice error
+    is returned.
+
     ┌───
         XIChangeHierarchy
             num_changes:     CARD8
