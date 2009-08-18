@@ -702,7 +702,7 @@ are required to be 0.
     this client's ClientPointer is set to the given device.
 
     If deviceid does not specify a master pointer or master keyboard, a
-    BadDevice error returned.
+    BadDevice error is returned.
 
     If window does not specify a valid window or client ID and is not None, a
     BadWindow error is returned.
