@@ -1,6 +1,7 @@
 recorddir = $(includedir)/X11/extensions
 record_HEADERS = \
 	recordconst.h \
+	recordproto.h \
 	recordstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
