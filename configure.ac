@@ -1,5 +1,5 @@
 AC_PREREQ([2.57])
-AC_INIT([InputProto], [1.9.99.901], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
+AC_INIT([InputProto], [1.9.99.902], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 
 # Require xorg-macros: XORG_CHANGELOG
