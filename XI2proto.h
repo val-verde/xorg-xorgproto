@@ -372,16 +372,16 @@ typedef struct {
     uint16_t    length;                 /**< Length in 4 byte units */
     Window      src_win;
     Window      dst_win;
-    int16_t     src_x;
-    int16_t     src_y;
+    FP1616      src_x;
+    FP1616      src_y;
     uint16_t    src_width;
     uint16_t    src_height;
-    int16_t     dst_x;
-    int16_t     dst_y;
+    FP1616      dst_x;
+    FP1616      dst_y;
     uint16_t    deviceid;
     uint16_t    pad1;
 } xXIWarpPointerReq;
-#define sz_xXIWarpPointerReq                    28
+#define sz_xXIWarpPointerReq                    36
 
 /**
  * Change the given device's sprite to the given cursor.
