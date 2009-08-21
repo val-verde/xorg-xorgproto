@@ -503,6 +503,9 @@ are required to be 0.
     buttons
         Button state.
 
+    If the device is not a master pointer device or not a floating slave
+    pointer, a BadDevice error results.
+
     ┌───
         XIWarpPointer
             src_win:         Window
