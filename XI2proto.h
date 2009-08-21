@@ -372,12 +372,12 @@ typedef struct {
     uint16_t    length;                 /**< Length in 4 byte units */
     Window      src_win;
     Window      dst_win;
-    INT16       src_x;
-    INT16       src_y;
+    int16_t     src_x;
+    int16_t     src_y;
     uint16_t    src_width;
     uint16_t    src_height;
-    INT16       dst_x;
-    INT16       dst_y;
+    int16_t     dst_x;
+    int16_t     dst_y;
     uint16_t    deviceid;
     uint16_t    pad1;
 } xXIWarpPointerReq;
