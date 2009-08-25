@@ -575,6 +575,9 @@ are required to be 0.
       protocol's window attributes, display cursor C(w).
     - repeat on parent window until a cursor has been found.
 
+    The device cursor for a given window is reset once the window is destroyed
+    or the device is removed, whichever comes earlier.
+
     If deviceid does not specify a master pointer, a BadDevice error
     is returned.
 
