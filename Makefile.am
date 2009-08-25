@@ -1,5 +1,6 @@
 bigreqsdir = $(includedir)/X11/extensions
 bigreqs_HEADERS = \
+	bigreqsproto.h \
 	bigreqstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
