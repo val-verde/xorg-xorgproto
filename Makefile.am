@@ -1,6 +1,6 @@
 xf86vidmodedir = $(includedir)/X11/extensions
 xf86vidmode_HEADERS = \
-	xf86vmode.h \
+	xf86vm.h \
 	xf86vmproto.h \
 	xf86vmstr.h
 
