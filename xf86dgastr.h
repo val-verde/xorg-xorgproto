@@ -1,4 +1,3 @@
-/* $XFree86: xc/include/extensions/xf86dgastr.h,v 3.13 2000/12/20 00:19:41 mvojkovi Exp $ */
 /*
 
 Copyright (c) 1995  Jon Tombs
