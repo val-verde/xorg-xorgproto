@@ -1,8 +1,8 @@
 xf86dgadir = $(includedir)/X11/extensions
 xf86dga_HEADERS = \
-	xf86dga1.h \
+	xf86dga1const.h \
 	xf86dga1str.h \
-	xf86dga.h \
+	xf86dgaconst.h \
 	xf86dgastr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
