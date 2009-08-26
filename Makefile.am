@@ -1,5 +1,6 @@
 eviedir = $(includedir)/X11/extensions
 evie_HEADERS = \
+	evieproto.h \
 	Xeviestr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
