@@ -38,6 +38,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define APPLE_WM_MINOR_VERSION	3
 #define APPLE_WM_PATCH_VERSION	0
 
+#define X_AppleWMQueryVersion		0
+#define X_AppleWMFrameGetRect		1
+#define X_AppleWMFrameHitTest		2
+#define X_AppleWMFrameDraw		3
+#define X_AppleWMDisableUpdate		4
+#define X_AppleWMReenableUpdate		5
+#define X_AppleWMSelectInput		6
+#define X_AppleWMSetWindowMenuCheck	7
+#define X_AppleWMSetFrontProcess	8
+#define X_AppleWMSetWindowLevel		9
+#define X_AppleWMSetCanQuit		10
+#define X_AppleWMSetWindowMenu		11
+#define X_AppleWMSendPSN		12
+#define X_AppleWMAttachTransient	13
+
 /* For the purpose of the structure definitions in this file,
 we must redefine the following types in terms of Xmd.h's types, which may
 include bit fields.  All of these are #undef'd at the end of this file,
