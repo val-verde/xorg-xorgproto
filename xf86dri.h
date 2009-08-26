@@ -38,7 +38,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #ifndef _XF86DRI_H_
 #define _XF86DRI_H_
 
-#include <X11/Xfuncproto.h>
 #include <xf86drm.h>
 
 #define X_XF86DRIQueryVersion			0
