@@ -1,5 +1,6 @@
 xcmiscdir = $(includedir)/X11/extensions
 xcmisc_HEADERS = \
+	xcmiscproto.h \
 	xcmiscstr.h
 
 pkgconfigdir = $(libdir)/pkgconfig
