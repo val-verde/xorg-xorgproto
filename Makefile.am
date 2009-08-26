@@ -1,7 +1,7 @@
 applewmdir = $(includedir)/X11/extensions
 applewm_HEADERS = \
-        applewm.h \
-	applewmstr.h
+        applewmconst.h \
+	applewmproto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = applewmproto.pc
