@@ -8,6 +8,8 @@ Copyright (c) 1995  XFree86 Inc.
 #ifndef _XF86DGAPROTO1_H_
 #define _XF86DGAPROTO1_H_
 
+#include <X11/extensions/xf86dga1const.h>
+
 typedef struct _XF86DGAQueryVersion {
     CARD8	reqType;		/* always DGAReqCode */
     CARD8	dgaReqType;		/* always X_DGAQueryVersion */

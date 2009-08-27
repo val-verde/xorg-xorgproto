@@ -9,6 +9,7 @@ Copyright (c) 1995  XFree86 Inc.
 #define _XF86DGAPROTO_H_
 
 #include <X11/extensions/xf86dga1proto.h>
+#include <X11/extensions/xf86dgaconst.h>
 
 #define XF86DGANAME "XFree86-DGA"
 
