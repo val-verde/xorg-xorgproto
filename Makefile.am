@@ -1,5 +1,6 @@
 xf86dgadir = $(includedir)/X11/extensions
 xf86dga_HEADERS = \
+	xf86dga.h \
 	xf86dga1const.h \
 	xf86dga1str.h \
 	xf86dga1proto.h \
