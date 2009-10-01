@@ -10,7 +10,7 @@ pkgconfig_DATA = inputproto.pc
 
 EXTRA_DIST = inputproto.pc.in
 
-EXTRA_DIST += ChangeLog XI2proto.txt
+EXTRA_DIST += ChangeLog XI2proto.txt XIproto.txt
 MAINTAINERCLEANFILES = ChangeLog
 
 .PHONY: ChangeLog
