@@ -1,5 +1,3 @@
-dnl  
-dnl  $Id: configure.ac,v 1.7 2004-07-26 17:17:33 keithp Exp $
 dnl 
 dnl  Copyright © 2003 Keith Packard, Noah Levitt
 dnl 
