@@ -6,6 +6,8 @@ xproxymng_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = xproxymngproto.pc
 
+dist_doc_DATA = PM_spec
+
 EXTRA_DIST = xproxymngproto.pc.in
 
 EXTRA_DIST += ChangeLog
