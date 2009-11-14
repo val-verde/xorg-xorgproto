@@ -11,9 +11,11 @@ EXTRA_DIST = applewmproto.pc.in
 EXTRA_DIST += ChangeLog
 MAINTAINERCLEANFILES = ChangeLog
 
-.PHONY: ChangeLog
+.PHONY: ChangeLog INSTALL
 
 ChangeLog:
 	$(CHANGELOG_CMD)
+INSTALL:
+	$(INSTALL_CMD)
 
-dist-hook: ChangeLog
+dist-hook: ChangeLog INSTALL
