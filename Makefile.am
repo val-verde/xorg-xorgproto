@@ -14,9 +14,12 @@ EXTRA_DIST = randrproto.pc.in $(randrdoc_DATA)
 EXTRA_DIST += ChangeLog
 MAINTAINERCLEANFILES = ChangeLog
 
-.PHONY: ChangeLog
+.PHONY: ChangeLog INSTALL
+
+INSTALL:
+	$(INSTALL_CMD)
 
 ChangeLog:
 	$(CHANGELOG_CMD)
 
-dist-hook: ChangeLog
+dist-hook: ChangeLog INSTALL
