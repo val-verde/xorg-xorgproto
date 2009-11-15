@@ -1,6 +1,7 @@
 AC_PREREQ([2.57])
 AC_INIT([XF86MiscProto], [0.9.3], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
+AM_MAINTAINER_MODE
 
 # Require xorg-macros 1.3 or later: XORG_DEFAULT_OPTIONS
 m4_ifndef([XORG_MACROS_VERSION],
