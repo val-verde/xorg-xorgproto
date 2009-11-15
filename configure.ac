@@ -24,8 +24,7 @@ dnl Process this file with autoconf to create configure.
 AC_PREREQ([2.57])
 AC_INIT([RandrProto], [1.3.1], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
-
-# Require xorg-macros: XORG_CHANGELOG
+AM_MAINTAINER_MODE
 
 # Require xorg-macros: XORG_DEFAULT_OPTIONS
 m4_ifndef([XORG_MACROS_VERSION], [AC_FATAL([must install xorg-macros 1.3 or later before running autoconf/autogen])])
