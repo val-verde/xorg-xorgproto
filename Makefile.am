@@ -9,9 +9,6 @@ pkgconfig_DATA = xf86vidmodeproto.pc
 
 EXTRA_DIST = xf86vidmodeproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
