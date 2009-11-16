@@ -14,9 +14,6 @@ pkgconfig_DATA = glproto.pc
 
 EXTRA_DIST = glproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
