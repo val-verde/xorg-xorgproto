@@ -8,9 +8,6 @@ pkgconfig_DATA = bigreqsproto.pc
 
 EXTRA_DIST = bigreqsproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
