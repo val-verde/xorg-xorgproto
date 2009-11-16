@@ -9,9 +9,6 @@ pkgconfig_DATA = recordproto.pc
 
 EXTRA_DIST = recordproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
