@@ -13,9 +13,6 @@ pkgconfig_DATA = xf86dgaproto.pc
 
 EXTRA_DIST = xf86dgaproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
