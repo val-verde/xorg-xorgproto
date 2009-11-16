@@ -32,9 +32,6 @@ pkgconfig_DATA = fixesproto.pc
 
 EXTRA_DIST = fixesproto.pc.in $(fixesdoc_DATA)
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
