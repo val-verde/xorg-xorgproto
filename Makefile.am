@@ -34,9 +34,6 @@ compositedoc_DATA = compositeproto.txt
 
 EXTRA_DIST = autogen.sh compositeproto.pc.in $(compositedoc_DATA)
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
