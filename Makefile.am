@@ -9,9 +9,6 @@ pkgconfig_DATA = xf86bigfontproto.pc
 
 EXTRA_DIST = xf86bigfontproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
