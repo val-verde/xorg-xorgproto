@@ -8,9 +8,6 @@ pkgconfig_DATA = scrnsaverproto.pc
 
 EXTRA_DIST = scrnsaverproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
