@@ -7,9 +7,6 @@ pkgconfig_DATA = resourceproto.pc
 
 EXTRA_DIST = resourceproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
