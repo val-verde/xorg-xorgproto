@@ -8,9 +8,6 @@ pkgconfig_DATA = xf86miscproto.pc
 
 EXTRA_DIST = xf86miscproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
