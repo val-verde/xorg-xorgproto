@@ -8,9 +8,6 @@ pkgconfig_DATA = xcmiscproto.pc
 
 EXTRA_DIST = xcmiscproto.pc.in
 
-EXTRA_DIST += ChangeLog
-MAINTAINERCLEANFILES = ChangeLog
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
