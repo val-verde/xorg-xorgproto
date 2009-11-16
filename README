@@ -1,3 +1,9 @@
+				FontCache Extension
+
+This extension defines a protocol to allow client control over the caching
+of server-side core fonts.
+
+Extension name: FontCache
 
 All questions regarding this software should be directed at the
 Xorg mailing list:
