@@ -11,6 +11,8 @@ randrdoc_DATA = randrproto.txt
 
 EXTRA_DIST = randrproto.pc.in $(randrdoc_DATA)
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
