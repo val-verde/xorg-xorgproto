@@ -8,6 +8,8 @@ pkgconfig_DATA = windowswmproto.pc
 
 EXTRA_DIST = windowswmproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
