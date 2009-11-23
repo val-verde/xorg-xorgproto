@@ -8,6 +8,8 @@ pkgconfig_DATA = applewmproto.pc
 
 EXTRA_DIST = applewmproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 ChangeLog:
