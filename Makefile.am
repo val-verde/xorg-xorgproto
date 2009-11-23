@@ -11,6 +11,8 @@ renderdoc_DATA = renderproto.txt
 
 EXTRA_DIST = renderproto.pc.in $(renderdoc_DATA)
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
