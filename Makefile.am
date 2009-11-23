@@ -7,6 +7,8 @@ pkgconfig_DATA = xineramaproto.pc
 
 EXTRA_DIST = xineramaproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
