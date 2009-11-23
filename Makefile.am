@@ -9,8 +9,9 @@ pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = inputproto.pc
 
 EXTRA_DIST = inputproto.pc.in
-
 EXTRA_DIST += XI2proto.txt XIproto.txt
+
+MAINTAINERCLEANFILES = ChangeLog INSTALL
 
 .PHONY: ChangeLog INSTALL
 
