@@ -11,6 +11,8 @@ pkgconfig_DATA = kbproto.pc
 
 EXTRA_DIST = kbproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
