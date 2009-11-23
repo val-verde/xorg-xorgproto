@@ -8,6 +8,8 @@ pkgconfig_DATA = evieproto.pc
 
 EXTRA_DIST = evieproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
