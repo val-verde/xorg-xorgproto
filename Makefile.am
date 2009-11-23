@@ -12,6 +12,8 @@ pkgconfig_DATA = fontsproto.pc
 
 EXTRA_DIST = fontsproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
