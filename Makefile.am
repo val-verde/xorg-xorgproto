@@ -8,6 +8,8 @@ pkgconfig_DATA = dmxproto.pc
 
 EXTRA_DIST = dmxproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
