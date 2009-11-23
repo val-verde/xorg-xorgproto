@@ -6,6 +6,8 @@ pkgconfig_DATA = xf86driproto.pc
 
 EXTRA_DIST = xf86driproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
