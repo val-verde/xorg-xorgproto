@@ -9,6 +9,8 @@ pkgconfig_DATA = fontcacheproto.pc
 
 EXTRA_DIST = fontcacheproto.pc.in
 
+MAINTAINERCLEANFILES = ChangeLog INSTALL
+
 .PHONY: ChangeLog INSTALL
 
 INSTALL:
