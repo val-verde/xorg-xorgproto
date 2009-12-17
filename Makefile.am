@@ -6,10 +6,9 @@ render_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = renderproto.pc
 
-renderdocdir = $(datadir)/doc/$(PACKAGE)
-renderdoc_DATA = renderproto.txt
+dist_doc_DATA = renderproto.txt
 
-EXTRA_DIST = renderproto.pc.in $(renderdoc_DATA)
+EXTRA_DIST = renderproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
