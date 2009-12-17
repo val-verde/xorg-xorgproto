@@ -24,13 +24,12 @@ fixes_HEADERS = \
 	xfixesproto.h \
 	xfixeswire.h
 
-fixesdocdir = $(datadir)/doc/$(PACKAGE)
-fixesdoc_DATA = fixesproto.txt
+dist_doc_DATA = fixesproto.txt
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = fixesproto.pc
 
-EXTRA_DIST = fixesproto.pc.in $(fixesdoc_DATA)
+EXTRA_DIST = fixesproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
