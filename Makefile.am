@@ -6,7 +6,6 @@ bigreqs_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = bigreqsproto.pc
 
-EXTRA_DIST = bigreqsproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
