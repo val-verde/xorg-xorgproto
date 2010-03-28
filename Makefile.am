@@ -9,7 +9,6 @@ kb_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = kbproto.pc
 
-EXTRA_DIST = kbproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
