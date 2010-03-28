@@ -7,7 +7,6 @@ xf86vidmode_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = xf86vidmodeproto.pc
 
-EXTRA_DIST = xf86vidmodeproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
