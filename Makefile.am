@@ -29,7 +29,6 @@ pkgconfig_DATA = compositeproto.pc
 
 dist_doc_DATA = compositeproto.txt
 
-EXTRA_DIST = autogen.sh compositeproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
