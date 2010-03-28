@@ -29,7 +29,6 @@ dist_doc_DATA = fixesproto.txt
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = fixesproto.pc
 
-EXTRA_DIST = fixesproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
