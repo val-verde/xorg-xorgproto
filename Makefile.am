@@ -6,7 +6,6 @@ applewm_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = applewmproto.pc
 
-EXTRA_DIST = applewmproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
