@@ -11,7 +11,6 @@ xf86dga_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = xf86dgaproto.pc
 
-EXTRA_DIST = xf86dgaproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
