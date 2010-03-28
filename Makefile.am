@@ -8,7 +8,6 @@ pkgconfig_DATA = randrproto.pc
 
 dist_doc_DATA = randrproto.txt
 
-EXTRA_DIST = randrproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
