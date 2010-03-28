@@ -5,7 +5,6 @@ resource_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = resourceproto.pc
 
-EXTRA_DIST = resourceproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
