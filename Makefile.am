@@ -6,7 +6,6 @@ dmx_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = dmxproto.pc
 
-EXTRA_DIST = dmxproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
