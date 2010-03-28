@@ -6,7 +6,6 @@ xcmisc_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = xcmiscproto.pc
 
-EXTRA_DIST = xcmiscproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
