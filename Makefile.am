@@ -8,7 +8,6 @@ pkgconfig_DATA = renderproto.pc
 
 dist_doc_DATA = renderproto.txt
 
-EXTRA_DIST = renderproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
