@@ -7,7 +7,6 @@ record_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = recordproto.pc
 
-EXTRA_DIST = recordproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
