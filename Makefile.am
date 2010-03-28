@@ -10,7 +10,6 @@ fonts_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = fontsproto.pc
 
-EXTRA_DIST = fontsproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
