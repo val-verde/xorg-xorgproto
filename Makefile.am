@@ -11,7 +11,6 @@ pkgconfig_DATA = videoproto.pc
 
 dist_doc_DATA = xv-protocol-v2.txt
 
-EXTRA_DIST = videoproto.pc.in
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
