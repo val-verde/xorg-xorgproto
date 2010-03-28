@@ -8,8 +8,9 @@ input_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = inputproto.pc
 
+dist_doc_DATA = XI2proto.txt XIproto.txt
+
 EXTRA_DIST = inputproto.pc.in
-EXTRA_DIST += XI2proto.txt XIproto.txt
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
