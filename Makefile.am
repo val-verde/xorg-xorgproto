@@ -1,3 +1,5 @@
+SUBDIRS=specs
+
 xcmiscdir = $(includedir)/X11/extensions
 xcmisc_HEADERS = \
 	xcmiscproto.h \
