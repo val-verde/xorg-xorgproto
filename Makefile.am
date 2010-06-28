@@ -1,3 +1,5 @@
+SUBDIRS=specs
+
 bigreqsdir = $(includedir)/X11/extensions
 bigreqs_HEADERS = \
 	bigreqsproto.h \
