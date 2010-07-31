@@ -1,3 +1,5 @@
+SUBDIRS=specs
+
 scrnsaverdir = $(includedir)/X11/extensions
 scrnsaver_HEADERS = \
 	saver.h \
