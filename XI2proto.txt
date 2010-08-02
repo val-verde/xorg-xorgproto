@@ -999,7 +999,7 @@ are required to be 0.
     └───
 
         GRABTYPE         { GrabtypeButton, GrabtypeKeycode, GrabtypeEnter,
-                           GrabTypeFocusIn}
+                           GrabtypeFocusIn}
 
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
