@@ -1,3 +1,5 @@
+SUBDIRS=specs
+
 recorddir = $(includedir)/X11/extensions
 record_HEADERS = \
 	recordconst.h \
