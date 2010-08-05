@@ -1485,7 +1485,8 @@ EVENTHEADER { type:                       BYTE
 
     An XIDeviceEvent is generated whenever the logical state of a device
     changes in response to a button press, a button release, a motion, a key
-    press or a key release.
+    press or a key release. The event type may be one of KeyPress,
+    KeyRelease, ButtonPress, ButtonRelease, Motion.
 
     detail
         The button number or key code, or 0.
