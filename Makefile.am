@@ -1,3 +1,5 @@
+SUBDIRS=specs
+
 fontsdir = $(includedir)/X11/fonts
 fonts_HEADERS = \
 	font.h \
