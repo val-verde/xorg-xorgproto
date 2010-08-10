@@ -616,9 +616,7 @@ CreatePicture
 	alpha-map.  Exposures to the window do not affect the contents of
 	alpha-map.  Alpha-map must refer to a picture containing a Pixmap,
 	not a Window (or a Match error results).  If the alpha-map picture
-	itself already has an alpha-map, that alpha-map is used instead.  If
-	the alpha-map picture points to the same drawable as the picture
-	itself, None is used instead.
+	itself already has an alpha-map, the result is undefined.
 
 	The clip-mask restricts reads and writes to drawable.  Only pixels
 	where the clip-mask has bits set to 1 are read or written.  Pixels
