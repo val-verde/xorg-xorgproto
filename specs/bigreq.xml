@@ -15,15 +15,13 @@
       </author>
    </authorgroup>
    <corpname>X Consortium Standard</corpname>
-   <copyright><year>1993</year><holder>X Consortium</holder></copyright>
-   <copyright><year>1994</year><holder>X Consortium</holder></copyright>
+   <copyright><year>1993</year><year>1994</year>
+     <holder>X Consortium</holder></copyright>
    <releaseinfo>Version 2.0</releaseinfo>
    <affiliation><orgname>X Consortium</orgname></affiliation>
    <productnumber>X Version 11, Release 7</productnumber>
 
 <legalnotice>
-<para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
-
 <para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
 
 <para>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</para>
@@ -48,65 +46,65 @@
 
 <para>For example, a normal <function>PolyLine</function> encoding is:</para>
 
-<informaltable pgwide='0' frame='all'>
-  <tgroup cols='4' align='center'>
+<informaltable pgwide='0' frame='none'>
+  <tgroup cols='4' align='left'>
     <colspec colwidth='0.5in' colname='c1'/>
     <colspec colwidth='1.5in' colname='c2'/>
     <colspec colwidth='1.5in' colname='c3'/>
     <colspec colwidth='2.0in' colname='c4'/>
     <thead>
       <row>
-        <entry namest="c1" nameend="c4" align='center'><function>PolyLine</function></entry>
+        <entry namest="c1" nameend="c4"><function>PolyLine</function></entry>
       </row>
     </thead>
     <tbody>
       <row>
-        <entry align='left'>1</entry>
-        <entry align='left'>65</entry>
-        <entry align='left'></entry>
-        <entry align='left'>opcode</entry>
+        <entry>1</entry>
+        <entry>65</entry>
+        <entry></entry>
+        <entry>opcode</entry>
       </row>
       <row>
-        <entry align='left'>1</entry>
-        <entry align='left'></entry>
-        <entry align='left'></entry>
-        <entry align='left'>coordinate-mode</entry>
+        <entry>1</entry>
+        <entry></entry>
+        <entry></entry>
+        <entry>coordinate-mode</entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>0</entry>
-        <entry align='left'>Origin</entry>
-        <entry align='left'></entry>
+        <entry></entry>
+        <entry>0</entry>
+        <entry>Origin</entry>
+        <entry></entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>1</entry>
-        <entry align='left'>Previous</entry>
-        <entry align='left'></entry>
+        <entry></entry>
+        <entry>1</entry>
+        <entry>Previous</entry>
+        <entry></entry>
       </row>
       <row>
-        <entry align='left'>2</entry>
-        <entry align='left'>3+n</entry>
-        <entry align='left'></entry>
-        <entry align='left'></entry>
+        <entry>2</entry>
+        <entry>3+n</entry>
+        <entry></entry>
+        <entry></entry>
       </row>
       <row>
-        <entry align='left'>4</entry>
-        <entry align='left'>DRAWABLE</entry>
-        <entry align='left'></entry>
-        <entry align='left'>drawable</entry>
+        <entry>4</entry>
+        <entry>DRAWABLE</entry>
+        <entry></entry>
+        <entry>drawable</entry>
       </row>
       <row>
-        <entry align='left'>4</entry>
-        <entry align='left'>GCONTEXT</entry>
-        <entry align='left'></entry>
-        <entry align='left'>gc</entry>
+        <entry>4</entry>
+        <entry>GCONTEXT</entry>
+        <entry></entry>
+        <entry>gc</entry>
       </row>
       <row>
-        <entry align='left'>4n</entry>
-        <entry align='left'>LISTofPOINT</entry>
-        <entry align='left'></entry>
-        <entry align='left'>points</entry>
+        <entry>4n</entry>
+        <entry>LISTofPOINT</entry>
+        <entry></entry>
+        <entry>points</entry>
       </row>
      </tbody>
   </tgroup>
@@ -114,71 +112,71 @@
 
 <para>An extended-length <function>PolyLine</function> encoding is:</para>
 
-<informaltable pgwide='0' frame='all'>
-  <tgroup cols='4' align='center'>
+<informaltable pgwide='0' frame='none'>
+  <tgroup cols='4' align='left'>
     <colspec colwidth='0.5in' colname='c1'/>
     <colspec colwidth='1.5in' colname='c2'/>
     <colspec colwidth='1.5in' colname='c3'/>
     <colspec colwidth='2.0in' colname='c4'/>
     <thead>
       <row>
-        <entry namest="c1" nameend="c4" align='center'><function>PolyLine</function></entry>
+        <entry namest="c1" nameend="c4"><function>PolyLine</function></entry>
       </row>
     </thead>
     <tbody>
       <row>
-        <entry align='left'>1</entry>
-        <entry align='left'>65</entry>
-        <entry align='left'></entry>
-        <entry align='left'>opcode</entry>
+        <entry>1</entry>
+        <entry>65</entry>
+        <entry></entry>
+        <entry>opcode</entry>
       </row>
       <row>
-        <entry align='left'>1</entry>
-        <entry align='left'></entry>
-        <entry align='left'></entry>
-        <entry align='left'>coordinate-mode</entry>
+        <entry>1</entry>
+        <entry></entry>
+        <entry></entry>
+        <entry>coordinate-mode</entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>0</entry>
-        <entry align='left'>Origin</entry>
-        <entry align='left'></entry>
+        <entry></entry>
+        <entry>0</entry>
+        <entry>Origin</entry>
+        <entry></entry>
       </row>
       <row>
-        <entry align='left'></entry>
-        <entry align='left'>1</entry>
-        <entry align='left'>Previous</entry>
-        <entry align='left'></entry>
+        <entry></entry>
+        <entry>1</entry>
+        <entry>Previous</entry>
+        <entry></entry>
       </row>
       <row>
-        <entry align='left'>2</entry>
-        <entry align='left'>0</entry>
-        <entry align='left'></entry>
-        <entry align='left'>extended length flag</entry>
+        <entry>2</entry>
+        <entry>0</entry>
+        <entry></entry>
+        <entry>extended length flag</entry>
       </row>
       <row>
-        <entry align='left'>4</entry>
-        <entry align='left'>4+n</entry>
-        <entry align='left'></entry>
-        <entry align='left'>request length</entry>
+        <entry>4</entry>
+        <entry>4+n</entry>
+        <entry></entry>
+        <entry>request length</entry>
       </row>
       <row>
-        <entry align='left'>4</entry>
-        <entry align='left'>DRAWABLE</entry>
-        <entry align='left'></entry>
-        <entry align='left'>drawable</entry>
+        <entry>4</entry>
+        <entry>DRAWABLE</entry>
+        <entry></entry>
+        <entry>drawable</entry>
       </row>
       <row>
-        <entry align='left'>4</entry>
-        <entry align='left'>GCONTEXT</entry>
-        <entry align='left'></entry>
-        <entry align='left'>gc</entry>
+        <entry>4</entry>
+        <entry>GCONTEXT</entry>
+        <entry></entry>
+        <entry>gc</entry>
       </row>
       <row>
-        <entry align='left'>4n</entry>
-        <entry align='left'>LISTofPOINT</entry>
-        <entry align='left'></entry>
-        <entry align='left'>points</entry>
+        <entry>4n</entry>
+        <entry>LISTofPOINT</entry>
+        <entry></entry>
+        <entry>points</entry>
       </row>
      </tbody>
   </tgroup>
@@ -212,76 +210,73 @@
 
 <para>The name of this extension is &ldquo;BIG-REQUESTS&rdquo;.</para>
 
-<informaltable pgwide='0' frame='all'>
-  <tgroup cols='3' align='center'>
+<informaltable pgwide='0' frame='none'>
+  <tgroup cols='3' align='left'>
     <colspec colwidth='0.5in' colname='c1'/>
     <colspec colwidth='0.5in' colname='c2'/>
     <colspec colwidth='2.0in' colname='c3'/>
     <thead>
       <row>
-        <entry namest="c1" nameend="c3" align='center'>BigReqEnable</entry>
+        <entry namest="c1" nameend="c3">BigReqEnable</entry>
       </row>
     </thead>
     <tbody>
       <row>
-        <entry align='left'>1</entry>
-        <entry align='left'>Card8</entry>
-        <entry align='left'>opcode</entry>
+        <entry>1</entry>
+        <entry>Card8</entry>
+        <entry>opcode</entry>
       </row>
       <row>
-        <entry align='left'>1</entry>
-        <entry align='left'>0</entry>
-        <entry align='left'>bigreq opcode</entry>
+        <entry>1</entry>
+        <entry>0</entry>
+        <entry>bigreq opcode</entry>
       </row>
       <row>
-        <entry align='left'>2</entry>
-        <entry align='left'>1</entry>
-        <entry align='left'>request length</entry>
+        <entry>2</entry>
+        <entry>1</entry>
+        <entry>request length</entry>
       </row>
      </tbody>
   </tgroup>
-</informaltable>
-
-<informaltable pgwide='0' frame='all'>
-  <tgroup cols='3' align='center'>
+  <tgroup cols='3' align='left'>
     <colspec colwidth='0.5in' colname='c1'/>
     <colspec colwidth='1.5in' colname='c2'/>
     <colspec colwidth='2.0in' colname='c3'/>
     <thead>
       <row>
-        <entry namest="c1" nameend="c3" align='center'>=&gt;</entry>
+        <entry namest="c1" nameend="c3">=&gt;</entry>
       </row>
     </thead>
     <tbody>
       <row>
-        <entry align='left'>1</entry>
-        <entry align='left'>1</entry>
-        <entry align='left'>Reply</entry>
+        <entry>1</entry>
+        <entry>1</entry>
+        <entry>Reply</entry>
       </row>
       <row>
-        <entry align='left'>1</entry>
-        <entry align='left'></entry>
-        <entry align='left'>unused</entry>
+        <entry>1</entry>
+        <entry></entry>
+        <entry>unused</entry>
       </row>
       <row>
-        <entry align='left'>2</entry>
-        <entry align='left'>CARD16</entry>
-        <entry align='left'>sequence number</entry>
+        <entry>2</entry>
+        <entry>CARD16</entry>
+        <entry>sequence number</entry>
       </row>
       <row>
-        <entry align='left'>4</entry>
-        <entry align='left'>0</entry>
-        <entry align='left'>length</entry>
+        <entry>4</entry>
+        <entry>0</entry>
+        <entry>length</entry>
       </row>
       <row>
-        <entry align='left'>4</entry>
-        <entry align='left'>CARD32</entry>
-        <entry align='left'>maximum-request-length</entry>
+        <entry>4</entry>
+        <entry>CARD32</entry>
+        <entry>maximum-request-length</entry>
       </row>
       <row>
-        <entry align='left'>2</entry>
-        <entry align='left'>0</entry>
-        <entry align='left'>unused</entry>
+        <entry>2</entry>
+        <entry>0</entry>
+        <entry>unused</entry>
       </row>
      </tbody>
   </tgroup>
@@ -294,16 +289,10 @@
 
 <para>It is desirable for core Xlib, and other extensions, to use this extension internally when necessary.  It is also desirable to make the use of this extension as transparent as possible to the X client.  For example, if enabling of the extension were delayed until the first time it was needed, an application that used <function>XNextRequest</function> to determine the sequence number of a request would no longer get the correct sequence number.  As such, <function>XOpenDisplay</function> will determine if the extension is supported by the server and, if it is, enable extended-length encodings.</para>
 
-<para>The core Xlib functions <function>XDrawLines</function> <function>XDrawArcs</function> <function>XFillPolygon</function> <function>XChangeProperty</function> <function>XSetClipRectangles</function> and <function>XSetRegion</function> are required to use extended-length encodings when necessary, if supported by the server.  Use of extended-length encodings in other core Xlib functions (<symbol role='Pn'>XDrawPoints</symbol>, <function>XDrawRectangles</function> <function>XDrawSegments</function> <function>XFillArcs</function> <function>XFillRectangles</function> <function>XPutImage</function> is permitted but not required; an Xlib implementation may choose to split the data across multiple smaller requests instead.</para>
+<para>The core Xlib functions <function>XDrawLines</function>, <function>XDrawArcs</function>, <function>XFillPolygon</function>, <function>XChangeProperty</function>, <function>XSetClipRectangles</function>, and <function>XSetRegion</function> are required to use extended-length encodings when necessary, if supported by the server.  Use of extended-length encodings in other core Xlib functions (<function>XDrawPoints</function>, <function>XDrawRectangles</function>, <function>XDrawSegments</function>. <function>XFillArcs</function>, <function>XFillRectangles</function>, <function>XPutImage</function> is permitted but not required; an Xlib implementation may choose to split the data across multiple smaller requests instead.</para>
 
-<para>To permit clients to know what the maximum-request-length for extended-length encodings is, the following function is added to Xlib:</para>
+<para>To permit clients to know what the maximum-request-length for extended-length encodings is, the following function is added to Xlib:
 
-<para>long
-<!-- .br -->
-XExtendedMaxRequestSize (display)
-<!-- .RS -->
-Display	*display;</para>
-<!-- .RE -->
 <funcsynopsis>
 <funcprototype>
   <funcdef>long <function>XExtendedMaxRequestSize</function></funcdef>
@@ -311,7 +300,7 @@ Display	*display;</para>
 </funcprototype>
 </funcsynopsis>
 
-<para>Returns zero (0) if the specified display does not support this extension, otherwise returns the maximum-request-length (in 4-byte units) supported by the server through the extended-length encoding.</para>
+Returns zero (0) if the specified display does not support this extension, otherwise returns the maximum-request-length (in 4-byte units) supported by the server through the extended-length encoding.</para>
 </chapter>
 
 <chapter id='acknowledgements'>
