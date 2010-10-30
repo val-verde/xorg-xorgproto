@@ -1,5 +1,6 @@
 AC_PREREQ([2.60])
-AC_INIT([RecordProto], [1.14], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
+AC_INIT([RecordProto], [1.14.1],
+        [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 AM_MAINTAINER_MODE
 
