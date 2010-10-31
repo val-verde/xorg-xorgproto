@@ -1,6 +1,5 @@
-<chapter>
-<title>TITLE</title>
-<sect1 id="acknowledgements">
+<part id="sect1-9">
+<preface id="acknowledgements">
 <title>Acknowledgements</title>
 <para>
 The primary contributers to the X11 protocol are:
@@ -73,9 +72,9 @@ Robert W. Scheifler
 <para>
 X Consortium, Inc.
 </para>
-</sect1>
+</preface>
 
-<sect1 id="protocol_formats">
+<chapter id="protocol_formats">
 <title>Protocol Formats</title>
 <!-- .XS -->
 <!-- (SN Protocol Formats -->
@@ -166,9 +165,9 @@ also contains the least significant 16 bits of the sequence number of the last
 request issued by the client that was (or is currently being) processed by
 the server.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="syntactic_conventions">
+<chapter id="syntactic_conventions">
 <title>Syntactic Conventions</title>
 <!-- .XS -->
 <!-- (SN Syntactic Conventions -->
@@ -245,9 +244,9 @@ Events in section 11 are described in the following format:
     </para>
   </listitem>
 </itemizedlist>
-</sect1>
+</chapter>
 
-<sect1 id="common_types">
+<chapter id="common_types">
 <title>Common Types</title>
 <!-- .XS -->
 <!-- (SN Common Types -->
@@ -606,9 +605,9 @@ family (see
 <emphasis role='bold'>ChangeHosts </emphasis>
 request).
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="errors">
+<chapter id="errors">
 <title>Errors</title>
 <!-- .XS -->
 <!-- (SN Errors -->
@@ -806,9 +805,9 @@ set of fixed alternatives, for example, &lt;WINDOW or
 or
 <emphasis role='bold'>None &gt;</emphasis>.
 </para></note>
-</sect1>
+</chapter>
 
-<sect1 id="keyboards">
+<chapter id="keyboards">
 <title>Keyboards</title>
 <!-- .XS -->
 <!-- (SN Keyboards -->
@@ -993,9 +992,9 @@ as ShiftLock, or both.  In this case, the second KEYSYM is used.
 The mapping between KEYCODEs and KEYSYMs is not used directly by the server;
 it is merely stored for reading and writing by clients.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="pointers">
+<chapter id="pointers">
 <title>Pointers</title>
 <!-- .XS -->
 <!-- (SN Pointers -->
@@ -1003,9 +1002,9 @@ it is merely stored for reading and writing by clients.
 <para>
 Buttons are always numbered starting with one.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="predefined_atoms">
+<chapter id="predefined_atoms">
 <title>Predefined Atoms</title>
 <!-- .XS -->
 <!-- (SN Predefined Atoms -->
@@ -1170,9 +1169,9 @@ accessible locations,
 it is suggested that two leading underscores be used to avoid conflicts with
 other names.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="connection_setup">
+<chapter id="connection_setup">
 <title>Connection Setup</title>
 <!-- .XS -->
 <!-- (SN Connection Setup -->
@@ -1785,8 +1784,8 @@ this will usually be 2 to the power of the maximum number of bits set to 1 in
 red-mask, green-mask, and blue-mask.
 
 </para>
-</sect1>
-<sect1 id="requests">
+</chapter>
+<chapter id="requests">
 <title>Requests</title>
 <!-- .XS -->
 <!-- \*(SN Requests -->
@@ -12386,9 +12385,9 @@ This request can be used in its minimum four byte form as padding where
 necessary by client libraries that find it convenient to force requests
 to begin on 64-bit boundaries.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="connection_close">
+<chapter id="connection_close">
 <title>Connection Close</title>
 <!-- .XS -->
 <!-- \*(SN Connection Close -->
@@ -12473,9 +12472,9 @@ or
 <emphasis role='bold'>RetainTemporary </emphasis>
 will not cause the server to reset.
 </para>
-</sect1>
+</chapter>
 <!-- .NH 1 -->
-<sect1 id="events">
+<chapter id="events">
 <title>Events</title>
 <!-- .XS -->
 <!-- \*(SN Events -->
@@ -14840,8 +14839,8 @@ The data always consists of either 20 8-bit values or 10 16-bit values
 or 5 32-bit values, although particular message types might not make use
 of all of these values.
 </para>
-</sect1>
-<sect1 id="flow_control_and_concurrency">
+</chapter>
+<chapter id="flow_control_and_concurrency">
 <title>Flow Control and Concurrency</title>
 <!-- .XS -->
 <!-- \*(SN Flow Control and Concurrency -->
@@ -14881,5 +14880,5 @@ For a request from a given client,
 any events destined for that client that are caused by executing the request
 must be sent to the client before any reply or error is sent.
 </para>
-</sect1>
 </chapter>
+</part>
