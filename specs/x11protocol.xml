@@ -9,19 +9,12 @@
    <title>X Window System Protocol</title>
    <subtitle>X Consortium Standard</subtitle>
    <releaseinfo>Version 1.0</releaseinfo>
-   <authorgroup>
-      <author>
-         <firstname>Robert</firstname>
-         <othername>W.</othername>
-         <surname>Scheifler</surname>
-         <affiliation><orgname>X Consortium, Inc.</orgname></affiliation>
-      </author>
-      <othercredit>
-         <firstname>Hideki</firstname><surname>Hiura</surname>
-         <affiliation><orgname>SunSoft, Inc.</orgname></affiliation>
-      </othercredit>
-   </authorgroup>
-   <corpname>X Consortium Standard</corpname>
+   <author>
+     <firstname>Robert</firstname>
+     <othername>W.</othername>
+     <surname>Scheifler</surname>
+     <affiliation><orgname>X Consortium, Inc.</orgname></affiliation>
+   </author>
    <copyright>
       <year>1986,1987,1988,1994,2004</year>
       <holder>The Open Group</holder>
