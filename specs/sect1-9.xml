@@ -5934,11 +5934,11 @@ This request loads the specified font, if necessary,
 and associates identifier fid with it.
 The font name should use the ISO Latin-1 encoding,
 and uppercase and lowercase do not matter.
-When the characters ``?'' and ``*'' are used in a font name, a
+When the characters <quote>?</quote> and <quote>*</quote> are used in a font name, a
 pattern match is performed and any matching font is used.
 In the pattern,
-the ``?'' character (octal value 77) will match any single character,
-and the ``*'' character (octal value 52) will match any number
+the <quote>?</quote> character (octal value 77) will match any single character,
+and the <quote>*</quote> character (octal value 52) will match any number
 of characters.
 A structured format for font names is specified in the
 X.Org standard <emphasis remap='I'>X Logical Font Description Conventions</emphasis>.
@@ -6366,8 +6366,8 @@ At most, max-names names will be returned.
 The pattern should use the ISO Latin-1 encoding,
 and uppercase and lowercase do not matter.
 In the pattern,
-the ``?'' character (octal value 77) will match any single character,
-and the ``*'' character (octal value 52) will match any number
+the <quote>?</quote> character (octal value 77) will match any single character,
+and the <quote>*</quote> character (octal value 52) will match any number
 of characters.
 The returned names are in lowercase.
 <!-- .sp -->
