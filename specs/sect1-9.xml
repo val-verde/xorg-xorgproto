@@ -12446,25 +12446,25 @@ can both be used to modify the active grab.
   <tbody>
     <row rowsep='0'>
       <entry>
-<!-- .IN "KeyRelease" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>KeyRelease</primary></indexterm>
 <emphasis role='bold'>KeyRelease</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
       <entry>
-<!-- .IN "ButtonPress" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>ButtonPress</primary></indexterm>
 <emphasis role='bold'>ButtonPress</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
       <entry>
-<!-- .IN "ButtonRelease" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>ButtonRelease</primary></indexterm>
 <emphasis role='bold'>ButtonRelease</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
       <entry>
-<!-- .IN "MotionNotify" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>MotionNotify</primary></indexterm>
 <emphasis role='bold'>MotionNotify</emphasis>
       </entry>
     </row>
@@ -12635,7 +12635,7 @@ request.
   <tbody>
     <row rowsep='0'>
       <entry>
-<!-- .IN "LeaveNotify" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>LeaveNotify</primary></indexterm>
 <emphasis role='bold'>LeaveNotify</emphasis>
       </entry>
     </row>
@@ -12984,7 +12984,7 @@ and final positions for the events.
 <para>
 <emphasis role='bold'>FocusIn</emphasis>
 </para>
-<!-- .IN "FocusOut" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>FocusOut</primary></indexterm>
 <para>
 <emphasis role='bold'>FocusOut</emphasis>
 </para>

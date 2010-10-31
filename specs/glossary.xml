@@ -5,7 +5,7 @@
 <glossentry>
   <glossterm><function>Access control list</function></glossterm>
   <glossdef>
-<!-- .IN "Access control list" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Access control list</primary></indexterm>
     <para>
 X maintains a list of hosts from which client programs can be run.
 By default,
@@ -23,7 +23,7 @@ protocol name and data received by the server at connection setup.
 <glossentry>
   <glossterm><function>Active grab</function></glossterm>
   <glossdef>
-<!-- .IN "Active grab" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Active grab</primary></indexterm>
     <para>
 A grab is active when the pointer or keyboard is actually owned by
 the single grabbing client.
@@ -34,7 +34,7 @@ the single grabbing client.
 <glossentry>
   <glossterm><function>Ancestors</function></glossterm>
   <glossdef>
-<!-- .IN "Ancestors" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Ancestors</primary></indexterm>
     <para>
 If W is an inferior of A, then A is an ancestor of W.
 <!-- .KE -->
@@ -44,7 +44,7 @@ If W is an inferior of A, then A is an ancestor of W.
 <glossentry>
   <glossterm><function>Atom</function></glossterm>
   <glossdef>
-<!-- .IN "Atom" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Atom</primary></indexterm>
     <para>
 An atom is a unique ID corresponding to a string name.
 Atoms are used to identify properties, types, and selections.
@@ -55,7 +55,7 @@ Atoms are used to identify properties, types, and selections.
 <glossentry>
   <glossterm><function>Background</function></glossterm>
   <glossdef>
-<!-- .IN "Background" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Background</primary></indexterm>
     <para>
 An
 <emphasis role='bold'>InputOutput </emphasis>
@@ -69,7 +69,7 @@ the server will automatically tile those regions with the background.
 <glossentry>
   <glossterm><function>Backing store</function></glossterm>
   <glossdef>
-<!-- .IN "Backing store" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Backing store</primary></indexterm>
     <para>
 When a server maintains the contents of a window,
 the pixels saved off screen are known as a backing store.
@@ -106,7 +106,7 @@ each bitmap is called a bit plane or plane.
 <glossentry>
   <glossterm><function>Bitmap</function></glossterm>
   <glossdef>
-<!-- .IN "Bitmap" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Bitmap</primary></indexterm>
     <para>
 A bitmap is a pixmap of depth one.
 <!-- .KE -->
@@ -116,7 +116,7 @@ A bitmap is a pixmap of depth one.
 <glossentry>
   <glossterm><function>Border</function></glossterm>
   <glossdef>
-<!-- .IN "Border" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Border</primary></indexterm>
     <para>
 An
 <emphasis role='bold'>InputOutput </emphasis>
@@ -143,7 +143,7 @@ the pointer is then actively grabbed by the client.
 <glossentry>
   <glossterm><function>Byte order</function></glossterm>
   <glossdef>
-<!-- .IN "Byte order" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Byte order</primary></indexterm>
     <para>
 For image (pixmap/bitmap) data,
 the server defines the byte order,
@@ -158,7 +158,7 @@ and the server swaps bytes as necessary.
 <glossentry>
   <glossterm><function>Children</function></glossterm>
   <glossdef>
-<!-- .IN "Children" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Children</primary></indexterm>
     <para>
 The children of a window are its first-level subwindows.
 <!-- .KE -->
@@ -168,7 +168,7 @@ The children of a window are its first-level subwindows.
 <glossentry>
   <glossterm><function>Client</function></glossterm>
   <glossdef>
-<!-- .IN "Client" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Client</primary></indexterm>
     <para>
 An application program connects to the window system server by some
 interprocess communication path, such as a TCP connection or a
@@ -187,7 +187,7 @@ not by program lifetimes.
 <glossentry>
   <glossterm><function>Clipping region</function></glossterm>
   <glossdef>
-<!-- .IN "Clipping region" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Clipping region</primary></indexterm>
     <para>
 In a graphics context,
 a bitmap or list of rectangles can be specified
@@ -216,7 +216,7 @@ so that windows associated with those maps display with correct colors.
 <glossentry>
   <glossterm><function>Connection</function></glossterm>
   <glossdef>
-<!-- .IN "Connection" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Connection</primary></indexterm>
     <para>
 The interprocess communication path between the server and client
 program is known as a connection.
@@ -229,7 +229,7 @@ connection to the server over which requests and events are sent.
 <glossentry>
   <glossterm><function>Containment</function></glossterm>
   <glossdef>
-<!-- .IN "Containment" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Containment</primary></indexterm>
     <para>
 A window ``contains'' the pointer if the window is viewable and the
 hotspot of the cursor is within a visible region of the window or a
@@ -244,7 +244,7 @@ but no inferior contains the pointer.
 <glossentry>
   <glossterm><function>Coordinate system</function></glossterm>
   <glossdef>
-<!-- .IN "Coordinate system" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Coordinate system</primary></indexterm>
     <para>
 The coordinate system has the X axis horizontal and the Y axis vertical,
 with the origin [0, 0] at the upper left.
@@ -261,7 +261,7 @@ the origin is inside the border at the inside upper left.
 <glossentry>
   <glossterm><function>Cursor</function></glossterm>
   <glossdef>
-<!-- .IN "Cursor" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Cursor</primary></indexterm>
     <para>
 A cursor is the visible shape of the pointer on a screen.
 It consists of a hot spot, a source bitmap, a shape bitmap,
@@ -275,7 +275,7 @@ when the pointer is in that window.
 <glossentry>
   <glossterm><function>Depth</function></glossterm>
   <glossdef>
-<!-- .IN "Depth" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Depth</primary></indexterm>
     <para>
 The depth of a window or pixmap is the number of bits per pixel that it has.
 The depth of a graphics context is the depth of the drawables it can be
@@ -287,7 +287,7 @@ used in conjunction with for graphics output.
 <glossentry>
   <glossterm><function>Device</function></glossterm>
   <glossdef>
-<!-- .IN "Device" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Device</primary></indexterm>
     <para>
 Keyboards, mice, tablets, track-balls, button boxes, and so on are all
 collectively known as input devices.
@@ -300,7 +300,7 @@ The core protocol only deals with two devices,
 <glossentry>
   <glossterm><function>DirectColor</function></glossterm>
   <glossdef>
-<!-- .IN "DirectColor" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>DirectColor</primary></indexterm>
     <para>
 <emphasis role='bold'>DirectColor</emphasis>
 is a class of colormap in which a pixel value is decomposed into three
@@ -316,7 +316,7 @@ The RGB values can be changed dynamically.
 <glossentry>
   <glossterm><function>Display</function></glossterm>
   <glossdef>
-<!-- .IN "Display" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Display</primary></indexterm>
     <para>
 A server, together with its screens and input devices, is called a display.
 <!-- .KE -->
@@ -326,7 +326,7 @@ A server, together with its screens and input devices, is called a display.
 <glossentry>
   <glossterm><function>Drawable</function></glossterm>
   <glossdef>
-<!-- .IN "Drawable" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Drawable</primary></indexterm>
     <para>
 Both windows and pixmaps can be used as sources and destinations in
 graphics operations.
@@ -341,7 +341,7 @@ window cannot be used as a source or destination in a graphics operation.
 <glossentry>
   <glossterm><function>Event</function></glossterm>
   <glossdef>
-<!-- .IN "Event" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Event</primary></indexterm>
     <para>
 Clients are informed of information asynchronously by means of events.
 These events can be generated either asynchronously from devices
@@ -421,7 +421,7 @@ of regions of windows have been lost.
 <glossentry>
   <glossterm><function>Extension</function></glossterm>
   <glossdef>
-<!-- .IN "Extension" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Extension</primary></indexterm>
     <para>
 Named extensions to the core protocol can be defined to extend the
 system.
@@ -444,7 +444,7 @@ The focus window is another term for the input focus.
 <glossentry>
   <glossterm><function>Font</function></glossterm>
   <glossdef>
-<!-- .IN "Font" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Font</primary></indexterm>
     <para>
 A font is a matrix of glyphs (typically characters).
 The protocol does no translation or interpretation of character sets.
@@ -458,8 +458,8 @@ and interline spacing.
 <glossentry>
   <glossterm><function>GC</function>, <function>GContext</function></glossterm>
   <glossdef>
-<!-- .IN "GC" "" "@DEF@" -->
-<!-- .IN "GContext" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>GC</primary></indexterm>
+<indexterm significance="preferred"><primary>GContext</primary></indexterm>
     <para>
 GC and gcontext are abbreviations for graphics context.
 <!-- .KE -->
@@ -469,7 +469,7 @@ GC and gcontext are abbreviations for graphics context.
 <glossentry>
   <glossterm><function>Glyph</function></glossterm>
   <glossdef>
-<!-- .IN "Glyph" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Glyph</primary></indexterm>
     <para>
 A glyph is an image, typically of a character, in a font.
 <!-- .KE -->
@@ -479,7 +479,7 @@ A glyph is an image, typically of a character, in a font.
 <glossentry>
   <glossterm><function>Grab</function></glossterm>
   <glossdef>
-<!-- .IN "Grab" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Grab</primary></indexterm>
     <para>
 Keyboard keys, the keyboard, pointer buttons, the pointer, and the
 server can be grabbed for exclusive use by a client.
@@ -494,7 +494,7 @@ various styles of user interfaces.
 <glossentry>
   <glossterm><function>Graphics context</function></glossterm>
   <glossdef>
-<!-- .IN "Graphics context" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Graphics context</primary></indexterm>
     <para>
 Various information for graphics output is stored in a graphics context
 such as foreground pixel, background pixel, line width, clipping region,
@@ -508,7 +508,7 @@ and the same depth as the graphics context.
 <glossentry>
   <glossterm><function>Gravity</function></glossterm>
   <glossdef>
-<!-- .IN "Gravity" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Gravity</primary></indexterm>
     <para>
 See <function>bit gravity</function> and <function>window gravity</function>.
 <!-- .KE -->
@@ -518,7 +518,7 @@ See <function>bit gravity</function> and <function>window gravity</function>.
 <glossentry>
   <glossterm><function>GrayScale</function></glossterm>
   <glossdef>
-<!-- .IN "GrayScale" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>GrayScale</primary></indexterm>
     <para>
 <emphasis role='bold'>GrayScale </emphasis>
 can be viewed as a degenerate case of
@@ -533,7 +533,7 @@ The gray values can be changed dynamically.
 <glossentry>
   <glossterm><function>Hotspot</function></glossterm>
   <glossdef>
-<!-- .IN "Hotspot" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Hotspot</primary></indexterm>
     <para>
 A cursor has an associated hotspot that defines the point in the
 cursor corresponding to the coordinates reported for the pointer.
@@ -544,7 +544,7 @@ cursor corresponding to the coordinates reported for the pointer.
 <glossentry>
   <glossterm><function>Identifier</function></glossterm>
   <glossdef>
-<!-- .IN "Identifier" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Identifier</primary></indexterm>
     <para>
 An identifier is a unique value associated with a resource that clients use
 to name that resource.
@@ -556,7 +556,7 @@ The identifier can be used over any connection.
 <glossentry>
   <glossterm><function>Inferiors</function></glossterm>
   <glossdef>
-<!-- .IN "Inferiors" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Inferiors</primary></indexterm>
     <para>
 The inferiors of a window are all of the subwindows nested below it:
 the children, the children's children, and so on.
@@ -567,7 +567,7 @@ the children, the children's children, and so on.
 <glossentry>
   <glossterm><function>Input focus</function></glossterm>
   <glossdef>
-<!-- .IN "Input focus" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Input focus</primary></indexterm>
     <para>
 The input focus is normally a window defining the scope for
 processing of keyboard input.
@@ -587,7 +587,7 @@ the pointer is on at each keyboard event.
 <glossentry>
   <glossterm><function>Input manager</function></glossterm>
   <glossdef>
-<!-- .IN "Input manager" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Input manager</primary></indexterm>
     <para>
 Control over keyboard input is typically provided by an input manager client.
 <!-- .KE -->
@@ -658,7 +658,7 @@ normally have been sent to.
 <glossentry>
   <glossterm><function>Keysym</function></glossterm>
   <glossdef>
-<!-- .IN "Keysym" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Keysym</primary></indexterm>
     <para>
 An encoding of a symbol on a keycap on a keyboard.
 <!-- .KE -->
@@ -668,7 +668,7 @@ An encoding of a symbol on a keycap on a keyboard.
 <glossentry>
   <glossterm><function>Mapped</function></glossterm>
   <glossdef>
-<!-- .IN "Mapped window" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Mapped window</primary></indexterm>
     <para>
 A window is said to be mapped if a map call has been performed on it.
 Unmapped windows and their inferiors are never viewable or visible.
@@ -679,7 +679,7 @@ Unmapped windows and their inferiors are never viewable or visible.
 <glossentry>
   <glossterm><function>Modifier keys</function></glossterm>
   <glossdef>
-<!-- .IN "Modifier keys" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Modifier keys</primary></indexterm>
     <para>
 Shift, Control, Meta, Super, Hyper, Alt, Compose, Apple, CapsLock,
 ShiftLock, and similar keys are called modifier keys.
@@ -690,7 +690,7 @@ ShiftLock, and similar keys are called modifier keys.
 <glossentry>
   <glossterm><function>Monochrome</function></glossterm>
   <glossdef>
-<!-- .IN "Monochrome" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Monochrome</primary></indexterm>
     <para>
 Monochrome is a special case of
 <emphasis role='bold'>StaticGray </emphasis>
@@ -702,7 +702,7 @@ in which there are only two colormap entries.
 <glossentry>
   <glossterm><function>Obscure</function></glossterm>
   <glossdef>
-<!-- .IN "Obscure" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Obscure</primary></indexterm>
     <para>
 A window is obscured if some other window obscures it.
 Window A obscures window B if both are viewable
@@ -720,7 +720,7 @@ and that a window can be obscured and yet still have visible regions.
 <glossentry>
   <glossterm><function>Occlude</function></glossterm>
   <glossdef>
-<!-- .IN "Occlude" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Occlude</primary></indexterm>
     <para>
 A window is occluded if some other window occludes it.
 Window A occludes window B if both are mapped, A is higher in the global
@@ -735,7 +735,7 @@ Also note that window borders are included in the calculation.
 <glossentry>
   <glossterm><function>Padding</function></glossterm>
   <glossdef>
-<!-- .IN "Padding" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Padding</primary></indexterm>
     <para>
 Some padding bytes are inserted in the data stream to maintain
 alignment of the protocol requests on natural boundaries.
@@ -757,7 +757,7 @@ If C is a child of P, then P is the parent of C.
 <glossentry>
   <glossterm><function>Passive grab</function></glossterm>
   <glossdef>
-<!-- .IN "Passive grab" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Passive grab</primary></indexterm>
     <para>
 Grabbing a key or button is a passive grab.
 The grab activates when the key or button is actually pressed.
@@ -768,7 +768,7 @@ The grab activates when the key or button is actually pressed.
 <glossentry>
   <glossterm><function>Pixel value</function></glossterm>
   <glossdef>
-<!-- .IN "Pixel value" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Pixel value</primary></indexterm>
     <para>
 A pixel is an N-bit value, where N is the number of bit planes used
 in a particular window or pixmap (that is,
@@ -782,7 +782,7 @@ a pixel value indexes a colormap to derive an actual color to be displayed.
 <glossentry>
   <glossterm><function>Pixmap</function></glossterm>
   <glossdef>
-<!-- .IN "Pixmap" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Pixmap</primary></indexterm>
     <para>
 A pixmap is a three-dimensional array of bits.
 A pixmap is normally thought of as a two-dimensional array of pixels,
@@ -796,7 +796,7 @@ A pixmap can also be thought of as a stack of N bitmaps.
 <glossentry>
   <glossterm><function>Plane</function></glossterm>
   <glossdef>
-<!-- .IN "Plane" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Plane</primary></indexterm>
     <para>
 When a pixmap or window is thought of as a stack of bitmaps,
 each bitmap is called a plane or bit plane.
@@ -820,7 +820,7 @@ The plane mask is stored in a graphics context.
 <glossentry>
   <glossterm><function>Pointer</function></glossterm>
   <glossdef>
-<!-- .IN "Pointer" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Pointer</primary></indexterm>
     <para>
 The pointer is the pointing device attached to the cursor
 and tracked on the screens.
@@ -843,7 +843,7 @@ rather than the client the events would normally have been sent to.
 <glossentry>
   <glossterm><function>Pointing device</function></glossterm>
   <glossdef>
-<!-- .IN "Pointing device" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Pointing device</primary></indexterm>
     <para>
 A pointing device is typically a mouse, tablet, or some other
 device with effective dimensional motion.
@@ -856,7 +856,7 @@ and it tracks whatever pointing device is attached as the pointer.
 <glossentry>
   <glossterm><function>Property</function></glossterm>
   <glossdef>
-<!-- .IN "Property" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Property</primary></indexterm>
     <para>
 Windows may have associated properties,
 which consist of a name, a type, a data format, and some data.
@@ -871,7 +871,7 @@ hints, program names, and icon formats with a window manager.
 <glossentry>
   <glossterm><function>Property list</function></glossterm>
   <glossdef>
-<!-- .IN "Property list" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Property list</primary></indexterm>
     <para>
 The property list of a window is the list of properties that have
 been defined for the window.
@@ -882,7 +882,7 @@ been defined for the window.
 <glossentry>
   <glossterm><function>PseudoColor</function></glossterm>
   <glossdef>
-<!-- .IN "PseudoColor" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>PseudoColor</primary></indexterm>
     <para>
 <emphasis role='bold'>PseudoColor</emphasis>
 is a class of colormap in which a pixel value indexes the colormap to
@@ -896,7 +896,7 @@ The RGB values can be changed dynamically.
 <glossentry>
   <glossterm><function>Redirecting control</function></glossterm>
   <glossdef>
-<!-- .IN "Redirecting control" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Redirecting control</primary></indexterm>
     <para>
 Window managers (or client programs) may want to enforce window layout
 policy in various ways.
@@ -910,7 +910,7 @@ rather than the operation actually being performed.
 <glossentry>
   <glossterm><function>Reply</function></glossterm>
   <glossdef>
-<!-- .IN "Reply" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Reply</primary></indexterm>
     <para>
 Information requested by a client program is sent back to the client
 with a reply.
@@ -924,7 +924,7 @@ although some requests generate multiple replies.
 <glossentry>
   <glossterm><function>Request</function></glossterm>
   <glossdef>
-<!-- .IN "Request" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Request</primary></indexterm>
     <para>
 A command to the server is called a request.
 It is a single block of data sent over a connection.
@@ -935,7 +935,7 @@ It is a single block of data sent over a connection.
 <glossentry>
   <glossterm><function>Resource</function></glossterm>
   <glossdef>
-<!-- .IN "Resource" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Resource</primary></indexterm>
     <para>
 Windows, pixmaps, cursors, fonts, graphics contexts, and colormaps are
 known as resources.
@@ -949,7 +949,7 @@ over which the resource was created.
 <glossentry>
   <glossterm><function>RGB values</function></glossterm>
   <glossdef>
-<!-- .IN "RGB values" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>RGB values</primary></indexterm>
     <para>
 Red, green, and blue (RGB) intensity values are used to define color.
 These values are always represented as 16-bit unsigned numbers,
@@ -962,7 +962,7 @@ The server scales the values to match the display hardware.
 <glossentry>
   <glossterm><function>Root</function></glossterm>
   <glossdef>
-<!-- .IN "Root" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Root</primary></indexterm>
     <para>
 The root of a pixmap, colormap, or graphics context is the same as the root of
 whatever drawable was used when the pixmap, colormap, or graphics context was
@@ -988,7 +988,7 @@ A root window has no parent.
 <glossentry>
   <glossterm><function>Save set</function></glossterm>
   <glossdef>
-<!-- .IN "Save set" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Save set</primary></indexterm>
     <para>
 The save set of a client is a list of other clients' windows that,
 if they are inferiors of one of the client's windows at connection close,
@@ -1002,7 +1002,7 @@ lost windows if the manager terminates abnormally.
 <glossentry>
   <glossterm><function>Scanline</function></glossterm>
   <glossdef>
-<!-- .IN "Scanline" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Scanline</primary></indexterm>
     <para>
 A scanline is a list of pixel or bit values viewed as a horizontal
 row (all values having the same y coordinate) of an image, with the
@@ -1014,7 +1014,7 @@ values ordered by increasing x coordinate.
 <glossentry>
   <glossterm><function>Scanline order</function></glossterm>
   <glossdef>
-<!-- .IN "Scanline order" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Scanline order</primary></indexterm>
     <para>
 An image represented in scanline order contains scanlines ordered by
 increasing y coordinate.
@@ -1025,7 +1025,7 @@ increasing y coordinate.
 <glossentry>
   <glossterm><function>Screen</function></glossterm>
   <glossdef>
-<!-- .IN "Screen" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Screen</primary></indexterm>
     <para>
 A server can provide several independent screens,
 which typically have physically independent monitors.
@@ -1038,7 +1038,7 @@ and pointer shared among the screens.
 <glossentry>
   <glossterm><function>Selection</function></glossterm>
   <glossdef>
-<!-- .IN "Selection" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Selection</primary></indexterm>
     <para>
 A selection can be thought of as an indirect property with dynamic
 type; that is, rather than having the property stored in the server,
@@ -1067,7 +1067,7 @@ The protocol does not constrain the semantics.
 <glossentry>
   <glossterm><function>Server</function></glossterm>
   <glossdef>
-<!-- .IN "Server" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Server</primary></indexterm>
     <para>
 The server provides the basic windowing mechanism.
 It handles connections from clients,
@@ -1095,7 +1095,7 @@ indivisibly.
 <glossentry>
   <glossterm><function>Sibling</function></glossterm>
   <glossdef>
-<!-- .IN "Sibling" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Sibling</primary></indexterm>
     <para>
 Children of the same parent window are known as sibling windows.
 <!-- .KE -->
@@ -1105,7 +1105,7 @@ Children of the same parent window are known as sibling windows.
 <glossentry>
   <glossterm><function>Stacking order</function></glossterm>
   <glossdef>
-<!-- .IN "Stacking order" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Stacking order</primary></indexterm>
     <para>
 Sibling windows may stack on top of each other.
 Windows above other windows both obscure and occlude those lower windows.
@@ -1118,7 +1118,7 @@ The relationship between sibling windows is known as the stacking order.
 <glossentry>
   <glossterm><function>StaticColor</function></glossterm>
   <glossdef>
-<!-- .IN "StaticColor" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>StaticColor</primary></indexterm>
     <para>
 <emphasis role='bold'>StaticColor </emphasis>
 can be viewed as a degenerate case of
@@ -1131,7 +1131,7 @@ in which the RGB values are predefined and read-only.
 <glossentry>
   <glossterm><function>StaticGray</function></glossterm>
   <glossdef>
-<!-- .IN "StaticGray" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>StaticGray</primary></indexterm>
     <para>
 <emphasis role='bold'>StaticGray </emphasis>
 can be viewed as a degenerate case of
@@ -1145,7 +1145,7 @@ The values are typically linear or near-linear increasing ramps.
 <glossentry>
   <glossterm><function>Stipple</function></glossterm>
   <glossdef>
-<!-- .IN "Stipple" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Stipple</primary></indexterm>
     <para>
 A stipple pattern is a bitmap that is used to tile a region that will serve
 as an additional clip mask for a fill operation with the foreground
@@ -1157,7 +1157,7 @@ color.
 <glossentry>
   <glossterm><function>String Equivalence</function></glossterm>
   <glossdef>
-<!-- .IN "String Equivalence" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>String Equivalence</primary></indexterm>
     <para>
 Two ISO Latin-1 STRING8 values are considered equal if they are the same
 length and if corresponding bytes are either equal or are equivalent as
@@ -1176,7 +1176,7 @@ are pairwise equivalent to decimal values 246 to 254 inclusive
 <glossentry>
   <glossterm><function>Tile</function></glossterm>
   <glossdef>
-<!-- .IN "Tile" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Tile</primary></indexterm>
     <para>
 A pixmap can be replicated in two dimensions to tile a region.
 The pixmap itself is also known as a tile.
@@ -1187,7 +1187,7 @@ The pixmap itself is also known as a tile.
 <glossentry>
   <glossterm><function>Timestamp</function></glossterm>
   <glossdef>
-<!-- .IN "Timestamp" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Timestamp</primary></indexterm>
     <para>
 A timestamp is a time value, expressed in milliseconds.
 It typically is the time since the last
@@ -1209,7 +1209,7 @@ server time.
 <glossentry>
   <glossterm><function>TrueColor</function></glossterm>
   <glossdef>
-<!-- .IN "TrueColor" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>TrueColor</primary></indexterm>
     <para>
 <emphasis role='bold'>TrueColor</emphasis>
 can be viewed as a degenerate case of
@@ -1225,7 +1225,7 @@ The values are typically linear or near-linear increasing ramps.
 <glossentry>
   <glossterm><function>Type</function></glossterm>
   <glossdef>
-<!-- .IN "Type" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Type</primary></indexterm>
     <para>
 A type is an arbitrary atom used to identify the interpretation of
 property data.
@@ -1238,7 +1238,7 @@ and are solely for the benefit of clients.
 <glossentry>
   <glossterm><function>Viewable</function></glossterm>
   <glossdef>
-<!-- .IN "Viewable" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Viewable</primary></indexterm>
     <para>
 A window is viewable if it and all of its ancestors are mapped.
 This does not imply that any portion of the window is actually visible.
@@ -1252,7 +1252,7 @@ backing store.
 <glossentry>
   <glossterm><function>Visible</function></glossterm>
   <glossdef>
-<!-- .IN "Visible" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>Visible</primary></indexterm>
     <para>
 A region of a window is visible if someone looking at the screen can
 actually see it;
@@ -1290,7 +1290,7 @@ Manipulation of windows on the screen and much of the user interface
 <glossentry>
   <glossterm><function>XYFormat</function></glossterm>
   <glossdef>
-<!-- .IN "XYFormat" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>XYFormat</primary></indexterm>
     <para>
 The data for a pixmap is said to be in XY format if it is organized as
 a set of bitmaps representing individual bit planes, with the planes
@@ -1302,7 +1302,7 @@ appearing from most-significant to least-significant in bit order.
 <glossentry>
   <glossterm><function>ZFormat</function></glossterm>
   <glossdef>
-<!-- .IN "ZFormat" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>ZFormat</primary></indexterm>
     <para>
 The data for a pixmap is said to be in Z format if it is organized as
 a set of pixel values in scanline order.
