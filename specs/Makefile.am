@@ -42,11 +42,10 @@ doc_DATA += $(doc_sources:.xml=.txt)
 endif
 
 if HAVE_STYLESHEETS
-XMLTO_FLAGS = -m $(XSL_STYLESHEET) --stringparam img.src.path=$(abs_builddir)/
-
-doc_DATA += xorg.css
-xorg.css: $(STYLESHEET_SRCDIR)/xorg.css
-	$(AM_V_GEN)cp -pf $(STYLESHEET_SRCDIR)/xorg.css $@
+XMLTO_FLAGS =						\
+	-m $(XSL_STYLESHEET)				\
+	--stringparam img.src.path=$(abs_builddir)/ 	\
+	--stringparam html.stylesheet=$(STYLESHEET_SRCDIR)/xorg.css
 endif
 
 CLEANFILES = $(doc_DATA)
