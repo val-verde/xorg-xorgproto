@@ -273,7 +273,7 @@ and pad(E) is the number of bytes needed to round E up to a multiple of four.
 </literallayout>
 </sect1>
 
-<sect1 id="common_types_2">
+<sect1 id="common_types_encoding">
 <title>Common Types</title>
 
 <variablelist>
@@ -536,7 +536,7 @@ STR
 </literallayout>
 </sect1>
 
-<sect1 id="errors_2">
+<sect1 id="errors_encoding">
 <title>Errors</title>
 
 <literallayout class="monospaced">
@@ -695,7 +695,7 @@ STR
 </literallayout>
 </sect1>
 
-<sect1 id="keyboards_2">
+<sect1 id="keyboards_encoding">
 <title>Keyboards</title>
 
 <para>
@@ -708,11 +708,11 @@ KEYSYM values with the bit #x10000000 set are reserved as vendor-specific.
 
 <para>
 The names and encodings of the standard KEYSYM values are contained in
-Appendix A, Keysym Encoding. <!-- xref -->
+<link linkend="keysym_encoding">Appendix A, Keysym Encoding</link>.
 </para>
 </sect1>
 
-<sect1 id="pointers_2">
+<sect1 id="pointers_encoding">
 <title>Pointers</title>
 
 <para>
@@ -766,7 +766,7 @@ WM_NAME           39
 </literallayout>
 </sect1>
 
-<sect1 id="connection_setup_2">
+<sect1 id="connection_setup_encoding">
 <title>Connection Setup</title>
 
 <para>
@@ -932,7 +932,7 @@ VISUALTYPE
 </literallayout>
 </sect1>
 
-<sect1 id="requests_2">
+<sect1 id="requests_encoding">
 <title>Requests</title>
 
 <literallayout class="monospaced">
@@ -1325,7 +1325,7 @@ VISUALTYPE
           1     InputFocus
      4     SETofEVENT                      event-mask
      32                                    event
-          standard event format (see the Events section)
+          standard event format (see <link linkend="events_encoding">the Events section</link>)
 
 <emphasis role='bold'>GrabPointer</emphasis>
      1     26                              opcode
@@ -2789,7 +2789,7 @@ VISUALTYPE
 </literallayout>
 </sect1>
 
-<sect1 id="events_2">
+<sect1 id="events_encoding">
 <title>Events</title>
 
 <literallayout class="monospaced">

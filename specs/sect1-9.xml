@@ -125,7 +125,7 @@ Every error includes an 8-bit error code.
 Error codes 128 through 255 are reserved for extensions.
 Every error also includes the major and minor opcodes of the failed request
 and the least significant 16 bits of the sequence number of the request.
-For the following errors (see section 4),
+For the following errors (see <link linkend="errors">section 4</link>),
 the failing resource ID is also returned:
 <emphasis role='bold'>Colormap</emphasis>,
 <emphasis role='bold'>Cursor</emphasis>,
@@ -196,7 +196,8 @@ are capitalized.
   </listitem>
   <listitem>
     <para>
-Requests in section 9 are described in the following format: <!-- xref -->
+Requests in <link linkend="requests">section 9</link> are described
+in the following format:
     </para>
   </listitem>
   <listitem>
@@ -228,8 +229,9 @@ then one or more replies can be generated for a single request.
   </listitem>
   <listitem>
     <para>
-Events in section 11 are described in the following format:
-    </para> <!-- xref -->
+Events in <link linkend="events">section 11</link> are described
+in the following format:
+    </para>
   </listitem>
   <listitem>
     <para>
@@ -602,7 +604,7 @@ byte-swap CHAR2B quantities.
 <para>
 The length, format, and interpretation of a HOST address are specific to the
 family (see
-<emphasis role='bold'>ChangeHosts </emphasis>
+<link linkend="requests:ChangeHosts"><emphasis role='bold'>ChangeHosts </emphasis></link>
 request).
 </para>
 </chapter>
@@ -2259,7 +2261,7 @@ so that the border is never affected.
 The bit-gravity defines which region of the window should be retained
 if the window is resized, and win-gravity defines how the window should
 be repositioned if the parent is resized (see
-<emphasis role='bold'>ConfigureWindow </emphasis>
+<link linkend="requests:ConfigureWindow"><emphasis role='bold'>ConfigureWindow </emphasis></link>
 request).
 </para>
 <para>
@@ -2348,8 +2350,7 @@ error results), and the parent must not have a colormap of
 error results).
 For an explanation of
 <emphasis role='bold'>None ,</emphasis>
-see
-<emphasis role='bold'>FreeColormap </emphasis>
+see <link linkend="requests:FreeColormap"><emphasis role='bold'>FreeColormap </emphasis></link>
 request.
 The colormap is copied by sharing the colormap object between the child
 and the parent,
@@ -2755,7 +2756,7 @@ The window must have been created by some other client (or a
 <emphasis role='bold'>Match </emphasis>
 error results).
 For further information about the use of the save-set,
-see section 10.
+see <link linkend="connection_close">section 10</link>.
 </para>
 <para>
 When windows are destroyed,
@@ -3678,7 +3679,7 @@ Uppercase and lowercase matter.
 </para>
 <para>
 The lifetime of an atom is not tied to the interning client.
-Atoms remain defined until server reset (see section 10).
+Atoms remain defined until server reset (see <link linkend="connection_close">section 10</link>).
 <!-- .sp -->
 </para>
 <para id="requests:GetAtomName">
@@ -3815,7 +3816,7 @@ event on the window.
 <para>
 The lifetime of a property is not tied to the storing client.
 Properties remain until explicitly deleted, until the window is destroyed,
-or until server reset (see section 10).
+or until server reset (see <link linkend="connection_close">section 10</link>).
 </para>
 <para>
 The maximum size of a property is server-dependent and may vary dynamically.
@@ -6409,7 +6410,7 @@ names: LISTofSTRING8
 <para>
 This request returns a list
 of available font names (as controlled by the font search path; see
-<emphasis role='bold'>SetFontPath </emphasis>
+<link linkend="requests:SetFontPath"><emphasis role='bold'>SetFontPath </emphasis></link>
 request)
 that match the pattern.
 At most, max-names names will be returned.
@@ -9748,7 +9749,7 @@ This request deletes the association between the resource ID and the colormap
 and frees the colormap storage.
 If the colormap is an installed map for a screen,
 it is uninstalled (see
-<emphasis role='bold'>UninstallColormap </emphasis>
+<link linkend="requests:UninstallColormap"><emphasis role='bold'>UninstallColormap </emphasis></link>
 request).
 If the colormap is defined as the colormap for a window (by means of
 <emphasis role='bold'>CreateWindow </emphasis>
@@ -9808,7 +9809,7 @@ Color values in other entries in the new colormap are undefined.
 If src-cmap was created by the client with alloc
 <emphasis role='bold'>All </emphasis>
 (see
-<emphasis role='bold'>CreateColormap </emphasis>
+<link linkend="requests:CreateColormap"><emphasis role='bold'>CreateColormap </emphasis></link>
 request),
 then the new colormap is also created with alloc
 <emphasis role='bold'>All , </emphasis>
@@ -9926,7 +9927,7 @@ Errors:
 <!-- .eM -->
 <para>
 If cmap is on the required list for its screen (see
-<emphasis role='bold'>InstallColormap </emphasis>
+<link linkend="requests:InstallColormap"><emphasis role='bold'>InstallColormap </emphasis></link>
 request),
 it is removed from the list.
 As a side effect,
@@ -9991,7 +9992,7 @@ This request returns a list of the currently installed colormaps for the
 screen of the specified window.
 The order of colormaps is not significant,
 and there is no explicit indication of the required list (see
-<emphasis role='bold'>InstallColormap </emphasis>
+<link linkend="requests:InstallColormap"><emphasis role='bold'>InstallColormap </emphasis></link>
 request).
 <!-- .sp -->
 </para>
@@ -11346,7 +11347,8 @@ event.
 </para>
 <para>
 There is no requirement that the server interpret this mapping;
-it is merely stored for reading and writing by clients (see section 5).
+it is merely stored for reading and writing by clients
+(see <link linkend="keyboards">section 5</link>).
 <!-- .sp -->
 </para>
 <para id="requests:GetKeyboardMapping">
@@ -12321,7 +12323,8 @@ at connection close.
 A connection starts in
 <emphasis role='bold'>Destroy </emphasis>
 mode.
-The meaning of the close-down mode is described in section 10.
+The meaning of the close-down mode is described
+in <link linkend="connection_close">section 10</link>.
 <!-- .sp -->
 </para>
 <para id="requests:KillClient">
@@ -12361,7 +12364,8 @@ If the client has already terminated in either
 <emphasis role='bold'>RetainPermanent </emphasis>
 or
 <emphasis role='bold'>RetainTemporary </emphasis>
-mode, all of the client's resources are destroyed (see section 10).
+mode, all of the client's resources are destroyed
+(see <link linkend="connection_close">section 10</link>).
 If
 <emphasis role='bold'>AllTemporary </emphasis>
 is specified,
@@ -12406,11 +12410,11 @@ If the client has the server grabbed, an
 <emphasis role='bold'>UngrabServer </emphasis>
 is performed.
 All selections (see
-<emphasis role='bold'>SetSelectionOwner </emphasis>
+<link linkend="requests:SetSelectionOwner"><emphasis role='bold'>SetSelectionOwner </emphasis></link>
 request)
 owned by the client are disowned.
 If close-down mode (see
-<emphasis role='bold'>SetCloseDownMode </emphasis>
+<link linkend="requests:SetCloseDownMode"><emphasis role='bold'>SetCloseDownMode </emphasis></link>
 request) is
 <emphasis role='bold'>RetainPermanent </emphasis>
 or
