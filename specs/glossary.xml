@@ -36,7 +36,7 @@ the single grabbing client.
   <indexterm significance="preferred"><primary>Ancestors</primary></indexterm>
   <glossdef>
     <para>
-If W is an inferior of A, then A is an ancestor of W.
+If W is an <glossterm linkend="glossary:Inferiors">inferior</glossterm> of A, then A is an ancestor of W.
 <!-- .KE -->
     </para>
   </glossdef>
@@ -108,7 +108,7 @@ each bitmap is called a bit plane or plane.
   <indexterm significance="preferred"><primary>Bitmap</primary></indexterm>
   <glossdef>
     <para>
-A bitmap is a pixmap of depth one.
+A bitmap is a <glossterm linkend="glossary:Pixmap">pixmap</glossterm> of depth one.
 <!-- .KE -->
     </para>
   </glossdef>
@@ -189,7 +189,7 @@ not by program lifetimes.
   <indexterm significance="preferred"><primary>Clipping region</primary></indexterm>
   <glossdef>
     <para>
-In a graphics context,
+In a <glossterm linkend="glossary:Graphics_context">graphics context</glossterm>,
 a bitmap or list of rectangles can be specified
 to restrict output to a particular region of the window.
 The image defined by the bitmap or rectangles is called a clipping region.
@@ -232,7 +232,8 @@ connection to the server over which requests and events are sent.
   <glossdef>
     <para>
 A window <quote>contains</quote> the pointer if the window is viewable and the
-hotspot of the cursor is within a visible region of the window or a
+<glossterm linkend="glossary:Hotspot">hotspot</glossterm> of the cursor is
+within a visible region of the window or a
 visible region of one of its inferiors.
 The border of the window is included as part of the window for containment.
 The pointer is <quote>in</quote> a window if the window contains the pointer
@@ -264,8 +265,8 @@ the origin is inside the border at the inside upper left.
   <glossdef>
     <para>
 A cursor is the visible shape of the pointer on a screen.
-It consists of a hot spot, a source bitmap, a shape bitmap,
-and a pair of colors.
+It consists of a <glossterm linkend="glossary:Hotspot">hotspot</glossterm>,
+a source bitmap, a shape bitmap, and a pair of colors.
 The cursor defined for a window controls the visible appearance
 when the pointer is in that window.
 <!-- .KE -->
@@ -436,7 +437,7 @@ all possible and are expected.
   <glossdef>
 <!-- .IN "Focus window" "" ""@DEF@" -->
     <para>
-The focus window is another term for the input focus.
+The focus window is another term for the <glossterm linkend="glossary:Input_focus">input focus</glossterm>.
 <!-- .KE -->
     </para>
   </glossdef>
@@ -461,7 +462,7 @@ and interline spacing.
   <glossdef>
 <indexterm significance="preferred"><primary>GContext</primary></indexterm>
     <para>
-GC and gcontext are abbreviations for graphics context.
+GC and gcontext are abbreviations for <glossterm linkend="glossary:Graphics_context">graphics context</glossterm>.
 <!-- .KE -->
     </para>
   </glossdef>
@@ -497,7 +498,8 @@ various styles of user interfaces.
   <glossdef>
     <para>
 Various information for graphics output is stored in a graphics context
-such as foreground pixel, background pixel, line width, clipping region,
+such as foreground pixel, background pixel, line width,
+<glossterm linkend="glossary:Clipping_region">clipping region</glossterm>,
 and so on.
 A graphics context can only be used with drawables that have the same root
 and the same depth as the graphics context.
@@ -510,7 +512,8 @@ and the same depth as the graphics context.
   <indexterm significance="preferred"><primary>Gravity</primary></indexterm>
   <glossdef>
     <para>
-See bit gravity and window gravity.
+See <glossterm linkend="glossary:Bit_gravity">bit gravity</glossterm>
+and <glossterm linkend="glossary:Window_gravity">window gravity</glossterm>.
 <!-- .KE -->
     </para>
   </glossdef>
@@ -522,7 +525,7 @@ See bit gravity and window gravity.
     <para>
 <emphasis role='bold'>GrayScale </emphasis>
 can be viewed as a degenerate case of
-<emphasis role='bold'>PseudoColor , </emphasis>
+<glossterm linkend="glossary:PseudoColor"><emphasis role='bold'>PseudoColor</emphasis></glossterm>,
 in which the red, green, and blue values in any given colormap entry are equal,
 thus producing shades of gray.
 The gray values can be changed dynamically.
@@ -693,7 +696,7 @@ ShiftLock, and similar keys are called modifier keys.
   <glossdef>
     <para>
 Monochrome is a special case of
-<emphasis role='bold'>StaticGray </emphasis>
+<glossterm linkend="glossary:StaticGray"><emphasis role='bold'>StaticGray</emphasis></glossterm>
 in which there are only two colormap entries.
 <!-- .KE -->
     </para>
@@ -749,7 +752,8 @@ This increases ease of portability to some machine architectures.
   <indexterm significance="preferred"><primary>Window</primary><secondary>parent</secondary></indexterm>
   <glossdef>
     <para>
-If C is a child of P, then P is the parent of C.
+If C is a <glossterm linkend="glossary:Children">child</glossterm> of P,
+then P is the parent of C.
 <!-- .KE -->
     </para>
   </glossdef>
@@ -1122,7 +1126,7 @@ The relationship between sibling windows is known as the stacking order.
     <para>
 <emphasis role='bold'>StaticColor </emphasis>
 can be viewed as a degenerate case of
-<emphasis role='bold'>PseudoColor</emphasis>
+<glossterm linkend="glossary:PseudoColor"><emphasis role='bold'>PseudoColor</emphasis></glossterm>
 in which the RGB values are predefined and read-only.
 <!-- .KE -->
     </para>
@@ -1135,7 +1139,7 @@ in which the RGB values are predefined and read-only.
     <para>
 <emphasis role='bold'>StaticGray </emphasis>
 can be viewed as a degenerate case of
-<emphasis role='bold'>GrayScale</emphasis>
+<glossterm linkend="glossary:GrayScale"><emphasis role='bold'>GrayScale</emphasis></glossterm>
 in which the gray values are predefined and read-only.
 The values are typically linear or near-linear increasing ramps.
 <!-- .KE -->
@@ -1213,7 +1217,7 @@ server time.
     <para>
 <emphasis role='bold'>TrueColor</emphasis>
 can be viewed as a degenerate case of
-<emphasis role='bold'>DirectColor</emphasis>
+<glossterm linkend="glossary:DirectColor"><emphasis role='bold'>DirectColor</emphasis></glossterm>
 in which the subfields in the pixel value directly encode
 the corresponding RGB values; that is, the colormap has predefined
 read-only RGB values.
