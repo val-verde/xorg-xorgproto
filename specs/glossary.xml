@@ -79,8 +79,8 @@ the pixels saved off screen are known as a backing store.
 </glossentry>
 <glossentry id="glossary:Bit_gravity">
   <glossterm><function>Bit gravity</function></glossterm>
+  <indexterm significance="preferred"><primary>Bit</primary><secondary>gravity</secondary></indexterm>
   <glossdef>
-<!-- .IN "Bit" "gravity" "@DEF@" -->
     <para>
 When a window is resized,
 the contents of the window are not necessarily discarded.
@@ -94,8 +94,8 @@ a window is known as bit gravity.
 </glossentry>
 <glossentry id="glossary:Bit_plane">
   <glossterm><function>Bit plane</function></glossterm>
+  <indexterm significance="preferred"><primary>Bit</primary><secondary>plane</secondary></indexterm>
   <glossdef>
-<!-- .IN "Bit" "plane" "@DEF@" -->
     <para>
 When a pixmap or window is thought of as a stack of bitmaps,
 each bitmap is called a bit plane or plane.
@@ -130,8 +130,8 @@ Exposure events are never generated for border regions.
 </glossentry>
 <glossentry id="glossary:Button_grabbing">
   <glossterm><function>Button grabbing</function></glossterm>
+  <indexterm significance="preferred"><primary>Button</primary><secondary>grabbing</secondary></indexterm>
   <glossdef>
-<!-- .IN "Button" "grabbing" "@DEF@" -->
     <para>
 Buttons on the pointer may be passively grabbed by a client.
 When the button is pressed,
@@ -357,8 +357,8 @@ Events are typically reported relative to a window.
 </glossentry>
 <glossentry id="glossary:Event_mask">
   <glossterm><function>Event mask</function></glossterm>
+  <indexterm significance="preferred"><primary>Event</primary><secondary>mask</secondary></indexterm>
   <glossdef>
-<!-- .IN "Event" "mask" "@DEF@" -->
     <para>
 Events are requested relative to a window.
 The set of event types that a client requests relative to a window
@@ -369,8 +369,8 @@ is described by using an event mask.
 </glossentry>
 <glossentry id="glossary:Event_synchronization">
   <glossterm><function>Event synchronization</function></glossterm>
+  <indexterm significance="preferred"><primary>Event</primary><secondary>synchronization</secondary></indexterm>
   <glossdef>
-<!-- .IN "Event" "synchronization" "@DEF@" -->
     <para>
 There are certain race conditions possible when demultiplexing device
 events to clients (in particular deciding where pointer and keyboard
@@ -384,8 +384,8 @@ of device events.
 </glossentry>
 <glossentry id="glossary:Event_propagation">
   <glossterm><function>Event propagation</function></glossterm>
+  <indexterm significance="preferred"><primary>Event</primary><secondary>propagation</secondary></indexterm>
   <glossdef>
-<!-- .IN "Event" "propagation" "@DEF@" -->
     <para>
 Device-related events propagate from the source window to ancestor
 windows until some client has expressed interest in handling that type
@@ -396,8 +396,8 @@ of event or until the event is discarded explicitly.
 </glossentry>
 <glossentry id="glossary:Event_source">
   <glossterm><function>Event source</function></glossterm>
+  <indexterm significance="preferred"><primary>Event</primary><secondary>source</secondary></indexterm>
   <glossdef>
-<!-- .IN "Event" "source" "@DEF@" -->
     <para>
 The window the pointer is in is the source of a device-related
 event.
@@ -407,8 +407,8 @@ event.
 </glossentry>
 <glossentry id="glossary:Exposure_event">
   <glossterm><function>Exposure event</function></glossterm>
+  <indexterm significance="preferred"><primary>Event</primary><secondary>Exposure</secondary></indexterm>
   <glossdef>
-<!-- .IN "Event" "Exposure" "@DEF@" -->
     <para>
 Servers do not guarantee to preserve the contents of windows when
 windows are obscured or reconfigured.
@@ -596,8 +596,8 @@ Control over keyboard input is typically provided by an input manager client.
 </glossentry>
 <glossentry id="glossary:InputOnly_window">
   <glossterm><function>InputOnly window</function></glossterm>
+  <indexterm significance="preferred"><primary>Window</primary><secondary>InputOnly</secondary></indexterm>
   <glossdef>
-<!-- .IN "Window" "InputOnly" "@DEF@" -->
     <para>
 An
 <emphasis role='bold'>InputOnly</emphasis>
@@ -615,8 +615,8 @@ windows as inferiors.
 </glossentry>
 <glossentry id="glossary:InputOutput_window">
   <glossterm><function>InputOutput window</function></glossterm>
+  <indexterm significance="preferred"><primary>Window</primary><secondary>InputOutput</secondary></indexterm>
   <glossdef>
-<!-- .IN "Window" "InputOutput" "@DEF@" -->
     <para>
 An
 <emphasis role='bold'>InputOutput</emphasis>
@@ -633,8 +633,8 @@ windows as inferiors.
 </glossentry>
 <glossentry id="glossary:Key_grabbing">
   <glossterm><function>Key grabbing</function></glossterm>
+  <indexterm significance="preferred"><primary>Key</primary><secondary>grabbing</secondary></indexterm>
   <glossdef>
-<!-- .IN "Key" "grabbing" "@DEF@" -->
     <para>
 Keys on the keyboard can be passively grabbed by a client.
 When the key is pressed,
@@ -645,8 +645,8 @@ the keyboard is then actively grabbed by the client.
 </glossentry>
 <glossentry id="glossary:Keyboard_grabbing">
   <glossterm><function>Keyboard grabbing</function></glossterm>
+  <indexterm significance="preferred"><primary>Keyboard</primary><secondary>grabbing</secondary></indexterm>
   <glossdef>
-<!-- .IN "Keyboard" "grabbing" "@DEF@" -->
     <para>
 A client can actively grab control of the keyboard, and key events
 will be sent to that client rather than the client the events would
@@ -746,8 +746,8 @@ This increases ease of portability to some machine architectures.
 </glossentry>
 <glossentry id="glossary:Parent_window">
   <glossterm><function>Parent window</function></glossterm>
+  <indexterm significance="preferred"><primary>Window</primary><secondary>parent</secondary></indexterm>
   <glossdef>
-<!-- .IN "Window" "parent" "@DEF@" -->
     <para>
 If C is a child of P, then P is the parent of C.
 <!-- .KE -->
@@ -806,8 +806,8 @@ each bitmap is called a plane or bit plane.
 </glossentry>
 <glossentry id="glossary:Plane_mask">
   <glossterm><function>Plane mask</function></glossterm>
+  <indexterm significance="preferred"><primary>Plane</primary><secondary>mask</secondary></indexterm>
   <glossdef>
-<!-- .IN "Plane" "mask" "@DEF@" -->
     <para>
 Graphics operations can be restricted to only affect a subset of bit
 planes of a destination.
@@ -830,8 +830,8 @@ and tracked on the screens.
 </glossentry>
 <glossentry id="glossary:Pointer_grabbing">
   <glossterm><function>Pointer grabbing</function></glossterm>
+  <indexterm significance="preferred"><primary>Pointer</primary><secondary>grabbing</secondary></indexterm>
   <glossdef>
-<!-- .IN "Pointer" "grabbing" "@DEF@" -->
     <para>
 A client can actively grab control of the pointer.
 Then button and motion events will be sent to that client
@@ -974,8 +974,8 @@ The root of a window is the root window under which the window was created.
 </glossentry>
 <glossentry id="glossary:Root_window">
   <glossterm><function>Root window</function></glossterm>
+  <indexterm significance="preferred"><primary>Window</primary><secondary>root</secondary></indexterm>
   <glossdef>
-<!-- .IN "Window" "root" "@DEF@" -->
     <para>
 Each screen has a root window covering it.
 It cannot be reconfigured or unmapped,
@@ -1079,8 +1079,8 @@ and demultiplexes input back to the appropriate clients.
 </glossentry>
 <glossentry id="glossary:Server_grabbing">
   <glossterm><function>Server grabbing</function></glossterm>
+  <indexterm significance="preferred"><primary>Server</primary><secondary>grabbing</secondary></indexterm>
   <glossdef>
-<!-- .IN "Server" "grabbing" "@DEF@" -->
     <para>
 The server can be grabbed by a single client for exclusive use.
 This prevents processing of any requests from other client connections until
@@ -1264,8 +1264,8 @@ other window.
 </glossentry>
 <glossentry id="glossary:Window_gravity">
   <glossterm><function>Window gravity</function></glossterm>
+  <indexterm significance="preferred"><primary>Window</primary><secondary>gravity</secondary></indexterm>
   <glossdef>
-<!-- .IN "Window" "gravity" "@DEF@" -->
     <para>
 When windows are resized,
 subwindows may be repositioned automatically relative to some position
@@ -1278,8 +1278,8 @@ as window gravity.
 </glossentry>
 <glossentry id="glossary:Window_manager">
   <glossterm><function>Window manager</function></glossterm>
+  <indexterm significance="preferred"><primary>Window</primary><secondary>manager</secondary></indexterm>
   <glossdef>
-<!-- .IN "Window" "manager" "@DEF@" -->
     <para>
 Manipulation of windows on the screen and much of the user interface
 (policy) is typically provided by a window manager client.
