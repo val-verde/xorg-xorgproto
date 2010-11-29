@@ -2,7 +2,7 @@
 <title>Glossary</title>
 
 
-<glossentry>
+<glossentry id="glossary:Access_control_list">
   <glossterm><function>Access control list</function></glossterm>
   <indexterm significance="preferred"><primary>Access control list</primary></indexterm>
   <glossdef>
@@ -20,7 +20,7 @@ protocol name and data received by the server at connection setup.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Active_grab">
   <glossterm><function>Active grab</function></glossterm>
   <indexterm significance="preferred"><primary>Active grab</primary></indexterm>
   <glossdef>
@@ -31,7 +31,7 @@ the single grabbing client.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Ancestors">
   <glossterm><function>Ancestors</function></glossterm>
   <indexterm significance="preferred"><primary>Ancestors</primary></indexterm>
   <glossdef>
@@ -41,7 +41,7 @@ If W is an inferior of A, then A is an ancestor of W.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Atom">
   <glossterm><function>Atom</function></glossterm>
   <indexterm significance="preferred"><primary>Atom</primary></indexterm>
   <glossdef>
@@ -52,7 +52,7 @@ Atoms are used to identify properties, types, and selections.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Background">
   <glossterm><function>Background</function></glossterm>
   <indexterm significance="preferred"><primary>Background</primary></indexterm>
   <glossdef>
@@ -66,7 +66,7 @@ the server will automatically tile those regions with the background.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Backing_store">
   <glossterm><function>Backing store</function></glossterm>
   <indexterm significance="preferred"><primary>Backing store</primary></indexterm>
   <glossdef>
@@ -77,7 +77,7 @@ the pixels saved off screen are known as a backing store.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Bit_gravity">
   <glossterm><function>Bit gravity</function></glossterm>
   <glossdef>
 <!-- .IN "Bit" "gravity" "@DEF@" -->
@@ -92,7 +92,7 @@ a window is known as bit gravity.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Bit_plane">
   <glossterm><function>Bit plane</function></glossterm>
   <glossdef>
 <!-- .IN "Bit" "plane" "@DEF@" -->
@@ -103,7 +103,7 @@ each bitmap is called a bit plane or plane.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Bitmap">
   <glossterm><function>Bitmap</function></glossterm>
   <indexterm significance="preferred"><primary>Bitmap</primary></indexterm>
   <glossdef>
@@ -113,7 +113,7 @@ A bitmap is a pixmap of depth one.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Border">
   <glossterm><function>Border</function></glossterm>
   <indexterm significance="preferred"><primary>Border</primary></indexterm>
   <glossdef>
@@ -128,7 +128,7 @@ Exposure events are never generated for border regions.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Button_grabbing">
   <glossterm><function>Button grabbing</function></glossterm>
   <glossdef>
 <!-- .IN "Button" "grabbing" "@DEF@" -->
@@ -140,7 +140,7 @@ the pointer is then actively grabbed by the client.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Byte_order">
   <glossterm><function>Byte order</function></glossterm>
   <indexterm significance="preferred"><primary>Byte order</primary></indexterm>
   <glossdef>
@@ -155,7 +155,7 @@ and the server swaps bytes as necessary.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Children">
   <glossterm><function>Children</function></glossterm>
   <indexterm significance="preferred"><primary>Children</primary></indexterm>
   <glossdef>
@@ -165,7 +165,7 @@ The children of a window are its first-level subwindows.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Client">
   <glossterm><function>Client</function></glossterm>
   <indexterm significance="preferred"><primary>Client</primary></indexterm>
   <glossdef>
@@ -184,7 +184,7 @@ not by program lifetimes.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Clipping_region">
   <glossterm><function>Clipping region</function></glossterm>
   <indexterm significance="preferred"><primary>Clipping region</primary></indexterm>
   <glossdef>
@@ -197,7 +197,7 @@ The image defined by the bitmap or rectangles is called a clipping region.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Colormap">
   <glossterm><function>Colormap</function></glossterm>
   <glossdef>
 <!-- .IN "Colormap" "" "@DEF@"  -->
@@ -213,7 +213,7 @@ so that windows associated with those maps display with correct colors.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Connection">
   <glossterm><function>Connection</function></glossterm>
   <indexterm significance="preferred"><primary>Connection</primary></indexterm>
   <glossdef>
@@ -226,7 +226,7 @@ connection to the server over which requests and events are sent.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Containment">
   <glossterm><function>Containment</function></glossterm>
   <indexterm significance="preferred"><primary>Containment</primary></indexterm>
   <glossdef>
@@ -241,7 +241,7 @@ but no inferior contains the pointer.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Coordinate_system">
   <glossterm><function>Coordinate system</function></glossterm>
   <indexterm significance="preferred"><primary>Coordinate system</primary></indexterm>
   <glossdef>
@@ -258,7 +258,7 @@ the origin is inside the border at the inside upper left.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Cursor">
   <glossterm><function>Cursor</function></glossterm>
   <indexterm significance="preferred"><primary>Cursor</primary></indexterm>
   <glossdef>
@@ -272,7 +272,7 @@ when the pointer is in that window.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Depth">
   <glossterm><function>Depth</function></glossterm>
   <indexterm significance="preferred"><primary>Depth</primary></indexterm>
   <glossdef>
@@ -284,7 +284,7 @@ used in conjunction with for graphics output.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Device">
   <glossterm><function>Device</function></glossterm>
   <indexterm significance="preferred"><primary>Device</primary></indexterm>
   <glossdef>
@@ -297,7 +297,7 @@ The core protocol only deals with two devices,
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:DirectColor">
   <glossterm><function>DirectColor</function></glossterm>
   <indexterm significance="preferred"><primary>DirectColor</primary></indexterm>
   <glossdef>
@@ -313,7 +313,7 @@ The RGB values can be changed dynamically.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Display">
   <glossterm><function>Display</function></glossterm>
   <indexterm significance="preferred"><primary>Display</primary></indexterm>
   <glossdef>
@@ -323,7 +323,7 @@ A server, together with its screens and input devices, is called a display.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Drawable">
   <glossterm><function>Drawable</function></glossterm>
   <indexterm significance="preferred"><primary>Drawable</primary></indexterm>
   <glossdef>
@@ -338,7 +338,7 @@ window cannot be used as a source or destination in a graphics operation.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Event">
   <glossterm><function>Event</function></glossterm>
   <indexterm significance="preferred"><primary>Event</primary></indexterm>
   <glossdef>
@@ -355,7 +355,7 @@ Events are typically reported relative to a window.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Event_mask">
   <glossterm><function>Event mask</function></glossterm>
   <glossdef>
 <!-- .IN "Event" "mask" "@DEF@" -->
@@ -367,7 +367,7 @@ is described by using an event mask.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Event_synchronization">
   <glossterm><function>Event synchronization</function></glossterm>
   <glossdef>
 <!-- .IN "Event" "synchronization" "@DEF@" -->
@@ -382,7 +382,7 @@ of device events.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Event_propagation">
   <glossterm><function>Event propagation</function></glossterm>
   <glossdef>
 <!-- .IN "Event" "propagation" "@DEF@" -->
@@ -394,7 +394,7 @@ of event or until the event is discarded explicitly.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Event_source">
   <glossterm><function>Event source</function></glossterm>
   <glossdef>
 <!-- .IN "Event" "source" "@DEF@" -->
@@ -405,7 +405,7 @@ event.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Exposure_event">
   <glossterm><function>Exposure event</function></glossterm>
   <glossdef>
 <!-- .IN "Event" "Exposure" "@DEF@" -->
@@ -418,7 +418,7 @@ of regions of windows have been lost.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Extension">
   <glossterm><function>Extension</function></glossterm>
   <indexterm significance="preferred"><primary>Extension</primary></indexterm>
   <glossdef>
@@ -431,7 +431,7 @@ all possible and are expected.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Focus_window">
   <glossterm><function>Focus window</function></glossterm>
   <glossdef>
 <!-- .IN "Focus window" "" ""@DEF@" -->
@@ -441,7 +441,7 @@ The focus window is another term for the input focus.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Font">
   <glossterm><function>Font</function></glossterm>
   <indexterm significance="preferred"><primary>Font</primary></indexterm>
   <glossdef>
@@ -455,7 +455,7 @@ and interline spacing.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:GC">
   <glossterm><function>GC</function>, <function>GContext</function></glossterm>
   <indexterm significance="preferred"><primary>GC</primary></indexterm>
   <glossdef>
@@ -466,7 +466,7 @@ GC and gcontext are abbreviations for graphics context.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Glyph">
   <glossterm><function>Glyph</function></glossterm>
   <indexterm significance="preferred"><primary>Glyph</primary></indexterm>
   <glossdef>
@@ -476,7 +476,7 @@ A glyph is an image, typically of a character, in a font.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Grab">
   <glossterm><function>Grab</function></glossterm>
   <indexterm significance="preferred"><primary>Grab</primary></indexterm>
   <glossdef>
@@ -491,7 +491,7 @@ various styles of user interfaces.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Graphics_context">
   <glossterm><function>Graphics context</function></glossterm>
   <indexterm significance="preferred"><primary>Graphics context</primary></indexterm>
   <glossdef>
@@ -505,7 +505,7 @@ and the same depth as the graphics context.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Gravity">
   <glossterm><function>Gravity</function></glossterm>
   <indexterm significance="preferred"><primary>Gravity</primary></indexterm>
   <glossdef>
@@ -515,7 +515,7 @@ See <function>bit gravity</function> and <function>window gravity</function>.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:GrayScale">
   <glossterm><function>GrayScale</function></glossterm>
   <indexterm significance="preferred"><primary>GrayScale</primary></indexterm>
   <glossdef>
@@ -530,7 +530,7 @@ The gray values can be changed dynamically.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Hotspot">
   <glossterm><function>Hotspot</function></glossterm>
   <indexterm significance="preferred"><primary>Hotspot</primary></indexterm>
   <glossdef>
@@ -541,7 +541,7 @@ cursor corresponding to the coordinates reported for the pointer.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Identifier">
   <glossterm><function>Identifier</function></glossterm>
   <indexterm significance="preferred"><primary>Identifier</primary></indexterm>
   <glossdef>
@@ -553,7 +553,7 @@ The identifier can be used over any connection.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Inferiors">
   <glossterm><function>Inferiors</function></glossterm>
   <indexterm significance="preferred"><primary>Inferiors</primary></indexterm>
   <glossdef>
@@ -564,7 +564,7 @@ the children, the children's children, and so on.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Input_focus">
   <glossterm><function>Input focus</function></glossterm>
   <indexterm significance="preferred"><primary>Input focus</primary></indexterm>
   <glossdef>
@@ -584,7 +584,7 @@ the pointer is on at each keyboard event.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Input_manager">
   <glossterm><function>Input manager</function></glossterm>
   <indexterm significance="preferred"><primary>Input manager</primary></indexterm>
   <glossdef>
@@ -594,7 +594,7 @@ Control over keyboard input is typically provided by an input manager client.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:InputOnly_window">
   <glossterm><function>InputOnly window</function></glossterm>
   <glossdef>
 <!-- .IN "Window" "InputOnly" "@DEF@" -->
@@ -613,7 +613,7 @@ windows as inferiors.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:InputOutput_window">
   <glossterm><function>InputOutput window</function></glossterm>
   <glossdef>
 <!-- .IN "Window" "InputOutput" "@DEF@" -->
@@ -631,7 +631,7 @@ windows as inferiors.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Key_grabbing">
   <glossterm><function>Key grabbing</function></glossterm>
   <glossdef>
 <!-- .IN "Key" "grabbing" "@DEF@" -->
@@ -643,7 +643,7 @@ the keyboard is then actively grabbed by the client.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Keyboard_grabbing">
   <glossterm><function>Keyboard grabbing</function></glossterm>
   <glossdef>
 <!-- .IN "Keyboard" "grabbing" "@DEF@" -->
@@ -655,7 +655,7 @@ normally have been sent to.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Keysym">
   <glossterm><function>Keysym</function></glossterm>
   <indexterm significance="preferred"><primary>Keysym</primary></indexterm>
   <glossdef>
@@ -665,7 +665,7 @@ An encoding of a symbol on a keycap on a keyboard.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Mapped">
   <glossterm><function>Mapped</function></glossterm>
   <indexterm significance="preferred"><primary>Mapped window</primary></indexterm>
   <glossdef>
@@ -676,7 +676,7 @@ Unmapped windows and their inferiors are never viewable or visible.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Modifier_keys">
   <glossterm><function>Modifier keys</function></glossterm>
   <indexterm significance="preferred"><primary>Modifier keys</primary></indexterm>
   <glossdef>
@@ -687,7 +687,7 @@ ShiftLock, and similar keys are called modifier keys.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Monochrome">
   <glossterm><function>Monochrome</function></glossterm>
   <indexterm significance="preferred"><primary>Monochrome</primary></indexterm>
   <glossdef>
@@ -699,7 +699,7 @@ in which there are only two colormap entries.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Obscure">
   <glossterm><function>Obscure</function></glossterm>
   <indexterm significance="preferred"><primary>Obscure</primary></indexterm>
   <glossdef>
@@ -717,7 +717,7 @@ and that a window can be obscured and yet still have visible regions.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Occlude">
   <glossterm><function>Occlude</function></glossterm>
   <indexterm significance="preferred"><primary>Occlude</primary></indexterm>
   <glossdef>
@@ -732,7 +732,7 @@ Also note that window borders are included in the calculation.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Padding">
   <glossterm><function>Padding</function></glossterm>
   <indexterm significance="preferred"><primary>Padding</primary></indexterm>
   <glossdef>
@@ -744,7 +744,7 @@ This increases ease of portability to some machine architectures.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Parent_window">
   <glossterm><function>Parent window</function></glossterm>
   <glossdef>
 <!-- .IN "Window" "parent" "@DEF@" -->
@@ -754,7 +754,7 @@ If C is a child of P, then P is the parent of C.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Passive_grab">
   <glossterm><function>Passive grab</function></glossterm>
   <indexterm significance="preferred"><primary>Passive grab</primary></indexterm>
   <glossdef>
@@ -765,7 +765,7 @@ The grab activates when the key or button is actually pressed.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Pixel_value">
   <glossterm><function>Pixel value</function></glossterm>
   <indexterm significance="preferred"><primary>Pixel value</primary></indexterm>
   <glossdef>
@@ -779,7 +779,7 @@ a pixel value indexes a colormap to derive an actual color to be displayed.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Pixmap">
   <glossterm><function>Pixmap</function></glossterm>
   <indexterm significance="preferred"><primary>Pixmap</primary></indexterm>
   <glossdef>
@@ -793,7 +793,7 @@ A pixmap can also be thought of as a stack of N bitmaps.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Plane">
   <glossterm><function>Plane</function></glossterm>
   <indexterm significance="preferred"><primary>Plane</primary></indexterm>
   <glossdef>
@@ -804,7 +804,7 @@ each bitmap is called a plane or bit plane.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Plane_mask">
   <glossterm><function>Plane mask</function></glossterm>
   <glossdef>
 <!-- .IN "Plane" "mask" "@DEF@" -->
@@ -817,7 +817,7 @@ The plane mask is stored in a graphics context.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Pointer">
   <glossterm><function>Pointer</function></glossterm>
   <indexterm significance="preferred"><primary>Pointer</primary></indexterm>
   <glossdef>
@@ -828,7 +828,7 @@ and tracked on the screens.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Pointer_grabbing">
   <glossterm><function>Pointer grabbing</function></glossterm>
   <glossdef>
 <!-- .IN "Pointer" "grabbing" "@DEF@" -->
@@ -840,7 +840,7 @@ rather than the client the events would normally have been sent to.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Pointing_device">
   <glossterm><function>Pointing device</function></glossterm>
   <indexterm significance="preferred"><primary>Pointing device</primary></indexterm>
   <glossdef>
@@ -853,7 +853,7 @@ and it tracks whatever pointing device is attached as the pointer.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Property">
   <glossterm><function>Property</function></glossterm>
   <indexterm significance="preferred"><primary>Property</primary></indexterm>
   <glossdef>
@@ -868,7 +868,7 @@ hints, program names, and icon formats with a window manager.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Property_list">
   <glossterm><function>Property list</function></glossterm>
   <indexterm significance="preferred"><primary>Property list</primary></indexterm>
   <glossdef>
@@ -879,7 +879,7 @@ been defined for the window.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:PseudoColor">
   <glossterm><function>PseudoColor</function></glossterm>
   <indexterm significance="preferred"><primary>PseudoColor</primary></indexterm>
   <glossdef>
@@ -893,7 +893,7 @@ The RGB values can be changed dynamically.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Redirecting_control">
   <glossterm><function>Redirecting control</function></glossterm>
   <indexterm significance="preferred"><primary>Redirecting control</primary></indexterm>
   <glossdef>
@@ -907,7 +907,7 @@ rather than the operation actually being performed.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Reply">
   <glossterm><function>Reply</function></glossterm>
   <indexterm significance="preferred"><primary>Reply</primary></indexterm>
   <glossdef>
@@ -921,7 +921,7 @@ although some requests generate multiple replies.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Request">
   <glossterm><function>Request</function></glossterm>
   <indexterm significance="preferred"><primary>Request</primary></indexterm>
   <glossdef>
@@ -932,7 +932,7 @@ It is a single block of data sent over a connection.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Resource">
   <glossterm><function>Resource</function></glossterm>
   <indexterm significance="preferred"><primary>Resource</primary></indexterm>
   <glossdef>
@@ -946,7 +946,7 @@ over which the resource was created.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:RGB_values">
   <glossterm><function>RGB values</function></glossterm>
   <indexterm significance="preferred"><primary>RGB values</primary></indexterm>
   <glossdef>
@@ -959,7 +959,7 @@ The server scales the values to match the display hardware.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Root">
   <glossterm><function>Root</function></glossterm>
   <indexterm significance="preferred"><primary>Root</primary></indexterm>
   <glossdef>
@@ -972,7 +972,7 @@ The root of a window is the root window under which the window was created.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Root_window">
   <glossterm><function>Root window</function></glossterm>
   <glossdef>
 <!-- .IN "Window" "root" "@DEF@" -->
@@ -985,7 +985,7 @@ A root window has no parent.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Save_set">
   <glossterm><function>Save set</function></glossterm>
   <indexterm significance="preferred"><primary>Save set</primary></indexterm>
   <glossdef>
@@ -999,7 +999,7 @@ lost windows if the manager terminates abnormally.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Scanline">
   <glossterm><function>Scanline</function></glossterm>
   <indexterm significance="preferred"><primary>Scanline</primary></indexterm>
   <glossdef>
@@ -1011,7 +1011,7 @@ values ordered by increasing x coordinate.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Scanline_order">
   <glossterm><function>Scanline order</function></glossterm>
   <indexterm significance="preferred"><primary>Scanline order</primary></indexterm>
   <glossdef>
@@ -1022,7 +1022,7 @@ increasing y coordinate.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Screen">
   <glossterm><function>Screen</function></glossterm>
   <indexterm significance="preferred"><primary>Screen</primary></indexterm>
   <glossdef>
@@ -1035,7 +1035,7 @@ and pointer shared among the screens.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Selection">
   <glossterm><function>Selection</function></glossterm>
   <indexterm significance="preferred"><primary>Selection</primary></indexterm>
   <glossdef>
@@ -1064,7 +1064,7 @@ The protocol does not constrain the semantics.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Server">
   <glossterm><function>Server</function></glossterm>
   <indexterm significance="preferred"><primary>Server</primary></indexterm>
   <glossdef>
@@ -1077,7 +1077,7 @@ and demultiplexes input back to the appropriate clients.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Server_grabbing">
   <glossterm><function>Server grabbing</function></glossterm>
   <glossdef>
 <!-- .IN "Server" "grabbing" "@DEF@" -->
@@ -1092,7 +1092,7 @@ indivisibly.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Sibling">
   <glossterm><function>Sibling</function></glossterm>
   <indexterm significance="preferred"><primary>Sibling</primary></indexterm>
   <glossdef>
@@ -1102,7 +1102,7 @@ Children of the same parent window are known as sibling windows.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Stacking_order">
   <glossterm><function>Stacking order</function></glossterm>
   <indexterm significance="preferred"><primary>Stacking order</primary></indexterm>
   <glossdef>
@@ -1115,7 +1115,7 @@ The relationship between sibling windows is known as the stacking order.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:StaticColor">
   <glossterm><function>StaticColor</function></glossterm>
   <indexterm significance="preferred"><primary>StaticColor</primary></indexterm>
   <glossdef>
@@ -1128,7 +1128,7 @@ in which the RGB values are predefined and read-only.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:StaticGray">
   <glossterm><function>StaticGray</function></glossterm>
   <indexterm significance="preferred"><primary>StaticGray</primary></indexterm>
   <glossdef>
@@ -1142,7 +1142,7 @@ The values are typically linear or near-linear increasing ramps.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Stipple">
   <glossterm><function>Stipple</function></glossterm>
   <indexterm significance="preferred"><primary>Stipple</primary></indexterm>
   <glossdef>
@@ -1154,7 +1154,7 @@ color.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:String_Equivalence">
   <glossterm><function>String Equivalence</function></glossterm>
   <indexterm significance="preferred"><primary>String Equivalence</primary></indexterm>
   <glossdef>
@@ -1173,7 +1173,7 @@ are pairwise equivalent to decimal values 246 to 254 inclusive
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Tile">
   <glossterm><function>Tile</function></glossterm>
   <indexterm significance="preferred"><primary>Tile</primary></indexterm>
   <glossdef>
@@ -1184,7 +1184,7 @@ The pixmap itself is also known as a tile.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Timestamp">
   <glossterm><function>Timestamp</function></glossterm>
   <indexterm significance="preferred"><primary>Timestamp</primary></indexterm>
   <glossdef>
@@ -1206,7 +1206,7 @@ server time.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:TrueColor">
   <glossterm><function>TrueColor</function></glossterm>
   <indexterm significance="preferred"><primary>TrueColor</primary></indexterm>
   <glossdef>
@@ -1222,7 +1222,7 @@ The values are typically linear or near-linear increasing ramps.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Type">
   <glossterm><function>Type</function></glossterm>
   <indexterm significance="preferred"><primary>Type</primary></indexterm>
   <glossdef>
@@ -1235,7 +1235,7 @@ and are solely for the benefit of clients.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Viewable">
   <glossterm><function>Viewable</function></glossterm>
   <indexterm significance="preferred"><primary>Viewable</primary></indexterm>
   <glossdef>
@@ -1249,7 +1249,7 @@ backing store.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Visible">
   <glossterm><function>Visible</function></glossterm>
   <indexterm significance="preferred"><primary>Visible</primary></indexterm>
   <glossdef>
@@ -1262,7 +1262,7 @@ other window.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Window_gravity">
   <glossterm><function>Window gravity</function></glossterm>
   <glossdef>
 <!-- .IN "Window" "gravity" "@DEF@" -->
@@ -1276,7 +1276,7 @@ as window gravity.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:Window_manager">
   <glossterm><function>Window manager</function></glossterm>
   <glossdef>
 <!-- .IN "Window" "manager" "@DEF@" -->
@@ -1287,7 +1287,7 @@ Manipulation of windows on the screen and much of the user interface
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:XYFormat">
   <glossterm><function>XYFormat</function></glossterm>
   <indexterm significance="preferred"><primary>XYFormat</primary></indexterm>
   <glossdef>
@@ -1299,7 +1299,7 @@ appearing from most-significant to least-significant in bit order.
     </para>
   </glossdef>
 </glossentry>
-<glossentry>
+<glossentry id="glossary:ZFormat">
   <glossterm><function>ZFormat</function></glossterm>
   <indexterm significance="preferred"><primary>ZFormat</primary></indexterm>
   <glossdef>
