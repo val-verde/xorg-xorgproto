@@ -211,5 +211,6 @@ fi
 
 AC_OUTPUT([Makefile
            specs/Makefile
+           specs/SIAddresses/Makefile
            Xpoll.h
            xproto.pc])

@@ -21,6 +21,8 @@
 # DEALINGS IN THE SOFTWARE.
 #
 
+SUBDIRS = SIAddresses
+
 if ENABLE_SPECS
 
 doc_sources = x11protocol.xml
