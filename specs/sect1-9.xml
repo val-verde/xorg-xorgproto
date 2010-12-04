@@ -1743,14 +1743,10 @@ red-mask, green-mask, and blue-mask.
 </chapter>
 
 <chapter id="requests">
-<title>Requests</title>
-<!-- .XS -->
-<!-- \*(SN Requests -->
-<!-- .XE -->
-<para id="requests:CreateWindow">
-<emphasis role='bold'>CreateWindow</emphasis>
-<indexterm significance="preferred"><primary>CreateWindow</primary></indexterm>
-</para>
+  <title>Requests</title>
+  <section id="requests:CreateWindow">
+    <title>CreateWindow</title>
+    <indexterm significance="preferred"><primary>CreateWindow</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2336,10 +2332,10 @@ undefined effect on the window state.
 The server might or might not make a copy of the pixmap.
 <!-- .sp -->
 </para>
-<para id="requests:ChangeWindowAttributes">
-<emphasis role='bold'>ChangeWindowAttributes</emphasis>
-<indexterm significance="preferred"><primary>ChangeWindowAttributes</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangeWindowAttributes">
+    <title>ChangeWindowAttributes</title>
+    <indexterm significance="preferred"><primary>ChangeWindowAttributes</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2456,10 +2452,10 @@ If an error is generated,
 a subset of the attributes may have been altered.
 <!-- .sp -->
 </para>
-<para id="requests:GetWindowAttributes">
-<emphasis role='bold'>GetWindowAttributes</emphasis>
-<indexterm significance="preferred"><primary>GetWindowAttributes</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetWindowAttributes">
+    <title>GetWindowAttributes</title>
+    <indexterm significance="preferred"><primary>GetWindowAttributes</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2580,10 +2576,10 @@ by clients.
 Your-event-mask is the event mask selected by the querying client.
 <!-- .sp -->
 </para>
-<para id="requests:DestroyWindow">
-<emphasis role='bold'>DestroyWindow</emphasis>
-<indexterm significance="preferred"><primary>DestroyWindow</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:DestroyWindow">
+    <title>DestroyWindow</title>
+    <indexterm significance="preferred"><primary>DestroyWindow</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2633,10 +2629,10 @@ If the window is a root window,
 this request has no effect.
 <!-- .sp -->
 </para>
-<para id="requests:DestroySubwindows">
-<emphasis role='bold'>DestroySubwindows</emphasis>
-<indexterm significance="preferred"><primary>DestroySubwindows</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:DestroySubwindows">
+    <title>DestroySubwindows</title>
+    <indexterm significance="preferred"><primary>DestroySubwindows</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2667,10 +2663,10 @@ This request performs a
 request on all children of the window, in bottom-to-top stacking order.
 <!-- .sp -->
 </para>
-<para id="requests:ChangeSaveSet">
-<emphasis role='bold'>ChangeSaveSet</emphasis>
-<indexterm significance="preferred"><primary>ChangeSaveSet</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangeSaveSet">
+    <title>ChangeSaveSet</title>
+    <indexterm significance="preferred"><primary>ChangeSaveSet</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2718,10 +2714,10 @@ When windows are destroyed,
 the server automatically removes them from the save-set.
 <!-- .sp -->
 </para>
-<para id="requests:ReparentWindow">
-<emphasis role='bold'>ReparentWindow</emphasis>
-<indexterm significance="preferred"><primary>ReparentWindow</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ReparentWindow">
+    <title>ReparentWindow</title>
+    <indexterm significance="preferred"><primary>ReparentWindow</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2798,10 +2794,10 @@ The window has a
 background, and the new parent is not the same depth as the window.
 <!-- .sp -->
 </para>
-<para id="requests:MapWindow">
-<emphasis role='bold'>MapWindow</emphasis>
-<indexterm significance="preferred"><primary>MapWindow</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:MapWindow">
+    <title>MapWindow</title>
+    <indexterm significance="preferred"><primary>MapWindow</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2855,10 +2851,10 @@ Otherwise, only visible regions may be reported.
 Similar tiling and exposure take place for any newly viewable inferiors.
 <!-- .sp -->
 </para>
-<para id="requests:MapSubwindows">
-<emphasis role='bold'>MapSubwindows</emphasis>
-<indexterm significance="preferred"><primary>MapSubwindows</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:MapSubwindows">
+    <title>MapSubwindows</title>
+    <indexterm significance="preferred"><primary>MapSubwindows</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2890,10 +2886,10 @@ request on all unmapped children of the window,
 in top-to-bottom stacking order.
 <!-- .sp -->
 </para>
-<para id="requests:UnmapWindow">
-<emphasis role='bold'>UnmapWindow</emphasis>
-<indexterm significance="preferred"><primary>UnmapWindow</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:UnmapWindow">
+    <title>UnmapWindow</title>
+    <indexterm significance="preferred"><primary>UnmapWindow</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2926,10 +2922,10 @@ event is generated.
 Normal exposure processing on formerly obscured windows is performed.
 <!-- .sp -->
 </para>
-<para id="requests:UnmapSubwindows">
-<emphasis role='bold'>UnmapSubwindows</emphasis>
-<indexterm significance="preferred"><primary>UnmapSubwindows</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:UnmapSubwindows">
+    <title>UnmapSubwindows</title>
+    <indexterm significance="preferred"><primary>UnmapSubwindows</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -2961,10 +2957,10 @@ request on all mapped children of the window,
 in bottom-to-top stacking order.
 <!-- .sp -->
 </para>
-<para id="requests:ConfigureWindow">
-<emphasis role='bold'>ConfigureWindow</emphasis>
-<indexterm significance="preferred"><primary>ConfigureWindow</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ConfigureWindow">
+    <title>ConfigureWindow</title>
+    <indexterm significance="preferred"><primary>ConfigureWindow</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3391,10 +3387,10 @@ the other arguments to the request), not to its initial geometry.
 Attempts to configure a root window have no effect.
 </para>
 
-<para id="requests:CirculateWindow">
-<emphasis role='bold'>CirculateWindow</emphasis>
-<indexterm significance="preferred"><primary>CirculateWindow</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CirculateWindow">
+    <title>CirculateWindow</title>
+    <indexterm significance="preferred"><primary>CirculateWindow</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3451,10 +3447,10 @@ the bottom of the stack.
 Exposure processing is performed on formerly obscured windows.
 <!-- .sp -->
 </para>
-<para id="requests:GetGeometry">
-<emphasis role='bold'>GetGeometry</emphasis>
-<indexterm significance="preferred"><primary>GetGeometry</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetGeometry">
+    <title>GetGeometry</title>
+    <indexterm significance="preferred"><primary>GetGeometry</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3521,10 +3517,10 @@ It is legal to pass an
 window as a drawable to this request.
 <!-- .sp -->
 </para>
-<para id="requests:QueryTree">
-<emphasis role='bold'>QueryTree</emphasis>
-<indexterm significance="preferred"><primary>QueryTree</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:QueryTree">
+    <title>QueryTree</title>
+    <indexterm significance="preferred"><primary>QueryTree</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3577,10 +3573,10 @@ This request returns the root, the parent, and the children of the window.
 The children are listed in bottom-to-top stacking order.
 <!-- .sp -->
 </para>
-<para id="requests:InternAtom">
-<emphasis role='bold'>InternAtom</emphasis>
-<indexterm significance="preferred"><primary>InternAtom</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:InternAtom">
+    <title>InternAtom</title>
+    <indexterm significance="preferred"><primary>InternAtom</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3637,10 +3633,10 @@ The lifetime of an atom is not tied to the interning client.
 Atoms remain defined until server reset (see <link linkend="connection_close">section 10</link>).
 <!-- .sp -->
 </para>
-<para id="requests:GetAtomName">
-<emphasis role='bold'>GetAtomName</emphasis>
-<indexterm significance="preferred"><primary>GetAtomName</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetAtomName">
+    <title>GetAtomName</title>
+    <indexterm significance="preferred"><primary>GetAtomName</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3681,10 +3677,10 @@ Errors:
 This request returns the name for the given atom.
 <!-- .sp -->
 </para>
-<para id="requests:ChangeProperty">
-<emphasis role='bold'>ChangeProperty</emphasis>
-<indexterm significance="preferred"><primary>ChangeProperty</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangeProperty">
+    <title>ChangeProperty</title>
+    <indexterm significance="preferred"><primary>ChangeProperty</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3777,10 +3773,10 @@ or until server reset (see <link linkend="connection_close">section 10</link>).
 The maximum size of a property is server-dependent and may vary dynamically.
 <!-- .sp -->
 </para>
-<para id="requests:DeleteProperty">
-<emphasis role='bold'>DeleteProperty</emphasis>
-<indexterm significance="preferred"><primary>DeleteProperty</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:DeleteProperty">
+    <title>DeleteProperty</title>
+    <indexterm significance="preferred"><primary>DeleteProperty</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3818,10 +3814,10 @@ if the property exists and generates a
 event on the window unless the property does not exist.
 <!-- .sp -->
 </para>
-<para id="requests:GetProperty">
-<emphasis role='bold'>GetProperty</emphasis>
-<indexterm significance="preferred"><primary>GetProperty</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetProperty">
+    <title>GetProperty</title>
+    <indexterm significance="preferred"><primary>GetProperty</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3944,10 +3940,10 @@ and a
 event is generated on the window.
 <!-- .sp -->
 </para>
-<para id="requests:RotateProperties">
-<emphasis role='bold'>RotateProperties</emphasis>
-<indexterm significance="preferred"><primary>RotateProperties</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:RotateProperties">
+    <title>RotateProperties</title>
+    <indexterm significance="preferred"><primary>RotateProperties</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4011,10 +4007,10 @@ or
 error is generated, no properties are changed.
 <!-- .sp -->
 </para>
-<para id="requests:ListProperties">
-<emphasis role='bold'>ListProperties</emphasis>
-<indexterm significance="preferred"><primary>ListProperties</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ListProperties">
+    <title>ListProperties</title>
+    <indexterm significance="preferred"><primary>ListProperties</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4055,10 +4051,10 @@ Errors:
 This request returns the atoms of properties currently defined on the window.
 <!-- .sp -->
 </para>
-<para id="requests:SetSelectionOwner">
-<emphasis role='bold'>SetSelectionOwner</emphasis>
-<indexterm significance="preferred"><primary>SetSelectionOwner</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetSelectionOwner">
+    <title>SetSelectionOwner</title>
+    <indexterm significance="preferred"><primary>SetSelectionOwner</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4143,10 +4139,10 @@ events.
 Selections are global to the server.
 <!-- .sp -->
 </para>
-<para id="requests:GetSelectionOwner">
-<emphasis role='bold'>GetSelectionOwner</emphasis>
-<indexterm significance="preferred"><primary>GetSelectionOwner</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetSelectionOwner">
+    <title>GetSelectionOwner</title>
+    <indexterm significance="preferred"><primary>GetSelectionOwner</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4192,10 +4188,10 @@ If
 is returned, then there is no owner for the selection.
 <!-- .sp -->
 </para>
-<para id="requests:ConvertSelection">
-<emphasis role='bold'>ConvertSelection</emphasis>
-<indexterm significance="preferred"><primary>ConvertSelection</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ConvertSelection">
+    <title>ConvertSelection</title>
+    <indexterm significance="preferred"><primary>ConvertSelection</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4251,10 +4247,10 @@ event to the requestor with property
 The arguments are passed on unchanged in either of the events.
 <!-- .sp -->
 </para>
-<para id="requests:SendEvent">
-<emphasis role='bold'>SendEvent</emphasis>
-<indexterm significance="preferred"><primary>SendEvent</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SendEvent">
+    <title>SendEvent</title>
+    <indexterm significance="preferred"><primary>SendEvent</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4351,10 +4347,10 @@ and to set the sequence number in the event correctly.
 Active grabs are ignored for this request.
 <!-- .sp -->
 </para>
-<para id="requests:GrabPointer">
-<emphasis role='bold'>GrabPointer</emphasis>
-<indexterm significance="preferred"><primary>GrabPointer</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GrabPointer">
+    <title>GrabPointer</title>
+    <indexterm significance="preferred"><primary>GrabPointer</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4529,10 +4525,10 @@ Otherwise, the last-pointer-grab time is set to the specified time, with
 replaced by the current server time.
 <!-- .sp -->
 </para>
-<para id="requests:UngrabPointer">
-<emphasis role='bold'>UngrabPointer</emphasis>
-<indexterm significance="preferred"><primary>UngrabPointer</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:UngrabPointer">
+    <title>UngrabPointer</title>
+    <indexterm significance="preferred"><primary>UngrabPointer</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4576,11 +4572,11 @@ or if window reconfiguration causes the confine-to window to lie
 completely outside the boundaries of the root window.
 <!-- .sp -->
 </para>
-<para id="requests:GrabButton">
-<emphasis role='bold'>GrabButton</emphasis>
-<indexterm significance="preferred"><primary>GrabButton</primary></indexterm>
-<indexterm><primary>Button</primary><secondary>grabbing</secondary></indexterm>
-</para>
+  </section>
+  <section id="requests:GrabButton">
+    <title>GrabButton</title>
+    <indexterm significance="preferred"><primary>GrabButton</primary></indexterm>
+    <indexterm><primary>Button</primary><secondary>grabbing</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4713,10 +4709,10 @@ error is generated if there is a conflicting grab for any combination.
 The request has no effect on an active grab.
 <!-- .sp -->
 </para>
-<para id="requests:UngrabButton">
-<emphasis role='bold'>UngrabButton</emphasis>
-<indexterm significance="preferred"><primary>UngrabButton</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:UngrabButton">
+    <title>UngrabButton</title>
+    <indexterm significance="preferred"><primary>UngrabButton</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4767,10 +4763,10 @@ is equivalent to issuing the request for all possible buttons.
 The request has no effect on an active grab.
 <!-- .sp -->
 </para>
-<para id="requests:ChangeActivePointerGrab">
-<emphasis role='bold'>ChangeActivePointerGrab</emphasis>
-<indexterm significance="preferred"><primary>ChangeActivePointerGrab</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangeActivePointerGrab">
+    <title>ChangeActivePointerGrab</title>
+    <indexterm significance="preferred"><primary>ChangeActivePointerGrab</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4819,10 +4815,10 @@ with
 <emphasis role='bold'>GrabButton</emphasis>.
 <!-- .sp -->
 </para>
-<para id="requests:GrabKeyboard">
-<emphasis role='bold'>GrabKeyboard</emphasis>
-<indexterm significance="preferred"><primary>GrabKeyboard</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GrabKeyboard">
+    <title>GrabKeyboard</title>
+    <indexterm significance="preferred"><primary>GrabKeyboard</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4960,10 +4956,10 @@ Otherwise, the last-keyboard-grab time is set to the specified time with
 replaced by the current server time.
 <!-- .sp -->
 </para>
-<para id="requests:UngrabKeyboard">
-<emphasis role='bold'>UngrabKeyboard</emphasis>
-<indexterm significance="preferred"><primary>UngrabKeyboard</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:UngrabKeyboard">
+    <title>UngrabKeyboard</title>
+    <indexterm significance="preferred"><primary>UngrabKeyboard</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5005,10 +5001,10 @@ is performed automatically if the event window for an active keyboard grab
 becomes not viewable.
 <!-- .sp -->
 </para>
-<para id="requests:GrabKey">
-<emphasis role='bold'>GrabKey</emphasis>
-<indexterm significance="preferred"><primary>GrabKey</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GrabKey">
+    <title>GrabKey</title>
+    <indexterm significance="preferred"><primary>GrabKey</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5125,10 +5121,10 @@ and an
 error is generated if there is a conflicting grab for any combination.
 <!-- .sp -->
 </para>
-<para id="requests:UngrabKey">
-<emphasis role='bold'>UngrabKey</emphasis>
-<indexterm significance="preferred"><primary>UngrabKey</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:UngrabKey">
+    <title>UngrabKey</title>
+    <indexterm significance="preferred"><primary>UngrabKey</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5179,10 +5175,10 @@ is equivalent to issuing the request for all possible keycodes.
 This request has no effect on an active grab.
 <!-- .sp -->
 </para>
-<para id="requests:AllowEvents">
-<emphasis role='bold'>AllowEvents</emphasis>
-<indexterm significance="preferred"><primary>AllowEvents</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:AllowEvents">
+    <title>AllowEvents</title>
+    <indexterm significance="preferred"><primary>AllowEvents</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5388,29 +5384,29 @@ If a device is frozen twice by a single client, then a single
 releases both.
 <!-- .sp -->
 </para>
-<para id="requests:GrabServer">
-<emphasis role='bold'>GrabServer</emphasis>
-<indexterm significance="preferred"><primary>GrabServer</primary></indexterm>
-<indexterm><primary>Server</primary><secondary>grabbing</secondary></indexterm>
-</para>
+  </section>
+  <section id="requests:GrabServer">
+    <title>GrabServer</title>
+    <indexterm significance="preferred"><primary>GrabServer</primary></indexterm>
+    <indexterm><primary>Server</primary><secondary>grabbing</secondary></indexterm>
 <para>
 This request disables processing of requests and close-downs on all
 connections other than the one this request arrived on.
 <!-- .sp -->
 </para>
-<para id="requests:UngrabServer">
-<emphasis role='bold'>UngrabServer</emphasis>
-<indexterm significance="preferred"><primary>UngrabServer</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:UngrabServer">
+    <title>UngrabServer</title>
+    <indexterm significance="preferred"><primary>UngrabServer</primary></indexterm>
 <para>
 This request restarts processing of requests and close-downs
 on other connections.
 <!-- .sp -->
 </para>
-<para id="requests:QueryPointer">
-<emphasis role='bold'>QueryPointer</emphasis>
-<indexterm significance="preferred"><primary>QueryPointer</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:QueryPointer">
+    <title>QueryPointer</title>
+    <indexterm significance="preferred"><primary>QueryPointer</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5488,10 +5484,10 @@ Note that the logical state of a device (as seen by means of the protocol)
 may lag the physical state if device event processing is frozen.
 <!-- .sp -->
 </para>
-<para id="requests:GetMotionEvents">
-<emphasis role='bold'>GetMotionEvents</emphasis>
-<indexterm significance="preferred"><primary>GetMotionEvents</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetMotionEvents">
+    <title>GetMotionEvents</title>
+    <indexterm significance="preferred"><primary>GetMotionEvents</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5566,10 +5562,10 @@ If the stop time is in the future, it is equivalent to specifying
 <emphasis role='bold'>CurrentTime</emphasis>.
 <!-- .sp -->
 </para>
-<para id="requests:TranslateCoordinates">
-<emphasis role='bold'>TranslateCoordinates</emphasis>
-<indexterm significance="preferred"><primary>TranslateCoordinates</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:TranslateCoordinates">
+    <title>TranslateCoordinates</title>
+    <indexterm significance="preferred"><primary>TranslateCoordinates</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5634,10 +5630,10 @@ If the coordinates are contained in a mapped child of dst-window,
 then that child is returned.
 <!-- .sp -->
 </para>
-<para id="requests:WarpPointer">
-<emphasis role='bold'>WarpPointer</emphasis>
-<indexterm significance="preferred"><primary>WarpPointer</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:WarpPointer">
+    <title>WarpPointer</title>
+    <indexterm significance="preferred"><primary>WarpPointer</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5715,10 +5711,10 @@ This request will generate events just as if the user had instantaneously
 moved the pointer.
 <!-- .sp -->
 </para>
-<para id="requests:SetInputFocus">
-<emphasis role='bold'>SetInputFocus</emphasis>
-<indexterm significance="preferred"><primary>SetInputFocus</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetInputFocus">
+    <title>SetInputFocus</title>
+    <indexterm significance="preferred"><primary>SetInputFocus</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5825,10 +5821,10 @@ events are generated,
 but the last-focus-change time is not affected.
 <!-- .sp -->
 </para>
-<para id="requests:GetInputFocus">
-<emphasis role='bold'>GetInputFocus</emphasis>
-<indexterm significance="preferred"><primary>GetInputFocus</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetInputFocus">
+    <title>GetInputFocus</title>
+    <indexterm significance="preferred"><primary>GetInputFocus</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5865,10 +5861,10 @@ revert-to:
 This request returns the current focus state.
 <!-- .sp -->
 </para>
-<para id="requests:QueryKeymap">
-<emphasis role='bold'>QueryKeymap</emphasis>
-<indexterm significance="preferred"><primary>QueryKeymap</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:QueryKeymap">
+    <title>QueryKeymap</title>
+    <indexterm significance="preferred"><primary>QueryKeymap</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5900,10 +5896,10 @@ Note that the logical state of a device (as seen by means of the protocol)
 may lag the physical state if device event processing is frozen.
 <!-- .sp -->
 </para>
-<para id="requests:OpenFont">
-<emphasis role='bold'>OpenFont</emphasis>
-<indexterm significance="preferred"><primary>OpenFont</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:OpenFont">
+    <title>OpenFont</title>
+    <indexterm significance="preferred"><primary>OpenFont</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5954,10 +5950,10 @@ Fonts are not associated with a particular screen
 and can be stored as a component of any graphics context.
 <!-- .sp -->
 </para>
-<para id="requests:CloseFont">
-<emphasis role='bold'>CloseFont</emphasis>
-<indexterm significance="preferred"><primary>CloseFont</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CloseFont">
+    <title>CloseFont</title>
+    <indexterm significance="preferred"><primary>CloseFont</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5987,10 +5983,10 @@ This request deletes the association between the resource ID and the font.
 The font itself will be freed when no other resource references it.
 <!-- .sp -->
 </para>
-<para id="requests:QueryFont">
-<emphasis role='bold'>QueryFont</emphasis>
-<indexterm significance="preferred"><primary>QueryFont</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:QueryFont">
+    <title>QueryFont</title>
+    <indexterm significance="preferred"><primary>QueryFont</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6215,10 +6211,10 @@ The interpretation of the per-character attributes field is
 server-dependent.
 <!-- .sp -->
 </para>
-<para id="requests:QueryTextExtents">
-<emphasis role='bold'>QueryTextExtents</emphasis>
-<indexterm significance="preferred"><primary>QueryTextExtents</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:QueryTextExtents">
+    <title>QueryTextExtents</title>
+    <indexterm significance="preferred"><primary>QueryTextExtents</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6329,10 +6325,10 @@ If the font has no defined default-char,
 then undefined characters in the string are also ignored.
 <!-- .sp -->
 </para>
-<para id="requests:ListFonts">
-<emphasis role='bold'>ListFonts</emphasis>
-<indexterm significance="preferred"><primary>ListFonts</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ListFonts">
+    <title>ListFonts</title>
+    <indexterm significance="preferred"><primary>ListFonts</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6382,10 +6378,10 @@ of characters.
 The returned names are in lowercase.
 <!-- .sp -->
 </para>
-<para id="requests:ListFontsWithInfo">
-<emphasis role='bold'>ListFontsWithInfo</emphasis>
-<indexterm significance="preferred"><primary>ListFontsWithInfo</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ListFontsWithInfo">
+    <title>ListFontsWithInfo</title>
+    <indexterm significance="preferred"><primary>ListFontsWithInfo</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6461,10 +6457,10 @@ a reply with a zero-length name is sent to indicate the end of the reply
 sequence.
 <!-- .sp -->
 </para>
-<para id="requests:SetFontPath">
-<emphasis role='bold'>SetFontPath</emphasis>
-<indexterm significance="preferred"><primary>SetFontPath</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetFontPath">
+    <title>SetFontPath</title>
+    <indexterm significance="preferred"><primary>SetFontPath</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6509,10 +6505,10 @@ for which there currently are no explicit resource IDs allocated.
 The meaning of an error from this request is system specific.
 <!-- .sp -->
 </para>
-<para id="requests:GetFontPath">
-<emphasis role='bold'>GetFontPath</emphasis>
-<indexterm significance="preferred"><primary>GetFontPath</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetFontPath">
+    <title>GetFontPath</title>
+    <indexterm significance="preferred"><primary>GetFontPath</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6538,10 +6534,10 @@ path: LISTofSTRING8
 This request returns the current search path for fonts.
 <!-- .sp -->
 </para>
-<para id="requests:CreatePixmap">
-<emphasis role='bold'>CreatePixmap</emphasis>
-<indexterm significance="preferred"><primary>CreatePixmap</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CreatePixmap">
+    <title>CreatePixmap</title>
+    <indexterm significance="preferred"><primary>CreatePixmap</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6601,10 +6597,10 @@ It is legal to pass an
 window as a drawable to this request.
 <!-- .sp -->
 </para>
-<para id="requests:FreePixmap">
-<emphasis role='bold'>FreePixmap</emphasis>
-<indexterm significance="preferred"><primary>FreePixmap</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:FreePixmap">
+    <title>FreePixmap</title>
+    <indexterm significance="preferred"><primary>FreePixmap</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6634,10 +6630,10 @@ This request deletes the association between the resource ID and the pixmap.
 The pixmap storage will be freed when no other resource references it.
 <!-- .sp -->
 </para>
-<para id="requests:CreateGC">
-<emphasis role='bold'>CreateGC</emphasis>
-<indexterm significance="preferred"><primary>CreateGC</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CreateGC">
+    <title>CreateGC</title>
+    <indexterm significance="preferred"><primary>CreateGC</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -7666,10 +7662,10 @@ identical state as significantly more expensive than making minor
 changes to a single gcontext.
 <!-- .sp -->
 </para>
-<para id="requests:ChangeGC">
-<emphasis role='bold'>ChangeGC</emphasis>
-<indexterm significance="preferred"><primary>ChangeGC</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangeGC">
+    <title>ChangeGC</title>
+    <indexterm significance="preferred"><primary>ChangeGC</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -7730,10 +7726,10 @@ If an error is generated,
 a subset of the components may have been altered.
 <!-- .sp -->
 </para>
-<para id="requests:CopyGC">
-<emphasis role='bold'>CopyGC</emphasis>
-<indexterm significance="preferred"><primary>CopyGC</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CopyGC">
+    <title>CopyGC</title>
+    <indexterm significance="preferred"><primary>CopyGC</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -7775,10 +7771,10 @@ The two gcontexts must have the same root and the same depth (or a
 error results).
 <!-- .sp -->
 </para>
-<para id="requests:SetDashes">
-<emphasis role='bold'>SetDashes</emphasis>
-<indexterm significance="preferred"><primary>SetDashes</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetDashes">
+    <title>SetDashes</title>
+    <indexterm significance="preferred"><primary>SetDashes</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -7874,10 +7870,10 @@ if and only if the point lies inside the clipping region and the point
 would be included in the dash when drawn unclipped.
 <!-- .sp -->
 </para>
-<para id="requests:SetClipRectangles">
-<emphasis role='bold'>SetClipRectangles</emphasis>
-<indexterm significance="preferred"><primary>SetClipRectangles</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetClipRectangles">
+    <title>SetClipRectangles</title>
+    <indexterm significance="preferred"><primary>SetClipRectangles</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -7970,10 +7966,10 @@ all rectangles that include that scanline have identical Y origins and Y
 extents.
 <!-- .sp -->
 </para>
-<para id="requests:FreeGC">
-<emphasis role='bold'>FreeGC</emphasis>
-<indexterm significance="preferred"><primary>FreeGC</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:FreeGC">
+    <title>FreeGC</title>
+    <indexterm significance="preferred"><primary>FreeGC</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8003,10 +7999,10 @@ This request deletes the association between the resource ID and the gcontext
 and destroys the gcontext.
 <!-- .sp -->
 </para>
-<para id="requests:ClearArea">
-<emphasis role='bold'>ClearArea</emphasis>
-<indexterm significance="preferred"><primary>ClearArea</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ClearArea">
+    <title>ClearArea</title>
+    <indexterm significance="preferred"><primary>ClearArea</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8077,10 +8073,10 @@ error to use an
 window in this request.
 <!-- .sp -->
 </para>
-<para id="requests:CopyArea">
-<emphasis role='bold'>CopyArea</emphasis>
-<indexterm significance="preferred"><primary>CopyArea</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CopyArea">
+    <title>CopyArea</title>
+    <indexterm significance="preferred"><primary>CopyArea</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8173,10 +8169,10 @@ GC components: function, plane-mask, subwindow-mode,
 graphics-exposures, clip-x-origin, clip-y-origin, clip-mask
 <!-- .sp -->
 </para>
-<para id="requests:CopyPlane">
-<emphasis role='bold'>CopyPlane</emphasis>
-<indexterm significance="preferred"><primary>CopyPlane</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CopyPlane">
+    <title>CopyPlane</title>
+    <indexterm significance="preferred"><primary>CopyPlane</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8255,10 +8251,10 @@ subwindow-mode, graphics-exposures, clip-x-origin, clip-y-origin,
 clip-mask
 <!-- .sp -->
 </para>
-<para id="requests:PolyPoint">
-<emphasis role='bold'>PolyPoint</emphasis>
-<indexterm significance="preferred"><primary>PolyPoint</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolyPoint">
+    <title>PolyPoint</title>
+    <indexterm significance="preferred"><primary>PolyPoint</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8318,10 +8314,10 @@ GC components: function, plane-mask, foreground, subwindow-mode,
 clip-x-origin, clip-y-origin, clip-mask
 <!-- .sp -->
 </para>
-<para id="requests:PolyLine">
-<emphasis role='bold'>PolyLine</emphasis>
-<indexterm significance="preferred"><primary>PolyLine</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolyLine">
+    <title>PolyLine</title>
+    <indexterm significance="preferred"><primary>PolyLine</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8407,10 +8403,10 @@ GC mode-dependent components: foreground, background, tile, stipple,
 tile-stipple-x-origin, tile-stipple-y-origin, dash-offset, dashes
 <!-- .sp -->
 </para>
-<para id="requests:PolySegment">
-<emphasis role='bold'>PolySegment</emphasis>
-<indexterm significance="preferred"><primary>PolySegment</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolySegment">
+    <title>PolySegment</title>
+    <indexterm significance="preferred"><primary>PolySegment</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8481,10 +8477,10 @@ GC mode-dependent components: foreground, background, tile, stipple,
 tile-stipple-x-origin, tile-stipple-y-origin, dash-offset, dashes
 <!-- .sp -->
 </para>
-<para id="requests:PolyRectangle">
-<emphasis role='bold'>PolyRectangle</emphasis>
-<indexterm significance="preferred"><primary>PolyRectangle</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolyRectangle">
+    <title>PolyRectangle</title>
+    <indexterm significance="preferred"><primary>PolyRectangle</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8552,10 +8548,10 @@ GC mode-dependent components: foreground, background, tile, stipple,
 tile-stipple-x-origin, tile-stipple-y-origin, dash-offset, dashes
 <!-- .sp -->
 </para>
-<para id="requests:PolyArc">
-<emphasis role='bold'>PolyArc</emphasis>
-<indexterm significance="preferred"><primary>PolyArc</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolyArc">
+    <title>PolyArc</title>
+    <indexterm significance="preferred"><primary>PolyArc</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8716,10 +8712,10 @@ GC mode-dependent components: foreground, background, tile, stipple,
 tile-stipple-x-origin, tile-stipple-y-origin, dash-offset, dashes
 <!-- .sp -->
 </para>
-<para id="requests:FillPoly">
-<emphasis role='bold'>FillPoly</emphasis>
-<indexterm significance="preferred"><primary>FillPoly</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:FillPoly">
+    <title>FillPoly</title>
+    <indexterm significance="preferred"><primary>FillPoly</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8827,10 +8823,10 @@ GC mode-dependent components: foreground, background, tile, stipple,
 tile-stipple-x-origin, tile-stipple-y-origin
 <!-- .sp -->
 </para>
-<para id="requests:PolyFillRectangle">
-<emphasis role='bold'>PolyFillRectangle</emphasis>
-<indexterm significance="preferred"><primary>PolyFillRectangle</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolyFillRectangle">
+    <title>PolyFillRectangle</title>
+    <indexterm significance="preferred"><primary>PolyFillRectangle</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8895,10 +8891,10 @@ GC mode-dependent components: foreground, background, tile, stipple,
 tile-stipple-x-origin, tile-stipple-y-origin
 <!-- .sp -->
 </para>
-<para id="requests:PolyFillArc">
-<emphasis role='bold'>PolyFillArc</emphasis>
-<indexterm significance="preferred"><primary>PolyFillArc</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolyFillArc">
+    <title>PolyFillArc</title>
+    <indexterm significance="preferred"><primary>PolyFillArc</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -8987,10 +8983,10 @@ GC mode-dependent components: foreground, background, tile, stipple,
 tile-stipple-x-origin, tile-stipple-y-origin
 <!-- .sp -->
 </para>
-<para id="requests:PutImage">
-<emphasis role='bold'>PutImage</emphasis>
-<indexterm significance="preferred"><primary>PutImage</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PutImage">
+    <title>PutImage</title>
+    <indexterm significance="preferred"><primary>PutImage</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9113,10 +9109,10 @@ clip-y-origin, clip-mask
 GC mode-dependent components: foreground, background
 <!-- .sp -->
 </para>
-<para id="requests:GetImage">
-<emphasis role='bold'>GetImage</emphasis>
-<indexterm significance="preferred"><primary>GetImage</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetImage">
+    <title>GetImage</title>
+    <indexterm significance="preferred"><primary>GetImage</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9242,10 +9238,10 @@ graphics-related requests.
 It is intended specifically for rudimentary hardcopy support.
 <!-- .sp -->
 </para>
-<para id="requests:PolyText8">
-<emphasis role='bold'>PolyText8</emphasis>
-<indexterm significance="preferred"><primary>PolyText8</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolyText8">
+    <title>PolyText8</title>
+    <indexterm significance="preferred"><primary>PolyText8</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9345,10 +9341,10 @@ GC mode-dependent components: foreground, background, tile, stipple,
 tile-stipple-x-origin, tile-stipple-y-origin
 <!-- .sp -->
 </para>
-<para id="requests:PolyText16">
-<emphasis role='bold'>PolyText16</emphasis>
-<indexterm significance="preferred"><primary>PolyText16</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:PolyText16">
+    <title>PolyText16</title>
+    <indexterm significance="preferred"><primary>PolyText16</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9422,10 +9418,10 @@ has been transmitted most significant byte first (that is, byte1 of the
 CHAR2B is taken as the most significant byte).
 <!-- .sp -->
 </para>
-<para id="requests:ImageText8">
-<emphasis role='bold'>ImageText8</emphasis>
-<indexterm significance="preferred"><primary>ImageText8</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ImageText8">
+    <title>ImageText8</title>
+    <indexterm significance="preferred"><primary>ImageText8</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9512,10 +9508,10 @@ GC components: plane-mask, foreground, background, font,
 subwindow-mode, clip-x-origin, clip-y-origin, clip-mask
 <!-- .sp -->
 </para>
-<para id="requests:ImageText16">
-<emphasis role='bold'>ImageText16</emphasis>
-<indexterm significance="preferred"><primary>ImageText16</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ImageText16">
+    <title>ImageText16</title>
+    <indexterm significance="preferred"><primary>ImageText16</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9567,10 +9563,10 @@ has been transmitted most significant byte first (that is, byte1 of the
 CHAR2B is taken as the most significant byte).
 <!-- .sp -->
 </para>
-<para id="requests:CreateColormap">
-<emphasis role='bold'>CreateColormap</emphasis>
-<indexterm significance="preferred"><primary>CreateColormap</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CreateColormap">
+    <title>CreateColormap</title>
+    <indexterm significance="preferred"><primary>CreateColormap</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9675,10 +9671,10 @@ in all cases, none of these entries can be freed with
 <emphasis role='bold'>FreeColors</emphasis>.
 <!-- .sp -->
 </para>
-<para id="requests:FreeColormap">
-<emphasis role='bold'>FreeColormap</emphasis>
-<indexterm significance="preferred"><primary>FreeColormap</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:FreeColormap">
+    <title>FreeColormap</title>
+    <indexterm significance="preferred"><primary>FreeColormap</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9726,10 +9722,10 @@ The protocol does not define the colors displayed for a window with a colormap o
 This request has no effect on a default colormap for a screen.
 <!-- .sp -->
 </para>
-<para id="requests:CopyColormapAndFree">
-<emphasis role='bold'>CopyColormapAndFree</emphasis>
-<indexterm significance="preferred"><primary>CopyColormapAndFree</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CopyColormapAndFree">
+    <title>CopyColormapAndFree</title>
+    <indexterm significance="preferred"><primary>CopyColormapAndFree</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9786,10 +9782,10 @@ or
 and that have not been freed since they were allocated.
 <!-- .sp -->
 </para>
-<para id="requests:InstallColormap">
-<emphasis role='bold'>InstallColormap</emphasis>
-<indexterm significance="preferred"><primary>InstallColormap</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:InstallColormap">
+    <title>InstallColormap</title>
+    <indexterm significance="preferred"><primary>InstallColormap</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9856,10 +9852,10 @@ Initially the default colormap for a screen is installed (but is not in
 the required list).
 <!-- .sp -->
 </para>
-<para id="requests:UninstallColormap">
-<emphasis role='bold'>UninstallColormap</emphasis>
-<indexterm significance="preferred"><primary>UninstallColormap</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:UninstallColormap">
+    <title>UninstallColormap</title>
+    <indexterm significance="preferred"><primary>UninstallColormap</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9906,10 +9902,10 @@ the request, a
 event is generated on every window having that colormap as an attribute.
 <!-- .sp -->
 </para>
-<para id="requests:ListInstalledColormaps">
-<emphasis role='bold'>ListInstalledColormaps</emphasis>
-<indexterm significance="preferred"><primary>ListInstalledColormaps</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ListInstalledColormaps">
+    <title>ListInstalledColormaps</title>
+    <indexterm significance="preferred"><primary>ListInstalledColormaps</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9955,10 +9951,10 @@ and there is no explicit indication of the required list (see
 request).
 <!-- .sp -->
 </para>
-<para id="requests:AllocColor">
-<emphasis role='bold'>AllocColor</emphasis>
-<indexterm significance="preferred"><primary>AllocColor</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:AllocColor">
+    <title>AllocColor</title>
+    <indexterm significance="preferred"><primary>AllocColor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10014,10 +10010,10 @@ Multiple clients requesting the same effective RGB values can be assigned
 the same read-only entry, allowing entries to be shared.
 <!-- .sp -->
 </para>
-<para id="requests:AllocNamedColor">
-<emphasis role='bold'>AllocNamedColor</emphasis>
-<indexterm significance="preferred"><primary>AllocNamedColor</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:AllocNamedColor">
+    <title>AllocNamedColor</title>
+    <indexterm significance="preferred"><primary>AllocNamedColor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10083,10 +10079,10 @@ The exact RGB values specify the true values for the color,
 and the visual values specify the values actually used in the colormap.
 <!-- .sp -->
 </para>
-<para id="requests:AllocColorCells">
-<emphasis role='bold'>AllocColorCells</emphasis>
-<indexterm significance="preferred"><primary>AllocColorCells</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:AllocColorCells">
+    <title>AllocColorCells</title>
+    <indexterm significance="preferred"><primary>AllocColorCells</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10166,10 +10162,10 @@ and three contiguous sets of bits (one within each pixel subfield) for
 The RGB values of the allocated entries are undefined.
 <!-- .sp -->
 </para>
-<para id="requests:AllocColorPlanes">
-<emphasis role='bold'>AllocColorPlanes</emphasis>
-<indexterm significance="preferred"><primary>AllocColorPlanes</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:AllocColorPlanes">
+    <title>AllocColorPlanes</title>
+    <indexterm significance="preferred"><primary>AllocColorPlanes</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10257,10 +10253,10 @@ the pixel is decomposed according to the masks and the
 corresponding independent entries are updated.
 <!-- .sp -->
 </para>
-<para id="requests:FreeColors">
-<emphasis role='bold'>FreeColors</emphasis>
-<indexterm significance="preferred"><primary>FreeColors</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:FreeColors">
+    <title>FreeColors</title>
+    <indexterm significance="preferred"><primary>FreeColors</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10338,10 +10334,10 @@ If more than one pixel is in error,
 it is arbitrary as to which pixel is reported.
 <!-- .sp -->
 </para>
-<para id="requests:StoreColors">
-<emphasis role='bold'>StoreColors</emphasis>
-<indexterm significance="preferred"><primary>StoreColors</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:StoreColors">
+    <title>StoreColors</title>
+    <indexterm significance="preferred"><primary>StoreColors</primary></indexterm>
 
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
@@ -10424,10 +10420,10 @@ If more than one pixel is in error,
 it is arbitrary as to which pixel is reported.
 <!-- .sp -->
 </para>
-<para id="requests:StoreNamedColor">
-<emphasis role='bold'>StoreNamedColor</emphasis>
-<indexterm significance="preferred"><primary>StoreNamedColor</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:StoreNamedColor">
+    <title>StoreNamedColor</title>
+    <indexterm significance="preferred"><primary>StoreNamedColor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10485,10 +10481,10 @@ errors are the same as in
 <emphasis role='bold'>StoreColors</emphasis>.
 <!-- .sp -->
 </para>
-<para id="requests:QueryColors">
-<emphasis role='bold'>QueryColors</emphasis>
-<indexterm significance="preferred"><primary>QueryColors</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:QueryColors">
+    <title>QueryColors</title>
+    <indexterm significance="preferred"><primary>QueryColors</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10556,10 +10552,10 @@ If more than one pixel is in error,
 it is arbitrary as to which pixel is reported.
 <!-- .sp -->
 </para>
-<para id="requests:LookupColor">
-<emphasis role='bold'>LookupColor</emphasis>
-<indexterm significance="preferred"><primary>LookupColor</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:LookupColor">
+    <title>LookupColor</title>
+    <indexterm significance="preferred"><primary>LookupColor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10616,10 +10612,10 @@ The name should use the ISO Latin-1 encoding,
 and uppercase and lowercase do not matter.
 <!-- .sp -->
 </para>
-<para id="requests:CreateCursor">
-<emphasis role='bold'>CreateCursor</emphasis>
-<indexterm significance="preferred"><primary>CreateCursor</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CreateCursor">
+    <title>CreateCursor</title>
+    <indexterm significance="preferred"><primary>CreateCursor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10715,10 +10711,10 @@ on the cursor.
 The server might or might not make a copy of the pixmap.
 <!-- .sp -->
 </para>
-<para id="requests:CreateGlyphCursor">
-<emphasis role='bold'>CreateGlyphCursor</emphasis>
-<indexterm significance="preferred"><primary>CreateGlyphCursor</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:CreateGlyphCursor">
+    <title>CreateGlyphCursor</title>
+    <indexterm significance="preferred"><primary>CreateGlyphCursor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10803,10 +10799,10 @@ The fonts can be freed immediately if no further explicit references to
 them are to be made.
 <!-- .sp -->
 </para>
-<para id="requests:FreeCursor">
-<emphasis role='bold'>FreeCursor</emphasis>
-<indexterm significance="preferred"><primary>FreeCursor</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:FreeCursor">
+    <title>FreeCursor</title>
+    <indexterm significance="preferred"><primary>FreeCursor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10836,10 +10832,10 @@ This request deletes the association between the resource ID and the cursor.
 The cursor storage will be freed when no other resource references it.
 <!-- .sp -->
 </para>
-<para id="requests:RecolorCursor">
-<emphasis role='bold'>RecolorCursor</emphasis>
-<indexterm significance="preferred"><primary>RecolorCursor</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:RecolorCursor">
+    <title>RecolorCursor</title>
+    <indexterm significance="preferred"><primary>RecolorCursor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10880,10 +10876,10 @@ If the cursor is being displayed on a screen,
 the change is visible immediately.
 <!-- .sp -->
 </para>
-<para id="requests:QueryBestSize">
-<emphasis role='bold'>QueryBestSize</emphasis>
-<indexterm significance="preferred"><primary>QueryBestSize</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:QueryBestSize">
+    <title>QueryBestSize</title>
+    <indexterm significance="preferred"><primary>QueryBestSize</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10967,10 +10963,10 @@ or
 error results).
 <!-- .sp -->
 </para>
-<para id="requests:QueryExtension">
-<emphasis role='bold'>QueryExtension</emphasis>
-<indexterm significance="preferred"><primary>QueryExtension</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:QueryExtension">
+    <title>QueryExtension</title>
+    <indexterm significance="preferred"><primary>QueryExtension</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11034,10 +11030,10 @@ The extension name should use the ISO Latin-1 encoding,
 and uppercase and lowercase matter.
 <!-- .sp -->
 </para>
-<para id="requests:ListExtensions">
-<emphasis role='bold'>ListExtensions</emphasis>
-<indexterm significance="preferred"><primary>ListExtensions</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ListExtensions">
+    <title>ListExtensions</title>
+    <indexterm significance="preferred"><primary>ListExtensions</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11062,10 +11058,10 @@ names: LISTofSTRING8
 <para>
 This request returns a list of all extensions supported by the server.
 </para>
-<para id="requests:SetModifierMapping">
-<emphasis role='bold'>SetModifierMapping</emphasis>
-<indexterm significance="preferred"><primary>SetModifierMapping</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetModifierMapping">
+    <title>SetModifierMapping</title>
+    <indexterm significance="preferred"><primary>SetModifierMapping</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11169,10 +11165,10 @@ event on a
 status.
 <!-- .sp -->
 </para>
-<para id="requests:GetModifierMapping">
-<emphasis role='bold'>GetModifierMapping</emphasis>
-<indexterm significance="preferred"><primary>GetModifierMapping</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetModifierMapping">
+    <title>GetModifierMapping</title>
+    <indexterm significance="preferred"><primary>GetModifierMapping</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11222,10 +11218,10 @@ the use of the corresponding modifier has been disabled.
 The order of keycodes within each set is chosen arbitrarily by the server.
 <!-- .sp -->
 </para>
-<para id="requests:ChangeKeyboardMapping">
-<emphasis role='bold'>ChangeKeyboardMapping</emphasis>
-<indexterm significance="preferred"><primary>ChangeKeyboardMapping</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangeKeyboardMapping">
+    <title>ChangeKeyboardMapping</title>
+    <indexterm significance="preferred"><primary>ChangeKeyboardMapping</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11310,10 +11306,10 @@ it is merely stored for reading and writing by clients
 (see <link linkend="keyboards">section 5</link>).
 <!-- .sp -->
 </para>
-<para id="requests:GetKeyboardMapping">
-<emphasis role='bold'>GetKeyboardMapping</emphasis>
-<indexterm significance="preferred"><primary>GetKeyboardMapping</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetKeyboardMapping">
+    <title>GetKeyboardMapping</title>
+    <indexterm significance="preferred"><primary>GetKeyboardMapping</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11397,10 +11393,10 @@ A special KEYSYM value of
 is used to fill in unused elements for individual keycodes.
 <!-- .sp -->
 </para>
-<para id="requests:ChangeKeyboardControl">
-<emphasis role='bold'>ChangeKeyboardControl</emphasis>
-<indexterm significance="preferred"><primary>ChangeKeyboardControl</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangeKeyboardControl">
+    <title>ChangeKeyboardControl</title>
+    <indexterm significance="preferred"><primary>ChangeKeyboardControl</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11568,10 +11564,10 @@ If an error is generated,
 a subset of the controls may have been altered.
 <!-- .sp -->
 </para>
-<para id="requests:GetKeyboardControl">
-<emphasis role='bold'>GetKeyboardControl</emphasis>
-<indexterm significance="preferred"><primary>GetKeyboardControl</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetKeyboardControl">
+    <title>GetKeyboardControl</title>
+    <indexterm significance="preferred"><primary>GetKeyboardControl</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11637,10 +11633,10 @@ Byte N (from 0) contains the bits for keys 8N to 8N + 7,
 with the least significant bit in the byte representing key 8N.
 <!-- .sp -->
 </para>
-<para id="requests:Bell">
-<emphasis role='bold'>Bell</emphasis>
-<indexterm significance="preferred"><primary>Bell</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:Bell">
+    <title>Bell</title>
+    <indexterm significance="preferred"><primary>Bell</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11683,10 +11679,10 @@ base + [(base * percent) / 100]
 <!-- .DE -->
 <!-- .sp -->
 </para>
-<para id="requests:SetPointerMapping">
-<emphasis role='bold'>SetPointerMapping</emphasis>
-<indexterm significance="preferred"><primary>SetPointerMapping</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetPointerMapping">
+    <title>SetPointerMapping</title>
+    <indexterm significance="preferred"><primary>SetPointerMapping</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11757,10 +11753,10 @@ event on a
 status.
 <!-- .sp -->
 </para>
-<para id="requests:GetPointerMapping">
-<emphasis role='bold'>GetPointerMapping</emphasis>
-<indexterm significance="preferred"><primary>GetPointerMapping</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetPointerMapping">
+    <title>GetPointerMapping</title>
+    <indexterm significance="preferred"><primary>GetPointerMapping</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11791,10 +11787,10 @@ The length of the list indicates the number of physical buttons.
 The nominal mapping for a pointer is the identity mapping: map[i]=i.
 <!-- .sp -->
 </para>
-<para id="requests:ChangePointerControl">
-<emphasis role='bold'>ChangePointerControl</emphasis>
-<indexterm significance="preferred"><primary>ChangePointerControl</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangePointerControl">
+    <title>ChangePointerControl</title>
+    <indexterm significance="preferred"><primary>ChangePointerControl</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11843,10 +11839,10 @@ Other negative values generate a
 error, as does a zero value for acceleration-denominator.
 <!-- .sp -->
 </para>
-<para id="requests:GetPointerControl">
-<emphasis role='bold'>GetPointerControl</emphasis>
-<indexterm significance="preferred"><primary>GetPointerControl</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetPointerControl">
+    <title>GetPointerControl</title>
+    <indexterm significance="preferred"><primary>GetPointerControl</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11877,10 +11873,10 @@ threshold: CARD16
 This request returns the current acceleration and threshold for the pointer.
 <!-- .sp -->
 </para>
-<para id="requests:SetScreenSaver">
-<emphasis role='bold'>SetScreenSaver</emphasis>
-<indexterm significance="preferred"><primary>SetScreenSaver</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetScreenSaver">
+    <title>SetScreenSaver</title>
+    <indexterm significance="preferred"><primary>SetScreenSaver</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11959,10 +11955,10 @@ tiling the screen with the root window background tile,
 randomly reorigined periodically.
 <!-- .sp -->
 </para>
-<para id="requests:GetScreenSaver">
-<emphasis role='bold'>GetScreenSaver</emphasis>
-<indexterm significance="preferred"><primary>GetScreenSaver</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:GetScreenSaver">
+    <title>GetScreenSaver</title>
+    <indexterm significance="preferred"><primary>GetScreenSaver</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -12002,10 +11998,10 @@ allow-exposures:
 This request returns the current screen-saver control values.
 <!-- .sp -->
 </para>
-<para id="requests:ForceScreenSaver">
-<emphasis role='bold'>ForceScreenSaver</emphasis>
-<indexterm significance="preferred"><primary>ForceScreenSaver</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ForceScreenSaver">
+    <title>ForceScreenSaver</title>
+    <indexterm significance="preferred"><primary>ForceScreenSaver</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -12046,10 +12042,10 @@ and the activation timer is reset to its initial state
 as if device input had just been received.
 <!-- .sp -->
 </para>
-<para id="requests:ChangeHosts">
-<emphasis role='bold'>ChangeHosts</emphasis>
-<indexterm significance="preferred"><primary>ChangeHosts</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ChangeHosts">
+    <title>ChangeHosts</title>
+    <indexterm significance="preferred"><primary>ChangeHosts</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -12163,10 +12159,10 @@ secure forms of authentication, such as those based on shared secrets
 or public key encryption, are recommended.
 <!-- .sp -->
 </para>
-<para id="requests:ListHosts">
-<emphasis role='bold'>ListHosts</emphasis>
-<indexterm significance="preferred"><primary>ListHosts</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:ListHosts">
+    <title>ListHosts</title>
+    <indexterm significance="preferred"><primary>ListHosts</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -12204,10 +12200,10 @@ enabled or disabled.
 Each HOST is padded to a multiple of four bytes.
 <!-- .sp -->
 </para>
-<para id="requests:SetAccessControl">
-<emphasis role='bold'>SetAccessControl</emphasis>
-<indexterm significance="preferred"><primary>SetAccessControl</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetAccessControl">
+    <title>SetAccessControl</title>
+    <indexterm significance="preferred"><primary>SetAccessControl</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -12247,10 +12243,10 @@ to execute this request (or an
 error results).
 <!-- .sp -->
 </para>
-<para id="requests:SetCloseDownMode">
-<emphasis role='bold'>SetCloseDownMode</emphasis>
-<indexterm significance="preferred"><primary>SetCloseDownMode</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:SetCloseDownMode">
+    <title>SetCloseDownMode</title>
+    <indexterm significance="preferred"><primary>SetCloseDownMode</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -12288,10 +12284,10 @@ The meaning of the close-down mode is described
 in <link linkend="connection_close">section 10</link>.
 <!-- .sp -->
 </para>
-<para id="requests:KillClient">
-<emphasis role='bold'>KillClient</emphasis>
-<indexterm significance="preferred"><primary>KillClient</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:KillClient">
+    <title>KillClient</title>
+    <indexterm significance="preferred"><primary>KillClient</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -12335,10 +12331,10 @@ then the resources of all clients that have terminated in
 are destroyed.
 <!-- .sp -->
 </para>
-<para id="requests:NoOperation">
-<emphasis role='bold'>NoOperation</emphasis>
-<indexterm significance="preferred"><primary>NoOperation</primary></indexterm>
-</para>
+  </section>
+  <section id="requests:NoOperation">
+    <title>NoOperation</title>
+    <indexterm significance="preferred"><primary>NoOperation</primary></indexterm>
 <para>
 This request has no arguments and no results,
 but the request length field
@@ -12350,6 +12346,7 @@ This request can be used in its minimum four byte form as padding where
 necessary by client libraries that find it convenient to force requests
 to begin on 64-bit boundaries.
 </para>
+  </section>
 </chapter>
 
 <chapter id="connection_close">
