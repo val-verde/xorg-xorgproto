@@ -72,10 +72,10 @@ For components with a static numeric value the encode-form is:
 The value is always interpreted as an N-byte unsigned integer.
 For example,
 the first two bytes of a
-<emphasis role='bold'>Window </emphasis>
+<emphasis role='bold'>Window</emphasis>
 error are always zero (indicating an
 error in general) and three (indicating the
-<emphasis role='bold'>Window </emphasis>
+<emphasis role='bold'>Window</emphasis>
 error in particular):
 </para>
 
@@ -90,8 +90,8 @@ For components described in the protocol as:
 
 <para>
 name:
-<emphasis role='bold'>{ Name1 ,..., </emphasis>
-<emphasis role='bold'>NameI }</emphasis>
+<emphasis role='bold'>{ Name1</emphasis>,...,
+<emphasis role='bold'>NameI</emphasis>}
 </para>
 
 <para>
@@ -159,7 +159,7 @@ For example:
 
 <para>
 destination: WINDOW or
-<emphasis role='bold'>PointerWindow </emphasis>
+<emphasis role='bold'>PointerWindow</emphasis>
 or
 <emphasis role='bold'>InputFocus</emphasis>
 </para>
