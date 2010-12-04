@@ -1117,21 +1117,17 @@ other names.
 </chapter>
 
 <chapter id="connection_setup">
-<title>Connection Setup</title>
-<!-- .XS -->
-<!-- (SN Connection Setup -->
-<!-- .XE -->
-<para>
+  <title>Connection Setup</title>
+
+  <para>
 For remote clients,
 the X protocol can be built on top of any reliable byte stream.
-</para>
+  </para>
 
-<para>
-<emphasis role="bold">Connection Initiation</emphasis>
-</para>
+  <section id="connection_initiation">
+    <title>Connection Initiation</title>
 
-<para>
-<!-- .LP -->
+    <para>
 The client must send an initial byte of data to identify the byte order to be
 employed.
 The value of the byte must be octal 102 or 154.
@@ -1143,12 +1139,12 @@ all 16-bit and 32-bit quantities sent by the client must be transmitted with
 this byte order,
 and all 16-bit and 32-bit quantities returned by the server will be transmitted
 with this byte order.
-</para>
-<para>
+    </para>
+    <para>
 Following the byte-order byte,
 the client sends the following information at connection setup:
-</para>
-<blockquote>
+    </para>
+    <blockquote>
     <para>
 protocol-major-version: CARD16
     </para>
@@ -1161,12 +1157,12 @@ authorization-protocol-name: STRING8
     <para>
 authorization-protocol-data: STRING8
     </para>
-</blockquote>
-<para>
+    </blockquote>
+    <para>
 The version numbers indicate what version of the protocol the client
 expects the server to implement.
-</para>
-<para>
+    </para>
+    <para>
 The authorization name indicates what authorization (and authentication)
 protocol the client
 expects the server to use, and the data is specific to that protocol.
@@ -1177,14 +1173,15 @@ or that only implements the host-based mechanism may simply ignore this
 information.
 If both name and data strings are empty,
 this is to be interpreted as "no explicit authorization."
-</para>
-<para>
-<emphasis role="bold">Server Response</emphasis>
-</para>
+    </para>
+  </section>
 
-<para>
+  <section id="server_response">
+    <title>Server Response</title>
+
+    <para>
 The client receives the following information at connection setup:
-</para>
+    </para>
 
 <itemizedlist>
   <listitem>
@@ -1197,12 +1194,12 @@ success:
   </listitem>
 </itemizedlist>
 
-<para>
+    <para>
 The client receives the following additional data if the returned success
 value is
 <emphasis role='bold'>Failed</emphasis>,
 and the connection is not successfully established:
-</para>
+    </para>
 
 <blockquote>
     <para>
@@ -1216,12 +1213,12 @@ reason: STRING8
     </para>
 </blockquote>
 
-<para>
+    <para>
 The client receives the following additional data if the returned success
 value is
 <emphasis role='bold'>Authenticate</emphasis>,
 and further authentication negotiation is required:
-</para>
+    </para>
 
 <blockquote>
     <para>
@@ -1229,7 +1226,7 @@ reason: STRING8
     </para>
 </blockquote>
 
-<para>
+    <para>
 The contents of the reason string are specific to the authorization
 protocol in use.  The semantics of this authentication negotiation are
 not constrained, except that the negotiation must eventually terminate
@@ -1237,14 +1234,14 @@ with a reply from the server containing a success value of
 <emphasis role='bold'>Failed</emphasis>
 or
 <emphasis role='bold'>Success</emphasis>.
-</para>
+    </para>
 
-<para>
+    <para>
 The client receives the following additional data if the returned success
 value is
 <emphasis role='bold'>Success</emphasis>,
 and the connection is successfully established:
-</para>
+    </para>
 
 <blockquote>
     <para>
@@ -1415,17 +1412,16 @@ PseudoColor, DirectColor}
 </informaltable>
     </blockquote>
 </blockquote>
+  </section>
 
-<para>
-Server Information
-</para>
+  <section id="server_information">
+    <title>Server Information</title>
 
-<para>
+    <para>
 The information that is global to the server is:
-</para>
+    </para>
 
-<para>
-<!-- .LP -->
+    <para>
 The protocol version numbers are an escape hatch in case future revisions of
 the protocol are necessary.
 In general,
@@ -1439,15 +1435,13 @@ This might not equal the version sent by the client.
 The server can (but need not) refuse connections from clients that offer a
 different version than the server supports.
 A server can (but need not) support more than one version simultaneously.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 The vendor string gives some identification of the owner of the server
 implementation.
 The vendor controls the semantics of the release number.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 The resource-id-mask contains a single contiguous set of bits (at least 18).
 The client allocates resource IDs for types WINDOW, PIXMAP,
 CURSOR, FONT, GCONTEXT, and COLORMAP by choosing a value with only
@@ -1465,18 +1459,16 @@ However, note that the value spaces of resource identifiers,
 atoms, visualids, and keysyms are distinguished by context, and
 as such, are not required to be disjoint; for example, a given numeric value
 might be both a valid window ID, a valid atom, and a valid keysym.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 Although the server is in general responsible for byte-swapping data to
 match the client,
 images are always transmitted and received in formats (including byte order)
 specified by the server.
 The byte order for images is given by image-byte-order and applies to each
 scanline unit in XY format (bitmap format) and to each pixel value in Z format.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 A bitmap is represented in scanline order.
 Each scanline is padded to a multiple of bits as given by bitmap-scanline-pad.
 The pad bits are of arbitrary value.
@@ -1490,9 +1482,8 @@ If a pixmap is represented in XY format,
 each plane is represented as a bitmap, and the planes appear from
 most significant to least significant in bit order with no padding
 between planes.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 Pixmap-formats contains one entry for each depth value.
 The entry describes the Z format used to represent images of that depth.
 An entry for a depth is included if any screen supports that depth,
@@ -1512,15 +1503,13 @@ the format is identical for bitmap format.
 Each scanline is padded to a multiple of bits as given by scanline-pad.
 When bits-per-pixel is 1,
 this will be identical to bitmap-scanline-pad.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 How a pointing device roams the screens is up to the server
 implementation and is transparent to the protocol.
 No geometry is defined among screens.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 The server may retain the recent history of pointer motion and do so to a
 finer granularity than is reported by
 <emphasis role='bold'>MotionNotify</emphasis>
@@ -1530,9 +1519,8 @@ The
 request makes such history available.
 The motion-buffer-size gives the approximate maximum number
 of elements in the history buffer.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 Maximum-request-length specifies the maximum length of a request
 accepted by the server, in 4-byte units.
 That is, length is the maximum value that can appear in the length field of a
@@ -1544,24 +1532,24 @@ and the server will read and simply discard the entire request.
 Maximum-request-length will always be at least 4096
 (that is, requests of length up to and including 16384 bytes
 will be accepted by all servers).
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 Min-keycode and max-keycode specify the smallest and largest keycode
 values transmitted by the server.
 Min-keycode is never less than 8,
 and max-keycode is never greater than 255.
 Not all keycodes in this range are required to have corresponding keys.
-</para>
-<para>
-<emphasis role="bold">Screen Information</emphasis>
-</para>
-<para>
-The information that applies per screen is:
-</para>
+    </para>
+  </section>
 
-<para>
-<!-- .LP -->
+  <section id="screen_information">
+    <title>Screen Information</title>
+
+    <para>
+The information that applies per screen is:
+    </para>
+
+    <para>
 The allowed-depths specifies what pixmap and window depths are supported.
 Pixmaps are supported for each depth listed,
 and windows of that depth are supported if at least one visual type is listed
@@ -1572,9 +1560,8 @@ A depth of zero is never listed,
 but zero-depth
 <emphasis role='bold'>InputOnly</emphasis>
 windows are always supported.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 Root-depth and root-visual specify the depth and visual type of the
 root window.
 Width-in-pixels and height-in-pixels specify the size of
@@ -1583,16 +1570,14 @@ The class of the root window is always
 <emphasis role='bold'>InputOutput</emphasis>.
 Width-in-millimeters and height-in-millimeters can be used to determine the
 physical size and the aspect ratio.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 The default-colormap is the one initially associated with the root window.
 Clients with minimal color requirements creating windows of
 the same depth as the root may want to allocate from this map by
 default.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 Black-pixel and white-pixel can be used in implementing a monochrome
 application.
 These pixel values are for permanently allocated entries in the
@@ -1600,15 +1585,13 @@ default-colormap.
 The actual RGB values may be settable on some screens
 and, in any case, may not actually be black and white.
 The names are intended to convey the expected relative intensity of the colors.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 The border of the root window is initially a pixmap filled with the black-pixel.
 The initial background of the root window is a pixmap filled with some
 unspecified two-color pattern using black-pixel and white-pixel.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 Min-installed-maps specifies the number of maps that can be guaranteed
 to be installed simultaneously (with
 <emphasis role='bold'>InstallColormap</emphasis>),
@@ -1619,9 +1602,8 @@ Multiple static-visual colormaps with identical contents but differing in
 resource ID should be considered as a single map for the purposes of this
 number.
 For the typical case of a single hardware colormap, both values will be 1.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 Backing-stores indicates when the server supports backing stores for
 this screen, although it may be storage limited in the number of
 windows it can support at once.
@@ -1632,28 +1614,27 @@ the server can support the save-under mode in
 and
 <emphasis role='bold'>ChangeWindowAttributes</emphasis>,
 although again it may be storage limited.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+    <para>
 The current-input-events is what
 <emphasis role='bold'>GetWindowAttributes</emphasis>
 would return for the all-event-masks for the root window.
-<!-- .SH -->
-</para>
-<para>
-<emphasis role="bold">Visual Information</emphasis>
-</para>
-<para>
-<!-- .LP -->
+    </para>
+  </section>
+
+  <section id="visual_information">
+    <title>Visual Information</title>
+
+    <para>
 The information that applies per visual-type is:
-</para>
-<para>
-<!-- .LP -->
+    </para>
+
+    <para>
 A given visual type might be listed for more than one depth or for
 more than one screen.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+
+    <para>
 For
 <emphasis role='bold'>PseudoColor</emphasis>,
 a pixel value indexes a colormap to produce independent RGB values;
@@ -1687,18 +1668,18 @@ except the red, green, and blue values are equal for any
 single pixel value, resulting in shades of gray.
 <emphasis role='bold'>StaticGray</emphasis>
 with a two-entry colormap can be thought of as monochrome.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+
+    <para>
 The red-mask, green-mask, and blue-mask are only defined for
 <emphasis role='bold'>DirectColor</emphasis>
 and
 <emphasis role='bold'>TrueColor</emphasis>.
 Each has one contiguous set of bits set to 1 with no intersections.
 Usually each mask has the same number of bits set to 1.
-</para>
-<para>
-<!-- .LP -->
+    </para>
+
+    <para>
 The bits-per-rgb-value specifies the log base 2 of the number of
 distinct color intensity values (individually) of red, green, and blue.
 This number need not bear any relation to the number of colormap entries.
@@ -1707,17 +1688,15 @@ Actual RGB values are always passed in the protocol within a
 maximum intensity.
 On hardware that provides a linear zero-based intensity ramp,
 the following relationship exists:
-</para>
-<para>
-<!-- .LP -->
-<!-- .RS -->
+    </para>
+
+    <para>
 <literallayout class="monospaced">
        hw-intensity = protocol-intensity / (65536 / total-hw-intensities)
 </literallayout>
-<!-- .RE -->
-</para>
-<para>
-<!-- .LP -->
+    </para>
+
+    <para>
 Colormap entries are indexed from 0.
 The colormap-entries defines the number of available colormap entries in a
 newly created colormap.
@@ -1727,9 +1706,10 @@ and
 <emphasis role='bold'>TrueColor</emphasis>,
 this will usually be 2 to the power of the maximum number of bits set to 1 in
 red-mask, green-mask, and blue-mask.
-
-</para>
+    </para>
+  </section>
 </chapter>
+
 <chapter id="requests">
 <title>Requests</title>
 <!-- .XS -->
