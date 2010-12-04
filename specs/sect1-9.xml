@@ -1031,130 +1031,76 @@ The following names have predefined atom values.
 Note that uppercase and lowercase matter.
 </para>
 
-<informaltable frame="none">
-  <tgroup cols='3' align='left'>
-  <colspec colname='c1' colsep="0"/>
-  <colspec colname='c2' colsep="0"/>
-  <colspec colname='c3' colsep="0"/>
-  <tbody>
-    <row rowsep="0">
-      <entry>ARC</entry>
-      <entry>ITALIC_ANGLE</entry>
-      <entry>STRING</entry>
-    </row>
-    <row rowsep="0">
-      <entry>ATOM</entry>
-      <entry>MAX_SPACE</entry>
-      <entry>SUBSCRIPT_X</entry>
-    </row>
-    <row rowsep="0">
-      <entry>BITMAP</entry>
-      <entry>MIN_SPACE</entry>
-      <entry>SUBSCRIPT_Y</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CAP_HEIGHT</entry>
-      <entry>NORM_SPACE</entry>
-      <entry>SUPERSCRIPT_X</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CARDINAL</entry>
-      <entry>NOTICE</entry>
-      <entry>SUPERSCRIPT_Y</entry>
-    </row>
-    <row rowsep="0">
-      <entry>COLORMAP</entry>
-      <entry>PIXMAP</entry>
-      <entry>UNDERLINE_POSITION</entry>
-    </row>
-    <row rowsep="0">
-      <entry>COPYRIGHT</entry>
-      <entry>POINT</entry>
-      <entry>UNDERLINE_THICKNESS</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CURSOR</entry>
-      <entry>POINT_SIZE</entry>
-      <entry>VISUALID</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CUT_BUFFER0</entry>
-      <entry>PRIMARY</entry>
-      <entry>WEIGHT</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CUT_BUFFER1</entry>
-      <entry>QUAD_WIDTH</entry>
-      <entry>WINDOW</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CUT_BUFFER2</entry>
-      <entry>RECTANGLE</entry>
-      <entry>WM_CLASS</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CUT_BUFFER3</entry>
-      <entry>RESOLUTION</entry>
-      <entry>WM_CLIENT_MACHINE</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CUT_BUFFER4</entry>
-      <entry>RESOURCE_MANAGER</entry>
-      <entry>WM_COMMAND</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CUT_BUFFER5</entry>
-      <entry>RGB_BEST_MAP</entry>
-      <entry>WM_HINTS</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CUT_BUFFER6</entry>
-      <entry>RGB_BLUE_MAP</entry>
-      <entry>WM_ICON_NAME</entry>
-    </row>
-    <row rowsep="0">
-      <entry>CUT_BUFFER7</entry>
-      <entry>RGB_COLOR_MAP</entry>
-      <entry>WM_ICON_SIZE</entry>
-    </row>
-    <row rowsep="0">
-      <entry>DRAWABLE</entry>
-      <entry>RGB_DEFAULT_MAP</entry>
-      <entry>WM_NAME</entry>
-    </row>
-    <row rowsep="0">
-      <entry>END_SPACE</entry>
-      <entry>RGB_GRAY_MAP</entry>
-      <entry>WM_NORMAL_HINTS</entry>
-    </row>
-    <row rowsep="0">
-      <entry>FAMILY_NAME</entry>
-      <entry>RGB_GREEN_MAP</entry>
-      <entry>WM_SIZE_HINTS</entry>
-    </row>
-    <row rowsep="0">
-      <entry>FONT</entry>
-      <entry>RGB_RED_MAP</entry>
-      <entry>WM_TRANSIENT_FOR</entry>
-    </row>
-    <row rowsep="0">
-      <entry>FONT_NAME</entry>
-      <entry>SECONDARY</entry>
-      <entry>WM_ZOOM_HINTS</entry>
-    </row>
-    <row rowsep="0">
-      <entry>FULL_NAME</entry>
-      <entry>STRIKEOUT_ASCENT</entry>
-      <entry>X_HEIGHT</entry>
-    </row>
-    <row rowsep="0">
-      <entry>INTEGER</entry>
-      <entry></entry>
-      <entry>STRIKEOUT_DESCENT</entry>
-    </row>
-  </tbody>
-  </tgroup>
-</informaltable>
+<simplelist type='vert' columns='3'>
+  <member>ARC</member>
+  <member>ATOM</member>
+  <member>BITMAP</member>
+  <member>CAP_HEIGHT</member>
+  <member>CARDINAL</member>
+  <member>COLORMAP</member>
+  <member>COPYRIGHT</member>
+  <member>CURSOR</member>
+  <member>CUT_BUFFER0</member>
+  <member>CUT_BUFFER1</member>
+  <member>CUT_BUFFER2</member>
+  <member>CUT_BUFFER3</member>
+  <member>CUT_BUFFER4</member>
+  <member>CUT_BUFFER5</member>
+  <member>CUT_BUFFER6</member>
+  <member>CUT_BUFFER7</member>
+  <member>DRAWABLE</member>
+  <member>END_SPACE</member>
+  <member>FAMILY_NAME</member>
+  <member>FONT</member>
+  <member>FONT_NAME</member>
+  <member>FULL_NAME</member>
+  <member>INTEGER</member>
+  <member>ITALIC_ANGLE</member>
+  <member>MAX_SPACE</member>
+  <member>MIN_SPACE</member>
+  <member>NORM_SPACE</member>
+  <member>NOTICE</member>
+  <member>PIXMAP</member>
+  <member>POINT</member>
+  <member>POINT_SIZE</member>
+  <member>PRIMARY</member>
+  <member>QUAD_WIDTH</member>
+  <member>RECTANGLE</member>
+  <member>RESOLUTION</member>
+  <member>RESOURCE_MANAGER</member>
+  <member>RGB_BEST_MAP</member>
+  <member>RGB_BLUE_MAP</member>
+  <member>RGB_COLOR_MAP</member>
+  <member>RGB_DEFAULT_MAP</member>
+  <member>RGB_GRAY_MAP</member>
+  <member>RGB_GREEN_MAP</member>
+  <member>RGB_RED_MAP</member>
+  <member>SECONDARY</member>
+  <member>STRIKEOUT_ASCENT</member>
+  <member>STRIKEOUT_DESCENT</member>
+  <member>STRING</member>
+  <member>SUBSCRIPT_X</member>
+  <member>SUBSCRIPT_Y</member>
+  <member>SUPERSCRIPT_X</member>
+  <member>SUPERSCRIPT_Y</member>
+  <member>UNDERLINE_POSITION</member>
+  <member>UNDERLINE_THICKNESS</member>
+  <member>VISUALID</member>
+  <member>WEIGHT</member>
+  <member>WINDOW</member>
+  <member>WM_CLASS</member>
+  <member>WM_CLIENT_MACHINE</member>
+  <member>WM_COMMAND</member>
+  <member>WM_HINTS</member>
+  <member>WM_ICON_NAME</member>
+  <member>WM_ICON_SIZE</member>
+  <member>WM_NAME</member>
+  <member>WM_NORMAL_HINTS</member>
+  <member>WM_SIZE_HINTS</member>
+  <member>WM_TRANSIENT_FOR</member>
+  <member>WM_ZOOM_HINTS</member>
+  <member>X_HEIGHT</member>
+</simplelist>
 
 <para>
 <!-- .LP -->
