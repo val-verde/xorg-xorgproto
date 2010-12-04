@@ -75,15 +75,11 @@ X Consortium, Inc.
 </preface>
 
 <chapter id="protocol_formats">
-<title>Protocol Formats</title>
-<!-- .XS -->
-<!-- (SN Protocol Formats -->
-<!-- .XE -->
-<!-- .SH -->
-<para>
-<emphasis role="bold">Request Format</emphasis>
-</para>
-<para>
+  <title>Protocol Formats</title>
+
+  <section id="request_format">
+    <title>Request Format</title>
+    <para>
 Every request contains an 8-bit major opcode and a 16-bit length field
 expressed in units of four bytes.
 Every request consists of four bytes of a header
@@ -103,23 +99,24 @@ However, the placement and interpretation of this minor opcode and of all
 other fields in extension requests are not defined by the core protocol.
 Every request on a given connection is implicitly assigned a sequence number,
 starting with one, that is used in replies, errors, and events.
-</para>
-<para>
-<emphasis role="bold">Reply Format</emphasis>
-</para>
-<para>
+    </para>
+  </section>
+
+  <section id="reply_format">
+    <title>Reply Format</title>
+    <para>
 Every reply contains a 32-bit length field expressed in units of four bytes.
 Every reply consists of 32 bytes followed by zero or more additional bytes of
 data, as specified in the length field.
 Unused bytes within a reply are not guaranteed to be zero.
 Every reply also contains the least significant 16 bits of the sequence number
 of the corresponding request.
-</para>
-<!-- .SH -->
-<para>
-<emphasis role="bold">Error Format</emphasis>
-</para>
-<para>
+    </para>
+  </section>
+
+  <section id="error_format">
+    <title>Error Format</title>
+    <para>
 Error reports are 32 bytes long.
 Every error includes an 8-bit error code.
 Error codes 128 through 255 are reserved for extensions.
@@ -144,13 +141,12 @@ For
 errors, the failing value is returned.
 Other core errors return no additional data.
 Unused bytes within an error are not guaranteed to be zero.
-</para>
+    </para>
+  </section>
 
-<para>
-<emphasis role="bold">Event Format</emphasis>
-</para>
-<para>
-<!-- .LP -->
+  <section id="event_format">
+    <title>Event Format</title>
+    <para>
 Events are 32 bytes long.
 Unused bytes within an event are not guaranteed to be zero.
 Every event contains an 8-bit type code.
@@ -164,7 +160,8 @@ Every core event (with the exception of
 also contains the least significant 16 bits of the sequence number of the last
 request issued by the client that was (or is currently being) processed by
 the server.
-</para>
+    </para>
+  </section>
 </chapter>
 
 <chapter id="syntactic_conventions">
