@@ -173,7 +173,7 @@ protocol does not define a mechanism for selecting interest in such events.
 <indexterm significance="preferred"><primary>Event</primary><secondary>extension</secondary></indexterm>
 <indexterm significance="preferred"><primary>Extension</primary><secondary>event</secondary></indexterm>
 Every core event (with the exception of
-<emphasis role='bold'>KeymapNotify</emphasis>)
+<link linkend="events:KeymapNotify"><emphasis role='bold'>KeymapNotify</emphasis></link>)
 also contains the least significant 16 bits of the sequence number of the last
 request issued by the client that was (or is currently being) processed by
 the server.
@@ -893,7 +893,7 @@ of "<emphasis remap='I'>K</emphasis>".
 
 <para>
 The standard rules for obtaining a KEYSYM from a
-<emphasis role='bold'>KeyPress</emphasis>
+<link linkend="events:KeyPress"><emphasis role='bold'>KeyPress</emphasis></link>
 <indexterm><primary>KeyPress</primary></indexterm>
 event make use of only the Group 1 and Group 2 KEYSYMs; no interpretation of
 other KEYSYMs in the list is defined.  The modifier state determines which
@@ -1542,7 +1542,7 @@ No geometry is defined among screens.
     <para>
 The server may retain the recent history of pointer motion and do so to a
 finer granularity than is reported by
-<emphasis role='bold'>MotionNotify</emphasis>
+<link linkend="events:MotionNotify"><emphasis role='bold'>MotionNotify</emphasis></link>
 events.
 The
 <emphasis role='bold'>GetMotionEvents</emphasis>
@@ -1858,7 +1858,7 @@ The server essentially acts as if
 <emphasis role='bold'>InputOnly</emphasis>
 windows do not exist for the purposes of graphics requests,
 exposure processing, and
-<emphasis role='bold'>VisibilityNotify</emphasis>
+<link linkend="events:VisibilityNotify"><emphasis role='bold'>VisibilityNotify</emphasis></link>
 events.
 An
 <emphasis role='bold'>InputOnly</emphasis>
@@ -2319,7 +2319,7 @@ in the displayed cursor.
 </para>
 <para>
 This request generates a
-<emphasis role='bold'>CreateNotify</emphasis>
+<link linkend="events:CreateNotify"><emphasis role='bold'>CreateNotify</emphasis></link>
 event.
 </para>
 <para>
@@ -2422,7 +2422,7 @@ However, only one client at a time can select for
 only one client at a time can select for
 <emphasis role='bold'>ResizeRedirect</emphasis>,
 and only one client at a time can select for
-<emphasis role='bold'>ButtonPress</emphasis>.
+<link linkend="events:ButtonPress"><emphasis role='bold'>ButtonPress</emphasis></link>.
 An attempt to violate these restrictions results in an
 <emphasis role='bold'>Access</emphasis>
 error.
@@ -2434,7 +2434,7 @@ client.
 <para>
 Changing the colormap of a window (by defining a new map, not by
 changing the contents of the existing map) generates a
-<emphasis role='bold'>ColormapNotify</emphasis>
+<link linkend="events:ColormapNotify"><emphasis role='bold'>ColormapNotify</emphasis></link>
 event.
 Changing the colormap of a visible window might have no immediate effect
 on the screen (see
@@ -2610,7 +2610,7 @@ an
 <emphasis role='bold'>UnmapWindow</emphasis>
 request is performed automatically.
 The window and all inferiors are then destroyed, and a
-<emphasis role='bold'>DestroyNotify</emphasis>
+<link linkend="events:DestroyNotify"><emphasis role='bold'>DestroyNotify</emphasis></link>
 event is generated for each window.
 The ordering of the
 <emphasis role='bold'>DestroyNotify</emphasis>
@@ -2761,7 +2761,7 @@ window.
 The window is placed on top in the stacking order with respect
 to siblings.
 A
-<emphasis role='bold'>ReparentNotify</emphasis>
+<link linkend="events:ReparentNotify"><emphasis role='bold'>ReparentNotify</emphasis></link>
 event is then generated.
 The override-redirect attribute of the window is passed on in this event;
 a value of
@@ -2831,11 +2831,11 @@ If the override-redirect attribute of the window is
 and some other client has selected
 <emphasis role='bold'>SubstructureRedirect</emphasis>
 on the parent, then a
-<emphasis role='bold'>MapRequest</emphasis>
+<link linkend="events:MapRequest"><emphasis role='bold'>MapRequest</emphasis></link>
 event is generated, but the window remains unmapped.
 Otherwise, the window is mapped,
 and a
-<emphasis role='bold'>MapNotify</emphasis>
+<link linkend="events:MapNotify"><emphasis role='bold'>MapNotify</emphasis></link>
 event is generated.
 </para>
 <para>
@@ -2917,7 +2917,7 @@ Errors:
 <para>
 If the window is already unmapped, this request has no effect.
 Otherwise, the window is unmapped, and an
-<emphasis role='bold'>UnmapNotify</emphasis>
+<link linkend="events:UnmapNotify"><emphasis role='bold'>UnmapNotify</emphasis></link>
 event is generated.
 Normal exposure processing on formerly obscured windows is performed.
 <!-- .sp -->
@@ -3075,7 +3075,7 @@ If the override-redirect attribute of the window is
 and some other client has selected
 <emphasis role='bold'>SubstructureRedirect</emphasis>
 on the parent, a
-<emphasis role='bold'>ConfigureRequest</emphasis>
+<link linkend="events:ConfigureRequest"><emphasis role='bold'>ConfigureRequest</emphasis></link>
 event is generated, and no further processing is performed.
 Otherwise, the following is performed:
 </para>
@@ -3084,7 +3084,7 @@ If some other client has selected
 <emphasis role='bold'>ResizeRedirect</emphasis>
 on the window and the inside width or height of the window is being changed,
 a
-<emphasis role='bold'>ResizeRequest</emphasis>
+<link linkend="events:ResizeRequest"><emphasis role='bold'>ResizeRequest</emphasis></link>
 event is generated,
 and the current inside width and height are used instead.
 Note that the override-redirect attribute of the window has no effect on
@@ -3098,7 +3098,7 @@ on the window.
 <para>
 The geometry of the window is changed as specified,
 the window is restacked among siblings, and a
-<emphasis role='bold'>ConfigureNotify</emphasis>
+<link linkend="events:ConfigureNotify"><emphasis role='bold'>ConfigureNotify</emphasis></link>
 event is generated if the state of the window actually changes.
 If the inside width or height of the window has actually changed,
 then children of the window are affected,
@@ -3198,11 +3198,11 @@ When a window with one of these win-gravities has its parent window resized,
 the corresponding pair defines the change in position
 of the window within the parent.
 This repositioning generates a
-<emphasis role='bold'>GravityNotify</emphasis>
+<link linkend="events:GravityNotify"><emphasis role='bold'>GravityNotify</emphasis></link>
 event.
 <emphasis role='bold'>GravityNotify</emphasis>
 events are generated after the
-<emphasis role='bold'>ConfigureNotify</emphasis>
+<link linkend="events:ConfigureNotify"><emphasis role='bold'>ConfigureNotify</emphasis></link>
 event is generated.
 </para>
 <para>
@@ -3243,11 +3243,11 @@ is like
 <emphasis role='bold'>NorthWest</emphasis>,
 but the child is also unmapped when the parent is resized,
 and an
-<emphasis role='bold'>UnmapNotify</emphasis>
+<link linkend="events:UnmapNotify"><emphasis role='bold'>UnmapNotify</emphasis></link>
 event is generated.
 <emphasis role='bold'>UnmapNotify</emphasis>
 events are generated after the
-<emphasis role='bold'>ConfigureNotify</emphasis>
+<link linkend="events:ConfigureNotify"><emphasis role='bold'>ConfigureNotify</emphasis></link>
 event is generated.
 </para>
 <para>
@@ -3427,10 +3427,10 @@ Errors:
 If some other client has selected
 <emphasis role='bold'>SubstructureRedirect</emphasis>
 on the window, then a
-<emphasis role='bold'>CirculateRequest</emphasis>
+<link linkend="events:CirculateRequest"><emphasis role='bold'>CirculateRequest</emphasis></link>
 event is generated, and no further processing is performed.
 Otherwise, the following is performed, and then a
-<emphasis role='bold'>CirculateNotify</emphasis>
+<link linkend="events:CirculateNotify"><emphasis role='bold'>CirculateNotify</emphasis></link>
 event is generated if the window is actually restacked.
 </para>
 <para>
@@ -3761,7 +3761,7 @@ it is tacked on to the end of the existing data.
 </para>
 <para>
 This request generates a
-<emphasis role='bold'>PropertyNotify</emphasis>
+<link linkend="events:PropertyNotify"><emphasis role='bold'>PropertyNotify</emphasis></link>
 event on the window.
 </para>
 <para>
@@ -3810,7 +3810,7 @@ Errors:
 <para>
 This request deletes the property from the specified window
 if the property exists and generates a
-<emphasis role='bold'>PropertyNotify</emphasis>
+<link linkend="events:PropertyNotify"><emphasis role='bold'>PropertyNotify</emphasis></link>
 event on the window unless the property does not exist.
 <!-- .sp -->
 </para>
@@ -3936,7 +3936,7 @@ If delete is
 and the bytes-after is zero,
 the property is also deleted from the window,
 and a
-<emphasis role='bold'>PropertyNotify</emphasis>
+<link linkend="events:PropertyNotify"><emphasis role='bold'>PropertyNotify</emphasis></link>
 event is generated on the window.
 <!-- .sp -->
 </para>
@@ -3991,7 +3991,7 @@ of property names (right for positive delta, left for negative delta).
 <para>
 If delta mod N is nonzero,
 a
-<emphasis role='bold'>PropertyNotify</emphasis>
+<link linkend="events:PropertyNotify"><emphasis role='bold'>PropertyNotify</emphasis></link>
 event is generated for each property in the order listed.
 </para>
 <para>
@@ -4114,7 +4114,7 @@ is not the same as the current owner
 and the current owner is not
 <emphasis role='bold'>None</emphasis>,
 then the current owner is sent a
-<emphasis role='bold'>SelectionClear</emphasis>
+<link linkend="events:SelectionClear"><emphasis role='bold'>SelectionClear</emphasis></link>
 event.
 </para>
 <para>
@@ -4130,9 +4130,9 @@ The selection atom is uninterpreted by the server.
 The owner window is returned by the
 <emphasis role='bold'>GetSelectionOwner</emphasis>
 request and is reported in
-<emphasis role='bold'>SelectionRequest</emphasis>
+<link linkend="events:SelectionRequest"><emphasis role='bold'>SelectionRequest</emphasis></link>
 and
-<emphasis role='bold'>SelectionClear</emphasis>
+<link linkend="events:SelectionClear"><emphasis role='bold'>SelectionClear</emphasis></link>
 events.
 </para>
 <para>
@@ -4237,11 +4237,11 @@ Errors:
 <para>
 If the specified selection has an owner,
 the server sends a
-<emphasis role='bold'>SelectionRequest</emphasis>
+<link linkend="events:SelectionRequest"><emphasis role='bold'>SelectionRequest</emphasis></link>
 event to that owner.
 If no owner for the specified selection exists,
 the server generates a
-<emphasis role='bold'>SelectionNotify</emphasis>
+<link linkend="events:SelectionNotify"><emphasis role='bold'>SelectionNotify</emphasis></link>
 event to the requestor with property
 <emphasis role='bold'>None</emphasis>.
 The arguments are passed on unchanged in either of the events.
@@ -4499,9 +4499,9 @@ keep it contained in the window.
 </para>
 <para>
 This request generates
-<emphasis role='bold'>EnterNotify</emphasis>
+<link linkend="events:EnterNotify"><emphasis role='bold'>EnterNotify</emphasis></link>
 and
-<emphasis role='bold'>LeaveNotify</emphasis>
+<link linkend="events:LeaveNotify"><emphasis role='bold'>LeaveNotify</emphasis></link>
 events.
 </para>
 <para>
@@ -4558,9 +4558,9 @@ the last-pointer-grab time or is later than the current server time.
 </para>
 <para>
 This request generates
-<emphasis role='bold'>EnterNotify</emphasis>
+<link linkend="events:EnterNotify"><emphasis role='bold'>EnterNotify</emphasis></link>
 and
-<emphasis role='bold'>LeaveNotify</emphasis>
+<link linkend="events:LeaveNotify"><emphasis role='bold'>LeaveNotify</emphasis></link>
 events.
 </para>
 <para>
@@ -4653,7 +4653,7 @@ the pointer is actively grabbed as described in
 <emphasis role='bold'>GrabPointer</emphasis>,
 the last-pointer-grab time is set to the time at which the button was
 pressed (as transmitted in the
-<emphasis role='bold'>ButtonPress</emphasis>
+<link linkend="events:ButtonPress"><emphasis role='bold'>ButtonPress</emphasis></link>
 event), and the
 <emphasis role='bold'>ButtonPress</emphasis>
 event is reported if all of the following conditions are true:
@@ -4894,9 +4894,9 @@ and if a generated key event would normally be reported to this client,
 it is reported normally.
 Otherwise, the event is reported with respect to the grab-window.
 Both
-<emphasis role='bold'>KeyPress</emphasis>
+<link linkend="events:KeyPress"><emphasis role='bold'>KeyPress</emphasis></link>
 and
-<emphasis role='bold'>KeyRelease</emphasis>
+<link linkend="events:KeyRelease"><emphasis role='bold'>KeyRelease</emphasis></link>
 events are always reported,
 independent of any event selection made by the client.
 </para>
@@ -4932,9 +4932,9 @@ They are simply queued for later processing.
 </para>
 <para>
 This request generates
-<emphasis role='bold'>FocusIn</emphasis>
+<link linkend="events:FocusIn"><emphasis role='bold'>FocusIn</emphasis></link>
 and
-<emphasis role='bold'>FocusOut</emphasis>
+<link linkend="events:FocusOut"><emphasis role='bold'>FocusOut</emphasis></link>
 events.
 </para>
 <para>
@@ -4989,9 +4989,9 @@ last-keyboard-grab time or is later than the current server time.
 </para>
 <para>
 This request generates
-<emphasis role='bold'>FocusIn</emphasis>
+<link linkend="events:FocusIn"><emphasis role='bold'>FocusIn</emphasis></link>
 and
-<emphasis role='bold'>FocusOut</emphasis>
+<link linkend="events:FocusOut"><emphasis role='bold'>FocusOut</emphasis></link>
 events.
 </para>
 <para>
@@ -5063,7 +5063,7 @@ the keyboard is actively grabbed as described in
 <emphasis role='bold'>GrabKeyboard</emphasis>,
 the last-keyboard-grab time is set to the time at which the key was pressed
 (as transmitted in the
-<emphasis role='bold'>KeyPress</emphasis>
+<link linkend="events:KeyPress"><emphasis role='bold'>KeyPress</emphasis></link>
 event), and the
 <emphasis role='bold'>KeyPress</emphasis>
 event is reported if all of the following conditions are true:
@@ -5245,9 +5245,9 @@ For
 <emphasis role='bold'>SyncPointer</emphasis>,
 if the pointer is frozen and actively grabbed by the client,
 pointer event processing continues normally until the next
-<emphasis role='bold'>ButtonPress</emphasis>
+<link linkend="events:ButtonPress"><emphasis role='bold'>ButtonPress</emphasis></link>
 or
-<emphasis role='bold'>ButtonRelease</emphasis>
+<link linkend="events:ButtonRelease"><emphasis role='bold'>ButtonRelease</emphasis></link>
 event is reported to the client,
 at which time the pointer again appears to freeze.
 However, if the reported event causes the pointer grab to be released,
@@ -5292,9 +5292,9 @@ For
 <emphasis role='bold'>SyncKeyboard</emphasis>,
 if the keyboard is frozen and actively grabbed by the client,
 keyboard event processing continues normally until the next
-<emphasis role='bold'>KeyPress</emphasis>
+<link linkend="events:KeyPress"><emphasis role='bold'>KeyPress</emphasis></link>
 or
-<emphasis role='bold'>KeyRelease</emphasis>
+<link linkend="events:KeyRelease"><emphasis role='bold'>KeyRelease</emphasis></link>
 event is reported to the client,
 at which time the keyboard again appears to freeze.
 However, if the reported event causes the keyboard grab to be released,
@@ -5327,11 +5327,11 @@ For
 <emphasis role='bold'>SyncBoth</emphasis>,
 if both pointer and keyboard are frozen by the client,
 event processing (for both devices) continues normally until the next
-<emphasis role='bold'>ButtonPress</emphasis>,
-<emphasis role='bold'>ButtonRelease</emphasis>,
-<emphasis role='bold'>KeyPress</emphasis>,
+<link linkend="events:ButtonPress"><emphasis role='bold'>ButtonPress</emphasis></link>,
+<link linkend="events:ButtonRelease"><emphasis role='bold'>ButtonRelease</emphasis></link>,
+<link linkend="events:KeyPress"><emphasis role='bold'>KeyPress</emphasis></link>,
 or
-<emphasis role='bold'>KeyRelease</emphasis>
+<link linkend="events:KeyRelease"><emphasis role='bold'>KeyRelease</emphasis></link>
 event is reported to the client for a grabbed device
 (button event for the pointer, key event for the keyboard),
 at which time the devices again appear to freeze.
@@ -5792,9 +5792,9 @@ the revert-to argument is ignored.
 </para>
 <para>
 This request generates
-<emphasis role='bold'>FocusIn</emphasis>
+<link linkend="events:FocusIn"><emphasis role='bold'>FocusIn</emphasis></link>
 and
-<emphasis role='bold'>FocusOut</emphasis>
+<link linkend="events:FocusOut"><emphasis role='bold'>FocusOut</emphasis></link>
 events.
 </para>
 <para>
@@ -5814,9 +5814,9 @@ or
 <emphasis role='bold'>None</emphasis>,
 the focus reverts to that value.
 When the focus reverts,
-<emphasis role='bold'>FocusIn</emphasis>
+<link linkend="events:FocusIn"><emphasis role='bold'>FocusIn</emphasis></link>
 and
-<emphasis role='bold'>FocusOut</emphasis>
+<link linkend="events:FocusOut"><emphasis role='bold'>FocusOut</emphasis></link>
 events are generated,
 but the last-focus-change time is not affected.
 <!-- .sp -->
@@ -7505,7 +7505,7 @@ request.
 </para>
 <para>
 The graphics-exposures flag controls
-<emphasis role='bold'>GraphicsExposure</emphasis>
+<link linkend="events:GraphicsExposure"><emphasis role='bold'>GraphicsExposure</emphasis></link>
 event generation for
 <emphasis role='bold'>CopyArea</emphasis>
 and
@@ -8151,7 +8151,7 @@ Regardless of tiling and whether the destination is a window or a pixmap,
 if graphics-exposures in gc is
 <emphasis role='bold'>True</emphasis>,
 then
-<emphasis role='bold'>GraphicsExposure</emphasis>
+<link linkend="events:GraphicsExposure"><emphasis role='bold'>GraphicsExposure</emphasis></link>
 events for all corresponding destination regions are generated.
 </para>
 <para>
@@ -8161,7 +8161,7 @@ but no
 <emphasis role='bold'>GraphicsExposure</emphasis>
 events are generated,
 then a
-<emphasis role='bold'>NoExposure</emphasis>
+<link linkend="events:NoExposure"><emphasis role='bold'>NoExposure</emphasis></link>
 event is generated.
 </para>
 <para>
@@ -9713,7 +9713,7 @@ or
 the colormap for the window is changed to
 <emphasis role='bold'>None</emphasis>,
 and a
-<emphasis role='bold'>ColormapNotify</emphasis>
+<link linkend="events:ColormapNotify"><emphasis role='bold'>ColormapNotify</emphasis></link>
 event is generated.
 The protocol does not define the colors displayed for a window with a colormap of
 <emphasis role='bold'>None</emphasis>.
@@ -9821,7 +9821,7 @@ except that the required list must remain installed.
 </para>
 <para>
 If cmap is not already an installed map, a
-<emphasis role='bold'>ColormapNotify</emphasis>
+<link linkend="events:ColormapNotify"><emphasis role='bold'>ColormapNotify</emphasis></link>
 event is generated on every window having cmap as an attribute.
 In addition,
 for every other colormap that is installed or uninstalled as a result
@@ -9893,7 +9893,7 @@ except that the required list must remain installed.
 </para>
 <para>
 If cmap becomes uninstalled, a
-<emphasis role='bold'>ColormapNotify</emphasis>
+<link linkend="events:ColormapNotify"><emphasis role='bold'>ColormapNotify</emphasis></link>
 event is generated on every window having cmap as an attribute.
 In addition,
 for every other colormap that is installed or uninstalled as a result of
@@ -11159,7 +11159,7 @@ and none of the modifiers is changed.
 </para>
 <para>
 This request generates a
-<emphasis role='bold'>MappingNotify</emphasis>
+<link linkend="events:MappingNotify"><emphasis role='bold'>MappingNotify</emphasis></link>
 event on a
 <emphasis role='bold'>Success</emphasis>
 status.
@@ -11297,7 +11297,7 @@ to appear in nontrailing positions of the effective list for a keycode.
 </para>
 <para>
 This request generates a
-<emphasis role='bold'>MappingNotify</emphasis>
+<link linkend="events:MappingNotify"><emphasis role='bold'>MappingNotify</emphasis></link>
 event.
 </para>
 <para>
@@ -11546,9 +11546,9 @@ When the global mode is
 <emphasis role='bold'>Off</emphasis>,
 no keys should auto-repeat.
 An auto-repeating key generates alternating
-<emphasis role='bold'>KeyPress</emphasis>
+<link linkend="events:KeyPress"><emphasis role='bold'>KeyPress</emphasis></link>
 and
-<emphasis role='bold'>KeyRelease</emphasis>
+<link linkend="events:KeyRelease"><emphasis role='bold'>KeyRelease</emphasis></link>
 events.
 When a key is used as a modifier,
 it is desirable for the key not to auto-repeat,
@@ -11747,7 +11747,7 @@ and the mapping is not changed.
 </para>
 <para>
 This request generates a
-<emphasis role='bold'>MappingNotify</emphasis>
+<link linkend="events:MappingNotify"><emphasis role='bold'>MappingNotify</emphasis></link>
 event on a
 <emphasis role='bold'>Success</emphasis>
 status.
@@ -12802,7 +12802,7 @@ in a different window than before,
 and
 <emphasis role='bold'>LeaveNotify</emphasis>
 events are generated instead of a
-<emphasis role='bold'>MotionNotify</emphasis>
+<link linkend="events:MotionNotify"><emphasis role='bold'>MotionNotify</emphasis></link>
 event.
 Only clients selecting
 <emphasis role='bold'>EnterWindow</emphasis>
@@ -12856,20 +12856,20 @@ and
 <emphasis role='bold'>LeaveNotify</emphasis>
 events caused by a hierarchy change are generated after any hierarchy event
 caused by that change (that is,
-<emphasis role='bold'>UnmapNotify</emphasis>,
-<emphasis role='bold'>MapNotify</emphasis>,
-<emphasis role='bold'>ConfigureNotify</emphasis>,
-<emphasis role='bold'>GravityNotify</emphasis>,
-<emphasis role='bold'>CirculateNotify</emphasis>),
+<link linkend="events:UnmapNotify"><emphasis role='bold'>UnmapNotify</emphasis></link>,
+<link linkend="events:MapNotify"><emphasis role='bold'>MapNotify</emphasis></link>,
+<link linkend="events:ConfigureNotify"><emphasis role='bold'>ConfigureNotify</emphasis></link>,
+<link linkend="events:GravityNotify"><emphasis role='bold'>GravityNotify</emphasis></link>,
+<link linkend="events:CirculateNotify"><emphasis role='bold'>CirculateNotify</emphasis></link>),
 but the ordering of
 <emphasis role='bold'>EnterNotify</emphasis>
 and
 <emphasis role='bold'>LeaveNotify</emphasis>
 events with respect to
-<emphasis role='bold'>FocusOut</emphasis>,
-<emphasis role='bold'>VisibilityNotify</emphasis>,
+<link linkend="events:FocusOut"><emphasis role='bold'>FocusOut</emphasis></link>,
+<link linkend="events:VisibilityNotify"><emphasis role='bold'>VisibilityNotify</emphasis></link>,
 and
-<emphasis role='bold'>Expose</emphasis>
+<link linkend="events:Expose"><emphasis role='bold'>Expose</emphasis></link>
 events is not constrained.
 </para>
 <para>
@@ -13026,7 +13026,7 @@ is generated on B.
 <para>
 When a pointer grab activates (but after any initial warp into a confine-to
 window and before generating any actual
-<emphasis role='bold'>ButtonPress</emphasis>
+<link linkend="events:ButtonPress"><emphasis role='bold'>ButtonPress</emphasis></link>
 event that activates the grab),
 G is the grab-window for the grab, and P is the window the pointer is in:
 </para>
@@ -13052,7 +13052,7 @@ and final positions for the events.
 
 <para>
 When a pointer grab deactivates (but after generating any actual
-<emphasis role='bold'>ButtonRelease</emphasis>
+<link linkend="events:ButtonRelease"><emphasis role='bold'>ButtonRelease</emphasis></link>
 event that deactivates the grab), G is the grab-window for
 the grab, and P is the window the pointer is in:
 </para>
@@ -13157,15 +13157,15 @@ and events generated when a keyboard grab deactivates have mode
 All
 <emphasis role='bold'>FocusOut</emphasis>
 events caused by a window unmap are generated after any
-<emphasis role='bold'>UnmapNotify</emphasis>
+<link linkend="events:UnmapNotify"><emphasis role='bold'>UnmapNotify</emphasis></link>
 event, but the ordering of
 <emphasis role='bold'>FocusOut</emphasis>
 with respect to generated
-<emphasis role='bold'>EnterNotify</emphasis>,
-<emphasis role='bold'>LeaveNotify</emphasis>,
-<emphasis role='bold'>VisibilityNotify</emphasis>,
+<link linkend="events:EnterNotify"><emphasis role='bold'>EnterNotify</emphasis></link>,
+<link linkend="events:LeaveNotify"><emphasis role='bold'>LeaveNotify</emphasis></link>,
+<link linkend="events:VisibilityNotify"><emphasis role='bold'>VisibilityNotify</emphasis></link>,
 and
-<emphasis role='bold'>Expose</emphasis>
+<link linkend="events:Expose"><emphasis role='bold'>Expose</emphasis></link>
 events is not constrained.
 </para>
 <para>
@@ -13621,9 +13621,9 @@ The value is a bit vector as described in
 This event is reported to clients selecting
 <emphasis role='bold'>KeymapState</emphasis>
 on a window and is generated immediately after every
-<emphasis role='bold'>EnterNotify</emphasis>
+<link linkend="events:EnterNotify"><emphasis role='bold'>EnterNotify</emphasis></link>
 and
-<emphasis role='bold'>FocusIn</emphasis>.
+<link linkend="events:FocusIn"><emphasis role='bold'>FocusIn</emphasis></link>.
 <!-- .sp -->
 </para>
   </section>
@@ -13708,15 +13708,15 @@ All
 <emphasis role='bold'>Expose</emphasis>
 events caused by a hierarchy change are generated after any
 hierarchy event caused by that change (for example,
-<emphasis role='bold'>UnmapNotify</emphasis>,
-<emphasis role='bold'>MapNotify</emphasis>,
-<emphasis role='bold'>ConfigureNotify</emphasis>,
-<emphasis role='bold'>GravityNotify</emphasis>,
-<emphasis role='bold'>CirculateNotify</emphasis>).
+<link linkend="events:UnmapNotify"><emphasis role='bold'>UnmapNotify</emphasis></link>,
+<link linkend="events:MapNotify"><emphasis role='bold'>MapNotify</emphasis></link>,
+<link linkend="events:ConfigureNotify"><emphasis role='bold'>ConfigureNotify</emphasis></link>,
+<link linkend="events:GravityNotify"><emphasis role='bold'>GravityNotify</emphasis></link>,
+<link linkend="events:CirculateNotify"><emphasis role='bold'>CirculateNotify</emphasis></link>).
 All
 <emphasis role='bold'>Expose</emphasis>
 events on a given window are generated after any
-<emphasis role='bold'>VisibilityNotify</emphasis>
+<link linkend="events:VisibilityNotify"><emphasis role='bold'>VisibilityNotify</emphasis></link>
 event on that window,
 but it is not required that all
 <emphasis role='bold'>Expose</emphasis>
@@ -13726,10 +13726,10 @@ events on all windows.
 The ordering of
 <emphasis role='bold'>Expose</emphasis>
 events with respect to
-<emphasis role='bold'>FocusOut</emphasis>,
-<emphasis role='bold'>EnterNotify</emphasis>,
+<link linkend="events:FocusOut"><emphasis role='bold'>FocusOut</emphasis></link>,
+<link linkend="events:EnterNotify"><emphasis role='bold'>EnterNotify</emphasis></link>,
 and
-<emphasis role='bold'>LeaveNotify</emphasis>
+<link linkend="events:LeaveNotify"><emphasis role='bold'>LeaveNotify</emphasis></link>
 events is not constrained.
 <!-- .sp -->
 </para>
@@ -13848,7 +13848,7 @@ This event is reported to a client using a graphics context
 with graphics-exposures selected
 and is generated when a graphics request
 that might produce
-<emphasis role='bold'>GraphicsExposure</emphasis>
+<link linkend="events:GraphicsExposure"><emphasis role='bold'>GraphicsExposure</emphasis></link>
 events does not produce any.
 The drawable specifies the destination used for the graphics request.
 </para>
@@ -13930,15 +13930,15 @@ All
 <emphasis role='bold'>VisibilityNotify</emphasis>
 events caused by a hierarchy change are generated after any hierarchy event
 caused by that change (for example,
-<emphasis role='bold'>UnmapNotify</emphasis>,
-<emphasis role='bold'>MapNotify</emphasis>,
-<emphasis role='bold'>ConfigureNotify</emphasis>,
-<emphasis role='bold'>GravityNotify</emphasis>,
-<emphasis role='bold'>CirculateNotify</emphasis>).
+<link linkend="events:UnmapNotify"><emphasis role='bold'>UnmapNotify</emphasis></link>,
+<link linkend="events:MapNotify"><emphasis role='bold'>MapNotify</emphasis></link>,
+<link linkend="events:ConfigureNotify"><emphasis role='bold'>ConfigureNotify</emphasis></link>,
+<link linkend="events:GravityNotify"><emphasis role='bold'>GravityNotify</emphasis></link>,
+<link linkend="events:CirculateNotify"><emphasis role='bold'>CirculateNotify</emphasis></link>).
 Any
 <emphasis role='bold'>VisibilityNotify</emphasis>
 event on a given window is generated before any
-<emphasis role='bold'>Expose</emphasis>
+<link linkend="events:Expose"><emphasis role='bold'>Expose</emphasis></link>
 events on that window,
 but it is not required that all
 <emphasis role='bold'>VisibilityNotify</emphasis>
@@ -13948,10 +13948,10 @@ events on all windows.
 The ordering of
 <emphasis role='bold'>VisibilityNotify</emphasis>
 events with respect to
-<emphasis role='bold'>FocusOut</emphasis>,
-<emphasis role='bold'>EnterNotify</emphasis>,
+<link linkend="events:FocusOut"><emphasis role='bold'>FocusOut</emphasis></link>,
+<link linkend="events:EnterNotify"><emphasis role='bold'>EnterNotify</emphasis></link>,
 and
-<emphasis role='bold'>LeaveNotify</emphasis>
+<link linkend="events:LeaveNotify"><emphasis role='bold'>LeaveNotify</emphasis></link>
 events is not constrained.
 <!-- .sp -->
 </para>

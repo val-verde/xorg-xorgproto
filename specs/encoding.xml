@@ -2793,7 +2793,7 @@ VISUALTYPE
 <title>Events</title>
 
 <literallayout class="monospaced">
-<emphasis role='bold'>KeyPress</emphasis>
+<link linkend="events:KeyPress"><emphasis role='bold'>KeyPress</emphasis></link>
      1     2                               code
      1     KEYCODE                         detail
      2     CARD16                          sequence number
@@ -2810,7 +2810,7 @@ VISUALTYPE
      1     BOOL                            same-screen
      1                                     unused
 
-<emphasis role='bold'>KeyRelease</emphasis>
+<link linkend="events:KeyRelease"><emphasis role='bold'>KeyRelease</emphasis></link>
      1     3                               code
      1     KEYCODE                         detail
      2     CARD16                          sequence number
@@ -2827,7 +2827,7 @@ VISUALTYPE
      1     BOOL                            same-screen
      1                                     unused
 
-<emphasis role='bold'>ButtonPress</emphasis>
+<link linkend="events:ButtonPress"><emphasis role='bold'>ButtonPress</emphasis></link>
      1     4                               code
      1     BUTTON                          detail
      2     CARD16                          sequence number
@@ -2844,7 +2844,7 @@ VISUALTYPE
      1     BOOL                            same-screen
      1                                     unused
 
-<emphasis role='bold'>ButtonRelease</emphasis>
+<link linkend="events:ButtonRelease"><emphasis role='bold'>ButtonRelease</emphasis></link>
      1     5                               code
      1     BUTTON                          detail
      2     CARD16                          sequence number
@@ -2861,7 +2861,7 @@ VISUALTYPE
      1     BOOL                            same-screen
      1                                     unused
 
-<emphasis role='bold'>MotionNotify</emphasis>
+<link linkend="events:MotionNotify"><emphasis role='bold'>MotionNotify</emphasis></link>
      1     6                               code
      1                                     detail
           0     Normal
@@ -2880,7 +2880,7 @@ VISUALTYPE
      1     BOOL                            same-screen
      1                                     unused
 
-<emphasis role='bold'>EnterNotify</emphasis>
+<link linkend="events:EnterNotify"><emphasis role='bold'>EnterNotify</emphasis></link>
      1     7                               code
      1                                     detail
           0     Ancestor
@@ -2908,7 +2908,7 @@ VISUALTYPE
           #x02     same-screen (1 is True, 0 is False)
           #xFC     unused
 
-<emphasis role='bold'>LeaveNotify</emphasis>
+<link linkend="events:LeaveNotify"><emphasis role='bold'>LeaveNotify</emphasis></link>
      1     8                               code
      1                                     detail
           0     Ancestor
@@ -2936,7 +2936,7 @@ VISUALTYPE
           #x02     same-screen (1 is True, 0 is False)
           #xFC     unused
 
-<emphasis role='bold'>FocusIn</emphasis>
+<link linkend="events:FocusIn"><emphasis role='bold'>FocusIn</emphasis></link>
      1     9                               code
      1                                     detail
           0     Ancestor
@@ -2956,7 +2956,7 @@ VISUALTYPE
           3     WhileGrabbed
      23                                    unused
 
-<emphasis role='bold'>FocusOut</emphasis>
+<link linkend="events:FocusOut"><emphasis role='bold'>FocusOut</emphasis></link>
      1     10                              code
      1                                     detail
           0     Ancestor
@@ -2976,12 +2976,12 @@ VISUALTYPE
           3     WhileGrabbed
      23                                    unused
 
-<emphasis role='bold'>KeymapNotify</emphasis>
+<link linkend="events:KeymapNotify"><emphasis role='bold'>KeymapNotify</emphasis></link>
      1     11                              code
      31    LISTofCARD8                     keys (byte for keycodes 0-7 is
                                            omitted)
 
-<emphasis role='bold'>Expose</emphasis>
+<link linkend="events:Expose"><emphasis role='bold'>Expose</emphasis></link>
      1     12                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -2993,7 +2993,7 @@ VISUALTYPE
      2     CARD16                          count
      14                                    unused
 
-<emphasis role='bold'>GraphicsExposure</emphasis>
+<link linkend="events:GraphicsExposure"><emphasis role='bold'>GraphicsExposure</emphasis></link>
      1     13                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3007,7 +3007,7 @@ VISUALTYPE
      1     CARD8                           major-opcode
      11                                    unused
 
-<emphasis role='bold'>NoExposure</emphasis>
+<link linkend="events:NoExposure"><emphasis role='bold'>NoExposure</emphasis></link>
      1     14                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3016,7 +3016,7 @@ VISUALTYPE
      1     CARD8                           major-opcode
      21                                    unused
 
-<emphasis role='bold'>VisibilityNotify</emphasis>
+<link linkend="events:VisibilityNotify"><emphasis role='bold'>VisibilityNotify</emphasis></link>
      1     15                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3027,7 +3027,7 @@ VISUALTYPE
           2     FullyObscured
      23                                    unused
 
-<emphasis role='bold'>CreateNotify</emphasis>
+<link linkend="events:CreateNotify"><emphasis role='bold'>CreateNotify</emphasis></link>
      1     16                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3041,7 +3041,7 @@ VISUALTYPE
      1     BOOL                            override-redirect
      9                                     unused
 
-<emphasis role='bold'>DestroyNotify</emphasis>
+<link linkend="events:DestroyNotify"><emphasis role='bold'>DestroyNotify</emphasis></link>
      1     17                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3049,7 +3049,7 @@ VISUALTYPE
      4     WINDOW                          window
      20                                    unused
 
-<emphasis role='bold'>UnmapNotify</emphasis>
+<link linkend="events:UnmapNotify"><emphasis role='bold'>UnmapNotify</emphasis></link>
      1     18                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3058,7 +3058,7 @@ VISUALTYPE
      1     BOOL                            from-configure
      19                                    unused
 
-<emphasis role='bold'>MapNotify</emphasis>
+<link linkend="events:MapNotify"><emphasis role='bold'>MapNotify</emphasis></link>
      1     19                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3067,7 +3067,7 @@ VISUALTYPE
      1     BOOL                            override-redirect
      19                                    unused
 
-<emphasis role='bold'>MapRequest</emphasis>
+<link linkend="events:MapRequest"><emphasis role='bold'>MapRequest</emphasis></link>
      1     20                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3075,7 +3075,7 @@ VISUALTYPE
      4     WINDOW                          window
      20                                    unused
 
-<emphasis role='bold'>ReparentNotify</emphasis>
+<link linkend="events:ReparentNotify"><emphasis role='bold'>ReparentNotify</emphasis></link>
      1     21                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3087,7 +3087,7 @@ VISUALTYPE
      1     BOOL                            override-redirect
      11                                    unused
 
-<emphasis role='bold'>ConfigureNotify</emphasis>
+<link linkend="events:ConfigureNotify"><emphasis role='bold'>ConfigureNotify</emphasis></link>
      1     22                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3103,7 +3103,7 @@ VISUALTYPE
      1     BOOL                            override-redirect
      5                                     unused
 
-<emphasis role='bold'>ConfigureRequest</emphasis>
+<link linkend="events:ConfigureRequest"><emphasis role='bold'>ConfigureRequest</emphasis></link>
      1     23                              code
      1                                     stack-mode
           0     Above
@@ -3131,7 +3131,7 @@ VISUALTYPE
           #x0040     stack-mode
      4                                     unused
 
-<emphasis role='bold'>GravityNotify</emphasis>
+<link linkend="events:GravityNotify"><emphasis role='bold'>GravityNotify</emphasis></link>
      1     24                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3141,7 +3141,7 @@ VISUALTYPE
      2     INT16                           y
      16                                    unused
 
-<emphasis role='bold'>ResizeRequest</emphasis>
+<link linkend="events:ResizeRequest"><emphasis role='bold'>ResizeRequest</emphasis></link>
      1     25                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3150,7 +3150,7 @@ VISUALTYPE
      2     CARD16                          height
      20                                    unused
 
-<emphasis role='bold'>CirculateNotify</emphasis>
+<link linkend="events:CirculateNotify"><emphasis role='bold'>CirculateNotify</emphasis></link>
      1     26                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3162,7 +3162,7 @@ VISUALTYPE
           1     Bottom
      15                                    unused
 
-<emphasis role='bold'>CirculateRequest</emphasis>
+<link linkend="events:CirculateRequest"><emphasis role='bold'>CirculateRequest</emphasis></link>
      1     27                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3174,7 +3174,7 @@ VISUALTYPE
           1     Bottom
      15                                    unused
 
-<emphasis role='bold'>PropertyNotify</emphasis>
+<link linkend="events:PropertyNotify"><emphasis role='bold'>PropertyNotify</emphasis></link>
      1     28                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3186,7 +3186,7 @@ VISUALTYPE
           1     Deleted
      15                                    unused
 
-<emphasis role='bold'>SelectionClear</emphasis>
+<link linkend="events:SelectionClear"><emphasis role='bold'>SelectionClear</emphasis></link>
      1     29                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3195,7 +3195,7 @@ VISUALTYPE
      4     ATOM                            selection
      16                                    unused
 
-<emphasis role='bold'>SelectionRequest</emphasis>
+<link linkend="events:SelectionRequest"><emphasis role='bold'>SelectionRequest</emphasis></link>
      1     30                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3209,7 +3209,7 @@ VISUALTYPE
           0     None
      4                                     unused
 
-<emphasis role='bold'>SelectionNotify</emphasis>
+<link linkend="events:SelectionNotify"><emphasis role='bold'>SelectionNotify</emphasis></link>
      1     31                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3222,7 +3222,7 @@ VISUALTYPE
           0     None
      8                                     unused
 
-<emphasis role='bold'>ColormapNotify</emphasis>
+<link linkend="events:ColormapNotify"><emphasis role='bold'>ColormapNotify</emphasis></link>
      1     32                              code
      1                                     unused
      2     CARD16                          sequence number
@@ -3235,7 +3235,7 @@ VISUALTYPE
           1     Installed
      18                                    unused
 
-<emphasis role='bold'>ClientMessage</emphasis>
+<link linkend="events:ClientMessage"><emphasis role='bold'>ClientMessage</emphasis></link>
      1     33                              code
      1     CARD8                           format
      2     CARD16                          sequence number
@@ -3243,7 +3243,7 @@ VISUALTYPE
      4     ATOM                            type
      20                                    data
 
-<emphasis role='bold'>MappingNotify</emphasis>
+<link linkend="events:MappingNotify"><emphasis role='bold'>MappingNotify</emphasis></link>
      1     34                              code
      1                                     unused
      2     CARD16                          sequence number
