@@ -12518,10 +12518,10 @@ and
 can both be used to modify the active grab.
 <!-- .sp -->
 </para>
-<para id="events:KeyPress">
-<emphasis role='bold'>KeyPress</emphasis>
-<indexterm significance="preferred"><primary>KeyPress</primary></indexterm>
-</para>
+
+  <section id="events:input">
+    <title>Input Device events</title>
+    <indexterm significance="preferred"><primary>Input device</primary><secondary>events</secondary></indexterm>
 
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
@@ -12529,26 +12529,32 @@ can both be used to modify the active grab.
   <tbody>
     <row rowsep='0'>
       <entry>
+<indexterm significance="preferred"><primary>KeyPress</primary></indexterm>
+<emphasis role='bold' id="events:KeyPress">KeyPress</emphasis>
+      </entry>
+    </row>
+    <row rowsep='0'>
+      <entry>
 <indexterm significance="preferred"><primary>KeyRelease</primary></indexterm>
-<emphasis role='bold'>KeyRelease</emphasis>
+<emphasis role='bold' id="events:KeyRelease">KeyRelease</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
       <entry>
 <indexterm significance="preferred"><primary>ButtonPress</primary></indexterm>
-<emphasis role='bold'>ButtonPress</emphasis>
+<emphasis role='bold' id="events:ButtonPress">ButtonPress</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
       <entry>
 <indexterm significance="preferred"><primary>ButtonRelease</primary></indexterm>
-<emphasis role='bold'>ButtonRelease</emphasis>
+<emphasis role='bold' id="events:ButtonRelease">ButtonRelease</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
       <entry>
 <indexterm significance="preferred"><primary>MotionNotify</primary></indexterm>
-<emphasis role='bold'>MotionNotify</emphasis>
+<emphasis role='bold' id="events:MotionNotify">MotionNotify</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
@@ -12709,18 +12715,23 @@ or
 request.
 <!-- .sp -->
 </para>
-<para id="events:EnterNotify">
-<emphasis role='bold'>EnterNotify</emphasis>
-<indexterm significance="preferred"><primary>EnterNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:pointer_window">
+    <title>Pointer Window events</title>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
     <row rowsep='0'>
       <entry>
+<indexterm significance="preferred"><primary>EnterNotify</primary></indexterm>
+<emphasis role='bold' id="events:EnterNotify">EnterNotify</emphasis>
+      </entry>
+    </row>
+    <row rowsep='0'>
+      <entry>
 <indexterm significance="preferred"><primary>LeaveNotify</primary></indexterm>
-<emphasis role='bold'>LeaveNotify</emphasis>
+<emphasis role='bold' id="events:LeaveNotify">LeaveNotify</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
@@ -13065,19 +13076,27 @@ and final positions for the events.
   </listitem>
 </itemizedlist>
 
-<para id="events:FocusIn">
-<emphasis role='bold'>FocusIn</emphasis>
-<indexterm significance="preferred"><primary>FocusIn</primary></indexterm>
-</para>
-<para id="events:FocusOut">
-<emphasis role='bold'>FocusOut</emphasis>
-<indexterm significance="preferred"><primary>FocusOut</primary></indexterm>
-</para>
+  </section>
+  <section id="events:input_focus">
+    <title>Input Focus events</title>
+    <indexterm significance="preferred"><primary>Input focus</primary><secondary>events</secondary></indexterm>
 
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+<indexterm significance="preferred"><primary>FocusIn</primary></indexterm>
+<emphasis role='bold' id="events:FocusIn">FocusIn</emphasis>
+      </entry>
+    </row>
+    <row rowsep='0'>
+      <entry>
+<indexterm significance="preferred"><primary>FocusOut</primary></indexterm>
+<emphasis role='bold' id="events:FocusOut">FocusOut</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -13573,15 +13592,20 @@ above) as if the focus were to change from G to F.
   </listitem>
 </itemizedlist>
 
-<para id="events:KeymapNotify">
-<emphasis role='bold'>KeymapNotify</emphasis>
-<indexterm significance="preferred"><primary>KeymapNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:KeymapNotify">
+    <title>KeymapNotify</title>
+    <indexterm significance="preferred"><primary>KeymapNotify</primary></indexterm>
 
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>KeymapNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>keys</emphasis>: LISTofCARD8
@@ -13602,14 +13626,19 @@ and
 <emphasis role='bold'>FocusIn</emphasis>.
 <!-- .sp -->
 </para>
-<para id="events:Expose">
-<emphasis role='bold'>Expose</emphasis>
-<indexterm significance="preferred"><primary>Expose</primary></indexterm>
-</para>
+  </section>
+  <section id="events:Expose">
+    <title>Expose</title>
+    <indexterm significance="preferred"><primary>Expose</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>Expose</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -13704,14 +13733,19 @@ and
 events is not constrained.
 <!-- .sp -->
 </para>
-<para id="events:GraphicsExposure">
-<emphasis role='bold'>GraphicsExposure</emphasis>
-<indexterm significance="preferred"><primary>GraphicsExposure</primary></indexterm>
-</para>
+  </section>
+  <section id="events:GraphicsExposure">
+    <title>GraphicsExposure</title>
+    <indexterm significance="preferred"><primary>GraphicsExposure</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>GraphicsExposure</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -13774,15 +13808,20 @@ or
 and minor-opcode is always zero.
 <!-- .sp -->
 </para>
-<para id="events:NoExposure">
-<emphasis role='bold'>NoExposure</emphasis>
-<indexterm significance="preferred"><primary>NoExposure</primary></indexterm>
-</para>
+  </section>
+  <section id="events:NoExposure">
+    <title>NoExposure</title>
+    <indexterm significance="preferred"><primary>NoExposure</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
-    <row rowsep='0'>
+     <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>NoExposure</emphasis>
+      </entry>
+    </row>
+   <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
 <emphasis remap='I'>drawable</emphasis>: DRAWABLE
@@ -13823,14 +13862,19 @@ or
 and the minor-opcode is always zero.
 <!-- .sp -->
 </para>
-<para id="events:VisibilityNotify">
-<emphasis role='bold'>VisibilityNotify</emphasis>
-<indexterm significance="preferred"><primary>VisibilityNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:VisibilityNotify">
+    <title>VisibilityNotify</title>
+    <indexterm significance="preferred"><primary>VisibilityNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>VisibilityNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -13911,14 +13955,19 @@ and
 events is not constrained.
 <!-- .sp -->
 </para>
-<para id="events:CreateNotify">
-<emphasis role='bold'>CreateNotify</emphasis>
-<indexterm significance="preferred"><primary>CreateNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:CreateNotify">
+    <title>CreateNotify</title>
+    <indexterm significance="preferred"><primary>CreateNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>CreateNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -13956,14 +14005,19 @@ The arguments are as in the
 request.
 <!-- .sp -->
 </para>
-<para id="events:DestroyNotify">
-<emphasis role='bold'>DestroyNotify</emphasis>
-<indexterm significance="preferred"><primary>DestroyNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:DestroyNotify">
+    <title>DestroyNotify</title>
+    <indexterm significance="preferred"><primary>DestroyNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>DestroyNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -13997,14 +14051,19 @@ The ordering among siblings and across subhierarchies is not
 otherwise constrained.
 <!-- .sp -->
 </para>
-<para id="events:UnmapNotify">
-<emphasis role='bold'>UnmapNotify</emphasis>
-<indexterm significance="preferred"><primary>UnmapNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:UnmapNotify">
+    <title>UnmapNotify</title>
+    <indexterm significance="preferred"><primary>UnmapNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>UnmapNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14038,14 +14097,19 @@ when the window itself had a win-gravity of
 <emphasis role='bold'>Unmap</emphasis>.
 <!-- .sp -->
 </para>
-<para id="events:MapNotify">
-<emphasis role='bold'>MapNotify</emphasis>
-<indexterm significance="preferred"><primary>MapNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:MapNotify">
+    <title>MapNotify</title>
+    <indexterm significance="preferred"><primary>MapNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>MapNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14075,14 +14139,19 @@ and the window is the window that is mapped.
 The override-redirect flag is from the window's attribute.
 <!-- .sp -->
 </para>
-<para id="events:MapRequest">
-<emphasis role='bold'>MapRequest</emphasis>
-<indexterm significance="preferred"><primary>MapRequest</primary></indexterm>
-</para>
+  </section>
+  <section id="events:MapRequest">
+    <title>MapRequest</title>
+    <indexterm significance="preferred"><primary>MapRequest</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>MapRequest</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14104,14 +14173,19 @@ request is issued on an unmapped window with an override-redirect attribute of
 <emphasis role='bold'>False</emphasis>.
 <!-- .sp -->
 </para>
-<para id="events:ReparentNotify">
-<emphasis role='bold'>ReparentNotify</emphasis>
-<indexterm significance="preferred"><primary>ReparentNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:ReparentNotify">
+    <title>ReparentNotify</title>
+    <indexterm significance="preferred"><primary>ReparentNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>ReparentNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14149,14 +14223,19 @@ and specify the position of the upper-left outer corner of the window.
 The override-redirect flag is from the window's attribute.
 <!-- .sp -->
 </para>
-<para id="events:ConfigureNotify">
-<emphasis role='bold'>ConfigureNotify</emphasis>
-<indexterm significance="preferred"><primary>ConfigureNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:ConfigureNotify">
+    <title>ConfigureNotify</title>
+    <indexterm significance="preferred"><primary>ConfigureNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>ConfigureNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14211,14 +14290,19 @@ Otherwise, the window is immediately on top of the specified sibling.
 The override-redirect flag is from the window's attribute.
 <!-- .sp -->
 </para>
-<para id="events:GravityNotify">
-<emphasis role='bold'>GravityNotify</emphasis>
-<indexterm significance="preferred"><primary>GravityNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:GravityNotify">
+    <title>GravityNotify</title>
+    <indexterm significance="preferred"><primary>GravityNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>GravityNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14250,14 +14334,19 @@ The x and y coordinates are relative to the new parent's origin
 and specify the position of the upper-left outer corner of the window.
 <!-- .sp -->
 </para>
-<para id="events:ResizeRequest">
-<emphasis role='bold'>ResizeRequest</emphasis>
-<indexterm significance="preferred"><primary>ResizeRequest</primary></indexterm>
-</para>
+  </section>
+  <section id="events:ResizeRequest">
+    <title>ResizeRequest</title>
+    <indexterm significance="preferred"><primary>ResizeRequest</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>ResizeRequest</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14285,14 +14374,19 @@ of the window.
 The width and height are the requested inside size, not including the border.
 <!-- .sp -->
 </para>
-<para id="events:ConfigureRequest">
-<emphasis role='bold'>ConfigureRequest</emphasis>
-<indexterm significance="preferred"><primary>ConfigureRequest</primary></indexterm>
-</para>
+  </section>
+  <section id="events:ConfigureRequest">
+    <title>ConfigureRequest</title>
+    <indexterm significance="preferred"><primary>ConfigureRequest</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>ConfigureRequest</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14354,14 +14448,19 @@ and
 (respectively) if not given in the request.
 <!-- .sp -->
 </para>
-<para id="events:CirculateNotify">
-<emphasis role='bold'>CirculateNotify</emphasis>
-<indexterm significance="preferred"><primary>CirculateNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:CirculateNotify">
+    <title>CirculateNotify</title>
+    <indexterm significance="preferred"><primary>CirculateNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>CirculateNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14398,14 +14497,19 @@ the window is now on top of all siblings.
 Otherwise, it is below all siblings.
 <!-- .sp -->
 </para>
-<para id="events:CirculateRequest">
-<emphasis role='bold'>CirculateRequest</emphasis>
-<indexterm significance="preferred"><primary>CirculateRequest</primary></indexterm>
-</para>
+  </section>
+  <section id="events:CirculateRequest">
+    <title>CirculateRequest</title>
+    <indexterm significance="preferred"><primary>CirculateRequest</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>CirculateRequest</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14435,14 +14539,19 @@ The window specifies the window to be restacked,
 and the place specifies what the new position in the stacking order should be.
 <!-- .sp -->
 </para>
-<para id="events:PropertyNotify">
-<emphasis role='bold'>PropertyNotify</emphasis>
-<indexterm significance="preferred"><primary>PropertyNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:PropertyNotify">
+    <title>PropertyNotify</title>
+    <indexterm significance="preferred"><primary>PropertyNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>PropertyNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14497,14 +14606,19 @@ or
 The timestamp indicates the server time when the property was changed.
 <!-- .sp -->
 </para>
-<para id="events:SelectionClear">
-<emphasis role='bold'>SelectionClear</emphasis>
-<indexterm significance="preferred"><primary>SelectionClear</primary></indexterm>
-</para>
+  </section>
+  <section id="events:SelectionClear">
+    <title>SelectionClear</title>
+    <indexterm significance="preferred"><primary>SelectionClear</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>SelectionClear</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14537,14 +14651,19 @@ The owner argument is the window that was specified by the current owner in its
 request.
 <!-- .sp -->
 </para>
-<para id="events:SelectionRequest">
-<emphasis role='bold'>SelectionRequest</emphasis>
-<indexterm significance="preferred"><primary>SelectionRequest</primary></indexterm>
-</para>
+  </section>
+  <section id="events:SelectionRequest">
+    <title>SelectionRequest</title>
+    <indexterm significance="preferred"><primary>SelectionRequest</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>SelectionRequest</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14605,14 +14724,19 @@ A complete specification for using selections is given in the X.Org
 standard <citetitle>Inter-Client Communication Conventions Manual</citetitle>.
 <!-- .sp -->
 </para>
-<para id="events:SelectionNotify">
-<emphasis role='bold'>SelectionNotify</emphasis>
-<indexterm significance="preferred"><primary>SelectionNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:SelectionNotify">
+    <title>SelectionNotify</title>
+    <indexterm significance="preferred"><primary>SelectionNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>SelectionNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14655,14 +14779,19 @@ or when a selection conversion could not be performed (indicated with property
 <emphasis role='bold'>None</emphasis>).
 <!-- .sp -->
 </para>
-<para id="events:ColormapNotify">
-<emphasis role='bold'>ColormapNotify</emphasis>
-<indexterm significance="preferred"><primary>ColormapNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:ColormapNotify">
+    <title>ColormapNotify</title>
+    <indexterm significance="preferred"><primary>ColormapNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>ColormapNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14707,14 +14836,19 @@ In either case,
 the state indicates whether the colormap is currently installed.
 <!-- .sp -->
 </para>
-<para id="events:MappingNotify">
-<emphasis role='bold'>MappingNotify</emphasis>
-<indexterm significance="preferred"><primary>MappingNotify</primary></indexterm>
-</para>
+  </section>
+  <section id="events:MappingNotify">
+    <title>MappingNotify</title>
+    <indexterm significance="preferred"><primary>MappingNotify</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>MappingNotify</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14754,14 +14888,19 @@ If the detail is
 then first-keycode and count indicate the range of altered keycodes.
 <!-- .sp -->
 </para>
-<para id="events:ClientMessage">
-<emphasis role='bold'>ClientMessage</emphasis>
-<indexterm significance="preferred"><primary>ClientMessage</primary></indexterm>
-</para>
+  </section>
+  <section id="events:ClientMessage">
+    <title>ClientMessage</title>
+    <indexterm significance="preferred"><primary>ClientMessage</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
+    <row rowsep='0'>
+      <entry>
+	<emphasis role='bold'>ClientMessage</emphasis>
+      </entry>
+    </row>
     <row rowsep='0'>
       <entry>
 <!-- .in +.2i -->
@@ -14801,6 +14940,7 @@ The data always consists of either 20 8-bit values or 10 16-bit values
 or 5 32-bit values, although particular message types might not make use
 of all of these values.
 </para>
+  </section>
 </chapter>
 <chapter id="flow_control_and_concurrency">
 <title>Flow Control and Concurrency</title>
