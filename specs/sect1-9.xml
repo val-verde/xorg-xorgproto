@@ -79,8 +79,12 @@ X Consortium, Inc.
 
   <section id="request_format">
     <title>Request Format</title>
+    <indexterm significance="preferred"><primary>Request</primary><secondary>format</secondary></indexterm>
     <para>
-Every request contains an 8-bit major opcode and a 16-bit length field
+Every request contains an 8-bit <firstterm>major opcode</firstterm>
+<indexterm significance="preferred"><primary>Opcode</primary><secondary>major</secondary></indexterm>
+and a 16-bit <firstterm>length field</firstterm>
+<indexterm significance="preferred"><primary>Request</primary><secondary>length</secondary></indexterm>
 expressed in units of four bytes.
 Every request consists of four bytes of a header
 (containing the major opcode, the length field, and a data byte)
@@ -92,20 +96,27 @@ If the specified length is smaller or larger than the required length,
 an error is generated.
 Unused bytes in a request are not required to be zero.
 Major opcodes 128 through 255 are reserved for extensions.
+<indexterm><primary>Extension</primary></indexterm>
 Extensions are intended to contain multiple requests,
-so extension requests typically have an additional minor opcode encoded
+so extension requests typically have an additional <firstterm>minor
+opcode</firstterm> encoded
 in the second data byte in the request header.
+<indexterm significance="preferred"><primary>Opcode</primary><secondary>minor</secondary></indexterm>
 However, the placement and interpretation of this minor opcode and of all
 other fields in extension requests are not defined by the core protocol.
-Every request on a given connection is implicitly assigned a sequence number,
+Every request on a given connection is implicitly assigned a
+<firstterm>sequence number</firstterm>,
+<indexterm significance="preferred"><primary>Sequence number</primary></indexterm>
 starting with one, that is used in replies, errors, and events.
     </para>
   </section>
 
   <section id="reply_format">
     <title>Reply Format</title>
+    <indexterm significance="preferred"><primary>Reply</primary><secondary>format</secondary></indexterm>
     <para>
-Every reply contains a 32-bit length field expressed in units of four bytes.
+Every <firstterm>reply</firstterm> contains a 32-bit length field
+expressed in units of four bytes.
 Every reply consists of 32 bytes followed by zero or more additional bytes of
 data, as specified in the length field.
 Unused bytes within a reply are not guaranteed to be zero.
@@ -116,10 +127,13 @@ of the corresponding request.
 
   <section id="error_format">
     <title>Error Format</title>
+    <indexterm significance="preferred"><primary>Error report</primary><secondary>format</secondary></indexterm>
     <para>
 Error reports are 32 bytes long.
 Every error includes an 8-bit error code.
 Error codes 128 through 255 are reserved for extensions.
+<indexterm significance="preferred"><primary>Error Codes</primary><secondary>extensions</secondary></indexterm>
+<indexterm significance="preferred"><primary>Extension</primary><secondary>error codes</secondary></indexterm>
 Every error also includes the major and minor opcodes of the failed request
 and the least significant 16 bits of the sequence number of the request.
 For the following errors (see <link linkend="errors">section 4</link>),
@@ -146,8 +160,9 @@ Unused bytes within an error are not guaranteed to be zero.
 
   <section id="event_format">
     <title>Event Format</title>
+    <indexterm significance="preferred"><primary>Event</primary><secondary>format</secondary></indexterm>
     <para>
-Events are 32 bytes long.
+<firstterm>Events</firstterm> are 32 bytes long.
 Unused bytes within an event are not guaranteed to be zero.
 Every event contains an 8-bit type code.
 The most significant bit in this code is set if the event was generated from a
@@ -155,6 +170,8 @@ The most significant bit in this code is set if the event was generated from a
 request.
 Event codes 64 through 127 are reserved for extensions, although the core
 protocol does not define a mechanism for selecting interest in such events.
+<indexterm significance="preferred"><primary>Event</primary><secondary>extension</secondary></indexterm>
+<indexterm significance="preferred"><primary>Extension</primary><secondary>event</secondary></indexterm>
 Every core event (with the exception of
 <emphasis role='bold'>KeymapNotify</emphasis>)
 also contains the least significant 16 bits of the sequence number of the last
@@ -813,6 +830,7 @@ or
 <!-- .XE -->
 <para>
 A KEYCODE represents a physical (or logical) key.
+<indexterm><primary>Types</primary><secondary>KEYCODE</secondary></indexterm>
 Keycodes lie in the inclusive range [8,255].
 A keycode value carries no intrinsic information,
 although server implementors may attempt to encode geometry information
@@ -822,6 +840,7 @@ protocol.
 </para>
 <para>
 A KEYSYM is an encoding of a symbol on the cap of a key.
+<indexterm><primary>Types</primary><secondary>KEYSYM</secondary></indexterm>
 The set of defined KEYSYMs include the character sets Latin-1, Latin-2,
 Latin-3, Latin-4, Kana, Arabic, Cyrillic, Greek, Tech, Special, Publish, APL,
 Hebrew, Thai, and Korean as well as a set of symbols common on keyboards
@@ -875,6 +894,7 @@ of "<emphasis remap='I'>K</emphasis>".
 <para>
 The standard rules for obtaining a KEYSYM from a
 <emphasis role='bold'>KeyPress</emphasis>
+<indexterm><primary>KeyPress</primary></indexterm>
 event make use of only the Group 1 and Group 2 KEYSYMs; no interpretation of
 other KEYSYMs in the list is defined.  The modifier state determines which
 group to use.  Switching between groups is controlled by the KEYSYM named
@@ -884,6 +904,7 @@ KEYCODE to any one of the modifiers
 through
 <emphasis role='bold'>Mod5</emphasis>.
 This modifier is
+<indexterm significance="preferred"><primary>modifier</primary><secondary>group</secondary></indexterm>
 called the "group modifier".  For any KEYCODE, Group 1 is used when the
 group modifier is off, and Group 2 is used when the group modifier is on.
 </para>
@@ -891,6 +912,7 @@ group modifier is off, and Group 2 is used when the group modifier is on.
 <para>
 The
 <emphasis role='bold'>Lock</emphasis>
+<indexterm significance="preferred"><primary>modifier</primary><secondary>Lock</secondary></indexterm>
 modifier is interpreted as CapsLock when the KEYSYM named CAPS
 LOCK is attached to some KEYCODE and that KEYCODE is attached to the
 <emphasis role='bold'>Lock</emphasis>
@@ -915,6 +937,7 @@ one of the modifiers
 through
 <emphasis role='bold'>Mod5</emphasis>.
 This modifier is called the
+<indexterm significance="preferred"><primary>modifier</primary><secondary>NumLock</secondary></indexterm>
 "numlock modifier".  The standard KEYSYMs with the prefix KEYPAD in their
 name are called "keypad" KEYSYMs; these are KEYSYMS with numeric value in
 the hexadecimal range #xFF80 to #xFFBD inclusive.  In addition,
@@ -1000,6 +1023,7 @@ it is merely stored for reading and writing by clients.
 <!-- .XE -->
 <para>
 Buttons are always numbered starting with one.
+<indexterm><primary>Button</primary><secondary>number</secondary></indexterm>
 </para>
 </chapter>
 
@@ -1011,6 +1035,7 @@ Buttons are always numbered starting with one.
 <para>
 <!-- .LP -->
 Predefined atoms are not strictly necessary and may not be useful in all
+<indexterm><primary>Atom</primary><secondary>predefined</secondary></indexterm>
 environments, but they will eliminate many
 <emphasis role='bold'>InternAtom</emphasis>
 requests in most applications.
@@ -1130,6 +1155,7 @@ the X protocol can be built on top of any reliable byte stream.
     <para>
 The client must send an initial byte of data to identify the byte order to be
 employed.
+<indexterm><primary>Byte order</primary></indexterm>
 The value of the byte must be octal 102 or 154.
 The value 102 (ASCII uppercase B) means values are transmitted most significant
 byte first, and value 154 (ASCII lowercase l) means values are transmitted
@@ -1166,6 +1192,7 @@ expects the server to implement.
 The authorization name indicates what authorization (and authentication)
 protocol the client
 expects the server to use, and the data is specific to that protocol.
+<indexterm significance="preferred"><primary>Authorization</primary></indexterm>
 Specification of valid authorization mechanisms is not part of the core
 X protocol.
 A server that does not implement the protocol the client expects
@@ -1446,6 +1473,7 @@ The resource-id-mask contains a single contiguous set of bits (at least 18).
 The client allocates resource IDs for types WINDOW, PIXMAP,
 CURSOR, FONT, GCONTEXT, and COLORMAP by choosing a value with only
 some subset of these bits set and ORing it with resource-id-base.
+<indexterm><primary>Resource</primary><secondary>ID</secondary></indexterm>
 Only values constructed in this way can be used to name newly created
 resources over this connection.
 Resource IDs never have the top three bits set.
@@ -1470,6 +1498,7 @@ scanline unit in XY format (bitmap format) and to each pixel value in Z format.
     </para>
     <para>
 A bitmap is represented in scanline order.
+<indexterm><primary>Bitmap</primary><secondary>format</secondary></indexterm>
 Each scanline is padded to a multiple of bits as given by bitmap-scanline-pad.
 The pad bits are of arbitrary value.
 The scanline is quantized in multiples of bits as given by bitmap-scanline-unit.
@@ -1485,6 +1514,7 @@ between planes.
     </para>
     <para>
 Pixmap-formats contains one entry for each depth value.
+<indexterm><primary>Pixmap</primary><secondary>format</secondary></indexterm>
 The entry describes the Z format used to represent images of that depth.
 An entry for a depth is included if any screen supports that depth,
 and all screens supporting that depth must support only that Z format for that
@@ -1523,6 +1553,7 @@ of elements in the history buffer.
     <para>
 Maximum-request-length specifies the maximum length of a request
 accepted by the server, in 4-byte units.
+<indexterm><primary>Request</primary><secondary>length</secondary></indexterm>
 That is, length is the maximum value that can appear in the length field of a
 request.
 Requests larger than this maximum generate a
@@ -1544,6 +1575,7 @@ Not all keycodes in this range are required to have corresponding keys.
 
   <section id="screen_information">
     <title>Screen Information</title>
+    <indexterm><primary>Screen</primary></indexterm>
 
     <para>
 The information that applies per screen is:
@@ -4547,6 +4579,7 @@ completely outside the boundaries of the root window.
 <para id="requests:GrabButton">
 <emphasis role='bold'>GrabButton</emphasis>
 <indexterm significance="preferred"><primary>GrabButton</primary></indexterm>
+<indexterm><primary>Button</primary><secondary>grabbing</secondary></indexterm>
 </para>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
@@ -4618,6 +4651,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request establishes a passive grab.
+<indexterm><primary>Passive grab</primary><secondary>pointer</secondary></indexterm>
 In the future,
 the pointer is actively grabbed as described in
 <emphasis role='bold'>GrabPointer</emphasis>,
@@ -5027,6 +5061,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request establishes a passive grab on the keyboard.
+<indexterm><primary>Passive grab</primary><secondary>keyboard</secondary></indexterm>
 In the future,
 the keyboard is actively grabbed as described in
 <emphasis role='bold'>GrabKeyboard</emphasis>,
@@ -5356,6 +5391,7 @@ releases both.
 <para id="requests:GrabServer">
 <emphasis role='bold'>GrabServer</emphasis>
 <indexterm significance="preferred"><primary>GrabServer</primary></indexterm>
+<indexterm><primary>Server</primary><secondary>grabbing</secondary></indexterm>
 </para>
 <para>
 This request disables processing of requests and close-downs on all
@@ -12048,6 +12084,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request adds or removes the specified host from the access control list.
+<indexterm><primary>Access control list</primary></indexterm>
 When the access control mechanism is enabled and a client attempts to
 establish a connection to the server,
 the host on which the client resides must be in the access control list,
@@ -12066,6 +12103,7 @@ typically by naming a file that the server reads at startup and reset.
 </para>
 <para>
 The following address families are defined.
+<indexterm><primary>Types</primary><secondary>HOST</secondary></indexterm>
 A server is not required to support these families
 and may support families not listed here.
 Use of an unsupported family, an improper address format,
