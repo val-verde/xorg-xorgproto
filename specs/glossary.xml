@@ -459,8 +459,8 @@ and interline spacing.
 <glossentry id="glossary:GC">
   <glossterm>GC, GContext</glossterm>
   <indexterm significance="preferred"><primary>GC</primary></indexterm>
+  <indexterm significance="preferred"><primary>GContext</primary></indexterm>
   <glossdef>
-<indexterm significance="preferred"><primary>GContext</primary></indexterm>
     <para>
 GC and gcontext are abbreviations for <glossterm linkend="glossary:Graphics_context">graphics context</glossterm>.
 <!-- .KE -->
