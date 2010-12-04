@@ -1019,8 +1019,8 @@ not in the sense of having required semantics.
 The core protocol imposes no semantics on these names,
 but semantics are specified in other X Window System standards,
 such as the
-<emphasis remap='I'>Inter-Client Communication Conventions Manual</emphasis>
-and the <emphasis remap='I'>X Logical Font Description Conventions</emphasis>.
+<citetitle>Inter-Client Communication Conventions Manual</citetitle>
+and the <citetitle>X Logical Font Description Conventions</citetitle>.
 </para>
 
 <para>
@@ -5911,7 +5911,7 @@ the <quote>?</quote> character (octal value 77) will match any single character,
 and the <quote>*</quote> character (octal value 52) will match any number
 of characters.
 A structured format for font names is specified in the
-X.Org standard <emphasis remap='I'>X Logical Font Description Conventions</emphasis>.
+X.Org standard <citetitle>X Logical Font Description Conventions</citetitle>.
 </para>
 <para>
 Fonts are not associated with a particular screen
@@ -6130,7 +6130,7 @@ A font is not guaranteed to have any properties.
 The interpretation of the property value (for example, INT32, CARD32)
 must be derived from <emphasis remap='I'>a priori</emphasis> knowledge of the property.
 A basic set of font properties is specified in the X.Org
-standard <emphasis remap='I'>X Logical Font Description Conventions</emphasis>.
+standard <citetitle>X Logical Font Description Conventions</citetitle>.
 </para>
 <para>
 For a character origin at [x,y],
@@ -14567,7 +14567,7 @@ and send a
 <emphasis role='bold'>SelectionNotify</emphasis>
 back to the requestor.
 A complete specification for using selections is given in the X.Org
-standard <emphasis remap='I'>Inter-Client Communication Conventions Manual</emphasis>.
+standard <citetitle>Inter-Client Communication Conventions Manual</citetitle>.
 <!-- .sp -->
 </para>
 <para id="events:SelectionNotify">
