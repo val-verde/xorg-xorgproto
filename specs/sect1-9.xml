@@ -1764,7 +1764,7 @@ red-mask, green-mask, and blue-mask.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>class</emphasis>:
-<emphasis role='bold'>{ InputOutput</emphasis>,
+{ <emphasis role='bold'>InputOutput</emphasis>,
 <emphasis role='bold'>InputOnly</emphasis>,
 <emphasis role='bold'>CopyFromParent</emphasis>}
       </entry>
@@ -2485,7 +2485,7 @@ visual: VISUALID
     <row rowsep='0'>
       <entry>
 class:
-<emphasis role='bold'>{ InputOutput</emphasis>,
+{ <emphasis role='bold'>InputOutput</emphasis>,
 <emphasis role='bold'>InputOnly</emphasis>}
       </entry>
     </row>
@@ -2502,7 +2502,7 @@ win-gravity: WINGRAVITY
     <row rowsep='0'>
       <entry>
 backing-store:
-<emphasis role='bold'>{ NotUseful</emphasis>,
+{ <emphasis role='bold'>NotUseful</emphasis>,
 <emphasis role='bold'>WhenMapped</emphasis>,
 <emphasis role='bold'>Always</emphasis>}
       </entry>
@@ -2536,7 +2536,7 @@ map-is-installed: BOOL
     <row rowsep='0'>
       <entry>
 map-state:
-<emphasis role='bold'>{ Unmapped</emphasis>,
+{ <emphasis role='bold'>Unmapped</emphasis>,
 <emphasis role='bold'>Unviewable</emphasis>,
 <emphasis role='bold'>Viewable</emphasis>}
       </entry>
@@ -2684,7 +2684,7 @@ request on all children of the window, in bottom-to-top stacking order.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ Insert</emphasis>,
+{ <emphasis role='bold'>Insert</emphasis>,
 <emphasis role='bold'>Delete</emphasis>}
 <!-- .in -.2i -->
       </entry>
@@ -3408,7 +3408,7 @@ Attempts to configure a root window have no effect.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>direction</emphasis>:
-<emphasis role='bold'>{ RaiseLowest</emphasis>,
+{ <emphasis role='bold'>RaiseLowest</emphasis>,
 <emphasis role='bold'>LowerHighest</emphasis>}
 <!-- .in -.2i -->
       </entry>
@@ -3708,7 +3708,7 @@ This request returns the name for the given atom.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ Replace</emphasis>,
+{ <emphasis role='bold'>Replace</emphasis>,
 <emphasis role='bold'>Prepend</emphasis>,
 <emphasis role='bold'>Append</emphasis>}
       </entry>
@@ -4378,7 +4378,7 @@ Active grabs are ignored for this request.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>pointer-mode</emphasis>, <emphasis remap='I'>keyboard-mode</emphasis>:
-<emphasis role='bold'>{ Synchronous</emphasis>,
+{ <emphasis role='bold'>Synchronous</emphasis>,
 <emphasis role='bold'>Asynchronous</emphasis>}
       </entry>
     </row>
@@ -4410,7 +4410,7 @@ Active grabs are ignored for this request.
       <entry>
 <!-- .in +.2i -->
 status:
-<emphasis role='bold'>{ Success</emphasis>,
+{ <emphasis role='bold'>Success</emphasis>,
 <emphasis role='bold'>AlreadyGrabbed</emphasis>,
 <emphasis role='bold'>Frozen</emphasis>,
 <emphasis role='bold'>InvalidTime</emphasis>,
@@ -4616,7 +4616,7 @@ completely outside the boundaries of the root window.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>pointer-mode</emphasis>, <emphasis remap='I'>keyboard-mode</emphasis>:
-<emphasis role='bold'>{ Synchronous</emphasis>,
+{ <emphasis role='bold'>Synchronous</emphasis>,
 <emphasis role='bold'>Asynchronous</emphasis>}
       </entry>
     </row>
@@ -4841,7 +4841,7 @@ with
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>pointer-mode</emphasis>, <emphasis remap='I'>keyboard-mode</emphasis>:
-<emphasis role='bold'>{ Synchronous</emphasis>,
+{ <emphasis role='bold'>Synchronous</emphasis>,
 <emphasis role='bold'>Asynchronous</emphasis>}
       </entry>
     </row>
@@ -4861,7 +4861,7 @@ with
       <entry>
 <!-- .in +.2i -->
 status:
-<emphasis role='bold'>{ Success</emphasis>,
+{ <emphasis role='bold'>Success</emphasis>,
 <emphasis role='bold'>AlreadyGrabbed</emphasis>,
 <emphasis role='bold'>Frozen</emphasis>,
 <emphasis role='bold'>InvalidTime</emphasis>,
@@ -5039,7 +5039,7 @@ becomes not viewable.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>pointer-mode</emphasis>, <emphasis remap='I'>keyboard-mode</emphasis>:
-<emphasis role='bold'>{ Synchronous</emphasis>,
+{ <emphasis role='bold'>Synchronous</emphasis>,
 <emphasis role='bold'>Asynchronous</emphasis>}
 <!-- .in -.2i -->
       </entry>
@@ -5191,7 +5191,7 @@ This request has no effect on an active grab.
       <entry>
 <!-- .in +.2i -->
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ AsyncPointer</emphasis>,
+{ <emphasis role='bold'>AsyncPointer</emphasis>,
 <emphasis role='bold'>SyncPointer</emphasis>,
 <emphasis role='bold'>ReplayPointer</emphasis>,
 <emphasis role='bold'>AsyncKeyboard</emphasis>,
@@ -5735,7 +5735,7 @@ or
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>revert-to</emphasis>:
-<emphasis role='bold'>{ Parent</emphasis>,
+{ <emphasis role='bold'>Parent</emphasis>,
 <emphasis role='bold'>PointerRoot</emphasis>,
 <emphasis role='bold'>None</emphasis>}
       </entry>
@@ -5850,7 +5850,7 @@ or
     <row rowsep='0'>
       <entry>
 revert-to:
-<emphasis role='bold'>{ Parent</emphasis>,
+{ <emphasis role='bold'>Parent</emphasis>,
 <emphasis role='bold'>PointerRoot</emphasis>,
 <emphasis role='bold'>None</emphasis>}
 <!-- .in -.2i -->
@@ -6030,7 +6030,7 @@ T{
 FONTINFO:
 T}	T{
 [draw-direction:
-<emphasis role='bold'>{ LeftToRight</emphasis>,
+{ <emphasis role='bold'>LeftToRight</emphasis>,
 <emphasis role='bold'>RightToLeft</emphasis>}
 T}
 	\ min-char-or-byte2, max-char-or-byte2: CARD16
@@ -6244,7 +6244,7 @@ server-dependent.
       <entry>
 <!-- .in +.2i -->
 draw-direction:
-<emphasis role='bold'>{ LeftToRight</emphasis>,
+{ <emphasis role='bold'>LeftToRight</emphasis>,
 <emphasis role='bold'>RightToLeft</emphasis>}
       </entry>
     </row>
@@ -7901,7 +7901,7 @@ would be included in the dash when drawn unclipped.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>ordering</emphasis>:
-<emphasis role='bold'>{ UnSorted</emphasis>,
+{ <emphasis role='bold'>UnSorted</emphasis>,
 <emphasis role='bold'>YSorted</emphasis>,
 <emphasis role='bold'>YXSorted</emphasis>,
 <emphasis role='bold'>YXBanded</emphasis>}
@@ -8277,7 +8277,7 @@ clip-mask
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>coordinate-mode</emphasis>:
-<emphasis role='bold'>{ Origin</emphasis>,
+{ <emphasis role='bold'>Origin</emphasis>,
 <emphasis role='bold'>Previous</emphasis>}
       </entry>
     </row>
@@ -8340,7 +8340,7 @@ clip-x-origin, clip-y-origin, clip-mask
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>coordinate-mode</emphasis>:
-<emphasis role='bold'>{ Origin</emphasis>,
+{ <emphasis role='bold'>Origin</emphasis>,
 <emphasis role='bold'>Previous</emphasis>}
       </entry>
     </row>
@@ -8738,7 +8738,7 @@ tile-stipple-x-origin, tile-stipple-y-origin, dash-offset, dashes
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>shape</emphasis>:
-<emphasis role='bold'>{ Complex</emphasis>,
+{ <emphasis role='bold'>Complex</emphasis>,
 <emphasis role='bold'>Nonconvex</emphasis>,
 <emphasis role='bold'>Convex</emphasis>}
       </entry>
@@ -8746,7 +8746,7 @@ tile-stipple-x-origin, tile-stipple-y-origin, dash-offset, dashes
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>coordinate-mode</emphasis>:
-<emphasis role='bold'>{ Origin</emphasis>,
+{ <emphasis role='bold'>Origin</emphasis>,
 <emphasis role='bold'>Previous</emphasis>}
       </entry>
     </row>
@@ -9029,7 +9029,7 @@ tile-stipple-x-origin, tile-stipple-y-origin
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>format</emphasis>:
-<emphasis role='bold'>{ Bitmap</emphasis>,
+{ <emphasis role='bold'>Bitmap</emphasis>,
 <emphasis role='bold'>XYPixmap</emphasis>,
 <emphasis role='bold'>ZPixmap</emphasis>}
       </entry>
@@ -9145,7 +9145,7 @@ GC mode-dependent components: foreground, background
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>format</emphasis>:
-<emphasis role='bold'>{ XYPixmap</emphasis>,
+{ <emphasis role='bold'>XYPixmap</emphasis>,
 <emphasis role='bold'>ZPixmap</emphasis>}
 <!-- .in -.2i -->
       </entry>
@@ -9594,7 +9594,7 @@ CHAR2B is taken as the most significant byte).
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>alloc</emphasis>:
-<emphasis role='bold'>{ None</emphasis>,
+{ <emphasis role='bold'>None</emphasis>,
 <emphasis role='bold'>All</emphasis>}
 <!-- .in -.2i -->
       </entry>
@@ -10892,7 +10892,7 @@ the change is visible immediately.
       <entry>
 <!-- .in +.2i -->
 <emphasis remap='I'>class</emphasis>:
-<emphasis role='bold'>{ Cursor</emphasis>,
+{ <emphasis role='bold'>Cursor</emphasis>,
 <emphasis role='bold'>Tile</emphasis>,
 <emphasis role='bold'>Stipple</emphasis>}
       </entry>
@@ -11091,7 +11091,7 @@ This request returns a list of all extensions supported by the server.
       <entry>
 <!-- .in +.2i -->
 status:
-<emphasis role='bold'>{ Success</emphasis>,
+{ <emphasis role='bold'>Success</emphasis>,
 <emphasis role='bold'>Busy</emphasis>,
 <emphasis role='bold'>Failed</emphasis>}
 <!-- .in -.2i -->
@@ -11610,7 +11610,7 @@ led-mask: CARD32
     <row rowsep='0'>
       <entry>
 global-auto-repeat:
-<emphasis role='bold'>{ On</emphasis>,
+{ <emphasis role='bold'>On</emphasis>,
 <emphasis role='bold'>Off</emphasis>}
       </entry>
     </row>
@@ -11707,7 +11707,7 @@ base + [(base * percent) / 100]
       <entry>
 <!-- .in +.2i -->
 status:
-<emphasis role='bold'>{ Success</emphasis>,
+{ <emphasis role='bold'>Success</emphasis>,
 <emphasis role='bold'>Busy</emphasis>}
 <!-- .in -.2i -->
       </entry>
@@ -11894,7 +11894,7 @@ This request returns the current acceleration and threshold for the pointer.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>prefer-blanking</emphasis>:
-<emphasis role='bold'>{ Yes</emphasis>,
+{ <emphasis role='bold'>Yes</emphasis>,
 <emphasis role='bold'>No</emphasis>,
 <emphasis role='bold'>Default</emphasis>}
       </entry>
@@ -11902,7 +11902,7 @@ This request returns the current acceleration and threshold for the pointer.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>allow-exposures</emphasis>:
-<emphasis role='bold'>{ Yes</emphasis>,
+{ <emphasis role='bold'>Yes</emphasis>,
 <emphasis role='bold'>No</emphasis>,
 <emphasis role='bold'>Default</emphasis>}
 <!-- .in -.2i -->
@@ -11981,14 +11981,14 @@ timeout, interval: CARD16
     <row rowsep='0'>
       <entry>
 prefer-blanking:
-<emphasis role='bold'>{ Yes</emphasis>,
+{ <emphasis role='bold'>Yes</emphasis>,
 <emphasis role='bold'>No</emphasis>}
       </entry>
     </row>
     <row rowsep='0'>
       <entry>
 allow-exposures:
-<emphasis role='bold'>{ Yes</emphasis>,
+{ <emphasis role='bold'>Yes</emphasis>,
 <emphasis role='bold'>No</emphasis>}
 <!-- .in -.2i -->
 <!-- .eM -->
@@ -12014,7 +12014,7 @@ This request returns the current screen-saver control values.
       <entry>
 <!-- .in +.2i -->
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ Activate</emphasis>,
+{ <emphasis role='bold'>Activate</emphasis>,
 <emphasis role='bold'>Reset</emphasis>}
 <!-- .in -.2i -->
       </entry>
@@ -12058,7 +12058,7 @@ as if device input had just been received.
       <entry>
 <!-- .in +.2i -->
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ Insert</emphasis>,
+{ <emphasis role='bold'>Insert</emphasis>,
 <emphasis role='bold'>Delete</emphasis>}
       </entry>
     </row>
@@ -12180,7 +12180,7 @@ or public key encryption, are recommended.
       <entry>
 <!-- .in +.2i -->
 mode:
-<emphasis role='bold'>{ Enabled</emphasis>,
+{ <emphasis role='bold'>Enabled</emphasis>,
 <emphasis role='bold'>Disabled</emphasis>}
       </entry>
     </row>
@@ -12216,7 +12216,7 @@ Each HOST is padded to a multiple of four bytes.
       <entry>
 <!-- .in +.2i -->
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ Enable</emphasis>,
+{ <emphasis role='bold'>Enable</emphasis>,
 <emphasis role='bold'>Disable</emphasis>}
 <!-- .in -.2i -->
       </entry>
@@ -12259,7 +12259,7 @@ error results).
       <entry>
 <!-- .in +.2i -->
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ Destroy</emphasis>,
+{ <emphasis role='bold'>Destroy</emphasis>,
 <emphasis role='bold'>RetainPermanent</emphasis>,
 <emphasis role='bold'>RetainTemporary</emphasis>}
 <!-- .in -.2i -->
@@ -12751,7 +12751,7 @@ request.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ Normal</emphasis>,
+{ <emphasis role='bold'>Normal</emphasis>,
 <emphasis role='bold'>Grab</emphasis>,
 <emphasis role='bold'>Ungrab</emphasis>}
       </entry>
@@ -12759,7 +12759,7 @@ request.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>detail</emphasis>:
-<emphasis role='bold'>{ Ancestor</emphasis>,
+{ <emphasis role='bold'>Ancestor</emphasis>,
 <emphasis role='bold'>Virtual</emphasis>,
 <emphasis role='bold'>Inferior</emphasis>,
 <emphasis role='bold'>Nonlinear</emphasis>,
@@ -13090,7 +13090,7 @@ and final positions for the events.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>mode</emphasis>:
-<emphasis role='bold'>{ Normal</emphasis>,
+{ <emphasis role='bold'>Normal</emphasis>,
 <emphasis role='bold'>WhileGrabbed</emphasis>,
 <emphasis role='bold'>Grab</emphasis>,
 <emphasis role='bold'>Ungrab</emphasis>}
@@ -13843,7 +13843,7 @@ and the minor-opcode is always zero.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>state</emphasis>:
-<emphasis role='bold'>{ Unobscured</emphasis>,
+{ <emphasis role='bold'>Unobscured</emphasis>,
 <emphasis role='bold'>PartiallyObscured</emphasis>,
 <emphasis role='bold'>FullyObscured</emphasis>}
 <!-- .in -.2i -->
@@ -14321,7 +14321,7 @@ The width and height are the requested inside size, not including the border.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>stack-mode</emphasis>:
-<emphasis role='bold'>{ Above</emphasis>,
+{ <emphasis role='bold'>Above</emphasis>,
 <emphasis role='bold'>Below</emphasis>,
 <emphasis role='bold'>TopIf</emphasis>,
 <emphasis role='bold'>BottomIf</emphasis>,
@@ -14374,7 +14374,7 @@ and
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>place</emphasis>:
-<emphasis role='bold'>{ Top</emphasis>,
+{ <emphasis role='bold'>Top</emphasis>,
 <emphasis role='bold'>Bottom</emphasis>}
 <!-- .in -.2i -->
 <!-- .eM -->
@@ -14418,7 +14418,7 @@ Otherwise, it is below all siblings.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>place</emphasis>:
-<emphasis role='bold'>{ Top</emphasis>,
+{ <emphasis role='bold'>Top</emphasis>,
 <emphasis role='bold'>Bottom</emphasis>}
 <!-- .in -.2i -->
 <!-- .eM -->
@@ -14460,7 +14460,7 @@ and the place specifies what the new position in the stacking order should be.
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>state</emphasis>:
-<emphasis role='bold'>{ NewValue</emphasis>,
+{ <emphasis role='bold'>NewValue</emphasis>,
 <emphasis role='bold'>Deleted</emphasis>}
       </entry>
     </row>
@@ -14686,7 +14686,7 @@ or when a selection conversion could not be performed (indicated with property
     <row rowsep='0'>
       <entry>
 <emphasis remap='I'>state</emphasis>:
-<emphasis role='bold'>{ Installed</emphasis>,
+{ <emphasis role='bold'>Installed</emphasis>,
 <emphasis role='bold'>Uninstalled</emphasis>}
 <!-- .in -.2i -->
 <!-- .eM -->
@@ -14722,7 +14722,7 @@ the state indicates whether the colormap is currently installed.
       <entry>
 <!-- .in +.2i -->
 <emphasis remap='I'>request</emphasis>:
-<emphasis role='bold'>{ Modifier</emphasis>,
+{ <emphasis role='bold'>Modifier</emphasis>,
 <emphasis role='bold'>Keyboard</emphasis>,
 <emphasis role='bold'>Pointer</emphasis>}
       </entry>

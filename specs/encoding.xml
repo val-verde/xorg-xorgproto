@@ -90,7 +90,7 @@ For components described in the protocol as:
 
 <para>
 name:
-<emphasis role='bold'>{ Name1</emphasis>,...,
+{ <emphasis role='bold'>Name1</emphasis>,...,
 <emphasis role='bold'>NameI</emphasis>}
 </para>
 
