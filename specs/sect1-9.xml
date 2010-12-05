@@ -221,7 +221,7 @@ in the following format:
      <emphasis remap='I'>arg1</emphasis>: type1
      ...
      <emphasis remap='I'>argN</emphasis>: typeN
-   -&gt;
+   ▶
      result1: type1
      ...
      resultM: typeM
@@ -234,10 +234,10 @@ in the following format:
   </listitem>
   <listitem>
     <para>
-If no -&gt; is present in the description,
+If no ▶ is present in the description,
 then the request has no reply (it is asynchronous),
 although errors may still be reported.
-If -&gt;+ is used,
+If ▶+ is used,
 then one or more replies can be generated for a single request.
     </para>
   </listitem>
@@ -2469,7 +2469,7 @@ a subset of the attributes may have been altered.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -3464,7 +3464,7 @@ Exposure processing is performed on formerly obscured windows.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -3534,7 +3534,7 @@ window as a drawable to this request.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -3595,7 +3595,7 @@ The children are listed in bottom-to-top stacking order.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -3650,7 +3650,7 @@ Atoms remain defined until server reset (see <link linkend="connection_close">se
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -3852,7 +3852,7 @@ event on the window unless the property does not exist.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -4024,7 +4024,7 @@ error is generated, no properties are changed.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -4156,7 +4156,7 @@ Selections are global to the server.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -4399,7 +4399,7 @@ Active grabs are ignored for this request.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -4850,7 +4850,7 @@ with
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -5420,7 +5420,7 @@ on other connections.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -5508,7 +5508,7 @@ may lag the physical state if device event processing is frozen.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -5584,7 +5584,7 @@ If the stop time is in the future, it is equivalent to specifying
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -5831,7 +5831,7 @@ but the last-focus-change time is not affected.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -5871,7 +5871,7 @@ This request returns the current focus state.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -6000,7 +6000,7 @@ The font itself will be freed when no other resource references it.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -6233,7 +6233,7 @@ server-dependent.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -6347,7 +6347,7 @@ then undefined characters in the string are also ignored.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -6400,7 +6400,7 @@ The returned names are in lowercase.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -6515,7 +6515,7 @@ The meaning of an error from this request is system specific.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -9148,7 +9148,7 @@ GC mode-dependent components: foreground, background
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -9919,7 +9919,7 @@ event is generated on every window having that colormap as an attribute.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -9973,7 +9973,7 @@ request).
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -10032,7 +10032,7 @@ the same read-only entry, allowing entries to be shared.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -10106,7 +10106,7 @@ and the visual values specify the values actually used in the colormap.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -10189,7 +10189,7 @@ The RGB values of the allocated entries are undefined.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -10503,7 +10503,7 @@ errors are the same as in
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -10574,7 +10574,7 @@ it is arbitrary as to which pixel is reported.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -10906,7 +10906,7 @@ the change is visible immediately.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -10980,7 +10980,7 @@ error results).
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11040,7 +11040,7 @@ and uppercase and lowercase matter.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11080,7 +11080,7 @@ This request returns a list of all extensions supported by the server.
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11175,7 +11175,7 @@ status.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11328,7 +11328,7 @@ it is merely stored for reading and writing by clients
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11574,7 +11574,7 @@ a subset of the controls may have been altered.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11696,7 +11696,7 @@ base + [(base * percent) / 100]
     </row>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11763,7 +11763,7 @@ status.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11849,7 +11849,7 @@ error, as does a zero value for acceleration-denominator.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -11965,7 +11965,7 @@ randomly reorigined periodically.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
@@ -12169,7 +12169,7 @@ or public key encryption, are recommended.
   <tbody>
     <row rowsep='0'>
       <entry>
-   ->
+   ▶
       </entry>
     </row>
     <row rowsep='0'>
