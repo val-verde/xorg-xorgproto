@@ -166,7 +166,7 @@ Unused bytes within an error are not guaranteed to be zero.
 Unused bytes within an event are not guaranteed to be zero.
 Every event contains an 8-bit type code.
 The most significant bit in this code is set if the event was generated from a
-<emphasis role='bold'>SendEvent</emphasis>
+<link linkend="requests:SendEvent"><emphasis role='bold'>SendEvent</emphasis></link>
 request.
 Event codes 64 through 127 are reserved for extensions, although the core
 protocol does not define a mechanism for selecting interest in such events.
@@ -633,14 +633,14 @@ request).
 In general, when a request terminates with an error,
 the request has no side effects (that is, there is no partial execution).
 The only requests for which this is not true are
-<emphasis role='bold'>ChangeWindowAttributes</emphasis>
-<emphasis role='bold'>ChangeGC</emphasis>,
-<emphasis role='bold'>PolyText8</emphasis>,
-<emphasis role='bold'>PolyText16</emphasis>,
-<emphasis role='bold'>FreeColors</emphasis>,
-<emphasis role='bold'>StoreColors</emphasis>
+<link linkend="requests:ChangeWindowAttributes"><emphasis role='bold'>ChangeWindowAttributes</emphasis></link>,
+<link linkend="requests:ChangeGC"><emphasis role='bold'>ChangeGC</emphasis></link>,
+<link linkend="requests:PolyText8"><emphasis role='bold'>PolyText8</emphasis></link>,
+<link linkend="requests:PolyText16"><emphasis role='bold'>PolyText16</emphasis></link>,
+<link linkend="requests:FreeColors"><emphasis role='bold'>FreeColors</emphasis></link>,
+<link linkend="requests:StoreColors"><emphasis role='bold'>StoreColors</emphasis></link>
 and
-<emphasis role='bold'>ChangeKeyboardControl</emphasis>.
+<link linkend="requests:ChangeKeyboardControl"><emphasis role='bold'>ChangeKeyboardControl</emphasis></link>.
 </para>
 
 <para>
@@ -1037,7 +1037,7 @@ Buttons are always numbered starting with one.
 Predefined atoms are not strictly necessary and may not be useful in all
 <indexterm><primary>Atom</primary><secondary>predefined</secondary></indexterm>
 environments, but they will eliminate many
-<emphasis role='bold'>InternAtom</emphasis>
+<link linkend="requests:InternAtom"><emphasis role='bold'>InternAtom</emphasis></link>
 requests in most applications.
 Note that they are predefined only in the sense of having numeric values,
 not in the sense of having required semantics.
@@ -1545,7 +1545,7 @@ finer granularity than is reported by
 <link linkend="events:MotionNotify"><emphasis role='bold'>MotionNotify</emphasis></link>
 events.
 The
-<emphasis role='bold'>GetMotionEvents</emphasis>
+<link linkend="requests:GetMotionEvents"><emphasis role='bold'>GetMotionEvents</emphasis></link>
 request makes such history available.
 The motion-buffer-size gives the approximate maximum number
 of elements in the history buffer.
@@ -1626,7 +1626,7 @@ unspecified two-color pattern using black-pixel and white-pixel.
     <para>
 Min-installed-maps specifies the number of maps that can be guaranteed
 to be installed simultaneously (with
-<emphasis role='bold'>InstallColormap</emphasis>),
+<link linkend="requests:InstallColormap"><emphasis role='bold'>InstallColormap</emphasis></link>),
 regardless of the number of entries allocated in each map.
 Max-installed-maps specifies the maximum number of maps that might possibly be
 installed simultaneously, depending on their allocations.
@@ -1642,14 +1642,14 @@ windows it can support at once.
 If save-unders is
 <emphasis role='bold'>True</emphasis>,
 the server can support the save-under mode in
-<emphasis role='bold'>CreateWindow</emphasis>
+<link linkend="requests:CreateWindow"><emphasis role='bold'>CreateWindow</emphasis></link>
 and
-<emphasis role='bold'>ChangeWindowAttributes</emphasis>,
+<link linkend="requests:ChangeWindowAttributes"><emphasis role='bold'>ChangeWindowAttributes</emphasis></link>,
 although again it may be storage limited.
     </para>
     <para>
 The current-input-events is what
-<emphasis role='bold'>GetWindowAttributes</emphasis>
+<link linkend="requests:GetWindowAttributes"><emphasis role='bold'>GetWindowAttributes</emphasis></link>
 would return for the all-event-masks for the root window.
     </para>
   </section>
@@ -2282,7 +2282,7 @@ The colormap specifies the colormap that best reflects the true
 colors of the window.
 Servers capable of supporting multiple hardware colormaps may use this
 information, and window managers may use it for
-<emphasis role='bold'>InstallColormap</emphasis>
+<link linkend="requests:InstallColormap"><emphasis role='bold'>InstallColormap</emphasis></link>
 requests.
 The colormap must have the same visual type and root as the window (or a
 <emphasis role='bold'>Match</emphasis>
@@ -2379,7 +2379,7 @@ Errors:
 <para>
 The value-mask and value-list specify which attributes are to be changed.
 The values and restrictions are the same as for
-<emphasis role='bold'>CreateWindow</emphasis>.
+<link linkend="requests:CreateWindow"><emphasis role='bold'>CreateWindow</emphasis></link>.
 </para>
 <para>
 Setting a new background, whether by background-pixmap or
@@ -2438,7 +2438,7 @@ changing the contents of the existing map) generates a
 event.
 Changing the colormap of a visible window might have no immediate effect
 on the screen (see
-<emphasis role='bold'>InstallColormap</emphasis>
+<link linkend="requests:InstallColormap"><emphasis role='bold'>InstallColormap</emphasis></link>
 request).
 </para>
 <para>
@@ -2607,7 +2607,7 @@ Errors:
 <para>
 If the argument window is mapped,
 an
-<emphasis role='bold'>UnmapWindow</emphasis>
+<link linkend="requests:UnmapWindow"><emphasis role='bold'>UnmapWindow</emphasis></link>
 request is performed automatically.
 The window and all inferiors are then destroyed, and a
 <link linkend="events:DestroyNotify"><emphasis role='bold'>DestroyNotify</emphasis></link>
@@ -2659,7 +2659,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request performs a
-<emphasis role='bold'>DestroyWindow</emphasis>
+<link linkend="requests:DestroyWindow"><emphasis role='bold'>DestroyWindow</emphasis></link>
 request on all children of the window, in bottom-to-top stacking order.
 <!-- .sp -->
 </para>
@@ -2751,7 +2751,7 @@ Errors:
 <para>
 If the window is mapped,
 an
-<emphasis role='bold'>UnmapWindow</emphasis>
+<link linkend="requests:UnmapWindow"><emphasis role='bold'>UnmapWindow</emphasis></link>
 request is performed automatically first.
 The window is then removed from its current position in the hierarchy
 and is inserted as a child of the specified parent.
@@ -2768,7 +2768,7 @@ a value of
 <emphasis role='bold'>True</emphasis>
 indicates that a window manager should not tamper with this window.
 Finally, if the window was originally mapped, a
-<emphasis role='bold'>MapWindow</emphasis>
+<link linkend="requests:MapWindow"><emphasis role='bold'>MapWindow</emphasis></link>
 request is performed automatically.
 </para>
 <para>
@@ -2881,7 +2881,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request performs a
-<emphasis role='bold'>MapWindow</emphasis>
+<link linkend="requests:MapWindow"><emphasis role='bold'>MapWindow</emphasis></link>
 request on all unmapped children of the window,
 in top-to-bottom stacking order.
 <!-- .sp -->
@@ -2952,7 +2952,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request performs an
-<emphasis role='bold'>UnmapWindow</emphasis>
+<link linkend="requests:UnmapWindow"><emphasis role='bold'>UnmapWindow</emphasis></link>
 request on all mapped children of the window,
 in bottom-to-top stacking order.
 <!-- .sp -->
@@ -4128,7 +4128,7 @@ but the last-change time is not affected.
 <para>
 The selection atom is uninterpreted by the server.
 The owner window is returned by the
-<emphasis role='bold'>GetSelectionOwner</emphasis>
+<link linkend="requests:GetSelectionOwner"><emphasis role='bold'>GetSelectionOwner</emphasis></link>
 request and is reported in
 <link linkend="events:SelectionRequest"><emphasis role='bold'>SelectionRequest</emphasis></link>
 and
@@ -4459,7 +4459,7 @@ If pointer-mode is
 the state of the pointer (as seen by means of the protocol) appears to freeze,
 and no further pointer events are generated by the server until the
 grabbing client issues a releasing
-<emphasis role='bold'>AllowEvents</emphasis>
+<link linkend="requests:AllowEvents"><emphasis role='bold'>AllowEvents</emphasis></link>
 request or until the pointer grab is released.
 Actual pointer changes are not lost while the pointer is frozen.
 They are simply queued for later processing.
@@ -4549,9 +4549,9 @@ replaced by the current server time.
 <para>
 This request releases the pointer if this client has it actively grabbed (from
 either
-<emphasis role='bold'>GrabPointer</emphasis>
+<link linkend="requests:GrabPointer"><emphasis role='bold'>GrabPointer</emphasis></link>
 or
-<emphasis role='bold'>GrabButton</emphasis>
+<link linkend="requests:GrabButton"><emphasis role='bold'>GrabButton</emphasis></link>
 or from a normal button press) and releases any queued events.
 The request has no effect if the specified time is earlier than
 the last-pointer-grab time or is later than the current server time.
@@ -4565,7 +4565,7 @@ events.
 </para>
 <para>
 An
-<emphasis role='bold'>UngrabPointer</emphasis>
+<link linkend="requests:UngrabPointer"><emphasis role='bold'>UngrabPointer</emphasis></link>
 request is performed automatically if the event window or
 confine-to window for an active pointer grab becomes not viewable
 or if window reconfiguration causes the confine-to window to lie
@@ -4650,7 +4650,7 @@ This request establishes a passive grab.
 <indexterm><primary>Passive grab</primary><secondary>pointer</secondary></indexterm>
 In the future,
 the pointer is actively grabbed as described in
-<emphasis role='bold'>GrabPointer</emphasis>,
+<link linkend="requests:GrabPointer"><emphasis role='bold'>GrabPointer</emphasis></link>,
 the last-pointer-grab time is set to the time at which the button was
 pressed (as transmitted in the
 <link linkend="events:ButtonPress"><emphasis role='bold'>ButtonPress</emphasis></link>
@@ -4671,7 +4671,7 @@ on any ancestor of grab-window.
 </para>
 <para>
 The interpretation of the remaining arguments is the same as for
-<emphasis role='bold'>GrabPointer</emphasis>.
+<link linkend="requests:GrabPointer"><emphasis role='bold'>GrabPointer</emphasis></link>.
 The active grab is terminated automatically when
 the logical state of the pointer has all buttons released,
 independent of the logical state of modifier keys.
@@ -4809,10 +4809,10 @@ This request changes the specified dynamic parameters if the pointer is
 actively grabbed by the client and the specified time is no earlier than the
 last-pointer-grab time and no later than the current server time.
 The interpretation of event-mask and cursor are the same as in
-<emphasis role='bold'>GrabPointer</emphasis>.
+<link linkend="requests:GrabPointer"><emphasis role='bold'>GrabPointer</emphasis></link>.
 This request has no effect on the parameters of any passive grabs established
 with
-<emphasis role='bold'>GrabButton</emphasis>.
+<link linkend="requests:GrabButton"><emphasis role='bold'>GrabButton</emphasis></link>.
 <!-- .sp -->
 </para>
   </section>
@@ -4911,7 +4911,7 @@ If keyboard-mode is
 the state of the keyboard (as seen by means of the protocol) appears to freeze.
 No further keyboard events are generated by the server until the
 grabbing client issues a releasing
-<emphasis role='bold'>AllowEvents</emphasis>
+<link linkend="requests:AllowEvents"><emphasis role='bold'>AllowEvents</emphasis></link>
 request or until the keyboard grab is released.
 Actual keyboard changes are not lost while the keyboard is frozen.
 They are simply queued for later processing.
@@ -4925,7 +4925,7 @@ If pointer-mode is
 the state of the pointer (as seen by means of the protocol) appears to freeze.
 No further pointer events are generated by the server
 until the grabbing client issues a releasing
-<emphasis role='bold'>AllowEvents</emphasis>
+<link linkend="requests:AllowEvents"><emphasis role='bold'>AllowEvents</emphasis></link>
 request or until the keyboard grab is released.
 Actual pointer changes are not lost while the pointer is frozen.
 They are simply queued for later processing.
@@ -4980,9 +4980,9 @@ replaced by the current server time.
 <para>
 This request releases the keyboard if this client has it actively grabbed
 (as a result of either
-<emphasis role='bold'>GrabKeyboard</emphasis>
+<link linkend="requests:GrabKeyboard"><emphasis role='bold'>GrabKeyboard</emphasis></link>
 or
-<emphasis role='bold'>GrabKey</emphasis>)
+<link linkend="requests:GrabKey"><emphasis role='bold'>GrabKey</emphasis></link>)
 and releases any queued events.
 The request has no effect if the specified time is earlier than the
 last-keyboard-grab time or is later than the current server time.
@@ -4996,7 +4996,7 @@ events.
 </para>
 <para>
 An
-<emphasis role='bold'>UngrabKeyboard</emphasis>
+<link linkend="requests:UngrabKeyboard"><emphasis role='bold'>UngrabKeyboard</emphasis></link>
 is performed automatically if the event window for an active keyboard grab
 becomes not viewable.
 <!-- .sp -->
@@ -5060,7 +5060,7 @@ This request establishes a passive grab on the keyboard.
 <indexterm><primary>Passive grab</primary><secondary>keyboard</secondary></indexterm>
 In the future,
 the keyboard is actively grabbed as described in
-<emphasis role='bold'>GrabKeyboard</emphasis>,
+<link linkend="requests:GrabKeyboard"><emphasis role='bold'>GrabKeyboard</emphasis></link>,
 the last-keyboard-grab time is set to the time at which the key was pressed
 (as transmitted in the
 <link linkend="events:KeyPress"><emphasis role='bold'>KeyPress</emphasis></link>
@@ -5081,7 +5081,7 @@ on any ancestor of grab-window.
 </para>
 <para>
 The interpretation of the remaining arguments is the same as for
-<emphasis role='bold'>GrabKeyboard</emphasis>.
+<link linkend="requests:GrabKeyboard"><emphasis role='bold'>GrabKeyboard</emphasis></link>.
 The active grab is terminated automatically when the logical state
 of the keyboard has the specified key released,
 independent of the logical state of modifier keys.
@@ -5262,13 +5262,13 @@ For
 if the pointer is actively grabbed by the client and
 is frozen as the result of an event having been sent to the client
 (either from the activation of a
-<emphasis role='bold'>GrabButton</emphasis>
+<link linkend="requests:GrabButton"><emphasis role='bold'>GrabButton</emphasis></link>
 or from a previous
 <emphasis role='bold'>AllowEvents</emphasis>
 with mode
 <emphasis role='bold'>SyncPointer</emphasis>
 but not from a
-<emphasis role='bold'>GrabPointer</emphasis>),
+<link linkend="requests:GrabPointer"><emphasis role='bold'>GrabPointer</emphasis></link>),
 then the pointer grab is released and that event is completely reprocessed,
 this time ignoring any passive grabs at or above (towards the root)
 the grab-window of the grab just released.
@@ -5309,13 +5309,13 @@ For
 if the keyboard is actively grabbed by the client
 and is frozen as the result of an event having been sent to the client
 (either from the activation of a
-<emphasis role='bold'>GrabKey</emphasis>
+<link linkend="requests:GrabKey"><emphasis role='bold'>GrabKey</emphasis></link>
 or from a previous
 <emphasis role='bold'>AllowEvents</emphasis>
 with mode
 <emphasis role='bold'>SyncKeyboard</emphasis>
 but not from a
-<emphasis role='bold'>GrabKeyboard</emphasis>),
+<link linkend="requests:GrabKeyboard"><emphasis role='bold'>GrabKeyboard</emphasis></link>),
 then the keyboard grab is released and that event is completely reprocessed,
 this time ignoring any passive grabs at or above (towards the root)
 the grab-window of the grab just released.
@@ -6300,7 +6300,7 @@ If a gcontext is given for font,
 the currently contained font is used.
 The draw-direction, font-ascent, and font-descent are the same as
 described in
-<emphasis role='bold'>QueryFont</emphasis>.
+<link linkend="requests:QueryFont"><emphasis role='bold'>QueryFont</emphasis></link>.
 The overall-ascent is the maximum of the ascent metrics of all characters
 in the string, and the overall-descent is the maximum of the descent metrics.
 The overall-width is the sum of the character-width metrics of all characters
@@ -6431,7 +6431,7 @@ where:
       <entry>
 <!-- .in +.2i -->
 FONTINFO: &lt;same type definition as in
-<emphasis role='bold'>QueryFont</emphasis>&gt;
+<link linkend="requests:QueryFont"><emphasis role='bold'>QueryFont</emphasis></link>&gt;
 <!-- .eM -->
       </entry>
     </row>
@@ -6441,10 +6441,10 @@ FONTINFO: &lt;same type definition as in
 <!-- .eM -->
 <para>
 This request is similar to
-<emphasis role='bold'>ListFonts</emphasis>,
+<link linkend="requests:ListFonts"><emphasis role='bold'>ListFonts</emphasis></link>,
 but it also returns information about each font.
 The information returned for each font is identical to what
-<emphasis role='bold'>QueryFont</emphasis>
+<link linkend="requests:QueryFont"><emphasis role='bold'>QueryFont</emphasis></link>
 would return except that the per-character metrics are not returned.
 Note that this request can generate multiple replies.
 With each reply,
@@ -7318,19 +7318,19 @@ although some sizes may be faster to use than others.
 The fill-style defines the contents of the source for line, text, and
 fill requests.
 For all text and fill requests (for example,
-<emphasis role='bold'>PolyText8</emphasis>,
-<emphasis role='bold'>PolyText16</emphasis>,
-<emphasis role='bold'>PolyFillRectangle</emphasis>,
-<emphasis role='bold'>FillPoly</emphasis>,
+<link linkend="requests:PolyText8"><emphasis role='bold'>PolyText8</emphasis></link>,
+<link linkend="requests:PolyText16"><emphasis role='bold'>PolyText16</emphasis></link>,
+<link linkend="requests:PolyFillRectangle"><emphasis role='bold'>PolyFillRectangle</emphasis></link>,
+<link linkend="requests:FillPoly"><emphasis role='bold'>FillPoly</emphasis></link>,
 and
-<emphasis role='bold'>PolyFillArc</emphasis>)
+<link linkend="requests:PolyFillArc"><emphasis role='bold'>PolyFillArc</emphasis></link>)
 as well as for line requests with line-style
 <emphasis role='bold'>Solid</emphasis>,
 (for example,
-<emphasis role='bold'>PolyLine</emphasis>,
-<emphasis role='bold'>PolySegment</emphasis>,
-<emphasis role='bold'>PolyRectangle</emphasis>,
-<emphasis role='bold'>PolyArc</emphasis> )
+<link linkend="requests:PolyLine"><emphasis role='bold'>PolyLine</emphasis></link>,
+<link linkend="requests:PolySegment"><emphasis role='bold'>PolySegment</emphasis></link>,
+<link linkend="requests:PolyRectangle"><emphasis role='bold'>PolyRectangle</emphasis></link>,
+<link linkend="requests:PolyArc"><emphasis role='bold'>PolyArc</emphasis></link> )
 and for the even dashes for line requests with line-style
 <emphasis role='bold'>OnOffDash</emphasis>
 or
@@ -7418,15 +7418,15 @@ For the odd dashes for line requests with line-style
 <para>
 The dashes value allowed here is actually a simplified form of the more
 general patterns that can be set with
-<emphasis role='bold'>SetDashes</emphasis>.
+<link linkend="requests:SetDashes"><emphasis role='bold'>SetDashes</emphasis></link>.
 Specifying a value of N here is equivalent to specifying
 the two element list [N, N] in
-<emphasis role='bold'>SetDashes</emphasis>.
+<link linkend="requests:SetDashes"><emphasis role='bold'>SetDashes</emphasis></link>.
 The value must be nonzero (or a
 <emphasis role='bold'>Value</emphasis>
 error results).
 The meaning of dash-offset and dashes are explained in the
-<emphasis role='bold'>SetDashes</emphasis>
+<link linkend="requests:SetDashes"><emphasis role='bold'>SetDashes</emphasis></link>
 request.
 </para>
 <para>
@@ -7446,7 +7446,7 @@ If clip-mask is
 <emphasis role='bold'>None</emphasis>,
 then pixels are always drawn, regardless of the clip origin.
 The clip-mask can also be set with the
-<emphasis role='bold'>SetClipRectangles</emphasis>
+<link linkend="requests:SetClipRectangles"><emphasis role='bold'>SetClipRectangles</emphasis></link>
 request.
 </para>
 <para>
@@ -7469,7 +7469,7 @@ but the semantics is undefined by the core protocol.
 <para>
 The fill-rule defines what pixels are inside (that is, are drawn) for
 paths given in
-<emphasis role='bold'>FillPoly</emphasis>
+<link linkend="requests:FillPoly"><emphasis role='bold'>FillPoly</emphasis></link>
 requests.
 <emphasis role='bold'>EvenOdd</emphasis>
 means a point is inside if an infinite ray with the point as origin crosses
@@ -7500,16 +7500,16 @@ and are inside if and only if the polygon interior is immediately below
 </para>
 <para>
 The arc-mode controls filling in the
-<emphasis role='bold'>PolyFillArc</emphasis>
+<link linkend="requests:PolyFillArc"><emphasis role='bold'>PolyFillArc</emphasis></link>
 request.
 </para>
 <para>
 The graphics-exposures flag controls
 <link linkend="events:GraphicsExposure"><emphasis role='bold'>GraphicsExposure</emphasis></link>
 event generation for
-<emphasis role='bold'>CopyArea</emphasis>
+<link linkend="requests:CopyArea"><emphasis role='bold'>CopyArea</emphasis></link>
 and
-<emphasis role='bold'>CopyPlane</emphasis>
+<link linkend="requests:CopyPlane"><emphasis role='bold'>CopyPlane</emphasis></link>
 requests (and any similar requests defined by extensions).
 </para>
 <para>
@@ -7710,14 +7710,14 @@ This request changes components in gc.
 The value-mask and value-list specify which components are to be changed.
 The values and restrictions are the same
 as for
-<emphasis role='bold'>CreateGC</emphasis>.
+<link linkend="requests:CreateGC"><emphasis role='bold'>CreateGC</emphasis></link>.
 </para>
 <para>
 Changing the clip-mask also overrides any previous
-<emphasis role='bold'>SetClipRectangles</emphasis>
+<link linkend="requests:SetClipRectangles"><emphasis role='bold'>SetClipRectangles</emphasis></link>
 request on the context.
 Changing dash-offset or dashes overrides any previous
-<emphasis role='bold'>SetDashes</emphasis>
+<link linkend="requests:SetDashes"><emphasis role='bold'>SetDashes</emphasis></link>
 request on the context.
 </para>
 <para>
@@ -7765,7 +7765,7 @@ Errors:
 <para>
 This request copies components from src-gc to dst-gc.
 The value-mask specifies which components to copy, as for
-<emphasis role='bold'>CreateGC</emphasis>.
+<link linkend="requests:CreateGC"><emphasis role='bold'>CreateGC</emphasis></link>.
 The two gcontexts must have the same root and the same depth (or a
 <emphasis role='bold'>Match</emphasis>
 error results).
@@ -7934,9 +7934,9 @@ which effectively disables output.
 This is the opposite of passing
 <emphasis role='bold'>None</emphasis>
 as the clip-mask in
-<emphasis role='bold'>CreateGC</emphasis>
+<link linkend="requests:CreateGC"><emphasis role='bold'>CreateGC</emphasis></link>
 and
-<emphasis role='bold'>ChangeGC</emphasis>.
+<link linkend="requests:ChangeGC"><emphasis role='bold'>ChangeGC</emphasis></link>.
 </para>
 <para>
 If known by the client,
@@ -8238,7 +8238,7 @@ by the source region is formed using the foreground/background pixels in gc
 (foreground everywhere the bit-plane in src-drawable contains a bit set to 1,
 background everywhere the bit-plane contains a bit set to 0),
 and the equivalent of a
-<emphasis role='bold'>CopyArea</emphasis>
+<link linkend="requests:CopyArea"><emphasis role='bold'>CopyArea</emphasis></link>
 is performed, with all the same exposure semantics.
 This can also be thought of as using the specified region of the source
 bit-plane as a stipple with a fill-style of
@@ -8519,7 +8519,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request draws the outlines of the specified rectangles, as if a five-point
-<emphasis role='bold'>PolyLine</emphasis>
+<link linkend="requests:PolyLine"><emphasis role='bold'>PolyLine</emphasis></link>
 were specified for each rectangle:
 </para>
 <para>
@@ -8865,7 +8865,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request fills the specified rectangles, as if a four-point
-<emphasis role='bold'>FillPoly</emphasis>
+<link linkend="requests:FillPoly"><emphasis role='bold'>FillPoly</emphasis></link>
 were specified for each rectangle:
 <!-- .DS -->
 [x,y] [x+width,y] [x+width,y+height] [x,y+height]
@@ -8954,7 +8954,7 @@ they are not truncated to discrete coordinates.
 </para>
 <para>
 The arc angles are interpreted as specified in the
-<emphasis role='bold'>PolyArc</emphasis>
+<link linkend="requests:PolyArc"><emphasis role='bold'>PolyArc</emphasis></link>
 request.  When
 the angle of an arc face is not an integral multiple of 90 degrees, then
 the precise endpoint on the arc is implementation dependent.  However, for
@@ -9410,7 +9410,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request is similar to
-<emphasis role='bold'>PolyText8</emphasis>,
+<link linkend="requests:PolyText8"><emphasis role='bold'>PolyText8</emphasis></link>,
 except 2-byte (or 16-bit) characters are used.
 For fonts defined with linear indexing rather than 2-byte matrix indexing,
 the server will interpret each CHAR2B as a 16-bit number that
@@ -9488,7 +9488,7 @@ font-ascent + font-descent
 <para>
 The overall-width, font-ascent, and font-descent are as
 they would be returned by a
-<emphasis role='bold'>QueryTextExtents</emphasis>
+<link linkend="requests:QueryTextExtents"><emphasis role='bold'>QueryTextExtents</emphasis></link>
 call using gc and string.
 </para>
 <para>
@@ -9555,7 +9555,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request is similar to
-<emphasis role='bold'>ImageText8</emphasis>,
+<link linkend="requests:ImageText8"><emphasis role='bold'>ImageText8</emphasis></link>,
 except 2-byte (or 16-bit) characters are used.
 For fonts defined with linear indexing rather than 2-byte matrix indexing,
 the server will interpret each CHAR2B as a 16-bit number that
@@ -9656,19 +9656,19 @@ For
 and
 <emphasis role='bold'>PseudoColor</emphasis>,
 the effect is as if an
-<emphasis role='bold'>AllocColorCells</emphasis>
+<link linkend="requests:AllocColorCells"><emphasis role='bold'>AllocColorCells</emphasis></link>
 request returned all pixel values from zero to N - 1,
 where N is the colormap-entries value in the specified visual.
 For
 <emphasis role='bold'>DirectColor</emphasis>,
 the effect is as if an
-<emphasis role='bold'>AllocColorPlanes</emphasis>
+<link linkend="requests:AllocColorPlanes"><emphasis role='bold'>AllocColorPlanes</emphasis></link>
 request returned a pixel value of zero and red-mask,
 green-mask, and blue-mask values containing the same bits as the
 corresponding masks in the specified visual.
 However,
 in all cases, none of these entries can be freed with
-<emphasis role='bold'>FreeColors</emphasis>.
+<link linkend="requests:FreeColors"><emphasis role='bold'>FreeColors</emphasis></link>.
 <!-- .sp -->
 </para>
   </section>
@@ -9707,9 +9707,9 @@ it is uninstalled (see
 <link linkend="requests:UninstallColormap"><emphasis role='bold'>UninstallColormap</emphasis></link>
 request).
 If the colormap is defined as the colormap for a window (by means of
-<emphasis role='bold'>CreateWindow</emphasis>
+<link linkend="requests:CreateWindow"><emphasis role='bold'>CreateWindow</emphasis></link>
 or
-<emphasis role='bold'>ChangeWindowAttributes</emphasis>),
+<link linkend="requests:ChangeWindowAttributes"><emphasis role='bold'>ChangeWindowAttributes</emphasis></link>),
 the colormap for the window is changed to
 <emphasis role='bold'>None</emphasis>,
 and a
@@ -9774,11 +9774,11 @@ If src-cmap was not created by the client with alloc
 <emphasis role='bold'>All</emphasis>,
 then the allocations to be moved are all those pixels and planes that have
 been allocated by the client using either
-<emphasis role='bold'>AllocColor</emphasis>,
-<emphasis role='bold'>AllocNamedColor</emphasis>,
-<emphasis role='bold'>AllocColorCells</emphasis>,
+<link linkend="requests:AllocColor"><emphasis role='bold'>AllocColor</emphasis></link>,
+<link linkend="requests:AllocNamedColor"><emphasis role='bold'>AllocNamedColor</emphasis></link>,
+<link linkend="requests:AllocColorCells"><emphasis role='bold'>AllocColorCells</emphasis></link>,
 or
-<emphasis role='bold'>AllocColorPlanes</emphasis>
+<link linkend="requests:AllocColorPlanes"><emphasis role='bold'>AllocColorPlanes</emphasis></link>
 and that have not been freed since they were allocated.
 <!-- .sp -->
 </para>
@@ -9841,7 +9841,7 @@ When a colormap is an explicit argument to
 it is added to the head of the list; the list is truncated at the
 tail, if necessary, to keep the length of the list to at most M.
 When a colormap is an explicit argument to
-<emphasis role='bold'>UninstallColormap</emphasis>
+<link linkend="requests:UninstallColormap"><emphasis role='bold'>UninstallColormap</emphasis></link>
 and it is in the required list, it is removed from the list.
 A colormap is not added to the required list when it is installed implicitly
 by the server, and the server cannot implicitly uninstall a colormap that is
@@ -10071,7 +10071,7 @@ Errors:
 This request looks up the named color with respect to the screen associated
 with the colormap.
 Then, it does an
-<emphasis role='bold'>AllocColor</emphasis>
+<link linkend="requests:AllocColor"><emphasis role='bold'>AllocColor</emphasis></link>
 on cmap.
 The name should use the ISO Latin-1 encoding,
 and uppercase and lowercase do not matter.
@@ -10246,9 +10246,9 @@ and C*%2 sup B% independent blue entries.
 This is true even for
 <emphasis role='bold'>PseudoColor</emphasis>.
 When the colormap entry for a pixel value is changed using
-<emphasis role='bold'>StoreColors</emphasis>
+<link linkend="requests:StoreColors"><emphasis role='bold'>StoreColors</emphasis></link>
 or
-<emphasis role='bold'>StoreNamedColor</emphasis>,
+<link linkend="requests:StoreNamedColor"><emphasis role='bold'>StoreNamedColor</emphasis></link>,
 the pixel is decomposed according to the masks and the
 corresponding independent entries are updated.
 <!-- .sp -->
@@ -10300,14 +10300,14 @@ The set of all pixels is produced by ORing together subsets of
 plane-mask with the pixels.
 The request frees all of these pixels that
 were allocated by the client (using
-<emphasis role='bold'>AllocColor</emphasis>,
-<emphasis role='bold'>AllocNamedColor</emphasis>,
-<emphasis role='bold'>AllocColorCells</emphasis>,
+<link linkend="requests:AllocColor"><emphasis role='bold'>AllocColor</emphasis></link>,
+<link linkend="requests:AllocNamedColor"><emphasis role='bold'>AllocNamedColor</emphasis></link>,
+<link linkend="requests:AllocColorCells"><emphasis role='bold'>AllocColorCells</emphasis></link>,
 and
-<emphasis role='bold'>AllocColorPlanes</emphasis>).
+<link linkend="requests:AllocColorPlanes"><emphasis role='bold'>AllocColorPlanes</emphasis></link>).
 Note that freeing an
 individual pixel obtained from
-<emphasis role='bold'>AllocColorPlanes</emphasis>
+<link linkend="requests:AllocColorPlanes"><emphasis role='bold'>AllocColorPlanes</emphasis></link>
 may not actually allow it to be reused until all of its related pixels
 are also freed.
 Similarly, a read-only entry is not actually freed until it has been
@@ -10329,7 +10329,7 @@ or if the colormap was created with all entries writable (using an alloc
 value of
 <emphasis role='bold'>All</emphasis>
 in
-<emphasis role='bold'>CreateColormap</emphasis>).
+<link linkend="requests:CreateColormap"><emphasis role='bold'>CreateColormap</emphasis></link>).
 If more than one pixel is in error,
 it is arbitrary as to which pixel is reported.
 <!-- .sp -->
@@ -10469,7 +10469,7 @@ Errors:
 <para>
 This request looks up the named color with respect to the screen associated
 with cmap and then does a
-<emphasis role='bold'>StoreColors</emphasis>
+<link linkend="requests:StoreColors"><emphasis role='bold'>StoreColors</emphasis></link>
 in cmap.
 The name should use the ISO Latin-1 encoding,
 and uppercase and lowercase do not matter.
@@ -10770,7 +10770,7 @@ Errors:
 <!-- .eM -->
 <para>
 This request is similar to
-<emphasis role='bold'>CreateCursor</emphasis>,
+<link linkend="requests:CreateCursor"><emphasis role='bold'>CreateCursor</emphasis></link>,
 except the source and mask bitmaps are obtained from the specified font glyphs.
 The source-char must be a defined glyph in source-font,
 and if mask-font is given, mask-char must be a defined glyph in mask-font
@@ -11725,7 +11725,7 @@ Errors:
 This request sets the mapping of the pointer.
 Elements of the list are indexed starting from one.
 The length of the list must be the same as
-<emphasis role='bold'>GetPointerMapping</emphasis>
+<link linkend="requests:GetPointerMapping"><emphasis role='bold'>GetPointerMapping</emphasis></link>
 would return (or a
 <emphasis role='bold'>Value</emphasis>
 error results).
@@ -11940,7 +11940,7 @@ the screen is changed in a server-dependent fashion to avoid phosphor burn.
 Otherwise,
 the state of the screens does not change, and screen-saver is not activated.
 At the next keyboard or pointer input or at the next
-<emphasis role='bold'>ForceScreenSaver</emphasis>
+<link linkend="requests:ForceScreenSaver"><emphasis role='bold'>ForceScreenSaver</emphasis></link>
 with mode
 <emphasis role='bold'>Reset</emphasis>,
 screen-saver is deactivated, and all screen states are restored.
@@ -12315,7 +12315,7 @@ Errors:
 <!-- .eM -->
 <para>
 If a valid resource is specified,
-<emphasis role='bold'>KillClient</emphasis>
+<link linkend="requests:KillClient"><emphasis role='bold'>KillClient</emphasis></link>
 forces a close-down of the client that created the resource.
 If the client has already terminated in either
 <emphasis role='bold'>RetainPermanent</emphasis>
@@ -12358,14 +12358,14 @@ to begin on 64-bit boundaries.
 At connection close,
 all event selections made by the client are discarded.
 If the client has the pointer actively grabbed, an
-<emphasis role='bold'>UngrabPointer</emphasis>
+<link linkend="requests:UngrabPointer"><emphasis role='bold'>UngrabPointer</emphasis></link>
 is performed.
 If the client has the keyboard actively grabbed, an
-<emphasis role='bold'>UngrabKeyboard</emphasis>
+<link linkend="requests:UngrabKeyboard"><emphasis role='bold'>UngrabKeyboard</emphasis></link>
 is performed.
 All passive grabs by the client are released.
 If the client has the server grabbed, an
-<emphasis role='bold'>UngrabServer</emphasis>
+<link linkend="requests:UngrabServer"><emphasis role='bold'>UngrabServer</emphasis></link>
 is performed.
 All selections (see
 <link linkend="requests:SetSelectionOwner"><emphasis role='bold'>SetSelectionOwner</emphasis></link>
@@ -12392,7 +12392,7 @@ if the window is an inferior of a window created by the client,
 the save-set window is reparented to the closest ancestor such that
 the save-set window is not an inferior of a window created by the client.
 If the save-set window is unmapped, a
-<emphasis role='bold'>MapWindow</emphasis>
+<link linkend="requests:MapWindow"><emphasis role='bold'>MapWindow</emphasis></link>
 request is performed on it (even if it was not an inferior
 of a window created by the client).
 The reparenting leaves unchanged the absolute coordinates
@@ -12450,7 +12450,7 @@ If no matching passive grab on the button exists,
 then an active grab is started automatically for the client receiving the event,
 and the last-pointer-grab time is set to the current server time.
 The effect is essentially equivalent to a
-<emphasis role='bold'>GrabButton</emphasis>
+<link linkend="requests:GrabButton"><emphasis role='bold'>GrabButton</emphasis></link>
 with arguments:
 </para>
 
@@ -12512,9 +12512,9 @@ selected on the event window, otherwise
 <para>
 The grab is terminated automatically when the logical state of the pointer
 has all buttons released.
-<emphasis role='bold'>UngrabPointer</emphasis>
+<link linkend="requests:UngrabPointer"><emphasis role='bold'>UngrabPointer</emphasis></link>
 and
-<emphasis role='bold'>ChangeActivePointerGrab</emphasis>
+<link linkend="requests:ChangeActivePointerGrab"><emphasis role='bold'>ChangeActivePointerGrab</emphasis></link>
 can both be used to modify the active grab.
 <!-- .sp -->
 </para>
@@ -12709,9 +12709,9 @@ to the client for the event window until
 either the key or button state changes,
 the pointer leaves the event window,
 or the client issues a
-<emphasis role='bold'>QueryPointer</emphasis>
+<link linkend="requests:QueryPointer"><emphasis role='bold'>QueryPointer</emphasis></link>
 or
-<emphasis role='bold'>GetMotionEvents</emphasis>
+<link linkend="requests:GetMotionEvents"><emphasis role='bold'>GetMotionEvents</emphasis></link>
 request.
 <!-- .sp -->
 </para>
@@ -13141,7 +13141,7 @@ and are reported to clients selecting
 <emphasis role='bold'>FocusChange</emphasis>
 on the window.
 Events generated by
-<emphasis role='bold'>SetInputFocus</emphasis>
+<link linkend="requests:SetInputFocus"><emphasis role='bold'>SetInputFocus</emphasis></link>
 when the keyboard is not grabbed have mode
 <emphasis role='bold'>Normal</emphasis>.
 Events generated by
@@ -13617,7 +13617,7 @@ above) as if the focus were to change from G to F.
 
 <para>
 The value is a bit vector as described in
-<emphasis role='bold'>QueryKeymap</emphasis>.
+<link linkend="requests:QueryKeymap"><emphasis role='bold'>QueryKeymap</emphasis></link>.
 This event is reported to clients selecting
 <emphasis role='bold'>KeymapState</emphasis>
 on a window and is generated immediately after every
@@ -13802,9 +13802,9 @@ The width and height specify the extent of the rectangle.
 The major and minor opcodes identify the graphics request used.
 For the core protocol,
 major-opcode is always
-<emphasis role='bold'>CopyArea</emphasis>
+<link linkend="requests:CopyArea"><emphasis role='bold'>CopyArea</emphasis></link>
 or
-<emphasis role='bold'>CopyPlane</emphasis>,
+<link linkend="requests:CopyPlane"><emphasis role='bold'>CopyPlane</emphasis></link>,
 and minor-opcode is always zero.
 <!-- .sp -->
 </para>
@@ -13856,9 +13856,9 @@ The drawable specifies the destination used for the graphics request.
 The major and minor opcodes identify the graphics request used.
 For the core protocol,
 major-opcode is always
-<emphasis role='bold'>CopyArea</emphasis>
+<link linkend="requests:CopyArea"><emphasis role='bold'>CopyArea</emphasis></link>
 or
-<emphasis role='bold'>CopyPlane</emphasis>,
+<link linkend="requests:CopyPlane"><emphasis role='bold'>CopyPlane</emphasis></link>,
 and the minor-opcode is always zero.
 <!-- .sp -->
 </para>
@@ -14001,7 +14001,7 @@ This event is reported to clients selecting
 on the parent
 and is generated when the window is created.
 The arguments are as in the
-<emphasis role='bold'>CreateWindow</emphasis>
+<link linkend="requests:CreateWindow"><emphasis role='bold'>CreateWindow</emphasis></link>
 request.
 <!-- .sp -->
 </para>
@@ -14168,7 +14168,7 @@ The override-redirect flag is from the window's attribute.
 This event is reported to the client selecting
 <emphasis role='bold'>SubstructureRedirect</emphasis>
 on the parent and is generated when a
-<emphasis role='bold'>MapWindow</emphasis>
+<link linkend="requests:MapWindow"><emphasis role='bold'>MapWindow</emphasis></link>
 request is issued on an unmapped window with an override-redirect attribute of
 <emphasis role='bold'>False</emphasis>.
 <!-- .sp -->
@@ -14276,7 +14276,7 @@ on the window and to clients selecting
 <emphasis role='bold'>SubstructureNotify</emphasis>
 on the parent.
 It is generated when a
-<emphasis role='bold'>ConfigureWindow</emphasis>
+<link linkend="requests:ConfigureWindow"><emphasis role='bold'>ConfigureWindow</emphasis></link>
 request actually changes the state of the window.
 The event is the window on which the event was generated,
 and the window is the window that is changed.
@@ -14368,7 +14368,7 @@ and specify the position of the upper-left outer corner of the window.
 This event is reported to the client selecting
 <emphasis role='bold'>ResizeRedirect</emphasis>
 on the window and is generated when a
-<emphasis role='bold'>ConfigureWindow</emphasis>
+<link linkend="requests:ConfigureWindow"><emphasis role='bold'>ConfigureWindow</emphasis></link>
 request by some other client on the window attempts to change the size
 of the window.
 The width and height are the requested inside size, not including the border.
@@ -14434,7 +14434,7 @@ The width and height are the requested inside size, not including the border.
 This event is reported to the client selecting
 <emphasis role='bold'>SubstructureRedirect</emphasis>
 on the parent and is generated when a
-<emphasis role='bold'>ConfigureWindow</emphasis>
+<link linkend="requests:ConfigureWindow"><emphasis role='bold'>ConfigureWindow</emphasis></link>
 request is issued on the window by some other client.
 The value-mask indicates which components were specified in the request.
 The value-mask and the corresponding values are reported as given
@@ -14487,7 +14487,7 @@ on the window and to clients selecting
 <emphasis role='bold'>SubstructureNotify</emphasis>
 on the parent.
 It is generated when the window is actually restacked from a
-<emphasis role='bold'>CirculateWindow</emphasis>
+<link linkend="requests:CirculateWindow"><emphasis role='bold'>CirculateWindow</emphasis></link>
 request.
 The event is the window on which the event was generated,
 and the window is the window that is restacked.
@@ -14533,7 +14533,7 @@ Otherwise, it is below all siblings.
 This event is reported to the client selecting
 <emphasis role='bold'>SubstructureRedirect</emphasis>
 on the parent and is generated when a
-<emphasis role='bold'>CirculateWindow</emphasis>
+<link linkend="requests:CirculateWindow"><emphasis role='bold'>CirculateWindow</emphasis></link>
 request is issued on the parent and a window actually needs to be restacked.
 The window specifies the window to be restacked,
 and the place specifies what the new position in the stacking order should be.
@@ -14587,9 +14587,9 @@ This event is reported to clients selecting
 on the window and is generated with state
 <emphasis role='bold'>NewValue</emphasis>
 when a property of the window is changed using
-<emphasis role='bold'>ChangeProperty</emphasis>
+<link linkend="requests:ChangeProperty"><emphasis role='bold'>ChangeProperty</emphasis></link>
 or
-<emphasis role='bold'>RotateProperties</emphasis>,
+<link linkend="requests:RotateProperties"><emphasis role='bold'>RotateProperties</emphasis></link>,
 even when adding zero-length data using
 <emphasis role='bold'>ChangeProperty</emphasis>
 and when replacing all or part of a property with identical data using
@@ -14600,9 +14600,9 @@ It is generated with state
 <emphasis role='bold'>Deleted</emphasis>
 when a property of the
 window is deleted using request
-<emphasis role='bold'>DeleteProperty</emphasis>
+<link linkend="requests:DeleteProperty"><emphasis role='bold'>DeleteProperty</emphasis></link>
 or
-<emphasis role='bold'>GetProperty</emphasis>.
+<link linkend="requests:GetProperty"><emphasis role='bold'>GetProperty</emphasis></link>.
 The timestamp indicates the server time when the property was changed.
 <!-- .sp -->
 </para>
@@ -14644,7 +14644,7 @@ The timestamp indicates the server time when the property was changed.
 <para>
 This event is reported to the current owner of a selection
 and is generated when a new owner is being defined by means of
-<emphasis role='bold'>SetSelectionOwner</emphasis>.
+<link linkend="requests:SetSelectionOwner"><emphasis role='bold'>SetSelectionOwner</emphasis></link>.
 The timestamp is the last-change time recorded for the selection.
 The owner argument is the window that was specified by the current owner in its
 <emphasis role='bold'>SetSelectionOwner</emphasis>
@@ -14706,10 +14706,10 @@ request.
 <para>
 This event is reported to the owner of a selection
 and is generated when a client issues a
-<emphasis role='bold'>ConvertSelection</emphasis>
+<link linkend="requests:ConvertSelection"><emphasis role='bold'>ConvertSelection</emphasis></link>
 request.
 The owner argument is the window that was specified in the
-<emphasis role='bold'>SetSelectionOwner</emphasis>
+<link linkend="requests:SetSelectionOwner"><emphasis role='bold'>SetSelectionOwner</emphasis></link>
 request.
 The remaining arguments are as in the
 <emphasis role='bold'>ConvertSelection</emphasis>
@@ -14768,11 +14768,11 @@ standard <citetitle>Inter-Client Communication Conventions Manual</citetitle>.
 <!-- .eM -->
 <para>
 This event is generated by the server in response to a
-<emphasis role='bold'>ConvertSelection</emphasis>
+<link linkend="requests:ConvertSelection"><emphasis role='bold'>ConvertSelection</emphasis></link>
 request when there is no owner for the selection.
 When there is an owner,
 it should be generated by the owner using
-<emphasis role='bold'>SendEvent</emphasis>.
+<link linkend="requests:SendEvent"><emphasis role='bold'>SendEvent</emphasis></link>.
 The owner of a selection should send this event to a requestor either
 when a selection has been converted and stored as a property
 or when a selection conversion could not be performed (indicated with property
@@ -14875,14 +14875,14 @@ There is no mechanism to express disinterest in this event.
 The detail indicates the kind of change that occurred:
 <emphasis role='bold'>Modifiers</emphasis>
 for a successful
-<emphasis role='bold'>SetModifierMapping</emphasis>,
+<link linkend="requests:SetModifierMapping"><emphasis role='bold'>SetModifierMapping</emphasis></link>,
 <emphasis role='bold'>Keyboard</emphasis>
 for a successful
-<emphasis role='bold'>ChangeKeyboardMapping</emphasis>,
+<link linkend="requests:ChangeKeyboardMapping"><emphasis role='bold'>ChangeKeyboardMapping</emphasis></link>,
 and
 <emphasis role='bold'>Pointer</emphasis>
 for a successful
-<emphasis role='bold'>SetPointerMapping</emphasis>.
+<link linkend="requests:SetPointerMapping"><emphasis role='bold'>SetPointerMapping</emphasis></link>.
 If the detail is
 <emphasis role='bold'>Keyboard</emphasis>,
 then first-keycode and count indicate the range of altered keycodes.
@@ -14930,7 +14930,7 @@ then first-keycode and count indicate the range of altered keycodes.
 <!-- .eM -->
 <para>
 This event is only generated by clients using
-<emphasis role='bold'>SendEvent</emphasis>.
+<link linkend="requests:SendEvent"><emphasis role='bold'>SendEvent</emphasis></link>.
 The type specifies how the data is to be interpreted by the receiving client;
 the server places no interpretation on the type or the data.
 The format specifies whether the data should be viewed as a list of 8-bit,
