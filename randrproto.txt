@@ -29,14 +29,14 @@ protocol described here, as it has been overtaken by events.
 
 These events include:
       ► Modern toolkits (in this case, GTK+ 2.x) have progressed to the point
-        of implementing migration between screens of arbitrary depths
+	of implementing migration between screens of arbitrary depths
       ► The continued advance of Moore's law has made limited amounts of VRAM
-        less of an issue, reducing the pressure to implement depth switching
+	less of an issue, reducing the pressure to implement depth switching
 	on laptops or desktop systems
       ► The continued decline of legacy toolkits whose design would have
-        required depth switching to support migration
+	required depth switching to support migration
       ► The lack of depth switching implementation experience in the
-        intervening time, due to events beyond our control
+	intervening time, due to events beyond our control
 
 Additionally, the requirement to support depth switching might
 complicate other re-engineering of the device independent part of the
@@ -138,7 +138,7 @@ Thomas Winischhofer for the hardware-accelerated SiS rotation implementation
 Matthew Tippett and Kevin Martin for splitting outputs and CRTCs to more
 fully expose what video hardware can do
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 2. Screen change model
 
@@ -182,7 +182,7 @@ pop-up menus and other pop up windows will position themselves correctly in
 the face of screen configuration changes (the issue is ensuring that pop-ups
 are visible on the reconfigured screen).
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 3. Data Types
 
@@ -190,7 +190,7 @@ The subpixel order is shared with the Render extension, and is documented
 there. The only datatype defined is the screen size, defined in the normal
 (0 degree) orientation.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 4. Errors
 
@@ -203,7 +203,7 @@ CRTC
 Mode
 	A value for a MODE argument does not name a defined MODE.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 5. Protocol Types
 
@@ -266,11 +266,11 @@ CONNECTION { Connected, Disconnected, UnknownConnection }
 	connected to a monitor or other presentation device.
 
 SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
-	        SubPixelHorizontalRGB	extensions definitions; they are here
-	        SubPixelHorizontalBGR	only for convenience.
-	        SubPixelVerticalRGB
-	        SubPixelVerticalBGR
-	        SubPixelNone }
+		SubPixelHorizontalRGB	extensions definitions; they are here
+		SubPixelHorizontalBGR	only for convenience.
+		SubPixelVerticalRGB
+		SubPixelVerticalBGR
+		SubPixelNone }
 
 SCREENSIZE { widthInPixels, heightInPixels: CARD16
 	     widthInMillimeters, heightInMillimeters: CARD16 }
@@ -292,15 +292,15 @@ MODEFLAG { HSyncPositive
 
 MODEINFO { id: MODE
 	   name: STRING
-           width, height: CARD16
-           dotClock: CARD32
-           hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
-           vSyncStart, vSyncEnd, vTotal: CARD16
-           modeFlags: SETofMODEFLAG }
+	   width, height: CARD16
+	   dotClock: CARD32
+	   hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
+	   vSyncStart, vSyncEnd, vTotal: CARD16
+	   modeFlags: SETofMODEFLAG }
 
 REFRESH { rates: LISTofCARD16 }
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 6. Extension Initialization
 
@@ -323,7 +323,7 @@ The name of this extension is "RANDR".
 	It is the clients responsibility to ensure that the server
 	supports a version which is compatible with its expectations.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 7. Extension Requests
 
@@ -564,7 +564,7 @@ dynamic changes in the display environment.
 	name: STRING
 	connection: CONNECTION
 	subpixel-order: SUBPIXELORDER
-        widthInMillimeters, heightInMillimeters: CARD32
+	widthInMillimeters, heightInMillimeters: CARD32
 	crtcs: LISTofCRTC
 	clones: LISTofOUTPUT
 	modes: LISTofMODE
@@ -619,9 +619,9 @@ dynamic changes in the display environment.
 
 ┌───
     RRListOutputProperties
-    	output:OUTPUT
+	output:OUTPUT
       ▶
-      	atoms: LISTof ATOM
+	atoms: LISTof ATOM
 └───
 	Errors: Output
 
@@ -633,7 +633,7 @@ dynamic changes in the display environment.
 	output: OUTPUT
 	property: ATOM
       ▶
-      	pending: BOOL
+	pending: BOOL
 	range: BOOL
 	immutable: BOOL
 	valid-values: LISTofINT32
@@ -663,7 +663,7 @@ dynamic changes in the display environment.
     RRConfigureOutputProperty
 	output: OUTPUT
 	property: ATOM
-      	pending: BOOL
+	pending: BOOL
 	range: BOOL
 	valid-values: LISTofINT32
 └───
@@ -680,7 +680,7 @@ dynamic changes in the display environment.
 
 ┌───
     RRChangeOutputProperty
-    	output: OUTPUT
+	output: OUTPUT
 	property, type: ATOM
 	format: {8, 16, 32}
 	mode: { Replace, Prepend, Append }
@@ -717,7 +717,7 @@ dynamic changes in the display environment.
 
 ┌───
     RRDeleteOutputProperty
-    	output: OUTPUT
+	output: OUTPUT
 	property: ATOM
 └───
 	Errors: Atom, Output
@@ -728,7 +728,7 @@ dynamic changes in the display environment.
 
 ┌───
     RRGetOutputProperty
-    	output: OUTPUT
+	output: OUTPUT
 	property: ATOM
 	type: ATOM or AnyPropertyType
 	long-offset, long-length: CARD32
@@ -779,10 +779,10 @@ dynamic changes in the display environment.
 
 ┌───
     RRCreateMode
-    	window: WINDOW
+	window: WINDOW
 	modeinfo: MODEINFO
       ▶
-      	mode: MODE
+	mode: MODE
 └───
 	Errors: Window, Name, Value
 
@@ -795,7 +795,7 @@ dynamic changes in the display environment.
 
 ┌───
     RRDestroyMode
-      	mode: MODE
+	mode: MODE
 └───
 	Errors: Mode, Access
 
@@ -973,7 +973,7 @@ dynamic changes in the display environment.
     RRGetCrtcGamma
 	crtc: CRTC
       ▶
-      	red: LISTofCARD16
+	red: LISTofCARD16
 	green: LISTofCARD16
 	blue: LISTofCARD16
 └───
@@ -1236,7 +1236,7 @@ dynamic changes in the display environment.
 
 	RRGetOutputPrimary returns the primary output for the screen.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 8. Extension Events
 
@@ -1372,7 +1372,7 @@ factors, such as re-cabling a monitor, etc.
 	just at the time when a display manager or log in script might
 	be changing the monitor size or configuration.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 9. Properties
 
@@ -1554,7 +1554,7 @@ Property			Immutable	Mandatory since
 ────────			─────────	───────────────
 Backlight			no		not mandatory
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 10. Extension Versioning
 
@@ -1599,7 +1599,7 @@ GetScreenResources to avoid expensive DDC operations, CRTC transformations,
 panning, and the primary output concept. 1.2 and 1.3 are backward-compatible
 with 1.1.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 11. Relationship with other extensions
 
@@ -1636,7 +1636,7 @@ re-querying the configuration with the Xinerama extension will get updated
 information. It is probably better to view RandR as a superset of Xinerama
 at this point and use it in preference to Xinerama where both are present.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+			      ❧❧❧❧❧❧❧❧❧❧❧
 
 Appendix A. Protocol Encoding
 
@@ -1742,11 +1742,11 @@ errors if used in version 1.0.
 	4	CARD32			minor version
       ▶
 	1	1			Reply
-        1				unused
+	1				unused
 	2	CARD16			sequence number
 	4	0			reply length
 	1	CARD32			major version
-        1	CARD32			minor version
+	1	CARD32			minor version
 └───
 ┌───
     RRSetScreenConfig
