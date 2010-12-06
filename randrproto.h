@@ -897,6 +897,7 @@ typedef struct {
 } xRRSetPanningReply;
 #define sz_xRRSetPanningReply	32
 
+#undef PictFormat
 #undef RRModeFlags
 #undef RRCrtc
 #undef RRMode

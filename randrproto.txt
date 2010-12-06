@@ -131,8 +131,7 @@ underlying hardware to clients
 
    • Per-crtc pixmaps. This provides for multiple scan-out buffers
      which applications can create and assign to arbitrary collections
-     of crtcs. These pixmaps can be associated with a window for use
-     with OpenGL or drawn to directly.
+     of crtcs.
 
    • Sprite position and image transforms. These provide a projective
      transform for both the hot spot location and the sprite image
@@ -356,6 +355,22 @@ SCANOUTPIXMAPINFO { format: PICTFORMAT
 		    maxWidth, maxHeight: CARD16
 		    rotations: SETofROTATION }
 
+	'format' is the format of the pixels within the scanout
+	pixmap. Only 'Direct' formats are supported, this will never
+	be an 'Indexed' format.
+
+	'maxWidth' and 'maxHeight' define the largest supported
+	scanout pixmap. There is no minimum size; scanout pixmaps down
+	to 1x1 may be created.
+
+	'rotations' lists the set of rotations which can be provided
+	without additional latency or memory usage within the
+	environment. This typically means that they are supported
+	directly by the hardware. It is expected that a compositing
+	manager will perform other transforms as a part of the
+	compositing process in conjunction with the sprite transforms
+	described in this extension.
+
 CRTCCONFIG { crtc: CRTC
 	     x, y: INT16
 	     mode: MODE
@@ -363,7 +378,7 @@ CRTCCONFIG { crtc: CRTC
 	     sprite-position-transform: TRANSFORM
 	     sprite-image-transform: TRANSFORM
 	     outputs: LISTofOUTPUT
-	     pixmap: PIXMAP, None or CurrenScanoutPixmap
+	     pixmap: PIXMAP, None or CurrentScanoutPixmap
 	     pixmap-x, pixmap-y: INT16 }
 
 	The sprite-position-transform and sprite-image-transform
@@ -373,7 +388,7 @@ CRTCCONFIG { crtc: CRTC
 	'pixmap' specifies the origin of the pixel data to be presented on
 	'crtc'. If 'pixmap' is None, then data will be presented from
 	the screen pixmap. If 'pixmap' is 'CurrentScanoutPixmap', then
-	whatever source is current in use will remain in use, whether
+	whatever source is currently in use will remain in use, whether
 	that is the screen pixmap or some other allocated scanout pixmap.
 
 	'pixmap-x' and 'pixmap-y' specify the origin of the scanout
