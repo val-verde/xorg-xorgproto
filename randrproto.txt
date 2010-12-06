@@ -134,11 +134,43 @@ underlying hardware to clients
      of crtcs. These pixmaps can be associated with a window for use
      with OpenGL or drawn to directly.
 
+   • Sprite position and image transforms. These provide a projective
+     transform for both the hot spot location and the sprite image
+     itself for each CRTC.
+
    • RRSetCrtcConfigs request. This supplies a set of
      crtc configurations to the server that must be applied together
      or not at all. This can reduce screen flicker while also
      providing the server a complete configuration for appropriate
      resource management.
+
+The first two additions, per-crtc pixmaps and sprite transforms are
+designed to solve two problems:
+
+ 1) Screen transforms. The software transform code in the X server
+    uses a shadow frame buffer, adding another copy to every graphics
+    operation. Worse, the server has no idea about when clients are
+    done drawing a frame, so the user gets additional latency and
+    judder.
+
+    The goal is to move this operation out to the compositing manager
+    which already deals with an extra copy of the frame buffer for
+    many operations. Have the compositing manager create and draw to a
+    separate pixmap for scanout. It can perform whatever transforms
+    are required to get the image in the right orientation for the
+    user.
+
+ 2) Hardware scanout engine size limits. With a single scanout buffer
+    for the entire screen, it's possible for the user to ask for a
+    configuration which requires that scanout buffer to be larger than
+    the hardware is capable of scanning out from. Again, having the
+    compositing manager create a pixmap for each CRTC will allow for
+    any configuration where monitor position within the virtual space
+    isn't limited by the scanout limits.
+
+In both of these cases, the Sprite transforms are necessary to ensure
+that the sprite appears at the desired spot on each CRTC and with the
+right shape.
 
 1.99 Acknowledgements
 
