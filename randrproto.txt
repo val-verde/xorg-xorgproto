@@ -406,6 +406,12 @@ CRTCCONFIG { crtc: CRTC
 	included as a part of its creation paramaeters, or a Match
 	error results.
 
+	If 'pixmap' is destroyed while still being used as a scanout
+	pixmap, then the associated CRTC will have its scanout pixmap
+	set back to None, the CRTC origin set back to 0,0 (to make
+	sure it fits) and the screen pixmap width and height increased
+	to be at least as big as the current CRTC mode.
+
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
 6. Extension Initialization
