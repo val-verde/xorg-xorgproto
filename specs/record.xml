@@ -21,14 +21,14 @@
     </othercredit>
   </authorgroup>
   <corpname>X Consortium Standard</corpname>
-  <copyright><year>1994</year><holder>Network Computing Devices, Inc.</holder></copyright>
-  <copyright><year>1994</year><holder>X Consortium</holder></copyright>
-  <copyright><year>1995</year><holder>X Consortium</holder></copyright>
   <affiliation><orgname>X Consortium</orgname></affiliation>
   <productnumber>Version 1.13</productnumber>
   <releaseinfo>X Version 11, Release 6.7</releaseinfo>
 
 <legalnotice>
+<para>
+Copyright &copy; 1994 Network Computing Devices, Inc.
+</para>
 <para>
 Permission to use, copy, modify, distribute, and sell this
 documentation for any purpose is hereby granted without fee,
@@ -37,6 +37,12 @@ notice appear in all copies.  Network Computing Devices, Inc.
 makes no representations about the suitability for any purpose
 of the information in this document.  This documentation is
 provided "as is" without express or implied warranty.
+</para>
+</legalnotice>
+
+<legalnotice>
+<para>
+Copyright &copy; 1994, 1995 X Consortium
 </para>
 <para>
 Permission is hereby granted, free of charge, to any person obtaining
