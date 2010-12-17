@@ -39,9 +39,7 @@ implied warranty.
 </legalnotice>
 </bookinfo>
 
-<chapter id="title">
-<title>TITLE</title>
-<sect1 id="Introduction_">
+<chapter id="Introduction_">
 <title>Introduction</title>
 <para>
 The X Window System provides support for changing the image on a display screen
@@ -61,9 +59,9 @@ particular, such users often wish to be able to display corporate logos,
 instructions on how to reactivate the screen, and automatic screen-locking
 utilities.  This extension provides a means for writing such clients.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="Assumptions">
+<chapter id="Assumptions">
 <title>Assumptions</title>
 <para>
 This extension exports the notion of a special screen saver window that is
@@ -73,9 +71,9 @@ the window manager.  Furthermore, the X identifier for the window is never
 returned by <function>QueryTree</function> requests on the root window, so it is typically
 not visible to other clients.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="Overview">
+<chapter id="Overview">
 <title>Overview</title>
 <para>
 The core
@@ -106,9 +104,9 @@ id for the screen saver window and setting the attributes (e.g. size,
 location, visual, colormap) to be used when the window is mapped.  These
 requirements form the basis of this extension.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="Issues">
+<chapter id="Issues">
 <title>Issues</title>
 <para>
 This extension raises several interesting issues.  First is the question of
@@ -130,15 +128,15 @@ it is not mapped so that it need not be avoided during event delivery.  Thus,
 screen saver clients may find that the requests that reference the screen
 saver window may fail when the window is not displayed.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="Protocol">
+<chapter id="Protocol">
 <title>Protocol</title>
 <para>
 The Screen Saver extension is as follows:
 </para>
 
-<sect2 id="Types">
+<sect1 id="Types">
 <title>Types</title>
 <para>
 In adition to the comon types described in the core protocol, the following
@@ -164,16 +162,16 @@ type is used in the request and event definitions in subsequent sections.
   </tbody>
   </tgroup>
 </informaltable>
-</sect2>
+</sect1>
 
-<sect2 id="Errors">
+<sect1 id="Errors">
 <title>Errors</title>
 <para>
 The Screen Saver extension adds no errors beyond the core protocol.
 </para>
-</sect2>
+</sect1>
 
-<sect2 id="Requests">
+<sect1 id="Requests">
 <title>Requests</title>
 <para>
 The Screen Saver extension adds the following requests:
@@ -464,9 +462,9 @@ deactivation.
 This request is ignored if the client has not previously set the screen saver
 window attributes.
 </para>
-</sect2>
+</sect1>
 
-<sect2 id="Events_">
+<sect1 id="Events_">
 <title>Events</title>
 <para>
 The Screen Saver extension adds one event:
@@ -550,10 +548,10 @@ when the screen saver was activated, as described in
 The <emphasis remap='I'>time</emphasis> field indicates the server time
 when the event was generated.
 </para>
-</sect2>
 </sect1>
+</chapter>
 
-<sect1 id="Encoding">
+<chapter id="Encoding">
 <title>Encoding</title>
 <para>
 Please refer to the X11 Protocol Encoding document as this document uses
@@ -563,16 +561,16 @@ conventions established there.
 The name of this extension is "SCREEN-SAVER".
 </para>
 
-<sect2 id="Common_Types">
+<sect1 id="Common_Types">
 <title>Common Types</title>
 <literallayout class="monospaced">
 SETofSCREENSAVEREVENT
      #x00000001     ScreenSaverNotifyMask
      #x00000002     ScreenSaverCycleMask
 </literallayout>
-</sect2>
+</sect1>
 
-<sect2 id="Requests_2">
+<sect1 id="Requests_2">
 <title>Requests</title>
 <literallayout class="monospaced">
 <emphasis role="bold">ScreenSaverQueryVersion</emphasis>
@@ -649,9 +647,9 @@ SETofSCREENSAVEREVENT
 2     3                       request length
 4     DRAWABLE                drawable associated with screen
 </literallayout>
-</sect2>
+</sect1>
 
-<sect2 id="Events">
+<sect1 id="Events">
 <title>Events</title>
 
 <literallayout class="monospaced">
@@ -672,10 +670,10 @@ SETofSCREENSAVEREVENT
 1     BOOL                    forced
 14                            unused
 </literallayout>
-</sect2>
 </sect1>
+</chapter>
 
-<sect1 id="Inter_Client_Communications_Conventions_">
+<chapter id="Inter_Client_Communications_Conventions_">
 <title>Inter-Client Communications Conventions</title>
 <para>
 Screen saver clients should create at least one resource value whose
@@ -691,9 +689,9 @@ resource and should be one of the following:
 <emphasis role="bold">FONT</emphasis>, or
 <emphasis role="bold">COLORMAP</emphasis>.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id="C_language_binding">
+<chapter id="C_language_binding">
 <title>C language binding</title>
 
 <para>
@@ -930,6 +928,5 @@ is encountered or if the property does not exist or is not of the correct
 format; otherwise it returns non-zero.
 </para>
 
-</sect1>
 </chapter>
 </book>
