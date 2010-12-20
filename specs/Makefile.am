@@ -46,7 +46,18 @@ dist_doc_DATA = 		\
 	ch13.xml		\
 	ch14.xml		\
 	ch15.xml		\
-	ch16.xml
+	ch16.xml		\
+	XKBproto-1.gif		\
+	XKBproto-2.gif		\
+	XKBproto-3.gif		\
+	XKBproto-4.gif		\
+	XKBproto-5.gif		\
+	XKBproto-6.gif		\
+	XKBproto-7.gif		\
+	XKBproto-8.gif		\
+	XKBproto-9.gif		\
+	XKBproto-10.gif		\
+	XKBproto-11.gif
 
 if HAVE_XMLTO
 doc_DATA = $(doc_sources:.xml=.html)
