@@ -58,7 +58,7 @@ n</emphasis>
 </para>
 
 <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-6.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-6.svg"/>
  </imageobject>
  </mediaobject>
 
@@ -478,7 +478,7 @@ engraved on the key):
 </para>
 
 <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-7.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-7.svg"/>
  </imageobject>
  </mediaobject>
 

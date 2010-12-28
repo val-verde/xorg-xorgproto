@@ -1547,7 +1547,7 @@ valnWhat</emphasis>
  is <emphasis>
 SA_SetValRelative</emphasis>
 , <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-4.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-4.svg"/>
  </imageobject>
  </mediaobject>
 
@@ -1564,7 +1564,7 @@ SA_SetValAbsolute</emphasis>
 , <emphasis>
 valn</emphasis>
  is set to <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-5.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-5.svg"/>
  </imageobject>
  </mediaobject>
 

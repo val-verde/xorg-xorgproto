@@ -409,7 +409,7 @@ accelerated according to the formula:
 
 <mediaobject>
  <imageobject>
-   <imagedata fileref="XKBproto-1.gif" format='GIF'/>
+   <imagedata format="SVG" fileref="XKBproto-1.svg"/>
  </imageobject>
 </mediaobject>
 
@@ -431,7 +431,7 @@ curve</emphasis>
 </para>
 
 <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-2.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-2.svg"/>
  </imageobject>
  </mediaobject>
 
@@ -444,7 +444,7 @@ curve</emphasis>
  causes the distance moved to increase linearly from <emphasis>
 action_delta</emphasis>
  to <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-3.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-3.svg"/>
  </imageobject>
  </mediaobject>
 

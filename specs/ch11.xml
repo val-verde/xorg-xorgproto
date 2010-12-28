@@ -29,7 +29,7 @@ width</emphasis>
  and <emphasis>
 height</emphasis>
  of the keyboard, in <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-8.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-8.svg"/>
  </imageobject>
  </mediaobject>
 . For non-rectangular keyboards, the width and height describe the smallest
@@ -97,14 +97,14 @@ url="XKBproto.htm#50332257_35210">See Shapes and Outlines</ulink>.
 
 <para>
 Unless otherwise specified, geometry measurements are in <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-9.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-9.svg"/>
  </imageobject>
  </mediaobject>
 
  units. The origin (0,0) is in the top left corner of the keyboard image. Some
 geometry components can be drawn rotated; all such objects rotate about their
 origin in <mediaobject>
- <imageobject> <imagedata fileref="XKBproto-10.gif"/>
+ <imageobject> <imagedata format="SVG" fileref="XKBproto-10.svg"/>
  </imageobject>
  </mediaobject>
 
@@ -346,7 +346,7 @@ Consider the following example keyboard:
 
 <mediaobject>
   <imageobject>
-    <imagedata fileref="XKBproto-11.gif"/>
+    <imagedata format="SVG" fileref="XKBproto-11.svg"/>
   </imageobject>
 </mediaobject>
 
