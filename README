@@ -5,6 +5,15 @@ X server that controls multiple back-end X servers making up a large display.
 
 Extension name: DMX
 
+More information about the DMX software can be found on the original project
+website at:
+        http://dmx.sourceforge.net/
+
+The protocol specification is currently maintained in the xserver git
+repository at hw/dmx/doc/DMXSpec.txt and can be viewed online at:
+
+        http://cgit.freedesktop.org/xorg/xserver/tree/hw/dmx/doc/DMXSpec.txt
+
 All questions regarding this software should be directed at the
 Xorg mailing list:
 
