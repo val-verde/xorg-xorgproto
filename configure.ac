@@ -18,5 +18,6 @@ m4_ifndef([XORG_MACROS_VERSION],
 XORG_MACROS_VERSION(1.3)
 XORG_DEFAULT_OPTIONS
 
-AC_OUTPUT([Makefile
-           dmxproto.pc])
+AC_CONFIG_FILES([Makefile
+                 dmxproto.pc])
+AC_OUTPUT
