@@ -6,7 +6,6 @@ AC_PREREQ([2.60])
 AC_INIT([DMXProto], [2.3],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AC_CONFIG_SRCDIR([Makefile.am])
-AC_CONFIG_HEADERS([config.h])
 
 # Initialize Automake
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
