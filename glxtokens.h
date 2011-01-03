@@ -278,6 +278,10 @@ extern "C" {
 #define GLX_SAMPLE_BUFFERS_SGIS            100000
 #define GLX_SAMPLES_SGIS                   100001
 
+/*
+ * GLX_EXT_framebuffer_SRGB
+ */
+#define GLX_FRAMEBUFFER_SRGB_CAPABLE_EXT   0x20B2
 #ifdef __cplusplus
 }
 #endif
