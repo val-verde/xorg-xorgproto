@@ -3,7 +3,8 @@ dnl Process this file with autoconf to create configure.
 
 # Initialize Autoconf
 AC_PREREQ([2.60])
-AC_INIT([XF86DRIProto], [2.1.0], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
+AC_INIT([XF86DRIProto], [2.1.1],
+        [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AC_CONFIG_SRCDIR([Makefile.am])
 
 # Initialize Automake
