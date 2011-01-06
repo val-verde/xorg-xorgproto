@@ -1,8 +1,11 @@
-			Extended Visual Information Extension (XEVIE)
+XEvIE - X Event Interception Extension
 
+XEvIE is a X extension providing functionalities to allow users
+intercept keyboard/mouse events.
 
-This extension defines a protocol for a client to determine information
-about core X visuals beyond what the core protocol provides.
+It was included in X11R6.8 through Xorg server 1.5, but is no
+longer supported in current X server releases (and didn't actually
+work in the last releases that did include it).
 
 Extension name: XEVIE
 
