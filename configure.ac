@@ -3,7 +3,7 @@ dnl Process this file with autoconf to create configure.
 
 # Initialize Autoconf
 AC_PREREQ([2.60])
-AC_INIT([PrintProto], [1.0.4],
+AC_INIT([PrintProto], [1.0.5],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AC_CONFIG_SRCDIR([Makefile.am])
 
