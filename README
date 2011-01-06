@@ -1,7 +1,13 @@
 				X Xinerama Extension
 
-This is an X extension that allows multiple physical screens controlled
-by a single X server to appear as a single screen.
+Xinerama is an X extension that allows clients to query information
+about multiple physical screens controlled by a single X server that
+appear as a single screen to core X11 protocol operations.
+
+This extension provides a common network protocol for querying information
+which may be provided by different underlying screen combination
+technologies in the X server, such as the original Xinerama multiplexer,
+or alternative implementations like Xrandr or TwinView.
 
 Extension name: XINERAMA
 
