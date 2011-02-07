@@ -92,9 +92,10 @@
 #define X_XIDeleteProperty              58
 #define X_XIGetProperty                 59
 #define X_XIGetSelectedEvents           60
+#define X_XIAllowTouchEvents            61
 
 /** Number of XI requests */
-#define XI2REQUESTS (X_XIGetSelectedEvents - X_XIQueryPointer + 1)
+#define XI2REQUESTS (X_XIAllowTouchEvents - X_XIQueryPointer + 1)
 /** Number of XI2 events */
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
@@ -188,6 +189,31 @@ typedef struct {
     uint16_t    pad2;
 } xXIValuatorInfo;
 
+/**
+ * Denotes multitouch capability on a device.
+ */
+typedef struct {
+    uint16_t    type;           /**< Always TouchClass */
+    uint16_t    length;         /**< Length in 4 byte units */
+    uint16_t    sourceid;       /**< source device for this class */
+    uint8_t     mode;           /**< DirectTouch or DependentTouch */
+    uint8_t     num_touches;    /**< Maximum number of touches (0==unlimited) */
+} xXITouchInfo;
+
+/**
+ * Denotes a multitouch valuator capability on a device.
+ * One XITouchValuatorInfo describes exactly one valuator (axis) on the device.
+ */
+typedef struct {
+    uint16_t    type;           /**< Always TouchValuatorClass  */
+    uint16_t    length;         /**< Length in 4 byte units */
+    uint16_t    sourceid;       /**< source device for this class */
+    uint16_t    number;         /**< Valuator number            */
+    Atom        label;          /**< Axis label                 */
+    FP3232      min;            /**< Min value                  */
+    FP3232      max;            /**< Max value                  */
+    uint32_t    resolution;     /**< Resolutions in units/m     */
+} xXITouchValuatorInfo;
 
 /**
  * Used to select for events on a given window.
@@ -772,6 +798,20 @@ typedef struct {
 } xXIGetPropertyReply;
 #define sz_xXIGetPropertyReply               32
 
+/**
+ * Accept or reject a grabbed touch sequence.
+ */
+typedef struct {
+    uint8_t     reqType;
+    uint8_t     ReqType;        /**< Always ::X_XIAllowTouchEvents */
+    uint16_t    length;         /**< Length in 4 byte units */
+    uint32_t    touchid;
+    uint16_t    deviceid;
+    uint8_t     mode;           /**< bitmask */
+    uint8_t     pad;
+} xXIAllowTouchEventsReq;
+#define sz_xXIAllowTouchEventsReq                   12
+
 /*************************************************************************************
  *                                                                                   *
  *                                      EVENTS                                       *
@@ -857,7 +897,27 @@ typedef struct
 } xXIDeviceChangedEvent;
 
 /**
- * Default input event for pointer or keyboard input.
+ * The owner of a touch stream has passed on ownership to another client.
+ */
+typedef struct
+{
+    uint8_t     type;               /**< Always GenericEvent */
+    uint8_t     extension;          /**< XI extension offset */
+    uint16_t    sequenceNumber;
+    uint32_t    length;             /**< Length in 4 byte units */
+    uint16_t    evtype;             /**< XI_TouchOwnership */
+    uint16_t    deviceid;           /**< Device that has changed */
+    Time        time;
+    uint16_t    sourceid;           /**< Source of the new classes */
+    uint16_t    pad0;
+    uint32_t    touchid;
+    uint32_t    flags;
+    uint32_t    pad1;
+    uint32_t    pad2;
+} xXITouchOwnershipEvent;
+
+/**
+ * Default input event for pointer, keyboard or touch input.
  */
 typedef struct
 {
