@@ -146,6 +146,7 @@
 /* Device event flags (key events only) */
 #define XIKeyRepeat                             (1 << 16)
 /* Device event flags (pointer events only) */
+#define XIPointerEmulated                       (1 << 16)
 
 /* XI2 event mask macros */
 #define XISetMask(ptr, event)   (((unsigned char*)(ptr))[(event)>>3] |=  (1 << ((event) & 7)))

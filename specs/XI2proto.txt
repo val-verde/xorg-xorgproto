@@ -1526,7 +1526,7 @@ For a detailed description of classes, see the XIQueryDevice request.
 
     DEVICEEVENTFLAGS (all events): none
     DEVICEEVENTFLAGS (key events only): { KeyRepeat }
-    DEVICEEVENTFLAGS (pointer events only): none
+    DEVICEEVENTFLAGS (pointer events only): { PointerEmulated }
 
 An XIDeviceEvent is generated whenever the logical state of a device
 changes in response to a button press, a button release, a motion, a key
@@ -1571,6 +1571,9 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
         KeyRepeat means that this event is for repeating purposes, and
         the physical state of the key has not changed.  This is only
         valid for KeyPress events.
+        PointerEmulated signals that the event has been emulated from another
+        XI 2.x event for legacy client support, and that this event should
+        be ignored if the client listens for these events.
 
 Modifier state in mods is detailed as follows:
 
