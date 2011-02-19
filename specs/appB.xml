@@ -117,13 +117,13 @@ Shift</emphasis>
  or the "NumLock" modifier alone are set, it yields level two.
   </para>
 </listitem>
-</itemizedlist>
-
-<para>
-If neither <emphasis>
+<listitem>
+  <para>If neither <emphasis>
 Shift</emphasis>
  nor the "NumLock" modifier are set, it yields level one.
-</para>
+  </para>
+</listitem>
+</itemizedlist>
 </sect2>
 </sect1>
 </appendix>
