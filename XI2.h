@@ -32,6 +32,7 @@
 #define Dont_Check                              0
 #endif
 #define XInput_2_0                              7
+#define XInput_2_1                              8
 
 
 #define XI_2_Major                              2
@@ -132,16 +133,16 @@
 /* Device event flags (common) */
 /* Device event flags (key events only) */
 #define XIKeyRepeat                             (1 << 16)
-/* Device event flags (pointer events only) */
+/* Device event flags (pointer and touch events only) */
 #define XIPointerEmulated                       (1 << 16)
 /* Device event flags (touch events only) */
-#define XITouchPendingEnd                       (1 << 16)
-/* Device event flags (touch end events only) */
-#define XITouchAccepted                         (1 << 17)
+#define XITouchPendingEnd                       (1 << 17)
 
 /* Touch modes */
 #define XIDirectTouch                           1
 #define XIDependentTouch                        2
+#define XIIndependentPointer                    3
+#define XISemiMultitouch                        4
 
 /* XI2 event mask macros */
 #define XISetMask(ptr, event)   (((unsigned char*)(ptr))[(event)>>3] |=  (1 << ((event) & 7)))

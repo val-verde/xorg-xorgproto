@@ -52,7 +52,7 @@ not always necessary.
 The additions in XI 2.1 aim to:
 - support a dynamic number of simultaneous touch points,
 - support devices that are both multi-touch and traditional pointer devices,
-- while supporting pre-XI2.1 clients through emulation of XI 2.0 and core
+- while supporting pre-XI2.1 clients through emulation of XInput and core
   pointer events.
 
 XI 2.1 caters for two modes of touch input devices:
@@ -194,6 +194,9 @@ delivered on W. Once an event has been delivered as either XI or core event,
 event processing stops.
 
 4.4 Touch device support
+
+4.4.1 Touch event sequences
+
 Touch event processing differs from normal event processing in a few ways,
 most notably in that touch events are processed partially out-of-band from
 pointer and keyboard events.
@@ -205,62 +208,145 @@ to touch the device. The init and destroy stage of this sequence are always
 present, while the move stage is optional. Within this document, the term
 "touch sequence" is used to describe the above chain of events. A client
 wishing to receive touch events must register for at least TouchBegin,
-TouchOwnership, TouchUpdate, and TouchEnd simultaneously; it may also select
-for TouchUpdateUnowned events if it wants to receive the full touch stream,
-rather than just the final state.
+TouchUpdate, and TouchEnd simultaneously. It may also select for
+TouchUpdateUnowned and TouchOwnership events if it wants to receive the full
+touch stream while other clients own or have active grabs involving the touch.
+An example of this usage is a touch painting program that paints touches while
+a gesture recognizer has an active grab. Such clients must be able to undo state
+if the touch ends without the client receiving ownership of the touch.
 
 A touch sequence is only considered to be meaningful in its entirety: clients
 may not capture part of a touch sequence, interpret only that part, and then
 pass a partial touch sequence on to the next client.  To this end, all clients
-with active “grabs” on the window hierarchy for a touch sequence receive events
-from that touch sequence, as well as the client with the deepest selection
-(i.e. furthest from the root window).  Clients currently in control of the
-touch sequence receive TouchUpdate events, whereas clients not in control
-receive TouchUpdateUnowned events.
+with “grabs” on the window hierarchy for a touch sequence receive events from
+that touch sequence, as well as potentially the client with the deepest
+selection (i.e. furthest from the root window).  Clients currently in control of
+the touch sequence receive TouchUpdate events, whereas clients not in control
+receive receive TouchUpdateUnowned events.
 
 Touch grabs are similar to standard input event grabs in that they take
 precedence over selections and are searched from the root window to the child
 window.  The first grab found for a touch sequence will be the owner of that
 touch sequence, however events for that touch sequence will continue to be
-delivered to all clients with grabs in the window tree, as well as the client
-with the deepest selection.  The first client may either “accept” the touch,
-which claims the touch sequence and stops delivery to all other clients for
-the duration of the touch sequence, or “reject” the touch sequence, which
+delivered to all clients with grabs in the window tree, as well as potentially
+the client with the deepest selection.  The first client may either “accept” the
+touch, which claims the touch sequence and stops delivery to all other clients
+for the duration of the touch sequence, or “reject” the touch sequence, which
 will remove that client from the delivery set and pass ownership on to the
-next client.
+next client. When a client, including the initial owner, becomes the owner of a
+touch, it will receive a TouchOwnership event. When an owning client accepts a
+touch, further clients receiving unowned events will receive TouchEnd events.
 
-Window sets for direct device touches contain the windows from the root to the
-child in which the touch originated.
-
-Dependent device window sets depend on whether other touches are active. For
-the first dependent touch on a device, the window set contains the windows from
-the root to the current window underneath the position of the device's pointer.
-For subsequent touches on this device, the window set is identical to
-the window set of the first touch. Once all touches have been released, the
-window set is reset and re-calculated on the first subsequent touch.
-
-No touches from a dependent device may begin while the device is floating, as
-it does not have an associated pointer position to focus events.
-
-If there is no touch grab on a window and the server supports pointer
-emulation, it will look for a pointer grab on that window and include it as
-part of the delivery set; similarly, if no client has selected to receive
-touch events on a window, the server may look for pointer event selections
-on that window to add to the delivery set.
-
-The delivery of touch events is not changed by any modifications to the window
-hierarchy after the window set has been determined for the touch, nor is it
-affected by new grabs or selections.
+Clients selecting for touch events may select for either unowned events or only
+owned events. The event stream for an unowned selection is identical to a touch
+grab. When a client does not select for unowned and ownership events, it will
+receive a TouchBegin event when it becomes the owner of a touch stream.
+TouchUpdate and TouchEnd events will be received in the same manner as for touch
+grabs.
 
 A TouchEnd event will always be sent to a client when it will receive no more
 events from a particular touch, regardless of why (grab or selection removed,
 owner accepted, the client having rejected that touch, etc).
 
-A device that sends touch events may also generate pointer events on demand.
-The decision of which touch events are converted into pointer events is
-implementation-specific, however any pointer event generated from a touch
-event will have the PointerEmulated flag set. Emulated pointer/keyboard events
-follow the core and XI2 grab semantics.
+Only one client may select or grab touch events for a device on a window. As an
+example, selecting for AllDevices will prevent any other client from selecting
+on the same window. When a slave device is attached to a master device, any
+selections on any windows for touch events for the slave device ID will be
+canceled. Clients selecting for individual slave devices are suggested to select
+for HierarchyChanged events to be notified when this occurs.
+
+4.4.2 Touch device modes
+
+Touch devices come in many different forms with varying capabilities. The
+following device modes are defined for this protocol:
+
+DirectTouch:
+    These devices map their input region to a subset of the screen region. Touch
+    events are delivered according to where the touch occurs in the mapped
+    screen region. An example of a DirectTouch device is a touchscreen.
+
+DependentTouch:
+    These devices do not have a direct correlation between a touch location and
+    a position on the screen. Touch events are delivered according to the
+    location of the pointer on screen. An Example of a DependentTouch device
+    is a trackpad.
+
+IndependentPointer:
+    These devices do not have any correlation between touch events and pointer
+    events. IndependentPointer devices are a subset of DependentTouch devices.
+    An example of an IndependentPointer device is a mouse with a touch surface.
+
+SemiMultitouch:
+    These devices may report touch events that correlate to the two opposite
+    corners of the bounding box of all touches. The number of active touch
+    sequences represents the number of touches on the device, and the position
+    of any given touch event will be equal to either of the two corners of the
+    bounding box. However, the physical location of the touches is unknown.
+    SemiMultitouch devices are a subset of DependentTouch devices. Although
+    DirectTouch and IndependentPointer devices may also be SemiMultitouch
+    devices, such devices are not allowed through this protocol.
+
+A device is identified as only one of the device modes above at any time. For
+the purposes of this protocol, IndependentPointer and SemiMultitouch devices are
+treated the same as DependentTouch devices unless stated otherwise.
+
+4.4.3 Touch event delivery
+
+Window sets for event propagation for direct device touches contain the windows
+from the root to the child in which the touch originated.
+
+Dependent device window sets depend on whether other touches are active. For
+the first dependent touch on a device, the window set contains the windows from
+the root to the current window underneath the position of the device's pointer.
+For subsequent touches on the device, the window set is identical to the window
+set of the first touch. Once all touches have been released, the window set is
+reset and re-calculated on the first subsequent touch.
+
+The delivery of touch events is not changed by any modifications to the window
+hierarchy after the window set has been determined for the touch, nor is it
+affected by new grabs or selections.
+
+No touches from a dependent device may begin while the device is floating, as
+it does not have an associated pointer position to focus events.
+
+In order to prevent touch events delivered to one window while pointer events
+are implicitly grabbed by another, all touches from indirect devices will end
+when an implicit grab is activated on the slave or attached master device. New
+touches may begin while the device is implicitly grabbed.
+
+Many touch devices will emit pointer events as well, usually by mapping one
+touch sequence to pointer events. In these cases, events for both the pointer
+and its associated touch sequence will have the XIPointerEmulated flag set.
+
+4.4.4 Pointer emulation for direct touch devices
+
+In order to facilitate backwards compatibility with legacy clients, direct touch
+devices will emulate pointer events. Pointer emulation events will only be
+delivered through the attached master device; no pointer events will be emulated
+for floating touch devices. Further, only one touch from any attached slave
+touch device may be emulated per master device at any time.
+
+A touch event stream must be delivered to clients in a mutually exclusive
+fashion. This extends to emulated pointer events. For the purposes of
+exclusivity, emulated pointer events between an emulated button press and
+button release are considered. An emulated button press event is considered
+exclusively delivered once it has been delivered through an event selection, an
+asynchronous pointer grab, or it and a further event are delivered through a
+synchronous pointer grab.
+
+Touch and pointer grabs are also mutually exclusive. For a given window, any
+touch grab is activated first. If the touch grab is rejected, the pointer grab
+is activated. If an emulated button press event is exclusively delivered to the
+grabbing client as outlined above, the touch sequence is ended for all clients
+still listening for unowned events. Otherwise, when the pointer stream is
+replayed the next window in the window set is checked for touch grabs.
+
+If the touch sequence is not exclusively delivered to any client through a grab,
+the touch and emulated pointer events may be delivered to clients selecting for
+the events. Event propagation for the touch sequence ends at the first client
+selecting for touch and/or pointer events. Note that a client may receive both
+touch and emulated pointer events for the same touch sequence through event
+selection.
 
 4.5. The ClientPointer principle
 
@@ -425,7 +511,8 @@ are required to be 0.
                   max:                  FP3232
                   resolution:           CARD32 }
 
-    TOUCHMODE* { DirectTouch, DependentTouch }
+    TOUCHMODE* { DirectTouch, DependentTouch, IndependentPointer,
+                 SemiMultitouch }
 
     * since XI 2.1
 
@@ -540,11 +627,7 @@ are required to be 0.
     sourceid
         The device this class originates from.
     mode
-        The device type of the touch device. Touch sequences from a device
-        of type DirectTouch should be interpreted as directly occuring on
-        the position they are reported on. Touch sequences from a device of
-        type DependentTouch should be interpreted as dependent of the
-        current position of the pointer.
+        The device type of the touch device.
     num_touches
         The maximum number of simultaneous touchpoints the device may send.
         If num_touches is 0, the number of supported touches is unknown or
@@ -865,6 +948,9 @@ are required to be 0.
         Deviceid of the slave device.
     master
         The new master device to attach this slave device to.
+
+    If any clients are selecting for touch events from the slave device, their
+    selection will be canceled.
 
     DETACHSLAVE detaches a slave device from its current master device.
     type
@@ -1538,9 +1624,9 @@ are required to be 0.
     sequence to direct further delivery.
 
     deviceid
-        The grabbed device ID.
+        The slave device ID for a grabbed touch sequence.
     touchid
-        The ID of the currently-grabbed touch sequence.
+        The ID of the touch sequence to modify.
     event_mode
         Given TouchOwnerAccept, the client is deemed to have taken control
         of the touch sequence; TouchEnd events will be sent to all other
@@ -1739,9 +1825,8 @@ EVENTHEADER { type:                       BYTE
 
     DEVICEEVENTFLAGS (all events): none
     DEVICEEVENTFLAGS (key events only): { KeyRepeat }
-    DEVICEEVENTFLAGS (pointer events only): { PointerEmulated }
+    DEVICEEVENTFLAGS (pointer and touch events only): { PointerEmulated }
     DEVICEEVENTFLAGS (touch events only): { TouchPendingEnd }
-    DEVICEEVENTFLAGS (touch end events only): { TouchAccepted }
 
     An XIDeviceEvent is generated whenever the logical state of a device
     changes in response to a button press, a button release, a motion, a key
@@ -1840,13 +1925,10 @@ EVENTHEADER { type:                       BYTE
     Touch tracking IDs are provided in the detail field of touch events. Its
     value is always provided in every touch event. Tracking IDs are
     represented as unsigned 32-bit values and increase in value for each new
-    touch, wrapping back to 0 upon reaching the numerical limit of IDs.
+    touch, wrapping back to 0 upon reaching the numerical limit of IDs. IDs are
+    unique per each slave touch device.
 
-    Touch events do not generate enter/leave events, and are not affected by
-    other grabs (including device freezing), although any pointer events
-    generated by emulation will still be subject to all the same constraints
-    as normal pointer events, including enter/leave events, and being affected
-    by frozen devices.
+    Touch events do not generate enter/leave events.
 
     ┌───
         RawEvent
