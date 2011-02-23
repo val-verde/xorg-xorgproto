@@ -115,7 +115,31 @@ XI 1.x was not designed with support for multiple master devices (see Section
 to XI 1.x clients, all other master devices are invisible and cannot be
 accessed from XI 1.x calls.
 
-//                            ❧❧❧❧❧❧❧❧❧❧❧
+3.4 Smooth scrolling
+~~~~~~~~~~~~~~~~~~~~
+
+Historically, X implemented scrolling events by using button press events:
+button 4 was one “click” of the scroll wheel upwards, button 5 was downwards,
+button 6 was one unit of scrolling left, and button 7 was one unit of scrolling
+right.  This was sufficient for scroll wheel mice, but not for touchpads which
+are able to provide scrolling events through multi-finger drag gestures, or
+simply dragging your finger along a designated strip along the side of the
+touchpad.
+
+Newer X servers may provide 'Rel Vert Scroll' and 'Rel Horiz Scroll' valuators
+to provide scroll events with more precision than the button events.  If these
+valuators are present on a device, the server must provide two-way emulation
+between these valuators and the legacy button events.  A cumulative value of
+1.0 in either magnitude is considered to be equivalent to one button event for
+the legacy events, e.g., -2.0 on 'Rel Vert Scroll' sends two button
+press/release events for button 4.  Likewise, a button press event for
+button 7 generates a Rel Horiz Scroll valuator event with a value of +1.0.
+
+Any server providing this behaviour marks all button 4/5/6/7 events with the
+XIPointerEmulated flag for DeviceEvents, and the XIRawEmulated flag for raw
+events, to hint that applications should be using the new valuators in
+preference to the buttons.
+
 
 4. The Master/Slave device hierarchy
 ------------------------------------
@@ -1573,7 +1597,10 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
         valid for KeyPress events.
         PointerEmulated signals that the event has been emulated from another
         XI 2.x event for legacy client support, and that this event should
-        be ignored if the client listens for these events.
+        be ignored if the client listens for these events.  This flag is
+        set on scroll ButtonPress and RawButtonPress events (buttons 4, 5, 6
+        and 7) if a smooth-scrolling event on the Rel Vert Scroll or
+        Rel Horiz Scroll axes was also generated.
 
 Modifier state in mods is detailed as follows:
 
