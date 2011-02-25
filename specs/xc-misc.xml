@@ -3,7 +3,7 @@
                    "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
 
 <!-- lifted from troff+ms+XMan by doclifter -->
-<book id="xcmisc">
+<book id="xc-misc">
 
 <bookinfo>
    <title>XC-MISC Extension</title>
