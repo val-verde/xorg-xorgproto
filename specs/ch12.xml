@@ -53,8 +53,8 @@ of a keyboard mapping and XKB and explains the ways they can interact.
 <title>Group Compatibility Map</title>
 
 <para>
-As described in <ulink url="XKBproto.htm#50332257_13933">See Keyboard
-State</ulink>, the current keyboard group is reported to XKB-aware clients in
+As described in <link linkend='keyboard_state'>See Keyboard
+State</link>, the current keyboard group is reported to XKB-aware clients in
 bits 13-14 of the state field of many core protocol events. XKB-unaware clients
 cannot interpret those bits, but they might use a keyboard modifier to
 implement support for a single keyboard group. To ensure that pre-XKB clients
@@ -243,42 +243,41 @@ field for a key can contain any combination of the following values:
     <entry>ExplicitKeyType1</entry>
     <entry>Automatic determination of the key type associated with <emphasis>
 Group1</emphasis>
- (see <ulink url="XKBproto.htm#50332257_35661">See Assigning Types To Groups of
-Symbols for a Key</ulink>)</entry>
+ (see <link linkend='assigning_types_to_groups_of_symbols_for_a_key'>See Assigning Types To Groups of
+Symbols for a Key</link>)</entry>
   </row>
   <row rowsep='0'>
     <entry>ExplicitKeyType2</entry>
     <entry>Automatic determination of the key type associated with <emphasis>
 Group2 </emphasis>
-(see <ulink url="XKBproto.htm#50332257_35661">See Assigning Types To Groups of
-Symbols for a Key</ulink>)</entry>
+(see <link linkend='assigning_types_to_groups_of_symbols_for_a_key'>See Assigning Types To Groups of
+Symbols for a Key</link>)</entry>
   </row>
   <row rowsep='0'>
     <entry>ExplicitKeyType3</entry>
     <entry>Automatic determination of the key type associated with <emphasis>
 Group3 </emphasis>
-(see <ulink url="XKBproto.htm#50332257_35661">See Assigning Types To Groups of
-Symbols for a Key</ulink>).</entry>
+(see <link linkend='assigning_types_to_groups_of_symbols_for_a_key'>See Assigning Types To Groups of
+Symbols for a Key</link>).</entry>
   </row>
   <row rowsep='0'>
     <entry>ExplicitKeyType4</entry>
     <entry>Automatic determination of the key type associated with <emphasis>
 Group4 </emphasis>
-(see <ulink url="XKBproto.htm#50332257_35661">See Assigning Types To Groups of
-Symbols for a Key</ulink>).</entry>
+(see <link linkend='assigning_types_to_groups_of_symbols_for_a_key'>See Assigning Types To Groups of
+Symbols for a Key</link>).</entry>
   </row>
   <row rowsep='0'>
     <entry>ExplicitInterpret</entry>
     <entry>Application of any of the fields of a symbol interpretation to the
-key in question (see <ulink url="XKBproto.htm#50332257_66444">See Assigning
-Actions To Keys</ulink>).</entry>
+key in question (see <link linkend='assigning_actions_to_keys'>See Assigning
+Actions To Keys</link>).</entry>
   </row>
   <row rowsep='0'>
     <entry>ExplicitAutoRepeat</entry>
     <entry>Automatic determination of autorepeat status for the key, as
-specified in a symbol interpretation (see <ulink
-url="XKBproto.htm#50332257_66444">See Assigning Actions To
-Keys</ulink>).</entry>
+specified in a symbol interpretation (see <link linkend='assigning_actions_to_keys'>See Assigning Actions To
+Keys</link>).</entry>
   </row>
   <row rowsep='0'>
     <entry>ExplicitBehavior</entry>
@@ -286,16 +285,15 @@ Keys</ulink>).</entry>
 KB_Lock</emphasis>
  behavior to the key, if the <emphasis>
 LockingKey</emphasis>
- flag is set in a symbol interpretation (see <ulink
-url="XKBproto.htm#50332257_66444">See Assigning Actions To
-Keys</ulink>).</entry>
+ flag is set in a symbol interpretation (see <link linkend='assigning_actions_to_keys'>See Assigning Actions To
+Keys</link>).</entry>
   </row>
   <row rowsep='0'>
     <entry>ExplicitVModMap</entry>
     <entry>Automatic determination of the virtual modifier map for the key
 based on the actions assigned to the key and the symbol interpretations which
-match the key (see <ulink url="XKBproto.htm#50332257_66444">See Assigning
-Actions To Keys</ulink>).</entry>
+match the key (see <link linkend='assigning_actions_to_keys'>See Assigning
+Actions To Keys</link>).</entry>
   </row>
 </tbody>
 </tgroup>
@@ -312,8 +310,7 @@ ChangeKeyboardMapping</emphasis>
 groups that are defined for the key and the width of each group. The XKB
 extension does not change key types in response to core protocol <emphasis>
 SetModifierMapping</emphasis>
- requests, but it does choose key actions as described in <ulink
-url="XKBproto.htm#50332257_66444">See Assigning Actions To Keys</ulink>.
+ requests, but it does choose key actions as described in <link linkend='assigning_actions_to_keys'>See Assigning Actions To Keys</link>.
 </para>
 
 
@@ -490,8 +487,7 @@ ALPHABETIC</emphasis>
     <entry>Describes alphabetic keys that have exactly two symbols per group.
 The default definition of the <emphasis>
 ALPHABETIC</emphasis>
- type provides shift-cancels-caps behavior as described in <ulink
-url="XKBproto.htm#50332257_45629">See Key Types</ulink>. Index <emphasis>
+ type provides shift-cancels-caps behavior as described in <link linkend='key_types'>See Key Types</link>. Index <emphasis>
 2</emphasis>
  in any key symbol map specifies key type <emphasis>
 ALPHABETIC</emphasis>
@@ -541,7 +537,7 @@ lowercase and uppercase forms are defined, the X server treats the key as if
 the first element of the group were the lowercase form of the symbol and the
 second element were the uppercase form of the symbol. For the purposes of this
 expansion, XKB ignores the locale and uses the capitalization rules defined in
-<ulink url="dflttrns.htm#17949"></ulink>.
+<link linkend="default_symbol_transformations">Default Symbol Transformations</link>.
 </para>
 
 
@@ -737,7 +733,7 @@ locking key</emphasis>
  field is set in the symbol interpretation, the behavior of the key is changed
 to <emphasis>
 KB_Lock</emphasis>
- (see <ulink url="XKBproto.htm#50332257_81140">See Key Behavior</ulink>). The
+ (see <link linkend='key_behavior'>See Key Behavior</link>). The
 <emphasis>
 ExplicitBehavior</emphasis>
  component prevents this change.
@@ -791,8 +787,8 @@ indicator maps, internal modifiers or ignore locks modifiers.
 After applying server actions which modify the base, latched or locked modifier
 or group state of the keyboard, the X server recomputes the effective group and
 state. Several components of the keyboard state are reported to XKB-aware
-clients depending on context (see <ulink url="XKBproto.htm#50332257_13933">See
-Keyboard State</ulink> for a detailed description of each of the keyboard state
+clients depending on context (see <link linkend='keyboard_state'>See
+Keyboard State</link> for a detailed description of each of the keyboard state
 components):
 </para>
 
@@ -967,8 +963,8 @@ by all of the actions associated with the key plus all of the modifiers
 associated with any virtual modifiers bound to the key by the virtual modifier
 mapping. If any of the actions associated with a key affect any component of
 the keyboard group, any modifiers specified in any entry of the group
-compatibility map (see <ulink url="XKBproto.htm#50332257_40656">See Group
-Compatibility Map</ulink>) are reported in the modifier mask. The <emphasis>
+compatibility map (see <link linkend='group_compatibility_map'>See Group
+Compatibility Map</link>) are reported in the modifier mask. The <emphasis>
 SA_ISOLock</emphasis>
  action can theoretically affect any modifier, but the modifier map of an
 <emphasis>

@@ -261,9 +261,9 @@ Each key has an optional list of actions. If present, this list parallels the
 list of symbols associated with the key (i.e. it has one action per symbol
 associated with the key). For key press events, the server looks up the action
 to be applied from this list using the key symbol mapping associated with the
-event key, just as a client looks up symbols as described in <ulink
-url="XKBproto.htm#50332257_24122">See Determining the KeySym Associated with a
-Key Event</ulink>; if the event key does not have any actions, the server uses
+event key, just as a client looks up symbols as described in <link
+linkend="determining_the_keysym_associated_with_a_key_event">See Determining the KeySym Associated with a
+Key Event</link>; if the event key does not have any actions, the server uses
 the <emphasis>
 SA_NoAction</emphasis>
  event for that key regardless of modifier or group state.
@@ -292,7 +292,7 @@ delay between the activation of one and the other.
 
 <para>
 Most actions which affect keyboard modifier state accept a modifier definition
-(see <ulink url="XKBproto.htm#50332257_51617">See Virtual Modifiers</ulink>)
+(see <link linkend="virtual_modifiers">See Virtual Modifiers</link>)
 named <emphasis>
 mods</emphasis>
  and a boolean flag name <emphasis>
@@ -679,8 +679,8 @@ MouseKeysAccel</emphasis>
  keyboard control is enabled, key press also initiates the mouse keys timer for
 this key; every time this timer expires, the cursor moves again. The distance
 the cursor moves in these subsequent events is determined by the mouse keys
-acceleration as described in <ulink url="XKBproto.htm#50332257_29074">See The
-MouseKeysAccel Control</ulink>.
+acceleration as described in <link linkend="the_mousekeysaccel_control">See The
+MouseKeysAccel Control</link>.
   </para>
 </listitem>
 <listitem>
@@ -1627,8 +1627,8 @@ event that caused them.
 Events sent to clients that have not issued an <emphasis>
 XkbUseExtension</emphasis>
  request contain a compatibility state in place of the actual XKB keyboard
-state. See <ulink url="XKBproto.htm#50332257_39705">See Effects of XKB on Core
-Protocol Events</ulink> for a description of this compatibility mapping.
+state. See <link linkend="effects_of_xkb_on_core_protocol_events">See Effects of XKB on Core
+Protocol Events</link> for a description of this compatibility mapping.
 </para>
 
 
@@ -1646,9 +1646,9 @@ the following changes:
 <itemizedlist>
 <listitem>
   <para>A passive grab triggers if the modifier state specified in the grab
-matches the grab compatibility state (described in <ulink
-url="XKBproto.htm#50332257_32581">See Compatibility Components of Keyboard
-State</ulink>). Clients can choose to use the XKB grab state instead by setting
+matches the grab compatibility state (described in <link
+linkend="compatibility_components_of_keyboard_state">See Compatibility Components of Keyboard
+State</link>). Clients can choose to use the XKB grab state instead by setting
 the <emphasis>
 GrabsUseXKBState</emphasis>
  per-client flag. This flag affects all passive grabs that are requested by the
@@ -1678,15 +1678,15 @@ LookupStateWhenGrabbed</emphasis>
 <listitem>
   <para>Otherwise, the state field of events that do not trigger a passive grab
 report is derived from the XKB effective modifiers and group, as described in
-<ulink url="XKBproto.htm#50332257_90933">See Computing A State Field from an
-XKB State</ulink>.
+<link linkend="computing_a_state_field_from_an_xkb_state">See Computing A State Field from an
+XKB State</link>.
   </para>
 </listitem>
 <listitem>
   <para>If a key release event is the result of an autorepeating key that is
 being held down, and the client to which the event is reported has requested
-detectable autorepeat (see <ulink url="XKBproto.htm#50332257_79074">See
-Detectable Autorepeat</ulink>), the event is not delivered to the client.
+detectable autorepeat (see <link linkend="detectable_autorepeat">See
+Detectable Autorepeat</link>), the event is not delivered to the client.
   </para>
 </listitem>
 </itemizedlist>
@@ -1719,9 +1719,9 @@ interact.
 <itemizedlist>
 <listitem>
   <para>The largest problems arise from the fact that an XKB state field
-encodes an explicit keyboard group in bits 13-14 (as described in <ulink
-url="XKBproto.htm#50332257_90933">See Computing A State Field from an XKB
-State</ulink>), while pre-XKB clients use one of the eight keyboard modifiers
+encodes an explicit keyboard group in bits 13-14 (as described in <link
+linkend="computing_a_state_field_from_an_xkb_state">See Computing A State Field from an XKB
+State</link>), while pre-XKB clients use one of the eight keyboard modifiers
 to select an alternate keyboard group. To make existing clients behave
 reasonably, XKB normally uses the compatibility grab state instead of the XKB
 grab state to determine whether or not a passive grab is triggered. XKB-aware

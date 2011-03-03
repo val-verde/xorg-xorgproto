@@ -1215,8 +1215,7 @@ affectWhich</emphasis>
 <para>
 If any components are specified in a client’s event masks, the X server sends
 the client an appropriate event whenever any of those components change state.
-Unless explicitly modified, all event detail masks are empty. <ulink
-url="XKBproto.htm#50332257_22322">See Events</ulink> describes all XKB events
+Unless explicitly modified, all event detail masks are empty. <link linkend='events'>See Events</link> describes all XKB events
 and the conditions under which the server generates them.
 </para>
 
@@ -1533,8 +1532,8 @@ effective modifiers minus any server internal modifiers. The <emphasis>
 grabMods</emphasis>
  return value reports the grab modifiers, which consist of the lookup modifiers
 minus any members of the ignore locks mask that are not either latched or
-logically depressed. <ulink url="XKBproto.htm#50332257_13933">See Keyboard
-State</ulink> describes the lookup modifiers and grab modifiers in more detail.
+logically depressed. <link linkend='keyboard_state'>See Keyboard
+State</link> describes the lookup modifiers and grab modifiers in more detail.
 </para>
 
 
@@ -1557,8 +1556,8 @@ compatGrabMods</emphasis>
  return values report the core protocol compatibility states that correspond to
 the XKB lookup and grab state. All of the compatibility states are computed by
 applying the group compatibility mapping to the corresponding XKB modifier and
-group states, as described in <ulink url="XKBproto.htm#50332257_40656">See
-Group Compatibility Map</ulink>.
+group states, as described in <link linkend='group_compatibility_map'>See
+Group Compatibility Map</link>.
 </para>
 
 
@@ -1822,15 +1821,13 @@ The <emphasis>
 numGroups</emphasis>
  return value reports the current number of groups, and <emphasis>
 groupsWrap</emphasis>
- reports the treatment of out-of-range groups, as described in <ulink
-url="XKBproto.htm#50332257_52755">See Key Symbol Map</ulink>. The <emphasis>
+ reports the treatment of out-of-range groups, as described in <link linkend='key_symbol_map'>See Key Symbol Map</link>. The <emphasis>
 internalMods</emphasis>
  and <emphasis>
 ignoreLockMods</emphasis>
  return values report the current values of the server internal and ignore
-locks modifiers as described in <ulink url="XKBproto.htm#50332257_13933">See
-Keyboard State</ulink>. Both are modifier definitions (<ulink
-url="XKBproto.htm#50332257_11005">See Modifier Definitions</ulink>) which
+locks modifiers as described in <link linkend='keyboard_state'>See
+Keyboard State</link>. Both are modifier definitions (<link linkend='modifier_definitions'>See Modifier Definitions</link>) which
 report the real modifiers, virtual modifiers, and the resulting combination of
 real modifiers that are bound to the corresponding control.
 </para>
@@ -1857,8 +1854,8 @@ mouseKeysMaxSpeed</emphasis>
  and <emphasis>
 mouseKeysCurve</emphasis>
  return values report the current acceleration applied to mouse keys, as
-described in <ulink url="XKBproto.htm#50332257_29074">See The MouseKeysAccel
-Control</ulink>. All times are reported in milliseconds.
+described in <link linkend='the_mousekeysaccel_control'>See The MouseKeysAccel
+Control</link>. All times are reported in milliseconds.
 </para>
 
 
@@ -2224,8 +2221,7 @@ If applied, <emphasis>
 repeatDelay</emphasis>
  and <emphasis>
 repeatInterval</emphasis>
- change the autorepeat characteristics of the keyboard, as described in <ulink
-url="XKBproto.htm#50332257_48937">See The RepeatKeys Control</ulink>. If
+ change the autorepeat characteristics of the keyboard, as described in <link linkend='the_repeatkeys_control'>See The RepeatKeys Control</link>. If
 specified, <emphasis>
 repeatDelay</emphasis>
  and <emphasis>
@@ -2241,8 +2237,8 @@ If applied, the <emphasis>
 slowKeysDelay</emphasis>
  field specifies a new delay for the <emphasis>
 SlowKeys</emphasis>
- control, as defined in <ulink url="XKBproto.htm#50332257_59600">See The
-SlowKeys Control</ulink>. If specified, <emphasis>
+ control, as defined in <link linkend='the_slowkeys_control'>See The
+SlowKeys Control</link>. If specified, <emphasis>
 slowKeysDelay</emphasis>
  must be non-zero, or a <emphasis>
 Value</emphasis>
@@ -2255,8 +2251,8 @@ If applied, the <emphasis>
 debounceDelay</emphasis>
  field specifies a new delay for the <emphasis>
 BounceKeys</emphasis>
- control, as described in <ulink url="XKBproto.htm#50332257_12450">See The
-BounceKeys Control</ulink>. If present, the <emphasis>
+ control, as described in <link linkend='the_bouncekeys_control'>See The
+BounceKeys Control</link>. If present, the <emphasis>
 debounceDelay</emphasis>
  must be non-zero or a <emphasis>
 Value</emphasis>
@@ -2276,8 +2272,8 @@ SA_LockPtrBtn</emphasis>
 mouseKeysDfltBtn</emphasis>
  must specify a legal button for the core pointer device, or a <emphasis>
 Value</emphasis>
- error results. <ulink url="XKBproto.htm#50332257_15763">See Key
-Actions</ulink> describes the <emphasis>
+ error results. <link linkend='key_actions'>See Key
+Actions</link> describes the <emphasis>
 SA_PtrBtn</emphasis>
  and <emphasis>
 SA_LockPtrBtn</emphasis>
@@ -2299,8 +2295,8 @@ mouseKeysCurve</emphasis>
  fields change the rate at which the pointer moves when a key which generates a
 <emphasis>
 SA_MovePtr</emphasis>
- action is held down. <ulink url="XKBproto.htm#50332257_29074">See The
-MouseKeysAccel Control</ulink> describes these <emphasis>
+ action is held down. <link linkend='the_mousekeysaccel_control'>See The
+MouseKeysAccel Control</link> describes these <emphasis>
 MouseKeysAccel</emphasis>
  parameters in more detail. If defined, the <emphasis>
 mouseKeysDelay</emphasis>
@@ -2325,8 +2321,7 @@ Value</emphasis>
 <para>
 If applied, the <emphasis>
 accessXOptions</emphasis>
- field sets the AccessX options, which are described in detail in <ulink
-url="XKBproto.htm#50332257_27926">See The AccessXKeys Control</ulink>. If
+ field sets the AccessX options, which are described in detail in <link linkend='the_accessxkeys_control'>See The AccessXKeys Control</link>. If
 either one of <emphasis>
 XkbStickyKeysMask</emphasis>
  and <emphasis>
@@ -2360,8 +2355,8 @@ accessXTimeoutOptionsMask</emphasis>
  and <emphasis>
 accessXTimeoutOptionsValues</emphasis>
  fields change the behavior of the AccessX Timeout control, as described in
-<ulink url="XKBproto.htm#50332257_27038">See The AccessXTimeout
-Control</ulink>. The <emphasis>
+<link linkend='the_accessxtimeout_control'>See The AccessXTimeout
+Control</link>. The <emphasis>
 accessXTimeout</emphasis>
  must be greater than zero, or a <emphasis>
 Value</emphasis>
@@ -2388,7 +2383,7 @@ Match</emphasis>
 If present, the <emphasis>
 groupsWrap</emphasis>
  field specifies the treatment of out-of-range keyboard groups, as described in
-<ulink url="XKBproto.htm#50332257_52755">See Key Symbol Map</ulink>. If the
+<link linkend='key_symbol_map'>See Key Symbol Map</link>. If the
 <emphasis>
 groupsWrap</emphasis>
  field does not specify a legal treatment for out-of-range groups, a <emphasis>
@@ -3328,8 +3323,8 @@ flags</emphasis>
 last key type specified by this request is the last element in the list. If the
 list of key types is shrunk, any existing key definitions that use key types
 that eliminated are automatically assigned key types from the list of canonical
-key types as described in <ulink url="XKBproto.htm#50332257_35661">See
-Assigning Types To Groups of Symbols for a Key</ulink>. The list of key types
+key types as described in <link linkend='assigning_types_to_groups_of_symbols_for_a_key'>See
+Assigning Types To Groups of Symbols for a Key</link>. The list of key types
 bound to a keyboard must always include the four canonical types and cannot
 have more than <emphasis>
 XkbMaxTypesPerKey</emphasis>
@@ -3741,8 +3736,7 @@ XkbSetMapRecomputeActions</emphasis>
  bit is set in <emphasis>
 flags</emphasis>
 , the actions associated with any keys for which symbol or modifier bindings
-were changed by this request are recomputed as described in <ulink
-url="XKBproto.htm#50332257_66444">See Assigning Actions To Keys</ulink>. Note
+were changed by this request are recomputed as described in <link linkend='assigning_actions_to_keys'>See Assigning Actions To Keys</link>. Note
 that actions are recomputed <emphasis>
 after </emphasis>
 any actions specified in this request are bound to keys, so the actions
@@ -4088,8 +4082,8 @@ recomputeActions</emphasis>
 True</emphasis>
 , the server regenerates recalculates the actions bound to all keyboard keys by
 applying the new symbol interpretations to the entire key symbol map, as
-described in <ulink url="XKBproto.htm#50332257_66444">See Assigning Actions To
-Keys</ulink>.
+described in <link linkend='assigning_actions_to_keys'>See Assigning Actions To
+Keys</link>.
 </para>
 
 
@@ -4245,7 +4239,7 @@ XkbIndicatorStateNotify</emphasis>
 The <emphasis>
 maps</emphasis>
  return value reports the requested indicator maps. Indicator maps are
-described in <ulink url="XKBproto.htm#50332257_36844">See Indicator Maps</ulink>
+described in <link linkend='indicator_maps'>See Indicator Maps</link>
 </para>
 
 
@@ -4719,8 +4713,7 @@ If <emphasis>
 setMap </emphasis>
 is <emphasis>
 True</emphasis>
-, XKB changes the map for the indicator (see <ulink
-url="XKBproto.htm#50332257_36844">See Indicator Maps</ulink>) to reflect the
+, XKB changes the map for the indicator (see <link linkend='indicator_maps'>See Indicator Maps</link>) to reflect the
 values specified in <emphasis>
 map</emphasis>
 .
@@ -5529,9 +5522,8 @@ name</emphasis>
  is a valid atom other than <emphasis>
 None</emphasis>
 , the server returns the keyboard geometry description with that name in the
-server database of keyboard components (see <ulink
-url="XKBproto.htm#50332257_46669">See The Server Database of Keyboard
-Components</ulink>) if one exists. If <emphasis>
+server database of keyboard components (see <link linkend='the_server_database_of_keyboard_components'>See The Server Database of Keyboard
+Components</link>) if one exists. If <emphasis>
 deviceSpec</emphasis>
  does not specify a valid keyboard device, a <emphasis>
 Keyboard</emphasis>
@@ -5570,8 +5562,8 @@ found</emphasis>
 True</emphasis>
 , the remaining fields of the reply describe the requested keyboard geometry.
 The interpretation of the components that make up a keyboard geometry is
-described in detail in <ulink url="XKBproto.htm#50332257_23341">See Keyboard
-Geometry</ulink>
+described in detail in <link linkend='keyboard_geometry'>See Keyboard
+Geometry</link>
 </para>
 
 
@@ -5863,36 +5855,36 @@ per-client-flags are:
     <entry><emphasis>
 XkbPCF_DetectableAutorepeat</emphasis>
 </entry>
-    <entry><ulink url="XKBproto.htm#50332257_79074">See Detectable
-Autorepeat</ulink></entry>
+    <entry><link linkend='detectable_autorepeat'>See Detectable
+Autorepeat</link></entry>
   </row>
   <row rowsep='0'>
     <entry><emphasis>
 XkbPCF_GrabsUseXKBStateMask</emphasis>
 </entry>
-    <entry><ulink url="XKBproto.htm#50332257_83380">See Setting a Passive Grab
-for an XKB State</ulink></entry>
+    <entry><link linkend='setting_a_passive_grab_for_an_xkb_state'>See Setting a Passive Grab
+for an XKB State</link></entry>
   </row>
   <row rowsep='0'>
     <entry><emphasis>
 XkbPCF_AutoResetControlsMask</emphasis>
 </entry>
-    <entry><ulink url="XKBproto.htm#50332257_29682">See Automatic Reset of
-Boolean Controls</ulink></entry>
+    <entry><link linkend='automatic_reset_of_boolean_controls'>See Automatic Reset of
+Boolean Controls</link></entry>
   </row>
   <row rowsep='0'>
     <entry><emphasis>
 XkbPCF_LookupStateWhenGrabbed</emphasis>
 </entry>
-    <entry><ulink url="XKBproto.htm#50332257_39705">See Effects of XKB on Core
-Protocol Events</ulink></entry>
+    <entry><link linkend='effects_of_xkb_on_core_protocol_events'>See Effects of XKB on Core
+Protocol Events</link></entry>
   </row>
   <row rowsep='0'>
     <entry><emphasis>
 XkbPCF_SendEventUsesXKBState</emphasis>
 </entry>
-    <entry><ulink url="XKBproto.htm#50332257_67792">See Sending Events to
-Clients</ulink></entry>
+    <entry><link linkend='sending_events_to_clients'>See Sending Events to
+Clients</link></entry>
   </row>
 </tbody>
 </tgroup>
@@ -6117,8 +6109,7 @@ components.
 <para>
 Each pattern uses the ISO Latin-1 encoding and should contain only parentheses,
 the wildcard characters "?" and "*" or characters that are permitted in a
-component class or member name (see <ulink
-url="XKBproto.htm#50332257_49632">See Component Names</ulink>). Illegal
+component class or member name (see <link linkend='component_names'>See Component Names</link>). Illegal
 characters in a pattern are simply ignored; no error results if a pattern
 contains illegal characters.
 </para>
@@ -6162,15 +6153,15 @@ compatMaps</emphasis>
 symbols</emphasis>
  and <emphasis>
 geometries</emphasis>
- return the hints (see <ulink url="XKBproto.htm#50332257_98074">See Component
-Hints</ulink>) and names of any components from the server database that match
+ return the hints (see <link linkend='component_hints'>See Component
+Hints</link>) and names of any components from the server database that match
 the corresponding pattern.
 </para>
 
 
 <para>
-<ulink url="XKBproto.htm#50332257_46669">See The Server Database of Keyboard
-Components</ulink> describes the X server database of keyboard components in
+<link linkend='the_server_database_of_keyboard_components'>See The Server Database of Keyboard
+Components</link> describes the X server database of keyboard components in
 more detail.
 </para>
 
@@ -6309,8 +6300,8 @@ compatMapSpec</emphasis>
 symbolsSpec</emphasis>
  and <emphasis>
 geometrySpec</emphasis>
- component expressions (see <ulink url="XKBproto.htm#50332257_26148">See
-Partial Components and Combining Multiple Components</ulink>) specify the
+ component expressions (see <link linkend='partial_components_and_combining_multiple_components'>See
+Partial Components and Combining Multiple Components</link>) specify the
 database components to be used to assemble the keyboard description.
 </para>
 
@@ -6419,8 +6410,8 @@ If either field contains a GBN component that depends on some database
 component for which the request does not supply an expression, XKB
 automatically substitutes the special pattern "%" which copies the
 corresponding component from the current keyboard description, as described in
-<ulink url="XKBproto.htm#50332257_26148">See Partial Components and Combining
-Multiple Components</ulink>.
+<link linkend='partial_components_and_combining_multiple_components'>See Partial Components and Combining
+Multiple Components</link>.
 </para>
 
 
@@ -6443,9 +6434,8 @@ If all necessary components are both specified and found, the new keyboard
 description is loaded. If the new keyboard description has a different geometry
 or keycode range than the previous keyboard description, XKB sends <emphasis>
 XkbNewKeyboardNotify</emphasis>
- events to all interested clients. See <ulink
-url="XKBproto.htm#50332257_89133">See Replacing the Keyboard
-"On-the-Fly"</ulink> for more information about the effects of replacing the
+ events to all interested clients. See <link linkend='replacing_the_keyboard_on_the_fly'>See Replacing the Keyboard
+"On-the-Fly"</link> for more information about the effects of replacing the
 keyboard description on the fly.
 </para>
 
@@ -6895,9 +6885,8 @@ deviceID</emphasis>
 which values are being returned. The <emphasis>
 supported</emphasis>
  return value reports the set of optional XKB extension device features that
-are supported by this implementation (see <ulink
-url="XKBproto.htm#50332257_36398">See Interactions Between XKB and the X Input
-Extension</ulink>) for the specified device, and the unsupported return value
+are supported by this implementation (see <link linkend='interactions_between_xkb_and_the_x_input_extension'>See Interactions Between XKB and the X Input
+Extension</link>) for the specified device, and the unsupported return value
 reports any <emphasis>
 unsupported</emphasis>
  features.
@@ -7543,8 +7532,8 @@ Once a client receives a new keyboard notify event which reports a new keycode
 range, the X server reports events from all keys in the new range to that
 client. Clients that do not request or receive new keyboard notify events
 receive events only from keys that fall in the last range for legal keys
-reported to that client. See <ulink url="XKBproto.htm#50332257_89133">See
-Replacing the Keyboard "On-the-Fly"</ulink> for a more detailed explanation.
+reported to that client. See <link linkend='replacing_the_keyboard_on_the_fly'>See
+Replacing the Keyboard "On-the-Fly"</link> for a more detailed explanation.
 </para>
 
 
@@ -7911,8 +7900,7 @@ requestMajor, requestMinor: CARD8</entry>
 <para>
 An <emphasis>
 XkbStateNotify</emphasis>
- event reports that some component of the XKB state (see <ulink
-url="XKBproto.htm#50332257_13933">See Keyboard State</ulink>) has changed.
+ event reports that some component of the XKB state (see <link linkend='keyboard_state'>See Keyboard State</link>) has changed.
 State notify events are usually caused by key or pointer activity, but they can
 also result from explicit state changes requested by the <emphasis>
 XkbLatchLockState</emphasis>
@@ -7926,8 +7914,7 @@ deviceID</emphasis>
  field reports the keyboard on which some state component changed. The
 <emphasis>
 changed</emphasis>
- field reports the XKB state components (see <ulink
-url="XKBproto.htm#50332257_13933">See Keyboard State</ulink>) that have changed
+ field reports the XKB state components (see <link linkend='keyboard_state'>See Keyboard State</link>) that have changed
 and contain any combination of:
 </para>
 
@@ -8176,10 +8163,9 @@ requestMinor: CARD8</entry>
 An <emphasis>
 XkbControlsNotify</emphasis>
  event reports a change in one or more of the global keyboard controls (see
-<ulink url="XKBproto.htm#50332257_28742">See Global Keyboard Controls</ulink>)
-or in the internal modifiers or ignore locks masks (see <ulink
-url="XKBproto.htm#50332257_45660">See Server Internal Modifiers and Ignore
-Locks Behavior</ulink>). Controls notify events are usually caused by and
+<link linkend='global_keyboard_controls'>See Global Keyboard Controls</link>)
+or in the internal modifiers or ignore locks masks (see <link linkend='server_internal_modifiers_and_ignore_locks_behavior'>See Server Internal Modifiers and Ignore
+Locks Behavior</link>). Controls notify events are usually caused by and
 <emphasis>
 XkbSetControls</emphasis>
  request, but they can also be caused by keyboard activity or certain core
@@ -9181,10 +9167,9 @@ detail</emphasis>
 slowKeysDelay</emphasis>
  and <emphasis>
 debounceDelay</emphasis>
- fields always reports the current slow keys acceptance delay (see <ulink
-url="XKBproto.htm#50332257_59600">See The SlowKeys Control</ulink>) and
-debounce delay (see <ulink url="XKBproto.htm#50332257_12450">See The BounceKeys
-Control</ulink>) for the specified keyboard.
+ fields always reports the current slow keys acceptance delay (see <link linkend='the_slowkeys_control'>See The SlowKeys Control</link>) and
+debounce delay (see <link linkend='the_bouncekeys_control'>See The BounceKeys
+Control</link>) for the specified keyboard.
 </para>
 
 
@@ -9348,8 +9333,8 @@ extension device feature that is not supported by the XKB implementation in the
 server for the specified device. The <emphasis>
 unsupported</emphasis>
  mask reports the requested features that are not available on the specified
-device. See <ulink url="XKBproto.htm#50332257_36398">See Interactions Between
-XKB and the X Input Extension</ulink> for more information about possible XKB
+device. See <link linkend='interactions_between_xkb_and_the_x_input_extension'>See Interactions Between
+XKB and the X Input Extension</link> for more information about possible XKB
 interactions with the X Input Extension.
 </para>
 

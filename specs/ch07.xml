@@ -7,7 +7,7 @@ client map</emphasis>
  for a keyboard is the collection of information a client needs to interpret
 key events that come from that keyboard. It contains a global list of <emphasis>
 key types</emphasis>
-, described in <ulink url="XKBproto.htm#50332257_45629">See Key Types</ulink>,
+, described in <link linkend='key_types'>See Key Types</link>,
 and an array of <emphasis>
 key symbol map</emphasis>
 s, each of which describes the symbols bound to one particular key and the
@@ -19,8 +19,8 @@ rules to be used to interpret those symbols.
 
 <para>
 XKB associates a two-dimensional array of symbols with each key. Symbols are
-addressed by keyboard group (see <ulink url="XKBproto.htm#50332257_13933">See
-Keyboard State</ulink>) and shift level, where level is defined as in the
+addressed by keyboard group (see <link linkend='keyboard_state'>See
+Keyboard State</link>) and shift level, where level is defined as in the
 ISO9995 standard:
 </para>
 
@@ -86,14 +86,14 @@ group and shift level that correspond to the event.
 
 <para>
 Group is reported in bits 13-14 of the state field of the key event, as
-described in <ulink url="XKBproto.htm#50332257_90933">See Computing A State
-Field from an XKB State</ulink>. The keyboard group reported in the event might
+described in <link linkend='computing_a_state_field_from_an_xkb_state'>See Computing A State
+Field from an XKB State</link>. The keyboard group reported in the event might
 be out-of-range for any particular key because the number of groups can vary
 from key to key. The XKB description of each key contains a <emphasis>
 group info</emphasis>
  field which is interpreted identically to the global groups wrap control (see
-<ulink url="XKBproto.htm#50332257_67222">See Computing Effective Modifier and
-Group</ulink>) and which specifies the interpretation of groups that are
+<link linkend='computing_effective_modifier_and_group'>See Computing Effective Modifier and
+Group</link>) and which specifies the interpretation of groups that are
 out-of-range for that key.
 </para>
 
@@ -104,7 +104,7 @@ determine the shift level. The description of a key includes a <emphasis>
 key type</emphasis>
  for each group of symbols bound to the key. Given the modifiers from the key
 event, this key type yields a shift level and a set of "leftover" modifiers, as
-described in <ulink url="XKBproto.htm#50332257_45629">See Key Types</ulink>
+described in <link linkend='key_types'>See Key Types</link>
 below.
 </para>
 
@@ -125,8 +125,8 @@ map</emphasis>
  field specifies the shift level that corresponds to some XKB modifier
 definition; any combination of modifiers that is not explicitly listed
 somewhere in the map yields shift level one. Map entries which specify unbound
-virtual modifiers (see <ulink url="XKBproto.htm#50332257_29579">See Inactive
-Modifier Definitions</ulink>) are not considered; each entry contains an
+virtual modifiers (see <link linkend='inactive_modifier_definitions'>See Inactive
+Modifier Definitions</link>) are not considered; each entry contains an
 automatically-updated <emphasis>
 active</emphasis>
  field which indicates whether or not it should be used.
@@ -161,8 +161,8 @@ Any modifiers specified in <emphasis>
 modifiers</emphasis>
  are normally <emphasis>
 consumed</emphasis>
- (see <ulink url="XKBproto.htm#50332257_25094">See Transforming the KeySym
-Associated with a Key Event</ulink>), which means that they are not considered
+ (see <link linkend='transforming_the_keysym_associated_with_a_key_event'>See Transforming the KeySym
+Associated with a Key Event</link>), which means that they are not considered
 during any of the later stages of event processing. For those rare occasions
 that a modifier <emphasis>
 should</emphasis>
@@ -396,8 +396,8 @@ according to the locale-sensitive capitalization rules specified by the system.
 If the <emphasis>
 Control</emphasis>
  modifier is set, the keysym is not affected, but the corresponding character
-should be converted to a control character as described in <ulink
-url="dflttrns.htm#17949"></ulink>.
+should be converted to a control character as described in <link
+linkend="default_symbol_transformations">Default Symbol Transformations</link>.
 </para>
 
 
@@ -427,7 +427,7 @@ Control</emphasis>
     <entry>Report the control character associated with the symbol. This
 extension defines the control characters associated with the ASCII alphabetic
 characters (both upper and lower case) and for a small set of punctuation
-characters (see <ulink url="dflttrns.htm#17949"></ulink>). Applications are
+characters (see <link linkend="default_symbol_transformations">Default Symbol Transformations</link>). Applications are
 free to associate control characters with any symbols that are not specified by
 this extension.</entry>
   </row>
@@ -437,7 +437,7 @@ Lock</emphasis>
     </entry>
     <entry>Capitalize the symbol either according to capitalization rules
 appropriate to the application locale or using the capitalization rules defined
-by this extension (see <ulink url="dflttrns.htm#17949"></ulink>).</entry>
+by this extension (see <link linkend="default_symbol_transformations">Default Symbol Transformations</link>).</entry>
   </row>
 </tbody>
 </tgroup>
@@ -449,11 +449,11 @@ Interpretation of other modifiers is application dependent.
 
 <note><para>This definition of capitalization is fundamentally different from
 the core protocol’s, which uses the lock modifier to select from the symbols
-bound to the key. Consider key 9 in the example keyboard on <ulink
-url="XKBproto.htm#50332257_ClientMapExample">See Consider a simple, if
+bound to the key. Consider key 9 in the example keyboard on <link
+linkend="client_map_example">See Consider a simple, if
 unlikely, keyboard with the following keys (gray characters indicate symbols
 that are implied or expected but are not actually engraved on the
-key):</ulink>; the core protocol provides no way to generate the capital form
+key):</link>; the core protocol provides no way to generate the capital form
 of either symbol bound to this key. XKB specifies that we first look up the
 symbol and then capitalize, so XKB yields the capital form of the two symbols
 when caps lock is active. </para></note>
@@ -677,8 +677,8 @@ to be used. The key type determines which symbol is chosen from the list.
 
 
 <para>
-<ulink url="XKBproto.htm#50332257_24122">See Determining the KeySym Associated
-with a Key Event</ulink> details the procedure to map from a key event to a
+<link linkend='determining_the_keysym_associated_with_a_key_event'>See Determining the KeySym Associated
+with a Key Event</link> details the procedure to map from a key event to a
 symbol and/or a string.
 </para>
 </sect1>

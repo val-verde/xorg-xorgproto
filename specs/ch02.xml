@@ -273,8 +273,8 @@ ServerInternalModifiers</emphasis>
 IgnoreLocksModifiers</emphasis>
  and <emphasis>
 IgnoreGroupLock</emphasis>
- controls, described in <ulink url="XKBproto.htm#50332257_45660">See Server
-Internal Modifiers and Ignore Locks Behavior</ulink>, to derive these two
+ controls, described in <link linkend='server_internal_modifiers_and_ignore_locks_behavior'>See Server
+Internal Modifiers and Ignore Locks Behavior</link>, to derive these two
 states as follows:
 </para>
 
@@ -355,16 +355,15 @@ The core protocol interpretation of
 keyboard modifiers does not include direct support for multiple groups, so XKB
 reports the effective keyboard group to XKB-aware clients using some of the
 reserved bits in the state field of some core protocol events, as described in
-<ulink url="XKBproto.htm#50332257_90933">See Computing A State Field from an
-XKB State</ulink>.
+<link linkend='computing_a_state_field_from_an_xkb_state'>See Computing A State Field from an
+XKB State</link>.
 </para>
 
 <para>
 This modified state field would not be interpreted correctly by XKB-unaware
 clients, so XKB provides a <emphasis>
 group compatibility mapping</emphasis>
-(see <ulink
-url="XKBproto.htm#50332257_40656">See Group Compatibility Map</ulink>) which
+(see <link linkend='group_compatibility_map'>See Group Compatibility Map</link>) which
 remaps the keyboard group into a core modifier mask that has similar effects,
 when possible. XKB maintains three compatibility state components that are used
 to make non-XKB clients work as well as possible:
@@ -399,8 +398,7 @@ of the grab state.
 
 <para>
 Compatibility states are essentially the corresponding XKB state, but with
-keyboard group possibly encoded as one or more modifiers; <ulink
-url="XKBproto.htm#50332257_40656">See Group Compatibility Map</ulink> describes
+keyboard group possibly encoded as one or more modifiers; <link linkend='group_compatibility_map'>See Group Compatibility Map</link> describes
 the group compatibility map, which specifies the modifier(s) that correspond to
 each keyboard group.
 </para>

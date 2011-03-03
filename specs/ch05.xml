@@ -19,8 +19,7 @@ elapsed while the <emphasis>
 RepeatKeys</emphasis>
  control can cause multiple X events from a single physical key press if the
 key is held down for an extended period. The global keyboard controls affect
-all of the keys on the keyboard and are described in <ulink
-url="XKBproto.htm#50332257_28742">See Global Keyboard Controls</ulink>.
+all of the keys on the keyboard and are described in <link linkend='global_keyboard_controls'>See Global Keyboard Controls</link>.
   </para>
 </listitem>
 <listitem>
@@ -30,8 +29,7 @@ keyboard overlays, in which a key generates an alternate keycode under certain
 circumstances, can be implemented using per-key behavior. Every key has a
 single behavior, so the effect of key behavior does not depend on keyboard
 modifier or group state, though it might depend on global keyboard controls.
-Per-key behaviors are described in detail in <ulink
-url="XKBproto.htm#50332257_81140">See Key Behavior</ulink>.
+Per-key behaviors are described in detail in <link linkend='key_behavior'>See Key Behavior</link>.
   </para>
 </listitem>
 <listitem>
@@ -39,8 +37,7 @@ url="XKBproto.htm#50332257_81140">See Key Behavior</ulink>.
 keyboard has some action associated with it. The key action tells the server
 what to do when an event which yields the corresponding keysym is generated.
 Key actions might change or suppress the event, generate some other event, or
-change some aspect of the server. Key actions are described in <ulink
-url="XKBproto.htm#50332257_15763">See Key Actions</ulink>.
+change some aspect of the server. Key actions are described in <link linkend='key_actions'>See Key Actions</link>.
   </para>
 </listitem>
 </orderedlist>
@@ -53,16 +50,14 @@ event, the client which receives the event processes it in several steps.
 <orderedlist>
 <listitem>
   <para>First the client extracts the effective keyboard group and a set of
-modifiers from the state field of the event. See <ulink
-url="XKBproto.htm#50332257_90933">See Computing A State Field from an XKB
-State</ulink> for details.
+modifiers from the state field of the event. See <link linkend='computing_a_state_field_from_an_xkb_state'>See Computing A State Field from an XKB
+State</link> for details.
   </para>
 </listitem>
 <listitem>
   <para>Using the modifiers and effective keyboard group, the client selects a
-symbol from the list of keysyms bound to the key. <ulink
-url="XKBproto.htm#50332257_24122">See Determining the KeySym Associated with a
-Key Event</ulink> discusses symbol selection.
+symbol from the list of keysyms bound to the key. <link linkend='determining_the_keysym_associated_with_a_key_event'>See Determining the KeySym Associated with a
+Key Event</link> discusses symbol selection.
   </para>
 </listitem>
 <listitem>
@@ -71,9 +66,8 @@ using any modifiers that are "left over" from the process of looking up a
 symbol. For example, if the <emphasis>
 Lock</emphasis>
  modifier is left over, the resulting keysym is capitalized according to the
-capitalization rules specified by the system. See <ulink
-url="XKBproto.htm#50332257_25094">See Transforming the KeySym Associated with a
-Key Event</ulink> for a more detailed discussion of the transformations defined
+capitalization rules specified by the system. See <link linkend='transforming_the_keysym_associated_with_a_key_event'>See Transforming the KeySym Associated with a
+Key Event</link> for a more detailed discussion of the transformations defined
 by XKB.
   </para>
 </listitem>

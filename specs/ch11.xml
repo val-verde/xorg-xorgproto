@@ -79,8 +79,8 @@ structures refer to geometry properties.
 <listitem>
   <para>A list of <emphasis>
 key aliases</emphasis>
-, as described in <ulink url="XKBproto.htm#50332257_15645">See Symbolic
-Names</ulink>.
+, as described in <link linkend='symbolic_names'>See Symbolic
+Names</link>.
   </para>
 </listitem>
 <listitem>
@@ -89,8 +89,7 @@ shapes</emphasis>
 ; other keyboard components refer to shapes by their index in this list. A
 shape consists of a name and one or more closed-polygons called <emphasis>
 outlines</emphasis>
-. Shapes and outlines are described in detail in <ulink
-url="XKBproto.htm#50332257_35210">See Shapes and Outlines</ulink>.
+. Shapes and outlines are described in detail in <link linkend='shapes_and_outlines'>See Shapes and Outlines</link>.
   </para>
 </listitem>
 </itemizedlist>

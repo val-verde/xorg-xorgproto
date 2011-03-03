@@ -99,8 +99,8 @@ whether or not it is supported.
 
 
 <para>
-<ulink url="XKBproto.htm#50332257_24503">See Querying and Changing Per-Client
-Flags</ulink> describes the <emphasis>
+<link linkend='querying_and_changing_per_client_flags'>See Querying and Changing Per-Client
+Flags</link> describes the <emphasis>
 XkbPerClientFlags</emphasis>
  request, which reports or changes values for all of the per-client flags, and
 which lists the per-client flags that are supported.
@@ -148,8 +148,7 @@ rejection or release of any key to interested clients using <emphasis>
 AccessXNotify</emphasis>
  events. The <emphasis>
 AccessXNotify</emphasis>
- event is described in more detail in <ulink
-url="XKBproto.htm#50332257_22322">See Events</ulink>.
+ event is described in more detail in <link linkend='events'>See Events</link>.
 </para>
 
 </sect1>
@@ -184,8 +183,7 @@ interested clients by sending an <emphasis>
 AccessXNotify</emphasis>
  event. The <emphasis>
 AccessXNotify</emphasis>
- event is described in more detail in <ulink
-url="XKBproto.htm#50332257_22322">See Events</ulink>.
+ event is described in more detail in <link linkend='events'>See Events</link>.
 </para>
 
 </sect1>
@@ -377,8 +375,8 @@ When <emphasis>
 MouseKeys</emphasis>
  are active and a <emphasis>
 SA_MovePtr</emphasis>
- key action (see <ulink url="XKBproto.htm#50332257_15763">See Key
-Actions</ulink>) is activated, a pointer motion event is generated immediately.
+ key action (see <link linkend='key_actions'>See Key
+Actions</link>) is activated, a pointer motion event is generated immediately.
 If <emphasis>
 MouseKeysAccel</emphasis>
  is enabled and if acceleration is enabled for the key in question, a second
@@ -517,11 +515,11 @@ StickyKeys</emphasis>
 
 <para>
 Some of these key sequences optionally generate audible feedback of the change
-in state, as described in <ulink url="XKBproto.htm#50332257_21748">See The
-AccessXFeedback Control</ulink>, or cause <emphasis>
+in state, as described in <link linkend='the_accessxfeedback_control'>See The
+AccessXFeedback Control</link>, or cause <emphasis>
 XkbAccessXNotify</emphasis>
- events as described in <ulink url="XKBproto.htm#50332257_22322">See
-Events</ulink>.
+ events as described in <link linkend='events'>See
+Events</link>.
 </para>
 
 
@@ -781,8 +779,8 @@ should generate when that overlay is enabled, assign it either the <emphasis>
 KB_Overlay1</emphasis>
  or <emphasis>
 KB_Overlay2</emphasis>
- key behaviors, as described in <ulink url="XKBproto.htm#50332257_81140">See
-Key Behavior</ulink>.
+ key behaviors, as described in <link linkend='key_behavior'>See
+Key Behavior</link>.
 </para>
 
 
@@ -793,11 +791,11 @@ Key Behavior</ulink>.
 <para>
 All of the controls described above, along with the <emphasis>
 AudibleBell</emphasis>
- control (described in <ulink url="XKBproto.htm#50332257_18543">See Disabling
-Server Generated Bells</ulink>) and the <emphasis>
+ control (described in <link linkend='disabling_server_generated_bells'>See Disabling
+Server Generated Bells</link>) and the <emphasis>
 IgnoreGroupLock</emphasis>
- control (described in <ulink url="XKBproto.htm#50332257_45660">See Server
-Internal Modifiers and Ignore Locks Behavior</ulink>) comprise the <emphasis>
+ control (described in <link linkend='server_internal_modifiers_and_ignore_locks_behavior'>See Server
+Internal Modifiers and Ignore Locks Behavior</link>) comprise the <emphasis>
 boolean controls</emphasis>
 . In addition to any parameters listed in the descriptions of the individual
 controls, the boolean controls can be individually enabled or disabled by
@@ -815,18 +813,18 @@ EnabledControls</emphasis>
  control or specified in any context that accepts only boolean controls:
 <emphasis>
 GroupsWrap</emphasis>
- (<ulink url="XKBproto.htm#50332257_67222">See Computing Effective Modifier and
-Group</ulink>), <emphasis>
+ (<link linkend='computing_effective_modifier_and_group'>See Computing Effective Modifier and
+Group</link>), <emphasis>
 EnabledControls</emphasis>
 , <emphasis>
 InternalMods</emphasis>
- (<ulink url="XKBproto.htm#50332257_45660">See Server Internal Modifiers and
-Ignore Locks Behavior</ulink>), and <emphasis>
+ (<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>See Server Internal Modifiers and
+Ignore Locks Behavior</link>), and <emphasis>
 IgnoreLockMods</emphasis>
- (<ulink url="XKBproto.htm#50332257_45660">See Server Internal Modifiers and
-Ignore Locks Behavior</ulink>) and <emphasis>
+ (<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>See Server Internal Modifiers and
+Ignore Locks Behavior</link>) and <emphasis>
 PerKeyRepeat</emphasis>
- (<ulink url="XKBproto.htm#50332257_48937">See The RepeatKeys Control</ulink>)
+ (<link linkend='the_repeatkeys_control'>See The RepeatKeys Control</link>)
 </para>
 
 
@@ -838,8 +836,8 @@ PerKeyRepeat</emphasis>
 The <emphasis>
 auto-reset controls</emphasis>
  are a per-client value which consist of two masks that can contain any of the
-boolean controls (see <ulink url="XKBproto.htm#50332257_12486">See "Boolean"
-Controls and The EnabledControls Control</ulink>). Whenever the client exits
+boolean controls (see <link linkend='boolean_controls_and_the_enabledcontrols_control'>See "Boolean"
+Controls and The EnabledControls Control</link>). Whenever the client exits
 for any reason, any boolean controls specified in the <emphasis>
 auto-reset mask</emphasis>
  are set to the corresponding value from the <emphasis>
@@ -853,8 +851,8 @@ automatically, even if abnormally terminated.
 For example, a client that replace the keyboard bell with some other audible
 cue might want to turn off the <emphasis>
 AudibleBell</emphasis>
- control (<ulink url="XKBproto.htm#50332257_18543">See Disabling Server
-Generated Bells</ulink>) to prevent the server from also generating a sound and
+ control (<link linkend='disabling_server_generated_bells'>See Disabling Server
+Generated Bells</link>) to prevent the server from also generating a sound and
 thus avoid cacophony. If the client were to exit without resetting the
 <emphasis>
 AudibleBell </emphasis>

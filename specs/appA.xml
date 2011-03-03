@@ -175,7 +175,7 @@ capitalization behavior. Any keysyms not explicitly listed in these tables are
 not capitalized by XKB when locale-insensitive capitalization is in effect and
 are not automatically assigned the <emphasis>
 ALPHABETIC</emphasis>
- type as described in <ulink url="protocol.htm#35661"></ulink>.
+ type as described in the <link linkend="the_alphabetic_key_type">Alphabetic Key Type</link>.
 </para>
 
 

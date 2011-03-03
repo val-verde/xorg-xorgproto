@@ -212,8 +212,8 @@ NumLock</emphasis>
 
 <para>
 The virtual modifier mapping is normally updated automatically whenever actions
-are assigned to keys (see <ulink url="XKBproto.htm#50332257_84091">See Changing
-the Keyboard Mapping Using the Core Protocol</ulink> for details) and few
+are assigned to keys (see <link linkend='changing_the_keyboard_mapping_using_the_core_protocol'>See Changing
+the Keyboard Mapping Using the Core Protocol</link> for details) and few
 applications should need to change the virtual modifier mapping explicitly.
 </para>
 </sect1>

@@ -86,9 +86,8 @@ symbols</emphasis>
 geometry</emphasis>
  names typically correspond to the keyboard components from which the current
 keyboard description was assembled. These components are stored individually in
-the server’s database of keyboard components, described in <ulink
-url="XKBproto.htm#50332257_46669">See The Server Database of Keyboard
-Components</ulink>, and can be combined to assemble a complete keyboard
+the server’s database of keyboard components, described in <link linkend='the_server_database_of_keyboard_components'>See The Server Database of Keyboard
+Components</link>, and can be combined to assemble a complete keyboard
 description.
 </para>
 
@@ -131,8 +130,8 @@ customizations are straightforward.
 
 <para>
 Key aliases can be specified both in the symbolic names component and in the
-keyboard geometry (see <ulink url="XKBproto.htm#50332257_23341">See Keyboard
-Geometry</ulink>). Both sets of aliases are always valid, but key alias
+keyboard geometry (see <link linkend='keyboard_geometry'>See Keyboard
+Geometry</link>). Both sets of aliases are always valid, but key alias
 definitions in the keyboard geometry have priority; if both symbolic names and
 geometry include aliases, applications should consider the definitions from the
 geometry before considering the definitions from the symbolic names section.
