@@ -282,6 +282,29 @@ extern "C" {
  * GLX_EXT_framebuffer_SRGB
  */
 #define GLX_FRAMEBUFFER_SRGB_CAPABLE_EXT   0x20B2
+
+/*
+ * GLX_ARB_create_context
+ * GLX_ARB_create_context_profile
+ */
+#define GLX_CONTEXT_MAJOR_VERSION_ARB      0x2091
+#define GLX_CONTEXT_MINOR_VERSION_ARB      0x2092
+#define GLX_CONTEXT_FLAGS_ARB              0x2094
+#define GLX_CONTEXT_PROFILE_MASK_ARB       0x9126
+
+#define GLX_CONTEXT_DEBUG_BIT_ARB          0x0001
+#define GLX_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB          0x0002
+
+#define GLX_CONTEXT_CORE_PROFILE_BIT_ARB   0x0001
+#define GLX_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB   0x0002
+
+/*
+ * GLX_ARB_create_context_robustness
+ */
+#define GLX_CONTEXT_ROBUST_ACCESS_BIT_ARB  0x0004
+#define GLX_CONTEXT_RESET_NOTIFICATION_STRATEGY_ARB 0x8256
+#define GLX_NO_RESET_NOTIFICATION_ARB      0x8261
+#define GLX_LOST_CONTEXT_ON_RESET_ARB      0x8252
 #ifdef __cplusplus
 }
 #endif
