@@ -206,54 +206,76 @@ i.e. “init” the sequence by touching the device, “move” the current touc
 location any number of times, and finally “destroy” the sequence by ceasing
 to touch the device. The init and destroy stage of this sequence are always
 present, while the move stage is optional. Within this document, the term
-"touch sequence" is used to describe the above chain of events. A client
-wishing to receive touch events must register for at least TouchBegin,
-TouchUpdate, and TouchEnd simultaneously. It may also select for
-TouchUpdateUnowned and TouchOwnership events if it wants to receive the full
-touch stream while other clients own or have active grabs involving the touch.
-An example of this usage is a touch painting program that paints touches while
-a gesture recognizer has an active grab. Such clients must be able to undo state
-if the touch ends without the client receiving ownership of the touch.
+"touch sequence" is used to describe the above chain of events. In the this
+protocol, the init stage is represented by a touch begin event, then move stage
+is represented by a touch update event, and the destroy stage is represented by
+a touch end event.
 
-A touch sequence is only considered to be meaningful in its entirety: clients
-may not capture part of a touch sequence, interpret only that part, and then
-pass a partial touch sequence on to the next client.  To this end, all clients
-with “grabs” on the window hierarchy for a touch sequence receive events from
-that touch sequence, as well as potentially the client with the deepest
-selection (i.e. furthest from the root window).  Clients currently in control of
-the touch sequence receive TouchUpdate events, whereas clients not in control
-receive receive TouchUpdateUnowned events.
+Touch sequences may send events to multiple clients in parallel. At any given
+time, only one client is in control of the touch sequence and is referred to as
+the "owner" of the sequence.
+
+Clients may want to receive events only after they become the owner of a touch
+sequence. This prevents unnecessary process wakeups and provides for simpler
+handling of a stream of touch events. Such clients must select for touch begin,
+update, and end events. When the client becomes the owner of a touch sequence,
+a touch begin event will be sent. This event will represent the position and
+properties of the touch when it began on the touch device. The server may buffer
+copies of multiple touch update events while the touch sequence was owned by
+another client. After sending the touch begin event, any buffered touch update
+events will be sent. If the touch position or properties have changed since the
+touch began, at least one touch update or touch end event will be sent to denote
+the new position and properties. There is no guarantee that any more than one
+touch update or touch end event will be buffered. The event timestamp of the
+buffered events represent the time the event occurred.
+
+Other clients may want access to the stream of touch events from a touch
+sequence before they become the owner of the sequence. Clients must use caution
+when handling these events; any action taken must be undone if the touch
+sequence ends without the client becoming the owner. Such clients must select
+for touch begin, update, end, and ownership events. A touch begin event is sent
+to all such clients when a touch sequence has initiated. When touch position or
+properties are changed, the client will be sent touch update events. Once the
+client, including the initial owner, becomes the owner of the touch sequence, a
+touch ownership event will be sent. When the touch ends, the owner will receive
+a touch end event if it is a touch grabbing client and has accepted the touch
+sequence as outlined below or if it is receiving touch events through a
+selection. Otherwise, the owner will receive a touch update event with the
+pending end flag set. All other clients will receive a touch update event with
+the pending end flag set.
 
 Touch grabs are similar to standard input event grabs in that they take
 precedence over selections and are searched from the root window to the child
-window.  The first grab found for a touch sequence will be the owner of that
-touch sequence, however events for that touch sequence will continue to be
-delivered to all clients with grabs in the window tree, as well as potentially
-the client with the deepest selection.  The first client may either “accept” the
-touch, which claims the touch sequence and stops delivery to all other clients
-for the duration of the touch sequence, or “reject” the touch sequence, which
-will remove that client from the delivery set and pass ownership on to the
-next client. When a client, including the initial owner, becomes the owner of a
-touch, it will receive a TouchOwnership event. When an owning client accepts a
-touch, further clients receiving unowned events will receive TouchEnd events.
+window. When a touch grab is activated, the client will receive a touch
+ownership event. The owner must either “accept” or "reject" the touch sequence,
+though it may do so at any time, including after the touch sequence has ended.
+If the owner accepts the touch sequence, touch end events will be sent to all
+other clients listening to events from the touch sequence. If the owner rejects
+the touch sequence, a touch end event will be sent to the owner and further
+grabs will be checked for the touch sequence. If any touch client becomes the
+owner of the touch sequence, it will be sent a touch ownership event. Touch
+grabbing clients must register for touch ownership events through the grab and
+be able to handle events while they are not the owner of the touch sequence.
 
-Clients selecting for touch events may select for either unowned events or only
-owned events. The event stream for an unowned selection is identical to a touch
-grab. When a client does not select for unowned and ownership events, it will
-receive a TouchBegin event when it becomes the owner of a touch stream.
-TouchUpdate and TouchEnd events will be received in the same manner as for touch
-grabs.
+A touch sequence is only considered to be meaningful in its entirety: clients
+may not capture part of a touch sequence, interpret only that part, and then
+pass ownership of the touch sequence on to another client. A special exception
+to this rule is made for clients who passively grab a touch with grab type
+TouchObserve, or for when a client rejects a touch with mode TouchObserve. Such
+clients are passed over for touch ownership, but will continue to receive touch
+update events for the touch sequence.
 
 A TouchEnd event will always be sent to a client when it will receive no more
 events from a particular touch, regardless of why (grab or selection removed,
-owner accepted, the client having rejected that touch, etc).
+owner accepted, the client having rejected the touch, etc).
 
-Only one client may select or grab touch events for a device on a window. As an
-example, selecting for AllDevices will prevent any other client from selecting
-on the same window. When a slave device is attached to a master device, any
-selections on any windows for touch events for the slave device ID will be
-canceled. Clients selecting for individual slave devices are suggested to select
-for HierarchyChanged events to be notified when this occurs.
+Only one client may select, and only one client may grab, touch events for a
+physical device on a window. As an example, selecting for AllDevices will
+prevent any other client from selecting for touch events for any device on the
+same window. When a slave device is attached to a master device, any selections
+on any windows for touch events for the slave device ID will be canceled.
+Clients selecting for individual slave devices are suggested to select for
+HierarchyChanged events to be notified when this occurs.
 
 4.4.2 Touch device modes
 
@@ -262,41 +284,41 @@ following device modes are defined for this protocol:
 
 DirectTouch:
     These devices map their input region to a subset of the screen region. Touch
-    events are delivered according to where the touch occurs in the mapped
-    screen region. An example of a DirectTouch device is a touchscreen.
+    focus is determined according to where the touch occurs in the mapped screen
+    region. An example of a DirectTouch device is a touchscreen.
 
 DependentTouch:
     These devices do not have a direct correlation between a touch location and
     a position on the screen. Touch events are delivered according to the
-    location of the pointer on screen. An Example of a DependentTouch device
-    is a trackpad.
+    location of the device's cursor. An Example of a DependentTouch device is a
+    trackpad.
 
 IndependentPointer:
     These devices do not have any correlation between touch events and pointer
-    events. IndependentPointer devices are a subset of DependentTouch devices.
-    An example of an IndependentPointer device is a mouse with a touch surface.
+    events. Pointer events are generated by physical interactions with the
+    device that are independent of any touch events. An example of an
+    IndependentPointer device is a mouse with a touch surface used for scrolling
+    or other gestural input.
 
 SemiMultitouch:
-    These devices may report touch events that correlate to the two opposite
-    corners of the bounding box of all touches. The number of active touch
-    sequences represents the number of touches on the device, and the position
-    of any given touch event will be equal to either of the two corners of the
-    bounding box. However, the physical location of the touches is unknown.
-    SemiMultitouch devices are a subset of DependentTouch devices. Although
-    DirectTouch and IndependentPointer devices may also be SemiMultitouch
-    devices, such devices are not allowed through this protocol.
+    These devices only report the number of touches and the bounding box of the
+    touches on the touch surface. The touch information is sent as one touch
+    event sequence with four touch valuators defining the bounding box. Touch
+    events are delivered according to the location of the device's cursor.
+    Although DirectTouch and IndependentPointer devices may also be
+    SemiMultitouch devices, such devices are not allowed through this protocol.
 
 A device is identified as only one of the device modes above at any time. For
-the purposes of this protocol, IndependentPointer and SemiMultitouch devices are
-treated the same as DependentTouch devices unless stated otherwise.
+the purposes of this protocol document, indirect touch devices refers to
+DependentTouch, IndependentPointer, and SemiMultitouch devices.
 
 4.4.3 Touch event delivery
 
 Window sets for event propagation for direct device touches contain the windows
 from the root to the child in which the touch originated.
 
-Dependent device window sets depend on whether other touches are active. For
-the first dependent touch on a device, the window set contains the windows from
+Indirect device window sets depend on whether other touches are active. For
+the first touch on an indirect device, the window set contains the windows from
 the root to the current window underneath the position of the device's pointer.
 For subsequent touches on the device, the window set is identical to the window
 set of the first touch. Once all touches have been released, the window set is
@@ -306,47 +328,78 @@ The delivery of touch events is not changed by any modifications to the window
 hierarchy after the window set has been determined for the touch, nor is it
 affected by new grabs or selections.
 
-No touches from a dependent device may begin while the device is floating, as
+No touches from an indirect device may begin while the device is floating, as
 it does not have an associated pointer position to focus events.
 
-In order to prevent touch events delivered to one window while pointer events
-are implicitly grabbed by another, all touches from indirect devices will end
-when an implicit grab is activated on the slave or attached master device. New
-touches may begin while the device is implicitly grabbed.
+4.4.4 Pointer event handling for indirect touch devices
 
-Many touch devices will emit pointer events as well, usually by mapping one
-touch sequence to pointer events. In these cases, events for both the pointer
-and its associated touch sequence will have the XIPointerEmulated flag set.
+Indirect touch devices are expected to generate pointer events. In contrast with
+direct touch devices, as stated below, the server will not generate pointer
+events on behalf of indirect touch devices. Further, pointer events from
+indirect touch devices are delivered independently of touch events.
 
-4.4.4 Pointer emulation for direct touch devices
+DependentTouch and SemiMultitouch devices may generate pointer events by mapping
+one touch sequence to the pointer. In these cases, events for both the pointer
+and its associated touch sequence will have the PointerEmulated flag set.
+
+When the cursor of an attached master pointer of an indirect device leaves the
+window of a touch grab or selection, or when a client activates a pointer grab
+on either the master or slave device, touch begin and touch update events will
+be withheld. When the pointer re-enters the window or the pointer grab is
+deactivated, touch update events will be sent with updates to any touch
+positions and properties since the last touch event sent. Touch begin events for
+any new touches will also be sent, along with touch update events for new
+touches that have changed position or properties since the touch began. No events
+will be delivered for touches that began and ended while touch events were
+withheld.
+
+4.4.5 Pointer emulation for direct touch devices
 
 In order to facilitate backwards compatibility with legacy clients, direct touch
 devices will emulate pointer events. Pointer emulation events will only be
 delivered through the attached master device; no pointer events will be emulated
 for floating touch devices. Further, only one touch from any attached slave
-touch device may be emulated per master device at any time.
+direct touch device may be emulated per master device at any time.
 
-A touch event stream must be delivered to clients in a mutually exclusive
-fashion. This extends to emulated pointer events. For the purposes of
-exclusivity, emulated pointer events between an emulated button press and
-button release are considered. An emulated button press event is considered
-exclusively delivered once it has been delivered through an event selection, an
-asynchronous pointer grab, or it and a further event are delivered through a
-synchronous pointer grab.
+Pointer events are emulated as follows:
 
-Touch and pointer grabs are also mutually exclusive. For a given window, any
-touch grab is activated first. If the touch grab is rejected, the pointer grab
-is activated. If an emulated button press event is exclusively delivered to the
-grabbing client as outlined above, the touch sequence is ended for all clients
-still listening for unowned events. Otherwise, when the pointer stream is
-replayed the next window in the window set is checked for touch grabs.
+* Touch begin events generate a pointer motion event to the location of the
+  touch, followed by a button press event for button 1.
+* Touch update events generate a pointer motion event to update the location
+  of the touch.
+* Touch end events generate a pointer motion event to the location of the touch
+  if the touch has moved, followed by a button release event for button 1.
 
-If the touch sequence is not exclusively delivered to any client through a grab,
-the touch and emulated pointer events may be delivered to clients selecting for
-the events. Event propagation for the touch sequence ends at the first client
-selecting for touch and/or pointer events. Note that a client may receive both
-touch and emulated pointer events for the same touch sequence through event
-selection.
+A touch sequence may only be owned by one client at a time. When pointer events
+are emulated from a touch sequence and delivered through a pointer grab, the
+grabbing client implicitly becomes the owner of the touch sequence.
+
+A pointer grabbing client is considered to have accepted ownership of the touch
+sequence when the following occurs:
+
+* The emulated button press event is delivered through an asynchronous grab.
+* The emulated button press event is delivered through a synchronous grab and
+  further events are allowed through to the grabbing client.
+* The emulated button press event is delivered through a synchronous grab and
+  then the grab is deactivated without replaying the button press event.
+
+Touch and pointer grabs are mutually exclusive. For a given window, any touch
+grab is activated first. If there is no touch grab or the touch grab is
+rejected, any pointer grab is activated. If there is a pointer grab and the
+grabbing client accepts ownership of the touch sequence as outlined above, the
+touch sequence is ended for all other clients listening for touch events.
+Otherwise, if there is no pointer grab or the grabbing client replays the
+pointer events without accepting the touch sequence, the next window in the
+window set is checked for grabs.
+
+If the touch sequence is not accepted by any client through a grab, the touch
+and emulated pointer events may be delivered to a client selecting for them.
+Event propagation for the touch sequence ends at the first client selecting for
+touch or pointer events. If a window has both touch and pointer event
+selections, only the touch events will be delivered.
+
+Both the emulated pointer events and their associated touch events will have the
+PointerEmulated flag set.
 
 4.5. The ClientPointer principle
 
@@ -703,13 +756,12 @@ are required to be 0.
     The mask for XIHierarchyEvents may only be selected for XIAllDevices.
     Setting it for any other device results in a BadValue error.
 
-    A client selecting for any of XI_TouchBegin, XI_TouchOwnership,
-    XI_TouchUpdate or XI_TouchEnd must select for all three events at the
-    same time, else BadValue will be returned. A client selecting for
-    XI_TouchUpdateUnowned must select for all three of the other touch
-    events. If the selection for these touch events overlaps a current
-    selection by another client (e.g. selecting for a specific device when
-    another client has a selection for XIAllDevices), a BadAccess error occurs.
+    A client selecting for any of XI_TouchBegin, XI_TouchUpdate, or XI_TouchEnd
+    must select for all three events at the same time, else BadValue will be
+    returned. A client selecting for XI_TouchOwnership must select for all three
+    of the other touch events. If the selection for these touch events overlaps
+    a current selection by another client (e.g. selecting for a specific device
+    when another client has a selection for XIAllDevices), a BadAccess error occurs.
 
     ┌───
         XIGetSelectedEvents
@@ -1276,7 +1328,7 @@ are required to be 0.
 
         GRABTYPE         { GrabtypeButton, GrabtypeKeycode, GrabtypeEnter,
                            GrabtypeFocusIn, GrabtypeTouchBegin,
-                           GrabtypeTouchBeginInert }
+                           GrabtypeTouchObserve }
 
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
@@ -1309,7 +1361,7 @@ are required to be 0.
             released. Actual device input events are not lost while the device
             is frozen; they are simply queued for later processing.
             Must be Asynchronous for GrabtypeTouchBegin and
-            GrabtypeTouchBeginInert (see section 4.4).
+            GrabtypeTouchObserve (see section 4.4).
         mask_len
             Length of mask in 4 byte units.
         mask
@@ -1367,15 +1419,15 @@ are required to be 0.
         - a passive grab of the same grab_type + modifier combination does not
           does not exist on an ancestor of grab_window.
 
-        Or if grab_type is GrabtypeTouchBegin or GrabtypeTouchBeginInert, a
+        Or if grab_type is GrabtypeTouchBegin or GrabtypeTouchObserve, a
         touch grab (see section 4.4) begins if:
         - a touch begins in grab_window or one of its ancestors, and
         - the specified modifier keys are down
         Ownership of the touch sequence is granted to the grabbing client if:
-        - grab_type is not GrabtypeTouchBeginInert, and
-        - a TouchBegin, TouchBeginInert, or pointer passive grab with the same
-          modifier set does not exist on an ancestor of grab_window, or all
-          applicable grabs have released ownership.
+        - grab_type is not GrabtypeTouchObserve, and
+        - a TouchBegin or pointer grab for an emulated touch sequence of a
+          direct touch device with the same modifier set does not exist on an
+          ancestor of grab_window, or all applicable grabs have released ownership.
 
         A modifier of GrabAnyModifier is equivalent to issuing the request for
         all possible modifier combinations (including no modifiers). A client
@@ -1387,9 +1439,11 @@ are required to be 0.
         A GrabtypeEnter or GrabtypeFocusIn grab is released when the
         pointer or focus leaves the window and all of its descendants,
         independent of the state of modifier keys.
-        A GrabtypeTouchBegin or GrabtypeTouchBeginInert grab is released when
-        the touch sequence ends, or a client uses XIAllowTouchEvents to reject
-        the touch and remove itself from the touch delivery sequence.
+        A GrabtypeTouchBegin grab is released when the touch sequence ends or
+        the client uses XIAllowTouchEvents with mode TouchReject.
+        A GrabtypeTouchBegin grab is converted to a GrabtypeTouchObserve grab
+        when the client uses XIAllowTouchEvents with mode TouchObserve.
+        A GrabtypeTouchObserve grab is released when the touch sequence ends.
         Note that the logical state of a device (as seen by means of the
         protocol) may lag the physical state if device event processing is
         frozen.
@@ -1616,8 +1670,7 @@ are required to be 0.
             flags:           SETofALLOWTOUCHFLAGS
     └───
 
-    ALLOWTOUCHMODE  { TouchOwnerAccept, TouchOwnerRejectEnd,
-                      TouchOwnerRejectContinue }
+    ALLOWTOUCHMODE  { TouchAccept, TouchReject, TouchObserve }
     ALLOWTOUCHFLAGS (none currently defined)
 
     The XIAllowTouchEvents request allows the current owner of a touch
@@ -1628,16 +1681,16 @@ are required to be 0.
     touchid
         The ID of the touch sequence to modify.
     event_mode
-        Given TouchOwnerAccept, the client is deemed to have taken control
-        of the touch sequence; TouchEnd events will be sent to all other
-        clients listening to the touch sequence, and they will no longer
-        receive any TouchUpdate events.
-        Given TouchOwnerRejectEnd, the client is no longer interested in the
-        touch sequence, and will receive a TouchEnd event; ownership will be
-        passed on to the next listener.
-        Given TouchOwnerRejectContinue, the client is not interested in
-        ownership, but still wishes to receive TouchUpdate events;
-        ownership will be passed on to the next listener.
+        Given TouchAccept, the client is deemed to have taken control of the
+        touch sequence; TouchEnd events will be sent to all other clients
+        listening to the touch sequence, and they will no longer receive any
+        TouchUpdate events.
+        Given TouchReject, the client is no longer interested in the touch
+        sequence, and will receive a TouchEnd event; ownership will be passed
+        on to the next listener.
+        Given TouchObserve, the client is not interested in ownership, but
+        still wishes to receive TouchUpdate events; ownership will be passed on
+        to the next listener.
     flags
         A bitmask of applicable flags.
 
@@ -1679,7 +1732,6 @@ Version 2.0:
 Version 2.1:
         TouchBegin
         TouchUpdate
-        TouchUpdateUnowned
         TouchOwnership
         TouchEnd
 
@@ -1707,7 +1759,7 @@ EVENTHEADER { type:                       BYTE
     deviceid
         Numerical device id for a device.
     time
-        Time in ms.
+        Time in ms when the event occurred.
 
 
     ┌───
@@ -1809,6 +1861,7 @@ EVENTHEADER { type:                       BYTE
             buttons:                    SETofBUTTONMASK
             valuators:                  SETofVALUATORMASK
             axisvalues:                 LISTofFP3232
+            active_touches:             CARD32
     └───
 
     BUTTONBIT { (1 << Button1), (1 << Button2), ... , (1 << ButtonN) }
@@ -1833,8 +1886,7 @@ EVENTHEADER { type:                       BYTE
     press or a key release. The event type may be one of KeyPress,
     KeyRelease, ButtonPress, ButtonRelease, Motion.
 
-    XI 2.1: The event type may also be TouchBegin, TouchUpdate,
-            TouchUpdateUnowned, or TouchEnd.
+    XI 2.1: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
 
     detail
         The button number, key code, touch ID, or 0.
@@ -1865,12 +1917,12 @@ EVENTHEADER { type:                       BYTE
         Button state before the event.
     valuators
         Bitmask of valuators provided in axisvalues.
-        XI 2.1: For event types TouchBegin, TouchUpdate, TouchUpdateUnowned, and
-        TouchEnd, the valuators are those specified as TouchAxisClass.
+        XI 2.1: For event types TouchBegin, TouchUpdate, and TouchEnd, the
+        valuators are those specified as TouchAxisClass.
     axisvalues
         Valuator data in device-native resolution.
-        XI 2.1: For event types TouchBegin, TouchUpdate, TouchUpdateUnowned, and
-        TouchEnd, the valuators are those specified as TouchAxisClass.
+        XI 2.1: For event types TouchBegin, TouchUpdate, and TouchEnd, the
+        valuators are those specified as TouchAxisClass.
     flags
         Miscellaneous information about this event; the union of the
         common flag set and either the key or pointer flag set,
@@ -1892,6 +1944,14 @@ EVENTHEADER { type:                       BYTE
         accepted or passed on ownership.  The touch will not generate any
         further motion events once an event with TouchPendingEnd has been
         received.
+    active_touches
+        Only in XI 2.1 and later. Only valid for TouchBegin, TouchUpdate, and
+        TouchEnd events.
+
+        The active_touches value denotes the number of touches in contact with
+        the source touch device surface when the event occurred. The value
+        includes the new touch for a TouchBegin event, and does not include the
+        ending touch for a TouchEnd event.
 
     Modifier state in mods is detailed as follows:
     base_mods
@@ -2093,68 +2153,65 @@ require the client to announce XI 2.1 support in the XIQueryVersion request.
 
 ∙ Client C wants to process touch events from a device D on window W.
     ⊳ C calls XISelectEvent for
-      XI_Touch{Begin|Update|UpdateUnowned|Ownership|End} from D on W.
+      XI_Touch{Begin|Update|End} from D on W.
     ⊳ C receives TouchBegin whenever a touch sequence starts within
       W's borders.
-    ⊳ C receives a TouchOwnership event indicating that it is now the owner
-      of the touch sequence.
     ⊳ C receives TouchUpdate events whenever a touch axis valuator value
       changes for a touch sequence it received a TouchBegin event for.
-    ⊳ C receives TouchEnd whenever a touch it received an TouchBegin event
+    ⊳ C receives TouchEnd whenever a touch it received a TouchBegin event
       for ceases.
 
-∙ Client C wants to process touch events from a device D on window W, while
-  client I wants to pre-process these events.
+∙ Client C wants to pre-process touch events from a device D on window W, while
+  client I wants to pre-process touch events from device D on the parent window
+  of W.
     ⊳ C calls XISelectEvent for
-      XI_Touch{Begin|Update|UpdateUnowned|Ownership|End} from D on W.
+      XI_Touch{Begin|Update|Ownership|End} from D on W.
     ⊳ I calls XIPassiveGrab for
-      XI_Touch{Begin|Update|UpdateUnowned|Ownership|End} from D on a parent
+      XI_Touch{Begin|Update|Ownership|End} from D on a parent
       window of W.
     ⊳ I receives TouchBegin whenever a touch begins within window W, as well
       as a TouchOwnership event indicating that it currently owns the touch
       sequence.  C receives a TouchBegin event as well, but without
       TouchOwnership.
-    ⊳ When a touch axis valuator changes in this touch sequence, I receives a
-      TouchUpdate event, while C receives a TouchUpdateUnowned event.  I may
-      process the events to determine if it is going to claim or reject the
-      touch, whereas C may perform reversible processing.
-    ⊳ If I decides it is going to claim the event for its exclusive
-      processing, it calls XIAllowTouchEvents with the XITouchOwnerAccept flag
-      set; at this point, C receives a TouchEnd event with the
-      TouchAccepted flag set, and undoes any processing it may have done
-      on the touch sequence.  Further TouchUpdate events are delivered only
-      to I.
-    ⊳ Alternately, if I decides it does not want to receive further events from
-      this touch sequence, it calls XIAllowTouchEvents with the
-      XITouchOwnerReject flag set; at this point, I receives a TouchEnd event
+    ⊳ When a touch axis valuator changes in this touch sequence, both I and C
+      receive a TouchUpdate event.  I may process the event to determine if it
+      is going to accept or reject the touch, whereas C may perform reversible
+      processing.
+    ⊳ If I decides it is going to claim the touch sequence for its exclusive
+      processing, it calls XIAllowTouchEvents with the XITouchAccept flag set;
+      at this point, C receives a TouchEnd event, and undoes any processing it
+      has already performed due to the touch sequence.  Further TouchUpdate
+      events are delivered only to I.
+    ⊳ Alternatively, if I decides it does not want to receive further events
+      from this touch sequence, it calls XIAllowTouchEvents with the
+      XITouchReject flag set; at this point, I receives a TouchEnd event
       confirming that it has rejected the touch.  C receives a TouchOwnership
       event confirming that it is now the new owner of the touch, and further
       TouchUpdate events are delivered only to C.  As C now owns the touch,
       it is free to perform irreversible processing of the sequence.
-    ⊳ When the touch physically ceases, a TouchEnd event is sent to all
-      clients still receiving TouchUpdate events.
+    ⊳ When the touch physically ceases, a TouchEnd event is sent to C.
 
-∙ Client C wants to process touch events from a device D on window W, while
-  client I wants to process pointer events on window Y, which is W's parent.
-    ⊳ I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease}
-      from D on Y.
+∙ Client C wants to pre-process touch events from a direct touch device D on
+  window W, while client I wants to process pointer events on window W's parent,
+  window Y.
+    ⊳ I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease} to
+      create a synchronous pointer grab from D on Y.
     ⊳ C calls XISelectEvent for
-      XI_Touch{Begin|Update|UpdateUnowned|Ownership|End} from D on W.
+      XI_Touch{Begin|Update|Ownership|End} from D on W.
     ⊳ I receives a ButtonPress event whenever a touch begins within W, and is
       considered the owner of the event.  C receives a TouchBegin event, but
       does not receive a TouchOwnership event.
-    ⊳ When the touchpoint moves, I will receive a MotionNotify event, and C
-      will receive a TouchUpdateUnowned event.  Event delivery to I will be
-      subject to the standard delivery mechanism (including being queued if
-      the device is frozen, et al), while C receives events as soon as they
-      are processed by the server.
-    ⊳ I may assert ownership by calling XIAllowEvents on Y with AsyncDevice,
-      which will cause all further events to be sent only to I, with a
-      TouchEnd event being sent to C.
-    ⊳ Alternately, I may assert disinterest by calling XIAllowEvents on Y
-      with ReplayDevice, which will cause no further events from that touch
-      to be sent to I, and a TouchOwnership event to be sent to C, with
-      subsequent motion events being sent as TouchMotion.
+    ⊳ When the touchpoint moves, C will receive a TouchUpdate event.  Event
+      delivery to I is be subject to the synchronous delivery mechanism. The
+      emulated motion notify event is queued in the server while the device is
+      frozen.
+    ⊳ I may assert ownership by calling XIAllowEvents on Y with any mode other
+      than ReplayDevice, which will cause all further events to be sent only to
+      I, with a TouchEnd event being sent to C.
+    ⊳ Alternatively, I may reject the touch sequence by calling XIAllowEvents on
+      Y with mode ReplayDevice, which will cause no further events from that
+      touch to be sent to I, and a TouchOwnership event to be sent to C, with
+      subsequent motion events being sent as TouchUpdate events.
 
 ∙  Driver DRV provides touch support from tracked device D:
     ⊳ DRV initializes a TouchClass for the device and a TouchAxisClass for

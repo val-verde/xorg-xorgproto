@@ -25,16 +25,6 @@
 #ifndef _XI2_H_
 #define _XI2_H_
 
-/* Indices into the versions[] array (XExtInt.c). Used as a index to
- * retrieve the minimum version of XI from _XiCheckExtInit.
- * For indices 0 to 6 see XI.h */
-#ifndef Dont_Check /* defined in XI.h */
-#define Dont_Check                              0
-#endif
-#define XInput_2_0                              7
-#define XInput_2_1                              8
-
-
 #define XI_2_Major                              2
 #define XI_2_Minor                              0
 #define XI_2_1_Minor                            1
@@ -68,7 +58,7 @@
 #define XIGrabtypeEnter                         2
 #define XIGrabtypeFocusIn                       3
 #define XIGrabtypeTouchBegin                    4
-#define XIGrabtypeTouchBeginInert               5
+#define XIGrabtypeTouchObserve                  5
 
 /* Passive grab modifier */
 #define XIAnyModifier                           (1U << 31)
@@ -84,9 +74,9 @@
 #define XISyncPair                              5
 
 /* XIAllowTouchEvents bitmask event-modes */
-#define XITouchOwnerAccept                      (1 << 0)
-#define XITouchOwnerRejectEnd                   (1 << 1)
-#define XITouchOwnerRejectContinue              (1 << 2)
+#define XITouchAccept                           (1 << 0)
+#define XITouchReject                           (1 << 1)
+#define XITouchObserve                          (1 << 2)
 
 /* DeviceChangedEvent change reasons */
 #define XISlaveSwitch                           1
@@ -133,9 +123,10 @@
 /* Device event flags (common) */
 /* Device event flags (key events only) */
 #define XIKeyRepeat                             (1 << 16)
-/* Device event flags (pointer and touch events only) */
+/* Device event flags (pointer events only) */
 #define XIPointerEmulated                       (1 << 16)
 /* Device event flags (touch events only) */
+#define XIPointerEmulated                       (1 << 16)
 #define XITouchPendingEnd                       (1 << 17)
 
 /* Touch modes */
@@ -176,8 +167,7 @@
 #define XI_TouchEnd                      19
 #define XI_TouchOwnership                20
 #define XI_TouchUpdate                   21
-#define XI_TouchUpdateUnowned            22
-#define XI_LASTEVENT                     XI_TouchUpdateUnowned
+#define XI_LASTEVENT                     XI_TouchUpdate
 /* NOTE: XI2LASTEVENT in xserver/include/inputstr.h must be the same value
  * as XI_LASTEVENT if the server is supposed to handle masks etc. for this
  * type of event. */
@@ -207,6 +197,5 @@
 #define XI_TouchEndMask                  (1 << XI_TouchEnd)
 #define XI_TouchOwnershipChangedMask     (1 << XI_TouchOwnershipChanged)
 #define XI_TouchUpdateMask               (1 << XI_TouchUpdate)
-#define XI_TouchUpdateUnownedMask        (1 << XI_TouchUpdateUnowned)
 
 #endif /* _XI2_H_ */
