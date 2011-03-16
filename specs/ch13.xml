@@ -275,7 +275,8 @@ types</emphasis>
  component of a keyboard mapping specifies the key types that can be associated
 with the various keyboard keys. It affects the <emphasis>
 types</emphasis>
- symbolic name and the list of types associated with the keyboard (see <link linkend='key_types'>See Key Types</link>). The types component
+ symbolic name and the list of types associated with the keyboard (see
+<link linkend='key_types'>Key Types</link>). The types component
 of a keyboard mapping can also optionally contain real modifier bindings and
 symbolic names for one or more virtual modifiers.
 </para>

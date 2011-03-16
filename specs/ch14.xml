@@ -9,7 +9,7 @@ keycodes. The server can generate an <emphasis>
 XkbNewKeyboardNotify</emphasis>
  event when it detects a new keyboard, or in response to an <emphasis>
 XkbGetKeyboardByName</emphasis>
- request (see <link linkend='using_the_servers_database_of_keyboard_components'>See Using the Server’s
+ request (see <link linkend='using_the_servers_database_of_keyboard_components'>Using the Server’s
 Database of Keyboard Components</link>) which loads a new keyboard description.
 </para>
 

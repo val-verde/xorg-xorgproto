@@ -60,7 +60,7 @@ keyboard, it cannot be directly changed under program control. It is possible,
 however, for the set of physical indicators to be change if a new keyboard is
 attached or if a completely new keyboard description is loaded by the <emphasis>
 XkbGetKeyboardByName</emphasis>
- request (see <link linkend='using_the_servers_database_of_keyboard_components'>See Using the Server’s
+ request (see <link linkend='using_the_servers_database_of_keyboard_components'>Using the Server’s
 Database of Keyboard Components</link>).
 </para>
 
@@ -88,7 +88,7 @@ XkbGetNames</emphasis>
  request reports the symbolic names for all keyboard components, including the
 indicators. Use the <emphasis>
 XkbSetNames</emphasis>
- request to change symbolic names. Both requests are described in <link linkend='querying_and_changing_symbolic_names'>See Querying and Changing Symbolic
+ request to change symbolic names. Both requests are described in <link linkend='querying_and_changing_symbolic_names'>Querying and Changing Symbolic
 Names</link>.
 </para>
 
@@ -232,7 +232,7 @@ mods</emphasis>
  fields of an indicator map determine how the state of the keyboard modifiers
 affect the corresponding indicator. The <emphasis>
 mods</emphasis>
- field is an XKB modifier definition, as described in <link linkend='modifier_definitions'>See Modifier Definitions</link>, which can
+ field is an XKB modifier definition, as described in <link linkend='modifier_definitions'>Modifier Definitions</link>, which can
 specify both real and virtual modifiers. The mods field takes effect even if
 some or all of the virtual indicators specified in <emphasis>
 mods</emphasis>
@@ -305,7 +305,7 @@ IM_UseCompat</emphasis>
 <para>
 The <emphasis>
 controls</emphasis>
- field specifies a subset of the boolean keyboard controls (see <link linkend='boolean_controls_and_the_enabledcontrols_control'>See "Boolean" Controls and The
+ field specifies a subset of the boolean keyboard controls (see <link linkend='boolean_controls_and_the_enabledcontrols_control'>"Boolean" Controls and The
 EnabledControls Control</link>). The indicator is lit whenever any of the
 boolean controls specified in <emphasis>
 controls</emphasis>

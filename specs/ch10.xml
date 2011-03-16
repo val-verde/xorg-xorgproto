@@ -110,7 +110,7 @@ sounds other than simple tones, but it is not required to do so.
 <para>
 Aside from those used by the XKB <emphasis>
 AccessXFeedback</emphasis>
- control (see <link linkend='the_accessxfeedback_control'>See The AccessXFeedback
+ control (see <link linkend='the_accessxfeedback_control'>The AccessXFeedback
 Control</link>), this extension does not specify bell names or their
 interpretation.
 </para>

@@ -99,7 +99,7 @@ whether or not it is supported.
 
 
 <para>
-<link linkend='querying_and_changing_per_client_flags'>See Querying and Changing Per-Client
+<link linkend='querying_and_changing_per_client_flags'>Querying and Changing Per-Client
 Flags</link> describes the <emphasis>
 XkbPerClientFlags</emphasis>
  request, which reports or changes values for all of the per-client flags, and
@@ -148,7 +148,7 @@ rejection or release of any key to interested clients using <emphasis>
 AccessXNotify</emphasis>
  events. The <emphasis>
 AccessXNotify</emphasis>
- event is described in more detail in <link linkend='events'>See Events</link>.
+ event is described in more detail in <link linkend='events'>Events</link>.
 </para>
 
 </sect1>
@@ -183,7 +183,7 @@ interested clients by sending an <emphasis>
 AccessXNotify</emphasis>
  event. The <emphasis>
 AccessXNotify</emphasis>
- event is described in more detail in <link linkend='events'>See Events</link>.
+ event is described in more detail in <link linkend='events'>Events</link>.
 </para>
 
 </sect1>
@@ -375,7 +375,7 @@ When <emphasis>
 MouseKeys</emphasis>
  are active and a <emphasis>
 SA_MovePtr</emphasis>
- key action (see <link linkend='key_actions'>See Key
+ key action (see <link linkend='key_actions'>Key
 Actions</link>) is activated, a pointer motion event is generated immediately.
 If <emphasis>
 MouseKeysAccel</emphasis>
@@ -515,11 +515,10 @@ StickyKeys</emphasis>
 
 <para>
 Some of these key sequences optionally generate audible feedback of the change
-in state, as described in <link linkend='the_accessxfeedback_control'>See The
+in state, as described in <link linkend='the_accessxfeedback_control'>The
 AccessXFeedback Control</link>, or cause <emphasis>
 XkbAccessXNotify</emphasis>
- events as described in <link linkend='events'>See
-Events</link>.
+ events as described in <link linkend='events'>Events</link>.
 </para>
 
 
@@ -779,7 +778,7 @@ should generate when that overlay is enabled, assign it either the <emphasis>
 KB_Overlay1</emphasis>
  or <emphasis>
 KB_Overlay2</emphasis>
- key behaviors, as described in <link linkend='key_behavior'>See
+ key behaviors, as described in <link linkend='key_behavior'>
 Key Behavior</link>.
 </para>
 
@@ -791,10 +790,10 @@ Key Behavior</link>.
 <para>
 All of the controls described above, along with the <emphasis>
 AudibleBell</emphasis>
- control (described in <link linkend='disabling_server_generated_bells'>See Disabling
+ control (described in <link linkend='disabling_server_generated_bells'>Disabling
 Server Generated Bells</link>) and the <emphasis>
 IgnoreGroupLock</emphasis>
- control (described in <link linkend='server_internal_modifiers_and_ignore_locks_behavior'>See Server
+ control (described in <link linkend='server_internal_modifiers_and_ignore_locks_behavior'>Server
 Internal Modifiers and Ignore Locks Behavior</link>) comprise the <emphasis>
 boolean controls</emphasis>
 . In addition to any parameters listed in the descriptions of the individual
@@ -813,18 +812,18 @@ EnabledControls</emphasis>
  control or specified in any context that accepts only boolean controls:
 <emphasis>
 GroupsWrap</emphasis>
- (<link linkend='computing_effective_modifier_and_group'>See Computing Effective Modifier and
+ (<link linkend='computing_effective_modifier_and_group'>Computing Effective Modifier and
 Group</link>), <emphasis>
 EnabledControls</emphasis>
 , <emphasis>
 InternalMods</emphasis>
- (<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>See Server Internal Modifiers and
+ (<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>Server Internal Modifiers and
 Ignore Locks Behavior</link>), and <emphasis>
 IgnoreLockMods</emphasis>
- (<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>See Server Internal Modifiers and
+ (<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>Server Internal Modifiers and
 Ignore Locks Behavior</link>) and <emphasis>
 PerKeyRepeat</emphasis>
- (<link linkend='the_repeatkeys_control'>See The RepeatKeys Control</link>)
+ (<link linkend='the_repeatkeys_control'>The RepeatKeys Control</link>)
 </para>
 
 
@@ -836,7 +835,7 @@ PerKeyRepeat</emphasis>
 The <emphasis>
 auto-reset controls</emphasis>
  are a per-client value which consist of two masks that can contain any of the
-boolean controls (see <link linkend='boolean_controls_and_the_enabledcontrols_control'>See "Boolean"
+boolean controls (see <link linkend='boolean_controls_and_the_enabledcontrols_control'>"Boolean"
 Controls and The EnabledControls Control</link>). Whenever the client exits
 for any reason, any boolean controls specified in the <emphasis>
 auto-reset mask</emphasis>
@@ -851,7 +850,7 @@ automatically, even if abnormally terminated.
 For example, a client that replace the keyboard bell with some other audible
 cue might want to turn off the <emphasis>
 AudibleBell</emphasis>
- control (<link linkend='disabling_server_generated_bells'>See Disabling Server
+ control (<link linkend='disabling_server_generated_bells'>Disabling Server
 Generated Bells</link>) to prevent the server from also generating a sound and
 thus avoid cacophony. If the client were to exit without resetting the
 <emphasis>

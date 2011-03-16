@@ -113,7 +113,7 @@ Keyboard</emphasis>
 
 <para>
 The XKB extension optionally allows clients to assign any key action (see
-<link linkend='key_actions'>See Key Actions</link>) to core
+<link linkend='key_actions'>Key Actions</link>) to core
 pointer or input extension device buttons. This makes it possible to control
 the keyboard or generate keyboard key events from extension devices or from the
 core pointer.
