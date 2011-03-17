@@ -1,5 +1,6 @@
+The X Input Extension
+=====================
 
-                            The X Input Extension
                                 Version 2.0
                                 Version 2.1
 
@@ -18,11 +19,13 @@
 
 
 1. Introduction
+---------------
 
 The X Input Extension version 2.0 (XI2) is the second major release of the X
 Input Extension.
 
 XI2 provides a number of enhancements over version 1.5, including:
+
 - use of XGE and GenericEvents. GenericEvents are of flexible length with a
   minimum length of 32 bytes.
 - explicit device hierarchy of master and slave devices. See Section 4.
@@ -41,6 +44,7 @@ issues by enabling devices to be both extended and core devices and providing
 device information in each event (with the exception of core events).
 
 1.1 X Input Extension version 2.1 (XI 2.1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 XI 2.1 introduces support for multi-touch devices. The traditional
 pointer/keyboard approach enforced by XI 2.0 with the master/slave device
 hierarchy is not always suitable for multi-touch devices that can provide a
@@ -50,12 +54,14 @@ able to focus without a pointer), the virtual abstraction of master devices is
 not always necessary.
 
 The additions in XI 2.1 aim to:
+
 - support a dynamic number of simultaneous touch points,
 - support devices that are both multi-touch and traditional pointer devices,
 - while supporting pre-XI2.1 clients through emulation of XInput and core
   pointer events.
 
 XI 2.1 caters for two modes of touch input devices:
+
 - direct multi-touch input devices such as touch screens. These devices
   provide independent touchpoints that can occur anywhere on the screen and
   are usually the result of direct touch interaction.
@@ -75,47 +81,56 @@ announce support of this version.
 XI 2.1 requires devices to track touch points over time. Devices that cannot
 do so in hardware must employ software trackers to be usable with XI 2.1.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+//                            ❧❧❧❧❧❧❧❧❧❧❧
 
 2. Notations used in this document
+----------------------------------
 
 Notation for requests:
-┌───
-    Name of request
-        name of request field:       type of request field
-        name of request field:       type of request field
-        ▶
-        name of reply field:         type of reply field
-└───
+
+    ┌───
+        Name of request
+            name of request field:       type of request field
+            name of request field:       type of request field
+            ▶
+            name of reply field:         type of reply field
+    └───
 
 Notation for events:
-┌───
-    Name of event
-        name of field:               type of field
-        name of field:               type of field
-└───
+
+    ┌───
+        Name of event
+            name of field:               type of field
+            name of field:               type of field
+    └───
 
 Complex fields are specified in the following notation:
+
           name of field:                  COMPLEXFIELDTYPE
+
 or, if multiple of these fields exist:
+
           name of field:                  LISTofCOMPLEXFIELDTYPE
 
-COMPLEXFIELDTYPE:  { name of subfield:   type of subfield,
-                    name of subfield:   type of subfield }
+    COMPLEXFIELDTYPE:  { name of subfield:   type of subfield,
+                         name of subfield:   type of subfield }
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+//                            ❧❧❧❧❧❧❧❧❧❧❧
 
 3. Interoperability between version 1.x and 2.0
+-----------------------------------------------
 
 There is little interaction between 1.x and 2.x versions of the X Input
 Extension. Clients are requested to avoid mixing XI1.x and XI2 code as much as
 possible. Several direct incompatibilities are observable:
 
 3.1 Limitations resulting from different variable ranges
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 XI2 provides a larger range for some fields than XI1. As a result, XI1 clients
 may not receive data an XI2 client receives.
 These fields include:
+
 - devices with a deviceid of greater than 127 are invisible to XI1 clients.
 - key events and key grabs featuring larger than 255 can only be sent to XI2
   clients.
@@ -125,6 +140,7 @@ These fields include:
 
 
 3.2 Blocking of grabs
+~~~~~~~~~~~~~~~~~~~~~
 
 XI1 grabs are different to XI2 grab and a device may not be grabbed through an
 XI2 grab if an XI1 grab is currently active on this device or vice versa.
@@ -133,20 +149,23 @@ not be grabbed with the same modifier combination by an XI2 or XI 1.x client,
 respectively.
 
 3.3 Invisibility of Master Devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 XI 1.x was not designed with support for multiple master devices (see Section
 4). As a result, only the first master pointer and master keyboard are visible
 to XI 1.x clients, all other master devices are invisible and cannot be
 accessed from XI 1.x calls.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+//                            ❧❧❧❧❧❧❧❧❧❧❧
 
 4. The Master/Slave device hierarchy
+------------------------------------
 
 XI2 introduces a device hierarchy split up into so-called Master Devices (MD)
 and Slave Devices (SD).
 
 4.1 Master devices
+~~~~~~~~~~~~~~~~~~
 An MD is a virtual device created and managed by the server. MDs may send core
 events and XI events. However, an MD does not represent a physical device and
 relies on SDs for event generation. MDs come in two forms: as master pointers
@@ -159,25 +178,29 @@ Clients can use this pairing behaviour to implement input paradigms that
 require pointer and keyboard interation (e.g. SHIFT + Click).
 
 4.2 Slave devices
+~~~~~~~~~~~~~~~~~
 An SD is usually a physical device configured in the server. SDs are not
 represented by a cursor or keyboard focus and may be attached to a master
 pointer or master keyboard. SDs can only be attached to any master of the same
 type (e.g. a physical pointer device can be attached to any master pointer).
 
 If an event is generated by an SD
+
 - if the SD is attached to a master pointer, it changes the position and/or
   button state of the master pointer.
 - if the SD is attached to a master keyboard, it sends events to this
   keyboard's focus window (if applicable) and/or changes the modifier state of
   this keyboard.
-- if the SD is not attached to an MD ("floating"), it does not change 
+- if the SD is not attached to an MD ("floating"), it does not change
   any master device. The SD has its own (invisible) sprite and its own focus.
   Both the sprite and the focus must be managed explicitly by the client
   program.
 
 4.3 Event processing for attached slave devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Whenever an SD changes its logical state,
+
 - the event is delivered as an XI event to any interested clients. If the
   device is floating, event processing stops.
   Otherwise, if the device is attached,
@@ -194,8 +217,10 @@ delivered on W. Once an event has been delivered as either XI or core event,
 event processing stops.
 
 4.4 Touch device support
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 4.4.1 Touch event sequences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Touch event processing differs from normal event processing in a few ways,
 most notably in that touch events are processed partially out-of-band from
@@ -278,6 +303,7 @@ Clients selecting for individual slave devices are suggested to select for
 HierarchyChanged events to be notified when this occurs.
 
 4.4.2 Touch device modes
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Touch devices come in many different forms with varying capabilities. The
 following device modes are defined for this protocol:
@@ -313,6 +339,7 @@ the purposes of this protocol document, indirect touch devices refers to
 DependentTouch, IndependentPointer, and SemiMultitouch devices.
 
 4.4.3 Touch event delivery
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Window sets for event propagation for direct device touches contain the windows
 from the root to the child in which the touch originated.
@@ -332,6 +359,7 @@ No touches from an indirect device may begin while the device is floating, as
 it does not have an associated pointer position to focus events.
 
 4.4.4 Pointer event handling for indirect touch devices
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Indirect touch devices are expected to generate pointer events. In contrast with
 direct touch devices, as stated below, the server will not generate pointer
@@ -354,6 +382,7 @@ will be delivered for touches that began and ended while touch events were
 withheld.
 
 4.4.5 Pointer emulation for direct touch devices
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to facilitate backwards compatibility with legacy clients, direct touch
 devices will emulate pointer events. Pointer emulation events will only be
@@ -402,6 +431,7 @@ Both the emulated pointer events and their associated touch events will have the
 PointerEmulated flag set.
 
 4.5. The ClientPointer principle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Many core protocol and some extension requests are ambiguous when multiple
 master devices are available (e.g. QueryPointer does not specfy which pointer).
@@ -421,57 +451,63 @@ If the master pointer currently set as ClientPointer for one or more clients is
 removed, the server may either unset the ClientPointer setting or change the
 ClientPointer to a different master pointer.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+//                            ❧❧❧❧❧❧❧❧❧❧❧
+
 5. Data types
+-------------
 
-BUTTONMASK
-        A binary mask defined as (1 << button number).
-        A SETofBUTTONMASK is a binary OR of zero or more BUTTONMASK.
+    BUTTONMASK
+            A binary mask defined as (1 << button number).
+            A SETofBUTTONMASK is a binary OR of zero or more BUTTONMASK.
 
-DEVICE { DEVICEID, AllDevices, AllMasterDevices }
-        A DEVICE specifies either a DEVICEID or AllDevices or
-        AllMasterDevices.
+    DEVICE { DEVICEID, AllDevices, AllMasterDevices }
+            A DEVICE specifies either a DEVICEID or AllDevices or
+            AllMasterDevices.
 
-DEVICEID { CARD16 }
-        A DEVICEID is a numerical ID for a device currently available in the
-        server. The server may re-use a device ID after a device's removal.
-        The device IDs 0 and 1 are reserved.
-        AllDevices ........ 0
-        AllMasterDevices .. 1
+    DEVICEID { CARD16 }
+            A DEVICEID is a numerical ID for a device currently available in the
+            server. The server may re-use a device ID after a device's removal.
+            The device IDs 0 and 1 are reserved.
+            AllDevices ........ 0
+            AllMasterDevices .. 1
 
-DEVICEUSE { MasterPointer, MasterKeyboard, SlavePointer,
-            SlaveKeyboard, FloatingSlave }
-        A DEVICEUSE field specifies the current use of a device in the MD/SD
-        device hierarchy. See Section 4 for more information.
+    DEVICEUSE { MasterPointer, MasterKeyboard, SlavePointer,
+                SlaveKeyboard, FloatingSlave }
+            A DEVICEUSE field specifies the current use of a device in the MD/SD
+            device hierarchy. See Section 4 for more information.
 
-EVENTMASK
-        An EVENTMASK is a binary mask defined as (1 << event type).
-        A SETofEVENTMASK is a binary OR of zero or more EVENTMASK.
+    EVENTMASK
+            An EVENTMASK is a binary mask defined as (1 << event type).
+            A SETofEVENTMASK is a binary OR of zero or more EVENTMASK.
 
-FP1616
-        Fixed point decimal in 16.16 format as one INT16 and one CARD16.
-        The INT16 contains the integral part, the CARD32 the decimal fraction
-        shifted by 16.
+    FP1616
+            Fixed point decimal in 16.16 format as one INT16 and one CARD16.
+            The INT16 contains the integral part, the CARD32 the decimal fraction
+            shifted by 16.
 
-FP3232
-        Fixed point decimal in 32.32 format as one INT32 and one CARD32.
-        The INT32 contains the integral part, the CARD32 the decimal fraction
-        shifted by 32.
+    FP3232
+            Fixed point decimal in 32.32 format as one INT32 and one CARD32.
+            The INT32 contains the integral part, the CARD32 the decimal fraction
+            shifted by 32.
 
-VALUATORMASK
-        A binary mask defined as (1 << valuator number).
-        A SETofVALUATORMASK is a binary OR of zero or more VALUATORMASK.
+    VALUATORMASK
+            A binary mask defined as (1 << valuator number).
+            A SETofVALUATORMASK is a binary OR of zero or more VALUATORMASK.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+//                            ❧❧❧❧❧❧❧❧❧❧❧
+
 6. Errors
+---------
 
 Errors are sent using core X error reports.
 
-Device
-        A value for a DEVICE argument does not specify a valid DEVICE.
+    Device
+            A value for a DEVICE argument does not specify a valid DEVICE.
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
+//                            ❧❧❧❧❧❧❧❧❧❧❧
+
 7. Requests:
+------------
 
 The server does not guarantee that the length of a reply remains constant in
 future revisions of XI2. A client must always retrieve the exact length of the
@@ -482,6 +518,7 @@ XI2. Clients should ignore this data. Padding bytes in XI2 protocol requests
 are required to be 0.
 
 7.1 Requests introduced in version 2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ┌───
         XIQueryVersion
@@ -492,19 +529,19 @@ are required to be 0.
         minor_version:          CARD16
     └───
 
-    The client sends the highest supported version to the server and the
-    server sends the highest version it supports, but no higher than the
-    requested version. Major versions changes can introduce incompatibilities
-    in existing functionality, minor version changes introduce only backward
-    compatible changes.  It is the client's responsibility to ensure that the
-    server supports a version which is compatible with its expectations.
+The client sends the highest supported version to the server and the
+server sends the highest version it supports, but no higher than the
+requested version. Major versions changes can introduce incompatibilities
+in existing functionality, minor version changes introduce only backward
+compatible changes.  It is the client's responsibility to ensure that the
+server supports a version which is compatible with its expectations.
 
     major_version
         Major XI2 version.
     minor_version
         Minor XI2 version.
 
-    If major_version is less than 2, a BadValue error occurs.
+If major_version is less than 2, a BadValue error occurs.
 
     ┌───
         XIQueryDevice
@@ -567,9 +604,9 @@ are required to be 0.
     TOUCHMODE* { DirectTouch, DependentTouch, IndependentPointer,
                  SemiMultitouch }
 
-    * since XI 2.1
+* since XI 2.1
 
-    XIQueryDevice details information about the requested input devices.
+XIQueryDevice details information about the requested input devices.
 
     devices
         The device to list. If devices is AllDevices, all enabled and
@@ -579,7 +616,8 @@ are required to be 0.
     num_devices
         The number of deviceinfos returned.
 
-    Each deviceinfo is detailed as follows:
+Each deviceinfo is detailed as follows:
+
     deviceid
         The unique ID of the device. Device IDs may get re-used when a device
         is removed.
@@ -607,10 +645,10 @@ are required to be 0.
     name
         The device's name. padded to a multiple of 4 bytes.
 
-    For all classes, type specifies the device class. Clients are required
-    to ignore unknown device classes. The length field specifies the length
-    of the class in 4 byte units.
-    The following classes may occur only once: ButtonClass, KeyClass
+For all classes, type specifies the device class. Clients are required
+to ignore unknown device classes. The length field specifies the length
+of the class in 4 byte units.
+The following classes may occur only once: ButtonClass, KeyClass
 
     ButtonClass:
     type
@@ -667,8 +705,8 @@ are required to be 0.
     value
         Last published axis value (if mode is absolute).
 
-    An axis in Relative mode may specify min and max as a hint to the
-    client. If no min and max information is available, both must be 0.
+An axis in Relative mode may specify min and max as a hint to the
+client. If no min and max information is available, both must be 0.
 
     XI 2.1:
 
@@ -686,8 +724,8 @@ are required to be 0.
         If num_touches is 0, the number of supported touches is unknown or
         unlimited.
 
-    A device with a TouchClass must provide one or more TOUCHAXISCLASS
-    specifiers.
+A device with a TouchClass must provide one or more TOUCHAXISCLASS
+specifiers.
 
     TouchAxisClass:
     type
@@ -709,10 +747,10 @@ are required to be 0.
     resolution
         Resolution in counts/meter.
 
-    Devices generating touch events must provide exactly one TouchClass and
-    two or more TouchAxisClasses. TouchAxisClasses and AxisClasses are not
-    interchangable. A TouchAxisClass may only be part of a touch event,
-    whereas an AxisClass may only be part of non-touch events.
+Devices generating touch events must provide exactly one TouchClass and
+two or more TouchAxisClasses. TouchAxisClasses and AxisClasses are not
+interchangable. A TouchAxisClass may only be part of a touch event,
+whereas an AxisClass may only be part of non-touch events.
 
     ┌───
         XISelectEvents
@@ -737,31 +775,31 @@ are required to be 0.
     mask
         Event mask. An event mask for an event type T is defined as (1 << T).
 
-    XISelectEvents selects for XI2 events on window.
+XISelectEvents selects for XI2 events on window.
 
-    If num_masks is 0, a BadValue error occurs.
+If num_masks is 0, a BadValue error occurs.
 
-    Each mask sets the (and overwrites a previous) event mask for the DEVICE
-    specified through deviceid. The device AllDevices or
-    AllMasterDevices is treated as a separate device by server. A client's
-    event mask is the union of AllDevices, AllMasterDevices and the
-    per-device event mask.
-    The removal of device from the server unsets the event masks for the
-    device. If an event mask is set for AllDevices or AllMasterDevices, the
-    event mask is not cleared on device removal and affects all future
-    devices.
+Each mask sets the (and overwrites a previous) event mask for the DEVICE
+specified through deviceid. The device AllDevices or
+AllMasterDevices is treated as a separate device by server. A client's
+event mask is the union of AllDevices, AllMasterDevices and the
+per-device event mask.
+The removal of device from the server unsets the event masks for the
+device. If an event mask is set for AllDevices or AllMasterDevices, the
+event mask is not cleared on device removal and affects all future
+devices.
 
-    If mask_len is 0, the event mask for the given device is cleared.
+If mask_len is 0, the event mask for the given device is cleared.
 
-    The mask for XIHierarchyEvents may only be selected for XIAllDevices.
-    Setting it for any other device results in a BadValue error.
+The mask for XIHierarchyEvents may only be selected for XIAllDevices.
+Setting it for any other device results in a BadValue error.
 
-    A client selecting for any of XI_TouchBegin, XI_TouchUpdate, or XI_TouchEnd
-    must select for all three events at the same time, else BadValue will be
-    returned. A client selecting for XI_TouchOwnership must select for all three
-    of the other touch events. If the selection for these touch events overlaps
-    a current selection by another client (e.g. selecting for a specific device
-    when another client has a selection for XIAllDevices), a BadAccess error occurs.
+A client selecting for any of XI_TouchBegin, XI_TouchUpdate, or XI_TouchEnd
+must select for all three events at the same time, else BadValue will be
+returned. A client selecting for XI_TouchOwnership must select for all three
+of the other touch events. If the selection for these touch events overlaps
+a current selection by another client (e.g. selecting for a specific device
+when another client has a selection for XIAllDevices), a BadAccess error occurs.
 
     ┌───
         XIGetSelectedEvents
@@ -778,13 +816,13 @@ are required to be 0.
     masks
         Selected event masks by this client.
 
-    Masks are returned on a per-device basis, with masks for AllDevices and
-    AllMasterDevices returned separately. A client can calculate the
-    effective mask for a device with a bitwise OR of the AllDevices, the
-    AllMasterDevices and the device-specific mask.
+Masks are returned on a per-device basis, with masks for AllDevices and
+AllMasterDevices returned separately. A client can calculate the
+effective mask for a device with a bitwise OR of the AllDevices, the
+AllMasterDevices and the device-specific mask.
 
-    If num_masks is 0, no events have been selected by this client on the
-    given window.
+If num_masks is 0, no events have been selected by this client on the
+given window.
 
     ┌───
         XIQueryPointer
@@ -804,7 +842,7 @@ are required to be 0.
             buttons:        SETofBUTTONMASK
     └───
 
-    Query a master pointer device for its current position.
+Query a master pointer device for its current position.
 
     root
         The root window the pointer is logically on.
@@ -827,8 +865,8 @@ are required to be 0.
     buttons
         Button state.
 
-    If the device is not a master pointer device or not a floating slave
-    pointer, a BadDevice error results.
+If the device is not a master pointer device or not a floating slave
+pointer, a BadDevice error results.
 
     ┌───
         XIWarpPointer
@@ -843,9 +881,9 @@ are required to be 0.
             deviceid:        DEVICEID
     └───
 
-    WarpPointer moves the pointer of deviceid as if the user had moved
-    the pointer. WarpPointer can only be called for MasterPointer and
-    FloatingSlave devices.
+WarpPointer moves the pointer of deviceid as if the user had moved
+the pointer. WarpPointer can only be called for MasterPointer and
+FloatingSlave devices.
 
     src_win
        If src_window is not None, the move only takes place if src_window
@@ -868,12 +906,12 @@ are required to be 0.
     deviceid
         The device to warp.
 
-    This request cannot be used to move the pointer outside the confine-to
-    window of an active pointer grab. An attempt will only move the pointer as
-    far as the closest edge of the confine-to window.
+This request cannot be used to move the pointer outside the confine-to
+window of an active pointer grab. An attempt will only move the pointer as
+far as the closest edge of the confine-to window.
 
-    This request will generate events just as if the user had instantaneously
-    moved the pointer.
+This request will generate events just as if the user had instantaneously
+moved the pointer.
 
     ┌───
         XIChangeCursor
@@ -882,7 +920,7 @@ are required to be 0.
             deviceid:        DEVICEID
     └───
 
-    Change a master pointer's cursor on the specified window.
+Change a master pointer's cursor on the specified window.
 
     window
         The window.
@@ -891,19 +929,19 @@ are required to be 0.
     deviceid
         The master pointer device.
 
-    Whenever device enters a window W, the cursor shape is selected in the
-    following order:
-    - if the current window has a device cursor C(d) defined for device,
-      display this cursor C(d).
-    - otherwise, if the current window has a cursor C(w) defined in the core
-      protocol's window attributes, display cursor C(w).
-    - repeat on parent window until a cursor has been found.
+Whenever device enters a window W, the cursor shape is selected in the
+following order:
+- if the current window has a device cursor C(d) defined for device,
+  display this cursor C(d).
+- otherwise, if the current window has a cursor C(w) defined in the core
+  protocol's window attributes, display cursor C(w).
+- repeat on parent window until a cursor has been found.
 
-    The device cursor for a given window is reset once the window is destroyed
-    or the device is removed, whichever comes earlier.
+The device cursor for a given window is reset once the window is destroyed
+or the device is removed, whichever comes earlier.
 
-    If deviceid does not specify a master pointer, a BadDevice error
-    is returned.
+If deviceid does not specify a master pointer, a BadDevice error
+is returned.
 
     ┌───
         XIChangeHierarchy
@@ -940,18 +978,18 @@ are required to be 0.
                   length:     CARD16
                   deviceid:   DEVICEID }
 
-    XIChangeHierarchy allows a client to modify the MD/SD device
-    hierarchy (see Section 4).
+XIChangeHierarchy allows a client to modify the MD/SD device
+hierarchy (see Section 4).
 
     num_changes
         The number of changes to apply to the current hierarchy.
     changes
         The list of changes.
 
-    The server processes the changes in the order received from the client and
-    applies each requested change immediately. If an error occurs, processing
-    stops at the current change and returns the number of successfully applied
-    changes in the error.
+The server processes the changes in the order received from the client and
+applies each requested change immediately. If an error occurs, processing
+stops at the current change and returns the number of successfully applied
+changes in the error.
 
     ADDMASTER creates a pair of master devices.
     type
@@ -988,8 +1026,8 @@ are required to be 0.
         return_mode is Attach. If return_mode is Float, return_pointer
         and return_keyboard are undefined.
 
-    Removing a master pointer removes the paired master keyboard and vice
-    versa.
+Removing a master pointer removes the paired master keyboard and vice
+versa.
 
     ATTACHSLAVE attaches a slave device to a given master device.
     type
@@ -1001,8 +1039,8 @@ are required to be 0.
     master
         The new master device to attach this slave device to.
 
-    If any clients are selecting for touch events from the slave device, their
-    selection will be canceled.
+If any clients are selecting for touch events from the slave device, their
+selection will be canceled.
 
     DETACHSLAVE detaches a slave device from its current master device.
     type
@@ -1018,30 +1056,30 @@ are required to be 0.
             deviceid:        DEVICEID
     └───
 
-    Set the ClientPointer for the client owning win to the given device.
+Set the ClientPointer for the client owning win to the given device.
 
     win
          Window or client ID.
     deviceid
          The master pointer or master keyboard that acts as ClientPointer.
 
-    Some protocol requests are ambiguous and the server has to choose a device
-    to provide data for a request or a reply. By default, the server will
-    choose a client's ClientPointer device to provide the data, unless the
-    client currently has a grab on another device. See section 4.4 for more
-    details.
+Some protocol requests are ambiguous and the server has to choose a device
+to provide data for a request or a reply. By default, the server will
+choose a client's ClientPointer device to provide the data, unless the
+client currently has a grab on another device. See section 4.4 for more
+details.
 
-    If win is None, the ClientPointer for this client is set to the given
-    device. Otherwise, if win is a valid window, the ClientPointer for the
-    client owning this window is set to the given device. Otherwise, if win is
-    not a valid window but a client with the client mask equal to win exists,
-    this client's ClientPointer is set to the given device.
+If win is None, the ClientPointer for this client is set to the given
+device. Otherwise, if win is a valid window, the ClientPointer for the
+client owning this window is set to the given device. Otherwise, if win is
+not a valid window but a client with the client mask equal to win exists,
+this client's ClientPointer is set to the given device.
 
-    If deviceid does not specify a master pointer or master keyboard, a
-    BadDevice error is returned.
+If deviceid does not specify a master pointer or master keyboard, a
+BadDevice error is returned.
 
-    If window does not specify a valid window or client ID and is not None, a
-    BadWindow error is returned.
+If window does not specify a valid window or client ID and is not None, a
+BadWindow error is returned.
 
     ┌───
         XIGetClientPointer
@@ -1051,7 +1089,7 @@ are required to be 0.
             deviceid:        DEVICEID
     └───
 
-    Query the ClientPointer for the client owning win.
+Query the ClientPointer for the client owning win.
 
     win
         The window or client ID.
@@ -1060,9 +1098,9 @@ are required to be 0.
     deviceid
         The master pointer that acts as a ClientPointer if set is True.
 
-    No difference is made between a ClientPointer set explicitly through
-    XISetClientPointer and a ClientPointer implicitly assigned by the server
-    in response to an ambiguous request.
+No difference is made between a ClientPointer set explicitly through
+XISetClientPointer and a ClientPointer implicitly assigned by the server
+in response to an ambiguous request.
 
     ┌───
         XISetFocus
@@ -1071,9 +1109,9 @@ are required to be 0.
             time:            Time
     └───
 
-    Set the focus for the given device to the given window. Future key events
-    from this device are sent to this window.
-    This request generates FocusIn and FocusOut events.
+Set the focus for the given device to the given window. Future key events
+from this device are sent to this window.
+This request generates FocusIn and FocusOut events.
 
     focus
         A viewable window or None.
@@ -1082,17 +1120,17 @@ are required to be 0.
     time
         Specifies the time to change the focus or CurrentTime.
 
-    If focus is None, key events from this device are discarded until a new
-    focus window is set. If focus is a viewable window, key events from this
-    device are sent to this window. If the window becomes unviewable, the
-    window's first viewable ancestor automatically becomes the focus window
-    and FocusIn and FocusOut events are sent as if a client had changed the
-    focus window.
-    This is equivalent to RevertToParent in the core XSetInputFocus window.
+If focus is None, key events from this device are discarded until a new
+focus window is set. If focus is a viewable window, key events from this
+device are sent to this window. If the window becomes unviewable, the
+window's first viewable ancestor automatically becomes the focus window
+and FocusIn and FocusOut events are sent as if a client had changed the
+focus window.
+This is equivalent to RevertToParent in the core XSetInputFocus window.
 
-    This request has no effect if the specified time is earlier than the
-    current last-focus-change time or is later than the current X server time.
-    Otherwise, the last-focus-change time is set to the specified time.
+This request has no effect if the specified time is earlier than the
+current last-focus-change time or is later than the current X server time.
+Otherwise, the last-focus-change time is set to the specified time.
 
     ┌───
         XIGetFocus
@@ -1101,7 +1139,7 @@ are required to be 0.
             focus:           Window
     └───
 
-    Return the current focus window for the given device.
+Return the current focus window for the given device.
 
     ┌───
         XIGrabDevice
@@ -1118,11 +1156,11 @@ are required to be 0.
             status:          Success, AlreadyGrabbed, Frozen, InvalidTime, NotViewable
     └───
 
-    This request actively grabs control of the specified input device. Further
-    input events from this device are reported only to the grabbing client.
-    This request overides any previous active grab by this client for this
-    device.  This request does not, however, affect the processing of XI 2.1
-    touch events.
+This request actively grabs control of the specified input device. Further
+input events from this device are reported only to the grabbing client.
+This request overides any previous active grab by this client for this
+device.  This request does not, however, affect the processing of XI 2.1
+touch events.
 
     deviceid
         The device to grab.
@@ -1147,40 +1185,41 @@ are required to be 0.
     status
         Success or the reason why the grab could not be established.
 
-    The masks parameter specifies which events the client wishes to receive
-    while the device is grabbed.
+The masks parameter specifies which events the client wishes to receive
+while the device is grabbed.
 
-    If owner-events is False, input events generated from this device are
-    reported with respect to grab-window, and are only reported if selected by
-    being included in the event-list.  If owner-events is True, then if a
-    generated event would normally be reported to this client, it is reported
-    normally, otherwise the event is reported with respect to the grab-window,
-    and is only reported if selected by being included in the event-list. For
-    either value of owner-events, unreported events are discarded.
+If owner-events is False, input events generated from this device are
+reported with respect to grab-window, and are only reported if selected by
+being included in the event-list.  If owner-events is True, then if a
+generated event would normally be reported to this client, it is reported
+normally, otherwise the event is reported with respect to the grab-window,
+and is only reported if selected by being included in the event-list. For
+either value of owner-events, unreported events are discarded.
 
-    If grab-mode is Asynchronous, device event processing continues normally.
-    If the device is currently frozen by this client, then processing of
-    device events is resumed. If grab-mode is Synchronous, the state of the
-    grabbed device (as seen by means of the protocol) appears to freeze,
-    and no further device events are generated by the server until the
-    grabbing client issues a releasing XIAllowEvents request or until the
-    device grab is released. Actual device input events are not lost while the
-    device is frozen; they are simply queued for later processing.
+If grab-mode is Asynchronous, device event processing continues normally.
+If the device is currently frozen by this client, then processing of
+device events is resumed. If grab-mode is Synchronous, the state of the
+grabbed device (as seen by means of the protocol) appears to freeze,
+and no further device events are generated by the server until the
+grabbing client issues a releasing XIAllowEvents request or until the
+device grab is released. Actual device input events are not lost while the
+device is frozen; they are simply queued for later processing.
 
-    If the device is a slave device, the paired-device-mode is ignored.
-    Otherwise, if this device is a master device and paired-device-mode is
-    Asynchronous, event processing is unaffected by activation of the grab. If
-    this device is a master device and paired-device-mode is Synchronous, the
-    state of the master device paired with this device (as seen by means of the
-    protocol) appears to freeze, and no further events are generated by the
-    server until the grabbing client issues a releasing XIAllowEvents request
-    or until the device grab is released. Actual events are not lost while the
-    devices are frozen; they are simply queued for later processing.
+If the device is a slave device, the paired-device-mode is ignored.
+Otherwise, if this device is a master device and paired-device-mode is
+Asynchronous, event processing is unaffected by activation of the grab. If
+this device is a master device and paired-device-mode is Synchronous, the
+state of the master device paired with this device (as seen by means of the
+protocol) appears to freeze, and no further events are generated by the
+server until the grabbing client issues a releasing XIAllowEvents request
+or until the device grab is released. Actual events are not lost while the
+devices are frozen; they are simply queued for later processing.
 
-    If the cursor is not None and the device is a master pointer device, the
-    cursor will be displayed until the device is ungrabbed.
+If the cursor is not None and the device is a master pointer device, the
+cursor will be displayed until the device is ungrabbed.
 
-    This request fails and returns:
+This request fails and returns:
+
     AlreadyGrabbed: If the device is actively grabbed by some other client.
     NotViewable: If grab-window is not viewable.
     InvalidTime: If the specified time is earlier than the last-grab-time for
@@ -1190,7 +1229,7 @@ are required to be 0.
                  current X server time.
     Frozen: If the device is frozen by an active grab of another client.
 
-    To release a grab of a device, use XIUngrabDevice.
+To release a grab of a device, use XIUngrabDevice.
 
     ┌───
         XIUngrabDevice
@@ -1198,21 +1237,21 @@ are required to be 0.
             time:            TIMESTAMP or CurrentTime
     └───
 
-    This request releases the device if this client has it actively grabbed
-    (from either XIGrabDevice or  XIPassiveGrabDevice) and
-    releases any queued events. If any devices were frozen by the grab,
-    XIUngrabDevice thaws them.
+This request releases the device if this client has it actively grabbed
+(from either XIGrabDevice or  XIPassiveGrabDevice) and
+releases any queued events. If any devices were frozen by the grab,
+XIUngrabDevice thaws them.
 
     deviceid
         The device to grab.
     time
         A valid server time or CurrentTime.
 
-    The request has no effect if the specified time is earlier than the
-    last-device-grab time or is later than the current server time.
-    This request generates FocusIn and FocusOut events.
-    An XIUngrabDevice is performed automatically if the event window for an
-    active device grab becomes not viewable.
+The request has no effect if the specified time is earlier than the
+last-device-grab time or is later than the current server time.
+This request generates FocusIn and FocusOut events.
+An XIUngrabDevice is performed automatically if the event window for an
+active device grab becomes not viewable.
 
     ┌───
         XIAllowEvents:
@@ -1223,8 +1262,8 @@ are required to be 0.
                                ReplayDevice, AsyncPair, SyncPair }
     └───
 
-    The XIAllowEvents request releases some queued events if the client
-    has caused a device to freeze.
+The XIAllowEvents request releases some queued events if the client
+has caused a device to freeze.
 
     deviceid
         The device to grab.
@@ -1234,12 +1273,13 @@ are required to be 0.
         Specifies whether a device is to be thawed and events are to be
         replayed.
 
-    The request has no effect if the specified time is earlier than the
-    last-grab time of the most recent active grab for the client, or if the
-    specified time is later than the current X server time.
+The request has no effect if the specified time is earlier than the
+last-grab time of the most recent active grab for the client, or if the
+specified time is later than the current X server time.
 
-    The following describes the processing that occurs depending on what constant
-    you pass to the event-mode argument:
+The following describes the processing that occurs depending on what constant
+you pass to the event-mode argument:
+
     AsyncDevice:
         If the specified device is frozen by the client, event processing for that
         device continues as usual. If the device is frozen multiple times  by the
@@ -1333,8 +1373,8 @@ are required to be 0.
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
 
-        Establish an explicit passive grab for a button or keycode
-        on the specified input device.
+Establish an explicit passive grab for a button or keycode
+on the specified input device.
 
         cursor
             The cursor to display for the duration of the grab. If grab_type
@@ -1378,27 +1418,28 @@ are required to be 0.
         modifiers_return
             XKB modifier state that could not be grabbed.
 
-        If owner-events is False, input events generated from this device are
-        reported with respect to grab-window, and are only reported if
-        selected by being included in the event-list.  If owner-events is
-        True, then if a generated event would normally be reported to this
-        client, it is reported normally, otherwise the event is reported
-        with respect to the grab-window, and is only reported if selected
-        by being included in the event-list. For either value of
-        owner-events, unreported events are discarded.
+If owner-events is False, input events generated from this device are
+reported with respect to grab-window, and are only reported if
+selected by being included in the event-list.  If owner-events is
+True, then if a generated event would normally be reported to this
+client, it is reported normally, otherwise the event is reported
+with respect to the grab-window, and is only reported if selected
+by being included in the event-list. For either value of
+owner-events, unreported events are discarded.
 
-        If deviceid specifies a master pointer, the modifiers of the paired
-        master keyboard are used. If deviceid specifies a slave pointer
-        the modifiers of the master keyboard paired with the attached master
-        pointers are used. If deviceid specifies a slave keyboard, the
-        modifiers of the attached master keyboard are used. Note that
-        activating a grab on a slave device detaches the device from its
-        master. In this case, the modifiers after activation of the grab are
-        from the slave device only and may be different to the modifier state
-        when the grab was triggered.
+If deviceid specifies a master pointer, the modifiers of the paired
+master keyboard are used. If deviceid specifies a slave pointer
+the modifiers of the master keyboard paired with the attached master
+pointers are used. If deviceid specifies a slave keyboard, the
+modifiers of the attached master keyboard are used. Note that
+activating a grab on a slave device detaches the device from its
+master. In this case, the modifiers after activation of the grab are
+from the slave device only and may be different to the modifier state
+when the grab was triggered.
 
-        In the future, if grab_type is GrabtypeButton or GrabtypeKeyboard, the
-        device is actively grabbed if:
+In the future, if grab_type is GrabtypeButton or GrabtypeKeyboard, the
+device is actively grabbed if:
+
         - the device is not grabbed, and
         - the specified modifier keys are down, and
         - the grab_type is GrabtypeButton and the button specified in detail
@@ -1408,8 +1449,9 @@ are required to be 0.
         - a passive grab on the same button/keycode + modifier
           combination does not exist on an ancestor of grab_window.
 
-        Otherwise, if grab_type is GrabtypeEnter or GrabtypeFocusIn, the
-        device is actively grabbed if:
+Otherwise, if grab_type is GrabtypeEnter or GrabtypeFocusIn, the
+device is actively grabbed if:
+
         - the device is not actively grabbed, and
         - the specified modifier keys are down, and
         - the grab_type is GrabtypeEnter and the device's pointer has moved
@@ -1419,72 +1461,75 @@ are required to be 0.
         - a passive grab of the same grab_type + modifier combination does not
           does not exist on an ancestor of grab_window.
 
-        Or if grab_type is GrabtypeTouchBegin or GrabtypeTouchObserve, a
-        touch grab (see section 4.4) begins if:
-        - a touch begins in grab_window or one of its ancestors, and
-        - the specified modifier keys are down
-        Ownership of the touch sequence is granted to the grabbing client if:
-        - grab_type is not GrabtypeTouchObserve, and
-        - a TouchBegin or pointer grab for an emulated touch sequence of a
-          direct touch device with the same modifier set does not exist on an
-          ancestor of grab_window, or all applicable grabs have released ownership.
+Or if grab_type is GrabtypeTouchBegin or GrabtypeTouchObserve, a
+touch grab (see section 4.4) begins if:
 
-        A modifier of GrabAnyModifier is equivalent to issuing the request for
-        all possible modifier combinations (including no modifiers). A client
-        may request a grab for GrabAnyModifier and explicit modifier
-        combinations in the same request.
+- a touch begins in grab_window or one of its ancestors, and
+- the specified modifier keys are down
 
-        A GrabtypeButton or GrabtypeKeyboard grab is released when all buttons
-        or keycode are released, independent of the state of modifier keys.
-        A GrabtypeEnter or GrabtypeFocusIn grab is released when the
-        pointer or focus leaves the window and all of its descendants,
-        independent of the state of modifier keys.
-        A GrabtypeTouchBegin grab is released when the touch sequence ends or
-        the client uses XIAllowTouchEvents with mode TouchReject.
-        A GrabtypeTouchBegin grab is converted to a GrabtypeTouchObserve grab
-        when the client uses XIAllowTouchEvents with mode TouchObserve.
-        A GrabtypeTouchObserve grab is released when the touch sequence ends.
-        Note that the logical state of a device (as seen by means of the
-        protocol) may lag the physical state if device event processing is
-        frozen.
+Ownership of the touch sequence is granted to the grabbing client if:
 
-        This request overrides all previous passive grabs by the same
-        client on the same button/key/enter/focus in + modifier combinations
-        on the same window.
+- grab_type is not GrabtypeTouchObserve, and
+- a TouchBegin or pointer grab for an emulated touch sequence of a
+  direct touch device with the same modifier set does not exist on an
+  ancestor of grab_window, or all applicable grabs have released ownership.
 
-        If some other client already has issued a XIPassiveGrabDevice request
-        with the same button or keycode and modifier combination, the
-        failed modifier combinations is returned in modifiers_return. If some
-        other client already has issued an XIPassiveGrabDevice request of
-        grab_type XIGrabtypeEnter, XIGrabtypeFocusIn, XIGrabtypeTouchBegin, or
-        XIGrabtypeTouchBeginInert with the same grab_window and the same
-        modifier combination, the failed modifier combinations are returned
-        in modifiers_return. If num_modifiers_return is zero, all passive
-        grabs have been successful.
+A modifier of GrabAnyModifier is equivalent to issuing the request for
+all possible modifier combinations (including no modifiers). A client
+may request a grab for GrabAnyModifier and explicit modifier
+combinations in the same request.
 
-        If a button grab or enter grab activates, EnterNotify and LeaveNotify
-        events with mode Grab are generated as if the pointer were to suddenly
-        warp from its current position some position in the grab_window.
-        However, the pointer does not warp, and the pointer position is used
-        as both the initial and final positions for the events.
+A GrabtypeButton or GrabtypeKeyboard grab is released when all buttons
+or keycode are released, independent of the state of modifier keys.
+A GrabtypeEnter or GrabtypeFocusIn grab is released when the
+pointer or focus leaves the window and all of its descendants,
+independent of the state of modifier keys.
+A GrabtypeTouchBegin grab is released when the touch sequence ends or
+the client uses XIAllowTouchEvents with mode TouchReject.
+A GrabtypeTouchBegin grab is converted to a GrabtypeTouchObserve grab
+when the client uses XIAllowTouchEvents with mode TouchObserve.
+A GrabtypeTouchObserve grab is released when the touch sequence ends.
+Note that the logical state of a device (as seen by means of the
+protocol) may lag the physical state if device event processing is
+frozen.
 
-        If a keycode grab or focus grab activates, FocusIn and FocusOut events
-        with mode Grab are generated as if the focus were to change from the
-        current window to the grab_window.
+This request overrides all previous passive grabs by the same
+client on the same button/key/enter/focus in + modifier combinations
+on the same window.
 
-        If an enter or focus in grab activates, additional EnterNotify events
-        with mode XIPassiveGrabNotify are generated as if the pointer or focus
-        were to suddenly warp from its current position to some position in
-        the grab window.  These events are sent to the grabbing client only
-        and only if the grab event mask has selected for it. If such a passive
-        grab deactivates, addional LeaveNotify events with mode
-        XIPassiveUngrabNotify are generated and sent to the grabbing client
-        before the grab deactivates.
+If some other client already has issued a XIPassiveGrabDevice request
+with the same button or keycode and modifier combination, the
+failed modifier combinations is returned in modifiers_return. If some
+other client already has issued an XIPassiveGrabDevice request of
+grab_type XIGrabtypeEnter, XIGrabtypeFocusIn, XIGrabtypeTouchBegin, or
+XIGrabtypeTouchBeginInert with the same grab_window and the same
+modifier combination, the failed modifier combinations are returned
+in modifiers_return. If num_modifiers_return is zero, all passive
+grabs have been successful.
 
-        See section 4.4 for additional notes on touch grabs, as they do not
-        behave like traditional grabs: in particular, they do not freeze the
-        device, and delivery of touch events continues even if the device is
-        frozen due to a grab by another client.
+If a button grab or enter grab activates, EnterNotify and LeaveNotify
+events with mode Grab are generated as if the pointer were to suddenly
+warp from its current position some position in the grab_window.
+However, the pointer does not warp, and the pointer position is used
+as both the initial and final positions for the events.
+
+If a keycode grab or focus grab activates, FocusIn and FocusOut events
+with mode Grab are generated as if the focus were to change from the
+current window to the grab_window.
+
+If an enter or focus in grab activates, additional EnterNotify events
+with mode XIPassiveGrabNotify are generated as if the pointer or focus
+were to suddenly warp from its current position to some position in
+the grab window.  These events are sent to the grabbing client only
+and only if the grab event mask has selected for it. If such a passive
+grab deactivates, addional LeaveNotify events with mode
+XIPassiveUngrabNotify are generated and sent to the grabbing client
+before the grab deactivates.
+
+See section 4.4 for additional notes on touch grabs, as they do not
+behave like traditional grabs: in particular, they do not freeze the
+device, and delivery of touch events continues even if the device is
+frozen due to a grab by another client.
 
     ┌───
         XIPassiveUngrabDevice
@@ -1496,7 +1541,7 @@ are required to be 0.
             modifiers:       MODIFIERINFO
     └───
 
-        Release an explicit passive grab on the specified input device.
+Release an explicit passive grab on the specified input device.
 
         deviceid
             The device to establish the passive grab on.
@@ -1513,9 +1558,9 @@ are required to be 0.
         num_modifiers
             Number of elements in modifiers.
 
-        This request has no effect if the client does not have a passive grab
-        of the same type, same button or keycode (if applicable) and modifier
-        combination on the grab_window.
+This request has no effect if the client does not have a passive grab
+of the same type, same button or keycode (if applicable) and modifier
+combination on the grab_window.
 
     ┌───
         XIListProperties
@@ -1525,7 +1570,7 @@ are required to be 0.
             properties:      LISTofATOM
     └───
 
-        List the properties associated with the given device.
+List the properties associated with the given device.
 
         deviceid
             The device to list the properties for.
@@ -1545,7 +1590,7 @@ are required to be 0.
             data:            LISTofINT8, or LISTofINT16, or LISTofINT32
     └───
 
-        Change the given property on the given device.
+Change the given property on the given device.
 
         deviceid
             The device to change the property on.
@@ -1560,26 +1605,26 @@ are required to be 0.
         data
             Property data (nitems * format/8 bytes)
 
-        The type is uninterpreted by the server. The format specifies whether
-        the data should be viewed as a list of 8-bit, 16-bit, or 32-bit
-        quantities so that the server can correctly byte-swap as necessary.
+The type is uninterpreted by the server. The format specifies whether
+the data should be viewed as a list of 8-bit, 16-bit, or 32-bit
+quantities so that the server can correctly byte-swap as necessary.
 
-        If the mode is Replace, the previous propert y value is discarded.  If
-        the mode is Prepend or Append, then the type and format must match the
-        existing property value (or a Match error results). If the property is
-        undefined, it is treated as defined with the correct type and format
-        with zero-length data. For Prepend, the data is tacked on to the
-        beginning of the existing data, and for Append, it is tacked on to the
-        end of the existing data.
+If the mode is Replace, the previous propert y value is discarded.  If
+the mode is Prepend or Append, then the type and format must match the
+existing property value (or a Match error results). If the property is
+undefined, it is treated as defined with the correct type and format
+with zero-length data. For Prepend, the data is tacked on to the
+beginning of the existing data, and for Append, it is tacked on to the
+end of the existing data.
 
-        The lifetime of a property is not tied to the storing client. Properties
-        remain until explicitly deleted, until the device is removed, or
-        until server reset.
+The lifetime of a property is not tied to the storing client. Properties
+remain until explicitly deleted, until the device is removed, or
+until server reset.
 
-        A property cannot be deleted by setting nitems to zero. To delete a
-        property, use XIDeleteProperty.
+A property cannot be deleted by setting nitems to zero. To delete a
+property, use XIDeleteProperty.
 
-        This request generates an XIPropertyEvent.
+This request generates an XIPropertyEvent.
 
     ┌───
         XIDeleteProperty
@@ -1587,15 +1632,15 @@ are required to be 0.
             property:        ATOM
     └───
 
-        Deletes the given property on the given device.
+Deletes the given property on the given device.
 
         deviceid
             The device to delete the property on.
         property
             The property to delete.
 
-        If the property is deleted, an XIPropertyEvent is generated on the device.
-        If the property does not exist, this request does nothing.
+If the property is deleted, an XIPropertyEvent is generated on the device.
+If the property does not exist, this request does nothing.
 
     ┌───
         XIGetProperty
@@ -1612,8 +1657,8 @@ are required to be 0.
             format:          { 8, 16, 32 }
             data:            LISTofINT8, or LISTofINT16, or LISTofINT32
     └───
-        
-        Get the data for the given property on the given device.
+
+Get the data for the given property on the given device.
 
         deviceid
             The device to retrieve the property data from.
@@ -1636,31 +1681,31 @@ are required to be 0.
         data
             Property data (nitems * format/8 bytes)
 
-        If the specified property does not exist for the specified device, then
-        the return type is None, the format and bytes-after are zero, and the value is
-        empty. The delete argument is ignored in this case. If the specified property
-        exists but its type does not match the specified type, then the return
-        type is the actual type of the property, the format is the actual format of the
-        property (never zero), the bytes-after is the length of the property in bytes
-        (even if the format is 16 or 32), and the value is empty. The delete
-        argument is ignored in this case. If the specified property exists and
-        either AnyPropertyType is specified or the specified type matches the actual
-        type of the property, then the return type is the actual type of the property,
-        the format is the actual format of the property
-        (never zero), and the bytes-after and value are as follows, given:
-                 N = actual length of the stored property in bytes
-                    (even if the format is 16 or 32)
-                 I = 4 * long-offset
-                 T = N−I
-                 L = MINIMUM(T, 4 * long-length)
-                 A = N − (I + L)
-        The returned value starts at byte index I in the property (indexing
-        from 0), and its length in bytes is L. However, it is a Value error if
-        offset is given such that L is negative. The value of bytes_after is A,
-        giving the number of trailing unread bytes in the stored property. If
-        delete is True and the bytes_after is zero, the property is also
-        deleted from the device, and a XIPropertyNotify event is generated on
-        the device.  
+If the specified property does not exist for the specified device, then
+the return type is None, the format and bytes-after are zero, and the value is
+empty. The delete argument is ignored in this case. If the specified property
+exists but its type does not match the specified type, then the return
+type is the actual type of the property, the format is the actual format of the
+property (never zero), the bytes-after is the length of the property in bytes
+(even if the format is 16 or 32), and the value is empty. The delete
+argument is ignored in this case. If the specified property exists and
+either AnyPropertyType is specified or the specified type matches the actual
+type of the property, then the return type is the actual type of the property,
+the format is the actual format of the property
+(never zero), and the bytes-after and value are as follows, given:
+         N = actual length of the stored property in bytes
+            (even if the format is 16 or 32)
+         I = 4 * long-offset
+         T = N−I
+         L = MINIMUM(T, 4 * long-length)
+         A = N − (I + L)
+The returned value starts at byte index I in the property (indexing
+from 0), and its length in bytes is L. However, it is a Value error if
+offset is given such that L is negative. The value of bytes_after is A,
+giving the number of trailing unread bytes in the stored property. If
+delete is True and the bytes_after is zero, the property is also
+deleted from the device, and a XIPropertyNotify event is generated on
+the device.  
      
     ┌───
         XIAllowTouchEvents: (since XI 2.1)
@@ -1673,8 +1718,8 @@ are required to be 0.
     ALLOWTOUCHMODE  { TouchAccept, TouchReject, TouchObserve }
     ALLOWTOUCHFLAGS (none currently defined)
 
-    The XIAllowTouchEvents request allows the current owner of a touch
-    sequence to direct further delivery.
+The XIAllowTouchEvents request allows the current owner of a touch
+sequence to direct further delivery.
 
     deviceid
         The slave device ID for a grabbed touch sequence.
@@ -1694,13 +1739,14 @@ are required to be 0.
     flags
         A bitmask of applicable flags.
 
-    A BadValue error occurs if the touch ID is invalid, or BadAccess if this
-    client is not the current owner of the specified touch ID.  BadValue errors
-    also occur if an invalid value is given for event_mode.  Any flags not
-    understood by the server will be ignored.
+A BadValue error occurs if the touch ID is invalid, or BadAccess if this
+client is not the current owner of the specified touch ID.  BadValue errors
+also occur if an invalid value is given for event_mode.  Any flags not
+understood by the server will be ignored.
 
 
 8. Events:
+----------
 
 An event specifies its length in 4-byte units after the initial 32 bytes.
 Future versions of the protocol may provide additional information
@@ -1738,13 +1784,13 @@ Version 2.1:
 All events have a set of common fields specified as EVENTHEADER.
 
 
-EVENTHEADER { type:                       BYTE
-              extension:                  BYTE
-              sequenceNumber:             CARD16
-              length:                     CARD32
-              evtype:                     CARD16
-              deviceid:                   DEVICEID
-              time:                       Time }
+    EVENTHEADER { type:                       BYTE
+                  extension:                  BYTE
+                  sequenceNumber:             CARD16
+                  length:                     CARD32
+                  evtype:                     CARD16
+                  deviceid:                   DEVICEID
+                  time:                       Time }
 
     type
         Always GenericEvent.
@@ -1787,26 +1833,27 @@ EVENTHEADER { type:                       BYTE
     info:
         The current hierarchy information.
 
-    An XIHierarchyEvent is sent whenever the device hierarchy been
-    changed. The flags specify all types of hierarchy modifiations that have
-    occured.
-    For all devices, info details the hierarchy information after the
-    modification of the hierarchy has occured. For each device specified with
-    deviceid:
-    - if type is MasterPointer or MasterKeyboard, attachment decribes the
-      pairing of this device.
-    - if type is SlavePointer or SlaveKeyboard, attachment describes the
-      master device this device is attached to.
-    - if type is FloatingSlave device, attachment is undefined.
+An XIHierarchyEvent is sent whenever the device hierarchy been
+changed. The flags specify all types of hierarchy modifiations that have
+occured.
+For all devices, info details the hierarchy information after the
+modification of the hierarchy has occured. For each device specified with
+deviceid:
+
+- if type is MasterPointer or MasterKeyboard, attachment decribes the
+  pairing of this device.
+- if type is SlavePointer or SlaveKeyboard, attachment describes the
+  master device this device is attached to.
+- if type is FloatingSlave device, attachment is undefined.
 
     enabled
          True if the device is enabled and can send events. A disabled master
          device will not forward events from an attached, enabled slave
          device.
 
-    Note: Multiple devices may be affected in one hierarchy change,
-    deviceid in an XIHierarchyEvent is always the first affected
-    device. Clients should ignore deviceid and instead use the devices list.
+Note: Multiple devices may be affected in one hierarchy change,
+deviceid in an XIHierarchyEvent is always the first affected
+device. Clients should ignore deviceid and instead use the devices list.
 
     ┌───
         DeviceChangedEvent:
@@ -1819,9 +1866,9 @@ EVENTHEADER { type:                       BYTE
 
     CHANGEREASON { SlaveSwitch, DeviceChange }
 
-    A DeviceChangeEvent is sent whenever a device changes it's capabilities.
-    This can happen either by a new slave device sending events through a
-    master device, or by a physical device changing capabilities at runtime.
+A DeviceChangeEvent is sent whenever a device changes it's capabilities.
+This can happen either by a new slave device sending events through a
+master device, or by a physical device changing capabilities at runtime.
 
     reason
         The reason for generating this event.
@@ -1839,7 +1886,7 @@ EVENTHEADER { type:                       BYTE
         Details the available classes provided by the device.  The order the
         classes are provided in is undefined.
 
-    For a detailed description of classes, see the XQueryDevice request.
+For a detailed description of classes, see the XQueryDevice request.
 
     ┌───
         DeviceEvent:
@@ -1881,10 +1928,10 @@ EVENTHEADER { type:                       BYTE
     DEVICEEVENTFLAGS (pointer and touch events only): { PointerEmulated }
     DEVICEEVENTFLAGS (touch events only): { TouchPendingEnd }
 
-    An XIDeviceEvent is generated whenever the logical state of a device
-    changes in response to a button press, a button release, a motion, a key
-    press or a key release. The event type may be one of KeyPress,
-    KeyRelease, ButtonPress, ButtonRelease, Motion.
+An XIDeviceEvent is generated whenever the logical state of a device
+changes in response to a button press, a button release, a motion, a key
+press or a key release. The event type may be one of KeyPress,
+KeyRelease, ButtonPress, ButtonRelease, Motion.
 
     XI 2.1: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
 
@@ -1948,12 +1995,13 @@ EVENTHEADER { type:                       BYTE
         Only in XI 2.1 and later. Only valid for TouchBegin, TouchUpdate, and
         TouchEnd events.
 
-        The active_touches value denotes the number of touches in contact with
-        the source touch device surface when the event occurred. The value
-        includes the new touch for a TouchBegin event, and does not include the
-        ending touch for a TouchEnd event.
+The active_touches value denotes the number of touches in contact with
+the source touch device surface when the event occurred. The value
+includes the new touch for a TouchBegin event, and does not include the
+ending touch for a TouchEnd event.
 
-    Modifier state in mods is detailed as follows:
+Modifier state in mods is detailed as follows:
+
     base_mods
         XKB base modifier state.
     latched_mods
@@ -1971,24 +2019,24 @@ EVENTHEADER { type:                       BYTE
 
     XI 2.1:
 
-    A TouchBegin event is generated whenever a new touch sequence initializes
-    A TouchEnd event is generated whenever a touch sequence ceases. A
-    TouchUpdate event is generated whenever a touch axis valuator value
-    changes, or a flag (e.g. pending end) has changed for that touch sequence;
-    this may result in a TouchUpdate event being sent with zero valuators. A
-    TouchOwnership event is sent when a client becomes the owner of a touch.
+A TouchBegin event is generated whenever a new touch sequence initializes
+A TouchEnd event is generated whenever a touch sequence ceases. A
+TouchUpdate event is generated whenever a touch axis valuator value
+changes, or a flag (e.g. pending end) has changed for that touch sequence;
+this may result in a TouchUpdate event being sent with zero valuators. A
+TouchOwnership event is sent when a client becomes the owner of a touch.
 
-    The average finger size is significantly larger than one pixel. The
-    selection of the hotspot of a touchpoint is implementation dependent and
-    may not be the logical center of the touch.
+The average finger size is significantly larger than one pixel. The
+selection of the hotspot of a touchpoint is implementation dependent and
+may not be the logical center of the touch.
 
-    Touch tracking IDs are provided in the detail field of touch events. Its
-    value is always provided in every touch event. Tracking IDs are
-    represented as unsigned 32-bit values and increase in value for each new
-    touch, wrapping back to 0 upon reaching the numerical limit of IDs. IDs are
-    unique per each slave touch device.
+Touch tracking IDs are provided in the detail field of touch events. Its
+value is always provided in every touch event. Tracking IDs are
+represented as unsigned 32-bit values and increase in value for each new
+touch, wrapping back to 0 upon reaching the numerical limit of IDs. IDs are
+unique per each slave touch device.
 
-    Touch events do not generate enter/leave events.
+Touch events do not generate enter/leave events.
 
     ┌───
         RawEvent
@@ -2001,14 +2049,14 @@ EVENTHEADER { type:                       BYTE
             axisvalues_raw:            LISTofFP3232
     └───
 
-    A RawEvent provides the information provided by the driver to the
-    client. RawEvent provides both the raw data as supplied by the driver and
-    transformed data as used in the server. Transformations include, but are
-    not limited to, axis clipping and acceleration.
-    Transformed valuator data may be equivalent to raw data. In this case,
-    both raw and transformed valuator data is provided.
-    RawEvents are sent exclusively to all root windows or to the client
-    that grabbed the device only.
+A RawEvent provides the information provided by the driver to the
+client. RawEvent provides both the raw data as supplied by the driver and
+transformed data as used in the server. Transformations include, but are
+not limited to, axis clipping and acceleration.
+Transformed valuator data may be equivalent to raw data. In this case,
+both raw and transformed valuator data is provided.
+RawEvents are sent exclusively to all root windows or to the client
+that grabbed the device only.
 
     eventtype
         The type of event that occured on the device.
@@ -2050,22 +2098,22 @@ EVENTHEADER { type:                       BYTE
     NOTIFYDETAIL { Ancestor, Virtual, Inferior, Nonlinear, NonlinearVirtual,
                    Pointer, PointerRoot, None }
 
-    Enter or Leave events are sent whenever a device's pointer enters or
-    leaves a window.
-    FocusIn or FocusOut events are sent whenever a device's focus is set to or
-    away from a window.
-    The enter/leave and focus in/out model is described in the core protocol
-    specification, Section 11. (EnterNotify, LeaveNotify events).
+Enter or Leave events are sent whenever a device's pointer enters or
+leaves a window.
+FocusIn or FocusOut events are sent whenever a device's focus is set to or
+away from a window.
+The enter/leave and focus in/out model is described in the core protocol
+specification, Section 11. (EnterNotify, LeaveNotify events).
 
-    For enter and leave events, the modifier and group state is the state of
-    the paired master device if the device is a master device, or the state of
-    the attached master keyboard if the device is an attached slave device, or
-    zero if the device is a floating slave device.
+For enter and leave events, the modifier and group state is the state of
+the paired master device if the device is a master device, or the state of
+the attached master keyboard if the device is an attached slave device, or
+zero if the device is a floating slave device.
 
-    For focus in and out events, the button state is the state of the paired
-    master device if the device is a master device, or the state of the
-    attached master keyboard if the device is an attached slave device, or
-    zero if the device is a floating slave device.
+For focus in and out events, the button state is the state of the paired
+master device if the device is a master device, or the state of the
+attached master keyboard if the device is an attached slave device, or
+zero if the device is a floating slave device.
 
     root
     event
@@ -2112,8 +2160,8 @@ EVENTHEADER { type:                       BYTE
             what:               { PropertyCreated, PropertyDeleted, PropertyModified }
     └───
 
-    XIPropertyEvents are sent whenever a device property is created, deleted or
-    modified by a client.
+XIPropertyEvents are sent whenever a device property is created, deleted or
+modified by a client.
 
     property
         The property that has been created, deleted, or modified
@@ -2132,8 +2180,8 @@ XI 2.1:
 
     TOUCHOWNERSHIPFLAGS:    (none currently defined)
 
-    A TouchOwnershipEvent indicates that ownership has changed, and the client
-    is now the owner of the touch sequence specified by touchid.
+A TouchOwnershipEvent indicates that ownership has changed, and the client
+is now the owner of the touch sequence specified by touchid.
 
     sourceid
         The source device that originally generated the event.
@@ -2143,81 +2191,83 @@ XI 2.1:
         A bitmask of flags for this event.
 
 
-                              ❧❧❧❧❧❧❧❧❧❧❧
-
+//                            ❧❧❧❧❧❧❧❧❧❧❧
 
 Appendix A: XI 2.1 Use-cases
+----------------------------
 
 All use-cases that include the receiving and processing of touch events
 require the client to announce XI 2.1 support in the XIQueryVersion request.
 
-∙ Client C wants to process touch events from a device D on window W.
-    ⊳ C calls XISelectEvent for
+- Client C wants to process touch events from a device D on window W.
+    - C calls XISelectEvent for
       XI_Touch{Begin|Update|End} from D on W.
-    ⊳ C receives TouchBegin whenever a touch sequence starts within
+    - C receives TouchBegin whenever a touch sequence starts within
       W's borders.
-    ⊳ C receives TouchUpdate events whenever a touch axis valuator value
+    - C receives TouchUpdate events whenever a touch axis valuator value
       changes for a touch sequence it received a TouchBegin event for.
-    ⊳ C receives TouchEnd whenever a touch it received a TouchBegin event
+    - C receives TouchEnd whenever a touch it received a TouchBegin event
       for ceases.
 
-∙ Client C wants to pre-process touch events from a device D on window W, while
+- Client C wants to pre-process touch events from a device D on window W, while
   client I wants to pre-process touch events from device D on the parent window
   of W.
-    ⊳ C calls XISelectEvent for
+    - C calls XISelectEvent for
       XI_Touch{Begin|Update|Ownership|End} from D on W.
-    ⊳ I calls XIPassiveGrab for
+    - I calls XIPassiveGrab for
       XI_Touch{Begin|Update|Ownership|End} from D on a parent
       window of W.
-    ⊳ I receives TouchBegin whenever a touch begins within window W, as well
+    - I receives TouchBegin whenever a touch begins within window W, as well
       as a TouchOwnership event indicating that it currently owns the touch
       sequence.  C receives a TouchBegin event as well, but without
       TouchOwnership.
-    ⊳ When a touch axis valuator changes in this touch sequence, both I and C
+    - When a touch axis valuator changes in this touch sequence, both I and C
       receive a TouchUpdate event.  I may process the event to determine if it
       is going to accept or reject the touch, whereas C may perform reversible
       processing.
-    ⊳ If I decides it is going to claim the touch sequence for its exclusive
+    - If I decides it is going to claim the touch sequence for its exclusive
       processing, it calls XIAllowTouchEvents with the XITouchAccept flag set;
       at this point, C receives a TouchEnd event, and undoes any processing it
       has already performed due to the touch sequence.  Further TouchUpdate
       events are delivered only to I.
-    ⊳ Alternatively, if I decides it does not want to receive further events
+    - Alternatively, if I decides it does not want to receive further events
       from this touch sequence, it calls XIAllowTouchEvents with the
       XITouchReject flag set; at this point, I receives a TouchEnd event
       confirming that it has rejected the touch.  C receives a TouchOwnership
       event confirming that it is now the new owner of the touch, and further
       TouchUpdate events are delivered only to C.  As C now owns the touch,
       it is free to perform irreversible processing of the sequence.
-    ⊳ When the touch physically ceases, a TouchEnd event is sent to C.
+    - When the touch physically ceases, a TouchEnd event is sent to C.
 
-∙ Client C wants to pre-process touch events from a direct touch device D on
+- Client C wants to pre-process touch events from a direct touch device D on
   window W, while client I wants to process pointer events on window W's parent,
   window Y.
-    ⊳ I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease} to
+    - I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease} to
       create a synchronous pointer grab from D on Y.
-    ⊳ C calls XISelectEvent for
+    - C calls XISelectEvent for
       XI_Touch{Begin|Update|Ownership|End} from D on W.
-    ⊳ I receives a ButtonPress event whenever a touch begins within W, and is
+    - I receives a ButtonPress event whenever a touch begins within W, and is
       considered the owner of the event.  C receives a TouchBegin event, but
       does not receive a TouchOwnership event.
-    ⊳ When the touchpoint moves, C will receive a TouchUpdate event.  Event
+    - When the touchpoint moves, C will receive a TouchUpdate event.  Event
       delivery to I is be subject to the synchronous delivery mechanism. The
       emulated motion notify event is queued in the server while the device is
       frozen.
-    ⊳ I may assert ownership by calling XIAllowEvents on Y with any mode other
+    - I may assert ownership by calling XIAllowEvents on Y with any mode other
       than ReplayDevice, which will cause all further events to be sent only to
       I, with a TouchEnd event being sent to C.
-    ⊳ Alternatively, I may reject the touch sequence by calling XIAllowEvents on
+    - Alternatively, I may reject the touch sequence by calling XIAllowEvents on
       Y with mode ReplayDevice, which will cause no further events from that
       touch to be sent to I, and a TouchOwnership event to be sent to C, with
       subsequent motion events being sent as TouchUpdate events.
 
-∙  Driver DRV provides touch support from tracked device D:
-    ⊳ DRV initializes a TouchClass for the device and a TouchAxisClass for
+-  Driver DRV provides touch support from tracked device D:
+    - DRV initializes a TouchClass for the device and a TouchAxisClass for
       each axis available on the device.
-    ⊳ DRV parses D's device protocol and selects one touch sequence to be
+    - DRV parses D's device protocol and selects one touch sequence to be
       emulated as pointer event.
-    ⊳ DRV calls the respective input driver API with the touch sequence
+    - DRV calls the respective input driver API with the touch sequence
       data. The touch sequence emulating a pointer has the respective flag
       set. DRV does not submit pointer data for any touchpoint.
+
+//                            ❧❧❧❧❧❧❧❧❧❧❧
