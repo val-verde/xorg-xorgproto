@@ -931,6 +931,7 @@ Change a master pointer's cursor on the specified window.
 
 Whenever device enters a window W, the cursor shape is selected in the
 following order:
+
 - if the current window has a device cursor C(d) defined for device,
   display this cursor C(d).
 - otherwise, if the current window has a cursor C(w) defined in the core
