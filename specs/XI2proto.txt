@@ -406,22 +406,25 @@ DependentTouch, IndependentPointer, and SemiMultitouch devices.
 5.3 Touch event delivery
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Window sets for event propagation for direct device touches contain the windows
-from the root to the child in which the touch originated.
+For direct touch devices, the window set for event propagation is the set of
+windows from the root window to the child in which the touch sequence
+begins.
 
-Indirect device window sets depend on whether other touches are active. For
-the first touch on an indirect device, the window set contains the windows from
-the root to the current window underneath the position of the device's pointer.
-For subsequent touches on the device, the window set is identical to the window
-set of the first touch. Once all touches have been released, the window set is
-reset and re-calculated on the first subsequent touch.
+For indirect devices, the window set for event propagation is the set of
+windows from the root window to the window that contains the device's
+pointer. An indirect device may only have one window set at a time. Any
+future touch sequence will use the same window set. The window set is
+cleared when all touch sequences on the device end.
 
-The delivery of touch events is not changed by any modifications to the window
-hierarchy after the window set has been determined for the touch, nor is it
-affected by new grabs or selections.
+A window set is calculated on TouchBegin and remains constant until the end
+of the sequence Modifications to the window hierarchy, new grabs or changed
+event selection do not affect the window set.
 
-No touches from an indirect device may begin while the device is floating, as
-it does not have an associated pointer position to focus events.
+FIXME:
+    No touches from an indirect device may begin while the device is
+    floating, as it does not have an associated pointer position to focus
+    events. [incorrect, remove it? why would it matter]
+
 
 5.3.1 Pointer event handling for indirect touch devices
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
