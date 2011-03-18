@@ -239,6 +239,24 @@ types TouchBegin, TouchUpdate, and TouchEnd, respectively.
 A touch sequence always generates TouchBeing and TouchEnd events. It may
 generate TouchUpdate events.
 
+A client must select for TouchBegin, TouchUpdate, and TouchEnd events. A
+TouchBegin event is sent to the client with the position information and
+properties of the touch when it began on the touch device.
+Note that the logical state of a device (as seen by means of the
+protocol) may lag the physical state if device event processing is
+affected by grabs. The event timestamp of touch events always represents the
+time the event occurred.
+
+A TouchUpdate event is sent to the client whenever the position or any other
+property of the touch changes. Note that the server may compress multiple
+TouchUpdate events into one. If compression occurs, the TouchUpdate event
+represents the last state of the touch.
+
+A TouchEnd event is sent to the client when the touch ceases.
+
+4.4.2 Ownership of touch events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Touch sequences may send events to multiple clients in parallel. At any given
 time, only one client is in control of the touch sequence and is referred to as
 the "owner" of the sequence.
