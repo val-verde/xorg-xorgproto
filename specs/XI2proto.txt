@@ -355,6 +355,8 @@ FIXME:
 - can we have more than one TouchObserve on a device/window combination
   then?
 - it's impossible to observe and still become the owner
+- having GrabtypeTouchObserve seems rather broken. if all we want to do is
+  observe, then why not use RawEvents or something similar?
 
 FIXME:
 Only one client may select, and only one client may grab, touch events for a
