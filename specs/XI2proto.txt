@@ -244,12 +244,12 @@ Touch event processing differs from normal event processing in a few ways,
 most notably in that touch events are processed partially out-of-band from
 pointer and keyboard events (see section 4.4.5) and in that
 touch events may be sent to multiple clients simultaneously (see sections
-4.4.2 and 4.4.3).
+5.1.1 and 5.1.2).
 
-4.4.1 Touch event sequences
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+5.1 Touch event sequences
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Touch input follows a three-stage cycle: 
+Touch input follows a three-stage cycle:
 
         begin - update - update - ... - end
 
@@ -277,77 +277,96 @@ represents the last state of the touch.
 
 A TouchEnd event is sent to the client when the touch ceases.
 
-4.4.2 Ownership of touch events
+Only one client may select for touch events from a device on a window.
+
+Passive touch grabs are similar to standard input event grabs in that they
+take precedence over event selections and are searched from the root window
+to the child window. See XIPassiveGrabDevice for more information on passive
+grab activation. When a touch grab activates, the client whose grab
+activates becomes the “owner” of this touch sequence. For all other clients,
+the logical state of a device (as seen by means of the protocol) may now lag
+the physical state.
+
+The owner must either “accept” or "reject" the touch sequence. If a touch
+sequence is rejected, a TouchEnd event is sent to the owner. The touch
+sequence is then re-processed on the next window and a new passive grab may
+activate or the sequence may be delivered to the client with an event
+selection. The client who now receives the touch sequence becomes the new
+owner of the touch sequence. If a touch sequence is accepted, the touch
+sequence is exclusively delivered to the current owner.
+
+If the touch sequence ends while the client is the owner of the touch
+sequence, the client receives a TouchEnd event. The client must accept or
+reject the sequence nonetheless.
+
+5.1.1 Ownership of touch sequences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clients may opt for touch events to be delivered before they become the
+owner of the touch sequence. In this case, the logical state state of the
+device (as seen by means of the protocol) always matches the physical state
+of the device. Clients must use caution if they opt for this feature; any
+action taken must be undone if the touch sequence ends without the client
+becoming the owner.
+
+To select for touch events regardless of ownership, a client must set the
+TouchOwnership event mask in addition to the TouchBegin, TouchUpdate and
+TouchEnd mask. When selected, a client will receive touch events as they
+occur on the device without delay. When the client becomes the owner of a
+touch sequence, a TouchOwnership event is sent to the client. If the client
+is the initial owner of the sequence, the TouchBegin is immediately followed
+by the TouchOwnership event. Otherwise, TouchUpdate events may preceed a
+TouchOwnership event. A client is not guaranteed to become the owner of any
+given touch sequence.
+
+The server delivers touch events to all clients that have selected for
+TouchOwnership and to the current owner of the sequence in parallel.
+
+If a client has selected for TouchOwnership and is not the current owner of
+the sequence and the current owner accepts the sequence, the client receives
+a TouchEnd event and no further events from this sequence are sent to this
+client.
+
+If a client has selected for TouchOwnership and the physical touch ends
+before the current owner has accepted or rejected the sequence, the client
+receives a TouchUpdate event with the TouchPendingEnd flag set. No further
+TouchUpdate events will be sent for this sequence. If the current owner
+accepts the sequence, the client receives a TouchEnd event. Otherwise, if
+the current owner rejects the sequence, the client may become 
+the owner of the touch sequence and receive a TouchOwnership event and a
+TouchEndEvent.
+
+5.1.2 Observing touch sequences
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+A client that is the current owner of the sequence and rejects the sequence
+with TouchObserve will not be sent a TouchEnd event immediately. Instead,
+this client continues to receive touch events as they occur on the device.
+However, a client hat has rejected a touch sequence may not become the owner
+of this sequence again.
 
-Touch sequences may send events to multiple clients in parallel. At any given
-time, only one client is in control of the touch sequence and is referred to as
-the "owner" of the sequence.
+A client who has a passive grab with grab type TouchObserve will receive
+touch events as they occur on the device. Such a client will not become the
+owner of this sequence. The client continues to receive events until the
+touch sequence ceases on the device, even if the current owner of the
+sequence accepts the sequence.
 
-Clients may want to receive events only after they become the owner of a touch
-sequence. This prevents unnecessary process wakeups and provides for simpler
-handling of a stream of touch events. Such clients must select for touch begin,
-update, and end events. When the client becomes the owner of a touch sequence,
-a touch begin event will be sent. This event will represent the position and
-properties of the touch when it began on the touch device. The server may buffer
-copies of multiple touch update events while the touch sequence was owned by
-another client. After sending the touch begin event, any buffered touch update
-events will be sent. If the touch position or properties have changed since the
-touch began, at least one touch update or touch end event will be sent to denote
-the new position and properties. There is no guarantee that any more than one
-touch update or touch end event will be buffered. The event timestamp of the
-buffered events represent the time the event occurred.
 
-Other clients may want access to the stream of touch events from a touch
-sequence before they become the owner of the sequence. Clients must use caution
-when handling these events; any action taken must be undone if the touch
-sequence ends without the client becoming the owner. Such clients must select
-for touch begin, update, end, and ownership events. A touch begin event is sent
-to all such clients when a touch sequence has initiated. When touch position or
-properties are changed, the client will be sent touch update events. Once the
-client, including the initial owner, becomes the owner of the touch sequence, a
-touch ownership event will be sent. When the touch ends, the owner will receive
-a touch end event if it is a touch grabbing client and has accepted the touch
-sequence as outlined below or if it is receiving touch events through a
-selection. Otherwise, the owner will receive a touch update event with the
-pending end flag set. All other clients will receive a touch update event with
-the pending end flag set.
+FIXME:
+- can we have more than one TouchObserve on a device/window combination
+  then?
+- it's impossible to observe and still become the owner
 
-Touch grabs are similar to standard input event grabs in that they take
-precedence over selections and are searched from the root window to the child
-window. When a touch grab is activated, the client will receive a touch
-ownership event. The owner must either “accept” or "reject" the touch sequence,
-though it may do so at any time, including after the touch sequence has ended.
-If the owner accepts the touch sequence, touch end events will be sent to all
-other clients listening to events from the touch sequence. If the owner rejects
-the touch sequence, a touch end event will be sent to the owner and further
-grabs will be checked for the touch sequence. If any touch client becomes the
-owner of the touch sequence, it will be sent a touch ownership event. Touch
-grabbing clients must register for touch ownership events through the grab and
-be able to handle events while they are not the owner of the touch sequence.
-
-A touch sequence is only considered to be meaningful in its entirety: clients
-may not capture part of a touch sequence, interpret only that part, and then
-pass ownership of the touch sequence on to another client. A special exception
-to this rule is made for clients who passively grab a touch with grab type
-TouchObserve, or for when a client rejects a touch with mode TouchObserve. Such
-clients are passed over for touch ownership, but will continue to receive touch
-update events for the touch sequence.
-
-A TouchEnd event will always be sent to a client when it will receive no more
-events from a particular touch, regardless of why (grab or selection removed,
-owner accepted, the client having rejected the touch, etc).
-
+FIXME:
 Only one client may select, and only one client may grab, touch events for a
 physical device on a window. As an example, selecting for AllDevices will
-prevent any other client from selecting for touch events for any device on the
+protocollkrevent any other client from selecting for touch events for any device on the
 same window. When a slave device is attached to a master device, any selections
 on any windows for touch events for the slave device ID will be canceled.
 Clients selecting for individual slave devices are suggested to select for
 HierarchyChanged events to be notified when this occurs.
 
-4.4.2 Touch device modes
-^^^^^^^^^^^^^^^^^^^^^^^^
+5.2 Touch device modes
+~~~~~~~~~~~~~~~~~~~~~~
 
 Touch devices come in many different forms with varying capabilities. The
 following device modes are defined for this protocol:
@@ -382,8 +401,8 @@ A device is identified as only one of the device modes above at any time. For
 the purposes of this protocol document, indirect touch devices refers to
 DependentTouch, IndependentPointer, and SemiMultitouch devices.
 
-4.4.3 Touch event delivery
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+5.3 Touch event delivery
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Window sets for event propagation for direct device touches contain the windows
 from the root to the child in which the touch originated.
@@ -402,7 +421,7 @@ affected by new grabs or selections.
 No touches from an indirect device may begin while the device is floating, as
 it does not have an associated pointer position to focus events.
 
-4.4.4 Pointer event handling for indirect touch devices
+5.3.1 Pointer event handling for indirect touch devices
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Indirect touch devices are expected to generate pointer events. In contrast with
@@ -425,7 +444,7 @@ touches that have changed position or properties since the touch began. No event
 will be delivered for touches that began and ended while touch events were
 withheld.
 
-4.4.5 Pointer emulation for direct touch devices
+5.3.2 Pointer emulation for direct touch devices
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to facilitate backwards compatibility with legacy clients, direct touch
@@ -473,27 +492,6 @@ selections, only the touch events will be delivered.
 
 Both the emulated pointer events and their associated touch events will have the
 PointerEmulated flag set.
-
-4.5. The ClientPointer principle
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Many core protocol and some extension requests are ambiguous when multiple
-master devices are available (e.g. QueryPointer does not specfy which pointer).
-The X server does not have the knowledge to chose the contextually correct
-master device. For each client, one master pointer is designated as this
-clients's "ClientPointer". Whenever a client sends an ambiguous request (e.g.
-QueryPointer), the ClientPointer or the keyboard paired with the ClientPointer
-is chosen to provide the data for this request.
-
-This ClientPointer may be explicitly assigned to a client with the
-SetClientPointer call. If no ClientPointer is set when a client issues an
-ambiguous request, the server choses one device as the ClientPointer. The
-method of chosing a ClientPointer from the available master pointers is
-implementation-specific.
-
-If the master pointer currently set as ClientPointer for one or more clients is
-removed, the server may either unset the ClientPointer setting or change the
-ClientPointer to a different master pointer.
 
 //                            ❧❧❧❧❧❧❧❧❧❧❧
 
