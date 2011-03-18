@@ -226,15 +226,18 @@ Touch event processing differs from normal event processing in a few ways,
 most notably in that touch events are processed partially out-of-band from
 pointer and keyboard events.
 
-Touch input follows a three-stage cycle: init - move - move - ... - destroy,
-i.e. “init” the sequence by touching the device, “move” the current touch
-location any number of times, and finally “destroy” the sequence by ceasing
-to touch the device. The init and destroy stage of this sequence are always
-present, while the move stage is optional. Within this document, the term
-"touch sequence" is used to describe the above chain of events. In the this
-protocol, the init stage is represented by a touch begin event, then move stage
-is represented by a touch update event, and the destroy stage is represented by
-a touch end event.
+Touch input follows a three-stage cycle: 
+
+        begin - update - update - ... - end
+
+i.e. “begin” the sequence by touching the device, “update” the current
+touch location or properties any number of times, and finally “end” the
+sequence by ceasing to touch the device.  Within this document, the term
+"touch sequence" is used to describe the above chain of events.
+In the protocol, the three stages are represented with the event
+types TouchBegin, TouchUpdate, and TouchEnd, respectively.
+A touch sequence always generates TouchBeing and TouchEnd events. It may
+generate TouchUpdate events.
 
 Touch sequences may send events to multiple clients in parallel. At any given
 time, only one client is in control of the touch sequence and is referred to as
