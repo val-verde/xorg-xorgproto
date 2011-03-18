@@ -429,14 +429,11 @@ FIXME:
 5.3.1 Pointer event handling for indirect touch devices
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Indirect touch devices are expected to generate pointer events. In contrast with
-direct touch devices, as stated below, the server will not generate pointer
-events on behalf of indirect touch devices. Further, pointer events from
-indirect touch devices are delivered independently of touch events.
-
-DependentTouch and SemiMultitouch devices may generate pointer events by mapping
-one touch sequence to the pointer. In these cases, events for both the pointer
-and its associated touch sequence will have the PointerEmulated flag set.
+Indirect touch devices are expected to generate pointer events and no
+pointer emulation is performed. However, the pointer event may be generate
+in the driver by mapping one touch sequence to the pointer. In these cases,
+events for both the pointer and its associated touch sequence will have the
+PointerEmulated flag set.
 
 When the cursor of an attached master pointer of an indirect device leaves the
 window of a touch grab or selection, or when a client activates a pointer grab
