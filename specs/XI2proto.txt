@@ -216,8 +216,29 @@ to P is only attempted if neither the XI event, nor the core event has been
 delivered on W. Once an event has been delivered as either XI or core event,
 event processing stops.
 
-4.4 Touch device support
-~~~~~~~~~~~~~~~~~~~~~~~~
+4.4. The ClientPointer principle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Many core protocol and some extension requests are ambiguous when multiple
+master devices are available (e.g. QueryPointer does not specfy which pointer).
+The X server does not have the knowledge to chose the contextually correct
+master device. For each client, one master pointer is designated as this
+clients's "ClientPointer". Whenever a client sends an ambiguous request (e.g.
+QueryPointer), the ClientPointer or the keyboard paired with the ClientPointer
+is chosen to provide the data for this request.
+
+This ClientPointer may be explicitly assigned to a client with the
+SetClientPointer call. If no ClientPointer is set when a client issues an
+ambiguous request, the server choses one device as the ClientPointer. The
+method of chosing a ClientPointer from the available master pointers is
+implementation-specific.
+
+If the master pointer currently set as ClientPointer for one or more clients is
+removed, the server may either unset the ClientPointer setting or change the
+ClientPointer to a different master pointer.
+
+5 Touch device support
+----------------------
 
 Touch event processing differs from normal event processing in a few ways,
 most notably in that touch events are processed partially out-of-band from
