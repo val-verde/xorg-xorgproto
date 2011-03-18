@@ -449,51 +449,65 @@ withheld.
 5.3.2 Pointer emulation for direct touch devices
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In order to facilitate backwards compatibility with legacy clients, direct touch
-devices will emulate pointer events. Pointer emulation events will only be
-delivered through the attached master device; no pointer events will be emulated
-for floating touch devices. Further, only one touch from any attached slave
-direct touch device may be emulated per master device at any time.
+Touch sequences from direct touch devices may emulation pointer events. Only
+one touch sequence from a device may emulate pointer events at a time. Which
+touch sequence emulates pointer events is implementation dependent.
+
+FIXME:
+    Pointer emulation events will only be delivered through the attached
+    master device; no pointer events will be emulated for floating touch
+    devices.
+  why?
 
 Pointer events are emulated as follows:
 
-* Touch begin events generate a pointer motion event to the location of the
+- TouchBegin events generate a pointer motion event to the location of the
   touch, followed by a button press event for button 1.
-* Touch update events generate a pointer motion event to update the location
+- TouchUpdate events generate a pointer motion event to update the location
   of the touch.
-* Touch end events generate a pointer motion event to the location of the touch
+- TouchEnd events generate a pointer motion event to the location of the touch
   if the touch has moved, followed by a button release event for button 1.
 
-A touch sequence may only be owned by one client at a time. When pointer events
-are emulated from a touch sequence and delivered through a pointer grab, the
-grabbing client implicitly becomes the owner of the touch sequence.
+If a touch sequence emulates pointer events and an emulated pointer event
+triggers the activation of a passive grab, the grabbing client becomes the
+owner of this touch sequence.
 
-A pointer grabbing client is considered to have accepted ownership of the touch
-sequence when the following occurs:
+The touch sequences is considered to have been accepted if
 
-* The emulated button press event is delivered through an asynchronous grab.
-* The emulated button press event is delivered through a synchronous grab and
-  further events are allowed through to the grabbing client.
-* The emulated button press event is delivered through a synchronous grab and
-  then the grab is deactivated without replaying the button press event.
+- the grab mode is asynchronous, or
+- the grab mode is synchronous and the device is thawed as a result of
+  AllowEvents with any mode but ReplayPointer or ReplayDevice, or
+- the grab mode is synchronous and the device remains frozen as a result of
+  AllowEvents with mode SyncPointer or SyncDevice
 
-Touch and pointer grabs are mutually exclusive. For a given window, any touch
-grab is activated first. If there is no touch grab or the touch grab is
-rejected, any pointer grab is activated. If there is a pointer grab and the
-grabbing client accepts ownership of the touch sequence as outlined above, the
-touch sequence is ended for all other clients listening for touch events.
-Otherwise, if there is no pointer grab or the grabbing client replays the
-pointer events without accepting the touch sequence, the next window in the
-window set is checked for grabs.
+Otherwise, if the button press is replayed by the client, the touch sequence
+is considered to be rejected.
 
-If the touch sequence is not accepted by any client through a grab, the touch
-and emulated pointer events may be delivered to a client selecting for them.
-Event propagation for the touch sequence ends at the first client selecting for
-touch or pointer events. If a window has both touch and pointer event
-selections, only the touch events will be delivered.
+Touch event delivery precedes pointer event delivery. A touch event event
+emulating pointer events is delivered
 
-Both the emulated pointer events and their associated touch events will have the
-PointerEmulated flag set.
+- as a touch event to the top-most window of the current window set if a
+  client has a touch grab on this window
+- otherwise, as a pointer event to the top-most window of the current window
+  set if a client has a pointer grab on this window,
+- otherwise, to the next window in the window set as in the same order as
+  until a grab has been found,
+
+If no touch or pointer grab on any window was activated and the last window
+in the window set has been reached, the event is delivered
+
+- as a touch event to the window if a client has selected for touch events
+  on this window
+- otherwise, as a pointer event to the window if a client has selected for
+  pointer events.
+
+This sequence is repeated from the current window if the current owner of
+the sequence rejects the sequence.
+
+FIXME
+    Both the emulated pointer events and their associated touch events will
+    have the PointerEmulated flag set.
+  huh? we never get both events anyway
 
 //                            ❧❧❧❧❧❧❧❧❧❧❧
 
