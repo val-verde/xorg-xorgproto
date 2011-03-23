@@ -857,9 +857,10 @@
 
                    GetDeviceDontPropagateList
                            window: WINDOW
-                           Errors: Window
                    =>
                            dont-propagate-list: LISTofEVENTCLASS
+
+   Errors: Window
 
    This function returns a list specifying the events that are not
    propagated to the ancestors of the specified window.
@@ -989,9 +990,10 @@
 
                    ChangeKeyboardDevice
                            device: DEVICE
-                           Errors: Device, Match
                    =>
                            status: Success, AlreadyGrabbed, Frozen
+
+   Errors: Device, Match
 
    To change the X pointer device, use the ChangePointerDevice
    request. The specified device must support input class
