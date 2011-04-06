@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([AppleWMProto], [1.4.1], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
+AC_INIT([AppleWMProto], [1.4.2], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 AM_MAINTAINER_MODE
 
