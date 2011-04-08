@@ -36,7 +36,7 @@
    See commit libXi-1.4.2-21-ge8531dd */
 
 #define XI_2_Major                              2
-#define XI_2_Minor                              0
+#define XI_2_Minor                              1
 
 /* Property event flags */
 #define XIPropertyDeleted                       0
