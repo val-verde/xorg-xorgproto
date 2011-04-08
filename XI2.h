@@ -25,6 +25,12 @@
 #ifndef _XI2_H_
 #define _XI2_H_
 
+#warning "XI 2.1 is not stable yet."
+#warning "Applications relying on this header will break as the protocol sees updates."
+#ifndef XINPUT2_1_USE_UNSTABLE_PROTOCOL
+#error "Define XINPUT2_1_USE_UNSTABLE_PROTOCOL to disable this error"
+#endif
+
 #define XI_2_Major                              2
 #define XI_2_Minor                              0
 #define XI_2_1_Minor                            1
