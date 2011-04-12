@@ -34,6 +34,12 @@ used on applications employing the core protocol. XI2 addresses both of these
 issues by enabling devices to be both extended and core devices and providing
 device information in each event (with the exception of core events).
 
+2.1 Changes
+-----------
+Changes introduced by version 2.1
+
+- RawEvents are sent regardless of the grab state.
+
 //                            ❧❧❧❧❧❧❧❧❧❧❧
 
 2. Notations used in this document
@@ -1600,8 +1606,12 @@ transformed data as used in the server. Transformations include, but are
 not limited to, axis clipping and acceleration.
 Transformed valuator data may be equivalent to raw data. In this case,
 both raw and transformed valuator data is provided.
-RawEvents are sent exclusively to all root windows or to the client
-that grabbed the device only.
+RawEvents are sent exclusively to all root windows.
+Clients supporting XI 2.0 receive raw events when the device is not grabbed,
+or when the device is grabbed by the client but not when the device is
+grabbed by another client.
+Clients supporting XI 2.1 or later receive raw events at all times, even
+when the device is grabbed by another client.
 
     eventtype
         The type of event that occured on the device.
