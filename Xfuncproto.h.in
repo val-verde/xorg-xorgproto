@@ -124,7 +124,7 @@ in this Software without prior written authorization from The Open Group.
 
 /* C99 keyword "inline" or equivalent extensions in pre-C99 compilers */
 #if defined(inline) /* assume autoconf set it correctly */ || \
-   (defined(__STDC__) && (__STDC_VERSION__ - 0 >= 199901L)) /* C99 */ || \
+   (defined(__STDC_VERSION__) && (__STDC_VERSION__ - 0 >= 199901L)) /* C99 */ || \
    (defined(__SUNPRO_C) && (__SUNPRO_C >= 0x550))
 # define _X_INLINE inline
 #elif defined(__GNUC__) && !defined(__STRICT_ANSI__) /* gcc w/C89+extensions */
@@ -136,7 +136,7 @@ in this Software without prior written authorization from The Open Group.
 /* C99 keyword "restrict" or equivalent extensions in pre-C99 compilers */
 #ifndef _X_RESTRICT_KYWD
 # if defined(restrict) /* assume autoconf set it correctly */ || \
-   (defined(__STDC__) && (__STDC_VERSION__ - 0 >= 199901L)) /* C99 */
+   (defined(__STDC_VERSION__) && (__STDC_VERSION__ - 0 >= 199901L)) /* C99 */
 #  define _X_RESTRICT_KYWD  restrict
 # elif defined(__GNUC__) && !defined(__STRICT_ANSI__) /* gcc w/C89+extensions */
 #  define _X_RESTRICT_KYWD __restrict__
