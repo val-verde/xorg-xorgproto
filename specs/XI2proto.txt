@@ -131,10 +131,10 @@ respectively.
 Invisibility of Master Devices
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-XI 1.x was not designed with support for multiple master devices (see Section
-4). As a result, only the first master pointer and master keyboard are visible
-to XI 1.x clients, all other master devices are invisible and cannot be
-accessed from XI 1.x calls.
+XI 1.x was not designed with support for multiple master devices (see the
+<<hierachy,Master/Slave device hierachy>> section). As a result, only the first
+master pointer and master keyboard are visible to XI 1.x clients; all other
+master devices are invisible and cannot be accessed from XI 1.x calls.
 
 
 [[hierachy]]
@@ -225,11 +225,11 @@ ClientPointer to a different master pointer.
 Touch device support
 --------------------
 
-Touch event processing differs from normal event processing in a few ways,
-most notably in that touch events are processed partially out-of-band from
-pointer and keyboard events (see section 4.4.5) and in that
-touch events may be sent to multiple clients simultaneously (see sections
-5.1.1 and 5.1.2).
+Touch event processing differs from normal event processing in a few ways.
+The most notable are that touch events are processed partially out-of-band from
+pointer and keyboard events, and in that touch events may be sent to multiple
+clients simultaneously; the
+<<multitouch-processing,touch event processing>> section has more details.
 
 [[multitouch-lifecycle]]
 Touch event sequences
@@ -1065,8 +1065,8 @@ is returned.
                   length:     CARD16
                   deviceid:   DEVICEID }
 
-XIChangeHierarchy allows a client to modify the MD/SD device
-hierarchy (see Section 4).
+XIChangeHierarchy allows a client to modify the
+<<hierachy,MD/SD device hierarchy>>.
 
     num_changes
         The number of changes to apply to the current hierarchy.
@@ -1487,8 +1487,9 @@ on the specified input device.
             releasing XIAllowEvents request or until the device grab is
             released. Actual device input events are not lost while the device
             is frozen; they are simply queued for later processing.
-            Must be Asynchronous for GrabtypeTouchBegin and
-            GrabtypeTouchObserve (see section 4.4).
+            Must be Asynchronous for
+            <<multitouch-processing,GrabtypeTouchBegin>> and
+            <<multitouch-observer,GrabtypeTouchObserve>>.
         mask_len
             Length of mask in 4 byte units.
         mask
@@ -1549,7 +1550,7 @@ device is actively grabbed if:
           does not exist on an ancestor of grab_window.
 
 Or if grab_type is GrabtypeTouchBegin or GrabtypeTouchObserve, a
-touch grab (see section 4.4) begins if:
+touch grab begins if:
 
 - a touch begins in grab_window or one of its ancestors, and
 - the specified modifier keys are down
@@ -2288,73 +2289,67 @@ XI 2.1 Use-cases
 All use-cases that include the receiving and processing of touch events
 require the client to announce XI 2.1 support in the XIQueryVersion request.
 
-- Client C wants to process touch events from a device D on window W.
-    - C calls XISelectEvent for
-      XI_Touch{Begin|Update|End} from D on W.
-    - C receives TouchBegin whenever a touch sequence starts within
-      W's borders.
-    - C receives TouchUpdate events whenever a touch axis valuator value
-      changes for a touch sequence it received a TouchBegin event for.
-    - C receives TouchEnd whenever a touch it received a TouchBegin event
-      for ceases.
+* Client C wants to process touch events from a device D on window W.
+** C calls XISelectEvent for XI_Touch{Begin|Update|End} from D on W.
+** C receives TouchBegin whenever a touch sequence starts within W's borders.
+** C receives TouchUpdate events whenever a touch axis valuator value changes
+   for a touch sequence it received a TouchBegin event for.
+** C receives TouchEnd whenever a touch it received a TouchBegin event for
+   ceases.
 
-- Client C wants to pre-process touch events from a device D on window W, while
+* Client C wants to pre-process touch events from a device D on window W, while
   client I wants to pre-process touch events from device D on the parent window
   of W.
-    - C calls XISelectEvent for
-      XI_Touch{Begin|Update|Ownership|End} from D on W.
-    - I calls XIPassiveGrab for
-      XI_Touch{Begin|Update|Ownership|End} from D on a parent
-      window of W.
-    - I receives TouchBegin whenever a touch begins within window W, as well
-      as a TouchOwnership event indicating that it currently owns the touch
-      sequence.  C receives a TouchBegin event as well, but without
-      TouchOwnership.
-    - When a touch axis valuator changes in this touch sequence, both I and C
-      receive a TouchUpdate event.  I may process the event to determine if it
-      is going to accept or reject the touch, whereas C may perform reversible
-      processing.
-    - If I decides it is going to claim the touch sequence for its exclusive
-      processing, it calls XIAllowTouchEvents with the XITouchAccept flag set;
-      at this point, C receives a TouchEnd event, and undoes any processing it
-      has already performed due to the touch sequence.  Further TouchUpdate
-      events are delivered only to I.
-    - Alternatively, if I decides it does not want to receive further events
-      from this touch sequence, it calls XIAllowTouchEvents with the
-      XITouchReject flag set; at this point, I receives a TouchEnd event
-      confirming that it has rejected the touch.  C receives a TouchOwnership
-      event confirming that it is now the new owner of the touch, and further
-      TouchUpdate events are delivered only to C.  As C now owns the touch,
-      it is free to perform irreversible processing of the sequence.
-    - When the touch physically ceases, a TouchEnd event is sent to C.
+** C calls XISelectEvent for XI_Touch{Begin|Update|Ownership|End} from D on W.
+** I calls XIPassiveGrab for XI_Touch{Begin|Update|Ownership|End} from D on a
+   parent window of W.
+** I receives TouchBegin whenever a touch begins within window W, as well as a
+   TouchOwnership event indicating that it currently owns the touch sequence.
+   C receives a TouchBegin event as well, but without TouchOwnership.
+** When a touch axis valuator changes in this touch sequence, both I and C
+   receive a TouchUpdate event.  I may process the event to determine if it is
+   going to accept or reject the touch, whereas C may perform reversible
+   processing.
+** If I decides it is going to claim the touch sequence for its exclusive
+   processing, it calls XIAllowTouchEvents with the XITouchAccept flag set; at
+   this point, C receives a TouchEnd event, and undoes any processing it has
+   already performed due to the touch sequence.  Further TouchUpdate events are
+   delivered only to I.
+** Alternatively, if I decides it does not want to receive further events
+   from this touch sequence, it calls XIAllowTouchEvents with the XITouchReject
+   flag set; at this point, I receives a TouchEnd event confirming that it has
+   rejected the touch.  C receives a TouchOwnership event confirming that it is
+   now the new owner of the touch, and further TouchUpdate events are delivered
+   only to C.  As C now owns the touch, it is free to perform irreversible
+   processing of the sequence.
+** When the touch physically ceases, a TouchEnd event is sent to C.
 
-- Client C wants to pre-process touch events from a direct touch device D on
+* Client C wants to pre-process touch events from a direct touch device D on
   window W, while client I wants to process pointer events on window W's parent,
   window Y.
-    - I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease} to
-      create a synchronous pointer grab from D on Y.
-    - C calls XISelectEvent for
-      XI_Touch{Begin|Update|Ownership|End} from D on W.
-    - I receives a ButtonPress event whenever a touch begins within W, and is
-      considered the owner of the event.  C receives a TouchBegin event, but
-      does not receive a TouchOwnership event.
-    - When the touchpoint moves, C will receive a TouchUpdate event.  Event
-      delivery to I is be subject to the synchronous delivery mechanism. The
-      emulated motion notify event is queued in the server while the device is
-      frozen.
-    - I may assert ownership by calling XIAllowEvents on Y with any mode other
-      than ReplayDevice, which will cause all further events to be sent only to
-      I, with a TouchEnd event being sent to C.
-    - Alternatively, I may reject the touch sequence by calling XIAllowEvents on
-      Y with mode ReplayDevice, which will cause no further events from that
-      touch to be sent to I, and a TouchOwnership event to be sent to C, with
-      subsequent motion events being sent as TouchUpdate events.
+** I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease} to
+   create a synchronous pointer grab from D on Y.
+** C calls XISelectEvent for XI_Touch{Begin|Update|Ownership|End} from D on W.
+** I receives a ButtonPress event whenever a touch begins within W, and is
+   considered the owner of the event.  C receives a TouchBegin event, but does
+   not receive a TouchOwnership event.
+** When the touchpoint moves, C will receive a TouchUpdate event.  Event
+   delivery to I is be subject to the synchronous delivery mechanism. The
+   emulated motion notify event is queued in the server while the device is
+   frozen.
+** I may assert ownership by calling XIAllowEvents on Y with any mode other
+   than ReplayDevice, which will cause all further events to be sent only to I,
+   with a TouchEnd event being sent to C.
+** Alternatively, I may reject the touch sequence by calling XIAllowEvents on
+   Y with mode ReplayDevice, which will cause no further events from that touch
+   to be sent to I, and a TouchOwnership event to be sent to C, with subsequent
+   motion events being sent as TouchUpdate events.
 
--  Driver DRV provides touch support from tracked device D:
-    - DRV initializes a TouchClass for the device and a TouchAxisClass for
-      each axis available on the device.
-    - DRV parses D's device protocol and selects one touch sequence to be
-      emulated as pointer event.
-    - DRV calls the respective input driver API with the touch sequence
-      data. The touch sequence emulating a pointer has the respective flag
-      set. DRV does not submit pointer data for any touchpoint.
+*  Driver DRV provides touch support from tracked device D:
+** DRV initializes a TouchClass for the device and a TouchAxisClass for each
+   axis available on the device.
+** DRV parses D's device protocol and selects one touch sequence to be emulated
+   as pointer event.
+** DRV calls the respective input driver API with the touch sequence data. The
+   touch sequence emulating a pointer has the respective flag set. DRV does not
+   submit pointer data for any touchpoint.
