@@ -3,6 +3,20 @@ The X Input Extension
 :toc:
 :numbered:
 
+.This is a work in progress!
+*****************************************************************************
+While XI 2.0 is final and widely deployed, XI 2.1 is still a work in progress;
+the protocol is not final and is subject to change at any time. While testing
+and feedback is strongly encouraged and very much welcome, please be aware that
+any part of the XI 2.1 additions may change from underneath you. We strongly
+recommend against deploying it in production for this reason.
+
+Developing against XI 2.1 requires passing the --enable-unstable-protocol
+argument when building inputproto, and additionally defining
+XINPUT2_1_USE_UNSTABLE_PROTOCOL when building your applications. I'm sure you
+get the point by now, so I promise not to mention it again.
+*****************************************************************************
+
 Authors:
 
 - Peter Hutterer (Red Hat) <peter.hutterer@redhat.com>
