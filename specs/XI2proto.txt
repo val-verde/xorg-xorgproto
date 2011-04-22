@@ -339,21 +339,16 @@ touch sequence ceases on the device, even if the current owner of the
 sequence accepts the sequence.
 
 
-FIXME:
+
+**************************************************************************
+[red yellow-background]*FIXME*
+
 - can we have more than one TouchObserve on a device/window combination
   then?
 - it's impossible to observe and still become the owner
 - having GrabtypeTouchObserve seems rather broken. if all we want to do is
   observe, then why not use RawEvents or something similar?
-
-FIXME:
-Only one client may select, and only one client may grab, touch events for a
-physical device on a window. As an example, selecting for AllDevices will
-protocollkrevent any other client from selecting for touch events for any device on the
-same window. When a slave device is attached to a master device, any selections
-on any windows for touch events for the slave device ID will be canceled.
-Clients selecting for individual slave devices are suggested to select for
-HierarchyChanged events to be notified when this occurs.
+**************************************************************************
 
 [[multitouch-device-modes]]
 Touch device modes
@@ -411,10 +406,15 @@ A window set is calculated on TouchBegin and remains constant until the end
 of the sequence Modifications to the window hierarchy, new grabs or changed
 event selection do not affect the window set.
 
-FIXME:
-    No touches from an indirect device may begin while the device is
-    floating, as it does not have an associated pointer position to focus
-    events. [incorrect, remove it? why would it matter]
+**************************************************************************
+[red yellow-background]*FIXME*
+
+No touches from an indirect device may begin while the device is
+floating, as it does not have an associated pointer position to focus
+events.
+
+incorrect, remove it? why would it matter?
+**************************************************************************
 
 
 [[multitouch-emulation-indirect]]
@@ -446,11 +446,15 @@ Touch sequences from direct touch devices may emulation pointer events. Only
 one touch sequence from a device may emulate pointer events at a time. Which
 touch sequence emulates pointer events is implementation dependent.
 
-FIXME:
-    Pointer emulation events will only be delivered through the attached
-    master device; no pointer events will be emulated for floating touch
-    devices.
-  why?
+**************************************************************************
+[red yellow-background]*FIXME*
+
+Pointer emulation events will only be delivered through the attached
+master device; no pointer events will be emulated for floating touch
+devices.
+
+why?
+**************************************************************************
 
 Pointer events are emulated as follows:
 
@@ -497,10 +501,14 @@ in the window set has been reached, the event is delivered
 This sequence is repeated from the current window if the current owner of
 the sequence rejects the sequence.
 
-FIXME
-    Both the emulated pointer events and their associated touch events will
-    have the PointerEmulated flag set.
-  huh? we never get both events anyway
+**************************************************************************
+[red yellow-background]*FIXME*
+
+Both the emulated pointer events and their associated touch events will
+have the PointerEmulated flag set.
+
+huh? we never get both events anyway.
+**************************************************************************
 
 
 [[glossary-notations]]
