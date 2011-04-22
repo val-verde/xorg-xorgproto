@@ -1,25 +1,24 @@
 The X Input Extension
 =====================
+:toc:
+:numbered:
 
-                                Version 2.0
-                                Version 2.1
+Authors:
 
-                              Peter Hutterer
-                         peter.hutterer@redhat.com
-                               Red Hat, Inc.
+- Peter Hutterer (Red Hat) <peter.hutterer@redhat.com>
+- Daniel Stone (Collabora Ltd.) <daniel@fooishbar.org>
+- Chase Douglas (Canonical, Ltd.) <chase.douglas@canonical.com>
 
-                               Daniel Stone
-                           daniel@fooishbar.org
-                              Collabora, Ltd.
+[[history]]
+History 
+-------
 
-                              Chase Douglas
-                        chase.douglas@canonical.com
-                              Canonical, Ltd.
+- v2.1, ?? 2011: Multitouch support added
+- v2.0, October 2009: Initial release of XI2 protocol
 
-
-
-1. Introduction
----------------
+[[intro-xi20]]
+Introduction
+------------
 
 The X Input Extension version 2.0 (XI2) is the second major release of the X
 Input Extension.
@@ -43,89 +42,54 @@ used on applications employing the core protocol. XI2 addresses both of these
 issues by enabling devices to be both extended and core devices and providing
 device information in each event (with the exception of core events).
 
-1.1 X Input Extension version 2.1 (XI 2.1)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[intro-xi21]]
+X Input Extension version 2.1 (XI 2.1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 XI 2.1 introduces support for multi-touch devices. The traditional
 pointer/keyboard approach enforced by XI 2.0 with the master/slave device
 hierarchy is not always suitable for multi-touch devices that can provide a
-dynamic number of multiple independent input points per physical device.
-Furthermore, as such devices are often direct input devices (e.g. touchscreens,
-able to focus without a pointer), the virtual abstraction of master devices is
-not always necessary.
+dynamic number of touchpoints per physical device; it is not known without
+client-specific interpretation whether the touchpoints must be considered
+separately or grouped together.
 
 The additions in XI 2.1 aim to:
 
 - support a dynamic number of simultaneous touch points,
 - support devices that are both multi-touch and traditional pointer devices,
-- while supporting pre-XI2.1 clients through emulation of XInput and core
+- allow touchpoints to be either grouped together or handled separately,
+- while supporting pre-XI2.1 clients through emulation of XI2.0/XI1.x and core
   pointer events.
 
 XI 2.1 caters for two modes of touch input devices:
 
-- direct multi-touch input devices such as touch screens. These devices
-  provide independent touchpoints that can occur anywhere on the screen and
-  are usually the result of direct touch interaction.
-- indirect touch input devices such as multi-touch trackpads. These devices
-  provide independent touchpoints that may need to be interpreted
-  relative to the current position of the pointer on that same device. Such
-  interactions are usually the result of a gesture performed on the device.
+- 'direct' multi-touch input devices such as touchscreens. These devices
+  provide independent touchpoints that can occur anywhere on the screen;
+  'direct' here refers to the user manipulating objects as they appear,
+  e.g. touching an object and physically moving it.
+- 'indirect' touch input devices such as multi-touch trackpads and mice with
+  additional touch surfaces. These devices provide independent touchpoints that
+  often need to be interpreted relative to the current position of the cursor
+  on that same device. Such interactions are usually the result of a gesture
+  performed on the device, rather than direct manipulation.
 
-A device may change its touch mode at runtime. Clients are informed which
-type of touch device they are dealing with. See XIQueryDevice for more
-information.
+Touch events are only available to clients supporting version 2.1 or later of
+the X Input Extension. Clients must use the XIQueryVersion request to announce
+support for this version. Touch devices may generate emulated pointer events
+alongside XI 2.1 touch events to support older clients; see the
+<<multitouch-processing,touch event delivery>> section.
 
-Touch device support is only available to clients supporting version 2.1 or
-later of the X Input Extension. Clients must use the XIQueryVersion request to
-announce support of this version.
 
-XI 2.1 requires devices to track touch points over time. Devices that cannot
-do so in hardware must employ software trackers to be usable with XI 2.1.
-
-//                            ❧❧❧❧❧❧❧❧❧❧❧
-
-2. Notations used in this document
-----------------------------------
-
-Notation for requests:
-
-    ┌───
-        Name of request
-            name of request field:       type of request field
-            name of request field:       type of request field
-            ▶
-            name of reply field:         type of reply field
-    └───
-
-Notation for events:
-
-    ┌───
-        Name of event
-            name of field:               type of field
-            name of field:               type of field
-    └───
-
-Complex fields are specified in the following notation:
-
-          name of field:                  COMPLEXFIELDTYPE
-
-or, if multiple of these fields exist:
-
-          name of field:                  LISTofCOMPLEXFIELDTYPE
-
-    COMPLEXFIELDTYPE:  { name of subfield:   type of subfield,
-                         name of subfield:   type of subfield }
-
-//                            ❧❧❧❧❧❧❧❧❧❧❧
-
-3. Interoperability between version 1.x and 2.0
------------------------------------------------
+[[interop-xi1]]
+Interoperability between version 1.x and 2.0
+--------------------------------------------
 
 There is little interaction between 1.x and 2.x versions of the X Input
 Extension. Clients are requested to avoid mixing XI1.x and XI2 code as much as
 possible. Several direct incompatibilities are observable:
 
-3.1 Limitations resulting from different variable ranges
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[interop-xi1-limitations]]
+Limitations resulting from different variable ranges
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 XI2 provides a larger range for some fields than XI1. As a result, XI1 clients
 may not receive data an XI2 client receives.
@@ -139,8 +103,9 @@ These fields include:
   will not receive events until the pixel boundary is crossed.
 
 
-3.2 Blocking of grabs
-~~~~~~~~~~~~~~~~~~~~~
+[[interop-xi1-grabs]]
+Blocking of grabs
+~~~~~~~~~~~~~~~~~
 
 XI1 grabs are different to XI2 grab and a device may not be grabbed through an
 XI2 grab if an XI1 grab is currently active on this device or vice versa.
@@ -148,24 +113,26 @@ Likewise, a keycode or button already grabbed by an XI 1.x or XI2 client may
 not be grabbed with the same modifier combination by an XI2 or XI 1.x client,
 respectively.
 
-3.3 Invisibility of Master Devices
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[interop-xi1-device-list]]
+Invisibility of Master Devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 XI 1.x was not designed with support for multiple master devices (see Section
 4). As a result, only the first master pointer and master keyboard are visible
 to XI 1.x clients, all other master devices are invisible and cannot be
 accessed from XI 1.x calls.
 
-//                            ❧❧❧❧❧❧❧❧❧❧❧
 
-4. The Master/Slave device hierarchy
-------------------------------------
+[[hierachy]]
+The Master/Slave device hierarchy
+---------------------------------
 
 XI2 introduces a device hierarchy split up into so-called Master Devices (MD)
 and Slave Devices (SD).
 
-4.1 Master devices
-~~~~~~~~~~~~~~~~~~
+[[hierachy-master]]
+Master devices
+~~~~~~~~~~~~~~
 An MD is a virtual device created and managed by the server. MDs may send core
 events and XI events. However, an MD does not represent a physical device and
 relies on SDs for event generation. MDs come in two forms: as master pointers
@@ -177,8 +144,9 @@ versa, and this pairing is constant for the lifetime of both input devices.
 Clients can use this pairing behaviour to implement input paradigms that
 require pointer and keyboard interation (e.g. SHIFT + Click).
 
-4.2 Slave devices
-~~~~~~~~~~~~~~~~~
+[[hierachy-slave]]
+Slave devices
+~~~~~~~~~~~~~
 An SD is usually a physical device configured in the server. SDs are not
 represented by a cursor or keyboard focus and may be attached to a master
 pointer or master keyboard. SDs can only be attached to any master of the same
@@ -196,8 +164,9 @@ If an event is generated by an SD
   Both the sprite and the focus must be managed explicitly by the client
   program.
 
-4.3 Event processing for attached slave devices
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[hierachy-dcce]]
+Event processing for attached slave devices
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Whenever an SD changes its logical state,
 
@@ -216,8 +185,9 @@ to P is only attempted if neither the XI event, nor the core event has been
 delivered on W. Once an event has been delivered as either XI or core event,
 event processing stops.
 
-4.4. The ClientPointer principle
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[clientpointer]]
+The ClientPointer principle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Many core protocol and some extension requests are ambiguous when multiple
 master devices are available (e.g. QueryPointer does not specfy which pointer).
@@ -237,8 +207,9 @@ If the master pointer currently set as ClientPointer for one or more clients is
 removed, the server may either unset the ClientPointer setting or change the
 ClientPointer to a different master pointer.
 
-5 Touch device support
-----------------------
+[[multitouch]]
+Touch device support
+--------------------
 
 Touch event processing differs from normal event processing in a few ways,
 most notably in that touch events are processed partially out-of-band from
@@ -246,8 +217,9 @@ pointer and keyboard events (see section 4.4.5) and in that
 touch events may be sent to multiple clients simultaneously (see sections
 5.1.1 and 5.1.2).
 
-5.1 Touch event sequences
-~~~~~~~~~~~~~~~~~~~~~~~~~
+[[multitouch-lifecycle]]
+Touch event sequences
+~~~~~~~~~~~~~~~~~~~~~
 
 Touch input follows a three-stage cycle:
 
@@ -299,8 +271,9 @@ If the touch sequence ends while the client is the owner of the touch
 sequence, the client receives a TouchEnd event. The client must accept or
 reject the sequence nonetheless.
 
-5.1.1 Ownership of touch sequences
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[multitouch-ownership]]
+Ownership of touch sequences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clients may opt for touch events to be delivered before they become the
 owner of the touch sequence. In this case, the logical state state of the
@@ -336,8 +309,9 @@ the current owner rejects the sequence, the client may become
 the owner of the touch sequence and receive a TouchOwnership event and a
 TouchEndEvent.
 
-5.1.2 Observing touch sequences
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[multitouch-observer]]
+Observing touch sequences
+^^^^^^^^^^^^^^^^^^^^^^^^^
 A client that is the current owner of the sequence and rejects the sequence
 with TouchObserve will not be sent a TouchEnd event immediately. Instead,
 this client continues to receive touch events as they occur on the device.
@@ -367,8 +341,9 @@ on any windows for touch events for the slave device ID will be canceled.
 Clients selecting for individual slave devices are suggested to select for
 HierarchyChanged events to be notified when this occurs.
 
-5.2 Touch device modes
-~~~~~~~~~~~~~~~~~~~~~~
+[[multitouch-device-modes]]
+Touch device modes
+~~~~~~~~~~~~~~~~~~
 
 Touch devices come in many different forms with varying capabilities. The
 following device modes are defined for this protocol:
@@ -399,12 +374,14 @@ SemiMultitouch:
     Although DirectTouch and IndependentPointer devices may also be
     SemiMultitouch devices, such devices are not allowed through this protocol.
 
-A device is identified as only one of the device modes above at any time. For
-the purposes of this protocol document, indirect touch devices refers to
-DependentTouch, IndependentPointer, and SemiMultitouch devices.
+A device is identified as only one of the device modes above at any time, and
+the touch mode may change at any time. For the purposes of this protocol
+document, indirect touch devices refers to DependentTouch, IndependentPointer,
+and SemiMultitouch devices.
 
-5.3 Touch event delivery
-~~~~~~~~~~~~~~~~~~~~~~~~
+[[multitouch-processing]]
+Touch event delivery
+~~~~~~~~~~~~~~~~~~~~
 
 For direct touch devices, the window set for event propagation is the set of
 windows from the root window to the child in which the touch sequence
@@ -426,8 +403,9 @@ FIXME:
     events. [incorrect, remove it? why would it matter]
 
 
-5.3.1 Pointer event handling for indirect touch devices
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[multitouch-emulation-indirect]]
+Pointer event handling for indirect touch devices
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Indirect touch devices are expected to generate pointer events and no
 pointer emulation is performed. However, the pointer event may be generate
@@ -446,8 +424,9 @@ touches that have changed position or properties since the touch began. No event
 will be delivered for touches that began and ended while touch events were
 withheld.
 
-5.3.2 Pointer emulation for direct touch devices
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[multitouch-emulation-direct]]
+Pointer emulation for direct touch devices
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Touch sequences from direct touch devices may emulation pointer events. Only
 one touch sequence from a device may emulate pointer events at a time. Which
@@ -509,10 +488,44 @@ FIXME
     have the PointerEmulated flag set.
   huh? we never get both events anyway
 
-//                            ❧❧❧❧❧❧❧❧❧❧❧
 
-5. Data types
--------------
+[[glossary-notations]]
+Notations used in this document
+-------------------------------
+
+Notation for requests:
+
+    ┌───
+        Name of request
+            name of request field:       type of request field
+            name of request field:       type of request field
+            ▶
+            name of reply field:         type of reply field
+    └───
+
+Notation for events:
+
+    ┌───
+        Name of event
+            name of field:               type of field
+            name of field:               type of field
+    └───
+
+Complex fields are specified in the following notation:
+
+          name of field:                  COMPLEXFIELDTYPE
+
+or, if multiple of these fields exist:
+
+          name of field:                  LISTofCOMPLEXFIELDTYPE
+
+    COMPLEXFIELDTYPE:  { name of subfield:   type of subfield,
+                         name of subfield:   type of subfield }
+
+
+[[glossary-datatypes]]
+Data types
+----------
 
     BUTTONMASK
             A binary mask defined as (1 << button number).
@@ -552,20 +565,20 @@ FIXME
             A binary mask defined as (1 << valuator number).
             A SETofVALUATORMASK is a binary OR of zero or more VALUATORMASK.
 
-//                            ❧❧❧❧❧❧❧❧❧❧❧
 
-6. Errors
----------
+[[errors]]
+Errors
+------
 
 Errors are sent using core X error reports.
 
     Device
             A value for a DEVICE argument does not specify a valid DEVICE.
 
-//                            ❧❧❧❧❧❧❧❧❧❧❧
 
-7. Requests:
-------------
+[[requests]]
+Requests:
+---------
 
 The server does not guarantee that the length of a reply remains constant in
 future revisions of XI2. A client must always retrieve the exact length of the
@@ -575,8 +588,9 @@ Additional bytes in a request may include data supported in later versions of
 XI2. Clients should ignore this data. Padding bytes in XI2 protocol requests
 are required to be 0.
 
-7.1 Requests introduced in version 2.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[requests-xi20]]
+Requests introduced in version 2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     ┌───
         XIQueryVersion
@@ -776,7 +790,7 @@ client. If no min and max information is available, both must be 0.
     sourceid
         The device this class originates from.
     mode
-        The device type of the touch device.
+        The device type of the touch device.  This mode may change at runtime.
     num_touches
         The maximum number of simultaneous touchpoints the device may send.
         If num_touches is 0, the number of supported touches is unknown or
@@ -1804,8 +1818,9 @@ also occur if an invalid value is given for event_mode.  Any flags not
 understood by the server will be ignored.
 
 
-8. Events:
-----------
+[[events]]
+Events
+------
 
 An event specifies its length in 4-byte units after the initial 32 bytes.
 Future versions of the protocol may provide additional information
@@ -2250,10 +2265,11 @@ is now the owner of the touch sequence specified by touchid.
         A bitmask of flags for this event.
 
 
-//                            ❧❧❧❧❧❧❧❧❧❧❧
-
-Appendix A: XI 2.1 Use-cases
-----------------------------
+// FIXME: why do we get '11. Appendix A:' rather than just 'Appendix A:'?!
+[[xi21-usecases]]
+[appendix]
+XI 2.1 Use-cases
+----------------
 
 All use-cases that include the receiving and processing of touch events
 require the client to announce XI 2.1 support in the XIQueryVersion request.
@@ -2328,5 +2344,3 @@ require the client to announce XI 2.1 support in the XIQueryVersion request.
     - DRV calls the respective input driver API with the touch sequence
       data. The touch sequence emulating a pointer has the respective flag
       set. DRV does not submit pointer data for any touchpoint.
-
-//                            ❧❧❧❧❧❧❧❧❧❧❧
