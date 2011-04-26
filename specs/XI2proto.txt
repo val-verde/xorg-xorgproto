@@ -245,7 +245,7 @@ sequence by ceasing to touch the device.  Within this document, the term
 "touch sequence" is used to describe the above chain of events.
 In the protocol, the three stages are represented with the event
 types TouchBegin, TouchUpdate, and TouchEnd, respectively.
-A touch sequence always generates TouchBeing and TouchEnd events. It may
+A touch sequence always generates TouchBegin and TouchEnd events. It may
 generate TouchUpdate events.
 
 A client must select for TouchBegin, TouchUpdate, and TouchEnd events. A
