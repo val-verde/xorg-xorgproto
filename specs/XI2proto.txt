@@ -244,38 +244,42 @@ touch location or properties any number of times, and finally “end” the
 sequence by ceasing to touch the device.  Within this document, the term
 "touch sequence" is used to describe the above chain of events.
 In the protocol, the three stages are represented with the event
-types TouchBegin, TouchUpdate, and TouchEnd, respectively.
-A touch sequence always generates TouchBegin and TouchEnd events. It may
-generate TouchUpdate events.
+types <<events-deviceevent,TouchBegin>>, <<events-deviceevent,TouchUpdate>>, and
+<<events-deviceevent,TouchEnd>>, respectively.  A touch sequence always
+generates TouchBegin and TouchEnd events, and may also generate TouchUpdate
+events.  Clients must select for all three of these events simultaneously.
 
-A client must select for TouchBegin, TouchUpdate, and TouchEnd events. A
-TouchBegin event is sent to the client with the position information and
-properties of the touch when it began on the touch device.
-Note that the logical state of a device (as seen by means of the
-protocol) may lag the physical state if device event processing is
-affected by grabs. The event timestamp of touch events always represents the
-time the event occurred.
+When a touch starts, clients are sent a <<events-deviceevent,TouchBegin>> event
+detailing the position used to focus the event for delivery, as well as the
+initial properties of the touchpoint.  Note that the logical state of the
+device (as seen through the input protocol) may lag the physical state if event
+processing is affected by grabs.  The event timestamp of touch events always
+represents the time the event occurred.
 
-A TouchUpdate event is sent to the client whenever the position or any other
-property of the touch changes. Note that the server may compress multiple
-TouchUpdate events into one. If compression occurs, the TouchUpdate event
-represents the last state of the touch.
+Whenever the touch position or any other property of the touchpoint changes,
+a <<events-deviceevent,TouchUpdate>> event is sent to the client with the
+updated information (usually new touch co-ordinates).
 
-A TouchEnd event is sent to the client when the touch ceases.
-
-Only one client may select for touch events from a device on a window.
+When the touch has physically ended, or a client will otherwise not receive
+any more events for a given touchpoint, a <<events-deviceevent,TouchEnd>> event
+will be sent.
 
 Passive touch grabs are similar to standard input event grabs in that they
 take precedence over event selections and are searched from the root window
-to the child window. See XIPassiveGrabDevice for more information on passive
-grab activation. When a touch grab activates, the client whose grab
-activates becomes the “owner” of this touch sequence. For all other clients,
-the logical state of a device (as seen by means of the protocol) may now lag
-the physical state.
+to the child window (as opposed to selections, which start their search at the
+child window and continue up to the root window).  When a touch grab activates,
+the client whose grab activates becomes the “owner” of this touch sequence.
+See <<requests-passivegrabdevice,XIPassiveGrabDevice>> for more information on
+passive grab activation.
 
-The owner must either “accept” or "reject" the touch sequence. If a touch
-sequence is rejected, a TouchEnd event is sent to the owner. The touch
-sequence is then re-processed on the next window and a new passive grab may
+Once a grabbing client becomes the owner of a touch, it must either “accept” or
+"reject" the touch sequence using the
+<<request-allowtouchevents,XIAllowTouchEvents request>>. If a touch sequence is
+rejected, a TouchEnd event is sent to the rejecting client, and it will not
+receive any more events for this touch.  The server then looks to the next
+window in the stack for another passive grab, and attempts to pass ownership
+The touch sequence is then re-processed
+on the next window and a new passive grab may
 activate or the sequence may be delivered to the client with an event
 selection. The client who now receives the touch sequence becomes the new
 owner of the touch sequence. If a touch sequence is accepted, the touch
@@ -284,6 +288,10 @@ sequence is exclusively delivered to the current owner.
 If the touch sequence ends while the client is the owner of the touch
 sequence, the client receives a TouchEnd event. The client must accept or
 reject the sequence nonetheless.
+
+Only one client may select for touch events from a given device on a window,
+although some overlapping selections (see the
+<<multitouch-processing,processing section>>) are allowed.
 
 [[multitouch-ownership]]
 Ownership of touch sequences
@@ -614,6 +622,7 @@ are required to be 0.
 Requests introduced in version 2.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+[[requests-queryversion]]
     ┌───
         XIQueryVersion
         major_version:          CARD16
@@ -637,6 +646,7 @@ server supports a version which is compatible with its expectations.
 
 If major_version is less than 2, a BadValue error occurs.
 
+[[requests-querydevice]]
     ┌───
         XIQueryDevice
         DEVICE                  deviceid
@@ -846,6 +856,7 @@ two or more TouchAxisClasses. TouchAxisClasses and AxisClasses are not
 interchangable. A TouchAxisClass may only be part of a touch event,
 whereas an AxisClass may only be part of non-touch events.
 
+[[requests-selectevents]]
     ┌───
         XISelectEvents
             window:         Window
@@ -895,6 +906,7 @@ of the other touch events. If the selection for these touch events overlaps
 a current selection by another client (e.g. selecting for a specific device
 when another client has a selection for XIAllDevices), a BadAccess error occurs.
 
+[[requests-getselectedevents]]
     ┌───
         XIGetSelectedEvents
             window:         Window
@@ -918,6 +930,7 @@ AllMasterDevices and the device-specific mask.
 If num_masks is 0, no events have been selected by this client on the
 given window.
 
+[[requests-querypointer]]
     ┌───
         XIQueryPointer
             window:         Window
@@ -962,6 +975,7 @@ Query a master pointer device for its current position.
 If the device is not a master pointer device or not a floating slave
 pointer, a BadDevice error results.
 
+[[requests-warppointer]]
     ┌───
         XIWarpPointer
             src_win:         Window
@@ -1007,6 +1021,7 @@ far as the closest edge of the confine-to window.
 This request will generate events just as if the user had instantaneously
 moved the pointer.
 
+[[requests-changecursor]]
     ┌───
         XIChangeCursor
             win:             Window
@@ -1038,6 +1053,7 @@ or the device is removed, whichever comes earlier.
 If deviceid does not specify a master pointer, a BadDevice error
 is returned.
 
+[[requests-changehierachy]]
     ┌───
         XIChangeHierarchy
             num_changes:     CARD8
@@ -1145,6 +1161,7 @@ selection will be canceled.
     deviceid
         Deviceid of the slave device.
 
+[[requests-setclientpointer]]
     ┌───
         XISetClientPointer
             win:             Window
@@ -1176,6 +1193,7 @@ BadDevice error is returned.
 If window does not specify a valid window or client ID and is not None, a
 BadWindow error is returned.
 
+[[requests-getclientpointer]]
     ┌───
         XIGetClientPointer
             win:             Window
@@ -1197,6 +1215,7 @@ No difference is made between a ClientPointer set explicitly through
 XISetClientPointer and a ClientPointer implicitly assigned by the server
 in response to an ambiguous request.
 
+[[requests-setfocus]]
     ┌───
         XISetFocus
             focus:           Window
@@ -1227,6 +1246,7 @@ This request has no effect if the specified time is earlier than the
 current last-focus-change time or is later than the current X server time.
 Otherwise, the last-focus-change time is set to the specified time.
 
+[[requests-getfocus]]
     ┌───
         XIGetFocus
             deviceid:        DEVICEID
@@ -1236,6 +1256,7 @@ Otherwise, the last-focus-change time is set to the specified time.
 
 Return the current focus window for the given device.
 
+[[requests-grabdevice]]
     ┌───
         XIGrabDevice
             deviceid:        DEVICEID
@@ -1326,6 +1347,7 @@ This request fails and returns:
 
 To release a grab of a device, use XIUngrabDevice.
 
+[[requests-ungrabdevice]]
     ┌───
         XIUngrabDevice
             deviceid:        DEVICEID
@@ -1348,6 +1370,7 @@ This request generates FocusIn and FocusOut events.
 An XIUngrabDevice is performed automatically if the event window for an
 active device grab becomes not viewable.
 
+[[requests-allowevents]]
     ┌───
         XIAllowEvents:
             deviceid:        DEVICEID
@@ -1442,6 +1465,7 @@ you pass to the event-mode argument:
         paired master device frozen by the client.
         AsyncPair has no effect if deviceid specifies a slave device.
 
+[[requests-passivegrabdevice]]
     ┌───
         XIPassiveGrabDevice
             deviceid:        DEVICE
@@ -1627,6 +1651,7 @@ behave like traditional grabs: in particular, they do not freeze the
 device, and delivery of touch events continues even if the device is
 frozen due to a grab by another client.
 
+[[requests-passiveungrabdevice]]
     ┌───
         XIPassiveUngrabDevice
             deviceid:        DEVICEID
@@ -1658,6 +1683,7 @@ This request has no effect if the client does not have a passive grab
 of the same type, same button or keycode (if applicable) and modifier
 combination on the grab_window.
 
+[[requests-listproperties]]
     ┌───
         XIListProperties
             deviceid:        DEVICEID
@@ -1675,6 +1701,7 @@ List the properties associated with the given device.
         atoms
             All properties on the device.
 
+[[requests-changeproperty]]
     ┌───
         XIChangeProperty
             deviceid:        DEVICEID
@@ -1722,6 +1749,7 @@ property, use XIDeleteProperty.
 
 This request generates an XIPropertyEvent.
 
+[[requests-deleteproperty]]
     ┌───
         XIDeleteProperty
             deviceid:        DEVICEID
@@ -1738,6 +1766,7 @@ Deletes the given property on the given device.
 If the property is deleted, an XIPropertyEvent is generated on the device.
 If the property does not exist, this request does nothing.
 
+[[requests-getproperty]]
     ┌───
         XIGetProperty
             deviceid:        DEVICEID
@@ -1803,8 +1832,13 @@ delete is True and the bytes_after is zero, the property is also
 deleted from the device, and a XIPropertyNotify event is generated on
 the device.  
      
+[[requests-xi21]]
+Requests introduced in version 2.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[requests-allowtouchevents]]
     ┌───
-        XIAllowTouchEvents: (since XI 2.1)
+        XIAllowTouchEvents:
             deviceid:        DEVICEID
             touchid:         CARD32
             event_mode:      ALLOWTOUCHMODE
@@ -1905,6 +1939,11 @@ All events have a set of common fields specified as EVENTHEADER.
         Time in ms when the event occurred.
 
 
+[[events-xi20]]
+Events introduced in version 2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[events-hierachyevent]]
     ┌───
         HierarchyEvent:
             EVENTHEADER
@@ -1952,6 +1991,7 @@ Note: Multiple devices may be affected in one hierarchy change,
 deviceid in an XIHierarchyEvent is always the first affected
 device. Clients should ignore deviceid and instead use the devices list.
 
+[[events-devicechangedevent]]
     ┌───
         DeviceChangedEvent:
             EVENTHEADER
@@ -1985,6 +2025,7 @@ master device, or by a physical device changing capabilities at runtime.
 
 For a detailed description of classes, see the XQueryDevice request.
 
+[[events-deviceevent]]
     ┌───
         DeviceEvent:
             EVENTHEADER
@@ -2135,6 +2176,7 @@ unique per each slave touch device.
 
 Touch events do not generate enter/leave events.
 
+[[events-rawevent]]
     ┌───
         RawEvent
             EVENTHEADER
@@ -2170,6 +2212,7 @@ that grabbed the device only.
     axisvalues_raw
         Untransformed valuator data in device-native resolution.
 
+[[events-enterleave]]
     ┌───
         Enter or Leave or FocusIn or FocusOut
             EVENTHEADER
@@ -2250,6 +2293,7 @@ zero if the device is a floating slave device.
     buttons
         Button state before the event.
 
+[[events-propertyevent]]
     ┌───
         XIPropertyEvent
             EVENTHEADER
@@ -2265,8 +2309,11 @@ modified by a client.
     what
         Specifies what has been changed.
      
-XI 2.1:
+[[events-xi21]]
+Events introduced in version 2.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+[[events-touchownershipevent]]
     ┌───
         TouchOwnershipEvent (since XI 2.1):
             EVENTHEADER
