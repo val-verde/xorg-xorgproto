@@ -278,16 +278,15 @@ Once a grabbing client becomes the owner of a touch, it must either “accept”
 rejected, a TouchEnd event is sent to the rejecting client, and it will not
 receive any more events for this touch.  The server then looks to the next
 window in the stack for another passive grab, and attempts to pass ownership
-The touch sequence is then re-processed
-on the next window and a new passive grab may
-activate or the sequence may be delivered to the client with an event
-selection. The client who now receives the touch sequence becomes the new
-owner of the touch sequence. If a touch sequence is accepted, the touch
-sequence is exclusively delivered to the current owner.
+on to the next candidate passive grab (i.e. the next window towards the final
+child window with a matching grab), or to the first applicable event selection
+if there are no more grabs.  If a touch sequence is instead accepted by its
+owner, all other clients receive TouchEnd events, and the touch sequence is
+exclusively delivered to the owner.
 
 If the touch sequence ends while the client is the owner of the touch
-sequence, the client receives a TouchEnd event. The client must accept or
-reject the sequence nonetheless.
+sequence but has not accepted or rejected ownership, the client receives a
+TouchEnd event, but must still accept or reject the sequence nonetheless.
 
 Only one client may select for touch events from a given device on a window,
 although some overlapping selections (see the
@@ -298,11 +297,10 @@ Ownership of touch sequences
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clients may opt for touch events to be delivered before they become the
-owner of the touch sequence. In this case, the logical state state of the
-device (as seen by means of the protocol) always matches the physical state
-of the device. Clients must use caution if they opt for this feature; any
-action taken must be undone if the touch sequence ends without the client
-becoming the owner.
+owner of the touch sequence. In this case, the logical state of the device (as
+seen by means of the protocol) always matches the physical state of the device.
+Clients must use caution if they opt for this feature; any action taken must be
+undone if the touch sequence ends without the client becoming the owner.
 
 To select for touch events regardless of ownership, a client must set the
 TouchOwnership event mask in addition to the TouchBegin, TouchUpdate and
