@@ -122,6 +122,12 @@ in this Software without prior written authorization from The Open Group.
 # define _X_ATTRIBUTE_PRINTF(x,y)
 #endif
 
+#if defined(__GNUC__) &&  ((__GNUC__ * 100 + __GNUC_MINOR__) >= 303)
+#define _X_NONNULL(args...)  __attribute__((nonnull(args)))
+#else
+#define _X_NONNULL(...)  /* */
+#endif
+
 #if defined(__GNUC__) &&  ((__GNUC__ * 100 + __GNUC_MINOR__) >= 205)
 #define _X_UNUSED  __attribute__((__unused__))
 #else
