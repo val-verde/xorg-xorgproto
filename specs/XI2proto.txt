@@ -270,9 +270,19 @@ Passive touch grabs are similar to standard input event grabs in that they
 take precedence over event selections and are searched from the root window
 to the child window (as opposed to selections, which start their search at the
 child window and continue up to the root window).  When a touch grab activates,
-the client whose grab activates becomes the “owner” of this touch sequence.
-See the <<requests-passivegrabdevice,XIPassiveGrabDevice request>>
+the client whose grab activates becomes the “owner” of this touch sequence,
+and must decide what to do with it, as per the
+<<multitouch-ownership,ownership section>>.  See the
+<<requests-passivegrabdevice,XIPassiveGrabDevice request>>
 documentation for more information on passive grab activation.
+
+Only one client may select for touch events from a given device on a window,
+although some overlapping selections (see the
+<<multitouch-processing,processing section>>) are allowed.
+
+[[multitouch-ownership]]
+Ownership of touch sequences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once a grabbing client becomes the owner of a touch, it must either “accept” or
 "reject" the touch sequence using the
@@ -284,19 +294,14 @@ on to the next candidate passive grab (i.e. the next window towards the final
 child window with a matching grab), or to the first applicable event selection
 if there are no more grabs.  If a touch sequence is instead accepted by its
 owner, all other clients receive TouchEnd events, and the touch sequence is
-exclusively delivered to the owner.
+exclusively delivered to the owner from that point on.
 
-If the touch sequence ends while the client is the owner of the touch
-sequence but has not accepted or rejected ownership, the client receives a
-TouchEnd event, but must still accept or reject the sequence nonetheless.
-
-Only one client may select for touch events from a given device on a window,
-although some overlapping selections (see the
-<<multitouch-processing,processing section>>) are allowed.
-
-[[multitouch-ownership]]
-Ownership of touch sequences
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If the touch sequence physically ends while the owner of the touch sequence
+has not accepted or rejected ownership, the client receives a TouchUpdate event
+with the TouchPendingEnd flag set, but must still accept or reject the sequence
+nonetheless. If the owner rejects the touch sequence, the server will still
+attempt to exhaust all other passive grabs and/or event selections looking for
+a final owner.
 
 Clients may opt for touch events to be delivered before they become the
 owner of the touch sequence. In this case, the logical state of the device (as
@@ -305,14 +310,14 @@ Clients must use caution if they opt for this feature; any action taken must be
 undone if the touch sequence ends without the client becoming the owner.
 
 To select for touch events regardless of ownership, a client must set the
-TouchOwnership event mask in addition to the TouchBegin, TouchUpdate and
-TouchEnd mask. When selected, a client will receive touch events as they
-occur on the device without delay. When the client becomes the owner of a
-touch sequence, a TouchOwnership event is sent to the client. If the client
-is the initial owner of the sequence, the TouchBegin is immediately followed
-by the TouchOwnership event. Otherwise, TouchUpdate events may preceed a
-TouchOwnership event. A client is not guaranteed to become the owner of any
-given touch sequence.
+<<events-touchownership,TouchOwnership event>> mask in addition to the
+TouchBegin, TouchUpdate and TouchEnd mask. When selected, a client will receive
+touch events as they occur on the device without delay. If and when the client
+becomes the owner of a touch sequence, a TouchOwnership event is sent to the
+client. If the client is the initial owner of the sequence, the TouchBegin is
+immediately followed by the TouchOwnership event. Otherwise, TouchUpdate events
+may preceed a TouchOwnership event. A client is not guaranteed to become the
+owner of any given touch sequence.
 
 The server delivers touch events to all clients that have selected for
 TouchOwnership and to the current owner of the sequence in parallel.
@@ -329,32 +334,15 @@ TouchUpdate events will be sent for this sequence. If the current owner
 accepts the sequence, the client receives a TouchEnd event. Otherwise, if
 the current owner rejects the sequence, the client may become 
 the owner of the touch sequence and receive a TouchOwnership event and a
-TouchEndEvent.
-
-[[multitouch-observer]]
-Observing touch sequences
-^^^^^^^^^^^^^^^^^^^^^^^^^
-A client that is the current owner of the sequence and rejects the sequence
-with TouchObserve will not be sent a TouchEnd event immediately. Instead,
-this client continues to receive touch events as they occur on the device.
-However, a client hat has rejected a touch sequence may not become the owner
-of this sequence again.
-
-A client who has a passive grab with grab type TouchObserve will receive
-touch events as they occur on the device. Such a client will not become the
-owner of this sequence. The client continues to receive events until the
-touch sequence ceases on the device, even if the current owner of the
-sequence accepts the sequence.
-
+TouchEnd event.
 
 **************************************************************************
 [red yellow-background]*FIXME*
 
-- can we have more than one TouchObserve on a device/window combination
-  then?
-- it's impossible to observe and still become the owner
-- having GrabtypeTouchObserve seems rather broken. if all we want to do is
-  observe, then why not use RawEvents or something similar?
+TouchPendingEnd -> TouchOwnership -> TouchEnd? so we send a TouchEnd event
+to the owner always, and only TouchPendingEnd to clients who don't yet
+own the touch?
+
 **************************************************************************
 
 [[multitouch-device-modes]]
@@ -400,17 +388,17 @@ Touch event delivery
 ~~~~~~~~~~~~~~~~~~~~
 
 For direct touch devices, the window set for event propagation is the set of
-windows from the root window to the child in which the touch sequence
-begins.
+windows from the root window to the topmost window lying at the co-ordinates
+of the touch.
 
 For indirect devices, the window set for event propagation is the set of
 windows from the root window to the window that contains the device's
-pointer. An indirect device may only have one window set at a time. Any
-future touch sequence will use the same window set. The window set is
-cleared when all touch sequences on the device end.
+pointer. An indirect device may only have one window set at a time, for all
+touches. Any future touch sequence will use the same window set. The window set
+is cleared when all touch sequences on the device end.
 
 A window set is calculated on TouchBegin and remains constant until the end
-of the sequence Modifications to the window hierarchy, new grabs or changed
+of the sequence. Modifications to the window hierarchy, new grabs or changed
 event selection do not affect the window set.
 
 **************************************************************************
@@ -424,30 +412,9 @@ incorrect, remove it? why would it matter?
 **************************************************************************
 
 
-[[multitouch-emulation-indirect]]
-Pointer event handling for indirect touch devices
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Indirect touch devices are expected to generate pointer events and no
-pointer emulation is performed. However, the pointer event may be generate
-in the driver by mapping one touch sequence to the pointer. In these cases,
-events for both the pointer and its associated touch sequence will have the
-PointerEmulated flag set.
-
-When the cursor of an attached master pointer of an indirect device leaves the
-window of a touch grab or selection, or when a client activates a pointer grab
-on either the master or slave device, touch begin and touch update events will
-be withheld. When the pointer re-enters the window or the pointer grab is
-deactivated, touch update events will be sent with updates to any touch
-positions and properties since the last touch event sent. Touch begin events for
-any new touches will also be sent, along with touch update events for new
-touches that have changed position or properties since the touch began. No events
-will be delivered for touches that began and ended while touch events were
-withheld.
-
-[[multitouch-emulation-direct]]
-Pointer emulation for direct touch devices
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[multitouch-emulation]]
+Pointer emulation from multitouch events
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Touch sequences from direct touch devices may emulation pointer events. Only
 one touch sequence from a device may emulate pointer events at a time; which
@@ -460,7 +427,7 @@ Pointer emulation events will only be delivered through the attached
 master device; no pointer events will be emulated for floating touch
 devices.
 
-why?
+what? why?
 **************************************************************************
 
 Pointer events are emulated as follows:
@@ -480,16 +447,13 @@ The touch sequences is considered to have been accepted if
 
 - the grab mode is asynchronous, or
 - the grab mode is synchronous and the device is thawed as a result of
-  AllowEvents with any mode but ReplayPointer or ReplayDevice, or
-- the grab mode is synchronous and the device remains frozen as a result of
-  AllowEvents with mode SyncPointer or SyncDevice
+  AllowEvents with AsyncPointer or AsyncDevice
 
 Otherwise, if the button press is replayed by the client, the touch sequence
 is considered to be rejected.
 
-Touch event delivery precedes pointer event delivery. A touch event event
-emulating pointer events is delivered
-
+Touch event delivery precedes pointer event delivery. A touch event emulating
+pointer events is delivered:
 - as a touch event to the top-most window of the current window set if a
   client has a touch grab on this window
 - otherwise, as a pointer event to the top-most window of the current window
@@ -498,8 +462,7 @@ emulating pointer events is delivered
   until a grab has been found,
 
 If no touch or pointer grab on any window was activated and the last window
-in the window set has been reached, the event is delivered
-
+in the window set has been reached, the event is delivered:
 - as a touch event to the window if a client has selected for touch events
   on this window
 - otherwise, as a pointer event to the window if a client has selected for
