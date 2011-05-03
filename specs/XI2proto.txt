@@ -249,28 +249,30 @@ types <<events-deviceevent,TouchBegin>>, <<events-deviceevent,TouchUpdate>>, and
 generates TouchBegin and TouchEnd events, and may also generate TouchUpdate
 events.  Clients must select for all three of these events simultaneously.
 
-When a touch starts, clients are sent a <<events-deviceevent,TouchBegin>> event
+When a touch starts, clients are sent a <<events-deviceevent,TouchBegin event>>
 detailing the position used to focus the event for delivery, as well as the
 initial properties of the touchpoint.  Note that the logical state of the
 device (as seen through the input protocol) may lag the physical state if event
-processing is affected by grabs.  The event timestamp of touch events always
-represents the time the event occurred.
+processing is affected by grabs.  Multiple touchpoints may be active on the
+same device at any time, potentially owned by and/or delivered to a different
+set of clients.
 
 Whenever the touch position or any other property of the touchpoint changes,
-a <<events-deviceevent,TouchUpdate>> event is sent to the client with the
-updated information (usually new touch co-ordinates).
+a <<events-deviceevent,TouchUpdate event>> is sent to all clients listening
+to events for that touchpoint with the updated information (usually new touch
+co-ordinates).
 
 When the touch has physically ended, or a client will otherwise not receive
-any more events for a given touchpoint, a <<events-deviceevent,TouchEnd>> event
-will be sent.
+any more events for a given touchpoint, a <<events-deviceevent,TouchEnd event>>
+will be sent to that client.
 
 Passive touch grabs are similar to standard input event grabs in that they
 take precedence over event selections and are searched from the root window
 to the child window (as opposed to selections, which start their search at the
 child window and continue up to the root window).  When a touch grab activates,
 the client whose grab activates becomes the “owner” of this touch sequence.
-See <<requests-passivegrabdevice,XIPassiveGrabDevice>> for more information on
-passive grab activation.
+See the <<requests-passivegrabdevice,XIPassiveGrabDevice request>>
+documentation for more information on passive grab activation.
 
 Once a grabbing client becomes the owner of a touch, it must either “accept” or
 "reject" the touch sequence using the
@@ -343,7 +345,6 @@ touch events as they occur on the device. Such a client will not become the
 owner of this sequence. The client continues to receive events until the
 touch sequence ceases on the device, even if the current owner of the
 sequence accepts the sequence.
-
 
 
 **************************************************************************
@@ -449,7 +450,7 @@ Pointer emulation for direct touch devices
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Touch sequences from direct touch devices may emulation pointer events. Only
-one touch sequence from a device may emulate pointer events at a time. Which
+one touch sequence from a device may emulate pointer events at a time; which
 touch sequence emulates pointer events is implementation dependent.
 
 **************************************************************************
