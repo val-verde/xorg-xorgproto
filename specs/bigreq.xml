@@ -287,9 +287,27 @@
 <chapter id='c_language_binding'>
 <title>C language binding</title>
 
-<para>It is desirable for core Xlib, and other extensions, to use this extension internally when necessary.  It is also desirable to make the use of this extension as transparent as possible to the X client.  For example, if enabling of the extension were delayed until the first time it was needed, an application that used <function>XNextRequest</function> to determine the sequence number of a request would no longer get the correct sequence number.  As such, <function>XOpenDisplay</function> will determine if the extension is supported by the server and, if it is, enable extended-length encodings.</para>
+<para>It is desirable for core Xlib, and other extensions, to use this extension internally when necessary.  It is also desirable to make the use of this extension as transparent as possible to the X client.  For example, if enabling of the extension were delayed until the first time it was needed, an application that used
+<olink targetdoc='libX11' targetptr='xnextrequest'><function>XNextRequest</function></olink>
+to determine the sequence number of a request would no longer get the correct sequence number.  As such,
+<olink targetdoc='libX11' targetptr='xopendisplay'><function>XOpenDisplay</function></olink>
+will determine if the extension is supported by the server and, if it is, enable extended-length encodings.</para>
 
-<para>The core Xlib functions <function>XDrawLines</function>, <function>XDrawArcs</function>, <function>XFillPolygon</function>, <function>XChangeProperty</function>, <function>XSetClipRectangles</function>, and <function>XSetRegion</function> are required to use extended-length encodings when necessary, if supported by the server.  Use of extended-length encodings in other core Xlib functions (<function>XDrawPoints</function>, <function>XDrawRectangles</function>, <function>XDrawSegments</function>. <function>XFillArcs</function>, <function>XFillRectangles</function>, <function>XPutImage</function> is permitted but not required; an Xlib implementation may choose to split the data across multiple smaller requests instead.</para>
+<para>The core Xlib functions
+<olink targetdoc='libX11' targetptr='xdrawlines'><function>XDrawLines</function></olink>,
+<olink targetdoc='libX11' targetptr='xdrawarcs'><function>XDrawArcs</function></olink>,
+<olink targetdoc='libX11' targetptr='xfillpolygon'><function>XFillPolygon</function></olink>,
+<olink targetdoc='libX11' targetptr='xchangeproperty'><function>XChangeProperty</function></olink>,
+<olink targetdoc='libX11' targetptr='xsetcliprectangles'><function>XSetClipRectangles</function></olink>, and
+<olink targetdoc='libX11' targetptr='xsetregion'><function>XSetRegion</function></olink>.
+are required to use extended-length encodings when necessary, if supported by the server.  Use of extended-length encodings in other core Xlib functions
+(<olink targetdoc='libX11' targetptr='xdrawpoints'><function>XDrawPoints</function></olink>,
+<olink targetdoc='libX11' targetptr='xdrawrectangles'><function>XDrawRectangles</function></olink>,
+<olink targetdoc='libX11' targetptr='xdrawsegments'><function>XDrawSegments</function></olink>.
+<olink targetdoc='libX11' targetptr='xfillarcs'><function>XFillArcs</function></olink>,
+<olink targetdoc='libX11' targetptr='xfillrectangles'><function>XFillRectangles</function></olink>,
+<olink targetdoc='libX11' targetptr='xputimage'><function>XPutImage</function></olink>
+is permitted but not required; an Xlib implementation may choose to split the data across multiple smaller requests instead.</para>
 
 <para>To permit clients to know what the maximum-request-length for extended-length encodings is, the following function is added to Xlib:
 
