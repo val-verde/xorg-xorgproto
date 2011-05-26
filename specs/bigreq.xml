@@ -311,7 +311,7 @@ is permitted but not required; an Xlib implementation may choose to split the da
 
 <para>To permit clients to know what the maximum-request-length for extended-length encodings is, the following function is added to Xlib:
 
-<funcsynopsis>
+<funcsynopsis id='xextendedmaxrequestsize'>
 <funcprototype>
   <funcdef>long <function>XExtendedMaxRequestSize</function></funcdef>
     <paramdef>Display <parameter> *display</parameter></paramdef>
