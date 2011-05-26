@@ -705,7 +705,7 @@ The include file for this extension is
 </para>
 
 
-<funcsynopsis>
+<funcsynopsis id='xscreensaverqueryextension'>
 <funcprototype>
   <funcdef>Bool <function>XScreenSaverQueryExtension</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -728,7 +728,7 @@ no additional errors are defined by this extension, the results
 of <emphasis remap='I'>error_base</emphasis> are not defined.
 </para>
 
-<funcsynopsis>
+<funcsynopsis id='xscreensaverqueryversion'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverQueryVersion</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -760,7 +760,7 @@ NULL is returned.  The results of this routine can be released
 using <emphasis remap='I'>XFree</emphasis>.
 </para>
 
-<funcsynopsis>
+<funcsynopsis id='xscreensaverqueryinfo'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverQueryInfo</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -795,7 +795,7 @@ description of the fields.  If the extension is not supported,
 is returned.
 </para>
 
-<funcsynopsis>
+<funcsynopsis id='xscreensaverselectinput'>
 <funcprototype>
   <funcdef>void <function>XScreenSaverSelectInput</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -832,7 +832,7 @@ See the definition of the
 of the allowed event masks.   <!-- xref ? -->
 </para>
 
-<funcsynopsis>
+<funcsynopsis id='xscreensaversetattributes'>
 <funcprototype>
   <funcdef>void <function>XScreenSaverSetAttributes</function></funcdef>
     <paramdef>Display <parameter>*dpy</parameter></paramdef>
@@ -858,7 +858,7 @@ of the <function>ScreenSaverSetAttributes</function> request for a
 description of each of the arguments.
 </para>
 
-<funcsynopsis>
+<funcsynopsis id='xscreensaverunsetattributes'>
 <funcprototype>
   <funcdef>void <function>XScreenSaverUnsetAttributes</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -872,7 +872,7 @@ extension, this routine instructs the server to discard
 any previous screen saver window attributes set by this client.
 </para>
 
-<funcsynopsis>
+<funcsynopsis id='xscreensaverregister'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverRegister</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -891,7 +891,7 @@ is encountered and the property is not changed, otherwise it returns
 non-zero.
 </para>
 
-<funcsynopsis>
+<funcsynopsis id='xscreensaverunregister'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverUnregister</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -906,7 +906,7 @@ It returns zero if an error is encountered and the property is changed,
 otherwise it returns non-zero.
 </para>
 
-<funcsynopsis>
+<funcsynopsis id='xscreensavergetregistered'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverGetRegistered</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
