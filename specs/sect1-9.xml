@@ -12629,33 +12629,33 @@ can both be used to modify the active grab.
   <colspec colname='c1' colsep='0'/>
   <tbody>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:KeyPress">
 <indexterm zone="events:KeyPress" significance="preferred"><primary>KeyPress</primary></indexterm>
-<emphasis role='bold' id="events:KeyPress">KeyPress</emphasis>
+<emphasis role='bold'>KeyPress</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:KeyRelease">
 <indexterm zone="events:KeyRelease" significance="preferred"><primary>KeyRelease</primary></indexterm>
-<emphasis role='bold' id="events:KeyRelease">KeyRelease</emphasis>
+<emphasis role='bold'>KeyRelease</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:ButtonPress">
 <indexterm zone="events:ButtonPress" significance="preferred"><primary>ButtonPress</primary></indexterm>
-<emphasis role='bold' id="events:ButtonPress">ButtonPress</emphasis>
+<emphasis role='bold'>ButtonPress</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:ButtonRelease">
 <indexterm zone="events:ButtonRelease" significance="preferred"><primary>ButtonRelease</primary></indexterm>
-<emphasis role='bold' id="events:ButtonRelease">ButtonRelease</emphasis>
+<emphasis role='bold'>ButtonRelease</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:MotionNotify">
 <indexterm zone="events:MotionNotify" significance="preferred"><primary>MotionNotify</primary></indexterm>
-<emphasis role='bold' id="events:MotionNotify">MotionNotify</emphasis>
+<emphasis role='bold'>MotionNotify</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
@@ -12824,15 +12824,15 @@ request.
   <colspec colname='c1' colsep='0'/>
   <tbody>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:EnterNotify">
 <indexterm zone="events:EnterNotify" significance="preferred"><primary>EnterNotify</primary></indexterm>
-<emphasis role='bold' id="events:EnterNotify">EnterNotify</emphasis>
+<emphasis role='bold'>EnterNotify</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:LeaveNotify">
 <indexterm zone="events:LeaveNotify" significance="preferred"><primary>LeaveNotify</primary></indexterm>
-<emphasis role='bold' id="events:LeaveNotify">LeaveNotify</emphasis>
+<emphasis role='bold'>LeaveNotify</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
@@ -13187,15 +13187,15 @@ and final positions for the events.
   <colspec colname='c1' colsep='0'/>
   <tbody>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:FocusIn">
 <indexterm zone="events:FocusIn" significance="preferred"><primary>FocusIn</primary></indexterm>
-<emphasis role='bold' id="events:FocusIn">FocusIn</emphasis>
+<emphasis role='bold'>FocusIn</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
-      <entry>
+      <entry id="events:FocusOut">
 <indexterm zone="events:FocusOut" significance="preferred"><primary>FocusOut</primary></indexterm>
-<emphasis role='bold' id="events:FocusOut">FocusOut</emphasis>
+<emphasis role='bold'>FocusOut</emphasis>
       </entry>
     </row>
     <row rowsep='0'>
