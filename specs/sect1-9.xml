@@ -212,10 +212,6 @@ are capitalized.
     <para>
 Requests in <link linkend="requests">section 9</link> are described
 in the following format:
-    </para>
-  </listitem>
-  <listitem>
-    <para>
 <literallayout class="monospaced">
 <emphasis role='bold'>RequestName</emphasis>
      <emphasis remap='I'>arg1</emphasis>: type1
@@ -231,8 +227,6 @@ in the following format:
      Description.
 </literallayout>
     </para>
-  </listitem>
-  <listitem>
     <para>
 If no ▶ is present in the description,
 then the request has no reply (it is asynchronous),
@@ -245,10 +239,6 @@ then one or more replies can be generated for a single request.
     <para>
 Events in <link linkend="events">section 11</link> are described
 in the following format:
-    </para>
-  </listitem>
-  <listitem>
-    <para>
 <literallayout class="monospaced">
 <emphasis role='bold'>EventName</emphasis>
      <emphasis remap='I'>value1</emphasis>: type1
