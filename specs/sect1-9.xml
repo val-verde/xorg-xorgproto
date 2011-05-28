@@ -853,24 +853,25 @@ as vendor-specific.
 A list of KEYSYMs is associated with each KEYCODE.
 The list is intended to convey the set of symbols on the corresponding key.
 If the list (ignoring trailing
-<emphasis role='bold'>NoSymbol</emphasis>
+<keysym>NoSymbol</keysym>
 entries) is a single KEYSYM "<emphasis remap='I'>K</emphasis>",
 then the list is treated as if it were
-the list "<emphasis remap='I'>K</emphasis> NoSymbol
-<emphasis remap='I'>K</emphasis> NoSymbol".
-If the list (ignoring trailing NoSymbol entries) is a pair of KEYSYMs
+the list "<emphasis remap='I'>K</emphasis> <keysym>NoSymbol</keysym>
+<emphasis remap='I'>K</emphasis> <keysym>NoSymbol</keysym>".
+If the list (ignoring trailing <keysym>NoSymbol</keysym> entries)
+is a pair of KEYSYMs
 "<emphasis remap='I'>K1 K2</emphasis>", then the list is treated as
 if it were the list
 "<emphasis remap='I'>K1 K2 K1 K2</emphasis>".
 If the list (ignoring trailing
-<emphasis role='bold'>NoSymbol</emphasis>
+<keysym>NoSymbol</keysym>
 entries) is
 a triple of KEYSYMs "<emphasis remap='I'>K1 K2 K3</emphasis>",
 then the list is treated as if it were the list "
-<emphasis remap='I'>K1 K2 K3</emphasis> NoSymbol".
+<emphasis remap='I'>K1 K2 K3</emphasis> <keysym>NoSymbol</keysym>".
 When an explicit "void" element is desired in the list,
 the value
-<emphasis role='bold'>VoidSymbol</emphasis>
+<keysym>VoidSymbol</keysym>
 can be used.
 </para>
 <para>
@@ -880,7 +881,7 @@ Group 1 contains the first and second KEYSYMs, Group 2 contains the third and
 fourth KEYSYMs.
 Within each group,
 if the second element of the group is
-<emphasis role='bold'>NoSymbol</emphasis>,
+<keysym>NoSymbol</keysym>,
 then the group should be treated as if the second element were the
 same as the first element, except when the first element is an alphabetic
 KEYSYM "<emphasis remap='I'>K</emphasis>" for which both lowercase
@@ -11394,10 +11395,10 @@ in keysyms.
 The keysyms-per-keycode can be chosen arbitrarily by the client
 to be large enough to hold all desired symbols.
 A special KEYSYM value of
-<emphasis role='bold'>NoSymbol</emphasis>
+<keysym>NoSymbol</keysym>
 should be used to fill in unused elements for individual keycodes.
 It is legal for
-<emphasis role='bold'>NoSymbol</emphasis>
+<keysym>NoSymbol</keysym>
 to appear in nontrailing positions of the effective list for a keycode.
 </para>
 <para>
@@ -11494,7 +11495,7 @@ in keysyms.
 The keysyms-per-keycode value is chosen arbitrarily by the server
 to be large enough to report all requested symbols.
 A special KEYSYM value of
-<emphasis role='bold'>NoSymbol</emphasis>
+<keysym>NoSymbol</keysym>
 is used to fill in unused elements for individual keycodes.
 <!-- .sp -->
 </para>
