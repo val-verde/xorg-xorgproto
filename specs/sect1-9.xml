@@ -809,7 +809,7 @@ errors are also used when the argument type is extended by union with a
 set of fixed alternatives, for example, &lt;WINDOW or
 <emphasis role='bold'>PointerRoot</emphasis>
 or
-<emphasis role='bold'>None &gt;</emphasis>.
+<emphasis role='bold'>None</emphasis>&gt;.
 </para></note>
 </chapter>
 
