@@ -58,7 +58,7 @@ Atoms are used to identify properties, types, and selections.
   <glossdef>
     <para>
 An
-<emphasis role='bold'>InputOutput</emphasis>
+<glossterm linkend="glossary:InputOutput_window"><emphasis role='bold'>InputOutput</emphasis></glossterm>
 window can have a background, which is defined as a pixmap.
 When regions of the window have their contents lost or invalidated,
 the server will automatically tile those regions with the background.
@@ -119,7 +119,7 @@ A bitmap is a <glossterm linkend="glossary:Pixmap">pixmap</glossterm> of depth o
   <glossdef>
     <para>
 An
-<emphasis role='bold'>InputOutput</emphasis>
+<glossterm linkend="glossary:InputOutput_window"><emphasis role='bold'>InputOutput</emphasis></glossterm>
 window can have a border of equal thickness on all four sides of the window.
 A pixmap defines the contents of the border,
 and the server automatically maintains the contents of the border.
@@ -333,7 +333,7 @@ Both windows and pixmaps can be used as sources and destinations in
 graphics operations.
 These windows and pixmaps are collectively known as drawables.
 However, an
-<emphasis role='bold'>InputOnly</emphasis>
+<glossterm linkend="glossary:InputOnly_window"><emphasis role='bold'>InputOnly</emphasis></glossterm>
 window cannot be used as a source or destination in a graphics operation.
 <!-- .KE -->
     </para>
@@ -709,7 +709,7 @@ in which there are only two colormap entries.
     <para>
 A window is obscured if some other window obscures it.
 Window A obscures window B if both are viewable
-<emphasis role='bold'>InputOutput</emphasis>
+<glossterm linkend="glossary:InputOutput_window"><emphasis role='bold'>InputOutput</emphasis></glossterm>
 windows, A is higher in the global stacking order,
 and the rectangle defined by the outside edges of A intersects
 the rectangle defined by the outside edges of B.
