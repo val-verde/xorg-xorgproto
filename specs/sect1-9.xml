@@ -820,12 +820,14 @@ or
 
 <chapter id="keyboards">
 <title>Keyboards</title>
+<indexterm zone="keyboards"><primary>Keyboard</primary></indexterm>
 <!-- .XS -->
 <!-- (SN Keyboards -->
 <!-- .XE -->
 <para id="keycode">
 A KEYCODE represents a physical (or logical) key.
 <indexterm zone="keycode"><primary>Types</primary><secondary>KEYCODE</secondary></indexterm>
+<indexterm zone="keycode" significance="preferred"><primary>Keycode</primary></indexterm>
 Keycodes lie in the inclusive range [8,255].
 A keycode value carries no intrinsic information,
 although server implementors may attempt to encode geometry information
@@ -836,6 +838,7 @@ protocol.
 <para id="keysym">
 A KEYSYM is an encoding of a symbol on the cap of a key.
 <indexterm zone="keysym"><primary>Types</primary><secondary>KEYSYM</secondary></indexterm>
+<indexterm zone="keysym"><primary>Keysym</primary></indexterm>
 The set of defined KEYSYMs include the character sets Latin-1, Latin-2,
 Latin-3, Latin-4, Kana, Arabic, Cyrillic, Greek, Tech, Special, Publish, APL,
 Hebrew, Thai, and Korean as well as a set of symbols common on keyboards
@@ -1139,6 +1142,7 @@ other names.
 
 <chapter id="connection_setup">
   <title>Connection Setup</title>
+  <indexterm zone="connection_setup"><primary>Connection</primary></indexterm>
 
   <para>
 For remote clients,
@@ -1147,6 +1151,7 @@ the X protocol can be built on top of any reliable byte stream.
 
   <section id="connection_initiation">
     <title>Connection Initiation</title>
+    <indexterm zone="connection_initiation"><primary>Connection</primary><secondary>opening</secondary></indexterm>
 
     <para id="byte-order">
 The client must send an initial byte of data to identify the byte order to be
@@ -1493,9 +1498,10 @@ The byte order for images is given by image-byte-order and applies to each
 scanline unit in XY format (bitmap format) and to each pixel value in Z format.
     </para>
     <para id="bitmap-format">
-A bitmap is represented in scanline order.
+A bitmap is represented in <glossterm linkend="glossary:Scanline_order">scanline order</glossterm>.
 <indexterm zone="bitmap-format"><primary>Bitmap</primary><secondary>format</secondary></indexterm>
-Each scanline is padded to a multiple of bits as given by bitmap-scanline-pad.
+Each <glossterm linkend="glossary:Scanline">scanline</glossterm>
+is padded to a multiple of bits as given by bitmap-scanline-pad.
 The pad bits are of arbitrary value.
 The scanline is quantized in multiples of bits as given by bitmap-scanline-unit.
 The bitmap-scanline-unit is always less than or equal to the
@@ -1503,15 +1509,19 @@ bitmap-scanline-pad.
 Within each unit,
 the leftmost bit in the bitmap is either the least significant
 or most significant bit in the unit, as given by bitmap-bit-order.
+<indexterm zone="bitmap-format"><primary>XYFormat</primary></indexterm>
 If a pixmap is represented in XY format,
 each plane is represented as a bitmap, and the planes appear from
 most significant to least significant in bit order with no padding
 between planes.
     </para>
     <para id="pixmap-formats">
-Pixmap-formats contains one entry for each depth value.
+Pixmap-formats contains one entry for each
+<glossterm linkend="glossary:Depth">depth</glossterm> value.
 <indexterm zone="pixmap-formats"><primary>Pixmap</primary><secondary>format</secondary></indexterm>
-The entry describes the Z format used to represent images of that depth.
+<indexterm zone="pixmap-formats"><primary>ZFormat</primary></indexterm>
+The entry describes the <glossterm linkend="glossary:ZFormat">Z format</glossterm>
+used to represent images of that depth.
 An entry for a depth is included if any screen supports that depth,
 and all screens supporting that depth must support only that Z format for that
 depth.
@@ -1560,7 +1570,9 @@ Maximum-request-length will always be at least 4096
 (that is, requests of length up to and including 16384 bytes
 will be accepted by all servers).
     </para>
-    <para>
+    <para id="keycode_range">
+<indexterm zone="keycode_range"><primary>Types</primary><secondary>KEYCODE</secondary></indexterm>
+<indexterm zone="keycode_range"><primary>Keycode</primary></indexterm>
 Min-keycode and max-keycode specify the smallest and largest keycode
 values transmitted by the server.
 Min-keycode is never less than 8,
@@ -1631,7 +1643,8 @@ resource ID should be considered as a single map for the purposes of this
 number.
 For the typical case of a single hardware colormap, both values will be 1.
     </para>
-    <para>
+    <para id="Backing-stores">
+<indexterm zone="Backing-stores"><primary>Backing store</primary></indexterm>
 Backing-stores indicates when the server supports backing stores for
 this screen, although it may be storage limited in the number of
 windows it can support at once.
@@ -1652,6 +1665,7 @@ would return for the all-event-masks for the root window.
 
   <section id="visual_information">
     <title>Visual Information</title>
+    <indexterm zone="visual_information" significance="preferred"><primary>Visual</primary><secondary>information</secondary></indexterm>
 
     <para>
 The information that applies per visual-type is:
@@ -1662,7 +1676,9 @@ A given visual type might be listed for more than one depth or for
 more than one screen.
     </para>
 
-    <para>
+    <para id="colormap_types">
+<indexterm zone="colormap_types" significance="preferred"><primary>Colormap</primary><secondary>types</secondary></indexterm>
+<indexterm zone="colormap_types"><primary>Pixel value</primary></indexterm>
 For
 <emphasis role='bold'>PseudoColor</emphasis>,
 a pixel value indexes a colormap to produce independent RGB values;
@@ -2123,7 +2139,8 @@ error to specify any other attributes for
 <emphasis role='bold'>InputOnly</emphasis>
 windows.
 </para>
-<para>
+<para id="requests:CreateWindow:background">
+<indexterm zone="requests:CreateWindow:background"><primary>Background</primary></indexterm>
 If background-pixmap is given,
 it overrides the default background-pixmap.
 The background pixmap and the window must have the
@@ -2259,7 +2276,9 @@ value.
 Any bits beyond the specified depth of the window in these
 values are simply ignored.
 </para>
-<para>
+<para id="requests:CreateWindow:event-mask">
+<indexterm zone="requests:CreateWindow:event-mask"><primary>Event</primary><secondary>mask</secondary></indexterm>
+<indexterm zone="requests:CreateWindow:event-mask"><primary>Event</primary><secondary>propagation</secondary></indexterm>
 The event-mask defines which events the client is interested in for
 this window (or for some event types, inferiors of the window).
 The do-not-propagate-mask defines which events should not be propagated to
@@ -2794,6 +2813,7 @@ background, and the new parent is not the same depth as the window.
   <section id="requests:MapWindow">
     <title>MapWindow</title>
     <indexterm zone="requests:MapWindow" significance="preferred"><primary>MapWindow</primary></indexterm>
+    <indexterm zone="requests:MapWindow"><primary>Mapped window</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3091,7 +3111,10 @@ on the parent has precedence over
 <emphasis role='bold'>ResizeRedirect</emphasis>
 on the window.
 </para>
-<para>
+<para id="requests:ConfigureWindow:gravity">
+<indexterm zone="requests:ConfigureWindow:gravity"><primary>Gravity</primary></indexterm>
+<indexterm zone="requests:ConfigureWindow:gravity"><primary>Bit</primary><secondary>gravity</secondary></indexterm>
+<indexterm zone="requests:ConfigureWindow:gravity"><primary>Window</primary><secondary>gravity</secondary></indexterm>
 The geometry of the window is changed as specified,
 the window is restacked among siblings, and a
 <link linkend="events:ConfigureNotify"><emphasis role='bold'>ConfigureNotify</emphasis></link>
@@ -3517,6 +3540,7 @@ window as a drawable to this request.
   <section id="requests:QueryTree">
     <title>QueryTree</title>
     <indexterm zone="requests:QueryTree" significance="preferred"><primary>QueryTree</primary></indexterm>
+    <indexterm zone="requests:QueryTree"><primary>Children</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3573,6 +3597,7 @@ The children are listed in bottom-to-top stacking order.
   <section id="requests:InternAtom">
     <title>InternAtom</title>
     <indexterm zone="requests:InternAtom" significance="preferred"><primary>InternAtom</primary></indexterm>
+    <indexterm zone="requests:InternAtom"><primary>Atom</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -3677,6 +3702,7 @@ This request returns the name for the given atom.
   <section id="requests:ChangeProperty">
     <title>ChangeProperty</title>
     <indexterm zone="requests:ChangeProperty" significance="preferred"><primary>ChangeProperty</primary></indexterm>
+    <indexterm zone="requests:ChangeProperty"><primary>Property</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4051,6 +4077,7 @@ This request returns the atoms of properties currently defined on the window.
   <section id="requests:SetSelectionOwner">
     <title>SetSelectionOwner</title>
     <indexterm zone="requests:SetSelectionOwner" significance="preferred"><primary>SetSelectionOwner</primary></indexterm>
+    <indexterm zone="requests:SetSelectionOwner"><primary>Selection</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4247,6 +4274,7 @@ The arguments are passed on unchanged in either of the events.
   <section id="requests:SendEvent">
     <title>SendEvent</title>
     <indexterm zone="requests:SendEvent" significance="preferred"><primary>SendEvent</primary></indexterm>
+    <indexterm zone="requests:SendEvent" significance="preferred"><primary>Event</primary><secondary>sending</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4347,6 +4375,8 @@ Active grabs are ignored for this request.
   <section id="requests:GrabPointer">
     <title>GrabPointer</title>
     <indexterm zone="requests:GrabPointer" significance="preferred"><primary>GrabPointer</primary></indexterm>
+    <indexterm zone="requests:GrabPointer"><primary>Active grab</primary><secondary>pointer</secondary></indexterm>
+    <indexterm zone="requests:GrabPointer"><primary>Pointer</primary><secondary>grabbing</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4763,6 +4793,7 @@ The request has no effect on an active grab.
   <section id="requests:ChangeActivePointerGrab">
     <title>ChangeActivePointerGrab</title>
     <indexterm zone="requests:ChangeActivePointerGrab" significance="preferred"><primary>ChangeActivePointerGrab</primary></indexterm>
+    <indexterm zone="requests:ChangeActivePointerGrab"><primary>Active grab</primary><secondary>pointer</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -4815,6 +4846,8 @@ with
   <section id="requests:GrabKeyboard">
     <title>GrabKeyboard</title>
     <indexterm zone="requests:GrabKeyboard" significance="preferred"><primary>GrabKeyboard</primary></indexterm>
+    <indexterm zone="requests:GrabKeyboard"><primary>Active grab</primary><secondary>keyboard</secondary></indexterm>
+    <indexterm zone="requests:GrabKeyboard"><primary>Keyboard</primary><secondary>grabbing</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5001,6 +5034,7 @@ becomes not viewable.
   <section id="requests:GrabKey">
     <title>GrabKey</title>
     <indexterm zone="requests:GrabKey" significance="preferred"><primary>GrabKey</primary></indexterm>
+    <indexterm zone="requests:GrabKey"><primary>Key</primary><secondary>grabbing</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5562,6 +5596,7 @@ If the stop time is in the future, it is equivalent to specifying
   <section id="requests:TranslateCoordinates">
     <title>TranslateCoordinates</title>
     <indexterm zone="requests:TranslateCoordinates" significance="preferred"><primary>TranslateCoordinates</primary></indexterm>
+    <indexterm zone="glossary:Coordinate_system"><primary>Coordinate system</primary><secondary>translating</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5711,6 +5746,7 @@ moved the pointer.
   <section id="requests:SetInputFocus">
     <title>SetInputFocus</title>
     <indexterm zone="requests:SetInputFocus" significance="preferred"><primary>SetInputFocus</primary></indexterm>
+    <indexterm zone="requests:SetInputFocus"><primary>Input focus</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -5896,6 +5932,7 @@ may lag the physical state if device event processing is frozen.
   <section id="requests:OpenFont">
     <title>OpenFont</title>
     <indexterm zone="requests:OpenFont" significance="preferred"><primary>OpenFont</primary></indexterm>
+    <indexterm zone="requests:OpenFont"><primary>Font</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6705,6 +6742,7 @@ The pixmap storage will be freed when no other resource references it.
   <section id="requests:CreateGC">
     <title>CreateGC</title>
     <indexterm zone="requests:CreateGC" significance="preferred"><primary>CreateGC</primary></indexterm>
+    <indexterm zone="requests:CreateGC"><primary>Graphics context</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -6919,7 +6957,8 @@ PIXMAP or
   </tgroup>
 </informaltable>
 
-<para>
+<para id="requests:CreateGC:plane-mask">
+<indexterm zone="requests:CreateGC:plane-mask"><primary>Plane</primary><secondary>mask</secondary></indexterm>
 In graphics operations,
 given a source and destination pixel,
 the result is computed bitwise on corresponding bits of the pixels;
@@ -6938,7 +6977,7 @@ or plane-mask.
 They are simply truncated to the appropriate number of bits.
 </para>
 
-<para>
+<para id="requests:CreateGC:function">
 The meanings of the functions are:
 </para>
 
@@ -7053,7 +7092,8 @@ The meanings of the functions are:
   </tgroup>
 </informaltable>
 
-<para>
+<para id="requests:CreateGC:line-width">
+<indexterm zone="requests:CreateGC:line-width"><primary>Line</primary><secondary>drawing</secondary></indexterm>
 The line-width is measured in pixels and can be greater than or equal to
 one, a wide line, or the special value zero, a thin line.
 </para>
@@ -7119,7 +7159,7 @@ If it is desirable to obtain precise and uniform results across all displays,
 a client should always use a line-width of one, rather than a line-width of
 zero.
 </para>
-<para>
+<para id="requests:CreateGC:line-style">
 The line-style defines which sections of a line are drawn:
 </para>
 
@@ -7165,7 +7205,7 @@ is treated as
   </tgroup>
 </informaltable>
 
-<para>
+<para id="requests:CreateGC:cap-style">
 The cap-style defines how the endpoints of a path are drawn:
 </para>
 
@@ -7222,7 +7262,7 @@ for line-width zero.
 
 
 
-<para>
+<para id="requests:CreateGC:join-style">
 The join-style defines how corners are drawn for wide lines:
 </para>
 
@@ -7500,7 +7540,8 @@ The meaning of dash-offset and dashes are explained in the
 <link linkend="requests:SetDashes"><emphasis role='bold'>SetDashes</emphasis></link>
 request.
 </para>
-<para>
+<para id="requests:CreateGC:clip-mask">
+<indexterm zone="requests:CreateGC:clip-mask"><primary>Clipping region</primary></indexterm>
 The clip-mask restricts writes to the destination drawable.
 Only pixels where the clip-mask has bits set to 1 are drawn.
 Pixels are not drawn outside the area covered by the clip-mask
@@ -7537,7 +7578,9 @@ with a source or destination window of one depth with mapped inferiors
 of differing depth is not illegal,
 but the semantics is undefined by the core protocol.
 </para>
-<para>
+<para id="requests:CreateGC:fill-rule">
+<indexterm zone="requests:CreateGC:fill-rule" significance="preferred"><primary>Winding rule</primary></indexterm>
+<indexterm zone="requests:CreateGC:fill-rule" significance="preferred"><primary>Fill rule</primary></indexterm>
 The fill-rule defines what pixels are inside (that is, are drawn) for
 paths given in
 <link linkend="requests:FillPoly"><emphasis role='bold'>FillPoly</emphasis></link>
@@ -8074,7 +8117,7 @@ and destroys the gcontext.
   <section id="requests:ClearArea">
     <title>ClearArea</title>
     <indexterm zone="requests:ClearArea" significance="preferred"><primary>ClearArea</primary></indexterm>
-<informaltable frame='none'>
+    <indexterm zone="requests:ClearArea"><primary>Background</primary></indexterm><informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
   <tbody>
@@ -8389,6 +8432,7 @@ clip-x-origin, clip-y-origin, clip-mask
   <section id="requests:PolyLine">
     <title>PolyLine</title>
     <indexterm zone="requests:PolyLine" significance="preferred"><primary>PolyLine</primary></indexterm>
+    <indexterm zone="requests:PolyLine"><primary>Line</primary><secondary>drawing</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -9668,6 +9712,7 @@ CHAR2B is taken as the most significant byte).
   <section id="requests:CreateColormap">
     <title>CreateColormap</title>
     <indexterm zone="requests:CreateColormap" significance="preferred"><primary>CreateColormap</primary></indexterm>
+    <indexterm zone="requests:CreateColormap"><primary>Colormap</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -10717,6 +10762,7 @@ and uppercase and lowercase do not matter.
   <section id="requests:CreateCursor">
     <title>CreateCursor</title>
     <indexterm zone="requests:CreateCursor" significance="preferred"><primary>CreateCursor</primary></indexterm>
+    <indexterm zone="requests:CreateCursor"><primary>Cursor</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11068,6 +11114,7 @@ error results).
   <section id="requests:QueryExtension">
     <title>QueryExtension</title>
     <indexterm zone="requests:QueryExtension" significance="preferred"><primary>QueryExtension</primary></indexterm>
+    <indexterm zone="requests:QueryExtension"><primary>Extension</primary><secondary>querying</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11135,6 +11182,7 @@ and uppercase and lowercase matter.
   <section id="requests:ListExtensions">
     <title>ListExtensions</title>
     <indexterm zone="requests:ListExtensions" significance="preferred"><primary>ListExtensions</primary></indexterm>
+    <indexterm zone="requests:ListExtensions"><primary>Extension</primary><secondary>listing</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11163,6 +11211,7 @@ This request returns a list of all extensions supported by the server.
   <section id="requests:SetModifierMapping">
     <title>SetModifierMapping</title>
     <indexterm zone="requests:SetModifierMapping" significance="preferred"><primary>SetModifierMapping</primary></indexterm>
+    <indexterm zone="requests:SetModifierMapping"><primary>Modifier keys</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11270,6 +11319,7 @@ status.
   <section id="requests:GetModifierMapping">
     <title>GetModifierMapping</title>
     <indexterm zone="requests:GetModifierMapping" significance="preferred"><primary>GetModifierMapping</primary></indexterm>
+    <indexterm zone="requests:GetModifierMapping"><primary>Modifier keys</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11323,6 +11373,7 @@ The order of keycodes within each set is chosen arbitrarily by the server.
   <section id="requests:ChangeKeyboardMapping">
     <title>ChangeKeyboardMapping</title>
     <indexterm zone="requests:ChangeKeyboardMapping" significance="preferred"><primary>ChangeKeyboardMapping</primary></indexterm>
+    <indexterm zone="requests:ChangeKeyboardMapping"><primary>Keysym</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -11411,6 +11462,7 @@ it is merely stored for reading and writing by clients
   <section id="requests:GetKeyboardMapping">
     <title>GetKeyboardMapping</title>
     <indexterm zone="requests:GetKeyboardMapping" significance="preferred"><primary>GetKeyboardMapping</primary></indexterm>
+    <indexterm zone="requests:GetKeyboardMapping"><primary>Keysym</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -12452,6 +12504,7 @@ to begin on 64-bit boundaries.
 
 <chapter id="connection_close">
 <title>Connection Close</title>
+  <indexterm zone="connection_close"><primary>Connection</primary><secondary>closing</secondary></indexterm>
 <!-- .XS -->
 <!-- \*(SN Connection Close -->
 <!-- .XE -->
@@ -12543,6 +12596,7 @@ will not cause the server to reset.
 <!-- \*(SN Events -->
 <!-- .XE -->
 <para>
+<indexterm zone="events"><primary>Event</primary></indexterm>
 When a button press is processed with the pointer in some window W
 and no active pointer grab is in progress,
 the ancestors of W are searched from the root down,
@@ -12711,7 +12765,10 @@ Note that
 and
 <emphasis role='bold'>KeyRelease</emphasis>
 are generated for all keys, even those mapped to modifier bits.
+<phrase id="events:input:source">
 The source of the event is the window the pointer is in.
+</phrase>
+<indexterm zone="events:input:source"><primary>Event</primary><secondary>source</secondary></indexterm>
 The window the event is reported with respect to is called the event window.
 The event window is found by starting with the source window and
 looking up the hierarchy for the first window on which any client has selected
@@ -13731,6 +13788,7 @@ and
   <section id="events:Expose">
     <title>Expose</title>
     <indexterm zone="events:Expose" significance="preferred"><primary>Expose</primary></indexterm>
+    <indexterm zone="events:Expose"><primary>Event</primary><secondary>Exposure</secondary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>
@@ -14202,6 +14260,7 @@ when the window itself had a win-gravity of
   <section id="events:MapNotify">
     <title>MapNotify</title>
     <indexterm zone="events:MapNotify" significance="preferred"><primary>MapNotify</primary></indexterm>
+    <indexterm zone="events:MapNotify"><primary>Mapped window</primary></indexterm>
 <informaltable frame='none'>
   <tgroup cols='1' align='left'>
   <colspec colname='c1' colsep='0'/>

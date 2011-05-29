@@ -158,6 +158,7 @@ and the server swaps bytes as necessary.
 <glossentry id="glossary:Children">
   <glossterm>Children</glossterm>
   <indexterm zone="glossary:Children" significance="preferred"><primary>Children</primary></indexterm>
+  <indexterm zone="glossary:Children" significance="preferred"><primary>Window</primary><secondary>children</secondary></indexterm>
   <glossdef>
     <para>
 The children of a window are its first-level subwindows.
@@ -199,8 +200,8 @@ The image defined by the bitmap or rectangles is called a clipping region.
 </glossentry>
 <glossentry id="glossary:Colormap">
   <glossterm>Colormap</glossterm>
+  <indexterm zone="glossary:Colormap" significance="preferred"><primary>Colormap</primary></indexterm>
   <glossdef>
-<!-- .IN "Colormap" "" "@DEF@"  -->
     <para>
 A colormap consists of a set of entries defining color values.
 The colormap associated with a window is used to display the contents of
@@ -434,8 +435,8 @@ all possible and are expected.
 </glossentry>
 <glossentry id="glossary:Focus_window">
   <glossterm>Focus window</glossterm>
+  <indexterm zone="glossary:Focus_window" significance="preferred"><primary>Focus window</primary></indexterm>
   <glossdef>
-<!-- .IN "Focus window" "" ""@DEF@" -->
     <para>
 The focus window is another term for the <glossterm linkend="glossary:Input_focus">input focus</glossterm>.
 <!-- .KE -->
@@ -458,8 +459,8 @@ and interline spacing.
 </glossentry>
 <glossentry id="glossary:GC">
   <glossterm>GC, GContext</glossterm>
-  <indexterm zone="glossary:GC" significance="preferred"><primary>GC</primary></indexterm>
-  <indexterm zone="glossary:GC" significance="preferred"><primary>GContext</primary></indexterm>
+  <indexterm zone="glossary:GC" significance="preferred"><primary>GC</primary><seealso>Graphics context</seealso></indexterm>
+  <indexterm zone="glossary:GC" significance="preferred"><primary>GContext</primary><seealso>Graphics context</seealso></indexterm>
   <glossdef>
     <para>
 GC and gcontext are abbreviations for <glossterm linkend="glossary:Graphics_context">graphics context</glossterm>.
@@ -479,7 +480,7 @@ A glyph is an image, typically of a character, in a font.
 </glossentry>
 <glossentry id="glossary:Grab">
   <glossterm>Grab</glossterm>
-  <indexterm zone="glossary:Grab" significance="preferred"><primary>Grab</primary></indexterm>
+  <indexterm zone="glossary:Grab" significance="preferred"><primary>Grab</primary><seealso>Active grab</seealso><seealso>Passive grab</seealso></indexterm>
   <glossdef>
     <para>
 Keyboard keys, the keyboard, pointer buttons, the pointer, and the
@@ -682,6 +683,7 @@ Unmapped windows and their inferiors are never viewable or visible.
 <glossentry id="glossary:Modifier_keys">
   <glossterm>Modifier keys</glossterm>
   <indexterm zone="glossary:Modifier_keys" significance="preferred"><primary>Modifier keys</primary></indexterm>
+  <indexterm zone="glossary:Modifier_keys"><primary>Key</primary><secondary>modifier</secondary><see>Modifier keys</see></indexterm>
   <glossdef>
     <para>
 Shift, Control, Meta, Super, Hyper, Alt, Compose, Apple, CapsLock,
@@ -1191,6 +1193,7 @@ The pixmap itself is also known as a tile.
 <glossentry id="glossary:Timestamp">
   <glossterm>Timestamp</glossterm>
   <indexterm zone="glossary:Timestamp" significance="preferred"><primary>Timestamp</primary></indexterm>
+  <indexterm zone="glossary:Timestamp" significance="preferred"><primary>CurrentTime</primary></indexterm>
   <glossdef>
     <para>
 A timestamp is a time value, expressed in milliseconds.

@@ -1,5 +1,7 @@
 <appendix id="keysym_encoding">
 <title>KEYSYM Encoding</title>
+<indexterm zone="keysym_encoding"><primary>Types</primary><secondary>KEYSYM</secondary></indexterm>
+<indexterm zone="keysym_encoding"><primary>Keysym</primary></indexterm>
 
 <para>
 KEYSYM values are 32-bit integers that encode the symbols on the
@@ -99,6 +101,7 @@ U+007E and U+00A0 to U+00FF, respectively.
 
 <sect1 id="unicode_keysyms">
 <title>Unicode KEYSYMs</title>
+<indexterm zone="unicode_keysyms"><primary>Keysym</primary><secondary>Unicode</secondary></indexterm>
 
 <para>
 These occupy the range #x01000100 to #x0110FFFF and represent the ISO
