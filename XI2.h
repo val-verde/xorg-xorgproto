@@ -42,6 +42,14 @@
 #define XIPropertyCreated                       1
 #define XIPropertyModified                      2
 
+/* Property modes */
+#define XIPropModeReplace                       0
+#define XIPropModePrepend                       1
+#define XIPropModeAppend                        2
+
+/* Special property type used for XIGetProperty */
+#define XIAnyPropertyType                       0L
+
 /* Enter/Leave and Focus In/Out modes */
 #define XINotifyNormal                          0
 #define XINotifyGrab                            1
@@ -59,6 +67,17 @@
 #define XINotifyPointer                         5
 #define XINotifyPointerRoot                     6
 #define XINotifyDetailNone                      7
+
+/* Grab modes */
+#define XIGrabModeSync                          0
+#define XIGrabModeAsync                         1
+
+/* Grab reply status codes */
+#define XIGrabSuccess                           0
+#define XIAlreadyGrabbed                        1
+#define XIGrabInvalidTime                       2
+#define XIGrabNotViewable                       3
+#define XIGrabFrozen                            4
 
 /* Passive grab types */
 #define XIGrabtypeButton                        0
