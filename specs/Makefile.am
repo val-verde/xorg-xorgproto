@@ -1,3 +1,4 @@
+SUBDIRS = SIAddresses
 
 if ENABLE_SPECS
 if HAVE_XMLTO
