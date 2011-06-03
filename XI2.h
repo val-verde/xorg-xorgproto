@@ -79,6 +79,10 @@
 #define XIGrabNotViewable                       3
 #define XIGrabFrozen                            4
 
+/* Grab owner events values */
+#define XIOwnerEvents                           True
+#define XINoOwnerEvents                         False
+
 /* Passive grab types */
 #define XIGrabtypeButton                        0
 #define XIGrabtypeKeycode                       1
