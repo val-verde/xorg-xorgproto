@@ -782,9 +782,9 @@ SOFTWARE.
 #define XK_nacute                        0x01f1  /* U+0144 LATIN SMALL LETTER N WITH ACUTE */
 #define XK_ncaron                        0x01f2  /* U+0148 LATIN SMALL LETTER N WITH CARON */
 #define XK_odoubleacute                  0x01f5  /* U+0151 LATIN SMALL LETTER O WITH DOUBLE ACUTE */
-#define XK_udoubleacute                  0x01fb  /* U+0171 LATIN SMALL LETTER U WITH DOUBLE ACUTE */
 #define XK_rcaron                        0x01f8  /* U+0159 LATIN SMALL LETTER R WITH CARON */
 #define XK_uring                         0x01f9  /* U+016F LATIN SMALL LETTER U WITH RING ABOVE */
+#define XK_udoubleacute                  0x01fb  /* U+0171 LATIN SMALL LETTER U WITH DOUBLE ACUTE */
 #define XK_tcedilla                      0x01fe  /* U+0163 LATIN SMALL LETTER T WITH CEDILLA */
 #define XK_abovedot                      0x01ff  /* U+02D9 DOT ABOVE */
 #endif /* XK_LATIN2 */
