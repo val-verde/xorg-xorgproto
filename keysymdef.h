@@ -478,6 +478,15 @@ SOFTWARE.
 #define XK_Pointer_DfltBtnNext           0xfefb
 #define XK_Pointer_DfltBtnPrev           0xfefc
 
+/* Single-Stroke Multiple-Character N-Graph Keysyms For The X Input Method */
+
+#define XK_ch                            0xfea0
+#define XK_Ch                            0xfea1
+#define XK_CH                            0xfea2
+#define XK_c_h                           0xfea3
+#define XK_C_h                           0xfea4
+#define XK_C_H                           0xfea5
+
 #endif /* XK_XKB_KEYS */
 
 /*
