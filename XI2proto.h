@@ -902,7 +902,7 @@ typedef struct
     uint16_t    deviceid;
     Time        time;
     uint32_t    detail;
-    uint16_t    pad0;
+    uint16_t    sourceid;               /**< The source device (XI 2.1) */
     uint16_t    valuators_len;          /**< Length of trailing valuator
                                              mask in 4 byte units */
     uint32_t    flags;                  /**< ::XIKeyRepeat */
