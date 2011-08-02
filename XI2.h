@@ -32,7 +32,8 @@
 #define Dont_Check                              0
 #endif
 #define XInput_2_0                              7
-
+/* DO NOT ADD TO THIS LIST. These are libXi-specific defines.
+   See commit libXi-1.4.2-21-ge8531dd */
 
 #define XI_2_Major                              2
 #define XI_2_Minor                              0
