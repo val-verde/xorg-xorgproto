@@ -30,6 +30,9 @@
 #ifndef XINPUT2_1_USE_UNSTABLE_PROTOCOL
 #error "Define XINPUT2_1_USE_UNSTABLE_PROTOCOL to disable this error"
 #endif
+#define XInput_2_0                              7
+/* DO NOT ADD TO THIS LIST. These are libXi-specific defines.
+   See commit libXi-1.4.2-21-ge8531dd */
 
 #define XI_2_Major                              2
 #define XI_2_Minor                              0
@@ -39,6 +42,14 @@
 #define XIPropertyDeleted                       0
 #define XIPropertyCreated                       1
 #define XIPropertyModified                      2
+
+/* Property modes */
+#define XIPropModeReplace                       0
+#define XIPropModePrepend                       1
+#define XIPropModeAppend                        2
+
+/* Special property type used for XIGetProperty */
+#define XIAnyPropertyType                       0L
 
 /* Enter/Leave and Focus In/Out modes */
 #define XINotifyNormal                          0
@@ -57,6 +68,21 @@
 #define XINotifyPointer                         5
 #define XINotifyPointerRoot                     6
 #define XINotifyDetailNone                      7
+
+/* Grab modes */
+#define XIGrabModeSync                          0
+#define XIGrabModeAsync                         1
+
+/* Grab reply status codes */
+#define XIGrabSuccess                           0
+#define XIAlreadyGrabbed                        1
+#define XIGrabInvalidTime                       2
+#define XIGrabNotViewable                       3
+#define XIGrabFrozen                            4
+
+/* Grab owner events values */
+#define XIOwnerEvents                           True
+#define XINoOwnerEvents                         False
 
 /* Passive grab types */
 #define XIGrabtypeButton                        0
@@ -145,7 +171,7 @@
 #define XISetMask(ptr, event)   (((unsigned char*)(ptr))[(event)>>3] |=  (1 << ((event) & 7)))
 #define XIClearMask(ptr, event) (((unsigned char*)(ptr))[(event)>>3] &= ~(1 << ((event) & 7)))
 #define XIMaskIsSet(ptr, event) (((unsigned char*)(ptr))[(event)>>3] &   (1 << ((event) & 7)))
-#define XIMaskLen(event)        (((event + 7) >> 3))
+#define XIMaskLen(event)        (((event) >> 3) + 1)
 
 /* Fake device ID's for event selection */
 #define XIAllDevices                            0
