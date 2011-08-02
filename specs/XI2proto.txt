@@ -336,15 +336,6 @@ the current owner rejects the sequence, the client may become
 the owner of the touch sequence and receive a TouchOwnership event and a
 TouchEnd event.
 
-**************************************************************************
-[red yellow-background]*FIXME*
-
-TouchPendingEnd -> TouchOwnership -> TouchEnd? so we send a TouchEnd event
-to the owner always, and only TouchPendingEnd to clients who don't yet
-own the touch?
-
-**************************************************************************
-
 [[multitouch-device-modes]]
 Touch device modes
 ~~~~~~~~~~~~~~~~~~
