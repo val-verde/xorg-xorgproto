@@ -343,12 +343,12 @@ Touch device modes
 Touch devices come in many different forms with varying capabilities. The
 following device modes are defined for this protocol:
 
-DirectTouch:
+'DirectTouch':
     These devices map their input region to a subset of the screen region. Touch
     focus is determined according to where the touch occurs in the mapped screen
     region. An example of a DirectTouch device is a touchscreen.
 
-DependentTouch:
+'DependentTouch':
     These devices do not have a direct correlation between a touch location and
     a position on the screen. Touch events are delivered according to the
     location of the device's cursor. An Example of a DependentTouch device is a
