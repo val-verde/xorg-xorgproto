@@ -164,8 +164,6 @@
 /* Touch modes */
 #define XIDirectTouch                           1
 #define XIDependentTouch                        2
-#define XIIndependentPointer                    3
-#define XISemiMultitouch                        4
 
 /* XI2 event mask macros */
 #define XISetMask(ptr, event)   (((unsigned char*)(ptr))[(event)>>3] |=  (1 << ((event) & 7)))
