@@ -375,16 +375,6 @@ A window set is calculated on TouchBegin and remains constant until the end
 of the sequence. Modifications to the window hierarchy, new grabs or changed
 event selection do not affect the window set.
 
-**************************************************************************
-[red yellow-background]*FIXME*
-
-No touches from a dependent device may begin while the device is
-floating, as it does not have an associated pointer position to focus
-events.
-
-incorrect, remove it? why would it matter?
-**************************************************************************
-
 
 [[multitouch-emulation]]
 Pointer emulation from multitouch events
