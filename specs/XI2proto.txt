@@ -1397,8 +1397,7 @@ you pass to the event-mode argument:
     └───
 
         GRABTYPE         { GrabtypeButton, GrabtypeKeycode, GrabtypeEnter,
-                           GrabtypeFocusIn, GrabtypeTouchBegin,
-                           GrabtypeTouchObserve }
+                           GrabtypeFocusIn, GrabtypeTouchBegin }
 
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
@@ -1430,9 +1429,6 @@ on the specified input device.
             releasing XIAllowEvents request or until the device grab is
             released. Actual device input events are not lost while the device
             is frozen; they are simply queued for later processing.
-            Must be Asynchronous for
-            <<multitouch-processing,GrabtypeTouchBegin>> and
-            <<multitouch-observer,GrabtypeTouchObserve>>.
         mask_len
             Length of mask in 4 byte units.
         mask
@@ -1492,15 +1488,13 @@ device is actively grabbed if:
         - a passive grab of the same grab_type + modifier combination does not
           does not exist on an ancestor of grab_window.
 
-Or if grab_type is GrabtypeTouchBegin or GrabtypeTouchObserve, a
-touch grab begins if:
+Or if grab_type is GrabtypeTouchBegin, a touch grab begins if:
 
 - a touch begins in grab_window or one of its ancestors, and
 - the specified modifier keys are down
 
 Ownership of the touch sequence is granted to the grabbing client if:
 
-- grab_type is not GrabtypeTouchObserve, and
 - a TouchBegin or pointer grab for an emulated touch sequence of a
   direct touch device with the same modifier set does not exist on an
   ancestor of grab_window, or all applicable grabs have released ownership.
@@ -1517,9 +1511,6 @@ pointer or focus leaves the window and all of its descendants,
 independent of the state of modifier keys.
 A GrabtypeTouchBegin grab is released when the touch sequence ends or
 the client uses XIAllowTouchEvents with mode TouchReject.
-A GrabtypeTouchBegin grab is converted to a GrabtypeTouchObserve grab
-when the client uses XIAllowTouchEvents with mode TouchObserve.
-A GrabtypeTouchObserve grab is released when the touch sequence ends.
 Note that the logical state of a device (as seen by means of the
 protocol) may lag the physical state if device event processing is
 frozen.
@@ -1756,7 +1747,7 @@ Requests introduced in version 2.1
             flags:           SETofALLOWTOUCHFLAGS
     └───
 
-    ALLOWTOUCHMODE  { TouchAccept, TouchReject, TouchObserve }
+    ALLOWTOUCHMODE  { TouchAccept, TouchReject }
     ALLOWTOUCHFLAGS (none currently defined)
 
 The XIAllowTouchEvents request allows the current owner of a touch
@@ -1774,9 +1765,6 @@ sequence to direct further delivery.
         Given TouchReject, the client is no longer interested in the touch
         sequence, and will receive a TouchEnd event; ownership will be passed
         on to the next listener.
-        Given TouchObserve, the client is not interested in ownership, but
-        still wishes to receive TouchUpdate events; ownership will be passed on
-        to the next listener.
     flags
         A bitmask of applicable flags.
 

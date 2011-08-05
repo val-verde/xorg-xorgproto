@@ -90,7 +90,6 @@
 #define XIGrabtypeEnter                         2
 #define XIGrabtypeFocusIn                       3
 #define XIGrabtypeTouchBegin                    4
-#define XIGrabtypeTouchObserve                  5
 
 /* Passive grab modifier */
 #define XIAnyModifier                           (1U << 31)
@@ -108,7 +107,6 @@
 /* XIAllowTouchEvents bitmask event-modes */
 #define XITouchAccept                           (1 << 0)
 #define XITouchReject                           (1 << 1)
-#define XITouchObserve                          (1 << 2)
 
 /* DeviceChangedEvent change reasons */
 #define XISlaveSwitch                           1
