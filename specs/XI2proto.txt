@@ -380,34 +380,26 @@ event selection do not affect the window set.
 Pointer emulation from multitouch events
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Touch sequences from direct touch devices may emulation pointer events. Only
-one touch sequence from a device may emulate pointer events at a time; which
-touch sequence emulates pointer events is implementation dependent.
-
-**************************************************************************
-[red yellow-background]*FIXME*
-
-Pointer emulation events will only be delivered through the attached
-master device; no pointer events will be emulated for floating touch
-devices.
-
-what? why?
-**************************************************************************
+Touch sequences from direct touch devices may emulate pointer events. Only one
+touch sequence from a device may emulate pointer events at a time; which touch
+sequence emulates pointer events is implementation dependent.
 
 Pointer events are emulated as follows:
 
-- TouchBegin events generate a pointer motion event to the location of the
-  touch, followed by a button press event for button 1.
-- TouchUpdate events generate a pointer motion event to update the location
-  of the touch.
-- TouchEnd events generate a pointer motion event to the location of the touch
-  if the touch has moved, followed by a button release event for button 1.
+- A TouchBegin event generates a pointer motion event to the location of the
+  touch with the same axis values of the touch event, followed by a button press
+  event for button 1.
+- A TouchUpdate event generates a pointer motion event to the location of the
+  touch and/or to update axis values of the pointer device.
+- A TouchEnd event generates a pointer motion event to the location of the touch
+  and/or to update the axis values if either have changed, followed by a button
+  release event for button 1.
 
 If a touch sequence emulates pointer events and an emulated pointer event
 triggers the activation of a passive grab, the grabbing client becomes the
-owner of this touch sequence.
+owner of the touch sequence.
 
-The touch sequences is considered to have been accepted if
+The touch sequence is considered to have been accepted if
 
 - the grab mode is asynchronous, or
 - the grab mode is synchronous and the device is thawed as a result of
@@ -419,31 +411,22 @@ is considered to be rejected.
 Touch event delivery precedes pointer event delivery. A touch event emulating
 pointer events is delivered:
 - as a touch event to the top-most window of the current window set if a
-  client has a touch grab on this window
+  client has a touch grab on this window,
 - otherwise, as a pointer event to the top-most window of the current window
   set if a client has a pointer grab on this window,
-- otherwise, to the next window in the window set as in the same order as
-  until a grab has been found,
+- otherwise, to the next child window in the window set until a grab has been
+  found.
 
-If no touch or pointer grab on any window was activated and the last window
-in the window set has been reached, the event is delivered:
+If no touch or pointer grab on any window is active and the last window in the
+window set has been reached, the event is delivered:
 - as a touch event to the window if a client has selected for touch events
   on this window
 - otherwise, as a pointer event to the window if a client has selected for
   pointer events.
+- otherwise, to the next parent window in the window set until a selection has
+  been found.
 
-This sequence is repeated from the current window if the current owner of
-the sequence rejects the sequence.
-
-**************************************************************************
-[red yellow-background]*FIXME*
-
-Both the emulated pointer events and their associated touch events will
-have the PointerEmulated flag set.
-
-huh? we never get both events anyway.
-**************************************************************************
-
+Emulated pointer events will have the PointerEmulated flag set.
 
 [[glossary-notations]]
 Notations used in this document
