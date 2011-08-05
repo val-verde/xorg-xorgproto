@@ -573,7 +573,7 @@ If major_version is less than 2, a BadValue error occurs.
                  name:                  LISTofCHAR8
                  classes:               LISTofCLASS }
 
-    CLASS { BUTTONCLASS, KEYCLASS, AXISCLASS, TOUCHCLASS*, TOUCHAXISCLASS* }
+    CLASS { BUTTONCLASS, KEYCLASS, AXISCLASS, TOUCHCLASS* }
 
     BUTTONCLASS { type:                 ButtonClass
                   length:               CARD16
@@ -604,16 +604,6 @@ If major_version is less than 2, a BadValue error occurs.
                   mode:                 TOUCHMODE
                   num_touches:          CARD16
                   props:                LISTofATOM }
-
-    TOUCHAXISCLASS* {
-                  type:                 TouchAxisClass
-                  length:               CARD16
-                  sourceid:             CARD16
-                  axisnumber:           CARD16
-                  label:                ATOM
-                  min:                  FP3232
-                  max:                  FP3232
-                  resolution:           CARD32 }
 
     TOUCHMODE* { DirectTouch, DependentTouch }
 
@@ -739,33 +729,9 @@ client. If no min and max information is available, both must be 0.
     props
         A list of properties to denote extra information about the device.
 
-A device with a TouchClass must provide one or more TOUCHAXISCLASS
-specifiers.
-
-    TouchAxisClass:
-    type
-        Always TouchAxisClass.
-    length
-        Length in 4 byte units.
-    sourceid
-        The device this class originates from.
-    axisnumber
-        Axis number of this axis. The axis number is in device-native
-        order and potential axis mappings are ignored.
-    label
-        Atom specifying the axis name. An Atom of None specifies an unlabeled
-        axis.
-    min
-        Minimum value for this axis.
-    max
-        Maximum value for this axis.
-    resolution
-        Resolution in counts/meter.
-
-Devices generating touch events must provide exactly one TouchClass and
-two or more TouchAxisClasses. TouchAxisClasses and AxisClasses are not
-interchangable. A TouchAxisClass may only be part of a touch event,
-whereas an AxisClass may only be part of non-touch events.
+Devices with a TouchClass emit touch events with the same axes as pointer
+events. However, the X and Y axes of touch events are always provided in
+absolute mode co-ordinates.
 
 [[requests-selectevents]]
     ┌───
@@ -2001,12 +1967,8 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
         Button state before the event.
     valuators
         Bitmask of valuators provided in axisvalues.
-        XI 2.1: For event types TouchBegin, TouchUpdate, and TouchEnd, the
-        valuators are those specified as TouchAxisClass.
     axisvalues
         Valuator data in device-native resolution.
-        XI 2.1: For event types TouchBegin, TouchUpdate, and TouchEnd, the
-        valuators are those specified as TouchAxisClass.
     flags
         Miscellaneous information about this event; the union of the
         common flag set and either the key or pointer flag set,
@@ -2058,10 +2020,10 @@ Modifier state in mods is detailed as follows:
 
 A TouchBegin event is generated whenever a new touch sequence initializes
 A TouchEnd event is generated whenever a touch sequence ceases. A
-TouchUpdate event is generated whenever a touch axis valuator value
-changes, or a flag (e.g. pending end) has changed for that touch sequence;
-this may result in a TouchUpdate event being sent with zero valuators. A
-TouchOwnership event is sent when a client becomes the owner of a touch.
+TouchUpdate event is generated whenever a valuator value changes, or a flag
+flag (e.g. pending end) has changed for that touch sequence; this may result
+in a TouchUpdate event being sent with zero valuators. A TouchOwnership event
+is sent when a client becomes the owner of a touch.
 
 The average finger size is significantly larger than one pixel. The
 selection of the hotspot of a touchpoint is implementation dependent and
@@ -2246,8 +2208,8 @@ require the client to announce XI 2.1 support in the XIQueryVersion request.
 * Client C wants to process touch events from a device D on window W.
 ** C calls XISelectEvent for XI_Touch{Begin|Update|End} from D on W.
 ** C receives TouchBegin whenever a touch sequence starts within W's borders.
-** C receives TouchUpdate events whenever a touch axis valuator value changes
-   for a touch sequence it received a TouchBegin event for.
+** C receives TouchUpdate events whenever an axis valuator value changes for a
+   touch sequence it received a TouchBegin event for.
 ** C receives TouchEnd whenever a touch it received a TouchBegin event for
    ceases.
 
@@ -2260,10 +2222,9 @@ require the client to announce XI 2.1 support in the XIQueryVersion request.
 ** I receives TouchBegin whenever a touch begins within window W, as well as a
    TouchOwnership event indicating that it currently owns the touch sequence.
    C receives a TouchBegin event as well, but without TouchOwnership.
-** When a touch axis valuator changes in this touch sequence, both I and C
-   receive a TouchUpdate event.  I may process the event to determine if it is
-   going to accept or reject the touch, whereas C may perform reversible
-   processing.
+** When an axis valuator changes in this touch sequence, both I and C receive a
+   TouchUpdate event.  I may process the event to determine if it is going to
+   accept or reject the touch, whereas C may perform reversible processing.
 ** If I decides it is going to claim the touch sequence for its exclusive
    processing, it calls XIAllowTouchEvents with the XITouchAccept flag set; at
    this point, C receives a TouchEnd event, and undoes any processing it has
@@ -2300,8 +2261,7 @@ require the client to announce XI 2.1 support in the XIQueryVersion request.
    motion events being sent as TouchUpdate events.
 
 *  Driver DRV provides touch support from tracked device D:
-** DRV initializes a TouchClass for the device and a TouchAxisClass for each
-   axis available on the device.
+** DRV initializes a TouchClass for the device.
 ** DRV parses D's device protocol and selects one touch sequence to be emulated
    as pointer event.
 ** DRV calls the respective input driver API with the touch sequence data. The

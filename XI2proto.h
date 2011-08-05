@@ -201,21 +201,6 @@ typedef struct {
 } xXITouchInfo;
 
 /**
- * Denotes a multitouch valuator capability on a device.
- * One XITouchValuatorInfo describes exactly one valuator (axis) on the device.
- */
-typedef struct {
-    uint16_t    type;           /**< Always TouchValuatorClass  */
-    uint16_t    length;         /**< Length in 4 byte units */
-    uint16_t    sourceid;       /**< source device for this class */
-    uint16_t    number;         /**< Valuator number            */
-    Atom        label;          /**< Axis label                 */
-    FP3232      min;            /**< Min value                  */
-    FP3232      max;            /**< Max value                  */
-    uint32_t    resolution;     /**< Resolutions in units/m     */
-} xXITouchValuatorInfo;
-
-/**
  * Used to select for events on a given window.
  * Struct is followed by (mask_len * CARD8), with each bit set representing
  * the event mask for the given type. A mask bit represents an event type if
