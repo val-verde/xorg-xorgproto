@@ -141,6 +141,15 @@
 #define XIKeyClass                              0
 #define XIButtonClass                           1
 #define XIValuatorClass                         2
+#define XIScrollClass                           3
+
+/* Scroll class types */
+#define XIScrollTypeVertical                    1
+#define XIScrollTypeHorizontal                  2
+
+/* Scroll class flags */
+#define XIScrollFlagNoEmulation                 (1 << 0)
+#define XIScrollFlagPreferred                   (1 << 1)
 
 /* Device event flags (common) */
 /* Device event flags (key events only) */

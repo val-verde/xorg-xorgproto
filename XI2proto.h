@@ -188,6 +188,21 @@ typedef struct {
     uint16_t    pad2;
 } xXIValuatorInfo;
 
+/***
+ * Denotes a scroll valuator on a device.
+ * One XIScrollInfo describes exactly one scroll valuator that must have a
+ * XIValuatorInfo struct.
+ */
+typedef struct {
+    uint16_t    type;           /**< Always ValuatorClass         */
+    uint16_t    length;         /**< Length in 4 byte units       */
+    uint16_t    sourceid;       /**< source device for this class */
+    uint16_t    number;         /**< Valuator number              */
+    uint16_t    scroll_type;    /**< ::XIScrollTypeVertical, ::XIScrollTypeHorizontal */
+    uint16_t    pad0;
+    uint32_t    flags;          /**< ::XIScrollFlagEmulate, ::XIScrollFlagPreferred   */
+    FP3232      increment;      /**< Increment for one unit of scrolling              */
+} xXIScrollInfo;
 
 /**
  * Used to select for events on a given window.

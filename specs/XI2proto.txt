@@ -126,20 +126,31 @@ are able to provide scrolling events through multi-finger drag gestures, or
 simply dragging your finger along a designated strip along the side of the
 touchpad.
 
-Newer X servers may provide 'Rel Vert Scroll' and 'Rel Horiz Scroll' valuators
-to provide scroll events with more precision than the button events.  If these
-valuators are present on a device, the server must provide two-way emulation
-between these valuators and the legacy button events.  A cumulative value of
-1.0 in either magnitude is considered to be equivalent to one button event for
-the legacy events, e.g., -2.0 on 'Rel Vert Scroll' sends two button
-press/release events for button 4.  Likewise, a button press event for
-button 7 generates a Rel Horiz Scroll valuator event with a value of +1.0.
+Newer X servers may provide scrolling information through valuators to
+provide scroll events with more precision than the button events. Valuators
+for axes sending scrolling information must have one ScrollClass for each
+scrolling axis.
 
-Any server providing this behaviour marks all button 4/5/6/7 events with the
-XIPointerEmulated flag for DeviceEvents, and the XIRawEmulated flag for raw
-events, to hint that applications should be using the new valuators in
-preference to the buttons.
+If scrolling valuators are present on a device, the server must provide
+two-way emulation between these valuators and the legacy button events for
+each delta unit of scrolling.
 
+One unit of scrolling in either direction is considered to be equivalent to
+one button event, e.g. for a unit size of 1.0, -2.0 on an valuator type
+Vertical sends two button press/release events for button 4. Likewise, a
+button press event for button 7 generates an event on the Horizontal
+valuator with a value of +1.0. The server may accumulate deltas of less than
+one unit of scrolling.
+
+Any server providing this behaviour marks emulated button or valuator events
+with the XIPointerEmulated flag for DeviceEvents, and the XIRawEmulated flag
+for raw events, to hint at applications which event is a hardware event.
+
+If more than one scroll valuator of the same type is present on a device,
+the valuator marked with Preferred is used to convert legacy button events
+into scroll valuator events. If no valuator is marked Preferred or more than
+one valuator is marked with Preferred, this should be considered a driver
+bug and the behaviour is implementation-dependent.
 
 4. The Master/Slave device hierarchy
 ------------------------------------
@@ -329,7 +340,7 @@ If major_version is less than 2, a BadValue error occurs.
                  name:                  LISTofCHAR8
                  classes:               LISTofCLASS }
 
-    CLASS { BUTTONCLASS, KEYCLASS, AXISCLASS }
+    CLASS { BUTTONCLASS, KEYCLASS, AXISCLASS, SCROLLCLASS }
 
     BUTTONCLASS { type:                 ButtonClass
                   length:               CARD16
@@ -354,6 +365,20 @@ If major_version is less than 2, a BadValue error occurs.
                   value:                FP3232
                   resolution:           CARD32
                   mode:                 CARD8 }
+
+    SCROLLCLASS* {type:                 ScrollClass
+                  length:               CARD16
+                  sourceid:             CARD16
+                  axisnumber:           CARD16
+                  scroll_type:          SCROLLTYPE
+                  flags:                SETofSCROLLFLAGS
+                  increment:            FP3232 }
+
+    * since XI 2.1
+
+    SCROLLTYPE { Vertical, Horizontal }
+
+    SCROLLFLAGS { NoEmulation, Preferred }
 
 XIQueryDevice details information about the requested input devices.
 
@@ -456,6 +481,32 @@ The following classes may occur only once: ButtonClass, KeyClass
 
 An axis in Relative mode may specify min and max as a hint to the
 client. If no min and max information is available, both must be 0.
+
+    ScrollClass:
+    type
+        Always ScrollClass.
+    length
+        Length in 4 byte units.
+    sourceid
+        The device this class originates from.
+    axisnumber
+        Axis number that is referred to. This axis number must be listed in
+        the ValuatorClassInfo.
+    scroll_type:
+        Vertical for a vertical scrolling axis, Horizontal for a horizontal
+        scrolling axis.
+    flags:
+        A set of flags that apply to this scroll axis.
+        NoEmulation: no legacy scroll button events are generated for events
+                     on this scrolling axis.
+        Preferred: This axis is the preferred axis for emulating valuator
+                   events from legacy scroll button events.
+    increment:
+        The valuator delta equivalent to one positive unit of scrolling.
+
+A ScrollClass may only exist if the device has at least one ValuatorClass
+and each axisnumber listed in any ScrollClass. Only one ScrollClass may
+exist per ValuatorClass.
 
     ┌───
         XISelectEvents
