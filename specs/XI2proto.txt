@@ -322,7 +322,8 @@ If major_version is less than 2, a BadValue error occurs.
                   min:                  FP3232
                   max:                  FP3232
                   value:                FP3232
-                  resolution:           CARD32 }
+                  resolution:           CARD32
+                  mode:                 CARD8 }
 
 XIQueryDevice details information about the requested input devices.
 
