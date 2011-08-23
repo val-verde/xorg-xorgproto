@@ -434,6 +434,7 @@ is considered to be rejected.
 
 Touch event delivery precedes pointer event delivery. A touch event emulating
 pointer events is delivered:
+
 - as a touch event to the top-most window of the current window set if a
   client has a touch grab on this window,
 - otherwise, as a pointer event to the top-most window of the current window
@@ -443,6 +444,7 @@ pointer events is delivered:
 
 If no touch or pointer grab on any window is active and the last window in the
 window set has been reached, the event is delivered:
+
 - as a touch event to the window if a client has selected for touch events
   on this window
 - otherwise, as a pointer event to the window if a client has selected for
