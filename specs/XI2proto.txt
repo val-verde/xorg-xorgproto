@@ -363,7 +363,8 @@ following device modes are defined for this protocol:
     trackpad.
 
 A device is identified as only one of the device modes above at any time, and
-the touch mode may change at any time.
+the touch mode may change at any time. If a device's touch mode changes, a
+DeviceChangedEvent is generated.
 
 [[multitouch-processing]]
 Touch event delivery
