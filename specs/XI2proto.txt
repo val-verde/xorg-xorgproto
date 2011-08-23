@@ -2024,7 +2024,7 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
         has physically ended, however another client still holds a grab, so the
         touch should be considered alive until all grabbing clients have
         accepted or passed on ownership.  The touch will not generate any
-        further motion events once an event with TouchPendingEnd has been
+        further TouchUpdate events once an event with TouchPendingEnd has been
         received.
     active_touches
         Only in XI 2.1 and later. Only valid for TouchBegin, TouchUpdate, and
