@@ -626,6 +626,7 @@ If major_version is less than 2, a BadValue error occurs.
                   sourceid:             CARD16
                   mode:                 TOUCHMODE
                   num_touches:          CARD16
+                  num_props:            CARD16
                   props:                LISTofATOM }
 
     TOUCHMODE* { DirectTouch, DependentTouch }
@@ -749,6 +750,8 @@ client. If no min and max information is available, both must be 0.
         The maximum number of simultaneous touchpoints the device may send.
         If num_touches is 0, the number of supported touches is unknown or
         unlimited.
+    num_props:
+        The number of elements in props.
     props
         A list of properties to denote extra information about the device.
 
