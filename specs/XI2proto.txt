@@ -1944,8 +1944,10 @@ For a detailed description of classes, see the XQueryDevice request.
             buttons:                    SETofBUTTONMASK
             valuators:                  SETofVALUATORMASK
             axisvalues:                 LISTofFP3232
-            active_touches:             CARD32
+            active_touches*:             CARD32
     └───
+
+    * since XI 2.1
 
     BUTTONBIT { (1 << Button1), (1 << Button2), ... , (1 << ButtonN) }
     VALUATORBIT { (1 << 1), ( 1 << 2), ... ( 1 << n) }
