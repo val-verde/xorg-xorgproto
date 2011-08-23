@@ -1483,10 +1483,13 @@ device is actively grabbed if:
         - a passive grab of the same grab_type + modifier combination does not
           does not exist on an ancestor of grab_window.
 
-Or if grab_type is GrabtypeTouchBegin, a touch grab begins if:
+Otherwise, if grab_type is GrabtypeTouchBegin, a touch grab begins if:
 
-- a touch begins in grab_window or one of its ancestors, and
-- the specified modifier keys are down
+        - the device is not actively grabbed, and
+        - the specified modifier keys are down
+        - a touch begins in grab_window or a descendant of grab_window, and
+        - a passive grab of the same grab_type + modifier combination does not
+          does not exist on an ancestor of grab_window.
 
 Ownership of the touch sequence is granted to the grabbing client if:
 
