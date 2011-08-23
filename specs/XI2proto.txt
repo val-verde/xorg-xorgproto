@@ -805,11 +805,12 @@ The mask for XIHierarchyEvents may only be selected for XIAllDevices.
 Setting it for any other device results in a BadValue error.
 
 A client selecting for any of XI_TouchBegin, XI_TouchUpdate, or XI_TouchEnd
-must select for all three events at the same time, else BadValue will be
-returned. A client selecting for XI_TouchOwnership must select for all three
-of the other touch events. If the selection for these touch events overlaps
-a current selection by another client (e.g. selecting for a specific device
-when another client has a selection for XIAllDevices), a BadAccess error occurs.
+must select for all three events at the same time, else a BadValue error
+will be generated. A client selecting for XI_TouchOwnership must select for
+all three of the other touch events. If the selection for these touch events
+overlaps a current selection by another client (e.g. selecting for a
+specific device when another client has a selection for XIAllDevices), a
+BadAccess error occurs.
 
 [[requests-getselectedevents]]
     ┌───
