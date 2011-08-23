@@ -1753,7 +1753,7 @@ The XIAllowTouchEvents request allows the current owner of a touch
 sequence to direct further delivery.
 
     deviceid
-        The slave device ID for a grabbed touch sequence.
+        The device ID for a grabbed touch sequence.
     touchid
         The ID of the touch sequence to modify.
     event_mode
