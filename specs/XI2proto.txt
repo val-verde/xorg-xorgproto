@@ -87,7 +87,7 @@ These fields include:
 - devices with a deviceid of greater than 127 are invisible to XI1 clients.
 - key events and key grabs featuring larger than 255 can only be sent to XI2
   clients.
-- no subpixel information is avialable to XI1 clients. If motion events are in
+- no subpixel information is available to XI1 clients. If motion events are in
   a subpixel range only, the server may omit these events and an XI 1.x client
   will not receive events until the pixel boundary is crossed.
 
@@ -1482,7 +1482,7 @@ master device, or by a physical device changing capabilities at runtime.
         Details the available classes provided by the device.  The order the
         classes are provided in is undefined.
 
-For a detailed description of classes, see the XQueryDevice request.
+For a detailed description of classes, see the XIQueryDevice request.
 
     ┌───
         DeviceEvent:
