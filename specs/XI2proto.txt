@@ -759,8 +759,7 @@ client. If no min and max information is available, both must be 0.
         A list of properties to denote extra information about the device.
 
 Devices with a TouchClass emit touch events with the same axes as pointer
-events. However, the X and Y axes of touch events are always provided in
-absolute mode co-ordinates.
+events.
 
 [[requests-selectevents]]
     ┌───
