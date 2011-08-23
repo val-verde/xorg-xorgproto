@@ -1493,9 +1493,10 @@ Otherwise, if grab_type is GrabtypeTouchBegin, a touch grab begins if:
 
 Ownership of the touch sequence is granted to the grabbing client if:
 
-- a TouchBegin or pointer grab for an emulated touch sequence of a
-  direct touch device with the same modifier set does not exist on an
-  ancestor of grab_window, or all applicable grabs have released ownership.
+        - a TouchBegin or pointer grab for an emulated touch sequence of a
+          direct touch device with the same modifier set does not exist on
+          an ancestor of grab_window, or all applicable grabs have released
+          ownership.
 
 A modifier of GrabAnyModifier is equivalent to issuing the request for
 all possible modifier combinations (including no modifiers). A client
