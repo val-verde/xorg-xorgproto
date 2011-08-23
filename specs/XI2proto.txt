@@ -1479,7 +1479,7 @@ device is actively grabbed if:
         - the grab_type is GrabtypeEnter and the device's pointer has moved
           into grab_window or a descendant of grab_window, or the grab_type is
           GrabtypeFocusIn and the device's focus has been set to the
-          grab_window or a descendant of grab_window,
+          grab_window or a descendant of grab_window, and
         - a passive grab of the same grab_type + modifier combination does not
           does not exist on an ancestor of grab_window.
 
