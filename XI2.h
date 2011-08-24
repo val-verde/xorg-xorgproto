@@ -72,6 +72,7 @@
 /* Grab modes */
 #define XIGrabModeSync                          0
 #define XIGrabModeAsync                         1
+#define XIGrabModeTouch                         2
 
 /* Grab reply status codes */
 #define XIGrabSuccess                           0
