@@ -1950,7 +1950,7 @@ For a detailed description of classes, see the XQueryDevice request.
             buttons:                    SETofBUTTONMASK
             valuators:                  SETofVALUATORMASK
             axisvalues:                 LISTofFP3232
-            active_touches*:             CARD32
+            active_touches*:            CARD32
     └───
 
     * since XI 2.1
