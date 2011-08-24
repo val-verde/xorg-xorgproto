@@ -42,7 +42,8 @@ XMLTO_XHTML_FLAGS = \
 	--stringparam html.stylesheet=$(STYLESHEET_SRCDIR)/xorg.css
 
 XMLTO_FO_FLAGS = \
-	-x $(STYLESHEET_SRCDIR)/xorg-fo.xsl
+	-x $(STYLESHEET_SRCDIR)/xorg-fo.xsl	\
+	--stringparam img.src.path=$(abs_builddir)/
 endif HAVE_STYLESHEETS
 
 shelf_DATA += $(docbook:.xml=.html)
