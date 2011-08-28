@@ -193,7 +193,7 @@
 #define XI_RawButtonPress                15
 #define XI_RawButtonRelease              16
 #define XI_RawMotion                     17
-#define XI_TouchBegin                    18
+#define XI_TouchBegin                    18 /* XI 2.1 */
 #define XI_TouchEnd                      19
 #define XI_TouchOwnership                20
 #define XI_TouchUpdate                   21
