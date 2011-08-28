@@ -1819,6 +1819,9 @@ Version 2.1:
         - TouchUpdate
         - TouchOwnership
         - TouchEnd
+        - RawTouchBegin
+        - RawTouchUpdate
+        - RawTouchEnd
 
 All events have a set of common fields specified as EVENTHEADER.
 
@@ -2107,7 +2110,7 @@ that grabbed the device only.
     eventtype
         The type of event that occured on the device.
     detail
-        The button number or keycode.
+        The button number, keycode or touch ID*.
     flags
         Flags as described in DeviceEvent.
     valuators_len
@@ -2118,6 +2121,8 @@ that grabbed the device only.
         Valuator data in device-native resolution.
     axisvalues_raw
         Untransformed valuator data in device-native resolution.
+
+* since XI 2.1
 
 [[events-enterleave]]
     ┌───
