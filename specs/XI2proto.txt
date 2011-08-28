@@ -89,8 +89,8 @@ XI 2.1 caters for two modes of touch input devices:
 Touch events are only available to clients supporting version 2.1 or later of
 the X Input Extension. Clients must use the XIQueryVersion request to announce
 support for this version. Touch devices may generate emulated pointer events
-alongside XI 2.1 touch events to support older clients; see the
-<<multitouch-processing,touch event delivery>> section.
+alongside XI 2.1 touch events to support older clients; see Section
+<<multitouch-processing,Touch event delivery>>.
 
 
 [[interop-xi1]]
@@ -131,10 +131,10 @@ respectively.
 Invisibility of Master Devices
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-XI 1.x was not designed with support for multiple master devices (see the
-<<hierachy,Master/Slave device hierachy>> section). As a result, only the first
-master pointer and master keyboard are visible to XI 1.x clients; all other
-master devices are invisible and cannot be accessed from XI 1.x calls.
+XI 1.x was not designed with support for multiple master devices. As a
+result, only the first master pointer and master keyboard are visible to XI
+1.x clients; all other master devices are invisible and cannot be accessed
+from XI 1.x calls.
 
 
 [[hierachy]]
@@ -228,8 +228,8 @@ Touch device support
 Touch event processing differs from normal event processing in a few ways.
 The most notable are that touch events are processed partially out-of-band from
 pointer and keyboard events, and in that touch events may be sent to multiple
-clients simultaneously; the
-<<multitouch-processing,touch event processing>> section has more details.
+clients simultaneously; for more details see Section
+<<multitouch-processing, Touch event delivery>>.
 
 [[multitouch-lifecycle]]
 Touch event sequences
@@ -244,12 +244,12 @@ touch location or properties any number of times, and finally “end” the
 sequence by ceasing to touch the device.  Within this document, the term
 "touch sequence" is used to describe the above chain of events.
 In the protocol, the three stages are represented with the event
-types <<events-deviceevent,TouchBegin>>, <<events-deviceevent,TouchUpdate>>, and
-<<events-deviceevent,TouchEnd>>, respectively.  A touch sequence always
-generates TouchBegin and TouchEnd events, and may also generate TouchUpdate
-events.  Clients must select for all three of these events simultaneously.
+types TouchBegin, TouchUpdate, and TouchEnd, respectively. A touch sequence
+always generates TouchBegin and TouchEnd events, and may also generate
+TouchUpdate events.  Clients must select for all three of these events
+simultaneously.
 
-When a touch starts, clients are sent a <<events-deviceevent,TouchBegin event>>
+When a touch starts, clients are sent a TouchBegin event
 detailing the position used to focus the event for delivery, as well as the
 initial properties of the touchpoint.  Note that the logical state of the
 device (as seen through the input protocol) may lag the physical state if event
@@ -258,13 +258,13 @@ same device at any time, potentially owned by and/or delivered to a different
 set of clients.
 
 Whenever the touch position or any other property of the touchpoint changes,
-a <<events-deviceevent,TouchUpdate event>> is sent to all clients listening
+a TouchUpdate event is sent to all clients listening
 to events for that touchpoint with the updated information (usually new touch
 co-ordinates).
 
 When the touch has physically ended, or a client will otherwise not receive
-any more events for a given touchpoint, a <<events-deviceevent,TouchEnd event>>
-will be sent to that client.
+any more events for a given touchpoint, a TouchEnd event will be sent to
+that client.
 
 A touch sequence may be canceled and/or resumed. When a sequence is canceled, a
 TouchUpdate event is sent with the TouchCanceled flag set. When a touch is
@@ -280,14 +280,14 @@ take precedence over event selections and are searched from the root window
 to the child window (as opposed to selections, which start their search at the
 child window and continue up to the root window).  When a touch grab activates,
 the client whose grab activates becomes the “owner” of this touch sequence,
-and must decide what to do with it, as per the
-<<multitouch-ownership,ownership section>>.  See the
-<<requests-passivegrabdevice,XIPassiveGrabDevice request>>
+and must decide what to do with it, as per Section
+<<multitouch-ownership,Ownership of touch sequences>>.  See the
+<<requests-passivegrabdevice,XIPassiveGrabDevice>> request
 documentation for more information on passive grab activation.
 
 Only one client may select for touch events from a given device on a window,
-although some overlapping selections (see the
-<<multitouch-processing,processing section>>) are allowed.
+although some overlapping selections are allowed (see Section
+<<multitouch-processing,Touch event delivery>>).
 
 [[multitouch-ownership]]
 Ownership of touch sequences
@@ -295,7 +295,7 @@ Ownership of touch sequences
 
 Once a grabbing client becomes the owner of a touch, it must either “accept” or
 "reject" the touch sequence using the
-<<request-allowtouchevents,XIAllowTouchEvents request>>. If a touch sequence is
+<<request-allowtouchevents,XIAllowTouchEvents>> request. If a touch sequence is
 rejected, a TouchEnd event is sent to the rejecting client, and it will not
 receive any more events for this touch.  The server then looks to the next
 window in the stack for another passive grab, and attempts to pass ownership
@@ -319,7 +319,7 @@ Clients must use caution if they opt for this feature; any action taken must be
 undone if the touch sequence ends without the client becoming the owner.
 
 To select for touch events regardless of ownership, a client must set the
-<<events-touchownership,TouchOwnership event>> mask in addition to the
+TouchOwnership event mask in addition to the
 TouchBegin, TouchUpdate and TouchEnd mask. When selected, a client will receive
 touch events as they occur on the device without delay. If and when the client
 becomes the owner of a touch sequence, a TouchOwnership event is sent to the
@@ -997,7 +997,7 @@ is returned.
                   deviceid:   DEVICEID }
 
 XIChangeHierarchy allows a client to modify the
-<<hierachy,MD/SD device hierarchy>>.
+<<hierachy,Master/Slave device hierarchy>>.
 
     num_changes
         The number of changes to apply to the current hierarchy.
