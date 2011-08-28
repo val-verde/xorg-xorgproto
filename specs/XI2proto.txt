@@ -1,5 +1,5 @@
-The X Input Extension
-=====================
+The X Input Extension 2.x
+=========================
 :toc:
 :numbered:
 
