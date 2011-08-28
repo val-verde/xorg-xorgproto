@@ -1794,28 +1794,31 @@ event they may have been compiled against.
 The following event types are available in XI2.
 
 Version 2.0:
-        HierarchyChanged
-        DeviceChanged
-        KeyPress
-        KeyRelease
-        ButtonPress
-        ButtonRelease
-        Motion
-        RawKeyPress
-        RawKeyRelease
-        RawButtonPress
-        RawButtonRelease
-        RawMotion
-        Enter
-        Leave
-        FocusIn
-        FocusOut
-        PropertyEvent
+
+        - HierarchyChanged
+        - DeviceChanged
+        - KeyPress
+        - KeyRelease
+        - ButtonPress
+        - ButtonRelease
+        - Motion
+        - RawKeyPress
+        - RawKeyRelease
+        - RawButtonPress
+        - RawButtonRelease
+        - RawMotion
+        - Enter
+        - Leave
+        - FocusIn
+        - FocusOut
+        - PropertyEvent
+
 Version 2.1:
-        TouchBegin
-        TouchUpdate
-        TouchOwnership
-        TouchEnd
+
+        - TouchBegin
+        - TouchUpdate
+        - TouchOwnership
+        - TouchEnd
 
 All events have a set of common fields specified as EVENTHEADER.
 
