@@ -8,24 +8,13 @@
 <bookinfo>
    <title>The X Keyboard Extension: Protocol Specification</title>
    <subtitle>X Consortium Standard</subtitle>
-   <revhistory>
-     <revision>
-       <revnumber>1.0</revnumber>
-       <date/>
-       <revremark>Protocol Version</revremark>
-     </revision>
-     <revision>
-       <revnumber>1.0</revnumber>
-       <date/>
-       <revremark>Document Version</revremark>
-     </revision>
-   </revhistory>
    <author>
      <firstname>Erik</firstname>
      <surname>Fortune</surname>
      <affiliation><orgname>Silicon Graphics, Inc</orgname></affiliation>
    </author>
    <releaseinfo>X Version 11, Release 6.4</releaseinfo>
+   <releaseinfo>Version 1.0</releaseinfo>
 <legalnotice>
 <para>
 Copyright © 1995, 1996 X Consortium Inc.
