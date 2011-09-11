@@ -14,11 +14,10 @@
       <firstname>Martha</firstname><surname>Zimet</surname>
       <affiliation><orgname>Network Computing Devices, Inc.</orgname></affiliation>
     </author>
-    <othercredit>
-      <contrib>edited by</contrib>
+    <editor>
       <firstname>Stephen</firstname><surname>Gildea</surname>
       <affiliation><orgname>X Consortium</orgname></affiliation>
-    </othercredit>
+    </editor>
   </authorgroup>
   <corpname>X Consortium Standard</corpname>
   <affiliation><orgname>X Consortium</orgname></affiliation>
