@@ -267,13 +267,12 @@ any more events for a given touchpoint, a TouchEnd event will be sent to
 that client.
 
 A touch sequence may be canceled and/or resumed. When a sequence is canceled, a
-TouchUpdate event is sent with the TouchCanceled flag set. When a touch is
-resumed, either a TouchBegin or a TouchUpdate event is sent with the
-TouchResumed flag set. TouchUpdate is sent if the client previously received
-events for the touch sequence. TouchBegin is sent if the client has not
-previously received events for the touch sequence. Touch resumption denotes that
-touch processing has resumed. A TouchEnd event will be sent to a client of a
-canceled touch sequence when the sequence ends.
+TouchEnd event is sent with the TouchCanceled flag. When a touch is resumed, a
+TouchBegin event is sent with the TouchResumed flag. Touch resumption denotes
+that touch processing has resumed; a resumed touch may never have been a
+canceled touch if the touch began while touch processing was inhibited. If a
+touch has stayed in physical contact from cancel through resume, the resumed
+touch sequence will have the same tracking ID.
 
 Passive touch grabs are similar to standard input event grabs in that they
 take precedence over event selections and are searched from the root window
