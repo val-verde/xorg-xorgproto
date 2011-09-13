@@ -2328,8 +2328,11 @@ Events introduced in version 2.2
     ┌───
         TouchOwnershipEvent (since XI 2.2):
             EVENTHEADER
-            sourceid:                   DEVICEID
             touchid:                    CARD32
+            root:                       Window
+            event:                      Window
+            child:                      Window
+            sourceid:                   DEVICEID
             flags:                      SETofTOUCHOWNERSHIPFLAGS
     └───
 
@@ -2338,10 +2341,15 @@ Events introduced in version 2.2
 A TouchOwnershipEvent indicates that ownership has changed, and the client
 is now the owner of the touch sequence specified by touchid.
 
-    sourceid
-        The source device that originally generated the event.
     touchid
         The identifier of the touch sequence.
+    root
+    event
+    child
+        The root window, event window, and child window, respectively. See the
+        core protocol specification for more detail.
+    sourceid
+        The source device that originally generated the event.
     flags
         A bitmask of flags for this event.
 

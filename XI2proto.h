@@ -909,9 +909,13 @@ typedef struct
     uint16_t    evtype;             /**< XI_TouchOwnership */
     uint16_t    deviceid;           /**< Device that has changed */
     Time        time;
+    uint32_t    touchid;
+    Window      root;
+    Window      event;
+    Window      child;
+/* └──────── 32 byte boundary ────────┘ */
     uint16_t    sourceid;           /**< Source of the new classes */
     uint16_t    pad0;
-    uint32_t    touchid;
     uint32_t    flags;
     uint32_t    pad1;
     uint32_t    pad2;
