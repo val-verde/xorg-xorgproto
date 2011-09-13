@@ -361,7 +361,7 @@ Ownership of touch sequences
 
 Once a grabbing client becomes the owner of a touch, it must either “accept” or
 "reject" the touch sequence using the
-<<request-allowtouchevents,XIAllowTouchEvents>> request. If a touch sequence is
+XIAllowTouchEvents request. If a touch sequence is
 rejected, a TouchEnd event is sent to the rejecting client, and it will not
 receive any more events for this touch.  The server then looks to the next
 window in the stack for another passive grab, and attempts to pass ownership
