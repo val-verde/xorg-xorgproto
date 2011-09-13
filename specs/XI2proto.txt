@@ -79,14 +79,15 @@ The additions in XI 2.2 aim to:
 - support devices that are both multi-touch and traditional pointer devices,
 - allow touchpoints to be either grouped together or handled separately,
 - while supporting pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
+- be backwards-compatible to pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
   pointer events.
 
 XI 2.2 caters for two modes of touch input devices:
 
 - 'Direct' multi-touch input devices such as touchscreens. These devices
   provide independent touchpoints that can occur anywhere on the screen;
-  'direct' here refers to the user manipulating objects as they appear,
-  e.g. touching an object and physically moving it.
+  "direct" here refers to the user manipulating objects at their screen
+  location, e.g. touching an object and physically moving it.
 - 'Dependent' touch input devices such as multi-touch trackpads and mice with
   additional touch surfaces. These devices provide independent touchpoints that
   often need to be interpreted relative to the current position of the cursor
@@ -303,9 +304,9 @@ Touch device support
 --------------------
 
 Touch event processing differs from normal event processing in a few ways.
-The most notable are that touch events are processed partially out-of-band from
-pointer and keyboard events, and in that touch events may be sent to multiple
-clients simultaneously; for more details see Section
+The most notable differences are that touch events are processed partially
+out-of-band from pointer and keyboard events, and that touch events may be
+sent to multiple clients simultaneously. For more details see Section
 <<multitouch-processing, Touch event delivery>>.
 
 [[multitouch-lifecycle]]
@@ -319,7 +320,7 @@ Touch input follows a three-stage cycle:
 i.e. “begin” the sequence by touching the device, “update” the current
 touch location or properties any number of times, and finally “end” the
 sequence by ceasing to touch the device.  Within this document, the term
-"touch sequence" is used to describe the above chain of events.
+"touch sequence" is used to describe the above sequence of events.
 In the protocol, the three stages are represented with the event
 types TouchBegin, TouchUpdate, and TouchEnd, respectively. A touch sequence
 always generates TouchBegin and TouchEnd events, and may also generate
@@ -327,7 +328,7 @@ TouchUpdate events.  Clients must select for all three of these events
 simultaneously.
 
 When a touch starts, clients are sent a TouchBegin event
-detailing the position used to focus the event for delivery, as well as the
+detailing the position of the touchpoint, as well as the
 initial properties of the touchpoint.  Note that the logical state of the
 device (as seen through the input protocol) may lag the physical state if event
 processing is affected by grabs.  Multiple touchpoints may be active on the
@@ -336,8 +337,7 @@ set of clients.
 
 Whenever the touch position or any other property of the touchpoint changes,
 a TouchUpdate event is sent to all clients listening
-to events for that touchpoint with the updated information (usually new touch
-co-ordinates).
+to events for that touchpoint with the updated information.
 
 When the touch has physically ended, or a client will otherwise not receive
 any more events for a given touchpoint, a TouchEnd event will be sent to
@@ -367,18 +367,20 @@ Once a grabbing client becomes the owner of a touch, it must either “accept”
 rejected, a TouchEnd event is sent to the rejecting client, and it will not
 receive any more events for this touch.  The server then looks to the next
 window in the stack for another passive grab, and attempts to pass ownership
-on to the next candidate passive grab (i.e. the next window towards the final
-child window with a matching grab), or to the first applicable event selection
-if there are no more grabs.  If a touch sequence is instead accepted by its
-owner, all other clients receive TouchEnd events, and the touch sequence is
-exclusively delivered to the owner from that point on.
+on to the next candidate for a passive grab (i.e. the next window towards
+the final child window with a matching grab), or to the first applicable
+event selection if there are no more grabs.
+
+If a touch sequence is accepted by its owner, all other clients receive
+TouchEnd events, and the touch sequence is exclusively delivered to the
+owner from that point on.
 
 If the touch sequence physically ends while the owner of the touch sequence
-has not accepted or rejected ownership, the client receives a TouchUpdate event
-with the TouchPendingEnd flag set, but must still accept or reject the sequence
-nonetheless. If the owner rejects the touch sequence, the server will still
-attempt to exhaust all other passive grabs and/or event selections looking for
-a final owner.
+has not yet accepted or rejected ownership, the client receives a
+TouchUpdate event with the TouchPendingEnd flag set, but must still accept
+or reject the sequence nonetheless. If the owner rejects the touch sequence,
+the server will still attempt to exhaust all other passive grabs and/or
+event selections looking for a final owner.
 
 Clients may opt for touch events to be delivered before they become the
 owner of the touch sequence. In this case, the logical state of the device (as
@@ -422,8 +424,8 @@ following device modes are defined for this protocol:
 
 'DirectTouch':
     These devices map their input region to a subset of the screen region. Touch
-    focus is determined according to where the touch occurs in the mapped screen
-    region. An example of a DirectTouch device is a touchscreen.
+    events are delivered to window at the location of the touch. An example
+    of a DirectTouch device is a touchscreen.
 
 'DependentTouch':
     These devices do not have a direct correlation between a touch location and
@@ -432,8 +434,8 @@ following device modes are defined for this protocol:
     trackpad.
 
 A device is identified as only one of the device modes above at any time, and
-the touch mode may change at any time. If a device's touch mode changes, a
-DeviceChangedEvent is generated.
+the touch mode may change at any time. If a device's touch mode changes, an
+XIDeviceChangedEvent is generated.
 
 [[multitouch-processing]]
 Touch event delivery
