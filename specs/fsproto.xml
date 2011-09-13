@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-                   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
+                   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+<!ENTITY % defs SYSTEM "defs.ent"> %defs;
+]>
 
 
 <article id="fsproto">
@@ -8,6 +11,7 @@
 <articleinfo>
    <title>The X Font Service Protocol</title>
    <subtitle>X Window System Standard</subtitle>
+   <releaseinfo>X Version 11, Release &fullrelvers;</releaseinfo>
    <releaseinfo>Version 2.0</releaseinfo>
    <authorgroup>
       <author>
