@@ -154,7 +154,6 @@
 #define XIValuatorClass                         2
 #define XIScrollClass                           3
 #define XITouchClass                            8
-#define XITouchValuatorClass                    9
 
 /* Scroll class types */
 #define XIScrollTypeVertical                    1
