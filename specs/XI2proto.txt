@@ -27,7 +27,7 @@ Authors:
 History 
 -------
 
-- v2.1, ?? 2011: Multitouch support added
+- v2.2, ??: Multitouch support added
 - v2.0, October 2009: Initial release of XI2 protocol
 
 [[intro-xi20]]
@@ -66,22 +66,22 @@ Changes introduced by version 2.1
 -----------
 Changes introduced by version 2.2
 
-XI 2.1 introduces support for multi-touch devices. The traditional
+XI 2.2 introduces support for multi-touch devices. The traditional
 pointer/keyboard approach enforced by XI 2.0 with the master/slave device
 hierarchy is not always suitable for multi-touch devices that can provide a
 dynamic number of touchpoints per physical device; it is not known without
 client-specific interpretation whether the touchpoints must be considered
 separately or grouped together.
 
-The additions in XI 2.1 aim to:
+The additions in XI 2.2 aim to:
 
 - support a dynamic number of simultaneous touch points,
 - support devices that are both multi-touch and traditional pointer devices,
 - allow touchpoints to be either grouped together or handled separately,
-- while supporting pre-XI 2.1 clients through emulation of XI 2.0/XI 1.x and core
+- while supporting pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
   pointer events.
 
-XI 2.1 caters for two modes of touch input devices:
+XI 2.2 caters for two modes of touch input devices:
 
 - 'Direct' multi-touch input devices such as touchscreens. These devices
   provide independent touchpoints that can occur anywhere on the screen;
@@ -93,10 +93,10 @@ XI 2.1 caters for two modes of touch input devices:
   on that same device. Such interactions are usually the result of a gesture
   performed on the device, rather than direct manipulation.
 
-Touch events are only available to clients supporting version 2.1 or later of
+Touch events are only available to clients supporting version 2.2 or later of
 the X Input Extension. Clients must use the XIQueryVersion request to announce
 support for this version. Touch devices may generate emulated pointer events
-alongside XI 2.1 touch events to support older clients; see Section
+alongside XI 2.2 touch events to support older clients; see Section
 <<multitouch-processing,Touch event delivery>>.
 
 //                            ❧❧❧❧❧❧❧❧❧❧❧
@@ -1269,7 +1269,7 @@ Return the current focus window for the given device.
 This request actively grabs control of the specified input device. Further
 input events from this device are reported only to the grabbing client.
 This request overides any previous active grab by this client for this
-device.  This request does not, however, affect the processing of XI 2.1
+device.  This request does not, however, affect the processing of XI 2.2
 touch events.
 
     deviceid
@@ -1485,7 +1485,7 @@ you pass to the event-mode argument:
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
 
-* since XI 2.1
+* since XI 2.2
 
 Establish an explicit passive grab for a button or keycode
 on the specified input device.
@@ -1827,8 +1827,8 @@ delete is True and the bytes_after is zero, the property is also
 deleted from the device, and a XIPropertyNotify event is generated on
 the device.  
      
-[[requests-xi21]]
-Requests introduced in version 2.1
+[[requests-xi22]]
+Requests introduced in version 2.2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[requests-allowtouchevents]]
@@ -1900,7 +1900,7 @@ Version 2.0:
         - FocusOut
         - PropertyEvent
 
-Version 2.1:
+Version 2.2:
 
         - TouchBegin
         - TouchUpdate
@@ -2047,7 +2047,7 @@ For a detailed description of classes, see the XIQueryDevice request.
             active_touches*:            CARD32
     └───
 
-    * since XI 2.1
+    * since XI 2.2
 
     BUTTONBIT { (1 << Button1), (1 << Button2), ... , (1 << ButtonN) }
     VALUATORBIT { (1 << 1), ( 1 << 2), ... ( 1 << n) }
@@ -2071,7 +2071,7 @@ changes in response to a button press, a button release, a motion, a key
 press or a key release. The event type may be one of KeyPress,
 KeyRelease, ButtonPress, ButtonRelease, Motion.
 
-    XI 2.1: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
+    XI 2.2: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
 
     detail
         The button number, key code, touch ID, or 0.
@@ -2128,7 +2128,7 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
         further TouchUpdate events once an event with TouchPendingEnd has been
         received.
     active_touches
-        Only in XI 2.1 and later. Only valid for TouchBegin, TouchUpdate, and
+        Only in XI 2.2 and later. Only valid for TouchBegin, TouchUpdate, and
         TouchEnd events.
 
 The active_touches value denotes the number of touches in contact with
@@ -2153,7 +2153,7 @@ Modifier state in mods is detailed as follows:
     locked_group
         XKB locked group state.
 
-    XI 2.1:
+    XI 2.2:
 
 A TouchBegin event is generated whenever a new touch sequence initializes
 A TouchEnd event is generated whenever a touch sequence ceases. A
@@ -2221,7 +2221,7 @@ when the device is grabbed by another client.
     axisvalues_raw
         Untransformed valuator data in device-native resolution.
 
-* since XI 2.1
+* since XI 2.2
 
 [[events-enterleave]]
     ┌───
@@ -2320,13 +2320,13 @@ modified by a client.
     what
         Specifies what has been changed.
      
-[[events-xi21]]
-Events introduced in version 2.1
+[[events-xi22]]
+Events introduced in version 2.2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[events-touchownershipevent]]
     ┌───
-        TouchOwnershipEvent (since XI 2.1):
+        TouchOwnershipEvent (since XI 2.2):
             EVENTHEADER
             sourceid:                   DEVICEID
             touchid:                    CARD32
@@ -2347,13 +2347,13 @@ is now the owner of the touch sequence specified by touchid.
 
 
 // FIXME: why do we get '11. Appendix A:' rather than just 'Appendix A:'?!
-[[xi21-usecases]]
+[[xi22-usecases]]
 [appendix]
-XI 2.1 Use-cases
+XI 2.2 Use-cases
 ----------------
 
 All use-cases that include the receiving and processing of touch events
-require the client to announce XI 2.1 support in the XIQueryVersion request.
+require the client to announce XI 2.2 support in the XIQueryVersion request.
 
 * Client C wants to process touch events from a device D on window W.
 ** C calls XISelectEvent for XI_Touch{Begin|Update|End} from D on W.

@@ -30,12 +30,17 @@
 #ifndef XINPUT2_1_USE_UNSTABLE_PROTOCOL
 #error "Define XINPUT2_1_USE_UNSTABLE_PROTOCOL to disable this error"
 #endif
+#warning "XI 2.2 is not stable yet."
+#warning "Applications relying on this header will break as the protocol sees updates."
+#ifndef XINPUT2_2_USE_UNSTABLE_PROTOCOL
+#error "Define XINPUT2_2_USE_UNSTABLE_PROTOCOL to disable this error"
+#endif
 #define XInput_2_0                              7
 /* DO NOT ADD TO THIS LIST. These are libXi-specific defines.
    See commit libXi-1.4.2-21-ge8531dd */
 
 #define XI_2_Major                              2
-#define XI_2_Minor                              1
+#define XI_2_Minor                              2
 
 /* Property event flags */
 #define XIPropertyDeleted                       0
