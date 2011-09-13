@@ -56,9 +56,16 @@ used on applications employing the core protocol. XI2 addresses both of these
 issues by enabling devices to be both extended and core devices and providing
 device information in each event (with the exception of core events).
 
-[[intro-xi21]]
-X Input Extension version 2.1 (XI 2.1)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.1 Changes
+-----------
+Changes introduced by version 2.1
+
+- RawEvents are sent regardless of the grab state.
+
+2.2 Changes
+-----------
+Changes introduced by version 2.2
+
 XI 2.1 introduces support for multi-touch devices. The traditional
 pointer/keyboard approach enforced by XI 2.0 with the master/slave device
 hierarchy is not always suitable for multi-touch devices that can provide a
@@ -92,10 +99,44 @@ support for this version. Touch devices may generate emulated pointer events
 alongside XI 2.1 touch events to support older clients; see Section
 <<multitouch-processing,Touch event delivery>>.
 
+//                            ❧❧❧❧❧❧❧❧❧❧❧
 
-[[interop-xi1]]
-Interoperability between version 1.x and 2.0
---------------------------------------------
+2. Notations used in this document
+----------------------------------
+
+Notation for requests:
+
+    ┌───
+        Name of request
+            name of request field:       type of request field
+            name of request field:       type of request field
+            ▶
+            name of reply field:         type of reply field
+    └───
+
+Notation for events:
+
+    ┌───
+        Name of event
+            name of field:               type of field
+            name of field:               type of field
+    └───
+
+Complex fields are specified in the following notation:
+
+          name of field:                  COMPLEXFIELDTYPE
+
+or, if multiple of these fields exist:
+
+          name of field:                  LISTofCOMPLEXFIELDTYPE
+
+    COMPLEXFIELDTYPE:  { name of subfield:   type of subfield,
+                         name of subfield:   type of subfield }
+
+//                            ❧❧❧❧❧❧❧❧❧❧❧
+
+3. Interoperability between version 1.x and 2.0
+-----------------------------------------------
 
 There is little interaction between 1.x and 2.x versions of the X Input
 Extension. Clients are requested to avoid mixing XI1.x and XI2 code as much as
@@ -112,7 +153,7 @@ These fields include:
 - devices with a deviceid of greater than 127 are invisible to XI1 clients.
 - key events and key grabs featuring larger than 255 can only be sent to XI2
   clients.
-- no subpixel information is avialable to XI1 clients. If motion events are in
+- no subpixel information is available to XI1 clients. If motion events are in
   a subpixel range only, the server may omit these events and an XI 1.x client
   will not receive events until the pixel boundary is crossed.
 
@@ -136,6 +177,42 @@ result, only the first master pointer and master keyboard are visible to XI
 1.x clients; all other master devices are invisible and cannot be accessed
 from XI 1.x calls.
 
+3.4 Smooth scrolling
+~~~~~~~~~~~~~~~~~~~~
+
+Historically, X implemented scrolling events by using button press events:
+button 4 was one “click” of the scroll wheel upwards, button 5 was downwards,
+button 6 was one unit of scrolling left, and button 7 was one unit of scrolling
+right.  This was sufficient for scroll wheel mice, but not for touchpads which
+are able to provide scrolling events through multi-finger drag gestures, or
+simply dragging your finger along a designated strip along the side of the
+touchpad.
+
+Newer X servers may provide scrolling information through valuators to
+provide scroll events with more precision than the button events. Valuators
+for axes sending scrolling information must have one ScrollClass for each
+scrolling axis.
+
+If scrolling valuators are present on a device, the server must provide
+two-way emulation between these valuators and the legacy button events for
+each delta unit of scrolling.
+
+One unit of scrolling in either direction is considered to be equivalent to
+one button event, e.g. for a unit size of 1.0, -2.0 on an valuator type
+Vertical sends two button press/release events for button 4. Likewise, a
+button press event for button 7 generates an event on the Horizontal
+valuator with a value of +1.0. The server may accumulate deltas of less than
+one unit of scrolling.
+
+Any server providing this behaviour marks emulated button or valuator events
+with the XIPointerEmulated flag for DeviceEvents, and the XIRawEmulated flag
+for raw events, to hint at applications which event is a hardware event.
+
+If more than one scroll valuator of the same type is present on a device,
+the valuator marked with Preferred is used to convert legacy button events
+into scroll valuator events. If no valuator is marked Preferred or more than
+one valuator is marked with Preferred, this should be considered a driver
+bug and the behaviour is implementation-dependent.
 
 [[hierachy]]
 The Master/Slave device hierarchy
@@ -576,7 +653,7 @@ If major_version is less than 2, a BadValue error occurs.
                  name:                  LISTofCHAR8
                  classes:               LISTofCLASS }
 
-    CLASS { BUTTONCLASS, KEYCLASS, AXISCLASS, TOUCHCLASS* }
+    CLASS { BUTTONCLASS, KEYCLASS, AXISCLASS, SCROLLCLASS, TOUCHCLASS }
 
     BUTTONCLASS { type:                 ButtonClass
                   length:               CARD16
@@ -599,9 +676,22 @@ If major_version is less than 2, a BadValue error occurs.
                   min:                  FP3232
                   max:                  FP3232
                   value:                FP3232
-                  resolution:           CARD32 }
+                  resolution:           CARD32
+                  mode:                 CARD8 }
 
-    TOUCHCLASS* { type:                 TouchClass
+    SCROLLCLASS* {type:                 ScrollClass
+                  length:               CARD16
+                  sourceid:             CARD16
+                  axisnumber:           CARD16
+                  scroll_type:          SCROLLTYPE
+                  flags:                SETofSCROLLFLAGS
+                  increment:            FP3232 }
+
+    SCROLLTYPE { Vertical, Horizontal }
+
+    SCROLLFLAGS { NoEmulation, Preferred }
+
+    TOUCHCLASS† { type:                 TouchClass
                   length:               CARD16
                   sourceid:             CARD16
                   mode:                 TOUCHMODE
@@ -609,9 +699,10 @@ If major_version is less than 2, a BadValue error occurs.
                   num_props:            CARD16
                   props:                LISTofATOM }
 
-    TOUCHMODE* { DirectTouch, DependentTouch }
+    TOUCHMODE { DirectTouch, DependentTouch }
 
-* since XI 2.1
+    * since XI 2.1
+    † since XI 2.2
 
 XIQueryDevice details information about the requested input devices.
 
@@ -715,7 +806,27 @@ The following classes may occur only once: ButtonClass, KeyClass
 An axis in Relative mode may specify min and max as a hint to the
 client. If no min and max information is available, both must be 0.
 
-    XI 2.1:
+    ScrollClass:
+    type
+        Always ScrollClass.
+    axisnumber
+        Axis number that is referred to. This axis number must be listed in
+        the ValuatorClassInfo.
+    scroll_type:
+        Vertical for a vertical scrolling axis, Horizontal for a horizontal
+        scrolling axis.
+    flags:
+        A set of flags that apply to this scroll axis.
+        NoEmulation: no legacy scroll button events are generated for events
+                     on this scrolling axis.
+        Preferred: This axis is the preferred axis for emulating valuator
+                   events from legacy scroll button events.
+    increment:
+        The valuator delta equivalent to one positive unit of scrolling.
+
+A ScrollClass may only exist if the device has at least one ValuatorClass
+and each axisnumber listed in any ScrollClass. Only one ScrollClass may
+exist per ValuatorClass.
 
     TouchClass:
     type
@@ -1910,7 +2021,7 @@ master device, or by a physical device changing capabilities at runtime.
         Details the available classes provided by the device.  The order the
         classes are provided in is undefined.
 
-For a detailed description of classes, see the XQueryDevice request.
+For a detailed description of classes, see the XIQueryDevice request.
 
 [[events-deviceevent]]
     ┌───
@@ -2000,11 +2111,13 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
         KeyRepeat means that this event is for repeating purposes, and
         the physical state of the key has not changed.  This is only
         valid for KeyPress events.
-        PointerEmulated means that this event is an emulated pointer event
-        caused by a touch device. A client listening to touch events and pointer
-        events should ignore PointerEmulated events to avoid duplicate
-        processing.  This is only valid for pointer events (MotionNotify,
-        ButtonPress, ButtonRelease).
+        PointerEmulated signals that the event has been emulated from another
+        XI 2.x event for legacy client support, and that this event should
+        be ignored if the client listens for these events.  This flag is
+        set on scroll ButtonPress and RawButtonPress events (buttons 4, 5, 6
+        and 7) if a smooth-scrolling event on the Rel Vert Scroll or
+        Rel Horiz Scroll axes was also generated. It is also set on Motion,
+        ButtonPress, and ButtonRelease events generated by direct touch devices.
         TouchAccepted (for TouchEnd events only) means that the current owner
         of the touch stream has “accepted” it, and this client will not receive
         any further events from that touch sequence.
@@ -2066,6 +2179,7 @@ Touch events do not generate enter/leave events.
         RawEvent
             EVENTHEADER
             detail:                    CARD32
+            sourceid*:                 DEVICEID
             flags:                     DEVICEEVENTFLAGS
             valuators_len:             CARD16
             valuators:                 SETofVALUATORMASK
@@ -2073,19 +2187,29 @@ Touch events do not generate enter/leave events.
             axisvalues_raw:            LISTofFP3232
     └───
 
+    * since XI 2.1
+
 A RawEvent provides the information provided by the driver to the
 client. RawEvent provides both the raw data as supplied by the driver and
 transformed data as used in the server. Transformations include, but are
 not limited to, axis clipping and acceleration.
 Transformed valuator data may be equivalent to raw data. In this case,
 both raw and transformed valuator data is provided.
-RawEvents are sent exclusively to all root windows or to the client
-that grabbed the device only.
+RawEvents are sent exclusively to all root windows.
+Clients supporting XI 2.0 receive raw events when the device is not grabbed,
+or when the device is grabbed by the client but not when the device is
+grabbed by another client.
+Clients supporting XI 2.1 or later receive raw events at all times, even
+when the device is grabbed by another client.
+
 
     eventtype
         The type of event that occured on the device.
     detail
         The button number, keycode or touch ID*.
+    sourceid
+        The source device that originally generated the event. The sourceid
+        is undefined for clients not supporting XI 2.1.
     flags
         Flags as described in DeviceEvent.
     valuators_len

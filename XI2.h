@@ -35,8 +35,7 @@
    See commit libXi-1.4.2-21-ge8531dd */
 
 #define XI_2_Major                              2
-#define XI_2_Minor                              0
-#define XI_2_1_Minor                            1
+#define XI_2_Minor                              1
 
 /* Property event flags */
 #define XIPropertyDeleted                       0
@@ -148,8 +147,17 @@
 #define XIKeyClass                              0
 #define XIButtonClass                           1
 #define XIValuatorClass                         2
+#define XIScrollClass                           3
 #define XITouchClass                            8
 #define XITouchValuatorClass                    9
+
+/* Scroll class types */
+#define XIScrollTypeVertical                    1
+#define XIScrollTypeHorizontal                  2
+
+/* Scroll class flags */
+#define XIScrollFlagNoEmulation                 (1 << 0)
+#define XIScrollFlagPreferred                   (1 << 1)
 
 /* Device event flags (common) */
 /* Device event flags (key events only) */
