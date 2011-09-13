@@ -353,9 +353,7 @@ and must decide what to do with it, as per Section
 <<requests-passivegrabdevice,XIPassiveGrabDevice>> request
 documentation for more information on passive grab activation.
 
-Only one client may select for touch events from a given device on a window,
-although some overlapping selections are allowed (see Section
-<<multitouch-processing,Touch event delivery>>).
+Only one client may select for touch events from a given device on a window.
 
 [[multitouch-ownership]]
 Ownership of touch sequences
