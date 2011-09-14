@@ -92,10 +92,9 @@
 #define X_XIDeleteProperty              58
 #define X_XIGetProperty                 59
 #define X_XIGetSelectedEvents           60
-#define X_XIAllowTouchEvents            61
 
 /** Number of XI requests */
-#define XI2REQUESTS (X_XIAllowTouchEvents - X_XIQueryPointer + 1)
+#define XI2REQUESTS (X_XIGetSelectedEvents - X_XIQueryPointer + 1)
 /** Number of XI2 events */
 #define XI2EVENTS   (XI_LASTEVENT + 1)
 
@@ -648,8 +647,9 @@ typedef struct {
     uint16_t    deviceid;
     uint8_t     mode;
     uint8_t     pad;
+    uint32_t    touch_id;               /**< Since XI 2.2 */
 } xXIAllowEventsReq;
-#define sz_xXIAllowEventsReq                   12
+#define sz_xXIAllowEventsReq                   16 /**< Was 12 before XI 2.2 */
 
 
 /**
@@ -798,20 +798,6 @@ typedef struct {
     uint32_t    pad3;
 } xXIGetPropertyReply;
 #define sz_xXIGetPropertyReply               32
-
-/**
- * Accept or reject a grabbed touch sequence.
- */
-typedef struct {
-    uint8_t     reqType;
-    uint8_t     ReqType;        /**< Always ::X_XIAllowTouchEvents */
-    uint16_t    length;         /**< Length in 4 byte units */
-    uint32_t    touchid;
-    uint16_t    deviceid;
-    uint8_t     mode;           /**< bitmask */
-    uint8_t     pad;
-} xXIAllowTouchEventsReq;
-#define sz_xXIAllowTouchEventsReq                   12
 
 /*************************************************************************************
  *                                                                                   *

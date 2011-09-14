@@ -360,9 +360,8 @@ Ownership of touch sequences
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once a grabbing client becomes the owner of a touch, it must either “accept” or
-"reject" the touch sequence using the
-XIAllowTouchEvents request. If a touch sequence is
-rejected, a TouchEnd event is sent to the rejecting client, and it will not
+"reject" the touch sequence using the XIAllowEvents request. If a touch sequence
+is rejected, a TouchEnd event is sent to the rejecting client, and it will not
 receive any more events for this touch.  The server then looks to the next
 window in the stack for another passive grab, and attempts to pass ownership
 on to the next candidate for a passive grab (i.e. the next window towards
@@ -1371,11 +1370,16 @@ active device grab becomes not viewable.
             time:            TIMESTAMP or CurrentTime
             event_mode:      { AsyncDevice, SyncDevice,
                                AsyncPairedDevice, SyncPairedDevice,
-                               ReplayDevice, AsyncPair, SyncPair }
+                               ReplayDevice, AsyncPair, SyncPair, AcceptTouch*,
+                               RejectTouch* }
+            touch_id*:       CARD32
     └───
 
+* since XI 2.2
+
 The XIAllowEvents request releases some queued events if the client
-has caused a device to freeze.
+has caused a device to freeze. It also is used to handle touch grab and
+ownership processing.
 
     deviceid
         The device to grab.
@@ -1383,11 +1387,18 @@ has caused a device to freeze.
         A valid server time or CurrentTime.
     event_mode
         Specifies whether a device is to be thawed and events are to be
-        replayed.
+        replayed, or how to handle a grabbed touch sequence.
+    touch_id
+        The ID of the touch sequence to accept or reject. The value is undefined
+        for event modes other than AcceptTouch and RejectTouch.
 
 The request has no effect if the specified time is earlier than the
 last-grab time of the most recent active grab for the client, or if the
 specified time is later than the current X server time.
+
+When event-mode is AcceptTouch or RejectTouch, a BadValue error occurs if the
+touch ID is invalid. A BadAccess error occurs if this client is not the current
+owner of the specified touch ID.
 
 The following describes the processing that occurs depending on what constant
 you pass to the event-mode argument:
@@ -1458,6 +1469,14 @@ you pass to the event-mode argument:
         thaws for both. AsyncPair has no effect unless both the device and the
         paired master device frozen by the client.
         AsyncPair has no effect if deviceid specifies a slave device.
+     AcceptTouch
+        The client is deemed to have taken control of the touch sequence.
+        TouchEnd events will be sent to all other clients listening to the touch
+        sequence, and they will no longer receive any TouchUpdate events.
+     RejectTouch
+        The client is no longer interested in the touch sequence, and will
+        receive a TouchEnd event. Ownership will be passed on to the next
+        listener.
 
 [[requests-passivegrabdevice]]
     ┌───
@@ -1600,7 +1619,7 @@ A GrabtypeEnter or GrabtypeFocusIn grab is released when the
 pointer or focus leaves the window and all of its descendants,
 independent of the state of modifier keys.
 A GrabtypeTouchBegin grab is released when the touch sequence ends or
-the client uses XIAllowTouchEvents with mode TouchReject.
+the client uses XIAllowEvents with mode RejectTouch.
 Note that the logical state of a device (as seen by means of the
 protocol) may lag the physical state if device event processing is
 frozen.
@@ -1827,46 +1846,6 @@ delete is True and the bytes_after is zero, the property is also
 deleted from the device, and a XIPropertyNotify event is generated on
 the device.  
      
-[[requests-xi22]]
-Requests introduced in version 2.2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-[[requests-allowtouchevents]]
-    ┌───
-        XIAllowTouchEvents:
-            deviceid:        DEVICEID
-            touchid:         CARD32
-            event_mode:      ALLOWTOUCHMODE
-            flags:           SETofALLOWTOUCHFLAGS
-    └───
-
-    ALLOWTOUCHMODE  { TouchAccept, TouchReject }
-    ALLOWTOUCHFLAGS (none currently defined)
-
-The XIAllowTouchEvents request allows the current owner of a touch
-sequence to direct further delivery.
-
-    deviceid
-        The device ID for a grabbed touch sequence.
-    touchid
-        The ID of the touch sequence to modify.
-    event_mode
-        Given TouchAccept, the client is deemed to have taken control of the
-        touch sequence; TouchEnd events will be sent to all other clients
-        listening to the touch sequence, and they will no longer receive any
-        TouchUpdate events.
-        Given TouchReject, the client is no longer interested in the touch
-        sequence, and will receive a TouchEnd event; ownership will be passed
-        on to the next listener.
-    flags
-        A bitmask of applicable flags.
-
-A BadValue error occurs if the touch ID is invalid, or BadAccess if this
-client is not the current owner of the specified touch ID.  BadValue errors
-also occur if an invalid value is given for event_mode.  Any flags not
-understood by the server will be ignored.
-
-
 [[events]]
 Events
 ------
@@ -2384,17 +2363,17 @@ require the client to announce XI 2.2 support in the XIQueryVersion request.
    TouchUpdate event.  I may process the event to determine if it is going to
    accept or reject the touch, whereas C may perform reversible processing.
 ** If I decides it is going to claim the touch sequence for its exclusive
-   processing, it calls XIAllowTouchEvents with the XITouchAccept flag set; at
+   processing, it calls XIAllowEvents with an event mode of XIAcceptTouch; at
    this point, C receives a TouchEnd event, and undoes any processing it has
    already performed due to the touch sequence.  Further TouchUpdate events are
    delivered only to I.
 ** Alternatively, if I decides it does not want to receive further events
-   from this touch sequence, it calls XIAllowTouchEvents with the XITouchReject
-   flag set; at this point, I receives a TouchEnd event confirming that it has
-   rejected the touch.  C receives a TouchOwnership event confirming that it is
-   now the new owner of the touch, and further TouchUpdate events are delivered
-   only to C.  As C now owns the touch, it is free to perform irreversible
-   processing of the sequence.
+   from this touch sequence, it calls XIAllowEvents with an event mode of
+   XIRejectTouch; at this point, I receives a TouchEnd event confirming that it
+   has rejected the touch.  C receives a TouchOwnership event confirming that it
+   is now the new owner of the touch, and further TouchUpdate events are
+   delivered only to C.  As C now owns the touch, it is free to perform
+   irreversible processing of the sequence.
 ** When the touch physically ceases, a TouchEnd event is sent to C.
 
 * Client C wants to pre-process touch events from a direct touch device D on

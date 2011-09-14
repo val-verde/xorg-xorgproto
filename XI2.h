@@ -108,10 +108,8 @@
 #define XIAsyncPairedDevice                     3
 #define XIAsyncPair                             4
 #define XISyncPair                              5
-
-/* XIAllowTouchEvents bitmask event-modes */
-#define XITouchAccept                           (1 << 0)
-#define XITouchReject                           (1 << 1)
+#define XIAcceptTouch                           6
+#define XIRejectTouch                           7
 
 /* DeviceChangedEvent change reasons */
 #define XISlaveSwitch                           1
