@@ -648,8 +648,9 @@ typedef struct {
     uint8_t     mode;
     uint8_t     pad;
     uint32_t    touch_id;               /**< Since XI 2.2 */
+    Window      grab_window;            /**< Since XI 2.2 */
 } xXIAllowEventsReq;
-#define sz_xXIAllowEventsReq                   16 /**< Was 12 before XI 2.2 */
+#define sz_xXIAllowEventsReq                   20 /**< Was 12 before XI 2.2 */
 
 
 /**

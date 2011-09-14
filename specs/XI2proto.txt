@@ -1373,6 +1373,7 @@ active device grab becomes not viewable.
                                ReplayDevice, AsyncPair, SyncPair, AcceptTouch*,
                                RejectTouch* }
             touch_id*:       CARD32
+            grab_window*:    Window
     └───
 
 * since XI 2.2
@@ -1391,13 +1392,17 @@ ownership processing.
     touch_id
         The ID of the touch sequence to accept or reject. The value is undefined
         for event modes other than AcceptTouch and RejectTouch.
+    grab_window
+        The window on which to accept or reject a touch sequence grab. The value
+        is undefined for event modes other than AcceptTouch and RejectTouch.
 
-The request has no effect if the specified time is earlier than the
-last-grab time of the most recent active grab for the client, or if the
-specified time is later than the current X server time.
+The request has no effect if the specified time is earlier than the last-grab
+time of the most recent active grab for the client, or if the specified time is
+later than the current X server time. The time parameter must be CurrentTime for
+requests with event modes of AcceptTouch and RejectTouch.
 
-When event-mode is AcceptTouch or RejectTouch, a BadValue error occurs if the
-touch ID is invalid. A BadAccess error occurs if this client is not the current
+When event-mode is AcceptTouch, a BadValue error occurs if the touch ID is
+invalid. A BadAccess error occurs if this client is not the current or potential
 owner of the specified touch ID.
 
 The following describes the processing that occurs depending on what constant
@@ -1470,13 +1475,16 @@ you pass to the event-mode argument:
         paired master device frozen by the client.
         AsyncPair has no effect if deviceid specifies a slave device.
      AcceptTouch
-        The client is deemed to have taken control of the touch sequence.
-        TouchEnd events will be sent to all other clients listening to the touch
-        sequence, and they will no longer receive any TouchUpdate events.
+        The client is deemed to have taken control of the touch sequence once it
+        owns the sequence. TouchEnd events will be sent to all clients listening
+        to the touch sequence that have either grabbed the touch sequence on a
+        child window of the grab_window or have received events for the touch
+        sequence through event selection. These clients will no longer receive
+        any TouchUpdate events.
      RejectTouch
         The client is no longer interested in the touch sequence, and will
-        receive a TouchEnd event. Ownership will be passed on to the next
-        listener.
+        receive a TouchEnd event. If the client is the current owner of the
+        sequence, ownership will be passed on to the next listener.
 
 [[requests-passivegrabdevice]]
     ┌───
