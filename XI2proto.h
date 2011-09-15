@@ -936,7 +936,6 @@ typedef struct
     uint32_t    flags;                  /**< ::XIKeyRepeat */
     xXIModifierInfo     mods;
     xXIGroupInfo        group;
-    uint32_t    active_touches;         /**< Number of touches on source device (XI 2.1 only) */
 } xXIDeviceEvent;
 
 
