@@ -12,16 +12,14 @@
    <title>Big Requests Extension</title>
    <subtitle>X Consortium Standard</subtitle>
    <releaseinfo>X Version 11, Release &fullrelvers;</releaseinfo>
+   <releaseinfo>Version 2.0</releaseinfo>
    <authorgroup>
       <author>
          <firstname>Bob</firstname><surname>Scheifler</surname>
+         <affiliation><orgname>X Consortium</orgname></affiliation>
       </author>
    </authorgroup>
-   <corpname>X Consortium Standard</corpname>
-   <copyright><year>1993</year><year>1994</year>
-     <holder>X Consortium</holder></copyright>
-   <releaseinfo>Version 2.0</releaseinfo>
-   <affiliation><orgname>X Consortium</orgname></affiliation>
+   <copyright><year>1993</year><year>1994</year><holder>X Consortium</holder></copyright>
 
 <legalnotice>
 <para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
