@@ -19,12 +19,11 @@
          <affiliation><orgname>Network Computing Devices, Inc.</orgname></affiliation>
       </author>
    </authorgroup>
-   <copyright><year>1991</year><holder>Network Computing Devices, Inc.</holder></copyright>
-   <copyright><year>1994</year><holder>X Consortium</holder></copyright>
    <edition>Revised May 2, 1994</edition>
 
 <legalnotice>
 
+<para role="multiLicensing">Copyright © 1991 Network Computing Devices, Inc.</para>
 <para>
 Permission to use, copy, modify, distribute, and sell this
 documentation for any purpose is hereby granted without fee,
@@ -34,6 +33,7 @@ makes no representations about the suitability for any purpose
 of the information in this document.  This documentation is
 provided "as is" without express or implied warranty.
 </para>
+<para role="multiLicensing">Copyright © 1994 X Consortium</para>
 <para>
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
