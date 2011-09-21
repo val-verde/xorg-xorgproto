@@ -11,19 +11,19 @@
 <bookinfo>
    <title>XC-MISC Extension</title>
    <subtitle>X Consortium Standard</subtitle>
-   <releaseinfo>X Version 11, Release &fullrelvers;</releaseinfo>
    <authorgroup>
       <author>
          <firstname>Bob</firstname><surname>Scheifler</surname>
+         <affiliation><orgname>X Consortium</orgname></affiliation>
       </author>
       <author>
-	<firstname>David</firstname><surname>Wiggins</surname>
+	<firstname>David</firstname><othername>P.</othername><surname>Wiggins</surname>
+        <affiliation><orgname>X Consortium</orgname></affiliation>
       </author>
-      <corpauthor>X Consortium</corpauthor>
    </authorgroup>
-   <copyright><year>1994</year><holder>X Consortium</holder></copyright>
+   <releaseinfo>X Version 11, Release &fullrelvers;</releaseinfo>
    <releaseinfo>Version 1.1</releaseinfo>
-   <affiliation><orgname>X Consortium</orgname></affiliation>
+   <copyright><year>1994</year><holder>X Consortium</holder></copyright>
 
 <legalnotice>
 
