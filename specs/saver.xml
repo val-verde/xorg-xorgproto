@@ -25,7 +25,10 @@ X Consortium, Laboratory for Computer Science, Massachusetts Institute of Techno
      </author>
    </authorgroup>
 
-   <copyright><year>1992</year><holder>Massachusetts Institute of Technology and Network Computing Devices, Inc</holder></copyright>
+   <copyright><year>1992</year>
+     <holder>Massachusetts Institute of Technology</holder>
+     <holder>Network Computing Devices, Inc</holder>
+   </copyright>
 
 
 <legalnotice>
