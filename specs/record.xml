@@ -22,14 +22,11 @@
       <affiliation><orgname>X Consortium</orgname></affiliation>
     </editor>
   </authorgroup>
-  <corpname>X Consortium Standard</corpname>
-  <affiliation><orgname>X Consortium</orgname></affiliation>
-   <releaseinfo>X Version 11, Release &fullrelvers;</releaseinfo>
+  <releaseinfo>X Version 11, Release &fullrelvers;</releaseinfo>
+  <copyright><year>1994</year><holder>Network Computing Devices, Inc.</holder>
+  </copyright>
 
 <legalnotice>
-<para>
-Copyright &copy; 1994 Network Computing Devices, Inc.
-</para>
 <para>
 Permission to use, copy, modify, distribute, and sell this
 documentation for any purpose is hereby granted without fee,
@@ -37,14 +34,12 @@ provided that the above copyright notice and this permission
 notice appear in all copies.  Network Computing Devices, Inc.
 makes no representations about the suitability for any purpose
 of the information in this document.  This documentation is
-provided "as is" without express or implied warranty.
+provided &ldquo;as is&rdquo; without express or implied warranty.
 </para>
 </legalnotice>
 
 <legalnotice>
-<para>
-Copyright &copy; 1994, 1995 X Consortium
-</para>
+<para role="multiLicensing">Copyright &copy; 1994, 1995 X Consortium</para>
 <para>
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -61,7 +56,7 @@ in all copies or substantial portions of the Software.
 </para>
 
 <para>
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE X CONSORTIUM BE LIABLE FOR ANY CLAIM, DAMAGES OR
@@ -76,6 +71,7 @@ shall not be used in advertising or otherwise to promote the sale, use
 or other dealings in this Software without prior written authorization
 from the X Consortium.
 </para>
+<para>X Window System is a trademark of The Open Group.</para>
 </legalnotice>
 </bookinfo>
 
