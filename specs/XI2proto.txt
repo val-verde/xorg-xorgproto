@@ -147,10 +147,11 @@ with the XIPointerEmulated flag for DeviceEvents, and the XIRawEmulated flag
 for raw events, to hint at applications which event is a hardware event.
 
 If more than one scroll valuator of the same type is present on a device,
-the valuator marked with Preferred is used to convert legacy button events
-into scroll valuator events. If no valuator is marked Preferred or more than
-one valuator is marked with Preferred, this should be considered a driver
-bug and the behaviour is implementation-dependent.
+the valuator marked with Preferred for the same scroll direction is used to
+convert legacy button events into scroll valuator events. If no valuator is
+marked Preferred or more than one valuator is marked with Preferred for this
+scroll direction, this should be considered a driver bug and the behaviour
+is implementation-dependent.
 
 4. The Master/Slave device hierarchy
 ------------------------------------
