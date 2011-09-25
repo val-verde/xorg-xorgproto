@@ -45,7 +45,7 @@ implied warranty.
 </legalnotice>
 </bookinfo>
 
-<chapter id="Introduction_">
+<chapter id='Introduction'>
 <title>Introduction</title>
 <para>
 The X Window System provides support for changing the image on a display screen
@@ -470,7 +470,7 @@ window attributes.
 </para>
 </sect1>
 
-<sect1 id="Events_">
+<sect1 id="Events">
 <title>Events</title>
 <para>
 The Screen Saver extension adds one event:
@@ -655,7 +655,7 @@ SETofSCREENSAVEREVENT
 </literallayout>
 </sect1>
 
-<sect1 id="Events">
+<sect1 id="Events_2">
 <title>Events</title>
 
 <literallayout class="monospaced">
@@ -679,7 +679,7 @@ SETofSCREENSAVEREVENT
 </sect1>
 </chapter>
 
-<chapter id="Inter_Client_Communications_Conventions_">
+<chapter id='Inter_Client_Communications_Conventions'>
 <title>Inter-Client Communications Conventions</title>
 <para>
 Screen saver clients should create at least one resource value whose
@@ -711,7 +711,7 @@ The include file for this extension is
 </para>
 
 
-<funcsynopsis id='xscreensaverqueryextension'>
+<funcsynopsis id='XScreenSaverQueryExtension'>
 <funcprototype>
   <funcdef>Bool <function>XScreenSaverQueryExtension</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -734,7 +734,7 @@ no additional errors are defined by this extension, the results
 of <emphasis remap='I'>error_base</emphasis> are not defined.
 </para>
 
-<funcsynopsis id='xscreensaverqueryversion'>
+<funcsynopsis id='XScreenSaverQueryVersion'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverQueryVersion</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -759,14 +759,14 @@ set and 0 is returned.
 <para>
 This routine allocates and returns an
 <emphasis role="bold">XScreenSaverInfo</emphasis> structure
-for use in calls to <function>XScreenSaverQueryInfo</function>.
+for use in calls to <xref linkend='XScreenSaverQueryInfo' xrefstyle='select: title'/>.
 All fields in the
 structure are initialized to zero.  If insufficient memory is available,
 NULL is returned.  The results of this routine can be released
-using <emphasis remap='I'>XFree</emphasis>.
+using <olink targetdoc='libX11' targetptr='XFree'><function>XFree</function></olink>.
 </para>
 
-<funcsynopsis id='xscreensaverqueryinfo'>
+<funcsynopsis id='XScreenSaverQueryInfo'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverQueryInfo</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -801,7 +801,7 @@ description of the fields.  If the extension is not supported,
 is returned.
 </para>
 
-<funcsynopsis id='xscreensaverselectinput'>
+<funcsynopsis id='XScreenSaverSelectInput'>
 <funcprototype>
   <funcdef>void <function>XScreenSaverSelectInput</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -838,7 +838,7 @@ See the definition of the
 of the allowed event masks.   <!-- xref ? -->
 </para>
 
-<funcsynopsis id='xscreensaversetattributes'>
+<funcsynopsis id='XScreenSaverSetAttributes'>
 <funcprototype>
   <funcdef>void <function>XScreenSaverSetAttributes</function></funcdef>
     <paramdef>Display <parameter>*dpy</parameter></paramdef>
@@ -864,7 +864,7 @@ of the <function>ScreenSaverSetAttributes</function> request for a
 description of each of the arguments.
 </para>
 
-<funcsynopsis id='xscreensaverunsetattributes'>
+<funcsynopsis id='XScreenSaverUnsetAttributes'>
 <funcprototype>
   <funcdef>void <function>XScreenSaverUnsetAttributes</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -878,7 +878,7 @@ extension, this routine instructs the server to discard
 any previous screen saver window attributes set by this client.
 </para>
 
-<funcsynopsis id='xscreensaverregister'>
+<funcsynopsis id='XScreenSaverRegister'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverRegister</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -897,7 +897,7 @@ is encountered and the property is not changed, otherwise it returns
 non-zero.
 </para>
 
-<funcsynopsis id='xscreensaverunregister'>
+<funcsynopsis id='XScreenSaverUnregister'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverUnregister</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
@@ -912,7 +912,7 @@ It returns zero if an error is encountered and the property is changed,
 otherwise it returns non-zero.
 </para>
 
-<funcsynopsis id='xscreensavergetregistered'>
+<funcsynopsis id='XScreenSaverGetRegistered'>
 <funcprototype>
   <funcdef>Status <function>XScreenSaverGetRegistered</function></funcdef>
     <paramdef>Display <parameter>*display</parameter></paramdef>
