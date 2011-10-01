@@ -35,7 +35,7 @@
 
 </bookinfo>
 
-<chapter id='overview'>
+<chapter id='Overview'>
 <title>Overview</title>
 
 <para>This extension enables the use of protocol requests that exceed 262140 bytes in length.</para>
@@ -46,7 +46,7 @@
 
 <para>For example, a normal <function>PolyLine</function> encoding is:</para>
 
-<informaltable pgwide='0' frame='none'>
+<informaltable id='PolyLine' pgwide='0' frame='none'>
   <tgroup cols='4' align='left'>
     <colspec colwidth='0.5in' colname='c1'/>
     <colspec colwidth='1.5in' colname='c2'/>
@@ -185,7 +185,7 @@
 <para>Extended-length protocol encodings, once enabled, can be used on all protocol requests, including all extensions.</para>
 </chapter>
 
-<chapter id='requests'>
+<chapter id='Requests'>
 <title>Requests</title>
 
 <para><function>BigReqEnable</function></para>
@@ -197,13 +197,13 @@
 <para>This request enables extended-length protocol requests for the requesting client.  It also returns the maximum length of a request, in 4-byte units, that can be used in extended-length protocol requests.  This value will always be greater than the maximum-request-length returned in the connection setup information.</para>
 </chapter>
 
-<chapter id='events_and_errors'>
+<chapter id='Events_and_Errors'>
 <title>Events and Errors</title>
 
 <para>No new events or errors are defined by this extension.</para>
 </chapter>
 
-<chapter id='encoding'>
+<chapter id='Encoding'>
 <title>Encoding</title>
 
 <para>Please refer to the X11 Protocol Encoding document as this document uses conventions established there.</para>
@@ -284,34 +284,34 @@
 
 </chapter>
 
-<chapter id='c_language_binding'>
+<chapter id='C_Language_Binding'>
 <title>C language binding</title>
 
 <para>It is desirable for core Xlib, and other extensions, to use this extension internally when necessary.  It is also desirable to make the use of this extension as transparent as possible to the X client.  For example, if enabling of the extension were delayed until the first time it was needed, an application that used
-<olink targetdoc='libX11' targetptr='xnextrequest'><function>XNextRequest</function></olink>
+<olink targetdoc='libX11' targetptr='XNextRequest'><function>XNextRequest</function></olink>
 to determine the sequence number of a request would no longer get the correct sequence number.  As such,
-<olink targetdoc='libX11' targetptr='xopendisplay'><function>XOpenDisplay</function></olink>
+<olink targetdoc='libX11' targetptr='XOpenDisplay'><function>XOpenDisplay</function></olink>
 will determine if the extension is supported by the server and, if it is, enable extended-length encodings.</para>
 
 <para>The core Xlib functions
-<olink targetdoc='libX11' targetptr='xdrawlines'><function>XDrawLines</function></olink>,
-<olink targetdoc='libX11' targetptr='xdrawarcs'><function>XDrawArcs</function></olink>,
-<olink targetdoc='libX11' targetptr='xfillpolygon'><function>XFillPolygon</function></olink>,
-<olink targetdoc='libX11' targetptr='xchangeproperty'><function>XChangeProperty</function></olink>,
-<olink targetdoc='libX11' targetptr='xsetcliprectangles'><function>XSetClipRectangles</function></olink>, and
-<olink targetdoc='libX11' targetptr='xsetregion'><function>XSetRegion</function></olink>.
+<olink targetdoc='libX11' targetptr='XDrawLines'><function>XDrawLines</function></olink>,
+<olink targetdoc='libX11' targetptr='XDrawArcs'><function>XDrawArcs</function></olink>,
+<olink targetdoc='libX11' targetptr='XFillPolygon'><function>XFillPolygon</function></olink>,
+<olink targetdoc='libX11' targetptr='XChangeProperty'><function>XChangeProperty</function></olink>,
+<olink targetdoc='libX11' targetptr='XSetClipRectangles'><function>XSetClipRectangles</function></olink>, and
+<olink targetdoc='libX11' targetptr='XSetRegion'><function>XSetRegion</function></olink>.
 are required to use extended-length encodings when necessary, if supported by the server.  Use of extended-length encodings in other core Xlib functions
-(<olink targetdoc='libX11' targetptr='xdrawpoints'><function>XDrawPoints</function></olink>,
-<olink targetdoc='libX11' targetptr='xdrawrectangles'><function>XDrawRectangles</function></olink>,
-<olink targetdoc='libX11' targetptr='xdrawsegments'><function>XDrawSegments</function></olink>.
-<olink targetdoc='libX11' targetptr='xfillarcs'><function>XFillArcs</function></olink>,
-<olink targetdoc='libX11' targetptr='xfillrectangles'><function>XFillRectangles</function></olink>,
-<olink targetdoc='libX11' targetptr='xputimage'><function>XPutImage</function></olink>
+(<olink targetdoc='libX11' targetptr='XDrawPoints'><function>XDrawPoints</function></olink>,
+<olink targetdoc='libX11' targetptr='XDrawRectangles'><function>XDrawRectangles</function></olink>,
+<olink targetdoc='libX11' targetptr='XDrawSegments'><function>XDrawSegments</function></olink>.
+<olink targetdoc='libX11' targetptr='XFillArcs'><function>XFillArcs</function></olink>,
+<olink targetdoc='libX11' targetptr='XFillRectangles'><function>XFillRectangles</function></olink>,
+<olink targetdoc='libX11' targetptr='XPutImage'><function>XPutImage</function></olink>
 is permitted but not required; an Xlib implementation may choose to split the data across multiple smaller requests instead.</para>
 
 <para>To permit clients to know what the maximum-request-length for extended-length encodings is, the following function is added to Xlib:
 
-<funcsynopsis id='xextendedmaxrequestsize'>
+<funcsynopsis id='XExtendedMaxRequestSize'>
 <funcprototype>
   <funcdef>long <function>XExtendedMaxRequestSize</function></funcdef>
     <paramdef>Display <parameter> *display</parameter></paramdef>
@@ -321,7 +321,7 @@ is permitted but not required; an Xlib implementation may choose to split the da
 Returns zero (0) if the specified display does not support this extension, otherwise returns the maximum-request-length (in 4-byte units) supported by the server through the extended-length encoding.</para>
 </chapter>
 
-<chapter id='acknowledgements'>
+<chapter id='Acknowledgements'>
 <title>Acknowledgements</title>
 
 <para>Clive Feather (IXI) originated the extended-length encoding used in this extension proposal.</para>
