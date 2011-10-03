@@ -64,7 +64,7 @@ in this Software without prior written authorization from the X Consortium.
 </legalnotice>
 </articleinfo>
 
-<sect1 id="introduction">
+<sect1 id='Introduction'>
 <title>Introduction</title>
 <para>
 The management of fonts in large, heterogeneous environments is one of the
@@ -118,7 +118,7 @@ implement a variety of strategies for fine-grained demand-loading of glyphs.
 </para>
 </sect1>
 
-<sect1 id="architectural_model">
+<sect1 id='Architectural_Model'>
 <title>Architectural Model</title>
 <!-- .XS -->
 <!-- (SN Architectural Model -->
@@ -237,7 +237,7 @@ Consortium.
 </para>
 </sect1>
 
-<sect1 id="font_server_naming">
+<sect1 id='Font_Server_Naming'>
 <title>Font Server Naming</title>
 <!-- .XS -->
 <!-- (SN Font Server Naming -->
@@ -252,7 +252,7 @@ described below.  Formats for additional transports may be registered with the
 X Consortium.
 </para>
 
-<sect2 id="tcpip_names">
+<sect2 id='TCPIP_Names'>
 <title>TCP/IP Names</title>
 <!-- .XS -->
 <!-- (SN TCP/IP Names -->
@@ -279,7 +279,7 @@ that may be requested.  For example:
 </literallayout>
 </sect2>
 
-<sect2 id="decnet_names">
+<sect2 id='DECnet_Names'>
 <title>DECnet Names</title>
 <!-- .XS -->
 <!-- (SN DECnet Names -->
@@ -309,7 +309,7 @@ requested.  For example:
 </sect2>
 </sect1>
 
-<sect1 id="protocol">
+<sect1 id='Protocol'>
 <title>Protocol</title>
 <!-- .XS -->
 <!-- (SN Protocol -->
@@ -377,7 +377,7 @@ A type with a prefix "LISTof" represents a counted list of
 elements of that type, as in:  LISTofCARD8
 </para>
 
-<sect2 id="data_types">
+<sect2 id='Data_Types'>
 <title>Data Types</title>
 <!-- .XS -->
 <!-- (SN Data Types -->
@@ -1104,7 +1104,7 @@ This structure is padded to 32-bit alignment.
 </blockquote>
 </sect2>
 
-<sect2 id="requests">
+<sect2 id='Requests'>
 <title>Requests</title>
 <!-- .XS -->
 <!-- (SN Requests -->
@@ -2650,7 +2650,7 @@ the client that made the connection.
 </blockquote>
 </sect2>
 
-<sect2 id="errors">
+<sect2 id='Errors'>
 <title>Errors</title>
 <!-- .XS -->
 <!-- (SN Errors -->
@@ -2977,7 +2977,7 @@ Additional errors may be defined by extensions.
 </blockquote>
 </sect2>
 
-<sect2 id="events">
+<sect2 id='Events'>
 <title>Events</title>
 <!-- .XS -->
 <!-- (SN Events -->
@@ -3116,7 +3116,7 @@ Additional events may be defined by extensions.
 </sect2>
 </sect1>
 
-<sect1 id="protocol_encoding">
+<sect1 id='Protocol_Encoding'>
 <title>Protocol Encoding</title>
 <!-- .XS -->
 <!-- (SN Protocol Encoding -->
@@ -3164,7 +3164,7 @@ multiple of four:
      pad(e) = (4 - (e mod 4)) mod 4
 </literallayout>
 
-<sect2 id="data_types_2">
+<sect2 id='Data_Types_2'>
 <title>Data Types</title>
 <!-- .XS -->
 <!-- (SN Data Types -->
@@ -3363,7 +3363,7 @@ n    PROPINFO           property data
 </literallayout>
 </sect2>
 
-<sect2 id="requests_2">
+<sect2 id='Requests_2'>
 <title>Requests</title>
 <para><emphasis role="bold">open connection</emphasis></para>
 <literallayout class="monospaced">
@@ -3760,7 +3760,7 @@ p                            unused, p=pad(m)
 </literallayout>
 </sect2>
 
-<sect2 id="errors_2">
+<sect2 id='Errors_2'>
 <title>Errors</title>
 <literallayout class="monospaced">
 
@@ -3894,7 +3894,7 @@ p                            unused, p=pad(m)
 </literallayout>
 </sect2>
 
-<sect2 id="events_2">
+<sect2 id='Events_2'>
 <title>Events</title>
 <literallayout class="monospaced">
 <emphasis role="bold">KeepAlive</emphasis>
@@ -3928,7 +3928,7 @@ p                            unused, p=pad(m)
 </sect2>
 </sect1>
 
-<sect1 id="acknowledgements">
+<sect1 id='Acknowledgements'>
 <title>Acknowledgements</title>
 <!-- .XS -->
 <!-- (SN Acknowledgements -->
