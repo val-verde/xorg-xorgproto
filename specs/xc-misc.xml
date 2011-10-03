@@ -40,7 +40,7 @@
 
 </bookinfo>
 
-<chapter id='overview'>
+<chapter id='Overview'>
 <title>Overview</title>
 
 <para>When an X client connects to an X server, it receives a fixed range of
@@ -70,7 +70,7 @@ IDs.  Xlib can use these extension requests behind the scenes when it has
 exhausted its current pool of resource IDs.</para>
 </chapter>
 
-<chapter id='requests'>
+<chapter id='Requests'>
 <title>Requests</title>
 
 <para>
@@ -131,13 +131,13 @@ range.</para>
 The number returned may be smaller than the number requested.</para>
 </chapter>
 
-<chapter id='events_and_errors'>
+<chapter id='Events_and_Errors'>
 <title>Events and Errors</title>
 
 <para>No new events or errors are defined by this extension.</para>
 </chapter>
 
-<chapter id='encoding'>
+<chapter id='Encoding'>
 <title>Encoding</title>
 
 <para>Please refer to the X11 Protocol Encoding document as this document uses
