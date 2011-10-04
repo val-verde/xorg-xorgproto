@@ -74,7 +74,7 @@ X Consortium, Inc.
 </para>
 </preface>
 
-<chapter id="protocol_formats">
+<chapter id='Protocol_Formats'>
   <title>Protocol Formats</title>
 
   <section id="request_format">
@@ -139,7 +139,7 @@ Error codes 128 through 255 are reserved for extensions.
 <indexterm zone="errors:extensions" significance="preferred"><primary>Extension</primary><secondary>error codes</secondary></indexterm>
 Every error also includes the major and minor opcodes of the failed request
 and the least significant 16 bits of the sequence number of the request.
-For the following errors (see <link linkend="errors">section 4</link>),
+For the following errors (see <link linkend='Errors'>section 4</link>),
 the failing resource ID is also returned:
 <emphasis role='bold'>Colormap</emphasis>,
 <emphasis role='bold'>Cursor</emphasis>,
@@ -186,7 +186,7 @@ the server.
   </section>
 </chapter>
 
-<chapter id="syntactic_conventions">
+<chapter id='Syntactic_Conventions'>
 <title>Syntactic Conventions</title>
 <!-- .XS -->
 <!-- (SN Syntactic Conventions -->
@@ -215,7 +215,7 @@ are capitalized.
   </listitem>
   <listitem>
     <para>
-Requests in <link linkend="requests">section 9</link> are described
+Requests in <link linkend='Requests'>section 9</link> are described
 in the following format:
 <literallayout class="monospaced">
 <emphasis role='bold'>RequestName</emphasis>
@@ -242,7 +242,7 @@ then one or more replies can be generated for a single request.
   </listitem>
   <listitem>
     <para>
-Events in <link linkend="events">section 11</link> are described
+Events in <link linkend='Events'>section 11</link> are described
 in the following format:
 <literallayout class="monospaced">
 <emphasis role='bold'>EventName</emphasis>
@@ -257,7 +257,7 @@ in the following format:
 </itemizedlist>
 </chapter>
 
-<chapter id="common_types">
+<chapter id='Common_Types'>
 <title>Common Types</title>
 <!-- .XS -->
 <!-- (SN Common Types -->
@@ -618,7 +618,7 @@ request).
 </para>
 </chapter>
 
-<chapter id="errors">
+<chapter id='Errors'>
 <title>Errors</title>
 <!-- .XS -->
 <!-- (SN Errors -->
@@ -818,9 +818,9 @@ or
 </para></note>
 </chapter>
 
-<chapter id="keyboards">
+<chapter id='Keyboards'>
 <title>Keyboards</title>
-<indexterm zone="keyboards"><primary>Keyboard</primary></indexterm>
+<indexterm zone="Keyboards"><primary>Keyboard</primary></indexterm>
 <!-- .XS -->
 <!-- (SN Keyboards -->
 <!-- .XE -->
@@ -1015,7 +1015,7 @@ it is merely stored for reading and writing by clients.
 </para>
 </chapter>
 
-<chapter id="pointers">
+<chapter id='Pointers'>
 <title>Pointers</title>
 <!-- .XS -->
 <!-- (SN Pointers -->
@@ -1026,14 +1026,14 @@ Buttons are always numbered starting with one.
 </para>
 </chapter>
 
-<chapter id="predefined_atoms">
+<chapter id='Predefined_Atoms'>
 <title>Predefined Atoms</title>
 <!-- .XS -->
 <!-- (SN Predefined Atoms -->
 <!-- .XE -->
 <para>
 <!-- .LP -->
-<indexterm zone="predefined_atoms"><primary>Atom</primary><secondary>predefined</secondary></indexterm>
+<indexterm zone="Predefined_Atoms"><primary>Atom</primary><secondary>predefined</secondary></indexterm>
 Predefined atoms are not strictly necessary and may not be useful in all
 environments, but they will eliminate many
 <link linkend="requests:InternAtom"><emphasis role='bold'>InternAtom</emphasis></link>
@@ -1140,9 +1140,9 @@ other names.
 </para>
 </chapter>
 
-<chapter id="connection_setup">
+<chapter id='Connection_Setup'>
   <title>Connection Setup</title>
-  <indexterm zone="connection_setup"><primary>Connection</primary></indexterm>
+  <indexterm zone="Connection_Setup"><primary>Connection</primary></indexterm>
 
   <para>
 For remote clients,
@@ -1754,7 +1754,7 @@ red-mask, green-mask, and blue-mask.
   </section>
 </chapter>
 
-<chapter id="requests">
+<chapter id='Requests'>
   <title>Requests</title>
   <section id="requests:CreateWindow">
     <title>CreateWindow</title>
@@ -2722,7 +2722,7 @@ The window must have been created by some other client (or a
 <emphasis role='bold'>Match</emphasis>
 error results).
 For further information about the use of the save-set,
-see <link linkend="connection_close">section 10</link>.
+see <link linkend='Connection_Close'>section 10</link>.
 </para>
 <para>
 When windows are destroyed,
@@ -3651,7 +3651,7 @@ Uppercase and lowercase matter.
 </para>
 <para>
 The lifetime of an atom is not tied to the interning client.
-Atoms remain defined until server reset (see <link linkend="connection_close">section 10</link>).
+Atoms remain defined until server reset (see <link linkend='Connection_Close'>section 10</link>).
 <!-- .sp -->
 </para>
   </section>
@@ -3789,7 +3789,7 @@ event on the window.
 <para>
 The lifetime of a property is not tied to the storing client.
 Properties remain until explicitly deleted, until the window is destroyed,
-or until server reset (see <link linkend="connection_close">section 10</link>).
+or until server reset (see <link linkend='Connection_Close'>section 10</link>).
 </para>
 <para>
 The maximum size of a property is server-dependent and may vary dynamically.
@@ -11455,7 +11455,7 @@ event.
 <para>
 There is no requirement that the server interpret this mapping;
 it is merely stored for reading and writing by clients
-(see <link linkend="keyboards">section 5</link>).
+(see <link linkend='Keyboards'>section 5</link>).
 <!-- .sp -->
 </para>
   </section>
@@ -12434,7 +12434,7 @@ A connection starts in
 <emphasis role='bold'>Destroy</emphasis>
 mode.
 The meaning of the close-down mode is described
-in <link linkend="connection_close">section 10</link>.
+in <link linkend='Connection_Close'>section 10</link>.
 <!-- .sp -->
 </para>
   </section>
@@ -12475,7 +12475,7 @@ If the client has already terminated in either
 or
 <emphasis role='bold'>RetainTemporary</emphasis>
 mode, all of the client's resources are destroyed
-(see <link linkend="connection_close">section 10</link>).
+(see <link linkend='Connection_Close'>section 10</link>).
 If
 <emphasis role='bold'>AllTemporary</emphasis>
 is specified,
@@ -12502,9 +12502,9 @@ to begin on 64-bit boundaries.
   </section>
 </chapter>
 
-<chapter id="connection_close">
+<chapter id='Connection_Close'>
 <title>Connection Close</title>
-  <indexterm zone="connection_close"><primary>Connection</primary><secondary>closing</secondary></indexterm>
+  <indexterm zone="Connection_Close"><primary>Connection</primary><secondary>closing</secondary></indexterm>
 <!-- .XS -->
 <!-- \*(SN Connection Close -->
 <!-- .XE -->
@@ -12590,13 +12590,13 @@ will not cause the server to reset.
 </para>
 </chapter>
 <!-- .NH 1 -->
-<chapter id="events">
+<chapter id='Events'>
 <title>Events</title>
 <!-- .XS -->
 <!-- \*(SN Events -->
 <!-- .XE -->
 <para>
-<indexterm zone="events"><primary>Event</primary></indexterm>
+<indexterm zone="Events"><primary>Event</primary></indexterm>
 When a button press is processed with the pointer in some window W
 and no active pointer grab is in progress,
 the ancestors of W are searched from the root down,
@@ -15102,7 +15102,7 @@ of all of these values.
 </para>
   </section>
 </chapter>
-<chapter id="flow_control_and_concurrency">
+<chapter id='Flow_Control_and_Concurrency'>
 <title>Flow Control and Concurrency</title>
 <!-- .XS -->
 <!-- \*(SN Flow Control and Concurrency -->
