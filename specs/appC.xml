@@ -1,9 +1,9 @@
 <appendix id='new_keysyms'>
 <title>New KeySyms</title>
 
-<sect1 id='new_keysymsb'>
+<sect1 id='New_KeySyms'>
 <title>New KeySyms</title>
-<sect2 id='keysyms_used_by_the_iso9995_standard'>
+<sect2 id='KeySyms_Used_by_the_ISO9995_Standard'>
 <title>KeySyms Used by the ISO9995 Standard</title>
 <informaltable frame='none'>
 <tgroup cols='4'>
@@ -241,7 +241,7 @@
 </informaltable>
 
 </sect2>
-<sect2 id='keysyms_used_to_control_the_core_pointer'>
+<sect2 id='KeySyms_Used_to_Control_The_Core_Pointer'>
 <title>KeySyms Used to Control The Core Pointer</title>
 <informaltable frame='none'>
 <tgroup cols='4'>
@@ -443,7 +443,7 @@
 </informaltable>
 
 </sect2>
-<sect2 id='keysyms_used_to_change_keyboard_controls'>
+<sect2 id='KeySyms_Used_to_Change_Keyboard_Controls'>
 <title>KeySyms Used to Change Keyboard Controls</title>
 <informaltable frame='none'>
 <tgroup cols='4'>
@@ -531,7 +531,7 @@
 </informaltable>
 
 </sect2>
-<sect2 id='keysyms_used_to_control_the_server'>
+<sect2 id='KeySyms_Used_To_Control_The_Server'>
 <title>KeySyms Used To Control The Server</title>
 <informaltable frame='none'>
 <tgroup cols='4'>
@@ -583,7 +583,7 @@
 </informaltable>
 
 </sect2>
-<sect2 id='keysyms_for_non_spacing_diacritical_keys'>
+<sect2 id='KeySyms_for_Non_Spacing_Diacritical_Keys'>
 <title>KeySyms for Non-Spacing Diacritical Keys</title>
 <informaltable frame='none'>
 <tgroup cols='4'>

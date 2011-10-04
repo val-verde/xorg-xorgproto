@@ -1,4 +1,4 @@
-<chapter id='key_event_processing_in_the_client'>
+<chapter id='Key_Event_Processing_in_the_Client'>
 <title>Key Event Processing in the Client</title>
 
 <para>
@@ -7,19 +7,19 @@ client map</emphasis>
  for a keyboard is the collection of information a client needs to interpret
 key events that come from that keyboard. It contains a global list of <emphasis>
 key types</emphasis>
-, described in <link linkend='key_types'>Key Types</link>,
+, described in <link linkend='Key_Types'>Key Types</link>,
 and an array of <emphasis>
 key symbol map</emphasis>
 s, each of which describes the symbols bound to one particular key and the
 rules to be used to interpret those symbols.
 </para>
 
-<sect1 id='notation_and_terminology'>
+<sect1 id='Notation_and_Terminology'>
 <title>Notation and Terminology</title>
 
 <para>
 XKB associates a two-dimensional array of symbols with each key. Symbols are
-addressed by keyboard group (see <link linkend='keyboard_state'>
+addressed by keyboard group (see <link linkend='Keyboard_State'>
 Keyboard State</link>) and shift level, where level is defined as in the
 ISO9995 standard:
 </para>
@@ -75,7 +75,7 @@ for it, but we try to minimize confusion by using "group" and "level" (or
 "shift level") to refer to symbols regardless of context.</para></note>
 
 </sect1>
-<sect1 id='determining_the_keysym_associated_with_a_key_event'>
+<sect1 id='Determining_the_KeySym_Associated_with_a_Key_Event'>
 <title>Determining the KeySym Associated with a Key Event</title>
 
 <para>
@@ -86,13 +86,13 @@ group and shift level that correspond to the event.
 
 <para>
 Group is reported in bits 13-14 of the state field of the key event, as
-described in <link linkend='computing_a_state_field_from_an_xkb_state'>Computing A State
+described in <link linkend='Computing_A_State_Field_from_an_XKB_State'>Computing A State
 Field from an XKB State</link>. The keyboard group reported in the event might
 be out-of-range for any particular key because the number of groups can vary
 from key to key. The XKB description of each key contains a <emphasis>
 group info</emphasis>
  field which is interpreted identically to the global groups wrap control (see
-<link linkend='computing_effective_modifier_and_group'>Computing Effective Modifier and
+<link linkend='Computing_Effective_Modifier_and_Group'>Computing Effective Modifier and
 Group</link>) and which specifies the interpretation of groups that are
 out-of-range for that key.
 </para>
@@ -104,7 +104,7 @@ determine the shift level. The description of a key includes a <emphasis>
 key type</emphasis>
  for each group of symbols bound to the key. Given the modifiers from the key
 event, this key type yields a shift level and a set of "leftover" modifiers, as
-described in <link linkend='key_types'>Key Types</link>
+described in <link linkend='Key_Types'>Key Types</link>
 below.
 </para>
 
@@ -116,7 +116,7 @@ associated with the key.
 </para>
 
 
-<sect2 id='key_types'>
+<sect2 id='Key_Types'>
 <title>Key Types</title>
 
 <para>
@@ -125,7 +125,7 @@ map</emphasis>
  field specifies the shift level that corresponds to some XKB modifier
 definition; any combination of modifiers that is not explicitly listed
 somewhere in the map yields shift level one. Map entries which specify unbound
-virtual modifiers (see <link linkend='inactive_modifier_definitions'>Inactive
+virtual modifiers (see <link linkend='Inactive_Modifier_Definitions'>Inactive
 Modifier Definitions</link>) are not considered; each entry contains an
 automatically-updated <emphasis>
 active</emphasis>
@@ -161,7 +161,7 @@ Any modifiers specified in <emphasis>
 modifiers</emphasis>
  are normally <emphasis>
 consumed</emphasis>
- (see <link linkend='transforming_the_keysym_associated_with_a_key_event'>Transforming the KeySym
+ (see <link linkend='Transforming_the_KeySym_Associated_with_a_Key_Event'>Transforming the KeySym
 Associated with a Key Event</link>), which means that they are not considered
 during any of the later stages of event processing. For those rare occasions
 that a modifier <emphasis>
@@ -257,7 +257,7 @@ Lock</emphasis>
 
 
 </sect2>
-<sect2 id='key_symbol_map'>
+<sect2 id='Key_Symbol_Map'>
 <title>Key Symbol Map</title>
 
 <para>
@@ -382,7 +382,7 @@ key actually yields that code.
 
 </sect2>
 </sect1>
-<sect1 id='transforming_the_keysym_associated_with_a_key_event'>
+<sect1 id='Transforming_the_KeySym_Associated_with_a_Key_Event'>
 <title>Transforming the KeySym Associated with a Key Event</title>
 
 <para>
@@ -452,7 +452,7 @@ Interpretation of other modifiers is application dependent.
 <note><para>This definition of capitalization is fundamentally different from
 the core protocol’s, which uses the lock modifier to select from the symbols
 bound to the key. Consider key 9 in the
-<link linkend="client_map_example">client map example</link>;
+<link linkend='Client_Map_Example'>client map example</link>;
 the core protocol provides no way to generate the capital form
 of either symbol bound to this key. XKB specifies that we first look up the
 symbol and then capitalize, so XKB yields the capital form of the two symbols
@@ -468,7 +468,7 @@ Control</emphasis>
 
 
 </sect1>
-<sect1 id='client_map_example'>
+<sect1 id='Client_Map_Example'>
 <title>Client Map Example</title>
 
 <para>
@@ -677,7 +677,7 @@ to be used. The key type determines which symbol is chosen from the list.
 
 
 <para>
-<link linkend='determining_the_keysym_associated_with_a_key_event'>Determining the KeySym Associated
+<link linkend='Determining_the_KeySym_Associated_with_a_Key_Event'>Determining the KeySym Associated
 with a Key Event</link> details the procedure to map from a key event to a
 symbol and/or a string.
 </para>

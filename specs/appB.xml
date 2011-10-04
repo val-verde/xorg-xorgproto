@@ -1,9 +1,9 @@
 <appendix id='canonical_key_types'>
 <title>Canonical Key Types</title>
 
-<sect1 id='canonical_key_types2'>
+<sect1 id='Canonical_Key_Types'>
 <title>Canonical Key Types</title>
-<sect2 id='the_one_level_key_type'>
+<sect2 id='The_ONE_LEVEL_Key_Type'>
 <title>The ONE_LEVEL Key Type</title>
 
 <para>
@@ -15,7 +15,7 @@ ONE_LEVEL</emphasis>
 </para>
 
 </sect2>
-<sect2 id='the_two_level_key_type'>
+<sect2 id='The_TWO_LEVEL_Key_Type'>
 <title>The TWO_LEVEL Key Type</title>
 
 <para>
@@ -33,7 +33,7 @@ Shift</emphasis>
 
 
 </sect2>
-<sect2 id='the_alphabetic_key_type'>
+<sect2 id='The_ALPHABETIC_Key_Type'>
 <title>The ALPHABETIC Key Type</title>
 
 <para>
@@ -87,7 +87,7 @@ Lock</emphasis>
 </itemizedlist>
 
 </sect2>
-<sect2 id='the_keypad_key_type'>
+<sect2 id='The_KEYPAD_Key_Type'>
 <title>The KEYPAD Key Type</title>
 
 <para>

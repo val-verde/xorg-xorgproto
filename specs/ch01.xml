@@ -1,4 +1,4 @@
-<chapter id='overview'>
+<chapter id='Overview'>
 <title>Overview</title>
 <para>
 This extension provides a number of new capabilities and controls for
@@ -85,7 +85,7 @@ keyboard. The following sections describe the new capabilities of the extension
 and the effect of the extension on core protocol requests, events and errors.
 </para>
 
-<sect1 id='conventions_and_assumptions'>
+<sect1 id='Conventions_and_Assumptions'>
 <title>Conventions and Assumptions</title>
 <para>
 This document uses the syntactic

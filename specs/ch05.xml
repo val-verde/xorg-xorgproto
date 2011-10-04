@@ -1,5 +1,5 @@
 
-<chapter id='key_event_processing_overview'>
+<chapter id='Key_Event_Processing_Overview'>
 <title>Key Event Processing Overview</title>
 
 <para>
@@ -20,7 +20,7 @@ RepeatKeys</emphasis>
  control can cause multiple X events from a single physical key press if the
 key is held down for an extended period. The global keyboard controls affect
 all of the keys on the keyboard and are described in
-<link linkend='global_keyboard_controls'>Global Keyboard Controls</link>.
+<link linkend='Global_Keyboard_Controls'>Global Keyboard Controls</link>.
   </para>
 </listitem>
 <listitem>
@@ -31,7 +31,7 @@ circumstances, can be implemented using per-key behavior. Every key has a
 single behavior, so the effect of key behavior does not depend on keyboard
 modifier or group state, though it might depend on global keyboard controls.
 Per-key behaviors are described in detail in
-<link linkend='key_behavior'>Key Behavior</link>.
+<link linkend='Key_Behavior'>Key Behavior</link>.
   </para>
 </listitem>
 <listitem>
@@ -39,7 +39,7 @@ Per-key behaviors are described in detail in
 keyboard has some action associated with it. The key action tells the server
 what to do when an event which yields the corresponding keysym is generated.
 Key actions might change or suppress the event, generate some other event, or
-change some aspect of the server. Key actions are described in <link linkend='key_actions'>Key Actions</link>.
+change some aspect of the server. Key actions are described in <link linkend='Key_Actions'>Key Actions</link>.
   </para>
 </listitem>
 </orderedlist>
@@ -52,13 +52,13 @@ event, the client which receives the event processes it in several steps.
 <orderedlist>
 <listitem>
   <para>First the client extracts the effective keyboard group and a set of
-modifiers from the state field of the event. See <link linkend='computing_a_state_field_from_an_xkb_state'>Computing A State Field from an XKB
+modifiers from the state field of the event. See <link linkend='Computing_A_State_Field_from_an_XKB_State'>Computing A State Field from an XKB
 State</link> for details.
   </para>
 </listitem>
 <listitem>
   <para>Using the modifiers and effective keyboard group, the client selects a
-symbol from the list of keysyms bound to the key. <link linkend='determining_the_keysym_associated_with_a_key_event'>Determining the KeySym Associated with a
+symbol from the list of keysyms bound to the key. <link linkend='Determining_the_KeySym_Associated_with_a_Key_Event'>Determining the KeySym Associated with a
 Key Event</link> discusses symbol selection.
   </para>
 </listitem>
@@ -69,7 +69,7 @@ symbol. For example, if the <emphasis>
 Lock</emphasis>
  modifier is left over, the resulting keysym is capitalized according to the
 capitalization rules specified by the system. See
-<link linkend='transforming_the_keysym_associated_with_a_key_event'>
+<link linkend='Transforming_the_KeySym_Associated_with_a_Key_Event'>
 Transforming the KeySym Associated with a
 Key Event</link> for a more detailed discussion of the transformations defined
 by XKB.

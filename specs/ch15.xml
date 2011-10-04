@@ -1,4 +1,4 @@
-<chapter id='interactions_between_xkb_and_the_x_input_extension'>
+<chapter id='Interactions_Between_XKB_and_the_X_Input_Extension'>
 <title>Interactions Between XKB and the X Input Extension</title>
 
 <para>
@@ -79,7 +79,7 @@ supported XKB features for extension devices, or if a request from the client
 that is receiving the event attempted to use an unsupported feature.
 </para>
 
-<sect1 id='using_xkb_functions_with_input_extension_keyboards'>
+<sect1 id='Using_XKB_Functions_with_Input_Extension_Keyboards'>
 <title>Using XKB Functions with Input Extension Keyboards</title>
 
 <para>
@@ -108,12 +108,12 @@ Keyboard</emphasis>
 
 
 </sect1>
-<sect1 id='pointer_and_device_button_actions'>
+<sect1 id='Pointer_and_Device_Button_Actions'>
 <title>Pointer and Device Button Actions</title>
 
 <para>
 The XKB extension optionally allows clients to assign any key action (see
-<link linkend='key_actions'>Key Actions</link>) to core
+<link linkend='Key_Actions'>Key Actions</link>) to core
 pointer or input extension device buttons. This makes it possible to control
 the keyboard or generate keyboard key events from extension devices or from the
 core pointer.
@@ -141,7 +141,7 @@ cause an error condition.
 
 
 </sect1>
-<sect1 id='indicator_maps_for_extension_devices'>
+<sect1 id='Indicator_Maps_for_Extension_Devices'>
 <title>Indicator Maps for Extension Devices</title>
 
 <para>
@@ -186,7 +186,7 @@ XkbGetDeviceInfo</emphasis>
 
 
 </sect1>
-<sect1 id='indicator_names_for_extension_devices'>
+<sect1 id='Indicator_Names_for_Extension_Devices'>
 <title>Indicator Names for Extension Devices</title>
 
 <para>

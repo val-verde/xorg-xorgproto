@@ -1,4 +1,4 @@
-<chapter id='virtual_modifiers'>
+<chapter id='Virtual_Modifiers'>
 <title>Virtual Modifiers</title>
 <para>
 The core protocol specifies that
@@ -80,7 +80,7 @@ XKB puts most aspects of the keyboard under user or program control, so it is
 even more important to clearly and uniformly refer to modifiers by function.
 </para>
 
-<sect1 id='modifier_definitions'>
+<sect1 id='Modifier_Definitions'>
 <title>Modifier Definitions</title>
 <para>
 Use an <emphasis>
@@ -156,7 +156,7 @@ Meta</emphasis>.
 </para>
 
 
-<sect2 id='inactive_modifier_definitions'>
+<sect2 id='Inactive_Modifier_Definitions'>
 <title>Inactive Modifier Definitions</title>
 <para>
 Some XKB structures ignore modifier
@@ -182,7 +182,7 @@ virtual modifiers are bound.
 </sect2>
 </sect1>
 
-<sect1 id='virtual_modifier_mapping'>
+<sect1 id='Virtual_Modifier_Mapping'>
 <title>Virtual Modifier Mapping</title>
 <para>
 XKB maintains a <emphasis>
@@ -212,7 +212,7 @@ NumLock</emphasis>
 
 <para>
 The virtual modifier mapping is normally updated automatically whenever actions
-are assigned to keys (see <link linkend='changing_the_keyboard_mapping_using_the_core_protocol'>Changing
+are assigned to keys (see <link linkend='Changing_the_Keyboard_Mapping_Using_the_Core_Protocol'>Changing
 the Keyboard Mapping Using the Core Protocol</link> for details) and few
 applications should need to change the virtual modifier mapping explicitly.
 </para>

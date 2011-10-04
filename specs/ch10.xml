@@ -1,4 +1,4 @@
-<chapter id='keyboard_bells'>
+<chapter id='Keyboard_Bells'>
 <title>Keyboard Bells</title>
 
 <para>
@@ -13,7 +13,7 @@ symbolic name to a bell request or receive an event when the keyboard bell is
 rung.
 </para>
 
-<sect1 id='client_notification_of_bells'>
+<sect1 id='Client_Notification_of_Bells'>
 <title>Client Notification of Bells</title>
 
 <para>
@@ -46,7 +46,7 @@ sound for each type of bell.
 
 
 </sect1>
-<sect1 id='disabling_server_generated_bells'>
+<sect1 id='Disabling_Server_Generated_Bells'>
 <title>Disabling Server Generated Bells</title>
 
 <para>
@@ -87,7 +87,7 @@ XkbBell</emphasis>
 
 
 </sect1>
-<sect1 id='generating_named_bells'>
+<sect1 id='Generating_Named_Bells'>
 <title>Generating Named Bells</title>
 
 <para>
@@ -110,14 +110,14 @@ sounds other than simple tones, but it is not required to do so.
 <para>
 Aside from those used by the XKB <emphasis>
 AccessXFeedback</emphasis>
- control (see <link linkend='the_accessxfeedback_control'>The AccessXFeedback
+ control (see <link linkend='The_AccessXFeedback_Control'>The AccessXFeedback
 Control</link>), this extension does not specify bell names or their
 interpretation.
 </para>
 
 
 </sect1>
-<sect1 id='generating_optional_named_bells'>
+<sect1 id='Generating_Optional_Named_Bells'>
 <title>Generating Optional Named Bells</title>
 
 <para>
@@ -147,7 +147,7 @@ to weed out "normal" keyboard bells.
 
 
 </sect1>
-<sect1 id='forcing_a_server_generated_bell'>
+<sect1 id='Forcing_a_Server_Generated_Bell'>
 <title>Forcing a Server Generated Bell</title>
 
 <para>

@@ -1,7 +1,7 @@
 <appendix id='default_symbol_transformations'>
 <title>Default Symbol Transformations</title>
 
-<sect1 id='interpreting_the_control_modifier'>
+<sect1 id='Interpreting_the_Control_Modifier'>
 <title>Interpreting the Control Modifier</title>
 
 <para>
@@ -130,7 +130,7 @@ not listed in this table are application-specific.
 </informaltable>
 
 </sect1>
-<sect1 id='interpreting_the_lock_modifier'>
+<sect1 id='Interpreting_the_Lock_Modifier'>
 <title>Interpreting the Lock Modifier</title>
 
 <para>
@@ -144,7 +144,7 @@ Control</emphasis>
 returned by the event.
 </para>
 
-<sect2 id='locale_sensitive_capitalization'>
+<sect2 id='Locale_Sensitive_Capitalization'>
 <title>Locale-Sensitive Capitalization</title>
 
 <para>
@@ -158,7 +158,7 @@ state of the user environment (e.g. locale) into account.
 
 
 </sect2>
-<sect2 id='locale_insensitive_capitalization'>
+<sect2 id='Locale_Insensitive_Capitalization'>
 <title>Locale-Insensitive Capitalization</title>
 
 <para>
@@ -175,12 +175,12 @@ capitalization behavior. Any keysyms not explicitly listed in these tables are
 not capitalized by XKB when locale-insensitive capitalization is in effect and
 are not automatically assigned the <emphasis>
 ALPHABETIC</emphasis>
- type as described in the <link linkend="the_alphabetic_key_type">Alphabetic Key Type</link>.
+ type as described in the <link linkend='The_ALPHABETIC_Key_Type'>Alphabetic Key Type</link>.
 </para>
 
 
-<sect3 id='capitalization_rules_for_latin_1_keysyms'>
-<title>Capitalization Rules for Latin-1 Keysyms	</title>
+<sect3 id='Capitalization_Rules_for_Latin_1_Keysyms'>
+<title>Capitalization Rules for Latin-1 Keysyms</title>
 
 <para>
 This table lists the Latin-11 keysyms for which XKB defines upper and lower
@@ -355,7 +355,7 @@ case:
 </informaltable>
 
 </sect3>
-<sect3 id='capitalization_rules_for_latin_2_keysyms'>
+<sect3 id='Capitalization_Rules_for_Latin_2_Keysyms'>
 <title>Capitalization Rules for Latin-2 Keysyms</title>
 
 <para>
@@ -458,7 +458,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
 </informaltable>
 
 </sect3>
-<sect3 id='capitalization_rules_for_latin_3_keysyms'>
+<sect3 id='Capitalization_Rules_for_Latin_3_Keysyms'>
 <title>Capitalization Rules for Latin-3 Keysyms</title>
 
 <para>
@@ -521,7 +521,7 @@ This table lists the Latin-3 keysyms for which XKB defines upper and lower case:
 </informaltable>
 
 </sect3>
-<sect3 id='capitalization_rules_for_latin_4_keysyms'>
+<sect3 id='Capitalization_Rules_for_Latin_4_Keysyms'>
 <title>Capitalization Rules for Latin-4 Keysyms</title>
 
 <para>
@@ -600,7 +600,7 @@ This table lists the Latin-4 keysyms for which XKB defines upper and lower case:
 </informaltable>
 
 </sect3>
-<sect3 id='capitalization_rules_for_cyrillic_keysyms'>
+<sect3 id='Capitalization_Rules_for_Cyrillic_Keysyms'>
 <title>Capitalization Rules for Cyrillic Keysyms</title>
 
 <para>
@@ -766,7 +766,7 @@ case:
 </informaltable>
 
 </sect3>
-<sect3 id='capitalization_rules_for_greek_keysyms'>
+<sect3 id='Capitalization_Rules_for_Greek_Keysyms'>
 <title>Capitalization Rules for Greek Keysyms</title>
 
 <para>
@@ -895,7 +895,7 @@ This table lists the Greek keysyms for which XKB defines upper and lower case:
 </informaltable>
 
 </sect3>
-<sect3 id='capitalization_rules_for_other_keysyms'>
+<sect3 id='Capitalization_Rules_for_Other_Keysyms'>
 <title>Capitalization Rules for Other Keysyms</title>
 
 <para>

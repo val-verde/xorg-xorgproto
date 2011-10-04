@@ -1,7 +1,7 @@
 <appendix id='protocol_encoding'>
 <title>Protocol Encoding</title>
 
-<sect1 id='syntactic_conventions'>
+<sect1 id='Syntactic_Conventions'>
 <title>Syntactic Conventions</title>
 
 <para>
@@ -123,7 +123,7 @@ for example, the size of the previous structure is written as "4+[4]" bytes.
 
 
 </sect1>
-<sect1 id='common_types2'>
+<sect1 id='appD::Common_Types'>
 <title>Common Types</title>
 <literallayout class='monospaced'>
 SETofKB_EVENTTYPE
@@ -481,7 +481,7 @@ p               unused,p=pad(2+l)
 </literallayout>
 
 </sect1>
-<sect1 id='errors2'>
+<sect1 id='appD::Errors'>
 <title>Errors</title>
 
 <literallayout class='monospaced'>1     0          Error
@@ -501,7 +501,7 @@ class, or feedback
 </literallayout>
 
 </sect1>
-<sect1 id='key_actions2'>
+<sect1 id='appD::Key_Actions'>
 <title>Key Actions</title>
 
 <literallayout class='monospaced'>1     0          type
@@ -733,7 +733,7 @@ class, or feedback
 </literallayout>
 
 </sect1>
-<sect1 id='key_behaviors'>
+<sect1 id='Key_Behaviors'>
 <title>Key Behaviors</title>
 
 <literallayout class='monospaced'>1     #x00          type
@@ -773,7 +773,7 @@ class, or feedback
 </literallayout>
 
 </sect1>
-<sect1 id='requests2'>
+<sect1 id='appD::Requests'>
 <title>Requests</title>
 
 <literallayout class='monospaced'>1     ??          opcode
@@ -1884,7 +1884,7 @@ p               unused, p=pad(n)
 
 
 </sect1>
-<sect1 id='events2'>
+<sect1 id='appD::Events'>
 <title>Events</title>
 
 <literallayout class='monospaced'>1     ??          code

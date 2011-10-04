@@ -1,4 +1,4 @@
-<chapter id='the_server_database_of_keyboard_components'>
+<chapter id='The_Server_Database_of_Keyboard_Components'>
 <title>The Server Database of Keyboard Components</title>
 
 <para>
@@ -16,7 +16,7 @@ current keyboard description with a complete keyboard description assembled as
 described below.
 </para>
 
-<sect1 id='component_names'>
+<sect1 id='Component_Names'>
 <title>Component Names</title>
 
 <para>
@@ -52,7 +52,7 @@ use of other characters is implementation-dependent.
 
 
 </sect1>
-<sect1 id='partial_components_and_combining_multiple_components'>
+<sect1 id='Partial_Components_and_Combining_Multiple_Components'>
 <title>Partial Components and Combining Multiple Components</title>
 
 <para>
@@ -155,7 +155,7 @@ where necessary).
 
 
 </sect1>
-<sect1 id='component_hints'>
+<sect1 id='Component_Hints'>
 <title>Component Hints</title>
 
 <para>
@@ -216,7 +216,7 @@ listed in the section below that describes that kind of component.
 
 
 </sect1>
-<sect1 id='keyboard_components'>
+<sect1 id='Keyboard_Components'>
 <title>Keyboard Components</title>
 
 <para>
@@ -235,7 +235,7 @@ types</emphasis>
 </para>
 
 </sect1>
-<sect1 id='the_keycodes_component'>
+<sect1 id='The_Keycodes_Component'>
 <title>The Keycodes Component</title>
 
 <para>
@@ -266,7 +266,7 @@ XKB defines no hints that are specific to the keycodes component.
 </para>
 
 
-<sect2 id='the_types_component'>
+<sect2 id='The_Types_Component'>
 <title>The Types Component</title>
 
 <para>
@@ -276,7 +276,7 @@ types</emphasis>
 with the various keyboard keys. It affects the <emphasis>
 types</emphasis>
  symbolic name and the list of types associated with the keyboard (see
-<link linkend='key_types'>Key Types</link>). The types component
+<link linkend='Key_Types'>Key Types</link>). The types component
 of a keyboard mapping can also optionally contain real modifier bindings and
 symbolic names for one or more virtual modifiers.
 </para>
@@ -294,7 +294,7 @@ XKB defines no hints that are specific to the types component.
 
 
 </sect2>
-<sect2 id='the_compatibility_map_component'>
+<sect2 id='The_Compatibility_Map_Component'>
 <title>The Compatibility Map Component</title>
 
 <para>
@@ -315,7 +315,7 @@ XKB defines no hints that are specific to the compatibility map component.
 
 
 </sect2>
-<sect2 id='the_symbols_component'>
+<sect2 id='The_Symbols_Component'>
 <title>The Symbols Component</title>
 
 <para>
@@ -400,7 +400,7 @@ LC_AlternateGroup</emphasis>
  may be combined with any of the other flags).</para></note>
 
 </sect2>
-<sect2 id='the_geometry_component'>
+<sect2 id='The_Geometry_Component'>
 <title>The Geometry Component</title>
 
 <para>
@@ -422,7 +422,7 @@ XKB defines no hints that are specific to the geometry component.
 
 </sect2>
 </sect1>
-<sect1 id='complete_keymaps'>
+<sect1 id='Complete_Keymaps'>
 <title>Complete Keymaps</title>
 
 <para>

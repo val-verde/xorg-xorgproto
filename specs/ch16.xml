@@ -1,5 +1,5 @@
 
-<chapter id='xkb_protocol_requests'>
+<chapter id='XKB_Protocol_Requests'>
 <title>XKB Protocol Requests</title>
 
 <para>
@@ -8,7 +8,7 @@ specification of the core X protocol with a number of additions, which are
 detailed below.
 </para>
 
-<sect1 id='errors'>
+<sect1 id='Errors'>
 <title>Errors</title>
 
 <para>
@@ -23,7 +23,7 @@ extension.
 </para>
 
 
-<sect2 id='keyboard_errors'>
+<sect2 id='Keyboard_Errors'>
 <title>Keyboard Errors</title>
 
 <para>
@@ -85,7 +85,7 @@ indicated id</entry>
 </informaltable>
 
 </sect2>
-<sect2 id='side_effects_of_errors'>
+<sect2 id='Side_Effects_of_Errors'>
 <title>Side-Effects of Errors</title>
 
 <para>
@@ -103,7 +103,7 @@ ignored.
 
 </sect2>
 </sect1>
-<sect1 id='common_types'>
+<sect1 id='Common_Types'>
 <title>Common Types</title>
 
 <para>
@@ -820,7 +820,7 @@ maps: LISTofKB_INDICATORMAP ]</entry>
 </informaltable>
 
 </sect1>
-<sect1 id='requests'>
+<sect1 id='Requests'>
 <title>Requests</title>
 
 <para>
@@ -829,7 +829,7 @@ separated into categories of related requests.
 </para>
 
 
-<sect2 id='initializing_the_x_keyboard_extension'>
+<sect2 id='Initializing_the_X_Keyboard_Extension'>
 <title>Initializing the X Keyboard Extension</title>
 
 
@@ -897,7 +897,7 @@ XkbUseExtension</emphasis>
 
 
 </sect2>
-<sect2 id='selecting_events'>
+<sect2 id='Selecting_Events'>
 <title>Selecting Events</title>
 
 
@@ -1215,13 +1215,13 @@ affectWhich</emphasis>
 <para>
 If any components are specified in a client’s event masks, the X server sends
 the client an appropriate event whenever any of those components change state.
-Unless explicitly modified, all event detail masks are empty. <link linkend='events'>Events</link> describes all XKB events
+Unless explicitly modified, all event detail masks are empty. <link linkend='Events'>Events</link> describes all XKB events
 and the conditions under which the server generates them.
 </para>
 
 
 </sect2>
-<sect2 id='generating_named_keyboard_bells'>
+<sect2 id='Generating_Named_Keyboard_Bells'>
 <title>Generating Named Keyboard Bells</title>
 
 
@@ -1406,7 +1406,7 @@ honor them.
 
 
 </sect2>
-<sect2 id='querying_and_changing_keyboard_state'>
+<sect2 id='Querying_and_Changing_Keyboard_State'>
 <title>Querying and Changing Keyboard State</title>
 
 
@@ -1532,7 +1532,7 @@ effective modifiers minus any server internal modifiers. The <emphasis>
 grabMods</emphasis>
  return value reports the grab modifiers, which consist of the lookup modifiers
 minus any members of the ignore locks mask that are not either latched or
-logically depressed. <link linkend='keyboard_state'>Keyboard
+logically depressed. <link linkend='Keyboard_State'>Keyboard
 State</link> describes the lookup modifiers and grab modifiers in more detail.
 </para>
 
@@ -1556,7 +1556,7 @@ compatGrabMods</emphasis>
  return values report the core protocol compatibility states that correspond to
 the XKB lookup and grab state. All of the compatibility states are computed by
 applying the group compatibility mapping to the corresponding XKB modifier and
-group states, as described in <link linkend='group_compatibility_map'>
+group states, as described in <link linkend='Group_Compatibility_Map'>
 Group Compatibility Map</link>.
 </para>
 
@@ -1694,7 +1694,7 @@ If any errors occur, this request has no effect.
 
 
 </sect2>
-<sect2 id='querying_and_changing_keyboard_controls'>
+<sect2 id='Querying_and_Changing_Keyboard_Controls'>
 <title>Querying and Changing Keyboard Controls</title>
 
 
@@ -1821,14 +1821,14 @@ The <emphasis>
 numGroups</emphasis>
  return value reports the current number of groups, and <emphasis>
 groupsWrap</emphasis>
- reports the treatment of out-of-range groups, as described in <link linkend='key_symbol_map'>Key Symbol Map</link>. The <emphasis>
+ reports the treatment of out-of-range groups, as described in <link linkend='Key_Symbol_Map'>Key Symbol Map</link>. The <emphasis>
 internalMods</emphasis>
  and <emphasis>
 ignoreLockMods</emphasis>
  return values report the current values of the server internal and ignore
-locks modifiers as described in <link linkend='keyboard_state'>
+locks modifiers as described in <link linkend='Keyboard_State'>
 Keyboard State</link>. Both are modifier definitions (
-<link linkend='modifier_definitions'>Modifier Definitions</link>) which
+<link linkend='Modifier_Definitions'>Modifier Definitions</link>) which
 report the real modifiers, virtual modifiers, and the resulting combination of
 real modifiers that are bound to the corresponding control.
 </para>
@@ -1855,7 +1855,7 @@ mouseKeysMaxSpeed</emphasis>
  and <emphasis>
 mouseKeysCurve</emphasis>
  return values report the current acceleration applied to mouse keys, as
-described in <link linkend='the_mousekeysaccel_control'>The MouseKeysAccel
+described in <link linkend='The_MouseKeysAccel_Control'>The MouseKeysAccel
 Control</link>. All times are reported in milliseconds.
 </para>
 
@@ -2223,7 +2223,7 @@ repeatDelay</emphasis>
  and <emphasis>
 repeatInterval</emphasis>
  change the autorepeat characteristics of the keyboard, as described in
-<link linkend='the_repeatkeys_control'>The RepeatKeys Control</link>. If
+<link linkend='The_RepeatKeys_Control'>The RepeatKeys Control</link>. If
 specified, <emphasis>
 repeatDelay</emphasis>
  and <emphasis>
@@ -2239,7 +2239,7 @@ If applied, the <emphasis>
 slowKeysDelay</emphasis>
  field specifies a new delay for the <emphasis>
 SlowKeys</emphasis>
- control, as defined in <link linkend='the_slowkeys_control'>The
+ control, as defined in <link linkend='The_SlowKeys_Control'>The
 SlowKeys Control</link>. If specified, <emphasis>
 slowKeysDelay</emphasis>
  must be non-zero, or a <emphasis>
@@ -2253,7 +2253,7 @@ If applied, the <emphasis>
 debounceDelay</emphasis>
  field specifies a new delay for the <emphasis>
 BounceKeys</emphasis>
- control, as described in <link linkend='the_bouncekeys_control'>The
+ control, as described in <link linkend='The_BounceKeys_Control'>The
 BounceKeys Control</link>. If present, the <emphasis>
 debounceDelay</emphasis>
  must be non-zero or a <emphasis>
@@ -2274,7 +2274,7 @@ SA_LockPtrBtn</emphasis>
 mouseKeysDfltBtn</emphasis>
  must specify a legal button for the core pointer device, or a <emphasis>
 Value</emphasis>
- error results. <link linkend='key_actions'>Key
+ error results. <link linkend='Key_Actions'>Key
 Actions</link> describes the <emphasis>
 SA_PtrBtn</emphasis>
  and <emphasis>
@@ -2297,7 +2297,7 @@ mouseKeysCurve</emphasis>
  fields change the rate at which the pointer moves when a key which generates a
 <emphasis>
 SA_MovePtr</emphasis>
- action is held down. <link linkend='the_mousekeysaccel_control'>The
+ action is held down. <link linkend='The_MouseKeysAccel_Control'>The
 MouseKeysAccel Control</link> describes these <emphasis>
 MouseKeysAccel</emphasis>
  parameters in more detail. If defined, the <emphasis>
@@ -2324,7 +2324,7 @@ Value</emphasis>
 If applied, the <emphasis>
 accessXOptions</emphasis>
  field sets the AccessX options, which are described in detail in
-<link linkend='the_accessxkeys_control'>The AccessXKeys Control</link>. If
+<link linkend='The_AccessXKeys_Control'>The AccessXKeys Control</link>. If
 either one of <emphasis>
 XkbStickyKeysMask</emphasis>
  and <emphasis>
@@ -2358,7 +2358,7 @@ accessXTimeoutOptionsMask</emphasis>
  and <emphasis>
 accessXTimeoutOptionsValues</emphasis>
  fields change the behavior of the AccessX Timeout control, as described in
-<link linkend='the_accessxtimeout_control'>The AccessXTimeout
+<link linkend='The_AccessXTimeout_Control'>The AccessXTimeout
 Control</link>. The <emphasis>
 accessXTimeout</emphasis>
  must be greater than zero, or a <emphasis>
@@ -2386,7 +2386,7 @@ Match</emphasis>
 If present, the <emphasis>
 groupsWrap</emphasis>
  field specifies the treatment of out-of-range keyboard groups, as described in
-<link linkend='key_symbol_map'>Key Symbol Map</link>. If the
+<link linkend='Key_Symbol_Map'>Key Symbol Map</link>. If the
 <emphasis>
 groupsWrap</emphasis>
  field does not specify a legal treatment for out-of-range groups, a <emphasis>
@@ -2471,7 +2471,7 @@ Value</emphasis>
 
 
 </sect2>
-<sect2 id='querying_and_changing_the_keyboard_mapping'>
+<sect2 id='Querying_and_Changing_the_Keyboard_Mapping'>
 <title>Querying and Changing the Keyboard Mapping</title>
 
 
@@ -3326,7 +3326,7 @@ flags</emphasis>
 last key type specified by this request is the last element in the list. If the
 list of key types is shrunk, any existing key definitions that use key types
 that eliminated are automatically assigned key types from the list of canonical
-key types as described in <link linkend='assigning_types_to_groups_of_symbols_for_a_key'>
+key types as described in <link linkend='Assigning_Types_To_Groups_of_Symbols_for_a_Key'>
 Assigning Types To Groups of Symbols for a Key</link>. The list of key types
 bound to a keyboard must always include the four canonical types and cannot
 have more than <emphasis>
@@ -3740,7 +3740,7 @@ XkbSetMapRecomputeActions</emphasis>
 flags</emphasis>
 , the actions associated with any keys for which symbol or modifier bindings
 were changed by this request are recomputed as described in
-<link linkend='assigning_actions_to_keys'>Assigning Actions To Keys</link>. Note
+<link linkend='Assigning_Actions_To_Keys'>Assigning Actions To Keys</link>. Note
 that actions are recomputed <emphasis>
 after </emphasis>
 any actions specified in this request are bound to keys, so the actions
@@ -3818,7 +3818,7 @@ XkbIndicatorStateNotify</emphasis>
 
 
 </sect2>
-<sect2 id='querying_and_changing_the_compatibility_map'>
+<sect2 id='Querying_and_Changing_the_Compatibility_Map'>
 <title>Querying and Changing the Compatibility Map</title>
 
 
@@ -4086,13 +4086,13 @@ recomputeActions</emphasis>
 True</emphasis>
 , the server regenerates recalculates the actions bound to all keyboard keys by
 applying the new symbol interpretations to the entire key symbol map, as
-described in <link linkend='assigning_actions_to_keys'>Assigning Actions To
+described in <link linkend='Assigning_Actions_To_Keys'>Assigning Actions To
 Keys</link>.
 </para>
 
 
 </sect2>
-<sect2 id='querying_and_changing_indicators'>
+<sect2 id='Querying_and_Changing_Indicators'>
 <title>Querying and Changing Indicators</title>
 
 
@@ -4243,7 +4243,7 @@ XkbIndicatorStateNotify</emphasis>
 The <emphasis>
 maps</emphasis>
  return value reports the requested indicator maps. Indicator maps are
-described in <link linkend='indicator_maps'>Indicator Maps</link>
+described in <link linkend='Indicator_Maps'>Indicator Maps</link>
 </para>
 
 
@@ -4717,7 +4717,7 @@ If <emphasis>
 setMap </emphasis>
 is <emphasis>
 True</emphasis>
-, XKB changes the map for the indicator (see <link linkend='indicator_maps'>Indicator Maps</link>) to reflect the
+, XKB changes the map for the indicator (see <link linkend='Indicator_Maps'>Indicator Maps</link>) to reflect the
 values specified in <emphasis>
 map</emphasis>
 .
@@ -4753,7 +4753,7 @@ map and the current state of the keyboard.
 
 
 </sect2>
-<sect2 id='querying_and_changing_symbolic_names'>
+<sect2 id='Querying_and_Changing_Symbolic_Names'>
 <title>Querying and Changing Symbolic Names</title>
 
 
@@ -5426,7 +5426,7 @@ Atom</emphasis>
 
 
 </sect2>
-<sect2 id='querying_and_changing_keyboard_geometry'>
+<sect2 id='Querying_and_Changing_Keyboard_Geometry'>
 <title>Querying and Changing Keyboard Geometry</title>
 
 
@@ -5526,7 +5526,7 @@ name</emphasis>
  is a valid atom other than <emphasis>
 None</emphasis>
 , the server returns the keyboard geometry description with that name in the
-server database of keyboard components (see <link linkend='the_server_database_of_keyboard_components'>The Server Database of Keyboard
+server database of keyboard components (see <link linkend='The_Server_Database_of_Keyboard_Components'>The Server Database of Keyboard
 Components</link>) if one exists. If <emphasis>
 deviceSpec</emphasis>
  does not specify a valid keyboard device, a <emphasis>
@@ -5566,7 +5566,7 @@ found</emphasis>
 True</emphasis>
 , the remaining fields of the reply describe the requested keyboard geometry.
 The interpretation of the components that make up a keyboard geometry is
-described in detail in <link linkend='keyboard_geometry'>Keyboard
+described in detail in <link linkend='Keyboard_Geometry'>Keyboard
 Geometry</link>
 </para>
 
@@ -5762,7 +5762,7 @@ keyboard definition, but XKB does not check for or guarantee it.
 
 
 </sect2>
-<sect2 id='querying_and_changing_per_client_flags'>
+<sect2 id='Querying_and_Changing_Per_Client_Flags'>
 <title>Querying and Changing Per-Client Flags</title>
 
 
@@ -5859,35 +5859,35 @@ per-client-flags are:
     <entry><emphasis>
 XkbPCF_DetectableAutorepeat</emphasis>
 </entry>
-    <entry><link linkend='detectable_autorepeat'>Detectable
+    <entry><link linkend='Detectable_Autorepeat'>Detectable
 Autorepeat</link></entry>
   </row>
   <row rowsep='0'>
     <entry><emphasis>
 XkbPCF_GrabsUseXKBStateMask</emphasis>
 </entry>
-    <entry><link linkend='setting_a_passive_grab_for_an_xkb_state'>Setting a Passive Grab
+    <entry><link linkend='Setting_a_Passive_Grab_for_an_XKB_State'>Setting a Passive Grab
 for an XKB State</link></entry>
   </row>
   <row rowsep='0'>
     <entry><emphasis>
 XkbPCF_AutoResetControlsMask</emphasis>
 </entry>
-    <entry><link linkend='automatic_reset_of_boolean_controls'>Automatic Reset of
+    <entry><link linkend='Automatic_Reset_of_Boolean_Controls'>Automatic Reset of
 Boolean Controls</link></entry>
   </row>
   <row rowsep='0'>
     <entry><emphasis>
 XkbPCF_LookupStateWhenGrabbed</emphasis>
 </entry>
-    <entry><link linkend='effects_of_xkb_on_core_protocol_events'>Effects of XKB on Core
+    <entry><link linkend='Effects_of_XKB_on_Core_Protocol_Events'>Effects of XKB on Core
 Protocol Events</link></entry>
   </row>
   <row rowsep='0'>
     <entry><emphasis>
 XkbPCF_SendEventUsesXKBState</emphasis>
 </entry>
-    <entry><link linkend='sending_events_to_clients'>Sending Events to
+    <entry><link linkend='Sending_Events_to_Clients'>Sending Events to
 Clients</link></entry>
   </row>
 </tbody>
@@ -5987,7 +5987,7 @@ autoCtrlValues</emphasis>
 
 
 </sect2>
-<sect2 id='using_the_servers_database_of_keyboard_components'>
+<sect2 id='Using_the_Servers_Database_of_Keyboard_Components'>
 <title>Using the Server’s Database of Keyboard Components</title>
 
 
@@ -6113,7 +6113,7 @@ components.
 <para>
 Each pattern uses the ISO Latin-1 encoding and should contain only parentheses,
 the wildcard characters "?" and "*" or characters that are permitted in a
-component class or member name (see <link linkend='component_names'>Component Names</link>). Illegal
+component class or member name (see <link linkend='Component_Names'>Component Names</link>). Illegal
 characters in a pattern are simply ignored; no error results if a pattern
 contains illegal characters.
 </para>
@@ -6157,14 +6157,14 @@ compatMaps</emphasis>
 symbols</emphasis>
  and <emphasis>
 geometries</emphasis>
- return the hints (see <link linkend='component_hints'>Component
+ return the hints (see <link linkend='Component_Hints'>Component
 Hints</link>) and names of any components from the server database that match
 the corresponding pattern.
 </para>
 
 
 <para>
-<link linkend='the_server_database_of_keyboard_components'>The Server Database of Keyboard
+<link linkend='The_Server_Database_of_Keyboard_Components'>The Server Database of Keyboard
 Components</link> describes the X server database of keyboard components in
 more detail.
 </para>
@@ -6304,7 +6304,7 @@ compatMapSpec</emphasis>
 symbolsSpec</emphasis>
  and <emphasis>
 geometrySpec</emphasis>
- component expressions (see <link linkend='partial_components_and_combining_multiple_components'>
+ component expressions (see <link linkend='Partial_Components_and_Combining_Multiple_Components'>
 Partial Components and Combining Multiple Components</link>) specify the
 database components to be used to assemble the keyboard description.
 </para>
@@ -6414,7 +6414,7 @@ If either field contains a GBN component that depends on some database
 component for which the request does not supply an expression, XKB
 automatically substitutes the special pattern "%" which copies the
 corresponding component from the current keyboard description, as described in
-<link linkend='partial_components_and_combining_multiple_components'>Partial Components and Combining
+<link linkend='Partial_Components_and_Combining_Multiple_Components'>Partial Components and Combining
 Multiple Components</link>.
 </para>
 
@@ -6439,7 +6439,7 @@ description is loaded. If the new keyboard description has a different geometry
 or keycode range than the previous keyboard description, XKB sends <emphasis>
 XkbNewKeyboardNotify</emphasis>
  events to all interested clients. See
-<link linkend='replacing_the_keyboard_on_the_fly'>Replacing the Keyboard
+<link linkend='Replacing_the_Keyboard_On_the_Fly'>Replacing the Keyboard
 "On-the-Fly"</link> for more information about the effects of replacing the
 keyboard description on the fly.
 </para>
@@ -6609,7 +6609,7 @@ description.
 
 
 </sect2>
-<sect2 id='querying_and_changing_input_extension_devices'>
+<sect2 id='Querying_and_Changing_Input_Extension_Devices'>
 <title>Querying and Changing Input Extension Devices</title>
 
 
@@ -6891,7 +6891,7 @@ which values are being returned. The <emphasis>
 supported</emphasis>
  return value reports the set of optional XKB extension device features that
 are supported by this implementation (see
-<link linkend='interactions_between_xkb_and_the_x_input_extension'>
+<link linkend='Interactions_Between_XKB_and_the_X_Input_Extension'>
 Interactions Between XKB and the X Input
 Extension</link>) for the specified device, and the unsupported return value
 reports any <emphasis>
@@ -7231,7 +7231,7 @@ for it and, if generated, is not sent to any other clients.
 
 
 </sect2>
-<sect2 id='debugging_the_x_keyboard_extension'>
+<sect2 id='Debugging_the_X_Keyboard_Extension'>
 <title>Debugging the X Keyboard Extension</title>
 
 
@@ -7382,7 +7382,7 @@ Length</emphasis>
 
 </sect2>
 </sect1>
-<sect1 id='events'>
+<sect1 id='Events'>
 <title>Events</title>
 
 <para>
@@ -7396,7 +7396,7 @@ distinguish XKB event type.
 </para>
 
 
-<sect2 id='tracking_keyboard_replacement'>
+<sect2 id='Tracking_Keyboard_Replacement'>
 <title>Tracking Keyboard Replacement</title>
 
 
@@ -7539,7 +7539,7 @@ Once a client receives a new keyboard notify event which reports a new keycode
 range, the X server reports events from all keys in the new range to that
 client. Clients that do not request or receive new keyboard notify events
 receive events only from keys that fall in the last range for legal keys
-reported to that client. See <link linkend='replacing_the_keyboard_on_the_fly'>
+reported to that client. See <link linkend='Replacing_the_Keyboard_On_the_Fly'>
 Replacing the Keyboard "On-the-Fly"</link> for a more detailed explanation.
 </para>
 
@@ -7595,7 +7595,7 @@ both fields have the value <emphasis>
 
 
 </sect2>
-<sect2 id='tracking_keyboard_mapping_changes'>
+<sect2 id='Tracking_Keyboard_Mapping_Changes'>
 <title>Tracking Keyboard Mapping Changes</title>
 
 
@@ -7835,7 +7835,7 @@ modifier mappings. Otherwise, both fields are <emphasis>
 
 
 </sect2>
-<sect2 id='tracking_keyboard_state_changes'>
+<sect2 id='Tracking_Keyboard_State_Changes'>
 <title>Tracking Keyboard State Changes</title>
 
 
@@ -7907,7 +7907,7 @@ requestMajor, requestMinor: CARD8</entry>
 <para>
 An <emphasis>XkbStateNotify</emphasis>
 event reports that some component of the XKB state (see
-<link linkend='keyboard_state'>Keyboard State</link>) has changed.
+<link linkend='Keyboard_State'>Keyboard State</link>) has changed.
 State notify events are usually caused by key or pointer activity, but they can
 also result from explicit state changes requested by the <emphasis>
 XkbLatchLockState</emphasis>
@@ -7922,7 +7922,7 @@ deviceID</emphasis>
 <emphasis>
 changed</emphasis>
  field reports the XKB state components (see
-<link linkend='keyboard_state'>Keyboard State</link>) that have changed
+<link linkend='Keyboard_State'>Keyboard State</link>) that have changed
 and contain any combination of:
 </para>
 
@@ -8114,7 +8114,7 @@ change in state and have the value <emphasis>
 
 
 </sect2>
-<sect2 id='tracking_keyboard_control_changes'>
+<sect2 id='Tracking_Keyboard_Control_Changes'>
 <title>Tracking Keyboard Control Changes</title>
 
 
@@ -8171,9 +8171,9 @@ requestMinor: CARD8</entry>
 An <emphasis>
 XkbControlsNotify</emphasis>
  event reports a change in one or more of the global keyboard controls (see
-<link linkend='global_keyboard_controls'>Global Keyboard Controls</link>)
+<link linkend='Global_Keyboard_Controls'>Global Keyboard Controls</link>)
 or in the internal modifiers or ignore locks masks (see
-<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>
+<link linkend='Server_Internal_Modifiers_and_Ignore_Locks_Behavior'>
 Server Internal Modifiers and Ignore
 Locks Behavior</link>). Controls notify events are usually caused by and
 <emphasis>
@@ -8265,7 +8265,7 @@ change in state and have the value <emphasis>
 
 
 </sect2>
-<sect2 id='tracking_keyboard_indicator_state_changes'>
+<sect2 id='Tracking_Keyboard_Indicator_State_Changes'>
 <title>Tracking Keyboard Indicator State Changes</title>
 
 
@@ -8355,7 +8355,7 @@ client.
 
 
 </sect2>
-<sect2 id='tracking_keyboard_indicator_map_changes'>
+<sect2 id='Tracking_Keyboard_Indicator_Map_Changes'>
 <title>Tracking Keyboard Indicator Map Changes</title>
 
 
@@ -8424,7 +8424,7 @@ state</emphasis>
 
 
 </sect2>
-<sect2 id='tracking_keyboard_name_changes'>
+<sect2 id='Tracking_Keyboard_Name_Changes'>
 <title>Tracking Keyboard Name Changes</title>
 
 
@@ -8643,7 +8643,7 @@ changed</emphasis>
 
 
 </sect2>
-<sect2 id='tracking_compatibility_map_changes'>
+<sect2 id='Tracking_Compatibility_Map_Changes'>
 <title>Tracking Compatibility Map Changes</title>
 
 
@@ -8750,7 +8750,7 @@ XkbGroupCompatMask</emphasis>
 </itemizedlist>
 
 </sect2>
-<sect2 id='tracking_application_bell_requests'>
+<sect2 id='Tracking_Application_Bell_Requests'>
 <title>Tracking Application Bell Requests</title>
 
 
@@ -8896,7 +8896,7 @@ XkbBell</emphasis>
 
 
 </sect2>
-<sect2 id='tracking_messages_generated_by_key_actions'>
+<sect2 id='Tracking_Messages_Generated_by_Key_Actions'>
 <title>Tracking Messages Generated by Key Actions</title>
 
 
@@ -9012,7 +9012,7 @@ message</emphasis>
 
 
 </sect2>
-<sect2 id='tracking_changes_to_accessx_state_and_keys'>
+<sect2 id='Tracking_Changes_to_AccessX_State_and_Keys'>
 <title>Tracking Changes to AccessX State and Keys</title>
 
 
@@ -9178,14 +9178,14 @@ slowKeysDelay</emphasis>
  and <emphasis>
 debounceDelay</emphasis>
  fields always reports the current slow keys acceptance delay (see
-<link linkend='the_slowkeys_control'>The SlowKeys Control</link>) and
-debounce delay (see <link linkend='the_bouncekeys_control'>The BounceKeys
+<link linkend='The_SlowKeys_Control'>The SlowKeys Control</link>) and
+debounce delay (see <link linkend='The_BounceKeys_Control'>The BounceKeys
 Control</link>) for the specified keyboard.
 </para>
 
 
 </sect2>
-<sect2 id='tracking_changes_to_extension_devices'>
+<sect2 id='Tracking_Changes_To_Extension_Devices'>
 <title>Tracking Changes To Extension Devices</title>
 
 
@@ -9344,7 +9344,7 @@ extension device feature that is not supported by the XKB implementation in the
 server for the specified device. The <emphasis>
 unsupported</emphasis>
  mask reports the requested features that are not available on the specified
-device. See <link linkend='interactions_between_xkb_and_the_x_input_extension'>Interactions Between
+device. See <link linkend='Interactions_Between_XKB_and_the_X_Input_Extension'>Interactions Between
 XKB and the X Input Extension</link> for more information about possible XKB
 interactions with the X Input Extension.
 </para>

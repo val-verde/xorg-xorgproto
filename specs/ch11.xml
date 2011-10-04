@@ -1,5 +1,5 @@
 
-<chapter id='keyboard_geometry'>
+<chapter id='Keyboard_Geometry'>
 <title>Keyboard Geometry</title>
 
 <para>
@@ -79,7 +79,7 @@ structures refer to geometry properties.
 <listitem>
   <para>A list of <emphasis>
 key aliases</emphasis>
-, as described in <link linkend='symbolic_names'>Symbolic
+, as described in <link linkend='Symbolic_Names'>Symbolic
 Names</link>.
   </para>
 </listitem>
@@ -89,7 +89,7 @@ shapes</emphasis>
 ; other keyboard components refer to shapes by their index in this list. A
 shape consists of a name and one or more closed-polygons called <emphasis>
 outlines</emphasis>
-. Shapes and outlines are described in detail in <link linkend='shapes_and_outlines'>Shapes and Outlines</link>.
+. Shapes and outlines are described in detail in <link linkend='Shapes_and_Outlines'>Shapes and Outlines</link>.
   </para>
 </listitem>
 </itemizedlist>
@@ -136,7 +136,7 @@ a collection of keys and doodads that are physically close together and
 logically related.
 </para>
 
-<sect1 id='shapes_and_outlines'>
+<sect1 id='Shapes_and_Outlines'>
 <title>Shapes and Outlines</title>
 
 <para>
@@ -194,7 +194,7 @@ to generate a recognizable but degraded image of the keyboard.
 
 
 </sect1>
-<sect1 id='sections'>
+<sect1 id='Sections'>
 <title>Sections</title>
 
 <para>
@@ -261,7 +261,7 @@ while the key specified in over must not.
 </itemizedlist>
 
 </sect1>
-<sect1 id='doodads'>
+<sect1 id='Doodads'>
 <title>Doodads</title>
 
 <para>
@@ -336,7 +336,7 @@ The XKB extension does not specify the interpretation of logo names.
 </itemizedlist>
 
 </sect1>
-<sect1 id='keyboard_geometry_example'>
+<sect1 id='Keyboard_Geometry_Example'>
 <title>Keyboard Geometry Example</title>
 
 <para>

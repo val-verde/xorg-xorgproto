@@ -1,4 +1,4 @@
-<chapter id='global_keyboard_controls'>
+<chapter id='Global_Keyboard_Controls'>
 <title>Global Keyboard Controls</title>
 
 <para>
@@ -15,7 +15,7 @@ Wisconsin-Madison WI 53705-2280. Phone: 608-262-6966. e-mail:
 info@trace.wisc.edu.</para></footnote>.
 </para>
 
-<sect1 id='the_repeatkeys_control'>
+<sect1 id='The_RepeatKeys_Control'>
 <title>The RepeatKeys Control</title>
 
 <para>
@@ -43,7 +43,7 @@ milliseconds.
 </para>
 
 
-<sect2 id='the_perkeyrepeat_control'>
+<sect2 id='The_PerKeyRepeat_Control'>
 <title>The PerKeyRepeat Control</title>
 
 <para>
@@ -63,7 +63,7 @@ GetKeyboardControl</emphasis>
 
 
 </sect2>
-<sect2 id='detectable_autorepeat'>
+<sect2 id='Detectable_Autorepeat'>
 <title>Detectable Autorepeat</title>
 
 <para>
@@ -99,7 +99,7 @@ whether or not it is supported.
 
 
 <para>
-<link linkend='querying_and_changing_per_client_flags'>Querying and Changing Per-Client
+<link linkend='Querying_and_Changing_Per_Client_Flags'>Querying and Changing Per-Client
 Flags</link> describes the <emphasis>
 XkbPerClientFlags</emphasis>
  request, which reports or changes values for all of the per-client flags, and
@@ -109,7 +109,7 @@ which lists the per-client flags that are supported.
 
 </sect2>
 </sect1>
-<sect1 id='the_slowkeys_control'>
+<sect1 id='The_SlowKeys_Control'>
 <title>The SlowKeys Control</title>
 
 <para>
@@ -148,11 +148,11 @@ rejection or release of any key to interested clients using <emphasis>
 AccessXNotify</emphasis>
  events. The <emphasis>
 AccessXNotify</emphasis>
- event is described in more detail in <link linkend='events'>Events</link>.
+ event is described in more detail in <link linkend='Events'>Events</link>.
 </para>
 
 </sect1>
-<sect1 id='the_bouncekeys_control'>
+<sect1 id='The_BounceKeys_Control'>
 <title>The BounceKeys Control</title>
 
 <para>
@@ -183,11 +183,11 @@ interested clients by sending an <emphasis>
 AccessXNotify</emphasis>
  event. The <emphasis>
 AccessXNotify</emphasis>
- event is described in more detail in <link linkend='events'>Events</link>.
+ event is described in more detail in <link linkend='Events'>Events</link>.
 </para>
 
 </sect1>
-<sect1 id='the_stickykeys_control'>
+<sect1 id='The_StickyKeys_Control'>
 <title>The StickyKeys Control</title>
 
 <para>
@@ -320,7 +320,7 @@ XkbAX_LatchToLock</emphasis>
 </itemizedlist>
 
 </sect1>
-<sect1 id='the_mousekeys_control'>
+<sect1 id='The_MouseKeys_Control'>
 <title>The MouseKeys Control</title>
 
 <para>
@@ -347,7 +347,7 @@ do not explicitly specify a button.
 
 
 </sect1>
-<sect1 id='the_mousekeysaccel_control'>
+<sect1 id='The_MouseKeysAccel_Control'>
 <title>The MouseKeysAccel Control</title>
 
 <para>
@@ -375,7 +375,7 @@ When <emphasis>
 MouseKeys</emphasis>
  are active and a <emphasis>
 SA_MovePtr</emphasis>
- key action (see <link linkend='key_actions'>Key
+ key action (see <link linkend='Key_Actions'>Key
 Actions</link>) is activated, a pointer motion event is generated immediately.
 If <emphasis>
 MouseKeysAccel</emphasis>
@@ -388,7 +388,7 @@ mouse keys interval</emphasis>
 </para>
 
 
-<sect2 id='relative_pointer_motion'>
+<sect2 id='Relative_Pointer_Motion'>
 <title>Relative Pointer Motion</title>
 
 <para>
@@ -464,7 +464,7 @@ steps_to_max</emphasis>
 
 
 </sect2>
-<sect2 id='absolute_pointer_motion'>
+<sect2 id='Absolute_Pointer_Motion'>
 <title>Absolute Pointer Motion</title>
 
 <para>
@@ -478,7 +478,7 @@ specified in the action.
 
 </sect2>
 </sect1>
-<sect1 id='the_accessxkeys_control'>
+<sect1 id='The_AccessXKeys_Control'>
 <title>The AccessXKeys Control</title>
 
 <para>
@@ -515,15 +515,15 @@ StickyKeys</emphasis>
 
 <para>
 Some of these key sequences optionally generate audible feedback of the change
-in state, as described in <link linkend='the_accessxfeedback_control'>The
+in state, as described in <link linkend='The_AccessXFeedback_Control'>The
 AccessXFeedback Control</link>, or cause <emphasis>
 XkbAccessXNotify</emphasis>
- events as described in <link linkend='events'>Events</link>.
+ events as described in <link linkend='Events'>Events</link>.
 </para>
 
 
 </sect1>
-<sect1 id='the_accessxtimeout_control'>
+<sect1 id='The_AccessXTimeout_Control'>
 <title>The AccessXTimeout Control</title>
 
 <para>
@@ -568,7 +568,7 @@ AccessX Controls Values</emphasis>
 
 
 </sect1>
-<sect1 id='the_accessxfeedback_control'>
+<sect1 id='The_AccessXFeedback_Control'>
 <title>The AccessXFeedback Control</title>
 
 <para>
@@ -744,7 +744,7 @@ DumbBellFB</emphasis>
 
 
 </sect1>
-<sect1 id='the_overlay1_and_overlay2_controls'>
+<sect1 id='The_Overlay1_and_Overlay2_Controls'>
 <title>The Overlay1 and Overlay2 Controls</title>
 
 <para>
@@ -778,22 +778,22 @@ should generate when that overlay is enabled, assign it either the <emphasis>
 KB_Overlay1</emphasis>
  or <emphasis>
 KB_Overlay2</emphasis>
- key behaviors, as described in <link linkend='key_behavior'>
+ key behaviors, as described in <link linkend='Key_Behavior'>
 Key Behavior</link>.
 </para>
 
 
 </sect1>
-<sect1 id='boolean_controls_and_the_enabledcontrols_control'>
+<sect1 id='Boolean_Controls_and_The_EnabledControls_Control'>
 <title>"Boolean" Controls and The EnabledControls Control</title>
 
 <para>
 All of the controls described above, along with the <emphasis>
 AudibleBell</emphasis>
- control (described in <link linkend='disabling_server_generated_bells'>Disabling
+ control (described in <link linkend='Disabling_Server_Generated_Bells'>Disabling
 Server Generated Bells</link>) and the <emphasis>
 IgnoreGroupLock</emphasis>
- control (described in <link linkend='server_internal_modifiers_and_ignore_locks_behavior'>Server
+ control (described in <link linkend='Server_Internal_Modifiers_and_Ignore_Locks_Behavior'>Server
 Internal Modifiers and Ignore Locks Behavior</link>) comprise the <emphasis>
 boolean controls</emphasis>
 . In addition to any parameters listed in the descriptions of the individual
@@ -812,30 +812,30 @@ EnabledControls</emphasis>
  control or specified in any context that accepts only boolean controls:
 <emphasis>
 GroupsWrap</emphasis>
- (<link linkend='computing_effective_modifier_and_group'>Computing Effective Modifier and
+ (<link linkend='Computing_Effective_Modifier_and_Group'>Computing Effective Modifier and
 Group</link>), <emphasis>
 EnabledControls</emphasis>
 , <emphasis>
 InternalMods</emphasis>
- (<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>Server Internal Modifiers and
+ (<link linkend='Server_Internal_Modifiers_and_Ignore_Locks_Behavior'>Server Internal Modifiers and
 Ignore Locks Behavior</link>), and <emphasis>
 IgnoreLockMods</emphasis>
- (<link linkend='server_internal_modifiers_and_ignore_locks_behavior'>Server Internal Modifiers and
+ (<link linkend='Server_Internal_Modifiers_and_Ignore_Locks_Behavior'>Server Internal Modifiers and
 Ignore Locks Behavior</link>) and <emphasis>
 PerKeyRepeat</emphasis>
- (<link linkend='the_repeatkeys_control'>The RepeatKeys Control</link>)
+ (<link linkend='The_RepeatKeys_Control'>The RepeatKeys Control</link>)
 </para>
 
 
 </sect1>
-<sect1 id='automatic_reset_of_boolean_controls'>
+<sect1 id='Automatic_Reset_of_Boolean_Controls'>
 <title>Automatic Reset of Boolean Controls</title>
 
 <para>
 The <emphasis>
 auto-reset controls</emphasis>
  are a per-client value which consist of two masks that can contain any of the
-boolean controls (see <link linkend='boolean_controls_and_the_enabledcontrols_control'>"Boolean"
+boolean controls (see <link linkend='Boolean_Controls_and_The_EnabledControls_Control'>"Boolean"
 Controls and The EnabledControls Control</link>). Whenever the client exits
 for any reason, any boolean controls specified in the <emphasis>
 auto-reset mask</emphasis>
@@ -850,7 +850,7 @@ automatically, even if abnormally terminated.
 For example, a client that replace the keyboard bell with some other audible
 cue might want to turn off the <emphasis>
 AudibleBell</emphasis>
- control (<link linkend='disabling_server_generated_bells'>Disabling Server
+ control (<link linkend='Disabling_Server_Generated_Bells'>Disabling Server
 Generated Bells</link>) to prevent the server from also generating a sound and
 thus avoid cacophony. If the client were to exit without resetting the
 <emphasis>

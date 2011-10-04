@@ -1,4 +1,4 @@
-<chapter id='keyboard_state'>
+<chapter id='Keyboard_State'>
 <title>Keyboard State</title>
 <para>
 The core protocol description of
@@ -73,7 +73,7 @@ a single keyboard, or to access less-commonly used symbols within a character
 set.
 </para>
 
-<sect1 id='locking_and_latching_modifiers_and_groups'>
+<sect1 id='Locking_and_Latching_Modifiers_and_Groups'>
 <title>Locking and Latching Modifiers and Groups</title>
 <para>
 With the core protocol, there is no way to
@@ -89,7 +89,7 @@ groups apply only to the next key event that does not change keyboard state.
 </para>
 
 </sect1>
-<sect1 id="fundamental_components_of_xkb_keyboard_state">
+<sect1 id='Fundamental_Components_of_XKB_Keyboard_State'>
 <title>Fundamental Components of XKB Keyboard State</title>
 <para>
 The fundamental components of XKB keyboard state include:
@@ -128,7 +128,7 @@ only</emphasis>
  in response to keyboard or pointer activity.
 </para>
 
-<sect2 id='computing_effective_modifier_and_group'>
+<sect2 id='Computing_Effective_Modifier_and_Group'>
 <title>Computing Effective Modifier and Group</title>
 <para>
 The effective modifiers and group
@@ -211,7 +211,7 @@ GroupsWrap</emphasis>
 
 </sect2>
 
-<sect2 id='computing_a_state_field_from_an_xkb_state'>
+<sect2 id='Computing_A_State_Field_from_an_XKB_State'>
 <title>Computing A State Field from an XKB State</title>
 <para>
 Many events report the keyboard state
@@ -253,7 +253,7 @@ modifiers and the pointer button state.
 </sect2>
 </sect1>
 
-<sect1 id='derived_components_of_xkb_keyboard_state'>
+<sect1 id='Derived_Components_of_XKB_Keyboard_State'>
 <title>Derived Components of XKB Keyboard State</title>
 <para>
 In addition to the fundamental state
@@ -273,7 +273,7 @@ ServerInternalModifiers</emphasis>
 IgnoreLocksModifiers</emphasis>
  and <emphasis>
 IgnoreGroupLock</emphasis>
- controls, described in <link linkend='server_internal_modifiers_and_ignore_locks_behavior'>Server
+ controls, described in <link linkend='Server_Internal_Modifiers_and_Ignore_Locks_Behavior'>Server
 Internal Modifiers and Ignore Locks Behavior</link>, to derive these two
 states as follows:
 </para>
@@ -295,7 +295,7 @@ effects of any locked groups.
 </listitem>
 </itemizedlist>
 
-<sect2 id='server_internal_modifiers_and_ignore_locks_behavior'>
+<sect2 id='Server_Internal_Modifiers_and_Ignore_Locks_Behavior'>
 <title>Server Internal Modifiers and Ignore Locks Behavior</title>
 <para>
 The core protocol does not provide any
@@ -348,14 +348,14 @@ this behavior without exhaustively grabbing every possible modifier combination.
 
 </sect2>
 </sect1>
-<sect1 id='compatibility_components_of_keyboard_state'>
+<sect1 id='Compatibility_Components_of_Keyboard_State'>
 <title>Compatibility Components of Keyboard State</title>
 <para>
 The core protocol interpretation of
 keyboard modifiers does not include direct support for multiple groups, so XKB
 reports the effective keyboard group to XKB-aware clients using some of the
 reserved bits in the state field of some core protocol events, as described in
-<link linkend='computing_a_state_field_from_an_xkb_state'>Computing A State Field from an
+<link linkend='Computing_A_State_Field_from_an_XKB_State'>Computing A State Field from an
 XKB State</link>.
 </para>
 
@@ -363,7 +363,7 @@ XKB State</link>.
 This modified state field would not be interpreted correctly by XKB-unaware
 clients, so XKB provides a <emphasis>
 group compatibility mapping</emphasis>
-(see <link linkend='group_compatibility_map'>Group Compatibility Map</link>) which
+(see <link linkend='Group_Compatibility_Map'>Group Compatibility Map</link>) which
 remaps the keyboard group into a core modifier mask that has similar effects,
 when possible. XKB maintains three compatibility state components that are used
 to make non-XKB clients work as well as possible:
@@ -398,7 +398,7 @@ of the grab state.
 
 <para>
 Compatibility states are essentially the corresponding XKB state, but with
-keyboard group possibly encoded as one or more modifiers; <link linkend='group_compatibility_map'>Group Compatibility Map</link> describes
+keyboard group possibly encoded as one or more modifiers; <link linkend='Group_Compatibility_Map'>Group Compatibility Map</link> describes
 the group compatibility map, which specifies the modifier(s) that correspond to
 each keyboard group.
 </para>
