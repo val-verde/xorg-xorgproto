@@ -1372,7 +1372,7 @@ active device grab becomes not viewable.
                                AsyncPairedDevice, SyncPairedDevice,
                                ReplayDevice, AsyncPair, SyncPair, AcceptTouch*,
                                RejectTouch* }
-            touch_id*:       CARD32
+            touchid*:        CARD32
             grab_window*:    Window
     └───
 
@@ -1389,7 +1389,7 @@ ownership processing.
     event_mode
         Specifies whether a device is to be thawed and events are to be
         replayed, or how to handle a grabbed touch sequence.
-    touch_id
+    touchid
         The ID of the touch sequence to accept or reject. The value is undefined
         for event modes other than AcceptTouch and RejectTouch.
     grab_window
