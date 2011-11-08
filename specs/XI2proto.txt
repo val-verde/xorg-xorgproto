@@ -128,13 +128,14 @@ simply dragging your finger along a designated strip along the side of the
 touchpad.
 
 Newer X servers may provide scrolling information through valuators to
-provide scroll events with more precision than the button events. Valuators
-for axes sending scrolling information must have one ScrollClass for each
-scrolling axis.
+provide clients with more precision than the legacy button events. This
+scrolling information is part of the valuator data in device events.
+Scrolling events do not have a specific event type.
 
-If scrolling valuators are present on a device, the server must provide
-two-way emulation between these valuators and the legacy button events for
-each delta unit of scrolling.
+Valuators for axes sending scrolling information must have one
+ScrollClass for each scrolling axis. If scrolling valuators are present on a
+device, the server must provide two-way emulation between these valuators
+and the legacy button events for each delta unit of scrolling.
 
 One unit of scrolling in either direction is considered to be equivalent to
 one button event, e.g. for a unit size of 1.0, -2.0 on an valuator type
