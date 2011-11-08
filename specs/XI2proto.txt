@@ -2,6 +2,7 @@ The X Input Extension
 =====================
 
                                 Version 2.0
+                                Version 2.1
 
                               Peter Hutterer
                          peter.hutterer@redhat.com
