@@ -40,6 +40,7 @@ device information in each event (with the exception of core events).
 Changes introduced by version 2.1
 
 - RawEvents are sent regardless of the grab state.
+- Addition of the ScrollClass for smooth scrolling
 
 //                            ❧❧❧❧❧❧❧❧❧❧❧
 
