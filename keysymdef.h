@@ -428,6 +428,8 @@ SOFTWARE.
 #define XK_dead_small_schwa              0xfe8a
 #define XK_dead_capital_schwa            0xfe8b
 
+#define XK_dead_greek                    0xfe8c
+
 #define XK_First_Virtual_Screen          0xfed0
 #define XK_Prev_Virtual_Screen           0xfed1
 #define XK_Next_Virtual_Screen           0xfed2
