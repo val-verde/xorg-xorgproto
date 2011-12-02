@@ -218,7 +218,7 @@ event processing stops.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Many core protocol and some extension requests are ambiguous when multiple
-master devices are available (e.g. QueryPointer does not specfy which pointer).
+master devices are available (e.g. QueryPointer does not specify which pointer).
 The X server does not have the knowledge to chose the contextually correct
 master device. For each client, one master pointer is designated as this
 clients's "ClientPointer". Whenever a client sends an ambiguous request (e.g.
