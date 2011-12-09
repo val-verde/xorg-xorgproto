@@ -2151,7 +2151,7 @@ Touch tracking IDs are provided in the detail field of touch events. Its
 value is always provided in every touch event. Tracking IDs are
 represented as unsigned 32-bit values and increase in value for each new
 touch, wrapping back to 0 upon reaching the numerical limit of IDs. IDs are
-unique per each slave touch device.
+globally unique.
 
 Touch events do not generate enter/leave events.
 
