@@ -2149,9 +2149,11 @@ may not be the logical center of the touch.
 
 Touch tracking IDs are provided in the detail field of touch events. Its
 value is always provided in every touch event. Tracking IDs are
-represented as unsigned 32-bit values and increase in value for each new
-touch, wrapping back to 0 upon reaching the numerical limit of IDs. IDs are
-globally unique.
+represented as unsigned 32-bit values and increase strictly monotonically in
+value for each new touch, wrapping back to 0 upon reaching the numerical limit
+of IDs. The increment between two touch IDs is indeterminate. Clients may not
+assume that any future touches will have specific touch IDs. IDs are globally
+unique.
 
 Touch events do not generate enter/leave events.
 
