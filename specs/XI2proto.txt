@@ -2112,11 +2112,6 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
         further TouchUpdate events once an event with TouchPendingEnd has been
         received.
 
-The active_touches value denotes the number of touches in contact with
-the source touch device surface when the event occurred. The value
-includes the new touch for a TouchBegin event, and does not include the
-ending touch for a TouchEnd event.
-
 Modifier state in mods is detailed as follows:
 
     base_mods
