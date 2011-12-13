@@ -467,10 +467,12 @@ Pointer events are emulated as follows:
   touch with the same axis values of the touch event, followed by a button press
   event for button 1.
 - A TouchUpdate event generates a pointer motion event to the location of the
-  touch and/or to update axis values of the pointer device.
+  touch and/or to update axis values of the pointer device. The button state
+  as seen from the protocol includes button 1 set.
 - A TouchEnd event generates a pointer motion event to the location of the touch
   and/or to update the axis values if either have changed, followed by a button
-  release event for button 1.
+  release event for button 1. The button state as seen from the protocol
+  includes button 1 set.
 
 If a touch sequence emulates pointer events and an emulated pointer event
 triggers the activation of a passive grab, the grabbing client becomes the
@@ -2149,6 +2151,9 @@ value for each new touch, wrapping back to 0 upon reaching the numerical limit
 of IDs. The increment between two touch IDs is indeterminate. Clients may not
 assume that any future touches will have specific touch IDs. IDs are globally
 unique.
+
+The button state in touch events represents the state of the device's
+physical buttons only, even if that sequence is emulating pointer events.
 
 Touch events do not generate enter/leave events.
 
