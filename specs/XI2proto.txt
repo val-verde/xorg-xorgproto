@@ -2390,7 +2390,7 @@ require the client to announce XI 2.2 support in the XIQueryVersion request.
    considered the owner of the event.  C receives a TouchBegin event, but does
    not receive a TouchOwnership event.
 ** When the touchpoint moves, C will receive a TouchUpdate event.  Event
-   delivery to I is be subject to the synchronous delivery mechanism. The
+   delivery to I is subject to the synchronous delivery mechanism. The
    emulated motion notify event is queued in the server while the device is
    frozen.
 ** I may assert ownership by calling XIAllowEvents on Y with any mode other
