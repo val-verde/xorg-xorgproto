@@ -901,7 +901,7 @@ typedef struct
     Window      event;
     Window      child;
 /* └──────── 32 byte boundary ────────┘ */
-    uint16_t    sourceid;           /**< Source of the new classes */
+    uint16_t    sourceid;
     uint16_t    pad0;
     uint32_t    flags;
     uint32_t    pad1;
