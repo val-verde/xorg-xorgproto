@@ -16,6 +16,8 @@ History
 -------
 
 - v2.2, ??: Multitouch support added
+- v2.1, December 2011: new raw event behaviour, smooth scrolling support
+  added
 - v2.0, October 2009: Initial release of XI2 protocol
 
 [[intro-xi20]]
