@@ -205,6 +205,17 @@ typedef struct {
 } xXIScrollInfo;
 
 /**
+ * Denotes multitouch capability on a device.
+ */
+typedef struct {
+    uint16_t    type;           /**< Always TouchClass */
+    uint16_t    length;         /**< Length in 4 byte units */
+    uint16_t    sourceid;       /**< source device for this class */
+    uint8_t     mode;           /**< DirectTouch or DependentTouch */
+    uint8_t     num_touches;    /**< Maximum number of touches (0==unlimited) */
+} xXITouchInfo;
+
+/**
  * Used to select for events on a given window.
  * Struct is followed by (mask_len * CARD8), with each bit set representing
  * the event mask for the given type. A mask bit represents an event type if
@@ -636,8 +647,10 @@ typedef struct {
     uint16_t    deviceid;
     uint8_t     mode;
     uint8_t     pad;
+    uint32_t    touchid;                /**< Since XI 2.2 */
+    Window      grab_window;            /**< Since XI 2.2 */
 } xXIAllowEventsReq;
-#define sz_xXIAllowEventsReq                   12
+#define sz_xXIAllowEventsReq                   20 /**< Was 12 before XI 2.2 */
 
 
 /**
@@ -872,7 +885,31 @@ typedef struct
 } xXIDeviceChangedEvent;
 
 /**
- * Default input event for pointer or keyboard input.
+ * The owner of a touch stream has passed on ownership to another client.
+ */
+typedef struct
+{
+    uint8_t     type;               /**< Always GenericEvent */
+    uint8_t     extension;          /**< XI extension offset */
+    uint16_t    sequenceNumber;
+    uint32_t    length;             /**< Length in 4 byte units */
+    uint16_t    evtype;             /**< XI_TouchOwnership */
+    uint16_t    deviceid;           /**< Device that has changed */
+    Time        time;
+    uint32_t    touchid;
+    Window      root;
+    Window      event;
+    Window      child;
+/* └──────── 32 byte boundary ────────┘ */
+    uint16_t    sourceid;
+    uint16_t    pad0;
+    uint32_t    flags;
+    uint32_t    pad1;
+    uint32_t    pad2;
+} xXITouchOwnershipEvent;
+
+/**
+ * Default input event for pointer, keyboard or touch input.
  */
 typedef struct
 {
