@@ -366,11 +366,16 @@ TouchEnd events, and the touch sequence is exclusively delivered to the
 owner from that point on.
 
 If the touch sequence physically ends while the owner of the touch sequence
-has not yet accepted or rejected ownership, all clients receive a
-TouchUpdate event with the TouchPendingEnd flag set. The owner must still
-accept or reject the sequence nonetheless. If the owner rejects the touch
-sequence, the server will still attempt to exhaust all other passive grabs
-and/or event selections looking for a final owner.
+has not yet accepted or rejected ownership, the owner receives a TouchEnd
+event and all other clients receive a TouchUpdate event with the
+TouchPendingEnd flag set. The owner must still accept or reject the sequence
+nonetheless. If the owner rejects the touch sequence, the server will still
+attempt to exhaust all other passive grabs and/or event selections looking
+for a final owner.
+
+If the touch sequence has not physically ended yet and the owner of the
+touch sequence rejects, the owner receives a TouchEnd event and ownership is
+passed to the next client.
 
 Clients may opt for touch events to be delivered before they become the
 owner of the touch sequence. In this case, the logical state of the device (as
