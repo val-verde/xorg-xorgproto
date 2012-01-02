@@ -505,7 +505,8 @@ window set has been reached, the event is delivered:
 - otherwise, to the next parent window in the window set until a selection has
   been found.
 
-Emulated pointer events will have the PointerEmulated flag set.
+Emulated pointer events will have the PointerEmulated flag set. A touch
+event that emulates pointer events has the TouchEmulatingPointer flag set.
 
 [[glossary-notations]]
 Notations used in this document
@@ -2048,7 +2049,8 @@ For a detailed description of classes, see the XIQueryDevice request.
     DEVICEEVENTFLAGS (all events): none
     DEVICEEVENTFLAGS (key events only): { KeyRepeat }
     DEVICEEVENTFLAGS (pointer events only): { PointerEmulated }
-    DEVICEEVENTFLAGS (touch events only): { TouchPendingEnd }
+    DEVICEEVENTFLAGS (touch events only): { TouchPendingEnd,
+                                            TouchEmulatingPointer }
 
 An XIDeviceEvent is generated whenever the logical state of a device
 changes in response to a button press, a button release, a motion, a key
@@ -2108,6 +2110,8 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
         accepted or passed on ownership.  The touch will not generate any
         further TouchUpdate events once an event with TouchPendingEnd has been
         received.
+        TouchEmulatingPointer is set on touch events that emulate pointer
+        events.
 
 Modifier state in mods is detailed as follows:
 
