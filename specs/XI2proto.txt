@@ -2047,7 +2047,7 @@ For a detailed description of classes, see the XIQueryDevice request.
 
     DEVICEEVENTFLAGS (all events): none
     DEVICEEVENTFLAGS (key events only): { KeyRepeat }
-    DEVICEEVENTFLAGS (pointer and touch events only): { PointerEmulated }
+    DEVICEEVENTFLAGS (pointer events only): { PointerEmulated }
     DEVICEEVENTFLAGS (touch events only): { TouchPendingEnd }
 
 An XIDeviceEvent is generated whenever the logical state of a device
