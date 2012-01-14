@@ -461,27 +461,28 @@ type is a resource identifier for a server record context.
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='3' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
-  <colspec colname='c2' colsep="0" colwidth="1*"/>
-  <colspec colname='c3' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
+  <colspec colname='c2' colwidth="1.0*"/>
+  <colspec colname='c3' colwidth="4.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>RANGE8:</entry>
       <entry>[first, last:</entry>
       <entry>CARD8]</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>RANGE16:</entry>
       <entry>[first, last:</entry>
       <entry>CARD16]</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>EXTRANGE:</entry>
       <entry>[major:</entry>
       <entry>RANGE8</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>minor:</entry>
       <entry>RANGE16]</entry>
@@ -491,52 +492,53 @@ type is a resource identifier for a server record context.
 </informaltable>
 
 <informaltable frame="none">
-  <tgroup cols='3' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
-  <colspec colname='c2' colsep="0" colwidth="1*"/>
-  <colspec colname='c3' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.5*"/>
+  <colspec colname='c2' colwidth="1.0*"/>
+  <colspec colname='c3' colwidth="4.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>RECORDRANGE:</entry>
       <entry>[core-requests:</entry>
       <entry>RANGE8</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>core-replies:</entry>
       <entry>RANGE8</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>ext-requests:</entry>
       <entry>EXTRANGE</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>ext-replies:</entry>
       <entry>EXTRANGE</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>delivered-events:</entry>
       <entry>RANGE8</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>device-events:</entry>
       <entry>RANGE8</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>errors:</entry>
       <entry>RANGE8</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>client-started:</entry>
       <entry>BOOL</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>client-died:</entry>
       <entry>BOOL]</entry>
@@ -692,22 +694,23 @@ this RECORDRANGE.
 </itemizedlist>
 
 <informaltable frame="none">
-  <tgroup cols='3' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
-  <colspec colname='c2' colsep="0" colwidth="1*"/>
-  <colspec colname='c3' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
+  <colspec colname='c2' colwidth="1.0*"/>
+  <colspec colname='c3' colwidth="2.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>ELEMENT_HEADER:</entry>
       <entry>[from-server-time:</entry>
       <entry>BOOL</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>from-client-time:</entry>
       <entry>BOOL</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>from-client-sequence:</entry>
       <entry>BOOL]</entry>
@@ -844,17 +847,18 @@ It is an error to explicitly register the data connection.
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='3' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
-  <colspec colname='c2' colsep="0" colwidth="1*"/>
-  <colspec colname='c3' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
+  <colspec colname='c2' colwidth="1.0*"/>
+  <colspec colname='c3' colwidth="3.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>CLIENT_INFO:</entry>
       <entry>[client-resource:</entry>
       <entry>CLIENTSPEC</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry></entry>
       <entry>intercepted-protocol:</entry>
       <entry>LISTofRECORDRANGE]</entry>
@@ -946,30 +950,31 @@ minor version thirteen (13).
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='1' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='1' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>context</emphasis>: RC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>element-header</emphasis>: ELEMENT_HEADER
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>client-specifiers</emphasis>: LISTofCLIENTSPEC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>ranges</emphasis>: LISTofRECORDRANGE
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 Errors:
 <function>Match ,</function>
@@ -1064,30 +1069,31 @@ resources.
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='1' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='1' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>context</emphasis>: RC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>element-header</emphasis>: ELEMENT_HEADER
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>client-specifiers</emphasis>: LISTofCLIENTSPEC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>ranges</emphasis>: LISTofRECORDRANGE
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 Errors:
 <function>Match ,</function>
@@ -1190,20 +1196,21 @@ resources.
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='1' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='1' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>context</emphasis>: RC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>client-specifiers</emphasis>: LISTofCLIENTSPEC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 Errors:
 <function>Match ,</function>
@@ -1283,40 +1290,41 @@ A client is unregistered automatically when it disconnects.
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='1' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='1' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>context</emphasis>: RC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 -&gt;
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>enabled</emphasis>: BOOL
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>element-header</emphasis>: ELEMENT_HEADER
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>intercepted-clients</emphasis>: LISTofCLIENT_INFO
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 Errors:
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <function>RecordContext</function>
       </entry>
@@ -1366,20 +1374,20 @@ error results.
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='1' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
+  <tgroup cols='1' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>context</emphasis>: RC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 -&gt;+
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>category</emphasis>:
 {<function>FromServer</function>, <function>FromClient</function>,
@@ -1389,37 +1397,37 @@ error results.
       </entry>
     </row>
 
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>element-header</emphasis>: ELEMENT_HEADER
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>client-swapped</emphasis>: BOOL
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>id-base</emphasis>: XIDBASE
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>server-time</emphasis>: TIMESTAMP
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>recorded-sequence-number</emphasis>: CARD32
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>data</emphasis>: LISTofBYTE
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 Errors:
 <function>Match</function>,
@@ -1600,15 +1608,16 @@ error results.
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='1' align='left'>
-  <colspec colname='c1' colsep="0" colwidth="1*"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='1' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>
 <emphasis remap='I'>context</emphasis>: RC
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry>
 Errors:
 <function>RecordContext</function>
