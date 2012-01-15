@@ -46,12 +46,13 @@
 
 <para>For example, a normal <function>PolyLine</function> encoding is:</para>
 
-<informaltable id='PolyLine' pgwide='0' frame='none'>
-  <tgroup cols='4' align='left'>
-    <colspec colwidth='0.5in' colname='c1'/>
-    <colspec colwidth='1.5in' colname='c2'/>
-    <colspec colwidth='1.5in' colname='c3'/>
-    <colspec colwidth='2.0in' colname='c4'/>
+<informaltable id='PolyLine' frame='none'>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='4' align='left' colsep='0' rowsep='0'>
+    <colspec colname='c1' colwidth='1.0*'/>
+    <colspec colname='c2' colwidth='3.0*'/>
+    <colspec colname='c3' colwidth='2.0*'/>
+    <colspec colname='c4' colwidth='11.0*'/>
     <thead>
       <row>
         <entry namest="c1" nameend="c4"><function>PolyLine</function></entry>
@@ -112,12 +113,13 @@
 
 <para>An extended-length <function>PolyLine</function> encoding is:</para>
 
-<informaltable pgwide='0' frame='none'>
-  <tgroup cols='4' align='left'>
-    <colspec colwidth='0.5in' colname='c1'/>
-    <colspec colwidth='1.5in' colname='c2'/>
-    <colspec colwidth='1.5in' colname='c3'/>
-    <colspec colwidth='2.0in' colname='c4'/>
+<informaltable frame='none'>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='4' align='left' colsep='0' rowsep='0'>
+    <colspec colname='c1' colwidth='1.0*'/>
+    <colspec colname='c2' colwidth='3.0*'/>
+    <colspec colname='c3' colwidth='2.0*'/>
+    <colspec colname='c4' colwidth='11.0*'/>
     <thead>
       <row>
         <entry namest="c1" nameend="c4"><function>PolyLine</function></entry>
@@ -210,11 +212,12 @@
 
 <para>The name of this extension is &ldquo;BIG-REQUESTS&rdquo;.</para>
 
-<informaltable pgwide='0' frame='none'>
-  <tgroup cols='3' align='left'>
-    <colspec colwidth='0.5in' colname='c1'/>
-    <colspec colwidth='0.5in' colname='c2'/>
-    <colspec colwidth='2.0in' colname='c3'/>
+<informaltable frame='none'>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+    <colspec colname='c1' colwidth='1.0*'/>
+    <colspec colname='c2' colwidth='2.0*'/>
+    <colspec colname='c3' colwidth='15.0*'/>
     <thead>
       <row>
         <entry namest="c1" nameend="c3">BigReqEnable</entry>
@@ -238,10 +241,10 @@
       </row>
      </tbody>
   </tgroup>
-  <tgroup cols='3' align='left'>
-    <colspec colwidth='0.5in' colname='c1'/>
-    <colspec colwidth='1.5in' colname='c2'/>
-    <colspec colwidth='2.0in' colname='c3'/>
+  <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+    <colspec colname='c1' colwidth='1.0*'/>
+    <colspec colname='c2' colwidth='2.0*'/>
+    <colspec colname='c3' colwidth='15.0*'/>
     <thead>
       <row>
         <entry namest="c1" nameend="c3">=&gt;</entry>
