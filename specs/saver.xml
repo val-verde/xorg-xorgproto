@@ -149,18 +149,19 @@ In adition to the comon types described in the core protocol, the following
 type is used in the request and event definitions in subsequent sections.
 </para>
 
-<informaltable frame="none">
-  <tgroup cols='2' align='left'>
-  <colspec colname='c1' colsep="0"/>
-  <colspec colname='c2' colsep="0"/>
+<informaltable frame="topbot">
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
+  <colspec colname='c2' colwidth="1.5*"/>
   <thead>
-    <row>
+    <row rowsep='1'>
       <entry>Name</entry>
       <entry>Value</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry>SCREENSAVEREVENT</entry>
       <entry><emphasis role="bold">ScreenSaverNotify</emphasis>,
       <emphasis role="bold">ScreenSaverCycle</emphasis></entry>
@@ -236,11 +237,12 @@ active and how the <emphasis remap='I'>til-or-since</emphasis> value should be i
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='2' align='left'>
-  <colspec colname='c1' colsep="0"/>
-  <colspec colname='c2' colsep="0"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
+  <colspec colname='c2' colwidth="5.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">Off</emphasis></entry>
       <entry>
 The screen is not currently being saved;
@@ -249,7 +251,7 @@ specifies the number of milliseconds until the screen saver is expected to
 activate.
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">On</emphasis></entry>
       <entry>
 The screen is currently being saved;
@@ -257,7 +259,7 @@ The screen is currently being saved;
 the number of milliseconds since the screen saver activated.
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">Disabled</emphasis></entry>
       <entry>
 The screen saver is currently disabled;
@@ -274,21 +276,22 @@ used or would have been were the screen being saved:
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='2' align='left'>
-  <colspec colname='c1' colsep="0"/>
-  <colspec colname='c2' colsep="0"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
+  <colspec colname='c2' colwidth="5.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">Blanked</emphasis></entry>
       <entry>The video signal to the display monitor was disabled.</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">Internal</emphasis></entry>
       <entry>A server-dependent, built-in screen saver image was displayed; either no
       client had set the screen saver window attributes or a different client
       had the server grabbed when the screen saver activated.</entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">External</emphasis></entry>
       <entry>The screen saver window was mapped with attributes set by a
       client using the <function>ScreenSaverSetAttributes</function> request.</entry>
@@ -332,18 +335,19 @@ Otherwise, any combination of the following bits may be set:
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='2' align='center'>
-  <colspec colname='c1' colsep="0"/>
-  <colspec colname='c2' colsep="0"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
+  <colspec colname='c2' colwidth="3.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">ScreenSaverNotify</emphasis></entry>
       <entry>
 If this bit is set, <emphasis role="bold">ScreenSaverNotify</emphasis> events are generated whenever
 the screen saver is activated or deactivated.
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">ScreenSaverCycle</emphasis></entry>
       <entry>
 If this bit is set, <emphasis role="bold">ScreenSaverNotify</emphasis> events are generated whenever
@@ -504,25 +508,26 @@ The <emphasis remap='I'>state</emphasis> field specifies the cause of the event:
 </para>
 
 <informaltable frame="none">
-  <tgroup cols='2' align='left'>
-  <colspec colname='c1' colsep="0"/>
-  <colspec colname='c2' colsep="0"/>
+  <?dbfo keep-together="always" ?>
+  <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+  <colspec colname='c1' colwidth="1.0*"/>
+  <colspec colname='c2' colwidth="5.0*"/>
   <tbody>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">Off</emphasis></entry>
       <entry>
 The screen saver deactivated; this event is sent if the client has set the
 ScreenSaverNotify bit in its event mask.
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">On</emphasis></entry>
       <entry>
 The screen saver activated.  This event is sent if the client has set the
 ScreenSaverNotify bit in its event mask.
       </entry>
     </row>
-    <row rowsep="0">
+    <row>
       <entry><emphasis role="bold">Cycle</emphasis></entry>
       <entry>
 The cycle interval passed and the client is expected to change the image on
