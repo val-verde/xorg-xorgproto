@@ -409,10 +409,11 @@ Lock</emphasis>
  modifiers are active but were not used to determine the keysym to be used:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='3.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Modifier</entry>
@@ -420,7 +421,7 @@ Lock</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 Control</emphasis>
     </entry>
@@ -433,7 +434,7 @@ Applications are
 free to associate control characters with any symbols that are not specified by
 this extension.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 Lock</emphasis>
     </entry>
@@ -489,13 +490,14 @@ key and four columns (the widest key, key 10, determines the width of the
 entire array).
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='5'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='5' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='2.0*'/>
+<colspec colname='c3' colwidth='2.0*'/>
+<colspec colname='c4' colwidth='2.0*'/>
+<colspec colname='c5' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Key</entry>
@@ -506,56 +508,56 @@ entire array).
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>8</entry>
     <entry>Q</entry>
     <entry>NoSymbol</entry>
     <entry>at</entry>
     <entry>NoSymbol</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>9</entry>
     <entry>odiaeresis</entry>
     <entry>egrave</entry>
     <entry>NoSymbol</entry>
     <entry>NoSymbol</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>10</entry>
     <entry>A</entry>
     <entry>NoSymbol</entry>
     <entry>Æ</entry>
     <entry>NoSymbol</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>11</entry>
     <entry>ssharp</entry>
     <entry>question</entry>
     <entry>backslash</entry>
     <entry>questiondown</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>12</entry>
     <entry>KP_End</entry>
     <entry>KP_1</entry>
     <entry>NoSymbol</entry>
     <entry>NoSymbol</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>13</entry>
     <entry>Num_Lock</entry>
     <entry>NoSymbol</entry>
     <entry>NoSymbol</entry>
     <entry>NoSymbol</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>14</entry>
     <entry>NoSymbol</entry>
     <entry>NoSymbol</entry>
     <entry>NoSymbol</entry>
     <entry>NoSymbol</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>15</entry>
     <entry>Return</entry>
     <entry>NoSymbol</entry>
@@ -587,12 +589,13 @@ which specifies the types and symbols associated with each keyboard group for
 one key:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='4'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='4' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
+<colspec colname='c4' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Key</entry>
@@ -602,64 +605,64 @@ one key:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>8</entry>
     <entry>G1:	ALPHABETIC</entry>
     <entry>q</entry>
     <entry>Q</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>G2:	ONE_LEVEL</entry>
     <entry>@</entry>
     <entry>NoSymbol</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>9</entry>
     <entry>G1:	TWO_LEVEL</entry>
     <entry>odiaeresis</entry>
     <entry>egrave</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>10</entry>
     <entry>G1:	ALPHABETIC</entry>
     <entry>a</entry>
     <entry>A</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>G2:	ALPHABETIC</entry>
     <entry>ae</entry>
     <entry>AE</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>11</entry>
     <entry>G1:	TWO_LEVEL</entry>
     <entry>ssharp</entry>
     <entry>question</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>G2:	ONE_LEVEL</entry>
     <entry>backslash</entry>
     <entry>questiondown</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>12</entry>
     <entry>G1:	KEYPAD</entry>
     <entry>KP_End</entry>
     <entry>KP_1</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>13</entry>
     <entry>G1:	ONE_LEVEL</entry>
     <entry>Num_Lock</entry>
     <entry>&#x0020;</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>14</entry>
     <entry>No Groups</entry>
     <entry>&#x0020;</entry>
     <entry>&#x0020;</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>15</entry>
     <entry>G1:	ONE_LEVEL</entry>
     <entry>Return</entry>

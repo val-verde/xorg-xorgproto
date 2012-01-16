@@ -92,10 +92,11 @@ server checks the per-key behavior of the corresponding key. This extension
 currently defines the following key behaviors:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='3.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Behavior</entry>
@@ -103,13 +104,13 @@ currently defines the following key behaviors:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 KB_Default</emphasis>
  </entry>
     <entry>Press and release events are processed normally.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 KB_Lock</emphasis>
  </entry>
@@ -119,7 +120,7 @@ corresponding release is ignored. If the key is logically down when pressed,
 the key press is ignored but the corresponding release is processed normally.
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -152,7 +153,7 @@ release is also ignored.
 All other key release events are ignored.</para>
   </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
    <para>
     <emphasis>
@@ -170,7 +171,7 @@ key specified in <emphasis>
 key</emphasis>
 . Otherwise, press and release events are processed normally.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
    <para>
     <emphasis>
@@ -319,10 +320,11 @@ mods</emphasis>
 The X Keyboard Extension supports the following actions:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="auto" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='3.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Action</entry>
@@ -330,7 +332,7 @@ The X Keyboard Extension supports the following actions:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>SA_NoAction</emphasis></entry>
     <entry>
       <itemizedlist>
@@ -343,7 +345,7 @@ No direct effect, though <emphasis>SA_NoAction</emphasis>
       </itemizedlist>
     </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>SA_SetMods</emphasis>
@@ -380,7 +382,7 @@ clearLocks</emphasis>
       </itemizedlist>
     </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -434,7 +436,7 @@ latchToLock</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -479,7 +481,7 @@ occurred, key release unlocks them.
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -529,7 +531,7 @@ Group1</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -581,7 +583,7 @@ group.
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -618,7 +620,7 @@ GroupsWrap</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -692,7 +694,7 @@ generate an event of any type).
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -770,7 +772,7 @@ ButtonRelease</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -830,7 +832,7 @@ effect.
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -887,7 +889,7 @@ case, illegal button choices are wrapped back into range.
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
       <para>
     <emphasis>
@@ -1041,7 +1043,7 @@ arguments.
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 SA_TerminateServer</emphasis>
  </entry>
@@ -1061,7 +1063,7 @@ SA_NoAction</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -1116,7 +1118,7 @@ SA_NoAction</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
       <para><emphasis>SA_SetControls</emphasis></para>
       <para>controls: KB_BOOLCTRLMASK</para>
@@ -1137,7 +1139,7 @@ XkbControlsNotify</emphasis>
 	</itemizedlist>
      </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
       <para><emphasis>SA_LockControls</emphasis></para>
       <para>
@@ -1174,7 +1176,7 @@ controls</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
       <para>
     <emphasis>
@@ -1232,7 +1234,7 @@ XkbActionMessage</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -1294,7 +1296,7 @@ keyboard device.
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -1363,7 +1365,7 @@ DeviceButtonRelease</emphasis>
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
     <para>
     <emphasis>
@@ -1426,7 +1428,7 @@ key release is ignored and has no effect.
 </itemizedlist>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>
 <para>
     <emphasis>

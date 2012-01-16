@@ -156,10 +156,11 @@ groups</emphasis>
  and may contain any one of the following values:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='3.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Value</entry>
@@ -167,7 +168,7 @@ groups</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseNone</emphasis>
 </entry>
@@ -175,7 +176,7 @@ IM_UseNone</emphasis>
 groups</emphasis>
  field and the current keyboard group state are ignored.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseBase</emphasis>
 </entry>
@@ -186,7 +187,7 @@ non-zero. If <emphasis>
 groups</emphasis>
  is zero, the indicator is lit whenever the base keyboard group is zero.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLatched</emphasis>
 </entry>
@@ -198,7 +199,7 @@ groups</emphasis>
  is zero, the indicator is lit whenever the latched keyboard group is
 zero.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLocked</emphasis>
 </entry>
@@ -209,7 +210,7 @@ keyboard group matches one of the bits that are set in <emphasis>
 groups</emphasis>
 .</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseEffective</emphasis>
 </entry>
@@ -257,10 +258,11 @@ which_mods</emphasis>
  field may have any combination of the following values:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='3.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Value</entry>
@@ -268,31 +270,31 @@ which_mods</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseBase</emphasis>
 </entry>
     <entry>Base modifier state</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLatched</emphasis>
 </entry>
     <entry>Latched modifier state</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLocked</emphasis>
 </entry>
     <entry>Locked modifier state</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseEffective</emphasis>
 </entry>
     <entry>Effective modifier state</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseCompat</emphasis>
 </entry>
@@ -367,11 +369,12 @@ groups</emphasis>
 , as follows:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='3'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='3' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='2.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry> which_groups</entry>
@@ -380,7 +383,7 @@ groups</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseNone</emphasis>
 , or <emphasis>
@@ -389,7 +392,7 @@ IM_UseBase</emphasis>
     <entry>On or Off</entry>
     <entry>No Effect</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLatched</emphasis>
 </entry>
@@ -403,7 +406,7 @@ groups</emphasis>
 groups</emphasis>
  is empty, the keyboard group latch is changed to zero.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>IM_UseLatched</entry>
     <entry>Off</entry>
     <entry>The <emphasis>
@@ -417,7 +420,7 @@ groups</emphasis>
  is zero, the keyboard group latch is set to the index of the highest legal
 keyboard group.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLocked</emphasis>
 , or <emphasis>
@@ -431,7 +434,7 @@ changed to the lowest numbered group specified in <emphasis>
 groups</emphasis>
 .</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLocked</emphasis>
 , or <emphasis>
@@ -460,11 +463,12 @@ mods</emphasis>
 , as follows:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='3'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='3' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='3.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Set in which_mods</entry>
@@ -473,14 +477,14 @@ mods</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseBase</emphasis>
 </entry>
     <entry>On or Off</entry>
     <entry>No Effect</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLatched</emphasis>
 </entry>
@@ -491,7 +495,7 @@ mask</emphasis>
 mods</emphasis>
  are added to the latched modifiers.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLatched</emphasis>
 </entry>
@@ -502,7 +506,7 @@ mask</emphasis>
 mods</emphasis>
  are removed from the latched modifiers.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLocked</emphasis>
 , <emphasis>
@@ -517,7 +521,7 @@ mask</emphasis>
 mods</emphasis>
  are added to the locked modifiers.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseLocked</emphasis>
 </entry>
@@ -528,7 +532,7 @@ mask</emphasis>
 mods</emphasis>
  are removed from the locked modifiers.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 IM_UseCompat</emphasis>
 , or <emphasis>

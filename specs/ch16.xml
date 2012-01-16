@@ -46,12 +46,13 @@ resource_id</emphasis>
 least significant byte contains the device, class, or feedback id as indicated:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='4'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='4' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='2.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='3.0*'/>
+<colspec colname='c4' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>high-order byte</entry>
@@ -61,19 +62,19 @@ least significant byte contains the device, class, or feedback id as indicated:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>XkbErr_BadDevice</entry>
     <entry>0xff</entry>
     <entry>device not found</entry>
     <entry>device id</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>XkbErr_BadClass</entry>
     <entry>0xfe</entry>
     <entry>device found, but is the wrong class</entry>
     <entry>class id</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>XkbErr_BadId</entry>
     <entry>0xfd</entry>
     <entry>device found, class ok, but device does not have a feedback with the
@@ -111,10 +112,11 @@ The following types are used in the request and event definitions in subsequent
 sections:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="auto" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Name</entry>
@@ -122,7 +124,7 @@ sections:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>LISTofITEMs</entry>
     <entry>	The type LISTofITEMs is special. It is similar to the
 LISTofVALUE defined by the core protocol, but the elements of a LISTofITEMs are
@@ -130,13 +132,13 @@ not necessarily all the same size. The use of a BITMASK to indicate which
 members are present is optional for a LISTofITEMs — it is possible for the
 set of elements to be derived from one or more fields of the request.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_DEVICESPEC</entry>
     <entry>8 bit unsigned integer, <emphasis>
 UseCoreKbd, or UseCorePtr</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_LEDCLASSSPEC</entry>
     <entry>{	<emphasis>
 KbdFeedbackClass</emphasis>
@@ -150,7 +152,7 @@ AllXIClasses</emphasis>
 XINone</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_BELLCLASSSPEC</entry>
     <entry>{	<emphasis>
 KbdFeedbackClass</emphasis>
@@ -162,17 +164,17 @@ DfltXIClass</emphasis>
 AllXIClasses</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_IDSPEC</entry>
     <entry>8 bit unsigned integer or <emphasis>
 DfltXIId</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_VMODMASK</entry>
     <entry>	CARD16, each bit corresponds to a virtual modifier</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_GROUPMASK</entry>
     <entry>{	<emphasis>
 Group1</emphasis>
@@ -184,7 +186,7 @@ Group3</emphasis>
 Group4</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_GROUPSWRAP</entry>
     <entry>{	<emphasis>
 WrapIntoRange</emphasis>
@@ -194,13 +196,13 @@ ClampIntoRange</emphasis>
 RedirectIntoRange</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_GROUPINFO</entry>
     <entry>{	groupsWrap: KB_GROUPSWRAP
 redirectGroup: 1…4,
 numGroups: 1…4 }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_NKNDETAILSMASK</entry>
     <entry>{	<emphasis>
 NKN_Keycodes</emphasis>
@@ -208,11 +210,11 @@ NKN_Keycodes</emphasis>
 NKN_DeviceID</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_STATEMASK</entry>
     <entry>	KEYBUTMASK or KB_GROUPMASK</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_STATEPARTMASK</entry>
     <entry>{	<emphasis>
 ModifierState</emphasis>
@@ -244,7 +246,7 @@ CompatLookupMods</emphasis>
 PointerButtons</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_BOOLCTRLMASK</entry>
     <entry>{	<emphasis>
 RepeatKeys</emphasis>
@@ -274,7 +276,7 @@ Overlay2</emphasis>
 IgnoreGroupLock</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_CONTROLSMASK</entry>
     <entry>{	<emphasis>
 GroupsWrap, InternalMods</emphasis>
@@ -286,7 +288,7 @@ PerKeyRepeat</emphasis>
 ControlsEnabled</emphasis>
  } or KB_BOOLCTRLMASK</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_MAPPARTMASK</entry>
     <entry>{	<emphasis>
 KeyTypes</emphasis>
@@ -306,7 +308,7 @@ VirtualMods</emphasis>
 VirtualModMap</emphasis>
 }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_CMDETAILMASK</entry>
     <entry>{	<emphasis>
 SymInterp</emphasis>
@@ -314,7 +316,7 @@ SymInterp</emphasis>
 GroupCompat</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_NAMEDETAILMASK</entry>
     <entry>{	<emphasis>
 KeycodesName</emphasis>
@@ -347,7 +349,7 @@ GroupNames</emphasis>
 RGNames</emphasis>
 }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_AXNDETAILMASK</entry>
     <entry>{	<emphasis>
 AXN_SKPress</emphasis>
@@ -359,7 +361,7 @@ AXN_SKReject</emphasis>
 AXN_SKRelease, AXN_BKAccept, AXN_BKReject, AXN_AXKWarning </emphasis>
 }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_AXSKOPTSMASK</entry>
     <entry>{	<emphasis>
 AX_TwoKeys</emphasis>
@@ -367,7 +369,7 @@ AX_TwoKeys</emphasis>
 AX_LatchToLock</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_AXFBOPTSMASK</entry>
     <entry>{	<emphasis>
 AX_SKPressFB</emphasis>
@@ -391,11 +393,11 @@ AX_BKRejectFB</emphasis>
 AX_DumbBellFB</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_AXOPTIONSMASK</entry>
     <entry>	KB_AXFBOPTSMASK or KB_AXSKOPTSMASK</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_GBNDETAILMASK</entry>
     <entry>{	<emphasis>
 GBN_Types</emphasis>
@@ -415,19 +417,19 @@ GBN_Geometry</emphasis>
 GBN_OtherNames</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_BELLDETAILMASK</entry>
     <entry>{	<emphasis>
 XkbAllBellNotifyEvents</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_MSGDETAILMASK</entry>
     <entry>{	<emphasis>
 XkbAllActionMessages</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_EVENTTYPE</entry>
     <entry>{	<emphasis>
 XkbNewKeyboardNotify</emphasis>
@@ -455,40 +457,40 @@ XkbAccessXNotify</emphasis>
 XkbExtensionDeviceNotify</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_ACTION</entry>
     <entry>[	type: CARD8
 data: LISTofCARD8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_BEHAVIOR</entry>
     <entry>[	type: CARD8, data: CARD 8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_MODDEF</entry>
     <entry>[	mask: KEYMASK,
 mods: KEYMASK,
 vmods: KB_VMODMASK ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KTMAPENTRY</entry>
     <entry>[	active: BOOL,
 level: CARD8,
 mods: KB_MODDEF ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KTSETMAPENTRY</entry>
     <entry>[	level: CARD8,
 mods: KB_MODDEF ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KEYTYPE</entry>
     <entry>[	mods: KB_MODDEF,
 numLevels: CARD8,
 map: LISTofKB_KTMAPENTRY,
 preserve: LISTofKB_MODDEF ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_SETKEYTYPE</entry>
     <entry>[	 realMods: KEYMASK,
 vmods: CARD16,
@@ -496,7 +498,7 @@ numLevels: CARD8,
 map: LISTofKB_KTSETMAPENTRY,
 preserve: LISTofKB_MODDEF ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KEYSYMMAP</entry>
     <entry>[	 ktIndex: LISTofCARD8, width: CARD8
 	 numGroups: 0…4,
@@ -504,15 +506,15 @@ preserve: LISTofKB_MODDEF ]</entry>
 	 redirectGroup: 0…3,
 	syms: LISTofKEYSYM ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KEYVMODMAP</entry>
     <entry>[	key: KEYCODE, vmods: CARD16 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KEYMODMAP</entry>
     <entry>[	key: KEYCODE, mods: KEYMASK ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_EXPLICITMASK</entry>
     <entry>{	<emphasis>
 ExplicitKeyType1</emphasis>
@@ -532,11 +534,11 @@ ExplicitBehavior</emphasis>
 ExplicitVModMap</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_INDICATORMASK</entry>
     <entry>	CARD32, each bit corresponds to an indicator</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_IMFLAGS</entry>
     <entry>{	<emphasis>
 IM_NoExplicit</emphasis>
@@ -546,7 +548,7 @@ IM_NoAutomatic</emphasis>
 IM_LEDDrivesKB</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_IMMODSWHICH</entry>
     <entry>{	<emphasis>
 IM_UseNone</emphasis>
@@ -562,7 +564,7 @@ IM_UseEffective</emphasis>
 IM_UseCompat</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_IMGROUPSWHICH</entry>
     <entry>{	<emphasis>
 IM_UseNone</emphasis>
@@ -576,7 +578,7 @@ IM_UseLocked</emphasis>
 IM_UseEffective</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_INDICATORMAP</entry>
     <entry>[	flags: CARD8,
 mods: KB_MODDEF,
@@ -585,7 +587,7 @@ groups: KB_GROUPMASK,
 whichGroups:
 ctrls: KB_BOOLCTRLMASK ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_SYMINTERPMATCH</entry>
     <entry>{	<emphasis>
 SI_NoneOf</emphasis>
@@ -599,7 +601,7 @@ SI_AllOf</emphasis>
 SI_Exactly</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_SYMINTERP</entry>
     <entry>[	sym: KEYSYM,
 	mods; KEYMASK,
@@ -609,7 +611,7 @@ SI_Exactly</emphasis>
 	autoRepeat: BOOL,
 	lockingKey: BOOL ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_PCFMASK</entry>
     <entry>{	<emphasis>
 PCF_DetectableAutorepeat</emphasis>
@@ -623,7 +625,7 @@ PCF_LookupStateWhenGrabbed</emphasis>
 PCF_SendEventUsesXKBState</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_LCFLAGSMASK</entry>
     <entry>{	<emphasis>
 LC_Hidden</emphasis>
@@ -633,7 +635,7 @@ LC_Default</emphasis>
 LC_Partial</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_LCSYMFLAGSMASK</entry>
     <entry>{	<emphasis>
 LC_AlphanumericKeys</emphasis>
@@ -659,10 +661,11 @@ XkbSetGeometry</emphasis>
  requests:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="auto" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Name</entry>
@@ -670,84 +673,84 @@ XkbSetGeometry</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>KB_PROPERTY</entry>
     <entry>[	name, value: STRING8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_POINT</entry>
     <entry>[	x, y: CARD16 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_OUTLINE</entry>
     <entry>[	cornerRadius: CARD8, points: LISTofKB_POINT ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_SHAPE</entry>
     <entry>[	name: ATOM, outlines: LISTofKB_OUTLINE
 	primaryNdx, approxNdx: CARD8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KEYNAME</entry>
     <entry>[ name: LISTofCHAR ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KEYALIAS</entry>
     <entry>[	real: LISTofCHAR, alias: LISTofCHAR ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_KEY</entry>
     <entry>[	name: KB_KEYNAME, gap: INT16,
 	shapeNdx, colorNdx: CARD8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_ROW</entry>
     <entry>[	top, left: INT16, vertical: BOOL, keys LISTofKB_KEY ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_OVERLAYKEY</entry>
     <entry>[	over, under: KB_KEYNAME ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_OVERLAYROW</entry>
     <entry>[	rowUnder: CARD8, keys: LISTofKB_OVERLAYKEY ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_OVERLAY</entry>
     <entry>[	sectionUnder: CARD8,
 rows: LISTofKB_OVERLAYROW ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_SHAPEDOODAD</entry>
     <entry>[	name: ATOM, priority: CARD8, top, left: INT16,
 	type: { SolidDoodad, OutlineDoodad },
 	angle: INT16, width, height: CARD16
 	colorNdx, shapeNdx: CARD8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_TEXTDOODAD</entry>
     <entry>[	name: ATOM, priority: CARD8, top, left: INT16,
 	angle: INT16, width, height: CARD16,
 	colorNdx: CARD8, text: STRING8, font: STRING8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_INDICATORDOODAD</entry>
     <entry>[	name: ATOM, priority: CARD8, top, left: INT16,
 angle: INT16,
 shapeNdx, onColorNdx, offColorNdx: CARD8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_LOGODOODAD</entry>
     <entry>[	name: ATOM, priority: CARD8, top, left: INT16,
 	angle: INT16, colorNdx, shapeNdx: CARD8,
 	logoName: STRING8 ]</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_DOODAD</entry>
     <entry>KB_SHAPEDOODAD, or KB_TEXTDOODAD, or KB_INDICATORDOODAD, or
 KB_LOGODOODAD</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_SECTION</entry>
     <entry>[	name: ATOM,
 	top, left, angle: INT16,
@@ -769,10 +772,11 @@ XkbSetDeviceInfo</emphasis>
 :
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Name</entry>
@@ -780,7 +784,7 @@ XkbSetDeviceInfo</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>KB_XIDEVFEATUREMASK</entry>
     <entry>{	<emphasis>
 XI_ButtonActions</emphasis>
@@ -792,13 +796,13 @@ XI_IndicatorMaps</emphasis>
 XI_IndicatorState</emphasis>
  }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_XIFEATUREMASK</entry>
     <entry>{	 KB_XIDEVFEATURES or <emphasis>
 XI_Keyboards</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_XIDETAILMASK</entry>
     <entry>	{ KB_XIFEATURES or <emphasis>
 XI_UnsupportedFeature</emphasis>
@@ -806,7 +810,7 @@ XI_UnsupportedFeature</emphasis>
 }</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>KB_DEVICELEDINFO</entry>
     <entry>[	ledClass: KB_LEDCLASSSPEC,
 ledID: KB_IDSPEC,
@@ -834,23 +838,24 @@ separated into categories of related requests.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbUseExtension</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>wantedMajor, wantedMinor:	 CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 supported: BOOL
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 serverMajor, serverMinor: CARD16</entry>
     </row>
@@ -902,31 +907,32 @@ XkbUseExtension</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSelectEvents</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec:	KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectWhich, clear, selectAll: KB_EVENTTYPE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectMap, map: KB_MAPPARTMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 details: LISTofITEMs</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -1068,10 +1074,11 @@ details</emphasis>
 </para>
 
 <informaltable frame='none'>
-<tgroup cols='3'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<?dbfo keep-together="auto" ?>
+<tgroup cols='3' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Event Type</entry>
@@ -1080,7 +1087,7 @@ details</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbNewKeyboardNotify</emphasis>
 </entry>
@@ -1091,7 +1098,7 @@ KB_NKNDETAILSMASK</emphasis>
 CARD16</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbStateNotify</emphasis>
 </entry>
@@ -1102,7 +1109,7 @@ KB_STATEPARTMASK</emphasis>
 CARD16</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbControlsNotify</emphasis>
 </entry>
@@ -1113,7 +1120,7 @@ KB_CONTROLMASK</emphasis>
 CARD32</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbIndicatorMapNotify</emphasis>
 </entry>
@@ -1124,7 +1131,7 @@ KB_INDICATORMASK</emphasis>
 CARD32</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbIndicatorStateNotify</emphasis>
 </entry>
@@ -1135,7 +1142,7 @@ KB_INDICATORMASK</emphasis>
 CARD32</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbNamesNotify</emphasis>
 </entry>
@@ -1146,7 +1153,7 @@ KB_NAMEDETAILMASK</emphasis>
 CARD16</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbCompatMapNotify</emphasis>
 </entry>
@@ -1157,7 +1164,7 @@ KB_CMDETAILMASK</emphasis>
 CARD8</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbBellNotify</emphasis>
 </entry>
@@ -1168,7 +1175,7 @@ KB_BELLDETAILMASK</emphasis>
 CARD8</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbActionMessage</emphasis>
 </entry>
@@ -1179,7 +1186,7 @@ KB_MSGDETAILMASK</emphasis>
 CARD8</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbAccessXNotify</emphasis>
 </entry>
@@ -1190,7 +1197,7 @@ KB_AXNDETAILMASK</emphasis>
 CARD16</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbExtensionDeviceNotify</emphasis>
 </entry>
@@ -1226,51 +1233,52 @@ and the conditions under which the server generates them.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbBell</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 bellClass: KB_BELLCLASSSPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 bellID: KB_IDSPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 percent: INT8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 forceSound: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 eventOnly: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 pitch, duration: INT16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 name: ATOM</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 window: WINDOW</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -1411,58 +1419,59 @@ honor them.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetState</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 mods, baseMods, latchedMods, lockedMods: KEYMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 group, lockedGroup: KB_GROUP
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 baseGroup, latchedGroup: INT16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 compatState: KEYMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 grabMods, compatGrabMods: KB_GROUP
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 lookupMods, compatLookupMods: KEYMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 ptrBtnState: BUTMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 </entry>
@@ -1563,43 +1572,44 @@ Group Compatibility Map</link>.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbLatchLockState</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectModLocks, modLocks: KEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 lockGroup: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 groupLock: KB_GROUP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectModLatches,modLatches: KEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 latchGroup: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 groupLatch: INT16</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -1699,99 +1709,100 @@ If any errors occur, this request has no effect.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetControls</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 mouseKeysDfltBtn: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 numGroups: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 groupsWrap: KB_GROUPINFO
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 internalMods,ignoreLockMods: KB_MODDEF
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 repeatDelay,repeatInterval: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 slowKeysDelay, debounceDelay: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 mouseKeysDelay, mouseKeysInterval: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 mouseKeysTimeToMax, mouseKeysMaxSpeed: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 mouseKeysCurve: INT16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 accessXOptions: KB_AXOPTIONMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 accessXTimeout: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 accessXTimeoutOptionsMask, accessXTimeoutOptionValues: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 accessXTimeoutMask,accessXTimeoutValues: CARD32
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 enabledControls: KB_BOOLCTRLMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 perKeyRepeat: LISTofCARD8</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 </entry>
@@ -1926,95 +1937,96 @@ perKeyRepeat</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetControls</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectInternalRealMods, internalRealMods: KEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectInternalVirtualMods,internalVirtualMods: KB_VMODMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectIgnoreLockRealMods,ignoreLockRealMods: KB_MODMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectIgnoreLockVirtualMods,ignoreLockVirtualMods: KB_VMODMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 mouseKeysDfltBtn: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 groupsWrap: KB_GROUPINFO</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 accessXOptions: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectEnabledControls: KB_BOOLCTRLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 enabledControls: KB_BOOLCTRLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changeControls: KB_CONTROLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 repeatDelay,repeatInterval: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 slowKeysDelay, debounceDelay: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 mouseKeysDelay, mouseKeysInterval: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 mouseKeysTimeToMax, mouseKeysMaxSpeed: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 mouseKeysCurve: INT16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 accessXTimeout: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 accessXTimeoutMask, accessXTimeoutValues: KB_BOOLCTRLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 accessXTimeoutOptionsMask,accessXTimeoutOptionsValues: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 perKeyRepeat: LISTofCARD8</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors:<emphasis>
  Keyboard</emphasis>
 , <emphasis>
@@ -2037,10 +2049,11 @@ changeControls</emphasis>
 follows:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Bit in changeControls</entry>
@@ -2048,7 +2061,7 @@ follows:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbRepeatKeysMask</emphasis>
 </entry>
@@ -2058,7 +2071,7 @@ repeatDelay</emphasis>
 repeatInterval</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbSlowKeysMask</emphasis>
 </entry>
@@ -2066,7 +2079,7 @@ XkbSlowKeysMask</emphasis>
 slowKeysDelay</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbStickyKeysMask</emphasis>
 </entry>
@@ -2080,7 +2093,7 @@ and the <emphasis>
 XkbAX_LatchToLock</emphasis>
  options are affected)</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbBounceKeysMask</emphasis>
 </entry>
@@ -2088,7 +2101,7 @@ XkbBounceKeysMask</emphasis>
 debounceDelay</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbMouseKeysMask</emphasis>
 </entry>
@@ -2096,7 +2109,7 @@ XkbMouseKeysMask</emphasis>
 mouseKeysDfltBtn</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbMouseKeysAccelMask</emphasis>
 </entry>
@@ -2112,7 +2125,7 @@ mouseKeysTimeToMax</emphasis>
 mouseKeysMaxSpeed</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbAccessXKeysMask</emphasis>
 </entry>
@@ -2120,7 +2133,7 @@ XkbAccessXKeysMask</emphasis>
 accessXOptions (all options)</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbAccessXTimeoutMask</emphasis>
 </entry>
@@ -2136,7 +2149,7 @@ accessXTimeoutOptionsMask</emphasis>
 accessXTimeoutOptionsValues</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>XkbAccessXFeedbackMask</entry>
     <entry><emphasis>
 accessXOptions</emphasis>
@@ -2144,7 +2157,7 @@ accessXOptions</emphasis>
 XkbStickyKeysMask</emphasis>
  bit)</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGroupsWrapMask</emphasis>
 </entry>
@@ -2152,7 +2165,7 @@ XkbGroupsWrapMask</emphasis>
 groupsWrap</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbInternalModsMask</emphasis>
 </entry>
@@ -2166,7 +2179,7 @@ affectInternalVirtualMods</emphasis>
 internalVirtualMods</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbIgnoreLockModsMask</emphasis>
 </entry>
@@ -2180,7 +2193,7 @@ affectIgnoreLockVirtualMods</emphasis>
 ignoreLockVirtualMods</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbPerKeyRepeatMask</emphasis>
 </entry>
@@ -2188,7 +2201,7 @@ XkbPerKeyRepeatMask</emphasis>
 perKeyRepeat</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbControlsEnabledMask</emphasis>
 </entry>
@@ -2476,165 +2489,166 @@ Value</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetMap</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 full, partial:	KB_MAPPARTMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstType, nTypes: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKeySym, firstKeyAction: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nKeySyms, nKeyActions: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKeyBehavior,firstKeyExplicit: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nKeyBehaviors,nKeyExplicit: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstModMapKey,firstVModMapKey: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nModMapKeys, nVModMapKeys: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 virtualMods: KB_VMODMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 minKeyCode, maxKeyCode: KEYCODE
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 present: KB_MAPPARTMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 firstType, nTypes, nTotalTypes: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 firstKeySym, firstKeyAction: KEYCODE
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 nKeySyms, nKeyActions: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 totalSyms, totalActions: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 firstKeyBehavior, firstKeyExplicit: KEYCODE
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 nKeyBehaviors, nKeyExplicit: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 totalKeyBehaviors, totalKeyExplicit: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 firstModMapKey, firstVModMapKey: KEYCODE
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 nModMapKeys, nVModMapKeys: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 totalModMapKeys, totalVModMapKeys: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 virtualMods: KB_VMODMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 typesRtrn: LISTofKB_KEYTYPE
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 symsRtrn: LISTofKB_KEYSYMMAP
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 actsRtrn: { count: LISTofCARD8, acts: LISTofKB_ACTION }
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 behaviorsRtrn: LISTofKB_SETBEHAVIOR
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 vmodsRtrn: LISTofSETofKEYMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 explicitRtrn: LISTofKB_SETEXPLICIT
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 modmapRtrn: LISTofKB_KEYMODMAP
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 vmodMapRtrn: LISTofKB_KEYVMODMAP
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>
 Errors: <emphasis>
 Keyboard</emphasis>
@@ -2682,11 +2696,12 @@ partial</emphasis>
 as follows:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='3'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='3' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.5*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.5*'/>
 <thead>
   <row rowsep='1'>
     <entry>Bit in the Partial Mask</entry>
@@ -2695,7 +2710,7 @@ as follows:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKeyTypesMask</emphasis>
 </entry>
@@ -2706,7 +2721,7 @@ firstType</emphasis>
 nTypes</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKeySymsMask</emphasis>
 </entry>
@@ -2717,7 +2732,7 @@ firstKeySym</emphasis>
 nKeySyms</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKeyActionsMask</emphasis>
 </entry>
@@ -2728,7 +2743,7 @@ firstKeyAction</emphasis>
 nKeyActions</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKeyBehaviorsMask</emphasis>
 </entry>
@@ -2739,7 +2754,7 @@ firstKeyBehavior</emphasis>
 nKeyBehaviors</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbExplicitComponentsMask</emphasis>
 </entry>
@@ -2750,7 +2765,7 @@ firstKeyExplicit</emphasis>
 nKeyExplicit</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbModifierMapMask</emphasis>
 </entry>
@@ -2761,7 +2776,7 @@ firstModMapKey</emphasis>
 nModMapKeys</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbVirtualModMapMask</emphasis>
 </entry>
@@ -2772,7 +2787,7 @@ firstVModMapKey</emphasis>
 nVModMapKeys</emphasis>
 </entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbVirtualModsMask</emphasis>
 </entry>
@@ -3159,109 +3174,110 @@ corresponding lists are all of length zero.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetMap</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 flags: { <emphasis>
 SetMapResizeTypes, SetMapRecomputeActions </emphasis>
 }</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 present: KB_MAPPARTMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 minKeyCode, maxKeyCode: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstType, nTypes: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKeySym, firstKeyAction: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nKeySyms, nKeyActions: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 totalSyms, totalActions: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKeyBehavior, firstKeyExplicit: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nKeyBehaviors, nKeyExplicit: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 totalKeyBehaviors, totalKeyExplicit: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstModMapKey, firstVModMapKey: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nModMapKeys, nVModMapKeys: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 totalModMapKeys, totalVModMapKeys: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 virtualMods: VMODMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 types: LISTofKB_KEYTYPE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 syms: LISTofKB_KEYSYMMAP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 actions: { count: LISTofCARD8, actions: LISTofKB_ACTION }</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 behaviors: LISTofKB_BEHAVIOR</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 vmods: LISTofKEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 explicit: LISTofKB_EXPLICIT</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 modmap: LISTofKB_KEYMODMAP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 vmodmap: LISTofKB_KEYVMODMAP</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -3823,55 +3839,56 @@ XkbIndicatorStateNotify</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetCompatMap</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 groups: KB_GROUPMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 getAllSI: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstSI, nSI: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 groupsRtrn: KB_GROUPMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 firstSIRtrn, nSIRtrn, nTotalSI: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 siRtrn: LISTofKB_SYMINTERP
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 groupRtrn: LISTofKB_MODDEF</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -3966,43 +3983,44 @@ groupsRtrn</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetCompatMap</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 recomputeActions: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 truncateSI: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 groups: KB_GROUPMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstSI, nSI: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 si: LISTofKB_SYMINTERPRET</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 groupMaps: LISTofKB_MODDEF</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -4097,24 +4115,25 @@ Keys</link>.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetIndicatorState</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
 state: KB_INDICATORMASK</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 </entry>
@@ -4152,47 +4171,48 @@ indicator is lit.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetIndicatorMap</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 which: KB_INDICATORMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 which: KB_INDICATORMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 realIndicators: KB_INDICATORMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 nIndicators: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 maps: LISTofKB_INDICATORMAP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -4249,27 +4269,28 @@ described in <link linkend='Indicator_Maps'>Indicator Maps</link>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetIndicatorMap</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 which: KB_INDICATORMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 maps: LISTofKB_INDICATORMAP</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -4313,71 +4334,72 @@ XkbIndicatorStateNotify</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetNamedIndicator</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledClass: KB_LEDCLASSSPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledID: KB_IDSPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 indicator: ATOM
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 supported: BOOL
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 indicator: ATOM
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 found: BOOL
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 on: BOOL
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 realIndicator: BOOL
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 ndx: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 map: KB_INDICATORMAP</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -4540,51 +4562,52 @@ map</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetNamedIndicator</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledClass: KB_LEDCLASSSPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledID: KB_IDSPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 indicator: ATOM</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 setState: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 on: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 setMap: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 createMap: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 map: KB_SETINDICATORMAP</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -4758,22 +4781,23 @@ map and the current state of the keyboard.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetNames</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 which: KB_NAMEDETAILMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
 which: KB_NAMESMASK
@@ -4790,7 +4814,7 @@ present: KB_NAMEDETAILMASK
 valueList: LISTofITEMs</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -4844,10 +4868,11 @@ valueList</emphasis>
 </para>
 
 <informaltable frame='none'>
-<tgroup cols='3'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='3' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Component</entry>
@@ -4856,49 +4881,49 @@ valueList</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKeycodesName</emphasis>
 </entry>
     <entry>1</entry>
     <entry>	ATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGeometryName</emphasis>
 </entry>
     <entry>1</entry>
     <entry>	ATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbSymbolsName</emphasis>
 </entry>
     <entry>1</entry>
     <entry>	ATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbPhysSymbolsName</emphasis>
 </entry>
     <entry>1</entry>
     <entry>	ATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbTypesName</emphasis>
 </entry>
     <entry>1</entry>
     <entry>	ATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbCompatName</emphasis>
 </entry>
     <entry>1</entry>
     <entry>	ATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKeyTypeNames</emphasis>
  </entry>
@@ -4907,7 +4932,7 @@ nTypes</emphasis>
 </entry>
     <entry>	LISTofATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKTLevelNames</emphasis>
  </entry>
@@ -4920,7 +4945,7 @@ nKTLevels</emphasis>
     <entry>{	count: LISTofCARD8,
 	names: LISTofATOM }</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbIndicatorNames</emphasis>
  </entry>
@@ -4929,7 +4954,7 @@ indicators</emphasis>
 </entry>
     <entry>	LISTofATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbVirtualModNames</emphasis>
  </entry>
@@ -4938,7 +4963,7 @@ virtualMods</emphasis>
 </entry>
     <entry>	LISTofATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGroupNames </emphasis>
 </entry>
@@ -4947,7 +4972,7 @@ groupNames</emphasis>
 </entry>
     <entry>	LISTofATOM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKeyNames</emphasis>
 </entry>
@@ -4956,7 +4981,7 @@ nKeys</emphasis>
 </entry>
     <entry>	LISTofKB_KEYNAME</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbKeyAliases</emphasis>
 </entry>
@@ -4965,7 +4990,7 @@ nKeyAliases</emphasis>
 </entry>
     <entry>	LISTofKB_KEYALIAS</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbRGNames</emphasis>
 </entry>
@@ -5108,62 +5133,63 @@ nRadioGroups</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetNames</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>which: KB_NAMEDETAILMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 virtualMods: KB_VMODMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstType, nTypes: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKTLevel, nKTLevels: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 totalKTLevelNames: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 indicators: KB_INDICATORMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 groupNames: KB_GROUPMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nRadioGroups: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKey: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nKeys, nKeyAliases: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 valueList: LISTofITEMs</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -5431,77 +5457,78 @@ Atom</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetGeometry</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 name: ATOM</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 name: ATOM
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 found: BOOL
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 widthMM, heightMM: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 baseColorNdx, labelColorNdx: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 properties: LISTofKB_PROPERTY
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 colors: LISTofSTRING8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 shapes: LISTofKB_SHAPE
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 sections: LISTofKB_SECTION
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 doodads: LISTofKB_DOODAD
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keyAliases: LISTofKB_KEYALIAS</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 </entry>
@@ -5573,55 +5600,56 @@ Geometry</link>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetGeometry</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 name: ATOM</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 widthMM, heightMM, CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 baseColorNdx, labelColorNdx: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 shapes: LISTofKB_SHAPE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 sections: LISTofKB_SECTION</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 properties: LISTofKB_PROPERTY</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 colors: LISTofSTRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 doodads: LISTofKB_DOODAD</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keyAliases: LISTofKB_KEYALIAS</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -5767,38 +5795,39 @@ keyboard definition, but XKB does not check for or guarantee it.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbPerClientFlags</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 change: KB_PCFMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 value: KB_PCFMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ctrlsToChange: KB_BOOLCTRLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 autoCtrls: KB_BOOLCTRLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 autoCtrlValues: KB_BOOLCTRLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
 supported: KB_PCFMASK
@@ -5808,7 +5837,7 @@ autoCtrlValues: KB_BOOLCTRLMASK
 where: KB_PCFMASK:</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -5844,10 +5873,11 @@ value</emphasis>
 per-client-flags are:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Flag…</entry>
@@ -5855,35 +5885,35 @@ per-client-flags are:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbPCF_DetectableAutorepeat</emphasis>
 </entry>
     <entry><link linkend='Detectable_Autorepeat'>Detectable
 Autorepeat</link></entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbPCF_GrabsUseXKBStateMask</emphasis>
 </entry>
     <entry><link linkend='Setting_a_Passive_Grab_for_an_XKB_State'>Setting a Passive Grab
 for an XKB State</link></entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbPCF_AutoResetControlsMask</emphasis>
 </entry>
     <entry><link linkend='Automatic_Reset_of_Boolean_Controls'>Automatic Reset of
 Boolean Controls</link></entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbPCF_LookupStateWhenGrabbed</emphasis>
 </entry>
     <entry><link linkend='Effects_of_XKB_on_Core_Protocol_Events'>Effects of XKB on Core
 Protocol Events</link></entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbPCF_SendEventUsesXKBState</emphasis>
 </entry>
@@ -5992,73 +6022,74 @@ autoCtrlValues</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbListComponents</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 maxNames: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keymapsSpec: STRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keycodesSpec: STRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 typesSpec: STRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 compatMapSpec: STRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 symbolsSpec: STRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 geometrySpec: STRING8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 extra: CARD16
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 keymaps,keycodes,types,compatMaps: LISTofKB_COMPONENTNAME
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 symbols, geometries: LISTofKB_COMPONENTNAME</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>Where:</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>KB_COMPONENTNAME	{	hints: CARD8, name:
 STRING8 }</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -6172,98 +6203,99 @@ more detail.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetKbdByName</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 need, want: KB_GBNDETAILMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 load: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keymapsSpec: STRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keycodesSpec, typesSpec: STRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 compatMapSpec, symbolsSpec: STRING8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 geometrySpec: STRING8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 minKeyCode, maxKeyCode: KEYCODE
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 loaded, newKeyboard: BOOL
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 found, reported: KB_GBNDETAILMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 map: optional <emphasis>
 XkbGetMap</emphasis>
  reply
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 compat: optional <emphasis>
 XkbGetCompatMap</emphasis>
  reply
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 indicators: optional <emphasis>
 XkbGetIndicatorMap</emphasis>
  reply
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 names: optional <emphasis>
 XkbGetNames</emphasis>
  reply
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 geometry: optional <emphasis>
 XkbGetGeometry</emphasis>
  reply</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Keyboard</emphasis>
 , <emphasis>
@@ -6334,11 +6366,12 @@ XkbGetMapByName</emphasis>
  (GBN) components:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='3'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='3' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>XkbGetMapByName Keyboard Component…</entry>
@@ -6347,28 +6380,28 @@ XkbGetMapByName</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGBN_Types</emphasis>
 </entry>
     <entry>types</entry>
     <entry>key types</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGBN_CompatMap</emphasis>
 </entry>
     <entry>compat</entry>
     <entry>symbol interpretations, group compatibility map</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGBN_ClientSymbols</emphasis>
 </entry>
     <entry>symbols, types, keycodes</entry>
     <entry>key types, key symbol mappings, modifier mapping</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGBN_ServerSymbols</emphasis>
 </entry>
@@ -6376,28 +6409,28 @@ XkbGBN_ServerSymbols</emphasis>
     <entry>key behaviors, key actions, key explicit components, virtual
 modifiers, virtual modifier mapping</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGBN_IndicatorMap</emphasis>
 </entry>
     <entry>compat</entry>
     <entry>indicator maps, indicator names</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGBN_KeyNames</emphasis>
 </entry>
     <entry>keycodes</entry>
     <entry>key names, key aliases</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGBN_Geometry</emphasis>
 </entry>
     <entry>geometry</entry>
     <entry>keyboard geometry</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 XkbGBN_OtherNames</emphasis>
 </entry>
@@ -6614,114 +6647,115 @@ description.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbGetDeviceInfo</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 wanted: KB_XIDEVFEATUREMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledClass: KB_LEDCLASSSPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledID: KB_IDSPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 allButtons: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstButton, nButtons: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 deviceID: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 present: KB_XIDEVFEATUREMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 supported: KB_XIFEATUREMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 unsupported: KB_XIFEATUREMASK
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 firstBtnWanted: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 nBtnsWanted: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 firstBtnRtrn: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 nBtnsRtrn: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 totalBtns: CARD8
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 hasOwnState: BOOL
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 dfltKbdFB, dfltLedFB: KB_IDSPEC
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 devType: ATOM
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 name: STRING
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 btnActions: LISTofKB_ACTION
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 leds: LISTofKB_DEVICELEDINFO</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Device</emphasis>
 , <emphasis>
@@ -7041,35 +7075,36 @@ for it and, if generated, is not sent to any other clients.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetDeviceInfo</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>deviceSpec: KB_DEVICESPEC</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 change: KB_XIDEVFEATUREMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstBtn, nBtns: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 btnActions:LISTofKB_ACTION</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 leds: LISTofKB_DEVICELEDINFO</entry>
     </row>
 
-    <row rowsep='0'>
+    <row>
       <entry role='protoerror'>Errors: <emphasis>
 Device</emphasis>
 , <emphasis>
@@ -7236,32 +7271,33 @@ for it and, if generated, is not sent to any other clients.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbSetDebuggingFlags</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>affectFlags, flags: CARD32</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 affectCtrls, ctrls: CARD32</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 message: STRING
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 currentFlags, supportedFlags: CARD32
       </entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoreply'>
 currentCtrls, supportedCtrls: CARD32</entry>
     </row>
@@ -7401,38 +7437,39 @@ distinguish XKB event type.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbNewKeyboardNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changed: KB_NKNDETAILMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 minKeyCode, maxKeyCode: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 oldDeviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 oldMinKeyCode, oldMaxKeyCode: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 requestMajor, requestMinor: CARD8</entry>
     </row>
@@ -7475,10 +7512,11 @@ changed</emphasis>
 can contain any combination of the event details for this event:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Bit in Changed</entry>
@@ -7486,15 +7524,15 @@ can contain any combination of the event details for this event:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>NKN_Keycodes</entry>
     <entry>The new keyboard has a different minimum or maximum keycode.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>NKN_Geometry</entry>
     <entry>The new keyboard has a different keyboard geometry.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>NKN_DeviceID</entry>
     <entry>The new keyboard has a new X Input Extension device
 identifier</entry>
@@ -7600,62 +7638,63 @@ both fields have the value <emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbMapNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ptrBtnActions: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changed: KB_MAPPARTMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 minKeyCode, maxKeyCode: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstType, nTypes: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKeySym, firstKeyAction: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nKeySyms, nKeyActions: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKeyBehavior, firstKeyExplicit: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nKeyBehaviors, nKeyExplicit: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 virtualMods: KB_VMODMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstModMapKey, firstVModMapKey: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nModMapKeys, nVModMapKeys: CARD8</entry>
     </row>
@@ -7840,62 +7879,63 @@ modifier mappings. Otherwise, both fields are <emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbStateNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 mods, baseMods, latchedMods, lockedMods: KEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 group, lockedGroup: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 baseGroup, latchedGroup: INT16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 compatState: KEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 grabMods, compatGrabMods: KEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 lookupMods, compatLookupMods: KEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ptrBtnState: BUTMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changed: KB_STATEPARTMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keycode: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 eventType: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 requestMajor, requestMinor: CARD8</entry>
     </row>
@@ -7927,10 +7967,11 @@ and contain any combination of:
 </para>
 
 <informaltable frame='none'>
-<tgroup cols='3'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='3' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Bit in changed</entry>
@@ -7939,7 +7980,7 @@ and contain any combination of:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 ModifierState</emphasis>
 </entry>
@@ -7948,7 +7989,7 @@ mods</emphasis>
 </entry>
     <entry>The effective modifiers</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 ModifierBase</emphasis>
 </entry>
@@ -7957,7 +7998,7 @@ baseMods</emphasis>
 </entry>
     <entry>The base modifiers</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 ModifierLatch</emphasis>
 </entry>
@@ -7966,7 +8007,7 @@ latchedMods</emphasis>
 </entry>
     <entry>The latched modifiers</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 ModifierLock</emphasis>
 </entry>
@@ -7975,7 +8016,7 @@ lockedMods</emphasis>
 </entry>
     <entry>The locked modifiers</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 GroupState</emphasis>
 </entry>
@@ -7984,7 +8025,7 @@ group</emphasis>
 </entry>
     <entry>The effective keyboard group</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 GroupBase</emphasis>
 </entry>
@@ -7993,7 +8034,7 @@ baseGroup</emphasis>
 </entry>
     <entry>The base keyboard group</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 GroupLatch</emphasis>
 </entry>
@@ -8002,7 +8043,7 @@ latchedGroup</emphasis>
 </entry>
     <entry>The latched keyboard group</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 GroupLock</emphasis>
 </entry>
@@ -8011,7 +8052,7 @@ lockedGroup</emphasis>
 </entry>
     <entry>The locked keyboard group</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 PointerButtons</emphasis>
 </entry>
@@ -8020,7 +8061,7 @@ ptrBtnState</emphasis>
 </entry>
     <entry>The state of the core pointer buttons</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 GrabMods</emphasis>
 </entry>
@@ -8029,7 +8070,7 @@ grabMods</emphasis>
 </entry>
     <entry>The XKB state used to compute grabs</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 LookupMods</emphasis>
 </entry>
@@ -8038,7 +8079,7 @@ lookupMods</emphasis>
 </entry>
     <entry>The XKB state used to look up symbols</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 CompatState</emphasis>
 </entry>
@@ -8047,7 +8088,7 @@ compatState</emphasis>
 </entry>
     <entry>Default state for non-XKB clients</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 CompatGrabMods</emphasis>
 </entry>
@@ -8056,7 +8097,7 @@ compatGrabMods</emphasis>
 </entry>
     <entry>The core state used to compute grabs</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 CompatLookupMods</emphasis>
 </entry>
@@ -8119,46 +8160,47 @@ change in state and have the value <emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbControlsNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 numGroups: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changedControls: KB_CONTROLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 enabledControls,enabledControlChanges: KB_BOOLCTRLMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keycode: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 eventType: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 requestMajor: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 requestMinor: CARD8</entry>
     </row>
@@ -8270,22 +8312,23 @@ change in state and have the value <emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbIndicatorStateNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 stateChanged, state: KB_INDICATORMASK</entry>
     </row>
@@ -8360,26 +8403,27 @@ client.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbIndicatorMapNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 state: KB_INDICATORMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 mapChanged: KB_INDICATORMASK</entry>
     </row>
@@ -8429,50 +8473,51 @@ state</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbNamesNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changed: KB_NAMEDETAILMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstType, nTypes: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstLevelName, nLevelNames: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstKey: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nKeys, nKeyAliases, nRadioGroups: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changedGroupNames: KB_GROUPMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changedVirtualMods: KB_VMODMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changedIndicators: KB_INDICATORMASK</entry>
     </row>
@@ -8648,30 +8693,31 @@ changed</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbCompatMapNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 changedGroups: KB_GROUPMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstSI, nSI: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 nTotalSI: CARD16</entry>
     </row>
@@ -8755,50 +8801,51 @@ XkbGroupCompatMask</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbBellNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 bellClass: { KbdFeedbackClass, BellFeedbackClass }</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 bellID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 percent: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 pitch: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 duration: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 eventOnly: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 name: ATOM</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 window: WINDOW</entry>
     </row>
@@ -8901,42 +8948,43 @@ XkbBell</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbActionMessage</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keycode: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 press: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 mods: KEYMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 group: KB_GROUP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keyEventFollows: BOOL</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 message: LISTofCARD8</entry>
     </row>
@@ -9017,34 +9065,35 @@ message</emphasis>
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbAccessXNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD8</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 detail: KB_AXNDETAILMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 keycode: KEYCODE</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 slowKeysDelay: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 debounceDelay: CARD16</entry>
     </row>
@@ -9078,9 +9127,12 @@ detail</emphasis>
  field describes the event that occurred and has one of the following values:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='3'>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='3' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Detail</entry>
@@ -9089,7 +9141,7 @@ detail</emphasis>
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 AXN_SKPress</emphasis>
 </entry>
@@ -9098,7 +9150,7 @@ SlowKeys</emphasis>
 </entry>
     <entry>Key pressed</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 AXN_SKAccept</emphasis>
 </entry>
@@ -9109,7 +9161,7 @@ SlowKeys</emphasis>
 K</emphasis>
 ey held until it was accepted.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 AXN_SKReject</emphasis>
 </entry>
@@ -9118,7 +9170,7 @@ SlowKeys</emphasis>
 </entry>
     <entry>Key released before it was accepted.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 AXN_SKRelease</emphasis>
 </entry>
@@ -9127,7 +9179,7 @@ SlowKeys</emphasis>
 </entry>
     <entry>Key released after it was accepted.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 AXN_BKAccept</emphasis>
 </entry>
@@ -9136,7 +9188,7 @@ BounceKeys</emphasis>
 </entry>
     <entry>Key pressed while it was active.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 AXN_BKReject</emphasis>
 </entry>
@@ -9145,7 +9197,7 @@ BounceKeys</emphasis>
 </entry>
     <entry>Key pressed while it was still disabled.</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 AXN_AXKWarning</emphasis>
 </entry>
@@ -9190,50 +9242,51 @@ Control</link>) for the specified keyboard.
 
 
 <informaltable frame='none' tabstyle='proto'>
-<tgroup cols='1'>
-<colspec colsep='0'/>
+<?dbfo keep-together="always" ?>
+<tgroup cols='1' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
   <thead>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>XkbExtensionDeviceNotify</entry>
     </row>
   </thead>
   <tbody>
-    <row rowsep='0'>
+    <row>
       <entry role='protoargs'>time: TIMESTAMP</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 deviceID: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledClass: { KbdFeedbackClass, LedFeedbackClass }</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledID: CARD16</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 reason: KB_XIDETAILMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 supported: KB_XIFEATUREMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 unsupported: KB_XIFEATUREMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledsDefined: KB_INDICATORMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 ledState: KB_INDICATORMASK</entry>
     </row>
-    <row rowsep='0'>
+    <row>
       <entry role='protoname'>
 firstButton, nButtons: CARD8</entry>
     </row>

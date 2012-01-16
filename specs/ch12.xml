@@ -74,14 +74,15 @@ active. Here are a few examples to illustrate the application of the group
 compatibility map:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='6'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='6' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='2.0*'/>
+<colspec colname='c3' colwidth='1.5*'/>
+<colspec colname='c4' colwidth='2.2*'/>
+<colspec colname='c5' colwidth='1.5*'/>
+<colspec colname='c6' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Group</entry>
@@ -93,7 +94,7 @@ compatibility map:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>1</entry>
     <entry>Group1=None</entry>
     <entry>Shift</entry>
@@ -101,7 +102,7 @@ compatibility map:
     <entry>Shift</entry>
     <entry>xxxxxxxx00000001</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>2</entry>
     <entry>Group2=Mod3</entry>
     <entry>None</entry>
@@ -109,7 +110,7 @@ compatibility map:
     <entry>Mod3</entry>
     <entry>xxxxxxxx00100000</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>3</entry>
     <entry>Group3=Mod2</entry>
     <entry>Shift</entry>
@@ -117,7 +118,7 @@ compatibility map:
     <entry>Shift+Mod2</entry>
     <entry>xxxxxxxx00010001</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>4</entry>
     <entry>Group4=None</entry>
     <entry>Control</entry>
@@ -228,10 +229,11 @@ key are not changed by the automatic keyboard mapping. The explicit components
 field for a key can contain any combination of the following values:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='3.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Bit in Explicit Mask</entry>
@@ -239,47 +241,47 @@ field for a key can contain any combination of the following values:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>ExplicitKeyType1</entry>
     <entry>Automatic determination of the key type associated with <emphasis>
 Group1</emphasis>
  (see <link linkend='Assigning_Types_To_Groups_of_Symbols_for_a_Key'>Assigning Types To Groups of
 Symbols for a Key</link>)</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>ExplicitKeyType2</entry>
     <entry>Automatic determination of the key type associated with <emphasis>
 Group2 </emphasis>
 (see <link linkend='Assigning_Types_To_Groups_of_Symbols_for_a_Key'>Assigning Types To Groups of
 Symbols for a Key</link>)</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>ExplicitKeyType3</entry>
     <entry>Automatic determination of the key type associated with <emphasis>
 Group3 </emphasis>
 (see <link linkend='Assigning_Types_To_Groups_of_Symbols_for_a_Key'>Assigning Types To Groups of
 Symbols for a Key</link>).</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>ExplicitKeyType4</entry>
     <entry>Automatic determination of the key type associated with <emphasis>
 Group4 </emphasis>
 (see <link linkend='Assigning_Types_To_Groups_of_Symbols_for_a_Key'>Assigning Types To Groups of
 Symbols for a Key</link>).</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>ExplicitInterpret</entry>
     <entry>Application of any of the fields of a symbol interpretation to the
 key in question (see <link linkend='Assigning_Actions_To_Keys'>Assigning
 Actions To Keys</link>).</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>ExplicitAutoRepeat</entry>
     <entry>Automatic determination of autorepeat status for the key, as
 specified in a symbol interpretation (see <link linkend='Assigning_Actions_To_Keys'>Assigning Actions To
 Keys</link>).</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>ExplicitBehavior</entry>
     <entry>Automatic assignment of the <emphasis>
 KB_Lock</emphasis>
@@ -288,7 +290,7 @@ LockingKey</emphasis>
  flag is set in a symbol interpretation (see <link linkend='Assigning_Actions_To_Keys'>Assigning Actions To
 Keys</link>).</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>ExplicitVModMap</entry>
     <entry>Automatic determination of the virtual modifier map for the key
 based on the actions assigned to the key and the symbol interpretations which
@@ -435,10 +437,11 @@ first four key types in any keyboard map are reserved for these standard key
 types:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='2'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='2' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='3.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Key Type Name</entry>
@@ -446,7 +449,7 @@ types:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 ONE_LEVEL</emphasis>
 </entry>
@@ -463,7 +466,7 @@ ONE_LEVEL</emphasis>
 ONE_LEVEL</emphasis>
 .</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 TWO_LEVEL</emphasis>
 </entry>
@@ -480,7 +483,7 @@ TWO_LEVEL</emphasis>
 TWO_LEVEL</emphasis>
 .</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 ALPHABETIC</emphasis>
 </entry>
@@ -493,7 +496,7 @@ ALPHABETIC</emphasis>
 ALPHABETIC</emphasis>
 .</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry><emphasis>
 KEYPAD</emphasis>
 </entry>

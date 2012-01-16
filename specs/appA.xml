@@ -22,16 +22,17 @@ correspond to some keysyms for ASCII characters. Control characters for symbols
 not listed in this table are application-specific.
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='8'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='8' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='2.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='2.0*'/>
+<colspec colname='c4' colwidth='1.0*'/>
+<colspec colname='c5' colwidth='2.0*'/>
+<colspec colname='c6' colwidth='1.0*'/>
+<colspec colname='c7' colwidth='2.0*'/>
+<colspec colname='c8' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Keysyms</entry>
@@ -45,7 +46,7 @@ not listed in this table are application-specific.
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>atsign</entry>
     <entry>0</entry>
     <entry>h, H</entry>
@@ -55,7 +56,7 @@ not listed in this table are application-specific.
     <entry>x, X</entry>
     <entry>24</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>a, A</entry>
     <entry>1</entry>
     <entry>i, I</entry>
@@ -65,7 +66,7 @@ not listed in this table are application-specific.
     <entry>y, Y</entry>
     <entry>25</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>b, B</entry>
     <entry>2</entry>
     <entry>j, J</entry>
@@ -75,7 +76,7 @@ not listed in this table are application-specific.
     <entry>z, Z</entry>
     <entry>26</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>c, C</entry>
     <entry>3</entry>
     <entry>k, K</entry>
@@ -85,7 +86,7 @@ not listed in this table are application-specific.
     <entry>left_bracket</entry>
     <entry>27</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>d, D</entry>
     <entry>4</entry>
     <entry>l, L</entry>
@@ -95,7 +96,7 @@ not listed in this table are application-specific.
     <entry>backslash</entry>
     <entry>28</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>e, E</entry>
     <entry>5</entry>
     <entry>m, M</entry>
@@ -105,7 +106,7 @@ not listed in this table are application-specific.
     <entry>right_bracket</entry>
     <entry>29</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>f, F</entry>
     <entry>6</entry>
     <entry>n, N</entry>
@@ -115,7 +116,7 @@ not listed in this table are application-specific.
     <entry>asciicircum</entry>
     <entry>30</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>g, G</entry>
     <entry>8</entry>
     <entry>o, O</entry>
@@ -187,16 +188,17 @@ This table lists the Latin-11 keysyms for which XKB defines upper and lower
 case:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='8'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="auto" ?>
+<tgroup cols='8' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
+<colspec colname='c4' colwidth='1.0*'/>
+<colspec colname='c5' colwidth='2.0*'/>
+<colspec colname='c6' colwidth='2.0*'/>
+<colspec colname='c7' colwidth='2.0*'/>
+<colspec colname='c8' colwidth='2.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Lower Case</entry>
@@ -210,7 +212,7 @@ case:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>a</entry>
     <entry>A</entry>
     <entry>o</entry>
@@ -220,7 +222,7 @@ case:
     <entry>eth</entry>
     <entry>ETH</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>b</entry>
     <entry>B</entry>
     <entry>p</entry>
@@ -230,7 +232,7 @@ case:
     <entry>ntilde</entry>
     <entry>Ntilde</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>c</entry>
     <entry>C</entry>
     <entry>q</entry>
@@ -240,7 +242,7 @@ case:
     <entry>ograve</entry>
     <entry>Ograve</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>d</entry>
     <entry>D</entry>
     <entry>r</entry>
@@ -250,7 +252,7 @@ case:
     <entry>oacute</entry>
     <entry>Oacute</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>e</entry>
     <entry>E</entry>
     <entry>s</entry>
@@ -260,7 +262,7 @@ case:
     <entry>ocircumflex</entry>
     <entry>Ocircumflex</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>f</entry>
     <entry>F</entry>
     <entry>t</entry>
@@ -270,7 +272,7 @@ case:
     <entry>otilde</entry>
     <entry>Otilde</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>g</entry>
     <entry>G</entry>
     <entry>u</entry>
@@ -280,7 +282,7 @@ case:
     <entry>odiaeresis</entry>
     <entry>Odiaeresis</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>h</entry>
     <entry>H</entry>
     <entry>v</entry>
@@ -290,7 +292,7 @@ case:
     <entry>oslash</entry>
     <entry>Ooblique</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>i</entry>
     <entry>I</entry>
     <entry>w</entry>
@@ -300,7 +302,7 @@ case:
     <entry>ugrave</entry>
     <entry>Ugrave</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>j</entry>
     <entry>J</entry>
     <entry>x</entry>
@@ -310,7 +312,7 @@ case:
     <entry>uacute</entry>
     <entry>Uacute</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>k</entry>
     <entry>K</entry>
     <entry>y</entry>
@@ -320,7 +322,7 @@ case:
     <entry>ucircumflex</entry>
     <entry>Ucircumflex</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>l</entry>
     <entry>L</entry>
     <entry>z</entry>
@@ -330,7 +332,7 @@ case:
     <entry>udiaeresis</entry>
     <entry>Udiaeresis</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>m</entry>
     <entry>M</entry>
     <entry>agrave</entry>
@@ -340,7 +342,7 @@ case:
     <entry>yacute</entry>
     <entry>Yacute</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>n</entry>
     <entry>N</entry>
     <entry>aacute</entry>
@@ -362,14 +364,15 @@ case:
 This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='6'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='6' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
+<colspec colname='c4' colwidth='1.0*'/>
+<colspec colname='c5' colwidth='1.0*'/>
+<colspec colname='c6' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Lower Case</entry>
@@ -381,7 +384,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>aogonek</entry>
     <entry>Aogonek</entry>
     <entry>zabovedot</entry>
@@ -389,7 +392,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
     <entry>dstroke</entry>
     <entry>Dstroke</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>lstroke</entry>
     <entry>Lstroke</entry>
     <entry>racute</entry>
@@ -397,7 +400,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
     <entry>nacute</entry>
     <entry>Nacute</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>lcaron</entry>
     <entry>Lcaron</entry>
     <entry>abreve</entry>
@@ -405,7 +408,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
     <entry>ncaron</entry>
     <entry>Ncaron</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>sacute</entry>
     <entry>Sacute</entry>
     <entry>lacute</entry>
@@ -413,7 +416,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
     <entry>odoubleacute</entry>
     <entry>Odoubleacute</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>scaron</entry>
     <entry>Scaron</entry>
     <entry>cacute</entry>
@@ -421,7 +424,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
     <entry>rcaron</entry>
     <entry>Rcaron</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>scedilla</entry>
     <entry>Scedilla</entry>
     <entry>ccaron</entry>
@@ -429,7 +432,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
     <entry>uabovering</entry>
     <entry>Uabovering</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>tcaron</entry>
     <entry>Tcaron</entry>
     <entry>eogonek</entry>
@@ -437,7 +440,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
     <entry>udoubleacute</entry>
     <entry>Udoubleacute</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>zacute</entry>
     <entry>Zacute</entry>
     <entry>ecaron</entry>
@@ -445,7 +448,7 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
     <entry>tcedilla</entry>
     <entry>Tcedilla</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>zcaron</entry>
     <entry>Zcaron</entry>
     <entry>dcaron</entry>
@@ -465,14 +468,15 @@ This table lists the Latin-2 keysyms for which XKB defines upper and lower case:
 This table lists the Latin-3 keysyms for which XKB defines upper and lower case:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='6'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='6' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
+<colspec colname='c4' colwidth='1.0*'/>
+<colspec colname='c5' colwidth='1.0*'/>
+<colspec colname='c6' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Lower Case</entry>
@@ -484,7 +488,7 @@ This table lists the Latin-3 keysyms for which XKB defines upper and lower case:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>hstroke</entry>
     <entry>Hstroke</entry>
     <entry>jcircumflex</entry>
@@ -492,7 +496,7 @@ This table lists the Latin-3 keysyms for which XKB defines upper and lower case:
     <entry>gcircumflex</entry>
     <entry>Gcircumflex</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>hcircumflex</entry>
     <entry>Hcircumflex</entry>
     <entry>cabovedot</entry>
@@ -500,7 +504,7 @@ This table lists the Latin-3 keysyms for which XKB defines upper and lower case:
     <entry>ubreve</entry>
     <entry>Ubreve</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>idotless</entry>
     <entry>Iabovedot</entry>
     <entry>ccircumflex</entry>
@@ -508,7 +512,7 @@ This table lists the Latin-3 keysyms for which XKB defines upper and lower case:
     <entry>scircumflex</entry>
     <entry>Scircumflex</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>gbreve</entry>
     <entry>Gbreve</entry>
     <entry>gabovedot</entry>
@@ -528,14 +532,15 @@ This table lists the Latin-3 keysyms for which XKB defines upper and lower case:
 This table lists the Latin-4 keysyms for which XKB defines upper and lower case:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='6'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='6' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
+<colspec colname='c4' colwidth='1.0*'/>
+<colspec colname='c5' colwidth='1.0*'/>
+<colspec colname='c6' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Lower Case</entry>
@@ -547,7 +552,7 @@ This table lists the Latin-4 keysyms for which XKB defines upper and lower case:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>rcedilla</entry>
     <entry>Rcedilla</entry>
     <entry>eng</entry>
@@ -555,7 +560,7 @@ This table lists the Latin-4 keysyms for which XKB defines upper and lower case:
     <entry>omacron</entry>
     <entry>Omacron</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>itilde</entry>
     <entry>Itilde</entry>
     <entry>amacron</entry>
@@ -563,7 +568,7 @@ This table lists the Latin-4 keysyms for which XKB defines upper and lower case:
     <entry>kcedilla</entry>
     <entry>Kcedilla</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>lcedilla</entry>
     <entry>Lcedilla</entry>
     <entry>iogonek</entry>
@@ -571,7 +576,7 @@ This table lists the Latin-4 keysyms for which XKB defines upper and lower case:
     <entry>uogonek</entry>
     <entry>Uogonek</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>emacron</entry>
     <entry>Emacron</entry>
     <entry>eabovedot</entry>
@@ -579,7 +584,7 @@ This table lists the Latin-4 keysyms for which XKB defines upper and lower case:
     <entry>utilde</entry>
     <entry>Utilde</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>gcedilla</entry>
     <entry>Gcedilla</entry>
     <entry>imacron</entry>
@@ -587,7 +592,7 @@ This table lists the Latin-4 keysyms for which XKB defines upper and lower case:
     <entry>umacron</entry>
     <entry>Umacron</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>tslash</entry>
     <entry>Tslash</entry>
     <entry>ncedilla</entry>
@@ -608,12 +613,13 @@ This table lists the Cyrillic keysyms for which XKB defines upper and lower
 case:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='4'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='4' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.0*'/>
+<colspec colname='c2' colwidth='1.0*'/>
+<colspec colname='c3' colwidth='1.0*'/>
+<colspec colname='c4' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Lower Case</entry>
@@ -623,139 +629,139 @@ case:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>Serbian_dje</entry>
     <entry>Serbian_DJE</entry>
     <entry>Cyrillic_i</entry>
     <entry>Cyrillic_I</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Macedonia_gje</entry>
     <entry>Macedonia_GJE</entry>
     <entry>Cyrillic_shorti</entry>
     <entry>Cyrillic_SHORTI</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_io</entry>
     <entry>Cyrillic_IO</entry>
     <entry>Cyrillic_ka</entry>
     <entry>Cyrillic_KA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Ukrainian_ie</entry>
     <entry>Ukrainian_IE</entry>
     <entry>Cyrillic_el</entry>
     <entry>Cyrillic_EL</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Macedonia_dse</entry>
     <entry>Macedonia_DSE</entry>
     <entry>Cyrillic_em</entry>
     <entry>Cyrillic_EM</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Ukrainian_i</entry>
     <entry>Ukrainian_I</entry>
     <entry>Cyrillic_en</entry>
     <entry>Cyrillic_EN</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Ukrainian_yi</entry>
     <entry>Ukrainian_YI</entry>
     <entry>Cyrillic_o</entry>
     <entry>Cyrillic_O</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_je</entry>
     <entry>Cyrillic_JE</entry>
     <entry>Cyrillic_pe</entry>
     <entry>Cyrillic_PE</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_lje</entry>
     <entry>Cyrillic_LJE</entry>
     <entry>Cyrillic_ya</entry>
     <entry>Cyrillic_YA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_nje</entry>
     <entry>Cyrillic_NJE</entry>
     <entry>Cyrillic_er</entry>
     <entry>Cyrillic_ER</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Serbian_tshe</entry>
     <entry>Serbian_TSHE</entry>
     <entry>Cyrillic_es</entry>
     <entry>Cyrillic_ES</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Macedonia_kje</entry>
     <entry>Macedonia_KJE</entry>
     <entry>Cyrillic_te</entry>
     <entry>Cyrillic_TE</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Byelorussian_shortu</entry>
     <entry>Byelorussian_SHORTU</entry>
     <entry>Cyrillic_u</entry>
     <entry>Cyrillic_U</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_dzhe</entry>
     <entry>Cyrillic_DZHE</entry>
     <entry>Cyrillic_zhe</entry>
     <entry>Cyrillic_ZHE</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_yu</entry>
     <entry>Cyrillic_YU</entry>
     <entry>Cyrillic_ve</entry>
     <entry>Cyrillic_VE</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_a</entry>
     <entry>Cyrillic_A</entry>
     <entry>Cyrillic_softsign</entry>
     <entry>Cyrillic_SOFTSIGN</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_be</entry>
     <entry>Cyrillic_BE</entry>
     <entry>Cyrillic_yeru</entry>
     <entry>Cyrillic_YERU</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_tse</entry>
     <entry>Cyrillic_TSE</entry>
     <entry>Cyrillic_ze</entry>
     <entry>Cyrillic_ZE</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_de</entry>
     <entry>Cyrillic_DE</entry>
     <entry>Cyrillic_sha</entry>
     <entry>Cyrillic_SHA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_ie</entry>
     <entry>Cyrillic_IE</entry>
     <entry>Cyrillic_e</entry>
     <entry>Cyrillic_E</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_ef</entry>
     <entry>Cyrillic_EF</entry>
     <entry>Cyrillic_shcha</entry>
     <entry>Cyrillic_SHCHA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_ghe</entry>
     <entry>Cyrillic_GHE</entry>
     <entry>Cyrillic_che</entry>
     <entry>Cyrillic_CHE</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Cyrillic_ha</entry>
     <entry>Cyrillic_HA</entry>
     <entry>Cyrillic_hardsign</entry>
@@ -773,12 +779,13 @@ case:
 This table lists the Greek keysyms for which XKB defines upper and lower case:
 </para>
 
-<informaltable frame='none'>
-<tgroup cols='4'>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
-<colspec align="left" colsep="0"/>
+<informaltable frame='topbot'>
+<?dbfo keep-together="always" ?>
+<tgroup cols='4' align='left' colsep='0' rowsep='0'>
+<colspec colname='c1' colwidth='1.8*'/>
+<colspec colname='c2' colwidth='1.8*'/>
+<colspec colname='c3' colwidth='1.0*'/>
+<colspec colname='c4' colwidth='1.0*'/>
 <thead>
   <row rowsep='1'>
     <entry>Lower Case</entry>
@@ -788,103 +795,103 @@ This table lists the Greek keysyms for which XKB defines upper and lower case:
   </row>
 </thead>
 <tbody>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_omegaaccent</entry>
     <entry>Greek_OMEGAACCENT</entry>
     <entry>Greek_iota</entry>
     <entry>Greek_IOTA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_alphaaccent</entry>
     <entry>Greek_ALPHAACCENT</entry>
     <entry>Greek_kappa</entry>
     <entry>Greek_KAPPA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_epsilonaccent</entry>
     <entry>Greek_EPSILONACCENT</entry>
     <entry>Greek_lamda</entry>
     <entry>Greek_LAMDA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_etaaccent</entry>
     <entry>Greek_ETAACCENT</entry>
     <entry>Greek_lambda</entry>
     <entry>Greek_LAMBDA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_iotaaccent</entry>
     <entry>Greek_IOTAACCENT</entry>
     <entry>Greek_mu</entry>
     <entry>Greek_MU</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_iotadieresis</entry>
     <entry>Greek_IOTADIERESIS</entry>
     <entry>Greek_nu</entry>
     <entry>Greek_NU</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_omicronaccent</entry>
     <entry>Greek_OMICRONACCENT</entry>
     <entry>Greek_xi</entry>
     <entry>Greek_XI</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_upsilonaccent</entry>
     <entry>Greek_UPSILONACCENT</entry>
     <entry>Greek_omicron</entry>
     <entry>Greek_OMICRON</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_upsilondieresis</entry>
     <entry>Greek_UPSILONDIERESIS</entry>
     <entry>Greek_pi</entry>
     <entry>Greek_PI</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_alpha</entry>
     <entry>Greek_ALPHA</entry>
     <entry>Greek_rho</entry>
     <entry>Greek_RHO</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_beta</entry>
     <entry>Greek_BETA</entry>
     <entry>Greek_sigma</entry>
     <entry>Greek_SIGMA</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_gamma</entry>
     <entry>Greek_GAMMA</entry>
     <entry>Greek_tau</entry>
     <entry>Greek_TAU</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_delta</entry>
     <entry>Greek_DELTA</entry>
     <entry>Greek_upsilon</entry>
     <entry>Greek_UPSILON</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_epsilon</entry>
     <entry>Greek_EPSILON</entry>
     <entry>Greek_phi</entry>
     <entry>Greek_PHI</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_zeta</entry>
     <entry>Greek_ZETA</entry>
     <entry>Greek_chi</entry>
     <entry>Greek_CHI</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_eta</entry>
     <entry>Greek_ETA</entry>
     <entry>Greek_psi</entry>
     <entry>Greek_PSI</entry>
   </row>
-  <row rowsep='0'>
+  <row>
     <entry>Greek_theta</entry>
     <entry>Greek_THETA</entry>
     <entry>Greek_omega</entry>
