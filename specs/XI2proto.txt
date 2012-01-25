@@ -2345,65 +2345,65 @@ XI 2.2 Use-cases
 All use-cases that include the receiving and processing of touch events
 require the client to announce XI 2.2 support in the XIQueryVersion request.
 
-* Client C wants to process touch events from a device D on window W.
-** C calls XISelectEvent for XI_Touch{Begin|Update|End} from D on W.
-** C receives TouchBegin whenever a touch sequence starts within W's borders.
-** C receives TouchUpdate events whenever an axis valuator value changes for a
+Client C wants to process touch events from a device D on window W.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* C calls XISelectEvent for XI_Touch{Begin|Update|End} from D on W.
+* C receives TouchBegin whenever a touch sequence starts within W's borders.
+* C receives TouchUpdate events whenever an axis valuator value changes for a
    touch sequence it received a TouchBegin event for.
-** C receives TouchEnd whenever a touch it received a TouchBegin event for
+* C receives TouchEnd whenever a touch it received a TouchBegin event for
    ceases.
 
-* Client C wants to pre-process touch events from a device D on window W, while
-  client I wants to pre-process touch events from device D on the parent window
-  of W.
-** C calls XISelectEvent for XI_Touch{Begin|Update|Ownership|End} from D on W.
-** I calls XIPassiveGrab for XI_Touch{Begin|Update|Ownership|End} from D on a
+While client I wants to pre-process touch events from device D on the parent window  of W.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* C calls XISelectEvent for XI_Touch{Begin|Update|Ownership|End} from D on W.
+* I calls XIPassiveGrab for XI_Touch{Begin|Update|Ownership|End} from D on a
    parent window of W.
-** I receives TouchBegin whenever a touch begins within window W, as well as a
+* I receives TouchBegin whenever a touch begins within window W, as well as a
    TouchOwnership event indicating that it currently owns the touch sequence.
    C receives a TouchBegin event as well, but without TouchOwnership.
-** When an axis valuator changes in this touch sequence, both I and C receive a
+* When an axis valuator changes in this touch sequence, both I and C receive a
    TouchUpdate event.  I may process the event to determine if it is going to
    accept or reject the touch, whereas C may perform reversible processing.
-** If I decides it is going to claim the touch sequence for its exclusive
+* If I decides it is going to claim the touch sequence for its exclusive
    processing, it calls XIAllowEvents with an event mode of XIAcceptTouch; at
    this point, C receives a TouchEnd event, and undoes any processing it has
    already performed due to the touch sequence.  Further TouchUpdate events are
    delivered only to I.
-** Alternatively, if I decides it does not want to receive further events
+* Alternatively, if I decides it does not want to receive further events
    from this touch sequence, it calls XIAllowEvents with an event mode of
    XIRejectTouch; at this point, I receives a TouchEnd event confirming that it
    has rejected the touch.  C receives a TouchOwnership event confirming that it
    is now the new owner of the touch, and further TouchUpdate events are
    delivered only to C.  As C now owns the touch, it is free to perform
    irreversible processing of the sequence.
-** When the touch physically ceases, a TouchEnd event is sent to C.
+* When the touch physically ceases, a TouchEnd event is sent to C.
 
-* Client C wants to pre-process touch events from a direct touch device D on
-  window W, while client I wants to process pointer events on window W's parent,
-  window Y.
-** I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease} to
+While client I wants to process pointer events on window W's parent, window Y.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease} to
    create a synchronous pointer grab from D on Y.
-** C calls XISelectEvent for XI_Touch{Begin|Update|Ownership|End} from D on W.
-** I receives a ButtonPress event whenever a touch begins within W, and is
+* C calls XISelectEvent for XI_Touch{Begin|Update|Ownership|End} from D on W.
+* I receives a ButtonPress event whenever a touch begins within W, and is
    considered the owner of the event.  C receives a TouchBegin event, but does
    not receive a TouchOwnership event.
-** When the touchpoint moves, C will receive a TouchUpdate event.  Event
+* When the touchpoint moves, C will receive a TouchUpdate event.  Event
    delivery to I is subject to the synchronous delivery mechanism. The
    emulated motion notify event is queued in the server while the device is
    frozen.
-** I may assert ownership by calling XIAllowEvents on Y with any mode other
+* I may assert ownership by calling XIAllowEvents on Y with any mode other
    than ReplayDevice, which will cause all further events to be sent only to I,
    with a TouchEnd event being sent to C.
-** Alternatively, I may reject the touch sequence by calling XIAllowEvents on
+* Alternatively, I may reject the touch sequence by calling XIAllowEvents on
    Y with mode ReplayDevice, which will cause no further events from that touch
    to be sent to I, and a TouchOwnership event to be sent to C, with subsequent
    motion events being sent as TouchUpdate events.
 
-*  Driver DRV provides touch support from tracked device D:
-** DRV initializes a TouchClass for the device.
-** DRV parses D's device protocol and selects one touch sequence to be emulated
+Driver DRV provides touch support from tracked device D:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* DRV initializes a TouchClass for the device.
+* DRV parses D's device protocol and selects one touch sequence to be emulated
    as pointer event.
-** DRV calls the respective input driver API with the touch sequence data. The
+* DRV calls the respective input driver API with the touch sequence data. The
    touch sequence emulating a pointer has the respective flag set. DRV does not
    submit pointer data for any touchpoint.
