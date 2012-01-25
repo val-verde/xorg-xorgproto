@@ -46,15 +46,15 @@ used on applications employing the core protocol. XI2 addresses both of these
 issues by enabling devices to be both extended and core devices and providing
 device information in each event (with the exception of core events).
 
-2.1 Changes
------------
+Changes in version 2.1
+----------------------
 Changes introduced by version 2.1
 
 - RawEvents are sent regardless of the grab state.
 - Addition of the ScrollClass for smooth scrolling
 
-2.2 Changes
------------
+Changes in version 2.2
+----------------------
 Changes introduced by version 2.2
 
 XI 2.2 introduces support for multi-touch devices. The traditional
