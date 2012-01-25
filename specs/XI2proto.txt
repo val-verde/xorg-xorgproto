@@ -31,7 +31,8 @@ XI2 provides a number of enhancements over version 1.5, including:
 
 - use of XGE and GenericEvents. GenericEvents are of flexible length with a
   minimum length of 32 bytes.
-- explicit device hierarchy of master and slave devices. See Section 4.
+- explicit device hierarchy of master and slave devices. See Section
+<<hierachy,The Master/Slave device hierarchy>>.
 - use of multiple independent master devices (Multi-Poiner X or MPX).
 - the ability for devices to change capabilities at runtime.
 - raw device events
@@ -564,7 +565,8 @@ Data types
     DEVICEUSE { MasterPointer, MasterKeyboard, SlavePointer,
                 SlaveKeyboard, FloatingSlave }
             A DEVICEUSE field specifies the current use of a device in the MD/SD
-            device hierarchy. See Section 4 for more information.
+            device hierarchy. See Section "The Master/Slave device hierarchy"
+            for more information.
 
     EVENTMASK
             An EVENTMASK is a binary mask defined as (1 << event type).
@@ -1172,8 +1174,8 @@ Set the ClientPointer for the client owning win to the given device.
 Some protocol requests are ambiguous and the server has to choose a device
 to provide data for a request or a reply. By default, the server will
 choose a client's ClientPointer device to provide the data, unless the
-client currently has a grab on another device. See section 4.4 for more
-details.
+client currently has a grab on another device. See section
+<<clientpointer,The ClientPointer principle>> for more details.
 
 If win is None, the ClientPointer for this client is set to the given
 device. Otherwise, if win is a valid window, the ClientPointer for the
@@ -1669,10 +1671,10 @@ before the grab deactivates.
 For GrabtypeTouchBegin, grab_mode must be Touch or a BadValue error
 is generated.
 
-See section 4.4 for additional notes on touch grabs, as they do not
-behave like traditional grabs: in particular, they do not freeze the
-device, and delivery of touch events continues even if the device is
-frozen due to a grab by another client.
+See section <<clientpointer,The ClientPointer principle>> for additional notes
+on touch grabs, as they do not behave like traditional grabs: in
+particular, they do not freeze the device, and delivery of touch events
+continues even if the device is frozen due to a grab by another client.
 
 [[requests-passiveungrabdevice]]
     ┌───
