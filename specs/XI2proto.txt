@@ -2336,7 +2336,7 @@ is now the owner of the touch sequence specified by touchid.
         A bitmask of flags for this event.
 
 
-// FIXME: why do we get '11. Appendix A:' rather than just 'Appendix A:'?!
+:numbered!:
 [[xi22-usecases]]
 [appendix]
 XI 2.2 Use-cases
