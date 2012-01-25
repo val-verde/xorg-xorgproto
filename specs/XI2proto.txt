@@ -93,8 +93,8 @@ alongside XI 2.2 touch events to support older clients; see Section
 
 //                            ❧❧❧❧❧❧❧❧❧❧❧
 
-2. Notations used in this document
-----------------------------------
+Notations used in this document
+-------------------------------
 
 Notation for requests:
 
@@ -127,8 +127,8 @@ or, if multiple of these fields exist:
 
 //                            ❧❧❧❧❧❧❧❧❧❧❧
 
-3. Interoperability between version 1.x and 2.0
------------------------------------------------
+Interoperability between version 1.x and 2.0
+--------------------------------------------
 
 There is little interaction between 1.x and 2.x versions of the X Input
 Extension. Clients are requested to avoid mixing XI1.x and XI2 code as much as
@@ -169,8 +169,8 @@ result, only the first master pointer and master keyboard are visible to XI
 1.x clients; all other master devices are invisible and cannot be accessed
 from XI 1.x calls.
 
-3.4 Smooth scrolling
-~~~~~~~~~~~~~~~~~~~~
+Smooth scrolling
+~~~~~~~~~~~~~~~~
 
 Historically, X implemented scrolling events by using button press events:
 button 4 was one “click” of the scroll wheel upwards, button 5 was downwards,
