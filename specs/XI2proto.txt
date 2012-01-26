@@ -74,18 +74,6 @@ The additions in XI 2.2 aim to:
 - be backwards-compatible to pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
   pointer events.
 
-XI 2.2 caters for two modes of touch input devices:
-
-- 'Direct' multi-touch input devices such as touchscreens. These devices
-  provide independent touchpoints that can occur anywhere on the screen;
-  "direct" here refers to the user manipulating objects at their screen
-  location, e.g. touching an object and physically moving it.
-- 'Dependent' touch input devices such as multi-touch trackpads and mice with
-  additional touch surfaces. These devices provide independent touchpoints that
-  often need to be interpreted relative to the current position of the cursor
-  on that same device. Such interactions are usually the result of a gesture
-  performed on the device, rather than direct manipulation.
-
 Touch events are only available to clients supporting version 2.2 or later of
 the X Input Extension. Clients must use the XIQueryVersion request to announce
 support for this version. Touch devices may generate emulated pointer events
@@ -420,13 +408,18 @@ following device modes are defined for this protocol:
 
 'DirectTouch':
     These devices map their input region to a subset of the screen region. Touch
-    events are delivered to window at the location of the touch. An example
+    events are delivered to window at the location of the touch. "direct"
+    here refers to the user manipulating objects at their screen location,
+    e.g. touching an object and physically moving it. An example
     of a DirectTouch device is a touchscreen.
 
 'DependentTouch':
     These devices do not have a direct correlation between a touch location and
     a position on the screen. Touch events are delivered according to the
-    location of the device's cursor. An Example of a DependentTouch device is a
+    location of the device's cursor and often need to be interpreted
+    relative to the current position of that cursor. Such interactions are
+    usually the result of a gesture performed on the device, rather than
+    direct manipulation. An example of a DependentTouch device is a
     trackpad.
 
 A device is identified as only one of the device modes above at any time, and
