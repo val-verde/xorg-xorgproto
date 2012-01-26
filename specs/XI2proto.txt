@@ -49,14 +49,12 @@ device information in each event (with the exception of core events).
 
 Changes in version 2.1
 ----------------------
-Changes introduced by version 2.1
 
 - RawEvents are sent regardless of the grab state.
 - Addition of the ScrollClass for smooth scrolling
 
 Changes in version 2.2
 ----------------------
-Changes introduced by version 2.2
 
 XI 2.2 introduces support for multi-touch devices. The traditional
 pointer/keyboard approach enforced by XI 2.0 with the master/slave device
