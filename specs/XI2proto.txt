@@ -56,27 +56,8 @@ Changes in version 2.1
 Changes in version 2.2
 ----------------------
 
-XI 2.2 introduces support for multi-touch devices. The traditional
-pointer/keyboard approach enforced by XI 2.0 with the master/slave device
-hierarchy is not always suitable for multi-touch devices that can provide a
-dynamic number of touchpoints per physical device; it is not known without
-client-specific interpretation whether the touchpoints must be considered
-separately or grouped together.
+- Multitouch support added
 
-The additions in XI 2.2 aim to:
-
-- support a dynamic number of simultaneous touch points,
-- support devices that are both multi-touch and traditional pointer devices,
-- allow touchpoints to be either grouped together or handled separately,
-- while supporting pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
-- be backwards-compatible to pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
-  pointer events.
-
-Touch events are only available to clients supporting version 2.2 or later of
-the X Input Extension. Clients must use the XIQueryVersion request to announce
-support for this version. Touch devices may generate emulated pointer events
-alongside XI 2.2 touch events to support older clients; see Section
-<<multitouch-processing,Touch event delivery>>.
 
 //                            ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -282,6 +263,28 @@ ClientPointer to a different master pointer.
 [[multitouch]]
 Touch device support
 --------------------
+
+XI 2.2 introduces support for multi-touch devices. The traditional
+pointer/keyboard approach enforced by XI 2.0 with the master/slave device
+hierarchy is not always suitable for multi-touch devices that can provide a
+dynamic number of touchpoints per physical device; it is not known without
+client-specific interpretation whether the touchpoints must be considered
+separately or grouped together.
+
+The additions in XI 2.2 aim to:
+
+- support a dynamic number of simultaneous touch points,
+- support devices that are both multi-touch and traditional pointer devices,
+- allow touchpoints to be either grouped together or handled separately,
+- while supporting pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
+- be backwards-compatible to pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
+  pointer events.
+
+Touch events are only available to clients supporting version 2.2 or later of
+the X Input Extension. Clients must use the XIQueryVersion request to announce
+support for this version. Touch devices may generate emulated pointer events
+alongside XI 2.2 touch events to support older clients; see Section
+<<multitouch-processing,Touch event delivery>>.
 
 Touch event processing differs from normal event processing in a few ways.
 The most notable differences are that touch events are processed partially
