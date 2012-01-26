@@ -445,6 +445,56 @@ A window set is calculated on TouchBegin and remains constant until the end
 of the sequence. Modifications to the window hierarchy, new grabs or changed
 event selection do not affect the window set.
 
+Pointer control of dependent devices
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+On a dependent device, the device may differ between a pointer-controlling
+touch and a non-pointer-controlling touch. For example, on a touchpad the
+first touch is pointer-controlling (i.e. serves only to move the visible
+pointer). Multi-finger gestures on a touchpad cause all touches to be
+non-pointer-controlling.
+
+For pointer-controlling touches, no touch events are sent; the touch
+generates regular pointer events instead. Non-pointer-controlling touches
+send touch events. A touch may change from pointer-controlling to
+non-pointer-controlling, or vice versa.
+
+- If a touch changes from pointer-controlling to non-pointer-controlling,
+ a new touch ID is assigned and a TouchBegin is sent for the last known
+ position of the touch. Further events are sent as TouchUpdate events, or as
+ TouchEnd event if the touch terminates.
+
+- If a touch changes from non-pointer-controlling to pointer-controlling, a
+  TouchEnd is sent for that touch at the last known position of the touch.
+  Further events are sent as pointer events.
+
+The conditions to switch from pointer-controlling to non-pointer-controlling
+touch is implementation-dependent. A device may support touches that are
+both pointer-controlling and a touch event.
+
+.Dependent touch example event sequence on a touchpad, touches are marked
+when switching to pointer-controlling (pc) or to non-pointer-controlling (np)
+[width="50%", options="header"]
+|====================================================
+| Finger 1 | Finger 2 | Event generated(touchid)
+|  down    |          | Motion
+|  move    |          | Motion
+|  move    |          | Motion
+|  (np)    |   down   | TouchBegin(0), TouchBegin(1)
+|  move    |    --    | TouchUpdate(0)
+|   --     |   move   | TouchUpdate(1)
+|   up     |   (pc)   | TouchEnd(0), TouchEnd(1)
+|          |   move   | Motion
+|  down    |   (np)   | TouchBegin(2), TouchBegin(3)
+|  move    |    --    | TouchUpdate(2)
+|   up     |   (pc)   | TouchEnd(2), TouchEnd(3)
+|          |    up    | Motion
+|  down    |          | Motion
+|  (np)    |   down   | TouchBegin(4), TouchBegin(5)
+|  (pc)    |    up    | TouchEnd(4), TouchEnd(5)
+|  move    |          | Motion
+|   up     |          | Motion
+|====================================================
+
 
 [[multitouch-emulation]]
 Pointer emulation from multitouch events
