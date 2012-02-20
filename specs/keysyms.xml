@@ -4375,6 +4375,12 @@ already been deprecated by the introduction of the Unicode KEYSYMs.
       <entry>Publish</entry>
     </row>
     <row>
+      <entry>#x0AD5</entry>
+      <entry>U+2030</entry>
+      <entry>PER MILLE SIGN</entry>
+      <entry>Publish</entry>
+    </row>
+    <row>
       <entry>#x0AD6</entry>
       <entry>U+2032</entry>
       <entry>MINUTES</entry>

@@ -102,13 +102,13 @@ SOFTWARE.
  * does not represent any existing Unicode character.
  *
  * When adding new keysyms to this file, do not forget to also update the
- * following:
+ * following as needed:
  *
  *   - the mappings in src/KeyBind.c in the repo
- *     git://anongit.freedesktop.org/xorg/lib/libX11
+ *     git://anongit.freedesktop.org/xorg/lib/libX11.git
  *
- *   - the protocol specification in specs/XProtocol/X11.keysyms
- *     in the repo git://anongit.freedesktop.org/xorg/doc/xorg-docs
+ *   - the protocol specification in specs/keysyms.xml
+ *     in the repo git://anongit.freedesktop.org/xorg/proto/x11proto.git
  *
  */
 
@@ -1469,6 +1469,7 @@ SOFTWARE.
 #define XK_leftdoublequotemark           0x0ad2  /* U+201C LEFT DOUBLE QUOTATION MARK */
 #define XK_rightdoublequotemark          0x0ad3  /* U+201D RIGHT DOUBLE QUOTATION MARK */
 #define XK_prescription                  0x0ad4  /* U+211E PRESCRIPTION TAKE */
+#define XK_permille                      0x0ad5  /* U+2030 PER MILLE SIGN */
 #define XK_minutes                       0x0ad6  /* U+2032 PRIME */
 #define XK_seconds                       0x0ad7  /* U+2033 DOUBLE PRIME */
 #define XK_latincross                    0x0ad9  /* U+271D LATIN CROSS */
@@ -1972,6 +1973,8 @@ SOFTWARE.
 #define XK_obarred                    0x1000275  /* U+0275 LATIN SMALL LETTER BARRED O */
 #define XK_SCHWA                      0x100018f  /* U+018F LATIN CAPITAL LETTER SCHWA */
 #define XK_schwa                      0x1000259  /* U+0259 LATIN SMALL LETTER SCHWA */
+#define XK_EZH                        0x10001b7  /* U+01B7 LATIN CAPITAL LETTER EZH */
+#define XK_ezh                        0x1000292  /* U+0292 LATIN SMALL LETTER EZH */
 /* those are not really Caucasus */
 /* For Inupiak */
 #define XK_Lbelowdot                  0x1001e36  /* U+1E36 LATIN CAPITAL LETTER L WITH DOT BELOW */
