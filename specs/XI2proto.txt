@@ -3,8 +3,6 @@ The X Input Extension 2.x
 :toc:
 :numbered:
 
-.This is a work in progress!
-
 Authors:
 
 - Peter Hutterer (Red Hat) <peter.hutterer@redhat.com>
