@@ -143,10 +143,9 @@ Smooth scrolling
 Historically, X implemented scrolling events by using button press events:
 button 4 was one “click” of the scroll wheel upwards, button 5 was downwards,
 button 6 was one unit of scrolling left, and button 7 was one unit of scrolling
-right.  This was sufficient for scroll wheel mice, but not for touchpads which
-are able to provide scrolling events through multi-finger drag gestures, or
-simply dragging your finger along a designated strip along the side of the
-touchpad.
+right.  This is insufficient for e.g. touchpads which are able to provide
+scrolling events through multi-finger drag gestures, or simply dragging your
+finger along a designated strip along the side of the touchpad.
 
 Newer X servers may provide scrolling information through valuators to
 provide clients with more precision than the legacy button events. This
@@ -276,7 +275,6 @@ The additions in XI 2.2 aim to:
 - support a dynamic number of simultaneous touch points,
 - support devices that are both multi-touch and traditional pointer devices,
 - allow touchpoints to be either grouped together or handled separately,
-- while supporting pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
 - be backwards-compatible to pre-XI 2.2 clients through emulation of XI 2.x/XI 1.x and core
   pointer events.
 
@@ -376,7 +374,7 @@ undone if the touch sequence ends without the client becoming the owner.
 To select for touch events regardless of ownership, a client must set the
 TouchOwnership event mask in addition to the
 TouchBegin, TouchUpdate and TouchEnd mask. When selected, a client will receive
-touch events as they occur on the device without delay. If and when the client
+touch events as they occur on the device. If and when the client
 becomes the owner of a touch sequence, a TouchOwnership event is sent to the
 client. If the client is the initial owner of the sequence, the TouchBegin is
 immediately followed by the TouchOwnership event. Otherwise, TouchUpdate events
@@ -410,9 +408,8 @@ following device modes are defined for this protocol:
 'DirectTouch':
     These devices map their input region to a subset of the screen region. Touch
     events are delivered to window at the location of the touch. "direct"
-    here refers to the user manipulating objects at their screen location,
-    e.g. touching an object and physically moving it. An example
-    of a DirectTouch device is a touchscreen.
+    here refers to the user manipulating objects at their screen location.
+    An example of a DirectTouch device is a touchscreen.
 
 'DependentTouch':
     These devices do not have a direct correlation between a touch location and
@@ -502,7 +499,7 @@ Pointer emulation from multitouch events
 
 Touch sequences from direct touch devices may emulate pointer events. Only one
 touch sequence from a device may emulate pointer events at a time; which touch
-sequence emulates pointer events is implementation dependent.
+sequence emulates pointer events is implementation-dependent.
 
 Pointer events are emulated as follows:
 
@@ -1315,7 +1312,7 @@ Return the current focus window for the given device.
 This request actively grabs control of the specified input device. Further
 input events from this device are reported only to the grabbing client.
 This request overides any previous active grab by this client for this
-device.  This request does not, however, affect the processing of XI 2.2
+device.  This request does not affect the processing of XI 2.2
 touch events.
 
     deviceid
@@ -1687,8 +1684,8 @@ If some other client already has issued a XIPassiveGrabDevice request
 with the same button or keycode and modifier combination, the
 failed modifier combinations is returned in modifiers_return. If some
 other client already has issued an XIPassiveGrabDevice request of
-grab_type XIGrabtypeEnter, XIGrabtypeFocusIn, XIGrabtypeTouchBegin, or
-XIGrabtypeTouchBeginInert with the same grab_window and the same
+grab_type XIGrabtypeEnter, XIGrabtypeFocusIn, or
+XIGrabtypeTouchBegin with the same grab_window and the same
 modifier combination, the failed modifier combinations are returned
 in modifiers_return. If num_modifiers_return is zero, all passive
 grabs have been successful.
