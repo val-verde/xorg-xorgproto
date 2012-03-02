@@ -1410,8 +1410,8 @@ active device grab becomes not viewable.
             time:            TIMESTAMP or CurrentTime
             event_mode:      { AsyncDevice, SyncDevice,
                                AsyncPairedDevice, SyncPairedDevice,
-                               ReplayDevice, AsyncPair, SyncPair, AcceptTouch¹,
-                               RejectTouch¹ }
+                               ReplayDevice, AsyncPair, SyncPair,
+                               AcceptTouch¹, RejectTouch¹ }
             touchid¹:        CARD32
             grab_window¹:    Window
     └───
