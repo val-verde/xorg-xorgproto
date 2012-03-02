@@ -1547,7 +1547,7 @@ you pass to the event-mode argument:
     └───
 
         GRABTYPE         { GrabtypeButton, GrabtypeKeycode, GrabtypeEnter,
-                           GrabtypeFocusIn, GrabtypeTouchBegin }
+                           GrabtypeFocusIn, GrabtypeTouchBegin¹ }
 
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
