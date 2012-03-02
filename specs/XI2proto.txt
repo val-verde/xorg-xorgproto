@@ -1708,10 +1708,11 @@ before the grab deactivates.
 For GrabtypeTouchBegin, grab_mode must be Touch or a BadValue error
 is generated.
 
-See section <<clientpointer,The ClientPointer principle>> for additional notes
-on touch grabs, as they do not behave like traditional grabs: in
-particular, they do not freeze the device, and delivery of touch events
-continues even if the device is frozen due to a grab by another client.
+See section <<multitouch-ownership, Ownership of touch sequences>> for
+additional notes on touch grabs, as they do not behave like traditional
+grabs: in particular, they do not freeze the device, and delivery of touch
+events continues even if the device is frozen due to a grab by another
+client.
 
 [[requests-passiveungrabdevice]]
     ┌───
