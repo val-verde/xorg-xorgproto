@@ -740,9 +740,7 @@ If major_version is less than 2, a BadValue error occurs.
                   length:               CARD16
                   sourceid:             CARD16
                   mode:                 TOUCHMODE
-                  num_touches:          CARD16
-                  num_props:            CARD16
-                  props:                LISTofATOM }
+                  num_touches:          CARD16 }
 
     TOUCHMODE { DirectTouch, DependentTouch }
 
@@ -886,10 +884,6 @@ exist per ValuatorClass.
         The maximum number of simultaneous touchpoints the device may send.
         If num_touches is 0, the number of supported touches is unknown or
         unlimited.
-    num_props:
-        The number of elements in props.
-    props
-        A list of properties to denote extra information about the device.
 
 Devices with a TouchClass emit touch events with the same axes as pointer
 events.
