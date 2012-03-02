@@ -724,7 +724,7 @@ If major_version is less than 2, a BadValue error occurs.
                   resolution:           CARD32
                   mode:                 CARD8 }
 
-    SCROLLCLASS* {type:                 ScrollClass
+    SCROLLCLASS¹ {type:                 ScrollClass
                   length:               CARD16
                   sourceid:             CARD16
                   axisnumber:           CARD16
@@ -736,7 +736,7 @@ If major_version is less than 2, a BadValue error occurs.
 
     SCROLLFLAGS { NoEmulation, Preferred }
 
-    TOUCHCLASS† { type:                 TouchClass
+    TOUCHCLASS² { type:                 TouchClass
                   length:               CARD16
                   sourceid:             CARD16
                   mode:                 TOUCHMODE
@@ -744,8 +744,8 @@ If major_version is less than 2, a BadValue error occurs.
 
     TOUCHMODE { DirectTouch, DependentTouch }
 
-    * since XI 2.1
-    † since XI 2.2
+    ¹ since XI 2.1
+    ² since XI 2.2
 
 XIQueryDevice details information about the requested input devices.
 
@@ -1410,13 +1410,13 @@ active device grab becomes not viewable.
             time:            TIMESTAMP or CurrentTime
             event_mode:      { AsyncDevice, SyncDevice,
                                AsyncPairedDevice, SyncPairedDevice,
-                               ReplayDevice, AsyncPair, SyncPair, AcceptTouch*,
-                               RejectTouch* }
-            touchid*:        CARD32
-            grab_window*:    Window
+                               ReplayDevice, AsyncPair, SyncPair, AcceptTouch¹,
+                               RejectTouch¹ }
+            touchid¹:        CARD32
+            grab_window¹:    Window
     └───
 
-* since XI 2.2
+    ¹ since XI 2.2
 
 The XIAllowEvents request releases some queued events if the client
 has caused a device to freeze. It also is used to handle touch grab and
@@ -1535,7 +1535,7 @@ you pass to the event-mode argument:
             grab_window:     Window
             cursor:          Cursor
             owner_events:    Bool
-            grab_mode:       { Synchronous, Asynchronous, Touch* }
+            grab_mode:       { Synchronous, Asynchronous, Touch¹ }
             paired_device_mode: { Synchronous, Asynchronous }
             num_modifiers:   INT16
             mask_len:        CARD16
@@ -1552,7 +1552,7 @@ you pass to the event-mode argument:
         GRABMODIFIERINFO {   status:    Access
                              modifiers: CARD32 }
 
-* since XI 2.2
+    ¹ since XI 2.2
 
 Establish an explicit passive grab for a button or keycode
 on the specified input device.
@@ -2200,7 +2200,7 @@ Touch events do not generate enter/leave events.
         RawEvent
             EVENTHEADER
             detail:                    CARD32
-            sourceid*:                 DEVICEID
+            sourceid¹:                 DEVICEID
             flags:                     DEVICEEVENTFLAGS
             valuators_len:             CARD16
             valuators:                 SETofVALUATORMASK
@@ -2208,7 +2208,7 @@ Touch events do not generate enter/leave events.
             axisvalues_raw:            LISTofFP3232
     └───
 
-    * since XI 2.1
+    ¹ since XI 2.1
 
 A RawEvent provides the information provided by the driver to the
 client. RawEvent provides both the raw data as supplied by the driver and
@@ -2227,7 +2227,7 @@ when the device is grabbed by another client.
     eventtype
         The type of event that occured on the device.
     detail
-        The button number, keycode or touch ID*.
+        The button number, keycode or touch ID¹.
     sourceid
         The source device that originally generated the event. The sourceid
         is undefined for clients not supporting XI 2.1.
@@ -2242,7 +2242,7 @@ when the device is grabbed by another client.
     axisvalues_raw
         Untransformed valuator data in device-native resolution.
 
-* since XI 2.2
+    ¹ since XI 2.2
 
 [[events-enterleave]]
     ┌───
