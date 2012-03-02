@@ -2097,7 +2097,7 @@ changes in response to a button press, a button release, a motion, a key
 press or a key release. The event type may be one of KeyPress,
 KeyRelease, ButtonPress, ButtonRelease, Motion.
 
-    XI 2.2: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
+XI 2.2: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
 
     detail
         The button number, key code, touch ID, or 0.
@@ -2170,9 +2170,8 @@ Modifier state in mods is detailed as follows:
     locked_group
         XKB locked group state.
 
-    XI 2.2:
-
-A TouchBegin event is generated whenever a new touch sequence initializes
+In servers supporting XI 2.2, a TouchBegin event is generated whenever a new
+touch sequence initializes.
 A TouchEnd event is generated whenever a touch sequence ceases. A
 TouchUpdate event is generated whenever a valuator value changes, or a flag
 flag (e.g. pending end) has changed for that touch sequence; this may result
