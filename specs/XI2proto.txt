@@ -2175,8 +2175,7 @@ touch sequence initializes.
 A TouchEnd event is generated whenever a touch sequence ceases. A
 TouchUpdate event is generated whenever a valuator value changes, or a flag
 flag (e.g. pending end) has changed for that touch sequence; this may result
-in a TouchUpdate event being sent with zero valuators. A TouchOwnership event
-is sent when a client becomes the owner of a touch.
+in a TouchUpdate event being sent with zero valuators.
 
 The average finger size is significantly larger than one pixel. The
 selection of the hotspot of a touchpoint is implementation dependent and
