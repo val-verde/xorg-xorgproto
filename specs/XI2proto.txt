@@ -2346,7 +2346,7 @@ Events introduced in version 2.2
 
 [[events-touchownershipevent]]
     ┌───
-        TouchOwnershipEvent (since XI 2.2):
+        TouchOwnershipEvent
             EVENTHEADER
             touchid:                    CARD32
             root:                       Window
