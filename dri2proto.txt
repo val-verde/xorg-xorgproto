@@ -658,7 +658,7 @@ A.2 Protocol Requests
 ┌───
     DRI2GetBuffers
 	1	CARD8			major opcode
-	1	3			DRI2 opcode
+	1	5			DRI2 opcode
 	2	3			length
 	4	DRAWABLE		drawable
 	4	n			number of attachments
@@ -678,7 +678,7 @@ A.2 Protocol Requests
 ┌───
     DRI2CopyRegion
 	1	CARD8			major opcode
-	1	4			DRI2 opcode
+	1	6			DRI2 opcode
 	2	3			length
 	4	DRAWABLE		drawable
 	4	REGION			region
@@ -695,7 +695,7 @@ A.2 Protocol Requests
 ┌───
     DRI2GetBuffersWithFormat
 	1	CARD8			major opcode
-	1	3			DRI2 opcode
+	1	7			DRI2 opcode
 	2	3			length
 	4	DRAWABLE		drawable
 	4	n			number of attachments
@@ -715,7 +715,7 @@ A.2 Protocol Requests
 ┌───
     DRI2SwapBuffers
 	1	CARD8			major opcode
-	1	7			DRI2 opcode
+	1	8			DRI2 opcode
 	2	8			length
 	4	DRAWABLE		drawable
       ▶	
@@ -736,7 +736,7 @@ A.2 Protocol Requests
 ┌───
     DRI2SwapBuffers
 	1	CARD8			major opcode
-	1	7			DRI2 opcode
+	1	8			DRI2 opcode
 	2	8			length
 	4	DRAWABLE		drawable
 	4	CARD32			target_msc_hi
@@ -758,7 +758,7 @@ A.2 Protocol Requests
 ┌───
     DRI2GetMSC
 	1	CARD8			major opcode
-	1	7			DRI2 opcode
+	1	9			DRI2 opcode
 	2	8			length
 	4	DRAWABLE		drawable
       ▶
@@ -777,7 +777,7 @@ A.2 Protocol Requests
 ┌───
     DRI2WaitMSC
 	1	CARD8			major opcode
-	1	7			DRI2 opcode
+	1	10			DRI2 opcode
 	2	8			length
 	4	DRAWABLE		drawable
 	4	CARD32			target_msc_hi
@@ -802,7 +802,7 @@ A.2 Protocol Requests
 ┌───
     DRI2WaitSBC
 	1	CARD8			major opcode
-	1	7			DRI2 opcode
+	1	11			DRI2 opcode
 	2	8			length
 	4	DRAWABLE		drawable
  	4	CARD32			swap_hi
@@ -823,7 +823,7 @@ A.2 Protocol Requests
 ┌───
     DRI2SwapInterval
 	1	CARD8			major opcode
-	1	7			DRI2 opcode
+	1	12			DRI2 opcode
 	2	8			length
 	4	DRAWABLE		drawable
  	4	CARD32			interval
