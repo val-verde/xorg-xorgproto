@@ -154,7 +154,7 @@ typedef struct {
     uint16_t    type;           /**< Always ButtonClass */
     uint16_t    length;         /**< Length in 4 byte units */
     uint16_t    sourceid;       /**< source device for this class */
-    uint16_t    num_buttons;    /**< Number of buttons provide */
+    uint16_t    num_buttons;    /**< Number of buttons provided */
 } xXIButtonInfo;
 
 /**

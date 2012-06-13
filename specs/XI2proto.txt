@@ -701,7 +701,7 @@ If major_version is less than 2, a BadValue error occurs.
     BUTTONCLASS { type:                 ButtonClass
                   length:               CARD16
                   sourceid:             CARD16
-                  buttons_len:          CARD16
+                  num_buttons:          CARD16
                   state:                SETofBUTTONMASK
                   labels:               LISTofATOM }
 
