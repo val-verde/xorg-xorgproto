@@ -1984,7 +1984,7 @@ The RandR extension was developed in parallel with the implementation
 to ensure the feasibility of various portions of the design. As
 portions of the extension are implemented, the version number of the
 extension has changed to reflect the portions of the standard provided.
-This document describes the version 1.2 of the specification, the
+This document describes the version 1.4 of the specification, the
 partial implementations have version numbers less than that. Here's a
 list of what each version provided:
 
@@ -2010,6 +2010,8 @@ list of what each version provided:
 	     transformations.  Added panning.  Added primary outputs.
 	     Added standard properties.
 
+        1.4: Added provider objects for handling multi-GPU systems.
+
 Compatibility between 0.0 and 1.0 was *NOT* preserved, and 0.0 clients
 will fail against 1.0 servers. The wire encoding op-codes were
 changed for GetScreenInfo to ensure this failure in a relatively
@@ -2018,8 +2020,8 @@ graceful way. Version 1.1 servers and clients are cross compatible with
 compatibility from this point. Version 1.2 offers an extended model of the
 system with multiple output support. Version 1.3 adds a cheap version of
 GetScreenResources to avoid expensive DDC operations, CRTC transformations,
-panning, and the primary output concept. 1.2 and 1.3 are backward-compatible
-with 1.1.
+panning, and the primary output concept. Versions 1.2 through 1.4 are
+backward-compatible with 1.1.
 
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
