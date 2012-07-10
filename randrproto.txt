@@ -277,7 +277,10 @@ ROTATION { Rotate_0
 RRSELECTMASK { RRScreenChangeNotifyMask
 	       RRCrtcChangeNotifyMask (New in version 1.2)
 	       RROutputChangeNotifyMask (New in version 1.2)
-	       RROutputPropertyNotifyMask (New in version 1.2) }
+	       RROutputPropertyNotifyMask (New in version 1.2)
+	       RRProviderChangeNotifyMask (New in version 1.4)
+	       RRProviderPropertyNotifyMask (New in version 1.4)
+	       RRResourceChangeNotifyMask (New in version 1.4) }
 
 SIZEID { CARD16 }
 
@@ -400,6 +403,20 @@ The name of this extension is "RANDR".
 	If 'enable' contains RROutputPropertyNotifyMask,
 	RROutputPropertyNotify events will be sent when properties change on
 	this output.
+
+	New for version 1.4:
+
+	If 'enable' contains RRProviderChangeNotifyMask,
+	RRProviderChangeNotify events will be sent whenever the role for a
+	provider object has changed.
+
+	If 'enable' contains RRProviderPropertyNotifyMask,
+	RRProviderPropertyNotify events will be sent when properties change
+	on a provider object.
+
+	If 'enable' contains RRResourceChangeNotifyMask,
+	RRResourceChangeNotify events will be sent whenever the set of
+	available RandR resources associated with the screen has changed.
 
 ┌───
     RRSetScreenConfig
@@ -2070,6 +2087,10 @@ A.1 Common Types
 	0x0002	CrtcChangeNotifyMask		Added in version 1.2
 	0x0004	OutputChangeNotifyMask		Added in version 1.2
 	0x0008	OutputPropertyNotifyMask	Added in version 1.2
+	0x0010	ProviderChangeNotifyMask 	Added in version 1.4
+	0x0020	ProviderPropertyNotifyMask	Added in version 1.4
+	0x0040	ResourceChangeNotifyMask	Added in version 1.4
+
 └───
       Event select mask for RRSelectInput
 
