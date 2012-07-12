@@ -162,6 +162,7 @@ David Dawes for XFree86 DDX integration work
 Thomas Winischhofer for the hardware-accelerated SiS rotation implementation
 Matthew Tippett and Kevin Martin for splitting outputs and CRTCs to more
 fully expose what video hardware can do
+Dave Airlie for the 1.4.0 protocol changes.
 
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
