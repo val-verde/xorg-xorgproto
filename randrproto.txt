@@ -212,9 +212,12 @@ are visible on the reconfigured screen).
 
 3. Data Types
 
-The subpixel order is shared with the Render extension, and is documented
-there. The only datatype defined is the screen size, defined in the normal
-(0 degree) orientation.
+The subpixel order and transform data types are shared with the Render
+extension, and are documented there.
+
+The only datatype defined in the original extension is the screen size,
+defined in the normal (0 degree) orientation.  Several more are added
+in later revisions.
 
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -296,15 +299,9 @@ CONNECTION { Connected, Disconnected, UnknownConnection }
 	This value provides an indication of whether an output is actually
 	connected to a monitor or other presentation device.
 
-SUBPIXELORDER { SubPixelUnknown		The subpixel order uses the Render
-		SubPixelHorizontalRGB	extensions definitions; they are here
-		SubPixelHorizontalBGR	only for convenience.
-		SubPixelVerticalRGB
-		SubPixelVerticalBGR
-		SubPixelNone }
 
-SCREENSIZE { widthInPixels, heightInPixels: CARD16
-	     widthInMillimeters, heightInMillimeters: CARD16 }
+SCREENSIZE [ widthInPixels, heightInPixels: CARD16
+	     widthInMillimeters, heightInMillimeters: CARD16 ]
 
 MODEFLAG { HSyncPositive
 	   HSyncNegative
@@ -321,15 +318,37 @@ MODEFLAG { HSyncPositive
 	   DoubleClock
 	   ClockDivideBy2 }
 
-MODEINFO { id: MODE
+MODEINFO [ id: MODE
 	   name: STRING
 	   width, height: CARD16
 	   dotClock: CARD32
 	   hSyncStart, hSyncEnd, hTotal, hSkew: CARD16
 	   vSyncStart, vSyncEnd, vTotal: CARD16
-	   modeFlags: SETofMODEFLAG }
+	   modeFlags: SETofMODEFLAG ]
 
-REFRESH { rates: LISTofCARD16 }
+REFRESH [ rates: LISTofCARD16 ]
+
+			      ❧❧❧❧❧❧❧❧❧❧❧
+
+5.1 Data Types defined by the Render extension
+
+These data types use the Render extension definitions; they are shown here
+only for convenience:
+
+SUBPIXELORDER { SubPixelUnknown
+		SubPixelHorizontalRGB
+		SubPixelHorizontalBGR
+		SubPixelVerticalRGB
+		SubPixelVerticalBGR
+		SubPixelNone }
+
+FIXED         32-bit value (top 16 are integer portion, bottom 16 are fraction)
+
+TRANSFORM     [
+                        p11, p12, p13:  FIXED
+                        p21, p22, p23:  FIXED
+                        p31, p32, p33:  FIXED
+              ]
 
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
