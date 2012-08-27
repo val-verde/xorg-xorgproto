@@ -2527,7 +2527,7 @@ A.2.1 Protocol Requests added with version 1.2
     RRSetCrtcConfig
 	1	CARD8			major opcode
 	1	21			RandR opcode
-	2	7+2n			length
+	2	7+n			length
 	4	CRTC			crtc
 	4	TIMESTAMP		timestamp
 	4	TIMESTAMP		config timestamp
@@ -2536,7 +2536,7 @@ A.2.1 Protocol Requests added with version 1.2
 	4	MODE			mode
 	2	ROTATION		rotation/reflection
 	2				unused
-	8n	LISTofOUTPUT		outputs
+	4n	LISTofOUTPUT		outputs
       ▶
 	1	1			Reply
 	1	RRCONFIGSTATUS		status
