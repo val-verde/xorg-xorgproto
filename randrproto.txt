@@ -2984,7 +2984,7 @@ A.3.2 Protocol Events added with version 1.4
 ┌───
     RRProviderChangeNotify
 	1	Base + 1		code
-	1	1			sub-code
+	1	3			sub-code
 	2	CARD16			sequence number
 	4	TIMESTAMP		timestamp
 	4	WINDOW			request window
@@ -2994,7 +2994,7 @@ A.3.2 Protocol Events added with version 1.4
 ┌───
     RRProviderPropertyNotify
 	1	Base + 1		code
-	1	2			sub-code
+	1	4			sub-code
 	2	CARD16			sequence number
 	4	WINDOW			window
 	4	PROVIDER		provider
@@ -3008,7 +3008,7 @@ A.3.2 Protocol Events added with version 1.4
 ┌───
     RRResourceChangeNotify
 	1	Base + 1		code
-	1	2			sub-code
+	1	5			sub-code
 	2	CARD16			sequence number
 	4	TIMESTAMP		time
 	4	WINDOW			window
