@@ -1680,20 +1680,15 @@ factors, such as re-cabling a monitor, etc.
 ┌───
     RRProviderChangeNotify:
 	timestamp: TIMESTAMP		time screen was reconfigured
-	config-timestamp: TIMESTAMP	time available config data was changed
 	window: WINDOW			window requesting notification
 	provider: PROVIDER		provider affected by change
-	role: CRTC			new role for provider
 └───
 
 	This event is generated whenever the role for a provider has changed
 	and is sent to requesting clients. 'timestamp' indicates when the
-	provider configuration was changed by a client.
-	'config-timestamp' says when the last time the available
-	configurations changed. 'root' is the root of the screen the change
-	occurred on, 'window' is window selecting for this event. The
-	precise change can be detected by examining the new state of the
-	system.
+	provider configuration was changed by a client.  'window' is the
+	window selecting for this event.  The precise change can be detected
+	by examining the new state of the system.
 
 ┌───
     RRProviderPropertyNotify:
