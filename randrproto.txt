@@ -259,7 +259,7 @@ RRCONFIGSTATUS { Success
 	configuration is unsupported by the hardware. The goal is to make
 	these limitations expressed by the protocol, but when that isn't
 	possible it is correct to return this error value. If, as a
-	implentor, you find this error code required, please submit the
+	implementor, you find this error code required, please submit the
 	hardware constraints that exist so that a future version of the
 	extension can correctly capture the configuration constraints in
 	your system.
@@ -338,7 +338,7 @@ REFRESH { rates: LISTofCARD16 }
 PROVIDER { XID }
 
 PROVIDER_CAPS { SourceOutput, SinkOutput, SourceOffload, SinkOffload }
-	Capabilties for this provider:
+	Capabilities for this provider:
 	SourceOutput: This device can source output buffers.
 	SinkOutput: This device can sink output buffers.
 	SourceOffload: This device can source offload buffers.
@@ -1307,7 +1307,7 @@ dynamic changes in the display environment.
 └───
 	Errors: Window
 
-	RRGetPRoviders returns the list of providers connected to the screen
+	RRGetProviders returns the list of providers connected to the screen
 	associated with 'window'.
 
 	'timestamp' indicates when the configuration was last set.
@@ -1329,7 +1329,7 @@ dynamic changes in the display environment.
 	Errors: Provider
 
 	RRGetProviderInfo return information about the specified provider.
-	The capabilites of the current provider are returned, along with
+	The capabilities of the current provider are returned, along with
 	the list of providers currently associated with this provider and
 	the capability they are associated with. It also provides the list
 	of crtcs and outputs that this provider is responsible for.
@@ -1679,7 +1679,7 @@ factors, such as re-cabling a monitor, etc.
 ┌───
     RRProviderPropertyNotify:
 	window: WINDOW			window requesting notification
-	provider: PROVIDER		providre affected by change
+	provider: PROVIDER		provider affected by change
 	atom: ATOM			affected property
 	time: TIMESTAMP			time property was changed
 	state: { NewValue, Deleted }	new property state
@@ -2491,7 +2491,7 @@ A.2.1 Protocol Requests added with version 1.2
 	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
 	4	o+p			reply length
-	4	TIMESTATMP		timestamp
+	4	TIMESTAMP		timestamp
 	2	INT16			x
 	2	INT16			y
 	2	CARD16			width
@@ -2752,8 +2752,8 @@ A.2.3 Protocol Requests added with version 1.4
 	1	RRCONFIGSTATUS		status
 	2	CARD16			sequence number
 	4	1+c+o+(a*2)+(n+p)/4		reply length
-	4	TIMESTATMP		timestamp
-	4	CARD32			capabilites
+	4	TIMESTAMP		timestamp
+	4	CARD32			capabilities
 	2	c			number of crtcs
 	2	o 			number of outputs
 	2	a 			number of associated providers
