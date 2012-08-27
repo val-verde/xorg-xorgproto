@@ -2569,7 +2569,7 @@ A.2.1 Protocol Requests added with version 1.2
 	1	1			Reply
 	1				unused
 	2	CARD16			sequence number
-	4	(6n+2)/4		reply length
+	4	(6n+p)/4		reply length
 	2	n			size
 	20				unused
 	2n	LISTofCARD16		red
@@ -2581,7 +2581,7 @@ A.2.1 Protocol Requests added with version 1.2
     RRSetCrtcGamma
 	1	CARD8			major opcode
 	1	24			RandR opcode
-	2	3+(6n+2)/4		length
+	2	3+(6n+p)/4		length
 	4	CRTC			crtc
 	2	n			size
 	2				unused
