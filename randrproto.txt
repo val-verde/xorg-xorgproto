@@ -2790,7 +2790,7 @@ A.2.3 Protocol Requests added with version 1.4
     RRSetProviderOffloadSink
 	1	CARD8			major opcode
 	1	34			RandR opcode
-	2	2			length
+	2	4			length
 	4	PROVIDER		provider
 	4	PROVIDER		offload sink provider
 	4	TIMESTAMP		timestamp
@@ -2799,7 +2799,7 @@ A.2.3 Protocol Requests added with version 1.4
     RRSetProviderOutputSource
 	1	CARD8			major opcode
 	1	35			RandR opcode
-	2	2			length
+	2	4			length
 	4	PROVIDER		provider
 	4	PROVIDER		output source provider
 	4	TIMESTAMP		timestamp
