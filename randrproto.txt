@@ -2747,11 +2747,10 @@ A.2.3 Protocol Requests added with version 1.4
 	1	1			Reply
 	1				unused
 	2	CARD16			sequence number
-	4	CARD32			length
+	4	p			length
 	4	TIMESTAMP		timestamp
 	2	p			number of Providers
-	2	CARD16			maximum masters
-	4	CARD32			flags
+	18				unused
 	4p	LISTofPROVIDERS		providers
 └───
 ┌───
