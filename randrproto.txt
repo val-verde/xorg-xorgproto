@@ -1360,7 +1360,7 @@ dynamic changes in the display environment.
     RRSetProviderOffloadSink
 	provider: PROVIDER
 	sink_provider: PROVIDER
-     ▶
+	config-timestamp: TIMESTAMP
 └───
 	Errors: Provider
 
@@ -1371,7 +1371,7 @@ dynamic changes in the display environment.
     RRSetProviderOutputSource
 	provider: PROVIDER
 	source_provider: PROVIDER
-     ▶
+	config-timestamp: TIMESTAMP
 └───
 	Errors: Provider
 
