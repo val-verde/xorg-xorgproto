@@ -2169,6 +2169,13 @@ A.1 Common Types
 	2		UnknownConnection
 └───
 
+┌───
+    PROVIDER_CAPS				Added in version 1.4
+	0x00000001	SourceOutput
+	0x00000002	SinkOutput
+	0x00000004	SourceOffload
+	0x00000008	SinkOffload
+└───
 
 A.2 Protocol Requests
 
