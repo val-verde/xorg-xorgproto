@@ -2771,6 +2771,7 @@ A.2.3 Protocol Requests added with version 1.4
 	2	o 			number of outputs
 	2	a 			number of associated providers
 	2	n			length of name
+	8       			unused
 	4c	LISTofCRTC		crtcs
 	4o	LISTofOUTPUT		outputs
 	4a	LISTofPROVIDER		associated providers
