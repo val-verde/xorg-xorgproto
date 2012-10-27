@@ -639,8 +639,8 @@ Errors are sent using core X error reports.
 
 
 [[requests]]
-Requests:
----------
+Requests
+--------
 
 The server does not guarantee that the length of a reply remains constant in
 future revisions of XI2. A client must always retrieve the exact length of the
@@ -1403,7 +1403,7 @@ active device grab becomes not viewable.
 
 [[requests-allowevents]]
     ┌───
-        XIAllowEvents:
+        XIAllowEvents
             deviceid:        DEVICEID
             time:            TIMESTAMP or CurrentTime
             event_mode:      { AsyncDevice, SyncDevice,
@@ -1969,7 +1969,7 @@ Events introduced in version 2.0
 
 [[events-hierarchyevent]]
     ┌───
-        HierarchyEvent:
+        HierarchyEvent
             EVENTHEADER
             flags:                      SETofHIERARCHYMASK
             num_info:                   CARD16
@@ -2017,7 +2017,7 @@ device. Clients should ignore deviceid and instead use the devices list.
 
 [[events-devicechangedevent]]
     ┌───
-        DeviceChangedEvent:
+        DeviceChangedEvent
             EVENTHEADER
             reason:                CHANGEREASON
             source:                DEVICEID
@@ -2051,7 +2051,7 @@ For a detailed description of classes, see the XIQueryDevice request.
 
 [[events-deviceevent]]
     ┌───
-        DeviceEvent:
+        DeviceEvent
             EVENTHEADER
             detail:                     CARD32
             root:                       Window
