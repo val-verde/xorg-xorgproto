@@ -1,5 +1,6 @@
 The X Input Extension 2.x
 =========================
+:toclevels: 3
 :toc:
 :numbered:
 
@@ -655,6 +656,8 @@ Requests introduced in version 2.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[requests-queryversion]]
+XIQueryVersion
+^^^^^^^^^^^^^^
     ┌───
         XIQueryVersion
         major_version:          CARD16
@@ -679,6 +682,8 @@ server supports a version which is compatible with its expectations.
 If major_version is less than 2, a BadValue error occurs.
 
 [[requests-querydevice]]
+XIQueryDevice
+^^^^^^^^^^^^^
     ┌───
         XIQueryDevice
         DEVICE                  deviceid
@@ -887,6 +892,8 @@ Devices with a TouchClass emit touch events with the same axes as pointer
 events.
 
 [[requests-selectevents]]
+XISelectEvents
+^^^^^^^^^^^^^^
     ┌───
         XISelectEvents
             window:         Window
@@ -938,6 +945,8 @@ specific device when another client has a selection for XIAllDevices), a
 BadAccess error occurs.
 
 [[requests-getselectedevents]]
+XIGetSelectedEvents
+^^^^^^^^^^^^^^^^^^^
     ┌───
         XIGetSelectedEvents
             window:         Window
@@ -962,6 +971,8 @@ If num_masks is 0, no events have been selected by this client on the
 given window.
 
 [[requests-querypointer]]
+XIQueryPointer
+^^^^^^^^^^^^^^
     ┌───
         XIQueryPointer
             window:         Window
@@ -1007,6 +1018,8 @@ If the device is not a master pointer device or not a floating slave
 pointer, a BadDevice error results.
 
 [[requests-warppointer]]
+XIWarpPointer
+^^^^^^^^^^^^^
     ┌───
         XIWarpPointer
             src_win:         Window
@@ -1053,6 +1066,8 @@ This request will generate events just as if the user had instantaneously
 moved the pointer.
 
 [[requests-changecursor]]
+XIChangeCursor
+^^^^^^^^^^^^^^
     ┌───
         XIChangeCursor
             win:             Window
@@ -1085,6 +1100,8 @@ If deviceid does not specify a master pointer, a BadDevice error
 is returned.
 
 [[requests-changehierarchy]]
+XIChangeHierarchy
+^^^^^^^^^^^^^^^^^
     ┌───
         XIChangeHierarchy
             num_changes:     CARD8
@@ -1193,6 +1210,8 @@ selection will be canceled.
         Deviceid of the slave device.
 
 [[requests-setclientpointer]]
+XISetClientPointer
+^^^^^^^^^^^^^^^^^^
     ┌───
         XISetClientPointer
             win:             Window
@@ -1225,6 +1244,8 @@ If window does not specify a valid window or client ID and is not None, a
 BadWindow error is returned.
 
 [[requests-getclientpointer]]
+XIGetClientPointer
+^^^^^^^^^^^^^^^^^^
     ┌───
         XIGetClientPointer
             win:             Window
@@ -1247,6 +1268,8 @@ XISetClientPointer and a ClientPointer implicitly assigned by the server
 in response to an ambiguous request.
 
 [[requests-setfocus]]
+XISetFocus
+^^^^^^^^^^
     ┌───
         XISetFocus
             focus:           Window
@@ -1278,6 +1301,8 @@ current last-focus-change time or is later than the current X server time.
 Otherwise, the last-focus-change time is set to the specified time.
 
 [[requests-getfocus]]
+XIGetFocus
+^^^^^^^^^^
     ┌───
         XIGetFocus
             deviceid:        DEVICEID
@@ -1288,6 +1313,8 @@ Otherwise, the last-focus-change time is set to the specified time.
 Return the current focus window for the given device.
 
 [[requests-grabdevice]]
+XIGrabDevice
+^^^^^^^^^^^^
     ┌───
         XIGrabDevice
             deviceid:        DEVICEID
@@ -1379,6 +1406,8 @@ This request fails and returns:
 To release a grab of a device, use XIUngrabDevice.
 
 [[requests-ungrabdevice]]
+XIUngrabDevice
+^^^^^^^^^^^^^^
     ┌───
         XIUngrabDevice
             deviceid:        DEVICEID
@@ -1402,6 +1431,8 @@ An XIUngrabDevice is performed automatically if the event window for an
 active device grab becomes not viewable.
 
 [[requests-allowevents]]
+XIAllowEvents
+^^^^^^^^^^^^^
     ┌───
         XIAllowEvents
             deviceid:        DEVICEID
@@ -1525,6 +1556,8 @@ you pass to the event-mode argument:
         sequence, ownership will be passed on to the next listener.
 
 [[requests-passivegrabdevice]]
+XIPassiveGrabDevice
+^^^^^^^^^^^^^^^^^^^
     ┌───
         XIPassiveGrabDevice
             deviceid:        DEVICE
@@ -1713,6 +1746,8 @@ events continues even if the device is frozen due to a grab by another
 client.
 
 [[requests-passiveungrabdevice]]
+XIPassiveUngrabDevice
+^^^^^^^^^^^^^^^^^^^^^
     ┌───
         XIPassiveUngrabDevice
             deviceid:        DEVICEID
@@ -1745,6 +1780,8 @@ of the same type, same button or keycode (if applicable) and modifier
 combination on the grab_window.
 
 [[requests-listproperties]]
+XIListProperties
+^^^^^^^^^^^^^^^^
     ┌───
         XIListProperties
             deviceid:        DEVICEID
@@ -1763,6 +1800,8 @@ List the properties associated with the given device.
             All properties on the device.
 
 [[requests-changeproperty]]
+XIChangeProperty
+^^^^^^^^^^^^^^^^
     ┌───
         XIChangeProperty
             deviceid:        DEVICEID
@@ -1811,6 +1850,8 @@ property, use XIDeleteProperty.
 This request generates an XIPropertyEvent.
 
 [[requests-deleteproperty]]
+XIDeleteProperty
+^^^^^^^^^^^^^^^^
     ┌───
         XIDeleteProperty
             deviceid:        DEVICEID
@@ -1828,6 +1869,8 @@ If the property is deleted, an XIPropertyEvent is generated on the device.
 If the property does not exist, this request does nothing.
 
 [[requests-getproperty]]
+XIGetProperty
+^^^^^^^^^^^^^
     ┌───
         XIGetProperty
             deviceid:        DEVICEID
@@ -1968,6 +2011,8 @@ Events introduced in version 2.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[events-hierarchyevent]]
+HierarchyEvent
+^^^^^^^^^^^^^^
     ┌───
         HierarchyEvent
             EVENTHEADER
@@ -2016,6 +2061,8 @@ deviceid in an XIHierarchyEvent is always the first affected
 device. Clients should ignore deviceid and instead use the devices list.
 
 [[events-devicechangedevent]]
+DeviceChangedEvent
+^^^^^^^^^^^^^^^^^^
     ┌───
         DeviceChangedEvent
             EVENTHEADER
@@ -2050,6 +2097,8 @@ master device, or by a physical device changing capabilities at runtime.
 For a detailed description of classes, see the XIQueryDevice request.
 
 [[events-deviceevent]]
+DeviceEvent
+^^^^^^^^^^^
     ┌───
         DeviceEvent
             EVENTHEADER
@@ -2193,6 +2242,8 @@ physical buttons only, even if that sequence is emulating pointer events.
 Touch events do not generate enter/leave events.
 
 [[events-rawevent]]
+RawEvent
+^^^^^^^^
     ┌───
         RawEvent
             EVENTHEADER
@@ -2242,6 +2293,8 @@ when the device is grabbed by another client.
     ¹ since XI 2.2
 
 [[events-enterleave]]
+Enter or Leave or FocusIn or FocusOut
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ┌───
         Enter or Leave or FocusIn or FocusOut
             EVENTHEADER
@@ -2323,6 +2376,8 @@ zero if the device is a floating slave device.
         Button state before the event.
 
 [[events-propertyevent]]
+XIPropertyEvent
+^^^^^^^^^^^^^^^
     ┌───
         XIPropertyEvent
             EVENTHEADER
@@ -2343,6 +2398,8 @@ Events introduced in version 2.2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [[events-touchownershipevent]]
+TouchOwnershipEvent
+^^^^^^^^^^^^^^^^^^^
     ┌───
         TouchOwnershipEvent
             EVENTHEADER
