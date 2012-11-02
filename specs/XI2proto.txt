@@ -2209,7 +2209,8 @@ Modifier state in mods is detailed as follows:
     locked_mods
         XKB locked modifier state.
 
-    Group state in group is detailed as follows:
+Group state in group is detailed as follows:
+
     base_group
         XKB base group state.
     latched_group
