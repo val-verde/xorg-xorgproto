@@ -32,7 +32,7 @@ XI2 provides a number of enhancements over version 1.5, including:
   minimum length of 32 bytes.
 - explicit device hierarchy of master and slave devices. See Section
 <<hierarchy,The Master/Slave device hierarchy>>.
-- use of multiple independent master devices (Multi-Poiner X or MPX).
+- use of multiple independent master devices (Multi-Pointer X or MPX).
 - the ability for devices to change capabilities at runtime.
 - raw device events
 
@@ -616,7 +616,7 @@ Data types
 
     FP1616
             Fixed point decimal in 16.16 format as one INT16 and one CARD16.
-            The INT16 contains the integral part, the CARD32 the decimal fraction
+            The INT16 contains the integral part, the CARD16 the decimal fraction
             shifted by 16.
 
     FP3232
@@ -1794,9 +1794,9 @@ List the properties associated with the given device.
 
         deviceid
             The device to list the properties for.
-        num_atoms
-            Number of atoms in the reply
-        atoms
+        num_properties
+            Number of properties in the reply
+        properties
             All properties on the device.
 
 [[requests-changeproperty]]
