@@ -624,6 +624,11 @@ Data types
             The INT32 contains the integral part, the CARD32 the decimal fraction
             shifted by 32.
 
+    MODIFIERMASK
+            A MODIFIERMASK is a binary mask defined as (1 << modifier map index).
+            A SETofMODIFIERMASK is a binary OR of zero or more MODIFIERMASK or
+            GrabAnyModifier.
+
     VALUATORMASK
             A binary mask defined as (1 << valuator number).
             A SETofVALUATORMASK is a binary OR of zero or more VALUATORMASK.
@@ -1571,17 +1576,17 @@ XIPassiveGrabDevice
             num_modifiers:   INT16
             mask_len:        CARD16
             masks:           SETofEVENTMASK
-            modifiers:       CARD32 or GrabAnyModifier
+            modifiers:       LISTofSETofMODIFIERMASK
             ▶
             num_modifiers_return:    INT16
-            modifiers_return:        GRABMODIFIERINFO
+            modifiers_return:        LISTofGRABMODIFIERINFO
     └───
 
         GRABTYPE         { GrabtypeButton, GrabtypeKeycode, GrabtypeEnter,
                            GrabtypeFocusIn, GrabtypeTouchBegin¹ }
 
         GRABMODIFIERINFO {   status:    Access
-                             modifiers: CARD32 }
+                             modifiers: SETofMODIFIERMASK }
 
     ¹ since XI 2.2
 
@@ -1755,7 +1760,7 @@ XIPassiveUngrabDevice
             grab_type:       GRABTYPE
             grab_window:     Window
             num_modifiers:   INT16
-            modifiers:       MODIFIERINFO
+            modifiers:       LISTofSETofMODIFIERMASK
     └───
 
 Release an explicit passive grab on the specified input device.
