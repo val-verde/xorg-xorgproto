@@ -701,39 +701,39 @@ XIQueryDevice
                  name:                  LISTofCHAR8
                  classes:               LISTofCLASS }
 
-    CLASS { BUTTONCLASS, KEYCLASS, AXISCLASS, SCROLLCLASS, TOUCHCLASS }
+    CLASS { BUTTONCLASS, KEYCLASS, VALUATORCLASS, SCROLLCLASS, TOUCHCLASS }
 
-    BUTTONCLASS { type:                 ButtonClass
-                  length:               CARD16
-                  sourceid:             CARD16
-                  num_buttons:          CARD16
-                  state:                SETofBUTTONMASK
-                  labels:               LISTofATOM }
+    BUTTONCLASS   { type:                 ButtonClass
+                    length:               CARD16
+                    sourceid:             CARD16
+                    num_buttons:          CARD16
+                    state:                SETofBUTTONMASK
+                    labels:               LISTofATOM }
 
-    KEYCLASS    { type:                 KeyClass
-                  length:               CARD16
-                  sourceid:             CARD16
-                  num_keys:             CARD16
-                  keys:                 LISTofCARD32 }
+    KEYCLASS      { type:                 KeyClass
+                    length:               CARD16
+                    sourceid:             CARD16
+                    num_keys:             CARD16
+                    keys:                 LISTofCARD32 }
 
-    AXISCLASS   { type:                 AxisClass
-                  length:               CARD16
-                  sourceid:             CARD16
-                  axisnumber:           CARD16
-                  label:                ATOM
-                  min:                  FP3232
-                  max:                  FP3232
-                  value:                FP3232
-                  resolution:           CARD32
-                  mode:                 CARD8 }
+    VALUATORCLASS { type:                 ValuatorClass
+                    length:               CARD16
+                    sourceid:             CARD16
+                    number:               CARD16
+                    label:                ATOM
+                    min:                  FP3232
+                    max:                  FP3232
+                    value:                FP3232
+                    resolution:           CARD32
+                    mode:                 CARD8 }
 
-    SCROLLCLASS¹ {type:                 ScrollClass
-                  length:               CARD16
-                  sourceid:             CARD16
-                  axisnumber:           CARD16
-                  scroll_type:          SCROLLTYPE
-                  flags:                SETofSCROLLFLAGS
-                  increment:            FP3232 }
+    SCROLLCLASS¹  { type:                 ScrollClass
+                    length:               CARD16
+                    sourceid:             CARD16
+                    number:               CARD16
+                    scroll_type:          SCROLLTYPE
+                    flags:                SETofSCROLLFLAGS
+                    increment:            FP3232 }
 
     SCROLLTYPE { Vertical, Horizontal }
 
@@ -825,15 +825,15 @@ The following classes may occur only once: ButtonClass, KeyClass
     keys
         List of keycodes provided.
 
-    AxisClass:
+    ValuatorClass:
     type
-        Always AxisClass.
+        Always ValuatorClass.
     length
         Length in 4 byte units.
     sourceid
         The device this class originates from.
-    axisnumber
-        Axis number of this axis. The axis number is in device-native
+    number
+        Valuator number of this axis. The valuator number is in device-native
         order and potential axis mappings are ignored.
     label
         Atom specifying the axis name. An Atom of None specifies an unlabeled
@@ -855,8 +855,8 @@ client. If no min and max information is available, both must be 0.
     ScrollClass:
     type
         Always ScrollClass.
-    axisnumber
-        Axis number that is referred to. This axis number must be listed in
+    number
+        Valuator number that is referred to. This valuator number must be listed in
         the ValuatorClassInfo.
     scroll_type:
         Vertical for a vertical scrolling axis, Horizontal for a horizontal
@@ -871,7 +871,7 @@ client. If no min and max information is available, both must be 0.
         The valuator delta equivalent to one positive unit of scrolling.
 
 A ScrollClass may only exist if the device has at least one ValuatorClass
-and each axisnumber listed in any ScrollClass. Only one ScrollClass may
+and each valuator number listed in any ScrollClass. Only one ScrollClass may
 exist per ValuatorClass.
 
     TouchClass:
