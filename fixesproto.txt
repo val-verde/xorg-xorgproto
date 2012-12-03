@@ -606,13 +606,13 @@ essentially the same reason.
 CreatePointerBarrier
 
 		barrier:		    BARRIER
-		drawable:		    DRAWABLE
+		window:			    Window
 		x1, y2, x2, y2:		    INT16
 		directions:		    CARD32
 		devices:		    LISTofDEVICEID
 
 	Creates a pointer barrier along the line specified by the given
-	coordinates on the screen associated with the given drawable.  The
+	coordinates on the screen associated with the given window.  The
 	barrier has no spatial extent; it is simply a line along the left
 	or top edge of the specified pixels.  Barrier coordinates are in
 	screen space.
