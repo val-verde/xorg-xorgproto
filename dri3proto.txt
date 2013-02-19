@@ -1,0 +1,296 @@
+			  The DRI3 Extension
+			      Version 1.0
+			      2013-2-19
+      
+			    Keith Packard
+			  keithp@keithp.com
+			  Intel Corporation
+
+1. Introduction
+
+The DRI3 extension provides mechanisms to translate between direct
+rendered buffers and X pixmaps. When combined with the Swap extension,
+a complete direct rendering solution for OpenGL is provided.
+
+The direct rendered buffers are passed across the protocol via
+standard POSIX file descriptor passing mechanisms. On Linux, these
+buffers are DMA-BUF objects.
+
+1.1. Acknowledgments
+
+Eric Anholt <eric@anholt.net>
+Dave Airlie <airlied@redhat.com>
+Kristian Høgsberg <krh@bitplanet.net>
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+2. Data Types
+
+The DRI3 extension doesn't use or define any datatypes beyond the
+core X protocol.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+4. Errors
+
+No errors are defined by the DRI3 extension.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+5. Events
+
+No events are defined by the DRI3 extension.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+6. Protocol Types
+
+DRI3DRIVER { DRI3DriverDRI
+	     DRI3DriverVDPAU }
+
+	These values describe the type of driver the client will want
+	to load.  The server sends back the name of the driver to use
+	for the screen in question.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+7. Extension Initialization
+
+The name of this extension is "DRI3" (third time is the charm?).
+
+┌───
+    DRI3QueryVersion
+	client-major-version:	CARD32
+	client-minor-version:	CARD32
+      ▶
+	major-version:		CARD32
+	minor-version:		CARD32
+└───
+
+	The client sends the highest supported version to the server
+	and the server sends the highest version it supports, but no
+	higher than the requested version. Major versions changes can
+	introduce incompatibilities in existing functionality, minor
+	version changes introduce only backward compatible changes.
+	It is the clients responsibility to ensure that the server
+	supports a version which is compatible with its expectations.
+
+	Backwards compatible changes included addition of new
+	requests.
+
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+8. Extension Requests
+
+┌───
+    DRI3Open
+	drawable: DRAWABLE
+	driverType: DRI3DRIVER
+      ▶
+	driver: STRING
+	device: FD
+└───
+	Errors: Drawable, Value, Match
+
+	This requests that the X server open the direct rendering
+	device associated with drawable and driverType.
+
+	The direct rendering library used to implement the specified
+	driverType is returned in the driver value. The file
+	descriptor for the device is returned in FD.
+
+┌───
+    DRI3PixmapFromBuffer
+	pixmap: PIXMAP
+	drawable: DRAWABLE
+	width, height, stride: CARD16
+	depth, bpp: CARD8
+	buffer: FD
+└───
+	Errors: Alloc, Drawable, IDChoice, Value, Match
+
+	Creates a pixmap for the direct rendering object associated
+	with buffer. width, height and stride specify the geometry (in
+	pixels) of the underlying buffer. The pixels within the buffer
+	may not be arranged in a simple linear fashion, but the total
+	byte size of the buffer must be height * stride * bpp /
+	8. Precisely how any additional information about the buffer
+	is shared is outside the scope of this extension.
+
+	If buffer cannot be used with the screen associated with
+	drawable, a Match error is returned.
+
+	If depth or bpp are not supported by the screen, a Value error
+	is returned.
+
+┌───
+    DRI3BufferFromPixmap
+	pixmap: PIXMAP
+      ▶
+	depth: CARD8
+	width, height, stride: CARD16
+	depth, bpp: CARD8
+	buffer: FD
+└───
+	Errors: Pixmap, Match
+
+	Pass back a direct rendering object associated with
+	pixmap. Future changes to pixmap will be visible in that
+	direct rendered object.
+
+	The pixel format and geometry of the buffer are returned along
+	with a file descriptor referencing the underlying direct
+	rendering object.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+9. Extension Events
+
+The DRI3 extension defines no events
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
+
+10. Extension Versioning
+
+The DRI3 extension is adapted from the DRI2 extension.
+
+	1.0: First published version
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
+
+
+11. Relationship with other extensions
+
+As an extension designed to support other extensions, there is
+naturally some interactions with other extensions.
+
+11.1 GLX
+
+GLX has no direct relation with DRI3, but a direct rendering OpenGL
+application will presumably use both, and target 
+
+11.2 Swap
+
+The Swap extension provides a way to synchronize the display of pixmap
+contents to the screen. When used in conjunction with DRI3, they
+provide a complete direct rendering solution for OpenGL or other APIs.
+
+11.3 DRI2
+
+DRI3 provides similar functionality to the DRI2Connect and
+DRI2GetBuffersWithFormat requests, however DRI3 uses file descriptors
+to refer to the direct rendering device and buffers.
+
+Swap and DRI3 are designed in conjunction to replace DRI2
+
+11.2 XvMC / Xv
+
+It might be nice to be able to reference YUV formatted direct rendered
+objects from the X server.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
+
+Appendix A. Protocol Encoding
+
+Syntactic Conventions
+
+This document uses the same syntactic conventions as the core X
+protocol encoding document.
+
+
+A.1 Common Types
+
+┌───
+    DRI3DRIVER
+	0x0	DRI3DriverDRI
+	0x1	DRI3DriverVDPAU
+└───
+
+	Note that these match the DRI2 values.
+
+A.2 Protocol Requests
+
+┌───
+    DRI3QueryVersion
+	1	CARD8			major opcode
+	1	0			DRI3 opcode
+	2	3			length
+	4	CARD32			major version
+	4	CARD32			minor version
+      ▶
+	1	1			Reply
+        1				unused
+	2	CARD16			sequence number
+	4	0			reply length
+	4	CARD32			major version
+        4	CARD32			minor version
+	16				unused	
+└───
+
+
+┌───
+    DRI3Open
+	1	CARD8			major opcode
+	1	1			DRI3 opcode
+	2	3			length
+	4	DRAWABLE		drawable
+	4	CARD32			driver type
+      ▶	
+	1	1			Reply
+        1	CARD8			n
+	2	CARD16			sequence number
+	4	(n + p) / 4		reply length
+	n	CARD8			driver name
+	p				unused, p=pad(n)
+
+	0	FD			device
+└───
+
+┌───
+    DRI3PixmapFromBuffer
+	1	CARD8			major opcode
+	1	2			DRI3 opcode
+	2	5			length
+	4	Pixmap			pixmap
+	4	Drawable		drawable
+	2	CARD16			width
+	2	CARD16			height
+	2	CARD16			stride
+	1	CARD8			depth
+	1	CARD8			bpp
+
+	0	FD			buffer
+└───
+
+┌───
+    DRI3BufferFromPixmap
+	1	CARD8			major opcode
+	1	3			DRI3 opcode
+	2				length
+	4	Pixmap			pixmap
+      ▶	
+	1	1			Reply
+        1				unused
+	2	CARD16			sequence number
+	4	0			reply length
+	2	CARD16			width
+	2	CARD16			height
+	2	CARD16			stride
+	1	CARD8			depth
+	1	CARD8			bpp
+	16				unused
+
+	0	FD			buffer
+└───
+
+
+A.3 Protocol Events
+
+The DRI3 extension defines no events
+
+A.4 Protocol Errors
+
+The Swap extension defines no errors.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
