@@ -39,6 +39,16 @@ THE USE OR PERFORMANCE OF THIS SOFTWARE.
 #define	Xkb2CharsToInt(h,l)	((short)(((h)<<8)|(l)))
 #endif
 
+/*
+ * The Xkb structs are full of implicit padding to properly align members.
+ * We can't clean that up without breaking ABI, so tell clang not to bother
+ * complaining about it.
+ */
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wpadded"
+#endif
+
 	/*
 	 * Common data structures and access macros
 	 */
@@ -609,5 +619,9 @@ typedef struct _XkbDeviceChanges {
 	unsigned short		num_btns;
 	XkbDeviceLedChangesRec 	leds;
 } XkbDeviceChangesRec,*XkbDeviceChangesPtr;
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
 
 #endif /* _XKBSTR_H_ */
