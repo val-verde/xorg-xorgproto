@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  * Authors:
  *   Kevin E. Martin <martin@valinux.com>
  *   Jens Owen <jens@tungstengraphics.com>
- *   Rickard E. (Rik) Fiath <faith@valinux.com>
+ *   Rickard E. (Rik) Faith <faith@valinux.com>
  *
  */
 
