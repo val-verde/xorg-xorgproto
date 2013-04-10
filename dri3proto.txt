@@ -26,8 +26,8 @@ Kristian Høgsberg <krh@bitplanet.net>
 
 2. Data Types
 
-The DRI3 extension doesn't use or define any datatypes beyond the
-core X protocol.
+The DRI3 extension uses the RandR extension Provider to select among
+multiple GPUs on a single screen.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
@@ -87,6 +87,7 @@ The name of this extension is "DRI3" (third time is the charm?).
     DRI3Open
 	drawable: DRAWABLE
 	driverType: DRI3DRIVER
+	provider: PROVIDER
       ▶
 	driver: STRING
 	device: FD
@@ -94,7 +95,8 @@ The name of this extension is "DRI3" (third time is the charm?).
 	Errors: Drawable, Value, Match
 
 	This requests that the X server open the direct rendering
-	device associated with drawable and driverType.
+	device associated with drawable, driverType and RandR
+	provider. The provider must support SourceOutput or SourceOffload.
 
 	The direct rendering library used to implement the specified
 	driverType is returned in the driver value. The file
@@ -233,8 +235,9 @@ A.2 Protocol Requests
     DRI3Open
 	1	CARD8			major opcode
 	1	1			DRI3 opcode
-	2	3			length
+	2	4			length
 	4	DRAWABLE		drawable
+	4	PROVIDER		provider
 	4	CARD32			driver type
       ▶	
 	1	1			Reply
