@@ -85,6 +85,7 @@ typedef struct {
     CARD8   reqType;
     CARD8   dri3ReqType;
     CARD16  length B16;
+    CARD32  eid B32;
     CARD32  window B32;
     CARD32  eventMask B32;
 } xDRI3SelectInputReq;
@@ -106,6 +107,7 @@ typedef struct {
     CARD32 length;
     CARD16 evtype B16;
     CARD16 pad2;
+    CARD32 eid B32;
     CARD32 window B32;
     INT16  x B16;
     INT16  y B16;
@@ -116,6 +118,6 @@ typedef struct {
     CARD16 pixmap_width B16;
     CARD16 pixmap_height B16;
 } xDRI3ConfigureNotify;
-#define sz_xDRI3ConfigureNotify 32
+#define sz_xDRI3ConfigureNotify 36
 
 #endif
