@@ -28,12 +28,14 @@
 #define DRI3_MINOR			0
 
 #define DRI3NumberErrors		0
-#define DRI3NumberEvents		1
-#define DRI3NumberRequests		3
+#define DRI3NumberEvents		0
 
 #define X_DRI3QueryVersion		0
 #define X_DRI3Connect			1
 #define X_DRI3SelectInput		2
+#define X_DRI3GetSyncShmFD              3
+
+#define DRI3NumberRequests		4
 
 typedef struct {
     CARD8   reqType;
@@ -92,6 +94,30 @@ typedef struct {
 #define sz_xDRI3SelectInputReq   12
 
 #define DRI3AllEvents   (1 << DRI3ConfigureNotify)
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   dri3ReqType;
+    CARD16  length B16;
+    CARD32  syncFence B32;
+    CARD32  window B32;
+} xDRI3GetSyncFenceFd;
+
+#define sz_xDRI3GetSyncFenceFd  12
+
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    CARD8   nfd;    /* Number of file descriptors returned (1) */
+    CARD16  sequenceNumber B16;
+    CARD32  length B32;
+    CARD32  pad2 B32;
+    CARD32  pad3 B32;
+    CARD32  pad4 B32;
+    CARD32  pad5 B32;
+    CARD32  pad6 B32;
+    CARD32  pad7 B32;
+} xDRI3GetSyncFenceFdReply;
+#define sz_xDRI3GetSyncFenceFdReply	32
 
 /*
  * Events

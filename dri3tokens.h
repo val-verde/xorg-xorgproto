@@ -27,4 +27,5 @@
 #define DRI3DriverVDPAU			1
 
 #define DRI3ConfigureNotify             0
+
 #endif
