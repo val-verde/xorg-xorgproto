@@ -31,7 +31,7 @@
 #define DRI3NumberEvents		0
 
 #define X_DRI3QueryVersion		0
-#define X_DRI3Connect			1
+#define X_DRI3Open			1
 #define X_DRI3SelectInput		2
 #define X_DRI3GetSyncShmFD              3
 
@@ -64,14 +64,15 @@ typedef struct {
     CARD8   reqType;
     CARD8   dri3ReqType;
     CARD16  length B16;
-    CARD32  window B32;
+    CARD32  drawable B32;
     CARD32  driverType B32;
-} xDRI3ConnectReq;
-#define sz_xDRI3ConnectReq	12
+    CARD32  provider B32;
+} xDRI3OpenReq;
+#define sz_xDRI3OpenReq	16
 
 typedef struct {
     BYTE    type;   /* X_Reply */
-    BYTE    pad1;
+    CARD8   nfd;
     CARD16  sequenceNumber B16;
     CARD32  length B32;
     CARD32  driverNameLength B32;
@@ -80,8 +81,8 @@ typedef struct {
     CARD32  pad4 B32;
     CARD32  pad5 B32;
     CARD32  pad6 B32;
-} xDRI3ConnectReply;
-#define sz_xDRI3ConnectReply	32
+} xDRI3OpenReply;
+#define sz_xDRI3OpenReply	32
 
 typedef struct {
     CARD8   reqType;

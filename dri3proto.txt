@@ -89,6 +89,7 @@ The name of this extension is "DRI3" (third time is the charm?).
 	driverType: DRI3DRIVER
 	provider: PROVIDER
       ▶
+	nfd: CARD8
 	driver: STRING
 	device: FD
 └───
@@ -144,6 +145,21 @@ The name of this extension is "DRI3" (third time is the charm?).
 	The pixel format and geometry of the buffer are returned along
 	with a file descriptor referencing the underlying direct
 	rendering object.
+
+┌───
+    DRI3GetSyncFenceFd
+	fence: FENCE
+	window: WINDOW
+      ▶
+	nfd: CARD8
+	fd: FD
+└───
+	Errors: Fence, Match
+
+	Pass back a shared memory segment associated with a sync fence
+	object. Pass this fd to the XShmFence library to map and
+	manipulate the fence.
+
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
