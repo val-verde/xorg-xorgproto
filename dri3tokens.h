@@ -28,4 +28,8 @@
 
 #define DRI3ConfigureNotify             0
 
+#define DRI3PixmapScanout               0x00000001
+
+#define DRI3PixmapDriverMask            0xffff0000
+
 #endif
