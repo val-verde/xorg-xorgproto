@@ -119,7 +119,7 @@ typedef struct {
     CARD16  stride B16;
     CARD8   depth;
     CARD8   bpp;
-    CARD32  pad16;
+    CARD32  size;
     CARD32  pad20;
     CARD32  pad24;
     CARD32  pad28;
