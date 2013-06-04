@@ -16,18 +16,32 @@ The direct rendered buffers are passed across the protocol via
 standard POSIX file descriptor passing mechanisms. On Linux, these
 buffers are DMA-BUF objects.
 
+DRI3 also includes a mechanism to translate between Linux Futexes
+and X Sync extension Fences. This provides a synchronization mechanism
+which can be used to serialize access to shared render buffers.
+
 1.1. Acknowledgments
 
 Eric Anholt <eric@anholt.net>
 Dave Airlie <airlied@redhat.com>
 Kristian Høgsberg <krh@bitplanet.net>
+James Jones <janomes@nvidia.com>
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
 2. Data Types
 
-The DRI3 extension uses the RandR extension Provider to select among
-multiple GPUs on a single screen.
+DRI3EVENTID { XID }
+
+	Defines a unique event delivery target for DRI3
+	events. Multiple event IDs can be allocated to provide
+	multiple distinct event delivery contexts.
+
+DRI3EVENTMASK { DRI3ConfigureNotifyMask }
+
+The DRI3 extension also uses the RandR extension Provider data type to
+select among multiple GPUs on a single screen and the Sync extension
+fence object to provide graphics object synchronization.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
@@ -39,7 +53,9 @@ No errors are defined by the DRI3 extension.
 
 5. Events
 
-No events are defined by the DRI3 extension.
+DRI3 adds a ConfigureNotify event to inform clients about window
+configuration changes which can affect the allocation of
+window-related direct rendered buffers.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
@@ -56,7 +72,7 @@ DRI3DRIVER { DRI3DriverDRI
 
 7. Extension Initialization
 
-The name of this extension is "DRI3" (third time is the charm?).
+The name of this extension is "DRI3"
 
 ┌───
     DRI3QueryVersion
@@ -100,13 +116,17 @@ The name of this extension is "DRI3" (third time is the charm?).
 	provider. The provider must support SourceOutput or SourceOffload.
 
 	The direct rendering library used to implement the specified
-	driverType is returned in the driver value. The file
-	descriptor for the device is returned in FD.
+	'driverType' is returned in 'driver'. The file
+	descriptor for the device is returned in 'device'. 'nfd' will
+	be set to one (this is strictly a convenience for XCB which
+	otherwise would need request-specific information about how
+	many file descriptors were associated with this reply).
 
 ┌───
     DRI3PixmapFromBuffer
 	pixmap: PIXMAP
 	drawable: DRAWABLE
+	size: CARD32
 	width, height, stride: CARD16
 	depth, bpp: CARD8
 	buffer: FD
@@ -114,12 +134,19 @@ The name of this extension is "DRI3" (third time is the charm?).
 	Errors: Alloc, Drawable, IDChoice, Value, Match
 
 	Creates a pixmap for the direct rendering object associated
-	with buffer. width, height and stride specify the geometry (in
-	pixels) of the underlying buffer. The pixels within the buffer
-	may not be arranged in a simple linear fashion, but the total
-	byte size of the buffer must be height * stride * bpp /
-	8. Precisely how any additional information about the buffer
-	is shared is outside the scope of this extension.
+	with 'buffer'. Changes to pixmap will be visible in that
+	direct rendered object and changes to the direct rendered
+	object will be visible in the pixmap.
+
+	'size' specifies the total size of the buffer bytes. 'width',
+	'height' describe the geometry (in pixels) of the underlying
+	buffer. 'stride' specifies the number of bytes per scanline in
+	the buffer. The pixels within the buffer may not be arranged
+	in a simple linear fashion, but 'size' will be at least
+	'height' * 'stride'.
+
+	Precisely how any additional information about the buffer is
+	shared is outside the scope of this extension.
 
 	If buffer cannot be used with the screen associated with
 	drawable, a Match error is returned.
@@ -132,6 +159,7 @@ The name of this extension is "DRI3" (third time is the charm?).
 	pixmap: PIXMAP
       ▶
 	depth: CARD8
+	size: CARD32
 	width, height, stride: CARD16
 	depth, bpp: CARD8
 	buffer: FD
@@ -139,12 +167,45 @@ The name of this extension is "DRI3" (third time is the charm?).
 	Errors: Pixmap, Match
 
 	Pass back a direct rendering object associated with
-	pixmap. Future changes to pixmap will be visible in that
-	direct rendered object.
+	pixmap. Changes to pixmap will be visible in that
+	direct rendered object and changes to the direct rendered
+	object will be visible in the pixmap.
 
-	The pixel format and geometry of the buffer are returned along
-	with a file descriptor referencing the underlying direct
-	rendering object.
+	'size' specifies the total size of the buffer bytes. 'width',
+	'height' describe the geometry (in pixels) of the underlying
+	buffer. 'stride' specifies the number of bytes per scanline in
+	the buffer. The pixels within the buffer may not be arranged
+	in a simple linear fashion, but 'size' will be at least
+	'height' * 'stride'.
+
+	Precisely how any additional information about the buffer is
+	shared is outside the scope of this extension.
+
+	If buffer cannot be used with the screen associated with
+	drawable, a Match error is returned.
+
+┌───
+    DRI3SelectInput
+	eventContext: DRI3EVENTID
+	window: WINDOW
+	eventMask: SETofDRI3EVENT
+└───
+	Errors: Window, Value, Match, IDchoice
+
+	Selects the set of DRI3 events to be delivered for the
+	specified window and event context. DRI3SelectInput can
+	create, modifiy or delete event contexts. An event context is
+	associated with a specific window; using an existing event
+	context with a different window generates a Match error.
+
+	If eventContext specifies an existing event context, then if
+	eventMask is empty, DRI3SelectInput deletes the specified
+	context, otherwise the specified event context is changed to
+	select a different set of events.
+
+	If eventContext is an unused XID, then if eventMask is empty
+	no operation is performed. Otherwise, a new event context is
+	created selecting the specified events.
 
 ┌───
     DRI3GetSyncFenceFd
@@ -156,16 +217,39 @@ The name of this extension is "DRI3" (third time is the charm?).
 └───
 	Errors: Fence, Match
 
-	Pass back a shared memory segment associated with a sync fence
-	object. Pass this fd to the XShmFence library to map and
-	manipulate the fence.
+	Pass back a device-specific file descriptor associated with an
+	X Sync extension fence object. Details about the mechanism
+	used with this file are outside the scope of the DRI3 extension.
 
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
 9. Extension Events
 
-The DRI3 extension defines no events
+DRI3ConfigureNotify is sent if DRI3SelectInput has requested it.
+DRI3ConfigureNotify events are XGE events and so do not have a unique
+event ID.
+
+┌───
+    DRI3ConfigureNotify
+	type: CARD8			XGE event type (35)
+	extension: CARD8		DRI3 extension request number
+	length: CARD16			2
+	evtype: CARD16			DRI3_ConfigureNotify
+	eventID: DRI3EVENTID
+	window: WINDOW
+	x: INT16
+	y: INT16
+	width: CARD16
+	height: CARD16
+	off_x: INT16
+	off_y: INT16
+	pixmap_width: CARD16
+	pixmap_height: CARD16
+	pixmap_flags: CARD32
+└───
+
+	'x' and 'y' are the parent-relative location of 'window'. 
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
 
