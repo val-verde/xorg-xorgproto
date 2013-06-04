@@ -158,7 +158,7 @@ The name of this extension is "DRI3"
     DRI3BufferFromPixmap
 	pixmap: PIXMAP
       ▶
-	depth: CARD8
+	nfd: CARD8
 	size: CARD32
 	width, height, stride: CARD16
 	depth, bpp: CARD8
@@ -208,18 +208,19 @@ The name of this extension is "DRI3"
 	created selecting the specified events.
 
 ┌───
-    DRI3GetSyncFenceFd
+    DRI3FenceFromFD
+	drawable: DRAWABLE
 	fence: FENCE
-	window: WINDOW
-      ▶
-	nfd: CARD8
+	initially-triggered: BOOL
 	fd: FD
 └───
-	Errors: Fence, Match
+	Errors: IDchoice, Drawable
 
-	Pass back a device-specific file descriptor associated with an
-	X Sync extension fence object. Details about the mechanism
-	used with this file are outside the scope of the DRI3 extension.
+	Creates a Sync extension Fence that provides the regular Sync
+	extension semantics along with a file descriptor that provides
+	a device-specific mechanism to manipulate the fence directly.
+	Details about the mechanism used with this file descriptor are
+	outside the scope of the DRI3 extension.
 
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
@@ -337,13 +338,15 @@ A.2 Protocol Requests
 	1	1			DRI3 opcode
 	2	4			length
 	4	DRAWABLE		drawable
-	4	PROVIDER		provider
 	4	CARD32			driver type
+	4	PROVIDER		provider
       ▶	
 	1	1			Reply
-        1	CARD8			n
+        1	1			nfd
 	2	CARD16			sequence number
 	4	(n + p) / 4		reply length
+	4	n			driver name length (n)
+	20				unused
 	n	CARD8			driver name
 	p				unused, p=pad(n)
 
@@ -354,9 +357,10 @@ A.2 Protocol Requests
     DRI3PixmapFromBuffer
 	1	CARD8			major opcode
 	1	2			DRI3 opcode
-	2	5			length
+	2	6			length
 	4	Pixmap			pixmap
 	4	Drawable		drawable
+	4	CARD32			size
 	2	CARD16			width
 	2	CARD16			height
 	2	CARD16			stride
@@ -370,27 +374,69 @@ A.2 Protocol Requests
     DRI3BufferFromPixmap
 	1	CARD8			major opcode
 	1	3			DRI3 opcode
-	2				length
+	2	2			length
 	4	Pixmap			pixmap
       ▶	
 	1	1			Reply
-        1				unused
+        1	1			nfd
 	2	CARD16			sequence number
 	4	0			reply length
+	4	CARD32			size
 	2	CARD16			width
 	2	CARD16			height
 	2	CARD16			stride
 	1	CARD8			depth
 	1	CARD8			bpp
-	16				unused
+	12				unused
 
 	0	FD			buffer
 └───
 
+┌───
+    DRI3SelectInput
+	1	CARD8			major opcode
+	1	4			DRI3 opcode
+	2	3			length
+	4	Window			window
+	4	CARD32			eid
+	4	CARD32			event mask
+└───
+
+┌───
+    DRI3FenceFromFD
+	1	CARD8			major opcode
+	1	5			DRI3 opcode
+	2	4			length
+	4	Drawable		drawable
+	4	Fence			fence
+	1	BOOL			initially triggered
+	3				unused
+
+	0	FD			fence fd
+└───
 
 A.3 Protocol Events
 
-The DRI3 extension defines no events
+┌───
+    RRScreenChangeNotify
+	1	35			XGE
+	1	CARD8			DRI3 extension opcode
+	2	CARD16			sequence number
+	4	2			length
+	2	0			DRI3ConfigureNotify
+	2				unused
+	4	CARD32			event id
+	4	Window			window
+	2	INT16			x
+	2	INT16			y
+	2	CARD16			width
+	2	CARD16			height
+	2	INT16			off x
+	2	INT16			off y
+	2	CARD16			pixmap width
+	2	CARD16			pixmap height
+	4	CARD32			pixmap flags
+└───
 
 A.4 Protocol Errors
 
