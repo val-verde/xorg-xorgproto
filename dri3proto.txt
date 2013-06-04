@@ -9,7 +9,7 @@
 1. Introduction
 
 The DRI3 extension provides mechanisms to translate between direct
-rendered buffers and X pixmaps. When combined with the Swap extension,
+rendered buffers and X pixmaps. When combined with the Present extension,
 a complete direct rendering solution for OpenGL is provided.
 
 The direct rendered buffers are passed across the protocol via
@@ -273,9 +273,9 @@ naturally some interactions with other extensions.
 GLX has no direct relation with DRI3, but a direct rendering OpenGL
 application will presumably use both, and target 
 
-11.2 Swap
+11.2 Present
 
-The Swap extension provides a way to synchronize the display of pixmap
+The Present extension provides a way to synchronize the display of pixmap
 contents to the screen. When used in conjunction with DRI3, they
 provide a complete direct rendering solution for OpenGL or other APIs.
 
@@ -285,7 +285,7 @@ DRI3 provides similar functionality to the DRI2Connect and
 DRI2GetBuffersWithFormat requests, however DRI3 uses file descriptors
 to refer to the direct rendering device and buffers.
 
-Swap and DRI3 are designed in conjunction to replace DRI2
+Present and DRI3 are designed in conjunction to replace DRI2
 
 11.2 XvMC / Xv
 
@@ -440,6 +440,6 @@ A.3 Protocol Events
 
 A.4 Protocol Errors
 
-The Swap extension defines no errors.
+The DRI3 extension defines no errors.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
