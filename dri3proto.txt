@@ -270,8 +270,9 @@ naturally some interactions with other extensions.
 
 11.1 GLX
 
-GLX has no direct relation with DRI3, but a direct rendering OpenGL
-application will presumably use both, and target 
+GLX is both an application interface and an X extension. OpenGL
+applications using the GLX API will use the GLX extension, DRI3 and
+Present when doing direct rendering.
 
 11.2 Present
 
