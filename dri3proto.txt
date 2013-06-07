@@ -26,6 +26,7 @@ Eric Anholt <eric@anholt.net>
 Dave Airlie <airlied@redhat.com>
 Kristian Høgsberg <krh@bitplanet.net>
 James Jones <janomes@nvidia.com>
+Arthur Huillet <arthur.huillet@free.fr>
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
@@ -141,9 +142,9 @@ The name of this extension is "DRI3"
 	'size' specifies the total size of the buffer bytes. 'width',
 	'height' describe the geometry (in pixels) of the underlying
 	buffer. 'stride' specifies the number of bytes per scanline in
-	the buffer. The pixels within the buffer may not be arranged
-	in a simple linear fashion, but 'size' will be at least
-	'height' * 'stride'.
+	the buffer. The pixels within the buffer are not required to
+	be arranged in a simple linear fashion, but 'size' will be at
+	least 'height' * 'stride'.
 
 	Precisely how any additional information about the buffer is
 	shared is outside the scope of this extension.
@@ -174,9 +175,9 @@ The name of this extension is "DRI3"
 	'size' specifies the total size of the buffer bytes. 'width',
 	'height' describe the geometry (in pixels) of the underlying
 	buffer. 'stride' specifies the number of bytes per scanline in
-	the buffer. The pixels within the buffer may not be arranged
-	in a simple linear fashion, but 'size' will be at least
-	'height' * 'stride'.
+	the buffer. The pixels within the buffer are not required to
+	be arranged in a simple linear fashion, but 'size' will be at
+	least 'height' * 'stride'.
 
 	Precisely how any additional information about the buffer is
 	shared is outside the scope of this extension.
@@ -419,7 +420,7 @@ A.2 Protocol Requests
 A.3 Protocol Events
 
 ┌───
-    RRScreenChangeNotify
+    DRI3ConfigureNotify
 	1	35			XGE
 	1	CARD8			DRI3 extension opcode
 	2	CARD16			sequence number
