@@ -84,8 +84,8 @@ typedef struct {
   XvEncodingID encoding B32;
   CARD16 name_size B16;
   CARD16 width B16, height B16;
-  xvRational rate;
   CARD16 pad B16;
+  xvRational rate;
 } xvEncodingInfo;
 #define sz_xvEncodingInfo (12 + sz_xvRational)
 
