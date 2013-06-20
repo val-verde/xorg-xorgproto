@@ -23,9 +23,6 @@
 #ifndef _DRI3_TOKENS_H_
 #define _DRI3_TOKENS_H_
 
-#define DRI3DriverDRI			0
-#define DRI3DriverVDPAU			1
-
 #define DRI3ConfigureNotify             0
 
 #define DRI3PixmapScanout               0x00000001

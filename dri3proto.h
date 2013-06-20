@@ -67,22 +67,21 @@ typedef struct {
     CARD8   dri3ReqType;
     CARD16  length B16;
     CARD32  drawable B32;
-    CARD32  driverType B32;
     CARD32  provider B32;
 } xDRI3OpenReq;
-#define sz_xDRI3OpenReq	16
+#define sz_xDRI3OpenReq	12
 
 typedef struct {
     BYTE    type;   /* X_Reply */
     CARD8   nfd;
     CARD16  sequenceNumber B16;
     CARD32  length B32;
-    CARD32  driverNameLength B32;
     CARD32  pad2 B32;
     CARD32  pad3 B32;
     CARD32  pad4 B32;
     CARD32  pad5 B32;
     CARD32  pad6 B32;
+    CARD32  pad7 B32;
 } xDRI3OpenReply;
 #define sz_xDRI3OpenReply	32
 

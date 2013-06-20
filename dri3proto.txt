@@ -103,25 +103,22 @@ The name of this extension is "DRI3"
 ┌───
     DRI3Open
 	drawable: DRAWABLE
-	driverType: DRI3DRIVER
 	provider: PROVIDER
       ▶
 	nfd: CARD8
-	driver: STRING
 	device: FD
 └───
 	Errors: Drawable, Value, Match
 
 	This requests that the X server open the direct rendering
-	device associated with drawable, driverType and RandR
-	provider. The provider must support SourceOutput or SourceOffload.
+	device associated with drawable and RandR provider. The
+	provider must support SourceOutput or SourceOffload.
 
-	The direct rendering library used to implement the specified
-	'driverType' is returned in 'driver'. The file
-	descriptor for the device is returned in 'device'. 'nfd' will
-	be set to one (this is strictly a convenience for XCB which
-	otherwise would need request-specific information about how
-	many file descriptors were associated with this reply).
+	The file descriptor for the device is returned in
+	'device'. 'nfd' will be set to one (this is strictly a
+	convenience for XCB which otherwise would need
+	request-specific information about how many file descriptors
+	were associated with this reply).
 
 ┌───
     DRI3PixmapFromBuffer
