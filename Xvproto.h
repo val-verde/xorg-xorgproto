@@ -459,7 +459,7 @@ typedef struct _QueryEncodingsReply {
   CARD16 sequenceNumber B16;
   CARD32 length B32;
   CARD16 num_encodings B16;
-  CARD32 padl3 B32;
+  CARD16 padl3 B16;
   CARD32 padl4 B32;
   CARD32 padl5 B32;
   CARD32 padl6 B32;
