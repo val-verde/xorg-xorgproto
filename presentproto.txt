@@ -1,0 +1,351 @@
+			The Present Extension
+			     Version 1.0
+			       2013-6-6
+      
+			    Keith Packard
+			  keithp@keithp.com
+			  Intel Corporation
+
+1. Introduction
+
+The Present extension provides a way for applications to update their
+window contents from a pixmap in a well defined fashion, synchronizing
+with the display refresh and potentially using a more efficient
+mechanism than copying the contents of the source pixmap.
+
+1.1. Acknowledgments
+
+Eric Anholt <eric@anholt.net>
+Owen Taylor <otaylor@redhat.com>
+James Jones <janomes@nvidia.com>
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+2. Data Types
+
+PRESENTEVENTID { XID }
+
+	Defines a unique event delivery target for Present
+	events. Multiple event IDs can be allocated to provide
+	multiple distinct event delivery contexts.
+
+PRESENTEVENTMASK { PresentConfigureNotifyMask,
+		   PresentCompleteNotifyMask,
+		   PresentSubredirectNotifyMask }
+
+The Present extension also uses the Sync extension Fence data type to
+provide synchronization for pixmaps.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+3. Errors
+
+EventID
+	A value for an EventID argument does not name a defined EventID
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+5. Events
+
+ConfigureNotify events inform clients about window configuration
+changes which can affect the allocation of window-related buffers.
+
+CompleteNotify events inform clients about the completion of a pending
+PresentRegion request.
+
+RedirectNotify events inform clients about other clients PresentRegion
+requests.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+6. Extension Initialization
+
+The name of this extension is "Present"
+
+┌───
+    PresentQueryVersion
+	client-major-version:	CARD32
+	client-minor-version:	CARD32
+      ▶
+	major-version:		CARD32
+	minor-version:		CARD32
+└───
+
+	The client sends the highest supported version to the server
+	and the server sends the highest version it supports, but no
+	higher than the requested version. Major versions changes can
+	introduce incompatibilities in existing functionality, minor
+	version changes introduce only backward compatible changes.
+	It is the clients responsibility to ensure that the server
+	supports a version which is compatible with its expectations.
+
+	Backwards compatible changes included addition of new
+	requests.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+7. Extension Requests
+
+┌───
+    PresentRegion
+	window: WINDOW
+	pixmap: PIXMAP
+	valid-area: REGION or None
+	update-area: REGION or None
+	x-off, y-off: INT16
+	target-msc: CARD64
+	divisor: CARD64
+	remainder: CARD64
+	idle-fence: FENCE
+└───
+	Errors: Drawable, Pixmap, Match
+
+	Provides new content for the specified window, to be made
+	visible at the specified time (defined by 'target-msc', 'divisor'
+	and 'remainder').
+
+	'update-area' defines the subset of the window to be updated,
+	or None if the whole window is to be updated.
+
+	'valid-area' defines the portion of 'pixmap' which contains
+	valid window contents, or None if the pixmap contains valid
+	contents for the whole window.
+
+	PresentRegion may use any region of 'pixmap' which contains
+	'update-area' and which is contained by 'valid-area'. In other
+	words, areas inside 'update-area' will be presented from
+	'pixmap', areas outside 'valid-area' will not be presented
+	from 'pixmap' and areas inside 'valid-area' but outside
+	'update-area' may or may not be presented at the discretion of
+	the X server.
+
+	'x-off' and 'y-off' define the location in the window where
+	the 0,0 location of the pixmap will be presented. valid-area
+	and update-area are relative to the pixmap.
+
+	'idle-fence' is triggered when 'pixmap' is no longer in
+	use. This may be at any time following the PresentRegion
+	request, the contents may be immediately copied to another
+	buffer, copied just in time for the vblank interrupt or the
+	pixmap may be used directly for display, in which case it will
+	be busy until some future PresentRegion operation.
+
+	If 'window' is destroyed before the presentation occurs, then
+	the presentation action will not be completed.
+
+	PresentRegion holds a reference to 'pixmap' until the
+	presentation occurs, so 'pixmap' may be immediately freed
+	after the request executes, even if that is before the
+	presentation occurs.
+
+	If 'idle-fence' is destroyed before the presentation occurs,
+	then idle-fence will not be signaled but the presentation will
+	occur normally.
+
+┌───
+    PresentSelectInput
+	event-id: PRESENTEVENTID
+	window: WINDOW
+	eventMask: SETofPRESENTEVENT
+└───
+	Errors: Window, Value, Match, IDchoice, Access
+
+	Selects the set of Present events to be delivered for the
+	specified window and event context. PresentSelectInput can
+	create, modifiy or delete event contexts. An event context is
+	associated with a specific window; using an existing event
+	context with a different window generates a Match error.
+
+	If eventContext specifies an existing event context, then if
+	eventMask is empty, PresentSelectInput deletes the specified
+	context, otherwise the specified event context is changed to
+	select a different set of events.
+
+	If eventContext is an unused XID, then if eventMask is empty
+	no operation is performed. Otherwise, a new event context is
+	created selecting the specified events.
+
+	Specifying PresentSubredirectNotify Mask causes PresentRegion
+	requests on any child of 'window' from other clients to
+	generate PresentRedirectNotify events to 'window' instead of
+	actually performing the operation. However, only one client at
+	a time can select for PresentRedirect on a window. An attempt
+	to violate this restriction results in an Access error.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
+
+8. Extension Events
+
+┌───
+    PresentConfigureNotify
+	type: CARD8			XGE event type (35)
+	extension: CARD8		Present extension request number
+	length: CARD16			2
+	evtype: CARD16			Present_ConfigureNotify
+	eventID: PRESENTEVENTID
+	window: WINDOW
+	x: INT16
+	y: INT16
+	width: CARD16
+	height: CARD16
+	off_x: INT16
+	off_y: INT16
+	pixmap_width: CARD16
+	pixmap_height: CARD16
+	pixmap_flags: CARD32
+└───
+
+	PresentConfigureNotify events are sent when the window
+	configuration changes if PresentSelectInput has requested
+	it. PresentConfigureNotify events are XGE events and so do not
+	have a unique event type.
+
+	'x' and 'y' are the parent-relative location of 'window'. 
+
+┌───
+    PresentCompleteNotify
+	type: CARD8			XGE event type (35)
+	extension: CARD8		Present extension request number
+	length: CARD16			2
+	evtype: CARD16			Present_CompleteNotify
+	eventID: PRESENTEVENTID
+	window: WINDOW
+	ust: CARD64
+	msc: CARD64
+	sbc: CARD64
+└───
+
+	Notify events are delivered when a PresentRegion operation has
+	completed and the specified contents are being displayed. sbc,
+	msc and ust indicate the swap count, frame count and system
+	time of the related PresentRegion request.
+
+┌───
+    PresentRedirectNotify
+	type: CARD8			XGE event type (35)
+	extension: CARD8		Present extension request number
+	length: CARD16			2
+	evtype: CARD16			Present_RedirectNotify
+	eventID: PRESENTEVENTID
+	event-window: WINDOW
+	window: WINDOW
+	pixmap: PIXMAP
+	valid-area: REGION
+	valid-rect: RECTANGLE
+	update-area: REGION
+	update-rect: RECTANGLE
+	x-off, y-off: INT16
+	target_msc: CARD64
+	divisor: CARD64
+	remainder: CARD64
+	idle-fence: FENCE
+└───
+
+	RedirectNotify events are delivered when the client has
+	selected for SubredirectNotify the parent of the target
+	window. All of the values provided to the PresentRegion
+	request are provided. If the client simply passes these
+	parameters back to the X server, the effect will be as if the
+	original client executed the request.
+
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
+
+9. Extension Versioning
+
+	1.0: First published version
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
+
+
+10. Relationship with other extensions
+
+As an extension designed to support other extensions, there is
+naturally some interactions with other extensions.
+
+10.1 GLX
+
+GLX is both an application interface and an X extension. OpenGL
+applications using the GLX API will use the GLX extension and may use
+the Present extension to display application contents.
+
+10.2 DRI3
+
+The DRI3 extension provides a way to share direct rendered pixel data
+with the X server as X pixmaps. When used in conjunction with Present,
+they provide a complete direct rendering solution for OpenGL or other
+APIs.
+
+10.3 DRI2
+
+Present provides similar functionality to the DRI2SwapBuffers and
+requests, however Present uses X pixmaps to refer to the new window
+contents instead of the DRI2 buffer attachments.
+
+Present and DRI3 are designed in conjunction to replace DRI2
+
+10.4 XvMC / Xv
+
+It might be nice to be able to use YUV formatted objects as Present
+sources.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
+
+Appendix A. Protocol Encoding
+
+Syntactic Conventions
+
+This document uses the same syntactic conventions as the core X
+protocol encoding document.
+
+
+A.1 Common Types
+
+A.2 Protocol Requests
+
+┌───
+    PresentQueryVersion
+	1	CARD8			major opcode
+	1	0			Present opcode
+	2	3			length
+	4	CARD32			major version
+	4	CARD32			minor version
+      ▶
+	1	1			Reply
+        1				unused
+	2	CARD16			sequence number
+	4	0			reply length
+	4	CARD32			major version
+        4	CARD32			minor version
+	16				unused	
+└───
+
+
+A.3 Protocol Events
+
+┌───
+    PresentConfigureNotify
+	1	35			XGE
+	1	CARD8			Present extension opcode
+	2	CARD16			sequence number
+	4	2			length
+	2	0			PresentConfigureNotify
+	2				unused
+	4	CARD32			event id
+	4	Window			window
+	2	INT16			x
+	2	INT16			y
+	2	CARD16			width
+	2	CARD16			height
+	2	INT16			off x
+	2	INT16			off y
+	2	CARD16			pixmap width
+	2	CARD16			pixmap height
+	4	CARD32			pixmap flags
+└───
+
+A.4 Protocol Errors
+
+The DRI3 extension defines no errors.
+
+			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
