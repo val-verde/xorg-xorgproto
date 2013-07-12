@@ -123,6 +123,11 @@ The name of this extension is "Present"
 	the 0,0 location of the pixmap will be presented. valid-area
 	and update-area are relative to the pixmap.
 
+	If 'target-msc' is greater than the current msc for 'window',
+	the presentation will occur at (or after) the 'target-msc'
+	field. Otherwise, the presentation will occur after the next
+	field where msc % 'divisor' == 'remainder'.
+	
 	'idle-fence' is triggered when 'pixmap' is no longer in
 	use. This may be at any time following the PresentRegion
 	request, the contents may be immediately copied to another
