@@ -1,5 +1,5 @@
 dri3dir = $(includedir)/X11/extensions
-dri3_HEADERS = dri3proto.h dri3tokens.h
+dri3_HEADERS = dri3proto.h
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = dri3proto.pc

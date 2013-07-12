@@ -34,10 +34,9 @@
 #define X_DRI3Open			1
 #define X_DRI3PixmapFromBuffer          2
 #define X_DRI3BufferFromPixmap          3
-#define X_DRI3SelectInput		4
-#define X_DRI3FenceFromFD               5
+#define X_DRI3FenceFromFD               4
 
-#define DRI3NumberRequests		6
+#define DRI3NumberRequests		5
 
 typedef struct {
     CARD8   reqType;
@@ -130,18 +129,6 @@ typedef struct {
     CARD8   reqType;
     CARD8   dri3ReqType;
     CARD16  length B16;
-    CARD32  eid B32;
-    CARD32  window B32;
-    CARD32  eventMask B32;
-} xDRI3SelectInputReq;
-#define sz_xDRI3SelectInputReq   12
-
-#define DRI3AllEvents   (1 << DRI3ConfigureNotify)
-
-typedef struct {
-    CARD8   reqType;
-    CARD8   dri3ReqType;
-    CARD16  length B16;
     CARD32  drawable B32;
     CARD32  fence B32;
     BOOL    initially_triggered;
@@ -150,33 +137,5 @@ typedef struct {
 } xDRI3FenceFromFDReq;
 
 #define sz_xDRI3FenceFromFDReq  16
-
-/*
- * Events
- */
-#define DRI3_ConfigureNotify	0
-
-/* All DRI3 events are X Generic Events */
-
-typedef struct {
-    CARD8 type;
-    CARD8 extension;
-    CARD16 sequenceNumber B16;
-    CARD32 length;
-    CARD16 evtype B16;
-    CARD16 pad2;
-    CARD32 eid B32;
-    CARD32 window B32;
-    INT16  x B16;
-    INT16  y B16;
-    CARD16 width B16;
-    CARD16 height B16;
-    INT16  off_x B16;
-    INT16  off_y B16;
-    CARD16 pixmap_width B16;
-    CARD16 pixmap_height B16;
-    CARD32 pixmap_flags B32;
-} xDRI3ConfigureNotify;
-#define sz_xDRI3ConfigureNotify 40
 
 #endif

@@ -32,15 +32,7 @@ Arthur Huillet <arthur.huillet@free.fr>
 
 2. Data Types
 
-DRI3EVENTID { XID }
-
-	Defines a unique event delivery target for DRI3
-	events. Multiple event IDs can be allocated to provide
-	multiple distinct event delivery contexts.
-
-DRI3EVENTMASK { DRI3ConfigureNotifyMask }
-
-The DRI3 extension also uses the RandR extension Provider data type to
+The DRI3 extension uses the RandR extension Provider data type to
 select among multiple GPUs on a single screen and the Sync extension
 fence object to provide graphics object synchronization.
 
@@ -48,26 +40,19 @@ fence object to provide graphics object synchronization.
 
 4. Errors
 
-No errors are defined by the DRI3 extension.
+DRI3 defines no errors.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
 5. Events
 
-DRI3 adds a ConfigureNotify event to inform clients about window
-configuration changes which can affect the allocation of
-window-related direct rendered buffers.
+DRI3 defines no events.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
 6. Protocol Types
 
-DRI3DRIVER { DRI3DriverDRI
-	     DRI3DriverVDPAU }
-
-	These values describe the type of driver the client will want
-	to load.  The server sends back the name of the driver to use
-	for the screen in question.
+DRI3 defines no new protocol types.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
@@ -183,29 +168,6 @@ The name of this extension is "DRI3"
 	drawable, a Match error is returned.
 
 ┌───
-    DRI3SelectInput
-	eventContext: DRI3EVENTID
-	window: WINDOW
-	eventMask: SETofDRI3EVENT
-└───
-	Errors: Window, Value, Match, IDchoice
-
-	Selects the set of DRI3 events to be delivered for the
-	specified window and event context. DRI3SelectInput can
-	create, modifiy or delete event contexts. An event context is
-	associated with a specific window; using an existing event
-	context with a different window generates a Match error.
-
-	If eventContext specifies an existing event context, then if
-	eventMask is empty, DRI3SelectInput deletes the specified
-	context, otherwise the specified event context is changed to
-	select a different set of events.
-
-	If eventContext is an unused XID, then if eventMask is empty
-	no operation is performed. Otherwise, a new event context is
-	created selecting the specified events.
-
-┌───
     DRI3FenceFromFD
 	drawable: DRAWABLE
 	fence: FENCE
@@ -225,30 +187,7 @@ The name of this extension is "DRI3"
 
 9. Extension Events
 
-DRI3ConfigureNotify is sent if DRI3SelectInput has requested it.
-DRI3ConfigureNotify events are XGE events and so do not have a unique
-event ID.
-
-┌───
-    DRI3ConfigureNotify
-	type: CARD8			XGE event type (35)
-	extension: CARD8		DRI3 extension request number
-	length: CARD16			2
-	evtype: CARD16			DRI3_ConfigureNotify
-	eventID: DRI3EVENTID
-	window: WINDOW
-	x: INT16
-	y: INT16
-	width: CARD16
-	height: CARD16
-	off_x: INT16
-	off_y: INT16
-	pixmap_width: CARD16
-	pixmap_height: CARD16
-	pixmap_flags: CARD32
-└───
-
-	'x' and 'y' are the parent-relative location of 'window'. 
+DRI3 defines no events.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
 
@@ -303,13 +242,7 @@ protocol encoding document.
 
 A.1 Common Types
 
-┌───
-    DRI3DRIVER
-	0x0	DRI3DriverDRI
-	0x1	DRI3DriverVDPAU
-└───
-
-	Note that these match the DRI2 values.
+None.
 
 A.2 Protocol Requests
 
@@ -392,19 +325,9 @@ A.2 Protocol Requests
 └───
 
 ┌───
-    DRI3SelectInput
-	1	CARD8			major opcode
-	1	4			DRI3 opcode
-	2	3			length
-	4	Window			window
-	4	CARD32			eid
-	4	CARD32			event mask
-└───
-
-┌───
     DRI3FenceFromFD
 	1	CARD8			major opcode
-	1	5			DRI3 opcode
+	1	4			DRI3 opcode
 	2	4			length
 	4	Drawable		drawable
 	4	Fence			fence
@@ -416,26 +339,7 @@ A.2 Protocol Requests
 
 A.3 Protocol Events
 
-┌───
-    DRI3ConfigureNotify
-	1	35			XGE
-	1	CARD8			DRI3 extension opcode
-	2	CARD16			sequence number
-	4	2			length
-	2	0			DRI3ConfigureNotify
-	2				unused
-	4	CARD32			event id
-	4	Window			window
-	2	INT16			x
-	2	INT16			y
-	2	CARD16			width
-	2	CARD16			height
-	2	INT16			off x
-	2	INT16			off y
-	2	CARD16			pixmap width
-	2	CARD16			pixmap height
-	4	CARD32			pixmap flags
-└───
+The DRI3 extension defines no events.
 
 A.4 Protocol Errors
 
