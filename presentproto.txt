@@ -90,26 +90,31 @@ The name of this extension is "Present"
     PresentRegion
 	window: WINDOW
 	pixmap: PIXMAP
+	serial: CARD32
 	valid-area: REGION or None
 	update-area: REGION or None
 	x-off, y-off: INT16
+	idle-fence: FENCE
 	target-msc: CARD64
 	divisor: CARD64
 	remainder: CARD64
-	idle-fence: FENCE
 └───
-	Errors: Drawable, Pixmap, Match
+	Errors: Window, Pixmap, Match
 
 	Provides new content for the specified window, to be made
 	visible at the specified time (defined by 'target-msc', 'divisor'
 	and 'remainder').
 
-	'update-area' defines the subset of the window to be updated,
-	or None if the whole window is to be updated.
+	'serial' is an arbitrary client-specified value which will
+	be returned in the associated PresentCompleteNotify event so
+	that the client can associate the event and request.
 
 	'valid-area' defines the portion of 'pixmap' which contains
 	valid window contents, or None if the pixmap contains valid
 	contents for the whole window.
+
+	'update-area' defines the subset of the window to be updated,
+	or None if the whole window is to be updated.
 
 	PresentRegion may use any region of 'pixmap' which contains
 	'update-area' and which is contained by 'valid-area'. In other
@@ -123,11 +128,6 @@ The name of this extension is "Present"
 	the 0,0 location of the pixmap will be presented. valid-area
 	and update-area are relative to the pixmap.
 
-	If 'target-msc' is greater than the current msc for 'window',
-	the presentation will occur at (or after) the 'target-msc'
-	field. Otherwise, the presentation will occur after the next
-	field where msc % 'divisor' == 'remainder'.
-	
 	'idle-fence' is triggered when 'pixmap' is no longer in
 	use. This may be at any time following the PresentRegion
 	request, the contents may be immediately copied to another
@@ -135,6 +135,11 @@ The name of this extension is "Present"
 	pixmap may be used directly for display, in which case it will
 	be busy until some future PresentRegion operation.
 
+	If 'target-msc' is greater than the current msc for 'window',
+	the presentation will occur at (or after) the 'target-msc'
+	field. Otherwise, the presentation will occur after the next
+	field where msc % 'divisor' == 'remainder'.
+	
 	If 'window' is destroyed before the presentation occurs, then
 	the presentation action will not be completed.
 
@@ -146,6 +151,31 @@ The name of this extension is "Present"
 	If 'idle-fence' is destroyed before the presentation occurs,
 	then idle-fence will not be signaled but the presentation will
 	occur normally.
+
+┌───
+    PresentNotifyMSC
+	window: WINDOW
+	serial: CARD32
+	target-msc: CARD64
+	divisor: CARD64
+	remainder: CARD64
+└───
+	Errors: Window
+
+	Delivers a PresentMSCNotifyEvent after time specified by
+	'target-msc', 'divisor' and 'remainder').
+
+	'serial' is an arbitrary client-specified value which will be
+	returned in the event so that the client can associate the
+	event and request.
+
+	If 'target-msc' is greater than the current msc for 'window',
+	the event will be delivered at (or after) the 'target-msc'
+	field. Otherwise, the event delivery will occur after the next
+	field where msc % 'divisor' == 'remainder'.
+	
+	If 'window' is destroyed before the event is delivered, then
+	the event delivery will not be completed.
 
 ┌───
     PresentSelectInput
@@ -215,15 +245,38 @@ The name of this extension is "Present"
 	evtype: CARD16			Present_CompleteNotify
 	eventID: PRESENTEVENTID
 	window: WINDOW
+	serial: CARD32
 	ust: CARD64
 	msc: CARD64
 	sbc: CARD64
 └───
 
-	Notify events are delivered when a PresentRegion operation has
-	completed and the specified contents are being displayed. sbc,
-	msc and ust indicate the swap count, frame count and system
-	time of the related PresentRegion request.
+	CompleteNotify events are delivered when a PresentRegion
+	operation has completed and the specified contents are being
+	displayed. 'serial' is the value provided in the generating
+	PresentRegion request. 'sbc', 'msc' and 'ust' indicate the
+	swap count, frame count and system time when the presentation
+	actually occurred.
+
+┌───
+    PresentMSCNotify
+	type: CARD8			XGE event type (35)
+	extension: CARD8		Present extension request number
+	length: CARD16			2
+	evtype: CARD16			Present_MSCNotify
+	eventID: PRESENTEVENTID
+	window: WINDOW
+	serial: CARD32
+	ust: CARD64
+	msc: CARD64
+	sbc: CARD64
+└───
+
+	MSCNotify events are delivered when a PresentNotifyMSC
+	operation has completed. 'serial' is the value provided in the
+	generating PresentNotifyMSC request. 'sbc', 'msc' and 'ust'
+	indicate the swap count, frame count and system time when the
+	operation completed.
 
 ┌───
     PresentRedirectNotify
@@ -235,6 +288,7 @@ The name of this extension is "Present"
 	event-window: WINDOW
 	window: WINDOW
 	pixmap: PIXMAP
+	serial: CARD32
 	valid-area: REGION
 	valid-rect: RECTANGLE
 	update-area: REGION
@@ -347,6 +401,22 @@ A.3 Protocol Events
 	2	CARD16			pixmap width
 	2	CARD16			pixmap height
 	4	CARD32			pixmap flags
+└───
+
+┌───
+    PresentCompleteNotify
+	1	35			XGE
+	1	CARD8			Present extension opcode
+	2	CARD16			sequence number
+	4	2			length
+	2	1			PresentCompleteNotify
+	2				unused
+	4	CARD32			event id
+	4	Window			window
+	4	CARD32			serial
+	8	CARD64			ust
+	8	CARD64			msc
+	8	CARD64			sbc
 └───
 
 A.4 Protocol Errors
