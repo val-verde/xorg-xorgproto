@@ -3,7 +3,8 @@ dnl Process this file with autoconf to create configure.
 
 # Initialize Autoconf
 AC_PREREQ([2.60])
-AC_INIT([VideoProto], [2.3.1], [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
+AC_INIT([VideoProto], [2.3.2],
+        [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AC_CONFIG_SRCDIR([Makefile.am])
 
 # Initialize Automake
