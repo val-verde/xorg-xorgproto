@@ -2290,7 +2290,9 @@ XI 2.2: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
     valuators
         Bitmask of valuators provided in axisvalues.
     axisvalues
-        Valuator data in device-native resolution.
+        Valuator data in device-native resolution. This is a non-sparse
+        array, value N represents the axis corresponding to the Nth bit set
+        in valuators.
     flags
         Miscellaneous information about this event; the union of the
         common flag set and either the key or pointer flag set,
@@ -2401,9 +2403,13 @@ when the device is grabbed by another client.
     valuators
         Bitmask of valuators provided in axisvalues and axisvalues_raw.
     axisvalues
-        Valuator data in device-native resolution.
+        Valuator data in device-native resolution. This is a non-sparse
+        array, value N represents the axis corresponding to the Nth bit set
+        in valuators.
     axisvalues_raw
-        Untransformed valuator data in device-native resolution.
+        Untransformed valuator data in device-native resolution. This is a
+        non-sparse array, value N represents the axis corresponding to the
+        Nth bit set in valuators.
 
     ¹ since XI 2.2
 
