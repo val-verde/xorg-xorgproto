@@ -31,13 +31,7 @@ THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 #define	XkbCharToInt(v)		((v)&0x80?(int)((v)|(~0xff)):(int)((v)&0x7f))
 #define	XkbIntTo2Chars(i,h,l)	(((h)=((i>>8)&0xff)),((l)=((i)&0xff)))
-
-#if defined(WORD64) && defined(UNSIGNEDBITFIELDS)
-#define	Xkb2CharsToInt(h,l)	((h)&0x80?(int)(((h)<<8)|(l)|(~0xffff)):\
-					  (int)(((h)<<8)|(l)&0x7fff))
-#else
 #define	Xkb2CharsToInt(h,l)	((short)(((h)<<8)|(l)))
-#endif
 
 /*
  * The Xkb structs are full of implicit padding to properly align members.
