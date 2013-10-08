@@ -182,6 +182,23 @@ The name of this extension is "DRI3"
 	Details about the mechanism used with this file descriptor are
 	outside the scope of the DRI3 extension.
 
+┌───
+    DRI3FDFromFence
+	drawable: DRAWABLE
+	fence: FENCE
+      ▶
+	fd: FD
+└───
+	Errors: IDchoice, Drawable, Match
+
+	Given a Sync extension Fence that provides the regular Sync
+	extension semantics, returns a file descriptor that provides a
+	device-specific mechanism to manipulate the fence directly.
+	Details about the mechanism used with this file descriptor are
+	outside the scope of the DRI3 extension. 'drawable' must be
+	associated with a direct rendering device that 'fence' can
+	work with, otherwise a Match error results.
+
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
@@ -333,6 +350,23 @@ A.2 Protocol Requests
 	4	Fence			fence
 	1	BOOL			initially triggered
 	3				unused
+
+	0	FD			fence fd
+└───
+
+┌───
+    DRI3FDFromFence
+	1	CARD8			major opcode
+	1	5			DRI3 opcode
+	2	3			length
+	4	Drawable		drawable
+	4	Fence			fence
+      ▶	
+	1	1			Reply
+        1	1			nfd
+	2	CARD16			sequence number
+	4	0			reply length
+	24				unused
 
 	0	FD			fence fd
 └───

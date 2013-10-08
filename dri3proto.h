@@ -35,8 +35,9 @@
 #define X_DRI3PixmapFromBuffer          2
 #define X_DRI3BufferFromPixmap          3
 #define X_DRI3FenceFromFD               4
+#define X_DRI3FDFromFence               5
 
-#define DRI3NumberRequests		5
+#define DRI3NumberRequests		6
 
 typedef struct {
     CARD8   reqType;
@@ -137,5 +138,30 @@ typedef struct {
 } xDRI3FenceFromFDReq;
 
 #define sz_xDRI3FenceFromFDReq  16
+
+typedef struct {
+    CARD8   reqType;
+    CARD8   dri3ReqType;
+    CARD16  length B16;
+    CARD32  drawable B32;
+    CARD32  fence B32;
+} xDRI3FDFromFenceReq;
+
+#define sz_xDRI3FDFromFenceReq  12
+
+typedef struct {
+    BYTE    type;   /* X_Reply */
+    CARD8   nfd;    /* Number of file descriptors returned (1) */
+    CARD16  sequenceNumber B16;
+    CARD32  length B32;
+    CARD32  pad08 B32;
+    CARD32  pad12 B32;
+    CARD32  pad16 B32;
+    CARD32  pad20 B32;
+    CARD32  pad24 B32;
+    CARD32  pad28 B32;
+} xDRI3FDFromFenceReply;
+
+#define sz_xDRI3FDFromFenceReply   32
 
 #endif
