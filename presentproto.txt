@@ -169,12 +169,22 @@ The name of this extension is "Present"
 	
 	When the X server has finished using 'pixmap' for this
 	operation, it will send a PresentIdleNotify event and arrange
-	for the 'idle-fence' to be triggered. This may be at any time
+	for any 'idle-fence' to be triggered. This may be at any time
 	following the PresentPixmap request -- the contents may be
 	immediately copied to another buffer, copied just in time for
 	the vblank interrupt or the pixmap may be used directly for
 	display (in which case it will be busy until some future
 	PresentPixmap operation).
+
+	If 'idle-fence' is not None, then the client guarantees to the
+	X server that it will wait for that fence to be signalled
+	before it uses the pixmap again. If 'idle-fence' is None, then
+	the X server must arrange for the pixmap to be re-usable by
+	the client as soon as the PresentIdleNotify event has been
+	received. Note that if PresentCapabilityFence is set for the
+	associated CRTC, then clients should use fences to improve
+	overall systme performance. If PresentCapabilityFence is not
+	set, then using fences offers no benefit, but also no cost.
 
 	If 'target-msc' is greater than the current msc for 'window',
 	the presentation will occur at (or after) the 'target-msc'
@@ -410,7 +420,8 @@ The name of this extension is "Present"
 
 	'pixmap' is the pixmap which is ready for re-use.
 
-	'idle-fence' is the fence which is used to synchronize
+	'idle-fence' is the fence which was provided in the
+	originating PresentPixmap request and is used to synchronize
 	rendering between the client and the X server's use of the
 	buffer. If not None, then the client must wait for the fence
 	to be signaled before using the pixmap.
