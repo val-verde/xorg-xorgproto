@@ -10,6 +10,7 @@ XORG_DEFAULT_OPTIONS
 XORG_ENABLE_SPECS
 XORG_WITH_ASCIIDOC(8.4.5)
 
-AC_OUTPUT([Makefile
+AC_CONFIG_FILES([Makefile
            specs/Makefile
            inputproto.pc])
+AC_OUTPUT
