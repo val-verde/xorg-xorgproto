@@ -209,8 +209,9 @@ if test "x$WIDEPROTO" = xno; then
 fi
 
 
-AC_OUTPUT([Makefile
+AC_CONFIG_FILES([Makefile
            specs/Makefile
            specs/SIAddresses/Makefile
            Xpoll.h
            xproto.pc])
+AC_OUTPUT
