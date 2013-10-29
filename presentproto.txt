@@ -383,11 +383,11 @@ The name of this extension is "Present"
 	contents are taken from the pixmap and the pixmap is idle
 	immediately after the presentation completes. 'mode' is
 	PresentCompleteModeFlip when the pixmap remains in-use even
-	after the presentation completes. It will become idle no
-	later than when the next PresentPixmap operation targeting the
-	same window is performed by any client. If the presentation
-	operation was skipped because some later operation made it
-	irrelevant, then 'mode' will be PresentCompleteModeSkip.
+	after the presentation completes. It will become idle no later
+	than when the next PresentPixmap operation targeting the same
+	window by any client completes. If the presentation operation
+	was skipped because some later operation made it irrelevant,
+	then 'mode' will be PresentCompleteModeSkip.
 
 	'serial' is the value provided in the generating PresentPixmap
 	request.
