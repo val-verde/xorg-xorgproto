@@ -46,6 +46,7 @@ PRESENTEVENTTYPE { PresentConfigureNotify,
 
 PRESENTEVENTMASK { PresentConfigureNotifyMask,
 		   PresentCompleteNotifyMask,
+		   PresentIdleNotifyMask,
 		   PresentSubredirectNotifyMask }
 
 PRESENTOPTION { PresentOptionAsync,
@@ -333,7 +334,6 @@ The name of this extension is "Present"
 	extension: CARD8		Present extension request number
 	sequence-number: CARD16
 	length: CARD32			2
-	length: CARD16			2
 	evtype: CARD16			Present_ConfigureNotify
 	eventID: PRESENTEVENTID
 	window: WINDOW
@@ -431,9 +431,9 @@ The name of this extension is "Present"
 	type: CARD8			XGE event type (35)
 	extension: CARD8		Present extension request number
 	sequence-number: CARD16
-	length: CARD32			16
+	length: CARD32			17 + 2 n
 	evtype: CARD16			Present_RedirectNotify
-	update-window: CARD8
+	update-window: BOOL
 
 	eventID: PRESENTEVENTID
 	event-window: WINDOW
@@ -450,9 +450,10 @@ The name of this extension is "Present"
 	wait-fence: FENCE
 	idle-fence: FENCE
 	options: SETofPRESENTOPTION
-	target_msc: CARD64
+	target-msc: CARD64
 	divisor: CARD64
 	remainder: CARD64
+	notifies: LISTofPRESENTNOTIFY
 └───
 
 	RedirectNotify events are delivered when the client has
@@ -462,6 +463,13 @@ The name of this extension is "Present"
 	parameters back to the X server, the effect will be as if the
 	original client executed the request.
 
+	If 'update-window' is TRUE, then there are clients who have
+	requested composite automatic redirect on the window and who
+	presumably expect the window buffer to eventually contain
+	the application provided contents. The compositing manager
+	should at least occasionally update the window buffer with
+	suitable contents. The precise update interval is left to the
+	discretion of the client receiving this event.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
 
@@ -514,6 +522,54 @@ protocol encoding document.
 
 
 A.1 Common Types
+┌───
+    PresentEventType
+	0	PresentConfigureNotify
+	1	PresentCompleteNotify
+	2	PresentIdleNotify
+	3	PresentRedirectNotify
+└───
+
+┌───
+    PresentEventMask
+	1	PresentConfigureNotifyMask
+	2	PresentCompleteNotifyMask
+	4	PresentIdleNotifyMask
+	8	PresentRedirectNotifyMask
+└───
+
+┌───
+    PresentOption
+	1	PresentOptionAsync
+	2	PresentOptionCopy;
+	4	PresentOptionUST
+└───
+
+┌───
+    PresentCapability
+	1	PresentCapabilityAsync
+	2	PresentCapabilityFence
+	4	PresentCapabilityUST
+└───
+
+┌───
+    PresentCompleteKind
+	0	PresentCompleteKindPixmap
+	1	PresentCompleteKindMSCNotify
+└───
+
+┌───
+    PresentCompleteMode
+	0	PresentCompleteModeCopy
+	1	PresentCompleteModeFlip
+	2	PresentCompleteModeSkip
+└───
+
+┌───
+    PresentNotify
+	4	Window			window
+	4	CARD32			serial
+└───
 
 A.2 Protocol Requests
 
@@ -534,6 +590,65 @@ A.2 Protocol Requests
 	16				unused	
 └───
 
+┌───
+    PresentPixmap
+	1	CARD8			major opcode
+	1	1			Present opcode
+	2	18+2n			length
+	4	Window			window
+	4	Pixmap			pixmap
+	4	CARD32			serial
+	4	Region			valid-area
+	4	Region			update-area
+	2	INT16			x-off
+	2	INT16			y-off
+	4	CRTC			target-crtc
+	4	SyncFence		wait-fence
+	4	SyncFence		idle-fence
+	4	CARD32			options
+	4				unused
+	8	CARD64			target-msc
+	8	CARD64			divisor
+	8	CARD64			remainder
+	8n	LISTofPresentNotify	notifies
+└───
+
+┌───
+    PresentNotifyMSC
+	1	CARD8			major opcode
+	1	2			Present opcode
+	2	10			length
+	4	Window			window
+	4	CARD32			serial
+	4				unused
+	8	CARD64			target-msc
+	8	CARD64			divisor
+	8	CARD64			remainder
+└───
+
+┌───
+    PresentSelectInput
+	1	CARD8			major opcode
+	1	3			Present opcode
+	2	4			length
+	4	EventID			event-id
+	4	Window			window
+	4	SETofPRESENTEVENTMASK	event-mask
+└───
+
+┌───
+    PresentQueryCapabilities
+	1	CARD8			major opcode
+	1	4			Present opcode
+	2	2			length
+	4	CRTC or Window		target
+      ▶
+	1	1			Reply
+        1				unused
+	2	CARD16			sequence number
+	4	0			reply length
+	4	SETofPRESENTCAPABILITY	capabilities
+└───
 
 A.3 Protocol Events
 
@@ -553,6 +668,7 @@ A.3 Protocol Events
 	2	CARD16			height
 	2	INT16			off x
 	2	INT16			off y
+
 	2	CARD16			pixmap width
 	2	CARD16			pixmap height
 	4	CARD32			pixmap flags
@@ -565,12 +681,61 @@ A.3 Protocol Events
 	2	CARD16			sequence number
 	4	2			length
 	2	1			PresentCompleteNotify
-	2	CARD16			kind
+	1	CARD8			kind
+	1	CARD8			mode
 	4	CARD32			event id
 	4	Window			window
 	4	CARD32			serial
 	8	CARD64			ust
+
 	8	CARD64			msc
+└───
+
+┌───
+    PresentIdleNotify
+	1	35			XGE
+	1	CARD8			Present extension opcode
+	2	CARD16			sequence number
+	4	0			length
+	2	2			PresentIdleNotify
+	2				unused
+	4	CARD32			event id
+	4	Window			window
+	4	CARD32			serial
+	4	Pixmap			pixmap
+	4	SyncFence		idle-fence
+└───
+
+┌───
+    PresentRedirectNotify
+	1	35			XGE
+	1	CARD8			Present extension opcode
+	2	CARD16			sequence number
+	4	18+2n			length
+	2	3			PresentRedirectNotify
+	1	BOOL			update-window
+	1				unused
+	4	CARD32			event id
+	4	Window			event-window
+	4	Window			window
+	4	Pixmap			pixmap
+	4	CARD32			serial
+
+	4	Region			valid-area
+	4	Region			update-area
+	8	Rectangle		valid-rect
+	8	Rectangle		update-rect
+	2	INT16			x-off
+	2	INT16			y-off
+	4	CRTC			target-crtc
+	4	SyncFence		wait-fence
+	4	SyncFence		idle-fence
+	4	CARD32			options
+	4				unused
+	8	CARD64			target-msc
+	8	CARD64			divisor
+	8	CARD64			remainder
+	8n	LISTofPRESENTNOTIFY	notifies
 └───
 
 A.4 Protocol Errors
