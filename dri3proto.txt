@@ -287,17 +287,13 @@ A.2 Protocol Requests
 	1	1			DRI3 opcode
 	2	4			length
 	4	DRAWABLE		drawable
-	4	CARD32			driver type
 	4	PROVIDER		provider
       ▶	
 	1	1			Reply
         1	1			nfd
 	2	CARD16			sequence number
-	4	(n + p) / 4		reply length
-	4	n			driver name length (n)
-	20				unused
-	n	CARD8			driver name
-	p				unused, p=pad(n)
+	4	0			reply length
+	24				unused
 
 	0	FD			device
 └───
