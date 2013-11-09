@@ -13,7 +13,7 @@
  **                  o Revision and Name defines
  **                  o Common defines and constants (e.g. Keywords, Masks)
  **                  o Extension version structure
- **               
+ **
  **               Library and client subportion has:
  **                  o Convience Marcos
  **                  o Client side data structures
@@ -32,7 +32,7 @@
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
  ** (c) Copyright 1996 Hitachi, Ltd.
- ** 
+ **
  ** Permission is hereby granted, free of charge, to any person obtaining a copy
  ** of this software and associated documentation files (the "Software"), to deal
  ** in the Software without restriction, including without limitation the rights

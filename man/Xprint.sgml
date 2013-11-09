@@ -2,7 +2,7 @@
 
 <!-- Process this file with docbook-to-man to generate an nroff manual
      page: 'docbook-to-man manpage.sgml > manpage.1'.  You may view
-     the manual page with: 'docbook-to-man manpage.sgml | nroff -man | less'. 
+     the manual page with: 'docbook-to-man manpage.sgml | nroff -man | less'.
      A typical entry in a Makefile or Makefile.am is:
 
 manpage.1: manpage.sgml
@@ -24,17 +24,17 @@ HTML generation can be done like this:
   </refnamediv>
   <refsynopsisdiv>
     <para>Xprint is a very flexible, extensible, scaleable, client/server
-     print system based on ISO 10175 (and some other specs) and the X11        
-     rendering protocol.                                                       
-     Using Xprint an application can search, query and use devices like        
-     printers, FAX machines or create documents in formats like PDF.           
-     In particular, an application can seek a printer, query supported         
-     attributes (like paper size, trays, fonts etc.), configure the printer    
-     device to match it&rsquo;s needs and print on it like on any other X device     
-     reusing parts of the code which is used for the video card Xserver.    
+     print system based on ISO 10175 (and some other specs) and the X11
+     rendering protocol.
+     Using Xprint an application can search, query and use devices like
+     printers, FAX machines or create documents in formats like PDF.
+     In particular, an application can seek a printer, query supported
+     attributes (like paper size, trays, fonts etc.), configure the printer
+     device to match it&rsquo;s needs and print on it like on any other X device
+     reusing parts of the code which is used for the video card Xserver.
     </para>
   </refsynopsisdiv>
-  
+
   <refsect1>
     <title>OVERVIEW</title>
     <para>
@@ -59,13 +59,13 @@ HTML generation can be done like this:
       From an X clients perspective, it can attach to one of two nearly
       identical X-Servers, a "Video" X-Server, and a "Print" X-Server
       which has the additional Xp capability but otherwise looks and
-      behaves the same.   
+      behaves the same.
     </para>
   </refsect1>
 
   <refsect1>
     <title>HOW THE X PRINT SERVICE WORKS</title>
-    <para>    
+    <para>
       The X Print Service expands on the traditional X-Server and Xlib world
       in four ways.
 
@@ -116,7 +116,7 @@ HTML generation can be done like this:
             the print context can be modified by the user, and the
             X-Server and print ddx driver will react accordingly.  For
             example, the attribute "content-orientation" can be set to
-            "landscape" or "portrait" (if the printer supports these 
+            "landscape" or "portrait" (if the printer supports these
             values - which can be queried using the Xprint API as well).
           </para>
         </listitem>
@@ -141,7 +141,7 @@ HTML generation can be done like this:
 
   <refsect1>
     <title>USAGE</title>
-    <para>    
+    <para>
       There are three tasks to start the X Print Service:
       <orderedlist>
         <listitem><para>configuring the X Print Server,</para></listitem>
@@ -262,7 +262,7 @@ HTML generation can be done like this:
           </listitem>
         </varlistentry>
       </variablelist>
-      
+
       More information in how to configure and customize the X print server can be found in the
       <citerefentry><refentrytitle>Xprt</refentrytitle><manvolnum>__appmansuffix__</manvolnum></citerefentry>
       manual page.
@@ -273,7 +273,7 @@ HTML generation can be done like this:
     <title>STARTING UP</title>
     <para>
       The summary checklist for starting the X Print Service is as follows:
-      
+
       <orderedlist>
         <listitem>
           <para>
@@ -306,7 +306,7 @@ HTML generation can be done like this:
             a Print Dialog Manager Daemon process to use Xprint.
           </para>
         </listitem>
-      </orderedlist>     
+      </orderedlist>
       The details are described below.
     </para>
     <para>
@@ -490,7 +490,7 @@ HTML generation can be done like this:
 	    of  the Xprint server configuration directory hierarchy.
 	    If the variable is not defined,  the  default
 	    path  is be assumed.  The default path may be
-            <filename>/usr/X11R6/lib/X11/xserver/</filename>, 
+            <filename>/usr/X11R6/lib/X11/xserver/</filename>,
             <filename>/usr/lib/X11/xserver/</filename>,
             <filename>/usr/share/Xprint/xserver/</filename> or
             <filename>/usr/openwin/server/etc/XpConfig</filename>, depending on the
@@ -509,7 +509,7 @@ HTML generation can be done like this:
           </para>
         </listitem>
       </varlistentry>
-      
+
       <varlistentry>
         <term><envar>${XPSERVERLIST}</envar></term>
         <listitem>
@@ -519,7 +519,7 @@ HTML generation can be done like this:
 	    <envar>${XPSERVERLIST}</envar> is set by the profile startup scripts (e.g.
 	    <filename>/etc/profile</filename> or <filename>/etc/profile.d/xprint.sh</filename>) using the output of
 	    <userinput>/etc/init.d/xprint get_xpserverlist</userinput>.</para>
-	  <para>Example: 
+	  <para>Example:
 	    <informalexample>
 	      <programlisting>
 		export XPSERVERLIST="`/etc/init.d/xprint get_xpserverlist`"</programlisting>
@@ -558,14 +558,14 @@ HTML generation can be done like this:
 		  servers.</para>
 		</listitem>
 	      </varlistentry>
-	
+
 	      <varlistentry>
 		<!-- brain dead <term> does not permit quote marks
 		(in XPRINTER="hplaser19@littlecat:80"), so omit them -->
 		<term><userinput>XPRINTER=hplaser19@littlecat:80</userinput></term>
 		<listitem><para>
 		  tells an application to use the printer "hplaser19"
-		on the Xprint server at display 
+		on the Xprint server at display
 		  "littlecat:80".</para>
 	      </listitem>
 	      </varlistentry>
@@ -574,8 +574,8 @@ HTML generation can be done like this:
 	  </para>
 	  <para>If <envar>${XPRINTER}</envar> is not set the applications
 	    will examine the values of the <envar>${PDPRINTER}</envar>,
-	    <envar>${LPDEST}</envar>, and 
-	    <envar>${PRINTER}</envar> environment variables (in that order).  
+	    <envar>${LPDEST}</envar>, and
+	    <envar>${PRINTER}</envar> environment variables (in that order).
 	  </para>
         </listitem>
       </varlistentry>
@@ -588,7 +588,7 @@ HTML generation can be done like this:
       <simplelist type="inline">
         <!-- specific references -->
         <!-- none -->
-        
+
         <!-- Xprint general references -->
 <!--
         <member><citerefentry><refentrytitle>Xprint</refentrytitle><manvolnum>__miscmansuffix__</manvolnum></citerefentry></member>
@@ -618,7 +618,7 @@ HTML generation can be done like this:
   <refsect1>
     <title>AUTHORS</title>
     <para>
-      This manual page was written by 
+      This manual page was written by
       Roland Mainz <email>roland.mainz@nrubsig.org</email> based on the original X11R6.6
       <filename>xc/programs/Xserver/XpConfig/README</filename>.
     </para>

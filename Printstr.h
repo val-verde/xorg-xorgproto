@@ -18,7 +18,7 @@
  ** (c) Copyright 1996 Digital Equipment Corp.
  ** (c) Copyright 1996 Fujitsu Limited
  ** (c) Copyright 1996 Hitachi, Ltd.
- ** 
+ **
  ** Permission is hereby granted, free of charge, to any person obtaining a copy
  ** of this software and associated documentation files (the "Software"), to deal
  ** in the Software without restriction, including without limitation the rights
@@ -258,7 +258,7 @@ typedef struct _PrintCreateContext {
 	STRING8	locale			 * locale *
 	BYTE	pad(locale)		 * unused *
 	************************************************************/
-} xPrintCreateContextReq;		
+} xPrintCreateContextReq;
 #define sz_xPrintCreateContextReq	16
 
 
@@ -267,7 +267,7 @@ typedef struct _PrintSetContext {
 	CARD8	printReqType;		/* always X_PrintSetContext */
 	CARD16	length B16;
 	PCONTEXT printContext B32;	/* print context */
-} xPrintSetContextReq;		
+} xPrintSetContextReq;
 #define sz_xPrintSetContextReq		8
 
 
@@ -275,7 +275,7 @@ typedef struct _PrintGetContext {
 	CARD8	reqType;		/* always PrintReqCode */
 	CARD8	printReqType;		/* always X_PrintGetContext */
 	CARD16	length B16;
-} xPrintGetContextReq;		
+} xPrintGetContextReq;
 #define sz_xPrintGetContextReq		4
 
 typedef struct {
@@ -298,7 +298,7 @@ typedef struct _PrintDestroyContext {
 	CARD8	printReqType;		/* always X_PrintDestroyContext */
 	CARD16	length B16;
 	PCONTEXT printContext B32;	/* print context */
-} xPrintDestroyContextReq;		
+} xPrintDestroyContextReq;
 #define sz_xPrintDestroyContextReq	8
 
 
@@ -307,7 +307,7 @@ typedef struct _PrintGetContextScreen {
 	CARD8	printReqType;		/* always X_PrintGetContextScreen */
 	CARD16	length B16;
 	PCONTEXT printContext B32;	/* print context */
-} xPrintGetContextScreenReq;		
+} xPrintGetContextScreenReq;
 #define sz_xPrintGetContextScreenReq	8
 
 typedef struct {
@@ -332,7 +332,7 @@ typedef struct _PrintStartJob {
 	CARD8	saveData;		/* save data boolean */
 	CARD8	pad1;
 	CARD16	pad2 B16;
-} xPrintStartJobReq;		
+} xPrintStartJobReq;
 #define sz_xPrintStartJobReq		8
 
 typedef struct _PrintEndJob {
@@ -353,7 +353,7 @@ typedef struct _PrintStartDoc {
 	CARD8	type;			/* type for document */
 	CARD8	pad1;
 	CARD16	pad2 B16;
-} xPrintStartDocReq;		
+} xPrintStartDocReq;
 #define sz_xPrintStartDocReq		8
 
 typedef struct _PrintEndDoc {
@@ -394,7 +394,7 @@ typedef struct _PrintGetDocumentData {
 	CARD16	length B16;
 	PCONTEXT printContext B32;	/* print context */
 	CARD32	maxBufferSize B32;	/* maximum buffer size requested */
-} xPrintGetDocumentDataReq;		
+} xPrintGetDocumentDataReq;
 #define sz_xPrintGetDocumentDataReq	12
 
 typedef struct {
@@ -422,7 +422,7 @@ typedef struct _PrintStartPage {
 	CARD8	printReqType;		/* always X_PrintStartPage */
 	CARD16	length B16;
 	WINDOW	window B32;		/* window */
-} xPrintStartPageReq;		
+} xPrintStartPageReq;
 #define sz_xPrintStartPageReq		8
 
 typedef struct _PrintEndPage {
@@ -559,7 +559,7 @@ typedef struct _PrintGetPageDimensions {
 	CARD8	printReqType;		/* always X_PrintGetPageDimensions */
 	CARD16	length B16;
 	PCONTEXT printContext B32;	/* print context */
-} xPrintGetPageDimensionsReq;		
+} xPrintGetPageDimensionsReq;
 #define sz_xPrintGetPageDimensionsReq	8
 
 typedef struct {
@@ -584,7 +584,7 @@ typedef struct _PrintQueryScreens {
 	CARD8	reqType;		/* always PrintReqCode */
 	CARD8	printReqType;		/* always X_PrintQueryScreens */
 	CARD16	length B16;
-} xPrintQueryScreensReq;		
+} xPrintQueryScreensReq;
 #define sz_xPrintQueryScreensReq	4
 
 typedef struct {
@@ -669,7 +669,7 @@ extern int           _xp_hinter_init;
  * Server-only definitions shared between the extension and DDX layers.
  *
  */
- 
+
 /*
  * Internal return code used to indicate that the requesting
  * client has been suspended.
