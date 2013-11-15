@@ -143,23 +143,27 @@ typedef struct _FontNames {
     char      **names;
 }           FontNamesRec;
 
+
 /* External view of font paths */
 typedef struct _FontPathElement {
     int         name_length;
-    char       *name;
+#if FONT_PATH_ELEMENT_NAME_CONST
+    const
+#endif
+    char        *name;
     int         type;
     int         refcount;
     void        *private;
 }           FontPathElementRec;
 
-typedef Bool (*NameCheckFunc) (char *name);
+typedef Bool (*NameCheckFunc) (const char *name);
 typedef int (*InitFpeFunc) (FontPathElementPtr fpe);
 typedef int (*FreeFpeFunc) (FontPathElementPtr fpe);
 typedef int (*ResetFpeFunc) (FontPathElementPtr fpe);
 typedef int (*OpenFontFunc) ( void *client,
 			      FontPathElementPtr fpe,
 			      Mask flags,
-			      char* name,
+			      const char* name,
 			      int namelen,
 			      fsBitmapFormat format,
 			      fsBitmapFormatMask fmask,
@@ -170,14 +174,14 @@ typedef int (*OpenFontFunc) ( void *client,
 typedef void (*CloseFontFunc) (FontPathElementPtr fpe, FontPtr pFont);
 typedef int (*ListFontsFunc) (void *client,
 			      FontPathElementPtr fpe,
-			      char* pat,
+			      const char* pat,
 			      int len,
 			      int max,
 			      FontNamesPtr names);
 
 typedef int (*StartLfwiFunc) (void *client,
 			      FontPathElementPtr fpe,
-			      char* pat,
+			      const char* pat,
 			      int len,
 			      int max,
 			      void ** privatep);
@@ -205,7 +209,7 @@ typedef int (*LoadGlyphsFunc) (void *client,
 
 typedef int (*StartLaFunc) (void *client,
 			    FontPathElementPtr fpe,
-			    char* pat,
+			    const char* pat,
 			    int len,
 			    int max,
 			    void ** privatep);
