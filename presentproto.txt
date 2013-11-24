@@ -740,6 +740,6 @@ A.3 Protocol Events
 
 A.4 Protocol Errors
 
-The DRI3 extension defines no errors.
+The Present extension defines no errors.
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
