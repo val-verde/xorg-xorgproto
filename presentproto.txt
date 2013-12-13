@@ -17,7 +17,7 @@ mechanism than copying the contents of the source pixmap.
 
 Eric Anholt <eric@anholt.net>
 Owen Taylor <otaylor@redhat.com>
-James Jones <janomes@nvidia.com>
+James Jones <jajones@nvidia.com>
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
