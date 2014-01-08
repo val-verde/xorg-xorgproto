@@ -1201,7 +1201,7 @@ Requests that have replies are described using the following syntax:
          <emphasis remap='I'>arg2</emphasis>:  type2
          ...
          <emphasis remap='I'>argN</emphasis>:  typeN
-           =&gt;
+           ▶
         <emphasis remap='I'>result1</emphasis>:  type1
          <emphasis remap='I'>result2</emphasis>:  type2
          ...
@@ -1213,10 +1213,10 @@ Requests that have replies are described using the following syntax:
 </literallayout>
 <para>
 <!-- .RE -->
-If a request does not generate a reply, the"=&gt;" and result lines are
-omitted.  If a request may generate multiple replies, the "=&gt;" is replaced by
-a "=&gt;+".  In the authorization data exchanges in the initial connection setup
-and the CreateAC request, "-&gt;" indicates data sent by the client in response
+If a request does not generate a reply, the "▶" and result lines are
+omitted.  If a request may generate multiple replies, the "▶" is replaced by
+a "▶+".  In the authorization data exchanges in the initial connection setup
+and the CreateAC request, "◀" indicates data sent by the client in response
 to data sent by the server.
 </para>
 <para>
@@ -1261,7 +1261,7 @@ protocol to use or as part of the initial exchange of
 authorization data.
   </para>
 <literallayout class="monospaced">
-=&gt;
+▶
 status:                         { Success, Continue,
                                   Busy, Denied }
 server-major-protocol-version:  CARD16
@@ -1334,9 +1334,9 @@ setup is not finished, so no requests or events may be sent):
 </para>
 
 <literallayout class="monospaced">
--&gt;
+◀
 more-authorization-data:   STRING8
-=&gt;
+▶
 status:                    { Success, Continue,
                            Busy, Denied }
 more-authorization-data:   LISTofBYTE
@@ -1358,7 +1358,7 @@ from the server:
 </para>
 <!-- .RS -->
 <literallayout class="monospaced">
-=&gt;
+▶
 remaining-length:           CARD32
 maximum-request-length:     CARD16
 release-number:             CARD32
@@ -1403,7 +1403,7 @@ event.
 <function>ListExtensions</function>
 </para>
 <para>
-=&gt;
+▶
 </para>
 
 <blockquote>
@@ -1431,7 +1431,7 @@ case-sensitive and are encoded in ISO 8859-1.
 </para>
 </blockquote>
 <para>
-=&gt;
+▶
 </para>
 
 <blockquote>
@@ -1514,7 +1514,7 @@ error is returned.
 </blockquote>
 <para>
 <!-- .LP -->
-=&gt;+
+▶+
 </para>
 <blockquote>
     <para>
@@ -1606,7 +1606,7 @@ error is returned and the request is ignored.
 </para>
 
 <para>
-=&gt;
+▶
 </para>
 
 <blockquote>
@@ -1695,7 +1695,7 @@ ignored.
     </para>
 </blockquote>
 <para>
-=&gt;
+▶
 </para>
 <blockquote>
     <para>
@@ -1736,7 +1736,7 @@ error is returned.
     </para>
 </blockquote>
 <para>
-=&gt;
+▶
 </para>
 
 <blockquote>
@@ -1793,9 +1793,9 @@ the indicated response from the server.  This continues
 until STATUS is set to either Success or Denied.
     </para>
 <literallayout class="monospaced">
-     -&gt;
+     ◀
      more-authorization-data:          STRING8
-     =&gt;
+     ▶
      status:                           { Success, Continue, Denied }
      more-authorization-data:          LISTofBYTE
 </literallayout>
@@ -1942,7 +1942,7 @@ returned and the default resolutions are not changed.
 <function>GetResolution</function>
 </para>
 <para>
-=&gt;
+▶
 </para>
 <blockquote>
     <para>
@@ -1975,7 +1975,7 @@ a server-dependent default value is returned.
     </para>
 </blockquote>
 <para>
-=&gt;+
+▶+
 </para>
 
 <blockquote>
@@ -2048,7 +2048,7 @@ is set to zero.
 </blockquote>
 
 <para>
-=&gt;+
+▶+
 </para>
 
 <blockquote>
@@ -2112,7 +2112,7 @@ client with the server.
 </blockquote>
 
 <para>
-=&gt;
+▶
 </para>
 <blockquote>
     <para>
@@ -2261,7 +2261,7 @@ error is returned.
     </para>
 </blockquote>
 <para>
-=&gt;
+▶
 </para>
 <blockquote>
     <para>
@@ -2304,7 +2304,7 @@ is returned.
     </para>
 </blockquote>
 <para>
-=&gt;
+▶
 </para>
 <blockquote>
     <para>
@@ -2343,7 +2343,7 @@ uses 1-byte character codes.
     </para>
 </blockquote>
 <para>
-=&gt;
+▶
 </para>
 <blockquote>
     <para>
@@ -2423,7 +2423,7 @@ error is returned.
     </para>
 </blockquote>
 <para>
-=&gt;+
+▶+
 </para>
 
 <blockquote>
@@ -2476,7 +2476,7 @@ uses 1-byte character codes.
     </para>
 </blockquote>
 <para>
-=&gt;+
+▶+
 </para>
 <blockquote>
     <para>
@@ -3375,7 +3375,7 @@ n    PROPINFO           property data
 2     0                      client-minor-protocol-version
 2     a/4 lengthof           auth-data
 a     LISTofAUTH             auth-data
-=>
+▶
 2     CARD16                 status
 0                            Success
 1                            Continue
@@ -3402,11 +3402,11 @@ and closes the connection:
 </para>
 
 <literallayout class="monospaced">
-->
+◀
 4     1+(d+q)/4              length
 d     LISTofBYTE             more-authorization-data
 q                            unused, q=pad(d)
-=>
+▶
 4     2+(d+q)/4              length
 2     CARD16                 status
         0                    Success
@@ -3445,7 +3445,7 @@ following requests:
 1   1                        major-opcode
 1                            unused
 2   1                        length
-=>
+▶
 1   0                        type reply
 1   CARD8                    numberof names
 2   CARD16                   sequence-number
@@ -3459,7 +3459,7 @@ p                            unused, p=pad(n)
 2   1+(n+p)/4                length
 n   STRING8                  name
 p                            unused, p=pad(n)
-=>
+▶
 1   0                        type reply
 1   BOOL                     present
 2   CARD16                   sequence-number
@@ -3482,7 +3482,7 @@ p                            unused, p=pad(n)
 2                            unused
 n   STRING8                  pattern
 p                            unused, p=pad(n)
-=>+
+▶+
 1   0                        type reply
 1                            unused
 2   CARD16                   sequence-number
@@ -3503,7 +3503,7 @@ p                            unused, p=pad(n)
 1   5                        major-opcode
 1                            unused
 2   1                        length
-=>
+▶
 1   0                        type reply
 1   CARD8                    numberof catalogue-names
 2   CARD16                   sequence-number
@@ -3521,7 +3521,7 @@ p                            unused, p=pad(n)
 1   7                        major-opcode
 1   CARD8                    extension-opcode
 2   1                        length
-=>
+▶
 1   0                        type reply
 1                            unused
 2   CARD16                   sequence-number
@@ -3534,7 +3534,7 @@ p                            unused, p=pad(n)
 2   2+a/4                    length
 4   ACCESSCONTEXT            ac
 a   LISTofAUTH               authorization-protocols
-=>
+▶
 1   0                        type reply
 1   CARD8                    authorization-index
 2   CARD16                   sequence-number
@@ -3558,11 +3558,11 @@ Success, Busy, or Denied at which point the request is finished.
 </para>
 
 <literallayout class="monospaced">
-->
+◀
 4   1+(d+q)/4                length
 d   LISTofBYTE               more-authorization-data
 q                            unused, q=pad(d)
-=>
+▶
 4   2+(d+q)/4                length
 2   CARD16                   status
     0 Success
@@ -3596,7 +3596,7 @@ p   p=pad(6*n)
 1   12                       major-opcode
 1                            unused
 2   1                        length
-=>
+▶
 1   0                        type reply
 1   n                        number of resolutions
 2   CARD16                   sequence-number
@@ -3613,7 +3613,7 @@ p   p=pad(6*n)
 2                            unused
 n   STRING8                  pattern
 p                            unused, p=pad(n)
-=>+
+▶+
 1   0                        type reply
 1                            unused
 2   CARD16                   sequence-number
@@ -3632,7 +3632,7 @@ p                            unused, p=pad(n)
 2                            unused
 n   STRING8                  pattern
 p                            unused, p=pad(n)
-=>+(except for last in series)
+▶+ (except for last in series)
 1   0                        type reply
 1   n                        length of name
 2   CARD16                   sequence-number
@@ -3641,7 +3641,7 @@ p                            unused, p=pad(n)
 f   XFONTINFO                fontinfo
 n   STRING8                  name
 p                            unused, p=pad(n)
-=>(last in series)
+▶ (last in series)
 1   0                        type reply
 1   0                        last-reply indicator
 2   CARD16                   sequence-number
@@ -3656,7 +3656,7 @@ p                            unused, p=pad(n)
 4   BITMAPFORMAT             format
 n   STRNAME                  pattern
 p                            unused, p=pad(n)
-=>
+▶
 1   0                        type reply
 1   BOOL                     otherid-valid
 2   CARD16                   sequence-number
@@ -3670,7 +3670,7 @@ p                            unused, p=pad(n)
 1                            unused
 2   2                        length
 4   FONTID                   fontid
-=>
+▶
 1   0                        type reply
 1                            unused
 2   CARD16                   sequence-number
@@ -3686,7 +3686,7 @@ p                            unused, p=pad(f)
 4   n                        number chars entries
 n   STRING8                  chars
 p                            unused, p=pad(n)
-=>
+▶
 1   0                        type reply
 1                            unused
 2   CARD16                   sequence-number
@@ -3702,7 +3702,7 @@ p                            unused, p=pad(n)
 4   n                        number chars entries
 2*n                          LISTofCHAR2B chars
 p                            unused, p=pad(2*n)
-=>
+▶
 1   0                        type reply
 1                            unused
 2   CARD16                   sequence-number
@@ -3719,7 +3719,7 @@ p                            unused, p=pad(2*n)
 4   n                        number of chars entries
 n   STRING8                  chars
 p                            unused, p=pad(n)
-=>+
+▶+
 1   0                        type reply
 1                            unused
 2   CARD16                   sequence-number
@@ -3740,7 +3740,7 @@ p                            unused, p=pad(m)
 4   n                        number of chars entries
 2*n LISTofCHAR2B             chars
 p                            unused, p=pad(2*n)
-=>
+▶
 1   0                        type reply
 1                            unused
 2   CARD16                   sequence-number
