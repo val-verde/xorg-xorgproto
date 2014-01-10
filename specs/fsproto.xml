@@ -317,8 +317,9 @@ requested.  For example:
 <para>
 <!-- .LP -->
 The protocol described below uses the request/reply/error model and is
-specified using the same conventions outlined in Section 2 of the core X Window
-System protocol [1]:
+specified using the same conventions outlined in
+<olink targetdoc='x11protocol' targetptr='Syntactic_Conventions'>Section 2
+of the core X Window System protocol</olink> [1]:
 </para>
 <itemizedlist>
   <listitem>
@@ -940,7 +941,7 @@ character.  The first five values represent directed distances in
 a coordinate system whose origin is aligned with the lower-left
 edge of the left-most pixel of the glyph baseline (i.e. the
 baseline falls between two pixels as shown in Figure 3-1 of the
-"Bitmap Distribution Format 2.1" Consortium standard [2]).
+<citetitle>Bitmap Distribution Format 2.1</citetitle> Consortium standard [2]).
   </para>
 <!-- .sp -->
   <para>
@@ -1992,7 +1993,8 @@ Errors:
     <para>
 This request returns a list of at most MAX-NAMES font names
 that match the specified PATTERN, according to matching rules
-of the X Logical Font Description Conventions [3].  In the
+of the <olink targetdoc='xlfd' targetptr='xlfd'><citetitle>X Logical
+Font Description Conventions</citetitle></olink> [3].  In the
 pattern (which is encoded in ISO 8859-1) the `?' character
 (octal 77) matches any single character; the `*' character
 (octal 52) matches any series of zero or more characters; and
@@ -3954,7 +3956,7 @@ All of the following documents are X Consortium standards available from
 the X Consortium.
 </para>
 <biblioentry>
-  <title>X Window System Protocol Version 11</title>
+  <title><olink targetdoc='x11protocol' targetptr='x11protocol'>X Window System Protocol Version 11</olink></title>
   <author><firstname>Robert W.</firstname><surname>Scheifler</surname></author>
 </biblioentry>
 
@@ -3963,7 +3965,8 @@ the X Consortium.
 </biblioentry>
 
 <biblioentry>
-  <title>X Consortium.  X Logical Font Description Conventions, Version 1.5</title>
+  <title>X Consortium.  <olink targetdoc='xlfd' targetptr='xlfd'>X
+    Logical Font Description Conventions, Version 1.5</olink></title>
 </biblioentry>
 
 </bibliography>
