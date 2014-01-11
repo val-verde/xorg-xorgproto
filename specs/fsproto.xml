@@ -319,7 +319,8 @@ requested.  For example:
 The protocol described below uses the request/reply/error model and is
 specified using the same conventions outlined in
 <olink targetdoc='x11protocol' targetptr='Syntactic_Conventions'>Section 2
-of the core X Window System protocol</olink> [1]:
+of the core X Window System protocol</olink>
+<xref linkend="References:x11proto"/>:
 </para>
 <itemizedlist>
   <listitem>
@@ -941,7 +942,8 @@ character.  The first five values represent directed distances in
 a coordinate system whose origin is aligned with the lower-left
 edge of the left-most pixel of the glyph baseline (i.e. the
 baseline falls between two pixels as shown in Figure 3-1 of the
-<citetitle>Bitmap Distribution Format 2.1</citetitle> Consortium standard [2]).
+<citetitle>Bitmap Distribution Format 2.1</citetitle> Consortium standard
+<xref linkend="References:bdf-spec"/>).
   </para>
 <!-- .sp -->
   <para>
@@ -1994,8 +1996,9 @@ Errors:
 This request returns a list of at most MAX-NAMES font names
 that match the specified PATTERN, according to matching rules
 of the <olink targetdoc='xlfd' targetptr='xlfd'><citetitle>X Logical
-Font Description Conventions</citetitle></olink> [3].  In the
-pattern (which is encoded in ISO 8859-1) the `?' character
+Font Description Conventions</citetitle></olink>
+<xref linkend="References:xlfd-spec"/>.
+In the pattern (which is encoded in ISO 8859-1) the `?' character
 (octal 77) matches any single character; the `*' character
 (octal 52) matches any series of zero or more characters; and
 alphabetic characters match either upper- or lowercase.  The
@@ -3949,24 +3952,29 @@ deserves great credit for designing and coding the sample implementation.
 </para>
 </sect1>
 
-<bibliography>
+<bibliography id='References'>
 <title>References</title>
 <para>
 All of the following documents are X Consortium standards available from
 the X Consortium.
 </para>
-<biblioentry>
+<biblioentry id='References:x11proto'>
+  <abbrev>1</abbrev>
   <title><olink targetdoc='x11protocol' targetptr='x11protocol'>X Window System Protocol Version 11</olink></title>
   <author><firstname>Robert W.</firstname><surname>Scheifler</surname></author>
 </biblioentry>
 
-<biblioentry>
-  <title>Adobe System - Bitmap Distribution Format 2.1</title>
+<biblioentry id='References:bdf-spec'>
+  <abbrev>2</abbrev>
+  <corpauthor>Adobe Systems</corpauthor>
+  <title>Bitmap Distribution Format 2.1</title>
 </biblioentry>
 
-<biblioentry>
-  <title>X Consortium.  <olink targetdoc='xlfd' targetptr='xlfd'>X
-    Logical Font Description Conventions, Version 1.5</olink></title>
+<biblioentry id='References:xlfd-spec'>
+  <abbrev>3</abbrev>
+  <corpauthor>X Consortium</corpauthor>
+  <title><olink targetdoc='xlfd' targetptr='xlfd'>X Logical Font
+  Description Conventions, Version 1.5</olink></title>
 </biblioentry>
 
 </bibliography>
