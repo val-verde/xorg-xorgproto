@@ -414,11 +414,11 @@ users over time (for example, print spoolers).
 </para>
 <para>
 <!-- .sp -->
-<function>AccessContexts </function>
+<function>AccessContexts</function>
 must be created (with
-<function>CreateAC ) </function>
+<function>CreateAC</function>)
 and switched among (with
-<function>SetAuthorization )</function>
+<function>SetAuthorization</function>)
 to represent all of these "font users" properly.
     </para>
 </blockquote>
@@ -488,9 +488,9 @@ BITMAPFORMAT:
 <para>
 This structure specifies how glyph images are transmitted in
 response to
-<function>QueryXBitmaps8 </function>
+<function>QueryXBitmaps8</function>
 and
-<function>QueryXBitmaps16 </function>
+<function>QueryXBitmaps16</function>
 requests.
 </para>
 <para>
@@ -522,7 +522,7 @@ For a glyph with extents XCHARINFO in a font with header information
 XFONTINFO, the IMAGE-RECT values have the following meanings:
 </para>
 <para>
-<function>ImageRectMin -</function>
+<function>ImageRectMin</function> -
 This refers to the minimal bounding rectangle
 surrounding the inked pixels in the glyph.  This is the
 most compact representation.  The edges of the rectangle
@@ -536,7 +536,7 @@ are:
 </literallayout>
 <para>
 
-<function>ImageRectMaxWidth - </function>
+<function>ImageRectMaxWidth</function> -
 This refers to the scanlines between the
 glyph's ascent and descent, padded on the left to the minimum
 left-bearing (or 0, whichever is less) and on the right to
@@ -700,9 +700,9 @@ bit indicates one or more events, and a bit value of one indicates
 interest in a corresponding set of events.  The following bits are
 defined for event masks specified for the core protocol (i.e. an
 EXTENSION-OPCODE of zero in
-<function>SetEventMask </function>
+<function>SetEventMask</function>
 and
-<function>GetEventMask </function>
+<function>GetEventMask</function>
 requests):
 </para>
 
@@ -713,15 +713,15 @@ requests):
 
 <para>
 If
-<function>CatalogueListChangeMask </function>
+<function>CatalogueListChangeMask</function>
 is set, client is interested in
 receiving
-<function>CatalogueListNotify </function>
+<function>CatalogueListNotify</function>
 events.  If
-<function>FontListChangeMask </function>
+<function>FontListChangeMask</function>
 is set, the client is interested in
 receiving
-<function>FontListNotify </function>
+<function>FontListNotify</function>
 events.
 </para>
 <para>
@@ -731,14 +731,14 @@ event masks.  These event masks have their own scope and may use
 the same bit values as the core or other extensions.
 <!-- .sp -->
 All unused bits must be set to zero.  In
-<function>SetEventMask </function>
+<function>SetEventMask</function>
 requests, if
 any bits are set that are not defined for the extension (or core)
 for which this EVENTMASK is intended (according to the EXTENSION-
 OPCODE given in the
-<function>SetEventMask </function>
+<function>SetEventMask</function>
 request), an
-<function>EventMask </function>
+<function>EventMask</function>
 error is generated.
 <!-- .sp -->
 This value is swapped as a CARD32.
@@ -752,7 +752,7 @@ FONTID:     ID
 <blockquote>
 <para>
 This is specified by the client in the request
-<function>OpenBitmapFont </function>
+<function>OpenBitmapFont</function>
 as the identifier to be used when referring to a particular open
 font.
 </para>
@@ -1157,12 +1157,12 @@ memory) while processing a request, it returns an Alloc error.  If a server is
 deficient (and therefore non-compliant) and is unable to process a request, it
 may return an Implementation error.  If a client uses an extension request
 without previously having issued a
-<function>QueryExtension </function>
+<function>QueryExtension</function>
 request for that extension, the server responds with a
-<function>Request </function>
+<function>Request</function>
 error.  If the server encounters a request
 with an unknown MAJOR-OPCODE or MINOR-OPCODE, it responds with a
-<function>Request </function>
+<function>Request</function>
 error.
 At most one error is generated per request.  If more than one error condition
 is encountered in processing a requests, the choice of which error is returned
@@ -1400,7 +1400,7 @@ Errors:  Alloc
     <para>
 This request does nothing.  It is typically used in response
 to a
-<function>KeepAlive </function>
+<function>KeepAlive</function>
 event.
     </para>
 </blockquote>
@@ -1499,9 +1499,9 @@ The server is free to return different values to different
 clients.  Therefore, clients must use this request before
 issuing any of the requests in the named extension package or
 using the
-<function>SetEventMask request to express interest in any of</function>
+<function>SetEventMask</function> request to express interest in any of
 this extension's events.  Otherwise, a
-<function>Request </function>
+<function>Request</function>
 error is returned.
   </para>
 </blockquote>
@@ -1582,7 +1582,7 @@ is set to zero.
     </para>
     <para>
 Errors:
-<function>Alloc , </function>
+<function>Alloc</function>,
 <function>Name</function>
     </para>
     <para>
@@ -1590,10 +1590,10 @@ This request sets the list of catalogues whose fonts should be
 visible to the client.  The union of the fonts provided by
 each of the named catalogues forms the set of fonts whose
 names match patterns in
-<function>ListFonts , </function>
-<function>ListFontsWithXInfo , </function>
+<function>ListFonts</function>,
+<function>ListFontsWithXInfo</function>,
 and
-<function>OpenBitmapFont </function>
+<function>OpenBitmapFont</function>
 requests.  The catalogue names are
 case-insensitive and are encoded in <acronym>ISO</acronym> 8859-1.  A zero-length
 list resets the client's catalogue list to the
@@ -1602,7 +1602,7 @@ server-dependent default.
     </para>
     <para>
 If any of the catalogue names are invalid, a
-<function>Name </function>
+<function>Name</function>
 error is returned and the request is ignored.
     </para>
 </blockquote>
@@ -1655,7 +1655,7 @@ returned in mixed case.
     </para>
     <para>
 Errors:
-<function>EventMask ,</function>
+<function>EventMask</function>,
 <function>Request</function>
     </para>
     <para>
@@ -1669,7 +1669,7 @@ requires multiple uses of this request.
     </para>
     <para>
 The default event mask if
-<function>SetEventMask </function>
+<function>SetEventMask</function>
 has not been called
 is zero, indicating no interest in any maskable events.
 Some events are not maskable and cannot be blocked.
@@ -1678,9 +1678,9 @@ Some events are not maskable and cannot be blocked.
     <para>
 If EXTENSION-OPCODE is not a valid extension opcode previously
 returned by
-<function>QueryExtension </function>
+<function>QueryExtension</function>
 or zero, a
-<function>Request </function>
+<function>Request</function>
 error is
 returned.  If EVENT-MASK contains any bits that do not
 correspond to valid events for the specified extension (or
@@ -1722,7 +1722,7 @@ always sent to the client.
     <para>
 If EXTENSION-OPCODE is not a valid extension opcode
 previously returned by
-<function>QueryExtension </function>
+<function>QueryExtension</function>
 or zero, a
 <function>Request</function>
 error is returned.
@@ -1763,13 +1763,13 @@ Errors:
     </para>
     <para>
 This request creates a new
-<function>AccessContext </function>
+<function>AccessContext</function>
 object within the
 server containing the specified authorization data.  When
 this
 <function>AccessContext</function>
 is selected by the client using the
-<function>SetAuthorization </function>
+<function>SetAuthorization</function>
 request, the data may be used by the server
 to determine whether or not the client should be granted
 access to particular font information.
@@ -1779,7 +1779,7 @@ access to particular font information.
 If STATUS is Denied, the server rejects the client's
 authorization information and does not associate AC with any
 valid
-<function>AccessContext .  </function>
+<function>AccessContext</function>.
 In this case, AUTHORIZATION-INDEX is set
 to zero, and zero bytes of AUTHORIZATION-DATA is returned.
     </para>
@@ -1829,7 +1829,7 @@ with an access context, an IDChoice error is returned.
     </para>
     <para>
 Errors:
-<function>AccessContext , </function>
+<function>AccessContext</function>,
 <function>Alloc</function>
     </para>
     <para>
@@ -1848,14 +1848,14 @@ established for the initial
 connection setup.  Operations on fonts that were opened under
 AC are not affected.  The client may reuse the value of AC in
 a subsequent
-<function>CreateAC </function>
+<function>CreateAC</function>
 request.
     </para>
     <para>
 If AC isn't associated with any valid authorization previously
 created by
-<function>CreateAC , an </function>
-<function>AccessContext </function>
+<function>CreateAC</function>, an
+<function>AccessContext</function>
 error is returned.
     </para>
 </blockquote>
@@ -1876,7 +1876,7 @@ Errors:
     </para>
     <para>
 This request sets the
-<function>AccessContext </function>
+<function>AccessContext</function>
 to be used for subsequent
 requests (except for
 <function>QueryXInfo</function>,
@@ -1885,9 +1885,9 @@ requests (except for
 <function>QueryXBitmaps8</function>,
 <function>QueryXBitmaps16</function>
 and
-<function>CloseFont </function>
+<function>CloseFont</function>
 which are done under the
-<function>AccessContext </function>
+<function>AccessContext</function>
 of the
 corresponding
 <function>OpenBitmapFont</function>
@@ -2018,7 +2018,7 @@ This may be used to synchronize the client with the server.
     </para>
     <para>
 Servers are free to add or remove fonts to the set returned by
-<function>ListFonts </function>
+<function>ListFonts</function>
 between any two requests.  This request is not
 cumulative; repeated uses are processed in isolation and do
 result in an iteration through the list.
@@ -2077,7 +2077,7 @@ Errors:
     </para>
     <para>
 This request is similar to
-<function>ListFonts </function>
+<function>ListFonts</function>
 except that a separate
 reply containing the name, header, and property data is
 generated for each matching font name.  Following these
@@ -2146,9 +2146,9 @@ Errors:
 This request looks for a server-dependent choice of the
 font names that match the specified PATTERN according to the
 rules described for
-<function>ListFonts .  </function>
+<function>ListFonts</function>.
 If no matches are found, a
-<function>Name </function>
+<function>Name</function>
 error is returned.  Otherwise, the server attempts to
 open the font associated with the chosen name.
     </para>
@@ -2159,7 +2159,7 @@ may use the client's current
 <function>AccessContext</function>
 (as set by the most
 recent
-<function>SetAuthorization </function>
+<function>SetAuthorization</function>
 request or the original connection
 setup) to determine any client-specific sets of permissions.
 After the font has been opened, the client is allowed to
@@ -2209,7 +2209,7 @@ The FORMAT-MASK indicates which fields in FORMAT-HINT
 the client is likely to use in subsequent
 <function>GetXBitmaps8</function>
 and
-<function>GetXBitmaps16 </function>
+<function>GetXBitmaps16</function>
 requests.  Servers may wish to use
 this information to precompute certain values.
 <!-- .sp -->
@@ -2218,43 +2218,43 @@ this information to precompute certain values.
 If CACHABLE is set to True, the client may cache the font
 (so that redundant opens of the same font may be avoided)
 and use it with all
-<function>AccessContexts </function>
+<function>AccessContexts</function>
 during the life of the
 client without violating the font's licensing policy.  This
 flag is typically set whenever a font is unlicensed or is
 licensed on a per-display basis.  If CACHABLE is False, the
 client should reopen the font for each
-<function>AccessContext .</function>
+<function>AccessContext</function>.
 <!-- .sp -->
     </para>
     <para>
 The server is permitted to add to or remove from the set of
 fonts returned by
-<function>ListFonts </function>
+<function>ListFonts</function>
 between any two requests, though
 mechanisms outside the protocol.  Therefore, it is possible
 for this request (which is atomic) to return a different font
 than would result from separate a
-<function> ListFonts </function>
+<function>ListFonts</function>
 followed by an
-<function>OpenBitmapFont </function>
+<function>OpenBitmapFont</function>
 with a non-wildcarded font name.
 <!-- .sp -->
     </para>
     <para>
 If FONTID is not in the range [1..2^29-1] or if it is already
 associated with an open font, an
-<function>IDChoice </function>
+<function>IDChoice</function>
 error is returned.
 If no font is available that matches the specified PATTERN, a
-<function>Name </function>
+<function>Name</function>
 error is returned.  If the font is present but the client
 is not permitted access, an
-<function>AccessContext </function>
+<function>AccessContext</function>
 error is returned.
 If FORMAT-MASK has any unspecified bits set or if any of the
 fields in FORMAT-HINT indicated by FORMAT-MASK are invalid, a
-<function>Format </function>
+<function>Format</function>
 error is returned.
     </para>
 </blockquote>
@@ -2289,7 +2289,7 @@ for the open font associated with FONTID.
     <para>
 <!-- .sp -->
 If FONTID is not associated with any open fonts, a
-<function> Font </function>
+<function>Font</function>
 error
 is returned.
     </para>
@@ -2328,7 +2328,7 @@ Errors:
     </para>
     <para>
 This request is equivalent to
-<function>QueryXExtents16 </function>
+<function>QueryXExtents16</function>
 except that it
 uses 1-byte character codes.
     </para>
@@ -2457,7 +2457,7 @@ Errors:
     </para>
     <para>
 This request is equivalent to
-<function>QueryXBitmaps16 </function>
+<function>QueryXBitmaps16</function>
 except that it
 uses 1-byte character codes.
     </para>
@@ -2631,13 +2631,13 @@ longer be associated with an open font.  The server is free to
 release any client-specific storage or licenses allocated for
 the font.  The client may reuse the value of FONTID in a
 subsequent
-<function>OpenBitmapFont </function>
+<function>OpenBitmapFont</function>
 request.
     </para>
     <para>
 <!-- .sp -->
 If FONTID is not associated with any open fonts, a
-<function> Font </function>
+<function>Font</function>
 error is returned.
     </para>
 </blockquote>
@@ -2651,7 +2651,7 @@ error is returned.
 <blockquote>
     <para>
 When a connection is closed, a
-<function>CloseFont </function>
+<function>CloseFont</function>
 is done on all fonts
 that are open on the connection.  In addition, the server is
 free to release any storage or licenses allocated on behalf of
@@ -2733,7 +2733,7 @@ The following errors are defined for the core protocol:
 This error is generated by any request that has an unknown
 combination of major and minor request numbers, or by any
 extension request that is issued before a
-<function>QueryExtension </function>
+<function>QueryExtension</function>
 of that extension.
     </para>
 </blockquote>
@@ -2782,7 +2782,7 @@ This error is generated by an invalid FONTID in the
 <function>QueryXBitmaps8</function>,
 <function>QueryXBitmaps16</function>
 and
-<function>CloseFont </function>
+<function>CloseFont</function>
 requests.  The value that caused
 the error is included as extra data.
     </para>
@@ -2803,11 +2803,11 @@ the error is included as extra data.
     </para>
     <para>
 This error is generated by an invalid RANGE in the
-<function> QueryXExtents8</function>,
+<function>QueryXExtents8</function>,
 <function>QueryXExtents16</function>,
 <function>QueryXBitmaps8</function>
 and
-<function>QueryXBitmaps16 </function>
+<function>QueryXBitmaps16</function>
 requests.  The
 value that caused the error is included as extra data.
     </para>
@@ -2828,7 +2828,7 @@ value that caused the error is included as extra data.
     </para>
     <para>
 This error is generated by an invalid EVENTMASK in the
-<function>SetEventMask </function>
+<function>SetEventMask</function>
 request.  The value that caused the error is
 included as extra data.
     </para>
@@ -2849,9 +2849,9 @@ included as extra data.
     </para>
     <para>
 This error is generated by an invalid ACCESSCONTEXT in the
-<function>FreeAC </function>
+<function>FreeAC</function>
 or
-<function>SetAuthorization </function>
+<function>SetAuthorization</function>
 request or by an
 <function>OpenBitmapFont</function>
 request performed without sufficient authorization.  In the
@@ -2876,10 +2876,10 @@ ACCESSCONTEXT is returned as extra data.
     <para>
 This error is generated by an invalid or already associated
 ACCESSCONTEXT identifier in a
-<function>CreateAC </function>
+<function>CreateAC</function>
 request or FONTID identifier
 in an
-<function>OpenBitmapFont </function>
+<function>OpenBitmapFont</function>
 request.  The value that caused the error
 is included as extra data.
     </para>
@@ -2897,9 +2897,9 @@ is included as extra data.
     <para>
 This error is generated by a font name pattern that matches
 no fonts in an
-<function>OpenBitmapFont </function>
+<function>OpenBitmapFont</function>
 request or no catalogue names in a
-<function>SetCatalogues </function>
+<function>SetCatalogues</function>
 request.
     </para>
 </blockquote>
@@ -2925,7 +2925,7 @@ request.
     <para>
 This error is generated in response to an invalid RESOLUTION
 structure in a
-<function>SetResolution </function>
+<function>SetResolution</function>
 request.  The value that caused the
 error is included in the DATA-OR-UNUSED field and as extra data.
     </para>
@@ -3084,7 +3084,7 @@ by sending any request (such as
     </para>
     <para>
 This event is sent to clients that have included
-<function>CatalogueListChangeMask </function>
+<function>CatalogueListChangeMask</function>
 in their core event mask
 whenever the list of catalogues that are available has
 changed.  The ADDED field is True if new catalogues have
@@ -3108,7 +3108,7 @@ been removed from the server, otherwise it is False.
     </para>
     <para>
 This event is sent to clients that have included
-<function>FontListChangeMask </function>
+<function>FontListChangeMask</function>
 in their event mask whenever the
 list of fonts that are provided by the currently selected
 catalogues has changed.  The ADDED field is True if new
