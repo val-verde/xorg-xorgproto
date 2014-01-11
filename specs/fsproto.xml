@@ -1391,7 +1391,7 @@ exchanged, the client may issue any of requests described below:
 <blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "NoOp" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>NoOp</primary></indexterm>
 <function>NoOp</function>
 </para>
     <para>
@@ -1407,7 +1407,7 @@ event.
 
 <para>
 <!-- .LP -->
-<!-- .IN "ListExtensions" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>ListExtensions</primary></indexterm>
 <function>ListExtensions</function>
 </para>
 <para>
@@ -1429,7 +1429,7 @@ case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
 </blockquote>
 
 <para>
-<!-- .IN "QueryExtension" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>QueryExtension</primary></indexterm>
 <function>QueryExtension</function>
 </para>
 
@@ -1508,7 +1508,7 @@ error is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "ListCatalogues" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>ListCatalogues</primary></indexterm>
 <function>ListCatalogues</function>
 </para>
 
@@ -1573,7 +1573,7 @@ is set to zero.
 
 <para>
 <!-- .LP -->
-<!-- .IN "SetCatalogues" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>SetCatalogues</primary></indexterm>
 <function>SetCatalogues</function>
 </para>
 <blockquote>
@@ -1609,7 +1609,7 @@ error is returned and the request is ignored.
 
 <para>
 <!-- .LP -->
-<!-- .IN "GetCatalogues" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>GetCatalogues</primary></indexterm>
 <function>GetCatalogues</function>
 </para>
 
@@ -1642,7 +1642,7 @@ returned in mixed case.
 
 <para>
 <!-- .LP -->
-<!-- .IN "SetEventMask" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>SetEventMask</primary></indexterm>
 <function>SetEventMask</function>
 </para>
 
@@ -1693,7 +1693,7 @@ ignored.
 
 <para>
 <!-- .LP -->
-<!-- .IN "GetEventMask" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>GetEventMask</primary></indexterm>
 <function>GetEventMask</function>
 </para>
 
@@ -1731,7 +1731,7 @@ error is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "CreateAC" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>CreateAC</primary></indexterm>
 <function>CreateAC</function>
 </para>
 
@@ -1819,7 +1819,7 @@ with an access context, an IDChoice error is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "FreeAC" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>FreeAC</primary></indexterm>
 <function>FreeAC</function>
 </para>
 
@@ -1862,7 +1862,7 @@ error is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "SetAuthorization" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>SetAuthorization</primary></indexterm>
 <function>SetAuthorization</function>
 </para>
 
@@ -1910,7 +1910,7 @@ error is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "SetResolution" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>SetResolution</primary></indexterm>
 <function>SetResolution</function>
 </para>
 
@@ -1946,7 +1946,7 @@ returned and the default resolutions are not changed.
 </blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "GetResolution" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>GetResolution</primary></indexterm>
 <function>GetResolution</function>
 </para>
 <para>
@@ -1970,7 +1970,7 @@ a server-dependent default value is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "ListFonts" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>ListFonts</primary></indexterm>
 <function>ListFonts</function>
 </para>
 
@@ -2038,7 +2038,7 @@ is set to zero.
 
 <para>
 <!-- .LP -->
-<!-- .IN "ListFontsWithXInfo" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>ListFontsWithXInfo</primary></indexterm>
 <function>ListFontsWithXInfo</function>
 </para>
 
@@ -2102,7 +2102,7 @@ client with the server.
 
 <para>
 <!-- .LP -->
-<!-- .IN "OpenBitmapFont" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>OpenBitmapFont</primary></indexterm>
 <function>OpenBitmapFont</function>
 </para>
 
@@ -2261,7 +2261,7 @@ error is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "QueryXInfo" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>QueryXInfo</primary></indexterm>
 <function>QueryXInfo</function>
 </para>
 
@@ -2297,7 +2297,7 @@ is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "QueryXExtents8" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>QueryXExtents8</primary></indexterm>
 <function>QueryXExtents8</function>
 </para>
 
@@ -2336,7 +2336,7 @@ uses 1-byte character codes.
 
 <para>
 <!-- .LP -->
-<!-- .IN "QueryXExtents16" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>QueryXExtents16</primary></indexterm>
 <function>QueryXExtents16</function>
 </para>
 <blockquote>
@@ -2414,7 +2414,7 @@ error is returned.
 
 <para>
 <!-- .LP -->
-<!-- .IN "QueryXBitmaps8" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>QueryXBitmaps8</primary></indexterm>
 <function>QueryXBitmaps8</function>
 </para>
 
@@ -2464,7 +2464,7 @@ uses 1-byte character codes.
 </blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "QueryXBitmaps16" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>QueryXBitmaps16</primary></indexterm>
 <function>QueryXBitmaps16</function>
 </para>
 
@@ -2612,7 +2612,7 @@ Format error is returned.
 </blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "CloseFont" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>CloseFont</primary></indexterm>
 <function>CloseFont</function>
 </para>
 
@@ -2645,7 +2645,7 @@ error is returned.
 <para>
 <!-- .LP -->
 <function>"close connection"</function>
-<!-- .IN "close connection" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>close connection</primary></indexterm>
 </para>
 
 <blockquote>
@@ -2721,7 +2721,7 @@ The following errors are defined for the core protocol:
 </para>
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "Request" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Request</secondary></indexterm>
 <function>Request</function>
 </para>
 
@@ -2740,7 +2740,7 @@ of that extension.
 
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "Format" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Format</secondary></indexterm>
 <function>Format</function>
 </para>
 
@@ -2764,7 +2764,7 @@ The value that caused the error is included as extra data.
 
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "Font" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Font</secondary></indexterm>
 <function>Font</function>
 </para>
 <blockquote>
@@ -2790,7 +2790,7 @@ the error is included as extra data.
 
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "Range" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Range</secondary></indexterm>
 <function>Range</function>
 </para>
 
@@ -2814,7 +2814,7 @@ value that caused the error is included as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "EventMask" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>EventMask</secondary></indexterm>
 <function>EventMask</function>
 </para>
 
@@ -2835,7 +2835,7 @@ included as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "AccessContext" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>AccessContext</secondary></indexterm>
 <function>AccessContext</function>
 </para>
 
@@ -2862,7 +2862,7 @@ ACCESSCONTEXT is returned as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "IDChoice" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>IDChoice</secondary></indexterm>
 <function>IDChoice</function>
 </para>
 
@@ -2886,7 +2886,7 @@ is included as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "Name" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Name</secondary></indexterm>
 <function>Name</function>
 </para>
 
@@ -2906,7 +2906,7 @@ request.
 
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "Resolution" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Resolution</secondary></indexterm>
 <function>Resolution</function>
 </para>
 
@@ -2933,7 +2933,7 @@ error is included in the DATA-OR-UNUSED field and as extra data.
 
 <para>
 <!-- .LP      -->
-<!-- .IN "Error Codes" "Alloc" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Alloc</secondary></indexterm>
 <function>Alloc</function>
 </para>
 
@@ -2949,7 +2949,7 @@ lacks sufficient resources (especially memory).
 
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "Length" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Length</secondary></indexterm>
 <function>Length</function>
 </para>
 
@@ -2968,7 +2968,7 @@ caused the error is included as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-<!-- .IN "Error Codes" "Implementation" "@DEF@" -->
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Implementation</secondary></indexterm>
 <function>Implementation</function>
 </para>
 
@@ -3055,7 +3055,7 @@ The core X Font Service protocol defines the following events:
 </para>
 <para>
 <!-- .LP -->
-<!-- .IN "KeepAlive" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>KeepAlive</primary></indexterm>
 <function>KeepAlive</function>
 </para>
 <blockquote>
@@ -3072,7 +3072,7 @@ by sending any request (such as
 
 <para>
 <!-- .LP -->
-<!-- .IN "CatalogueListNotify" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>CatalogueListNotify</primary></indexterm>
 <function>CatalogueListNotify</function>
 </para>
 <blockquote>
@@ -3095,7 +3095,7 @@ been removed from the server, otherwise it is False.
 </blockquote>
 <para>
 <!-- .LP      -->
-<!-- .IN "FontListNotify" "" "@DEF@" -->
+<indexterm significance="preferred"><primary>FontListNotify</primary></indexterm>
 <function>FontListNotify</function>
 </para>
 <blockquote>
