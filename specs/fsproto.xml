@@ -3173,7 +3173,7 @@ multiple of four:
      pad(e) = (4 - (e mod 4)) mod 4
 </literallayout>
 
-<section id='Data_Types_2'>
+<section id='Encoding::Data_Types'>
 <title>Data Types</title>
 <!-- .XS -->
 <!-- (SN Data Types -->
@@ -3372,7 +3372,7 @@ n    PROPINFO           property data
 </literallayout>
 </section>
 
-<section id='Requests_2'>
+<section id='Encoding::Requests'>
 <title>Requests</title>
 <para><emphasis role="bold">open connection</emphasis></para>
 <literallayout class="monospaced">
@@ -3769,7 +3769,7 @@ p                            unused, p=pad(m)
 </literallayout>
 </section>
 
-<section id='Errors_2'>
+<section id='Encoding::Errors'>
 <title>Errors</title>
 <literallayout class="monospaced">
 
@@ -3903,7 +3903,7 @@ p                            unused, p=pad(m)
 </literallayout>
 </section>
 
-<section id='Events_2'>
+<section id='Encoding::Events'>
 <title>Events</title>
 <literallayout class="monospaced">
 <emphasis role="bold">KeepAlive</emphasis>
