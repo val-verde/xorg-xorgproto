@@ -1889,7 +1889,7 @@ which are done under the
 of the
 corresponding
 <function>OpenBitmapFont</function>
-")."
+).
 An AC of None restores the
 <function>AccessContext</function>
 established for the initial connection setup.
@@ -3064,7 +3064,7 @@ server to verify that the connection has not been broken
 Clients should acknowledge receipt of this request
 by sending any request (such as
 <function>NoOp</function>
- ")."
+).
     </para>
 </blockquote>
 
