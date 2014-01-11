@@ -3997,35 +3997,46 @@ refuse new connections at any time.
 Configuration or management of the license restrictions is outside the scope of
 the font service protocol and is done in a server-dependent manner.  Possible
 policies might include, but are not limited to, combinations of the following:
-</para>
 
-<itemizedlist>
+<variablelist>
+  <?dbhtml list-presentation="list"?>
+  <varlistentry>
+    <term>No restrictions</term>
   <listitem>
     <para>
-No restrictions - anyone may access any fonts.  The server neither
+anyone may access any fonts.  The server neither
 refuses any connections nor generates AccessContext errors on any
 fonts.  For environments without specially-licensed fonts, this is
 sufficient.
     </para>
   </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>Per-machine</term>
   <listitem>
     <para>
-Per-machine - only those clients connecting from a known set of
+only those clients connecting from a known set of
 machines are permitted access.  The server could get the address
 of the connection and look in a list of allowed machines.
     </para>
   </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>Per-user</term>
   <listitem>
     <para>
-Per-user - only a known set of users may access the fonts.  The
+only a known set of users may access the fonts.  The
 server can use the authorization data (such as a Kerberos ticket
 or a Secure RPC credential) to verify the identity of the user
 and then look in a list of allowed users.
     </para>
   </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>Simultaneous Use</term>
   <listitem>
     <para>
-Simultaneous Use - only a certain number of clients may use a given
+only a certain number of clients may use a given
 font at any one time.  Additional clients would receive AccessContext
 errors if they attempt to open the font.  This is only effective if
 the initial clients keep the font open for the entire time that it
@@ -4033,16 +4044,21 @@ is being used (even if all of the data has been transmitted and is
 being cached).
     </para>
   </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term>Postage Meter</term>
   <listitem>
     <para>
-Postage Meter - a particular font may only be accessed a limited
+a particular font may only be accessed a limited
 number of times before its license must be renewed.  Each time
 the font is opened, the server decrements a counter.  When the
 counter reaches zero, all further attempts to open the font
 return an AccessContext error.
     </para>
   </listitem>
-</itemizedlist>
+  </varlistentry>
+</variablelist>
+</para>
 
 <para>
 It should be noted that chaining of font servers (obtaining font data from
