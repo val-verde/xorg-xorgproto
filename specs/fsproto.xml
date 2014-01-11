@@ -178,7 +178,8 @@ as new needs evolve.
 <!-- .LP -->
 A font server reads raw font data from a variety of sources (possibly
 including other font servers) and converts it into a common format that is
-transmitted to the client using the protocol described in Section 4.  New font
+transmitted to the client using the protocol described in
+<link linkend='Protocol'>Section 4</link>.  New font
 formats are handled by adding new converters to a font server, as shown in
 Figure 2.2.
 </para>
@@ -432,7 +433,8 @@ ALTERNATESERVER:  [ name:  STRING8,
 <blockquote>
     <para>
 This structure specifies the NAME, encoded in ISO 8859-1 according
-to Section 3, of another font server that may be useful as a
+to <link linkend='Font_Server_Naming'>Section 3</link>,
+of another font server that may be useful as a
 substitute for this font server.  The SUBSET field indicates
 whether or not the alternate server is likely to only contain a
 subset of the fonts available from this font server.  This
@@ -1189,7 +1191,8 @@ Each reply is at least 8 bytes long and contains the following fields:
 <para>
 <!-- .RE -->
 The TYPE field has a value of zero.  The DATA-OR-UNUSED field may be used to
-encode one byte of reply-specific data (see Section 5.2 on request encoding).
+encode one byte of reply-specific data (see
+<link linkend="Encoding::Requests">Section 5.2 on request encoding</link>).
 The least-significant 16 bits of the sequence number of the request that
 generated the reply are stored in the SEQUENCE-NUMBER field.  The LENGTH field
 specifies the number of 4-byte units in this reply packet, including the fields
@@ -3148,7 +3151,8 @@ are described using the syntax:
 <!-- .RE -->
 <para>
 where COUNT is the number of bytes in the data stream occupied by this
-field, CONTENTS is the name of the type as given in Section 4 or the value if
+field, CONTENTS is the name of the type as given in
+<link linkend='Data_Types'>Section 4</link> or the value if
 this field contains a constant, and NAME is a description of this field.
 </para>
 <para>
