@@ -139,6 +139,7 @@ the X Window System, it may be also used by other consumers of font data (such
 as printer drivers).
 </para>
 
+<figure id="figure2.1" label="2.1"><title>Connecting to a Font Server</title>
 <literallayout class="monospaced">
  ┌────────┐              ┌───────────────┐
  │   X1   ├──────────────┤               │
@@ -155,10 +156,7 @@ as printer drivers).
 │ clients ├──────┘
 └─────────┘
 </literallayout>
-
-<para>
-Figure 2.1:  Connecting to a Font Server
-</para>
+</figure>
 
 <para>
 <!-- .LP  -->
@@ -184,6 +182,7 @@ formats are handled by adding new converters to a font server, as shown in
 Figure 2.2.
 </para>
 
+<figure id="figure2.2" label="2.2"><title>Where Font Data Comes From</title>
 <literallayout class="monospaced">
                 ┌────────────┐
                 │   client   │
@@ -207,10 +206,7 @@ Figure 2.2.
                                │ server 2 │
                                └──────────┘
 </literallayout>
-
-<para>
-Figure 2.2:  Where Font Data Comes From
-</para>
+</figure>
 
 <para>
 The server may choose to provide named sets of fonts called
