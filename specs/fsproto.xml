@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
                    "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
 [
 <!ENTITY % defs SYSTEM "defs.ent"> %defs;
 ]>
 
 
-<article id="fsproto">
+<book id="fsproto">
 
-<articleinfo>
+<bookinfo>
    <title>The X Font Service Protocol</title>
    <subtitle>X Consortium Standard</subtitle>
    <releaseinfo>X Version 11, Release &fullrelvers;</releaseinfo>
@@ -62,9 +62,9 @@ used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from the X Consortium.
 </para>
 </legalnotice>
-</articleinfo>
+</bookinfo>
 
-<sect1 id='Introduction'>
+<chapter id='Introduction'>
 <title>Introduction</title>
 <para>
 The management of fonts in large, heterogeneous environments is one of the
@@ -116,9 +116,9 @@ rather than reading directly from files.  Since the X Font Service protocol is
 designed to allow subsets of the font data to be requested, displays may easily
 implement a variety of strategies for fine-grained demand-loading of glyphs.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id='Architectural_Model'>
+<chapter id='Architectural_Model'>
 <title>Architectural Model</title>
 <!-- .XS -->
 <!-- (SN Architectural Model -->
@@ -235,9 +235,9 @@ extension mechanism.  Adding to the core font service protocol (with the
 accompanying change in the major or minor version numbers) is reserved to the X
 Consortium.
 </para>
-</sect1>
+</chapter>
 
-<sect1 id='Font_Server_Naming'>
+<chapter id='Font_Server_Naming'>
 <title>Font Server Naming</title>
 <!-- .XS -->
 <!-- (SN Font Server Naming -->
@@ -252,7 +252,7 @@ described below.  Formats for additional transports may be registered with the
 X Consortium.
 </para>
 
-<sect2 id='TCPIP_Names'>
+<section id='TCPIP_Names'>
 <title>TCP/IP Names</title>
 <!-- .XS -->
 <!-- (SN TCP/IP Names -->
@@ -277,9 +277,9 @@ that may be requested.  For example:
      tcp/expo.lcs.mit.edu:8012/available+special
      tcp/18.30.0.212:7890
 </literallayout>
-</sect2>
+</section>
 
-<sect2 id='DECnet_Names'>
+<section id='DECnet_Names'>
 <title>DECnet Names</title>
 <!-- .XS -->
 <!-- (SN DECnet Names -->
@@ -306,10 +306,10 @@ requested.  For example:
      DECNET/SRVNOD::FONT$DEFAULT/AVAILABLE
      decnet/44.70::font$other
 </literallayout>
-</sect2>
-</sect1>
+</section>
+</chapter>
 
-<sect1 id='Protocol'>
+<chapter id='Protocol'>
 <title>Protocol</title>
 <!-- .XS -->
 <!-- (SN Protocol -->
@@ -379,7 +379,7 @@ A type with a prefix "LISTof" represents a counted list of
 elements of that type, as in:  LISTofCARD8
 </para>
 
-<sect2 id='Data_Types'>
+<section id='Data_Types'>
 <title>Data Types</title>
 <!-- .XS -->
 <!-- (SN Data Types -->
@@ -1105,9 +1105,9 @@ this font.
 This structure is padded to 32-bit alignment.
 </para>
 </blockquote>
-</sect2>
+</section>
 
-<sect2 id='Requests'>
+<section id='Requests'>
 <title>Requests</title>
 <!-- .XS -->
 <!-- (SN Requests -->
@@ -2653,9 +2653,9 @@ free to release any storage or licenses allocated on behalf of
 the client that made the connection.
     </para>
 </blockquote>
-</sect2>
+</section>
 
-<sect2 id='Errors'>
+<section id='Errors'>
 <title>Errors</title>
 <!-- .XS -->
 <!-- (SN Errors -->
@@ -2980,9 +2980,9 @@ conformance to the protocol.
 Additional errors may be defined by extensions.
     </para>
 </blockquote>
-</sect2>
+</section>
 
-<sect2 id='Events'>
+<section id='Events'>
 <title>Events</title>
 <!-- .XS -->
 <!-- (SN Events -->
@@ -3118,10 +3118,10 @@ is False.
 Additional events may be defined by extensions.
     </para>
 </blockquote>
-</sect2>
-</sect1>
+</section>
+</chapter>
 
-<sect1 id='Protocol_Encoding'>
+<chapter id='Protocol_Encoding'>
 <title>Protocol Encoding</title>
 <!-- .XS -->
 <!-- (SN Protocol Encoding -->
@@ -3169,7 +3169,7 @@ multiple of four:
      pad(e) = (4 - (e mod 4)) mod 4
 </literallayout>
 
-<sect2 id='Data_Types_2'>
+<section id='Data_Types_2'>
 <title>Data Types</title>
 <!-- .XS -->
 <!-- (SN Data Types -->
@@ -3366,9 +3366,9 @@ but none of the following bits set:
 2    INT16              font descent
 n    PROPINFO           property data
 </literallayout>
-</sect2>
+</section>
 
-<sect2 id='Requests_2'>
+<section id='Requests_2'>
 <title>Requests</title>
 <para><emphasis role="bold">open connection</emphasis></para>
 <literallayout class="monospaced">
@@ -3763,9 +3763,9 @@ p                            unused, p=pad(m)
 2   2                        length
 4   FONTID                   fontid
 </literallayout>
-</sect2>
+</section>
 
-<sect2 id='Errors_2'>
+<section id='Errors_2'>
 <title>Errors</title>
 <literallayout class="monospaced">
 
@@ -3897,9 +3897,9 @@ p                            unused, p=pad(m)
 2                            unused
 
 </literallayout>
-</sect2>
+</section>
 
-<sect2 id='Events_2'>
+<section id='Events_2'>
 <title>Events</title>
 <literallayout class="monospaced">
 <emphasis role="bold">KeepAlive</emphasis>
@@ -3930,10 +3930,10 @@ p                            unused, p=pad(m)
 2                            unused
 
 </literallayout>
-</sect2>
-</sect1>
+</section>
+</chapter>
 
-<sect1 id='Acknowledgements'>
+<chapter id='Acknowledgements'>
 <title>Acknowledgements</title>
 <!-- .XS -->
 <!-- (SN Acknowledgements -->
@@ -3950,7 +3950,7 @@ Stephen Gildea edited version 2 of this document.
 Finally, David Lemke
 deserves great credit for designing and coding the sample implementation.
 </para>
-</sect1>
+</chapter>
 
 <bibliography id='References'>
 <title>References</title>
@@ -4088,4 +4088,4 @@ handling of ECONNREFUSED in XConnDis.c).
   </listitem>
 </itemizedlist>
 </appendix>
-</article>
+</book>
