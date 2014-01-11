@@ -82,7 +82,8 @@ changes (typically in the form of new requests) are expected as consensus is
 reached on new features (particularly outline font support).
 </para>
 <para>
-Currently, most X displays use network file protocols such as NFS and TFTP to
+Currently, most X displays use network file protocols such as
+<acronym>NFS</acronym> and <acronym>TFTP</acronym> to
 obtain raw font data which they parse directly.  Since a common binary format
 for this data doesn't exist, displays must be able to interpret a variety of
 formats if they are to be used with different application hosts.  This leads to
@@ -161,7 +162,8 @@ as printer drivers).
 <para>
 <!-- .LP  -->
 Clients communicate with the font server using the request/reply/event model
-over any mutually-understood virtual stream connection (such as TCP/IP, DECnet,
+over any mutually-understood virtual stream connection (such as
+<acronym>TCP/IP</acronym>, DECnet,
 <footnote><para>
 <firstterm><trademark>DECnet</trademark></firstterm> is a trademark
 of Digital Equipment Corporation.
@@ -428,7 +430,7 @@ ALTERNATESERVER:  [ name:  STRING8,
 
 <blockquote>
     <para>
-This structure specifies the NAME, encoded in ISO 8859-1 according
+This structure specifies the NAME, encoded in <acronym>ISO</acronym> 8859-1 according
 to <link linkend='Font_Server_Naming'>Section 3</link>,
 of another font server that may be useful as a
 substitute for this font server.  The SUBSET field indicates
@@ -912,7 +914,7 @@ STRING8:          LISTofCARD8
 <blockquote>
   <para>
 This is a counted list of 1-byte character codes, typically
-encoded in ISO 8859-1.  A character code "c" is equivalent to a
+encoded in <acronym>ISO</acronym> 8859-1.  A character code "c" is equivalent to a
 CHAR2B structure whose BYTE1 is zero and whose BYTE2 is "c".
   </para>
 </blockquote>
@@ -1242,9 +1244,9 @@ mutually-understood virtual stream:
 <para>
 The initial byte of the connection specifies the BYTE-ORDER in
 which subsequent 16-bit and 32-bit numeric values are to be
-transmitted.  The octal value 102 (ASCII uppercase `B')
+transmitted.  The octal value 102 (<acronym>ASCII</acronym> uppercase `B')
 indicates that the most-significant byte is to be transmitted
-first; the octal value 154 (ASCII lowercase `l') indicates
+first; the octal value 154 (<acronym>ASCII</acronym> lowercase `l') indicates
 that the least-significant byte is to be transmitted first.
 If any other value is encountered the server closes the
 connection without any response.
@@ -1422,7 +1424,7 @@ Errors:  Alloc
   <para>
 This request returns the names of the extension packages
 that are supported by the server.  Extension names are
-case-sensitive and are encoded in ISO 8859-1.
+case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
   </para>
 </blockquote>
 
@@ -1471,7 +1473,7 @@ Errors:
   </para>
   <para>
 This request determines whether or not the extension package
-specified by NAME (encoded in ISO 8859-1) is supported by the
+specified by NAME (encoded in <acronym>ISO</acronym> 8859-1) is supported by the
 server and that there is sufficient number of major opcode,
 event, and error codes available.  If so, then PRESENT is set
 to True, MAJOR-VERSION and MINOR-VERSION are set to the
@@ -1537,11 +1539,11 @@ Errors:
 This request returns a list of at most MAX-NAMES names
 of collections (called catalogues) of fonts that match
 the specified PATTERN.  In the pattern (which is encoded
-in ISO 8859-1), the `?' character (octal 77) matches any
+in <acronym>ISO</acronym> 8859-1), the `?' character (octal 77) matches any
 single character; the `*' character (octal 52) matches
 any series of zero or more characters; and alphabetic
 characters match either upper- or lowercase.  The
-returned NAMES are encoded in ISO 8859-1 and may contain
+returned NAMES are encoded in <acronym>ISO</acronym> 8859-1 and may contain
 mixed character cases.
     </para>
     <para>
@@ -1593,7 +1595,7 @@ names match patterns in
 and
 <function>OpenBitmapFont </function>
 requests.  The catalogue names are
-case-insensitive and are encoded in ISO 8859-1.  A zero-length
+case-insensitive and are encoded in <acronym>ISO</acronym> 8859-1.  A zero-length
 list resets the client's catalogue list to the
 server-dependent default.
 <!-- .sp -->
@@ -1625,7 +1627,7 @@ Errors:
     </para>
     <para>
 This request returns the current list of catalogue names
-(encoded in ISO 8859-1) associated with the client.  These
+(encoded in <acronym>ISO</acronym> 8859-1) associated with the client.  These
 catalogues determine the set of fonts that are visible
 to
 <function>ListFonts</function>,
@@ -1926,7 +1928,7 @@ This request provides a hint as to the resolution and
 preferred point size of the drawing surfaces for which the
 client will be requesting fonts.  The server may use this
 information to set the RESOLUTION_X and RESOLUTION_Y fields
-of scalable XLFD font names, to order sets of names based on
+of scalable <acronym>XLFD</acronym> font names, to order sets of names based on
 their resolutions, and to choose the server-dependent
 instance that is used when a partially-specified scalable
 fontname is opened.
@@ -2001,12 +2003,12 @@ that match the specified PATTERN, according to matching rules
 of the <olink targetdoc='xlfd' targetptr='xlfd'><citetitle>X Logical
 Font Description Conventions</citetitle></olink>
 <xref linkend="References:xlfd-spec"/>.
-In the pattern (which is encoded in ISO 8859-1) the `?' character
+In the pattern (which is encoded in <acronym>ISO</acronym> 8859-1) the `?' character
 (octal 77) matches any single character; the `*' character
 (octal 52) matches any series of zero or more characters; and
 alphabetic characters match either upper- or lowercase.  The
-returned NAMES are encoded in ISO 8859-1 and may contain mixed
-character cases.  Font names are not required to be in XLFD
+returned NAMES are encoded in <acronym>ISO</acronym> 8859-1 and may contain mixed
+character cases.  Font names are not required to be in <acronym>XLFD</acronym>
 format.
     </para>
     <para>
