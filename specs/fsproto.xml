@@ -262,24 +262,24 @@ X Consortium.
 <!-- .XE -->
 <para>
 The following syntax should be used for TCP/IP names:
-</para>
 
 <literallayout class="monospaced">
-    &lt;TCP name&gt;  ::=  "tcp/" &lt;hostname&gt;":" &lt;ipportnumber&gt; ["/" &lt;cataloguelist&gt;]
+    <replaceable>TCP name</replaceable>  ::=  <literal>tcp/</literal> <replaceable>hostname</replaceable> <literal>:</literal> <replaceable>ipportnumber</replaceable> <optional><literal>/</literal> <replaceable>cataloguelist</replaceable></optional>
 </literallayout>
 
-<para>
-where &lt;hostname&gt; is either symbolic (such as expo.lcs.mit.edu) or numeric
-decimal (such as 18.30.0.212).  The &lt;ipportnumber&gt; is the port on
-which the
-font server is listening for connections.  The &lt;cataloguelist&gt; string at
+where <replaceable>hostname</replaceable> is either symbolic (such as
+<systemitem class="systemname">expo.lcs.mit.edu</systemitem>) or numeric
+decimal (such as <systemitem class="ipaddress">18.30.0.212</systemitem>).
+The <replaceable>ipportnumber</replaceable> is the port on which the
+font server is listening for connections.
+The <replaceable>cataloguelist</replaceable> string at
 the end is optional and specifies a plus-separated list of catalogues
 that may be requested.  For example:
-</para>
 <literallayout class="monospaced">
      tcp/expo.lcs.mit.edu:8012/available+special
      tcp/18.30.0.212:7890
 </literallayout>
+</para>
 </section>
 
 <section id='DECnet_Names'>
@@ -290,25 +290,26 @@ that may be requested.  For example:
 <para>
 <!-- .LP -->
 The following syntax should be used for DECnet names:
-</para>
+
 <literallayout class="monospaced">
-    &lt;DECnet name&gt;  ::=  "decnet/" &lt;nodename&gt; "::font$" &lt;objname&gt;
-               ["/" &lt;cataloguelist&gt;]
+    <replaceable>DECnet name</replaceable>  ::=  <literal>decnet/</literal> <replaceable>nodename</replaceable> <literal>::font$</literal> <replaceable>objname</replaceable> <optional><literal>/</literal> <replaceable>cataloguelist</replaceable></optional>
 </literallayout>
-<para>
-where &lt;nodename&gt; is either symbolic (such as SRVNOD) or the
-numeric decimal
-form of the DECnet address (such as 44.70).  The &lt;objname&gt; is normal,
-case-insensitive DECnet object name.  The &lt;cataloguelist&gt; string
+
+where <replaceable>nodename</replaceable> is either symbolic (such as
+<systemitem class="systemname">SRVNOD</systemitem>) or the
+numeric decimal form of the DECnet address (such as
+<systemitem class="ipaddress">44.70</systemitem>).
+The <replaceable>objname</replaceable> is normal, case-insensitive DECnet
+object name.  The <replaceable>cataloguelist</replaceable> string
 at the end is
 optional and specifies a plus-separated list of catalogues that may be
 requested.  For example:
-</para>
 
 <literallayout class="monospaced">
      DECNET/SRVNOD::FONT$DEFAULT/AVAILABLE
      decnet/44.70::font$other
 </literallayout>
+</para>
 </section>
 </chapter>
 
