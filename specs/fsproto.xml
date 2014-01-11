@@ -605,7 +605,7 @@ BITMAPFORMATs are byte-swapped as CARD32s.  All unspecified bits
 must be zero.
 </para>
 <para>
-Use of an invalid BITMAPFORMAT causes a Format error to
+Use of an invalid BITMAPFORMAT causes a <errorname>Format</errorname> error to
 be returned.
 </para>
 </blockquote>
@@ -625,7 +625,7 @@ This is a mask of bits representing the fields in a BITMAPFORMAT:
      ScanlineUnitMask       (1 &lt;&lt; 4)
 </literallayout>
 <para>
-Unspecified bits are required to be zero or else a Format error
+Unspecified bits are required to be zero or else a <errorname>Format</errorname> error
 is returned.
 </para>
 <para>
@@ -738,7 +738,7 @@ for which this EVENTMASK is intended (according to the EXTENSION-
 OPCODE given in the
 <function>SetEventMask</function>
 request), an
-<function>EventMask</function>
+<errorname>EventMask</errorname>
 error is generated.
 <!-- .sp -->
 This value is swapped as a CARD32.
@@ -1152,17 +1152,18 @@ otherwise specified, unused bytes are not required to be zero.
 <para>
 <!-- .LP -->
 If a request packet contains too little or too much data, the server returns
-a Length error.  If the server runs out of internal resources (such as
-memory) while processing a request, it returns an Alloc error.  If a server is
+a <errorname>Length</errorname> error.  If the server runs out of internal
+resources (such as memory) while processing a request, it returns an
+<errorname>Alloc</errorname> error.  If a server is
 deficient (and therefore non-compliant) and is unable to process a request, it
-may return an Implementation error.  If a client uses an extension request
-without previously having issued a
+may return an <errorname>Implementation</errorname> error.
+If a client uses an extension request without previously having issued a
 <function>QueryExtension</function>
 request for that extension, the server responds with a
-<function>Request</function>
+<errorname>Request</errorname>
 error.  If the server encounters a request
 with an unknown MAJOR-OPCODE or MINOR-OPCODE, it responds with a
-<function>Request</function>
+<errorname>Request</errorname>
 error.
 At most one error is generated per request.  If more than one error condition
 is encountered in processing a requests, the choice of which error is returned
@@ -1378,7 +1379,8 @@ the remaining data to be transmitted to the client.  The
 MAXIMUM-REQUEST-LENGTH specifies the largest request size in
 4-byte units that is accepted by the server and must have a
 value of at least 4096.  Requests with a length field larger
-than this value are ignored and a Length error is returned.
+than this value are ignored and a <errorname>Length</errorname>
+error is returned.
 The VENDOR string specifies the name of the manufacturer of
 the font server.  The RELEASE-NUMBER specifies the particular
 release of the server in a manufacturer-dependent manner.
@@ -1395,7 +1397,7 @@ exchanged, the client may issue any of requests described below:
 <function>NoOp</function>
 </para>
     <para>
-Errors:  Alloc
+Errors:  <errorname>Alloc</errorname>
     </para>
     <para>
 This request does nothing.  It is typically used in response
@@ -1419,7 +1421,7 @@ event.
 <emphasis remap='I'>names</emphasis>:  LISTofSTRING8
   </para>
   <para>
-Errors:  Alloc
+Errors:  <errorname>Alloc</errorname>
   </para>
   <para>
 This request returns the names of the extension packages
@@ -1469,7 +1471,7 @@ case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
   </para>
   <para>
 Errors:
-<function>Alloc</function>
+<errorname>Alloc</errorname>
   </para>
   <para>
 This request determines whether or not the extension package
@@ -1501,7 +1503,7 @@ issuing any of the requests in the named extension package or
 using the
 <function>SetEventMask</function> request to express interest in any of
 this extension's events.  Otherwise, a
-<function>Request</function>
+<errorname>Request</errorname>
 error is returned.
   </para>
 </blockquote>
@@ -1533,7 +1535,7 @@ error is returned.
     </para>
     <para>
 Errors:
-<function>Alloc</function>
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request returns a list of at most MAX-NAMES names
@@ -1582,8 +1584,8 @@ is set to zero.
     </para>
     <para>
 Errors:
-<function>Alloc</function>,
-<function>Name</function>
+<errorname>Alloc</errorname>,
+<errorname>Name</errorname>
     </para>
     <para>
 This request sets the list of catalogues whose fonts should be
@@ -1602,7 +1604,7 @@ server-dependent default.
     </para>
     <para>
 If any of the catalogue names are invalid, a
-<function>Name</function>
+<errorname>Name</errorname>
 error is returned and the request is ignored.
     </para>
 </blockquote>
@@ -1623,7 +1625,7 @@ error is returned and the request is ignored.
     </para>
     <para>
 Errors:
-<function>Alloc</function>
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request returns the current list of catalogue names
@@ -1655,8 +1657,8 @@ returned in mixed case.
     </para>
     <para>
 Errors:
-<function>EventMask</function>,
-<function>Request</function>
+<errorname>EventMask</errorname>,
+<errorname>Request</errorname>
     </para>
     <para>
 This request specifies the set of maskable events that the
@@ -1680,12 +1682,12 @@ If EXTENSION-OPCODE is not a valid extension opcode previously
 returned by
 <function>QueryExtension</function>
 or zero, a
-<function>Request</function>
+<errorname>Request</errorname>
 error is
 returned.  If EVENT-MASK contains any bits that do not
 correspond to valid events for the specified extension (or
 core), an
-<function>EventMask</function>
+<errorname>EventMask</errorname>
 error is returned and the request is
 ignored.
     </para>
@@ -1711,7 +1713,7 @@ ignored.
     </para>
     <para>
 Errors:
-<function>Request</function>
+<errorname>Request</errorname>
     </para>
     <para>
 This request returns the set of maskable core events the
@@ -1724,7 +1726,7 @@ If EXTENSION-OPCODE is not a valid extension opcode
 previously returned by
 <function>QueryExtension</function>
 or zero, a
-<function>Request</function>
+<errorname>Request</errorname>
 error is returned.
     </para>
 </blockquote>
@@ -1759,7 +1761,7 @@ error is returned.
     </para>
     <para>
 Errors:
-<function>IDChoice</function>
+<errorname>IDChoice</errorname>
     </para>
     <para>
 This request creates a new
@@ -1813,7 +1815,7 @@ the request is complete.
     </para>
     <para>
 If AC is not in the range [1..2^29-1] or is already associated
-with an access context, an IDChoice error is returned.
+with an access context, an <errorname>IDChoice</errorname> error is returned.
     </para>
 </blockquote>
 
@@ -1829,8 +1831,8 @@ with an access context, an IDChoice error is returned.
     </para>
     <para>
 Errors:
-<function>AccessContext</function>,
-<function>Alloc</function>
+<errorname>AccessContext</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request indicates that the specified AC should no longer
@@ -1855,7 +1857,7 @@ request.
 If AC isn't associated with any valid authorization previously
 created by
 <function>CreateAC</function>, an
-<function>AccessContext</function>
+<errorname>AccessContext</errorname>
 error is returned.
     </para>
 </blockquote>
@@ -1872,7 +1874,7 @@ error is returned.
     </para>
     <para>
 Errors:
-<function>AccessContext</function>
+<errorname>AccessContext</errorname>
     </para>
     <para>
 This request sets the
@@ -1903,7 +1905,7 @@ If AC is neither None nor a value associated with a valid
 previously created by
 <function>CreateAC</function>,
 an
-<function>AccessContext</function>
+<errorname>AccessContext</errorname>
 error is returned.
     </para>
 </blockquote>
@@ -1920,8 +1922,8 @@ error is returned.
     </para>
     <para>
 Errors:
-<function>Resolution</function>,
-<function>Alloc</function>
+<errorname>Resolution</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request provides a hint as to the resolution and
@@ -1940,7 +1942,7 @@ elements of all of the specified RESOLUTIONS are non-zero, the
 default resolutions for this client are changed.
     </para>
     <para>
-If a RESOLUTION entry contains a zero, a Resolution error is
+If a RESOLUTION entry contains a zero, a <errorname>Resolution</errorname> error is
 returned and the default resolutions are not changed.
     </para>
 </blockquote>
@@ -1958,7 +1960,7 @@ returned and the default resolutions are not changed.
     </para>
     <para>
 Errors:
-<function>Alloc</function>
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request returns the current list of default resolutions.
@@ -1995,7 +1997,7 @@ a server-dependent default value is returned.
     </para>
     <para>
 Errors:
-<function>Alloc</function>
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request returns a list of at most MAX-NAMES font names
@@ -2073,7 +2075,7 @@ is set to zero.
     </para>
     <para>
 Errors:
-<function>Alloc</function>
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request is similar to
@@ -2136,11 +2138,11 @@ client with the server.
     </para>
     <para>
 Errors:
-<function>IDChoice</function>,
-<function>Name</function>,
-<function>Format</function>,
-<function>AccessContext</function>,
-<function>Alloc</function>
+<errorname>IDChoice</errorname>,
+<errorname>Name</errorname>,
+<errorname>Format</errorname>,
+<errorname>AccessContext</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request looks for a server-dependent choice of the
@@ -2148,7 +2150,7 @@ font names that match the specified PATTERN according to the
 rules described for
 <function>ListFonts</function>.
 If no matches are found, a
-<function>Name</function>
+<errorname>Name</errorname>
 error is returned.  Otherwise, the server attempts to
 open the font associated with the chosen name.
     </para>
@@ -2244,17 +2246,17 @@ with a non-wildcarded font name.
     <para>
 If FONTID is not in the range [1..2^29-1] or if it is already
 associated with an open font, an
-<function>IDChoice</function>
+<errorname>IDChoice</errorname>
 error is returned.
 If no font is available that matches the specified PATTERN, a
-<function>Name</function>
+<errorname>Name</errorname>
 error is returned.  If the font is present but the client
 is not permitted access, an
-<function>AccessContext</function>
+<errorname>AccessContext</errorname>
 error is returned.
 If FORMAT-MASK has any unspecified bits set or if any of the
 fields in FORMAT-HINT indicated by FORMAT-MASK are invalid, a
-<function>Format</function>
+<errorname>Format</errorname>
 error is returned.
     </para>
 </blockquote>
@@ -2279,8 +2281,8 @@ error is returned.
     </para>
     <para>
 Errors:
-<function>Font</function>,
-<function>Alloc</function>
+<errorname>Font</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request returns the font header and property information
@@ -2289,7 +2291,7 @@ for the open font associated with FONTID.
     <para>
 <!-- .sp -->
 If FONTID is not associated with any open fonts, a
-<function>Font</function>
+<errorname>Font</errorname>
 error
 is returned.
     </para>
@@ -2322,9 +2324,9 @@ is returned.
     </para>
     <para>
 Errors:
-<function>Font</function>,
-<function>Range</function>,
-<function>Alloc</function>
+<errorname>Font</errorname>,
+<errorname>Range</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request is equivalent to
@@ -2361,9 +2363,9 @@ uses 1-byte character codes.
     </para>
     <para>
 Errors:
-<function>Font</function>,
-<function>Range</function>,
-<function>Alloc</function>
+<errorname>Font</errorname>,
+<errorname>Range</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request returns a list of glyph extents from the open
@@ -2378,7 +2380,7 @@ returned.  If CHARS contains an odd number of elements, the
 font's XFONTINFO.CHAR-RANGE.MAX-CHAR is implicitly appended to
 the list.  If CHARS contains no elements, the list is
 implicitly replaced with the font's XFONTINFO.CHAR-RANGE.  If
-any of the resulting character ranges are invalid, a Range
+any of the resulting character ranges are invalid, a <errorname>Range</errorname>
 error is returned.  Otherwise, the character ranges are
 concatenated in the order given by CHARS to produce a set of
 character codes for which extents are returned.
@@ -2403,11 +2405,11 @@ with non-zero but equal left and right bearings.
     <para>
 <!-- .sp -->
 If FONTID is not associated with any open fonts, a
-<function>Font</function>
+<errorname>Font</errorname>
 error is
 returned.  If RANGE is True and CHARS contains any invalid
 ranges, a
-<function>Range</function>
+<errorname>Range</errorname>
 error is returned.
     </para>
 </blockquote>
@@ -2450,10 +2452,10 @@ error is returned.
     </para>
     <para>
 Errors:
-<function>Font</function>,
-<function>Range</function>,
-<function>Format</function>,
-<function>Alloc</function>
+<errorname>Font</errorname>,
+<errorname>Range</errorname>,
+<errorname>Format</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request is equivalent to
@@ -2502,10 +2504,10 @@ uses 1-byte character codes.
     </para>
     <para>
 Errors:
-<function>Font</function>,
-<function>Range</function>,
-<function>Format</function>,
-<function>Alloc</function>
+<errorname>Font</errorname>,
+<errorname>Range</errorname>,
+<errorname>Format</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request returns a list of glyph bitmaps from the open
@@ -2520,7 +2522,7 @@ returned.  If CHARS contains an odd number of elements, the
 font's XFONTINFO.CHAR-RANGE.MAX-CHAR is implicitly appended to
 the list.  If CHARS contains no elements, the list is
 implicitly replaced with the font's XFONTINFO.CHAR-RANGE.  If
-any of the resulting character ranges are invalid, a Range
+any of the resulting character ranges are invalid, a <errorname>Range</errorname>
 error is returned.  Otherwise, the character ranges are
 concatenated in the order given by CHARS to produce a set of
 character codes for which bitmaps are returned.
@@ -2534,7 +2536,7 @@ offsets and bitmaps is returned.
     </para>
     <para>
 <!-- .sp -->
-If any of the resulting character ranges are invalid, a Range
+If any of the resulting character ranges are invalid, a <errorname>Range</errorname>
 error is returned.  Otherwise, the resulting character ranges
 are concatenated in the order given by CHARS to produce a set
 of character codes for which bitmaps are returned.
@@ -2604,10 +2606,10 @@ this field is set to zero.
     </para>
     <para>
 <!-- .sp -->
-If FONTID is not associated with any open fonts, a Font error
-is returned.  If RANGE is True and CHARS contains any invalid
-ranges, a Range error is returned.  If FORMAT is invalid, a
-Format error is returned.
+If FONTID is not associated with any open fonts, a <errorname>Font</errorname>
+error is returned.  If RANGE is True and CHARS contains any invalid
+ranges, a <errorname>Range</errorname> error is returned.
+If FORMAT is invalid, a <errorname>Format</errorname> error is returned.
     </para>
 </blockquote>
 <para>
@@ -2622,8 +2624,8 @@ Format error is returned.
     </para>
     <para>
 Errors:
-<function>Font</function>,
-<function>Alloc</function>
+<errorname>Font</errorname>,
+<errorname>Alloc</errorname>
     </para>
     <para>
 This request indicates that the specified FONTID should no
@@ -2637,7 +2639,7 @@ request.
     <para>
 <!-- .sp -->
 If FONTID is not associated with any open fonts, a
-<function>Font</function>
+<errorname>Font</errorname>
 error is returned.
     </para>
 </blockquote>
@@ -2721,8 +2723,8 @@ The following errors are defined for the core protocol:
 </para>
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Request</secondary></indexterm>
-<function>Request</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Request</errorname></secondary></indexterm>
+<errorname>Request</errorname>
 </para>
 
 <blockquote>
@@ -2740,8 +2742,8 @@ of that extension.
 
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Format</secondary></indexterm>
-<function>Format</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Format</errorname></secondary></indexterm>
+<errorname>Format</errorname>
 </para>
 
 <blockquote>
@@ -2764,8 +2766,8 @@ The value that caused the error is included as extra data.
 
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Font</secondary></indexterm>
-<function>Font</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Font</errorname></secondary></indexterm>
+<errorname>Font</errorname>
 </para>
 <blockquote>
     <para>
@@ -2790,8 +2792,8 @@ the error is included as extra data.
 
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Range</secondary></indexterm>
-<function>Range</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Range</errorname></secondary></indexterm>
+<errorname>Range</errorname>
 </para>
 
 <blockquote>
@@ -2814,8 +2816,8 @@ value that caused the error is included as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>EventMask</secondary></indexterm>
-<function>EventMask</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>EventMask</errorname></secondary></indexterm>
+<errorname>EventMask</errorname>
 </para>
 
 <blockquote>
@@ -2836,7 +2838,7 @@ included as extra data.
 <para>
 <!-- .LP -->
   <indexterm significance="preferred"><primary>Error Codes</primary><secondary>AccessContext</secondary></indexterm>
-<function>AccessContext</function>
+<errorname>AccessContext</errorname>
 </para>
 
 <blockquote>
@@ -2862,8 +2864,8 @@ ACCESSCONTEXT is returned as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>IDChoice</secondary></indexterm>
-<function>IDChoice</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>IDChoice</errorname></secondary></indexterm>
+<errorname>IDChoice</errorname>
 </para>
 
 <blockquote>
@@ -2886,8 +2888,8 @@ is included as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Name</secondary></indexterm>
-<function>Name</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Name</errorname></secondary></indexterm>
+<errorname>Name</errorname>
 </para>
 
 <blockquote>
@@ -2906,8 +2908,8 @@ request.
 
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Resolution</secondary></indexterm>
-<function>Resolution</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Resolution</errorname></secondary></indexterm>
+<errorname>Resolution</errorname>
 </para>
 
 <blockquote>
@@ -2933,8 +2935,8 @@ error is included in the DATA-OR-UNUSED field and as extra data.
 
 <para>
 <!-- .LP      -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Alloc</secondary></indexterm>
-<function>Alloc</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Alloc</errorname></secondary></indexterm>
+<errorname>Alloc</errorname>
 </para>
 
 <blockquote>
@@ -2949,8 +2951,8 @@ lacks sufficient resources (especially memory).
 
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Length</secondary></indexterm>
-<function>Length</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Length</errorname></secondary></indexterm>
+<errorname>Length</errorname>
 </para>
 
 <blockquote>
@@ -2968,8 +2970,8 @@ caused the error is included as extra data.
 </blockquote>
 <para>
 <!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>Implementation</secondary></indexterm>
-<function>Implementation</function>
+  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Implementation</errorname></secondary></indexterm>
+<errorname>Implementation</errorname>
 </para>
 
 <blockquote>
@@ -3777,7 +3779,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Request</emphasis>
 1   1                        type error
-1   0                        Request
+1   0                        <errorname>Request</errorname>
 2   CARD16                   sequence-number
 4   4                        length
 4   TIMESTAMP                timestamp
@@ -3787,7 +3789,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Format</emphasis>
 1   1                        type error
-1   1                        Format
+1   1                        <errorname>Format</errorname>
 2   CARD16                   sequence-number
 4   5                        length
 4   TIMESTAMP                timestamp
@@ -3798,7 +3800,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Font</emphasis>
 1   1                        type error
-1   2                        Font
+1   2                        <errorname>Font</errorname>
 2   CARD16                   sequence-number
 4   5                        length
 4   TIMESTAMP                timestamp
@@ -3809,7 +3811,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Range</emphasis>
 1   1                        type error
-1   3                        Range
+1   3                        <errorname>Range</errorname>
 2   CARD16                   sequence-number
 4   5                        length
 4   TIMESTAMP                timestamp
@@ -3820,7 +3822,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">EventMask</emphasis>
 1   1                        type error
-1   4                        EventMask
+1   4                        <errorname>EventMask</errorname>
 2   CARD16                   sequence-number
 4   5                        length
 4   TIMESTAMP                timestamp
@@ -3831,7 +3833,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">AccessContext</emphasis>
 1   1                        type error
-1   5                        AccessContext
+1   5                        <errorname>AccessContext</errorname>
 2   CARD16                   sequence-number
 4   5                        length
 4   TIMESTAMP                timestamp
@@ -3842,7 +3844,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">IDChoice</emphasis>
 1   1                        type error
-1   6                        IDChoice
+1   6                        <errorname>IDChoice</errorname>
 2   CARD16                   sequence-number
 4   5                        length
 4   TIMESTAMP                timestamp
@@ -3853,7 +3855,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Name</emphasis>
 1   1                        type error
-1   7                        Name
+1   7                        <errorname>Name</errorname>
 2   CARD16                   sequence-number
 4   4                        length
 4   TIMESTAMP                timestamp
@@ -3863,7 +3865,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Resolution</emphasis>
 1   1                        type error
-1   8                        Resolution
+1   8                        <errorname>Resolution</errorname>
 2   CARD16                   sequence-number
 4   5                        length
 4   TIMESTAMP                timestamp
@@ -3873,7 +3875,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Alloc</emphasis>
 1   1                        type error
-1   9                        Alloc
+1   9                        <errorname>Alloc</errorname>
 2   CARD16                   sequence-number
 4   4                        length
 4   TIMESTAMP                timestamp
@@ -3883,7 +3885,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Length</emphasis>
 1   1                        type error
-1   10                       Length
+1   10                       <errorname>Length</errorname>
 2   CARD16                   sequence-number
 4   5                        length
 4   TIMESTAMP                timestamp
@@ -3894,7 +3896,7 @@ p                            unused, p=pad(m)
 
 <emphasis role="bold">Implementation</emphasis>
 1   1                        type error
-1   11                       Implementation
+1   11                       <errorname>Implementation</errorname>
 2   CARD16                   sequence-number
 4   4                        length
 4   TIMESTAMP                timestamp
@@ -4004,8 +4006,8 @@ policies might include, but are not limited to, combinations of the following:
     <term>No restrictions</term>
   <listitem>
     <para>
-anyone may access any fonts.  The server neither
-refuses any connections nor generates AccessContext errors on any
+anyone may access any fonts.  The server neither refuses any connections
+nor generates <errorname>AccessContext</errorname> errors on any
 fonts.  For environments without specially-licensed fonts, this is
 sufficient.
     </para>
@@ -4036,8 +4038,8 @@ and then look in a list of allowed users.
     <term>Simultaneous Use</term>
   <listitem>
     <para>
-only a certain number of clients may use a given
-font at any one time.  Additional clients would receive AccessContext
+only a certain number of clients may use a given font at any one time.
+Additional clients would receive <errorname>AccessContext</errorname>
 errors if they attempt to open the font.  This is only effective if
 the initial clients keep the font open for the entire time that it
 is being used (even if all of the data has been transmitted and is
@@ -4053,7 +4055,7 @@ a particular font may only be accessed a limited
 number of times before its license must be renewed.  Each time
 the font is opened, the server decrements a counter.  When the
 counter reaches zero, all further attempts to open the font
-return an AccessContext error.
+return an <errorname>AccessContext</errorname> error.
     </para>
   </listitem>
   </varlistentry>
