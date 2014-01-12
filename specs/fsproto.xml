@@ -1234,9 +1234,10 @@ The protocol begins with the establishment of a connection over a
 mutually-understood virtual stream:
 </para>
 
+<section id="Requests:open_connection">
+    <title>open connection</title>
+    <indexterm zone="Requests:open_connection" significance="preferred"><primary>open connection</primary></indexterm>
 <literallayout class="monospaced">
-
-  open connection
      byte-order:                         BYTE
      client-major-protocol-version:      CARD16
      client-minor-protocol-version:      CARD16
@@ -1385,17 +1386,17 @@ The VENDOR string specifies the name of the manufacturer of
 the font server.  The RELEASE-NUMBER specifies the particular
 release of the server in a manufacturer-dependent manner.
 </para>
+</section>
+<section><title />
 <para>
 <!-- .LP -->
 After the connection is established and the setup information has been
 exchanged, the client may issue any of requests described below:
 </para>
-<blockquote>
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>NoOp</primary></indexterm>
-<function>NoOp</function>
-</para>
+</section>
+<section id="Requests:NoOp">
+    <title><function>NoOp</function></title>
+    <indexterm zone="Requests:NoOp" significance="preferred"><primary>NoOp</primary></indexterm>
     <para>
 Errors:  <errorname>Alloc</errorname>
     </para>
@@ -1405,13 +1406,11 @@ to a
 <function>KeepAlive</function>
 event.
     </para>
-</blockquote>
+</section>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>ListExtensions</primary></indexterm>
-<function>ListExtensions</function>
-</para>
+<section id="Requests:ListExtensions">
+    <title><function>ListExtensions</function></title>
+    <indexterm zone="Requests:ListExtensions" significance="preferred"><primary>ListExtensions</primary></indexterm>
 <para>
 ▶
 </para>
@@ -1430,10 +1429,11 @@ case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
   </para>
 </blockquote>
 
-<para>
-<indexterm significance="preferred"><primary>QueryExtension</primary></indexterm>
-<function>QueryExtension</function>
-</para>
+</section>
+
+<section id="Requests:QueryExtension">
+    <title><function>QueryExtension</function></title>
+    <indexterm zone="Requests:QueryExtension" significance="preferred"><primary>QueryExtension</primary></indexterm>
 
 <blockquote>
 <para>
@@ -1508,11 +1508,11 @@ error is returned.
   </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>ListCatalogues</primary></indexterm>
-<function>ListCatalogues</function>
-</para>
+</section>
+
+<section id="Requests:ListCatalogues">
+    <title><function>ListCatalogues</function></title>
+    <indexterm zone="Requests:ListCatalogues" significance="preferred"><primary>ListCatalogues</primary></indexterm>
 
 <blockquote>
     <para>
@@ -1573,11 +1573,11 @@ is set to zero.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>SetCatalogues</primary></indexterm>
-<function>SetCatalogues</function>
-</para>
+</section>
+
+<section id="Requests:SetCatalogues">
+    <title><function>SetCatalogues</function></title>
+    <indexterm zone="Requests:SetCatalogues" significance="preferred"><primary>SetCatalogues</primary></indexterm>
 <blockquote>
     <para>
 <emphasis remap='I'>names</emphasis>:  LISTofSTRING8
@@ -1609,11 +1609,11 @@ error is returned and the request is ignored.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>GetCatalogues</primary></indexterm>
-<function>GetCatalogues</function>
-</para>
+</section>
+
+<section id="Requests:GetCatalogues">
+    <title><function>GetCatalogues</function></title>
+    <indexterm zone="Requests:GetCatalogues" significance="preferred"><primary>GetCatalogues</primary></indexterm>
 
 <para>
 ▶
@@ -1642,11 +1642,11 @@ returned in mixed case.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>SetEventMask</primary></indexterm>
-<function>SetEventMask</function>
-</para>
+</section>
+
+<section id="Requests:SetEventMask">
+    <title><function>SetEventMask</function></title>
+    <indexterm zone="Requests:SetEventMask" significance="preferred"><primary>SetEventMask</primary></indexterm>
 
 <blockquote>
     <para>
@@ -1693,11 +1693,11 @@ ignored.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>GetEventMask</primary></indexterm>
-<function>GetEventMask</function>
-</para>
+</section>
+
+<section id="Requests:GetEventMask">
+    <title><function>GetEventMask</function></title>
+    <indexterm zone="Requests:GetEventMask" significance="preferred"><primary>GetEventMask</primary></indexterm>
 
 <blockquote>
     <para>
@@ -1731,11 +1731,11 @@ error is returned.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>CreateAC</primary></indexterm>
-<function>CreateAC</function>
-</para>
+</section>
+
+<section id="Requests:CreateAC">
+    <title><function>CreateAC</function></title>
+    <indexterm zone="Requests:CreateAC" significance="preferred"><primary>CreateAC</primary></indexterm>
 
 <blockquote>
     <para>
@@ -1819,11 +1819,11 @@ with an access context, an <errorname>IDChoice</errorname> error is returned.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>FreeAC</primary></indexterm>
-<function>FreeAC</function>
-</para>
+</section>
+
+<section id="Requests:FreeAC">
+    <title><function>FreeAC</function></title>
+    <indexterm zone="Requests:FreeAC" significance="preferred"><primary>FreeAC</primary></indexterm>
 
 <blockquote>
     <para>
@@ -1862,11 +1862,11 @@ error is returned.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>SetAuthorization</primary></indexterm>
-<function>SetAuthorization</function>
-</para>
+</section>
+
+<section id="Requests:SetAuthorization">
+    <title><function>SetAuthorization</function></title>
+    <indexterm zone="Requests:SetAuthorization" significance="preferred"><primary>SetAuthorization</primary></indexterm>
 
 <blockquote>
     <para>
@@ -1910,11 +1910,11 @@ error is returned.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>SetResolution</primary></indexterm>
-<function>SetResolution</function>
-</para>
+</section>
+
+<section id="Requests:SetResolution">
+    <title><function>SetResolution</function></title>
+    <indexterm zone="Requests:SetResolution" significance="preferred"><primary>SetResolution</primary></indexterm>
 
 <blockquote>
     <para>
@@ -1946,11 +1946,11 @@ If a RESOLUTION entry contains a zero, a <errorname>Resolution</errorname> error
 returned and the default resolutions are not changed.
     </para>
 </blockquote>
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>GetResolution</primary></indexterm>
-<function>GetResolution</function>
-</para>
+</section>
+
+<section id="Requests:GetResolution">
+    <title><function>GetResolution</function></title>
+    <indexterm zone="Requests:GetResolution" significance="preferred"><primary>GetResolution</primary></indexterm>
 <para>
 ▶
 </para>
@@ -1970,11 +1970,11 @@ a server-dependent default value is returned.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>ListFonts</primary></indexterm>
-<function>ListFonts</function>
-</para>
+</section>
+
+<section id="Requests:ListFonts">
+    <title><function>ListFonts</function></title>
+    <indexterm zone="Requests:ListFonts" significance="preferred"><primary>ListFonts</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2038,11 +2038,11 @@ is set to zero.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>ListFontsWithXInfo</primary></indexterm>
-<function>ListFontsWithXInfo</function>
-</para>
+</section>
+
+<section id="Requests:ListFontsWithXInfo">
+    <title><function>ListFontsWithXInfo</function></title>
+    <indexterm zone="Requests:ListFontsWithXInfo" significance="preferred"><primary>ListFontsWithXInfo</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2102,11 +2102,11 @@ client with the server.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>OpenBitmapFont</primary></indexterm>
-<function>OpenBitmapFont</function>
-</para>
+</section>
+
+<section id="Requests:OpenBitmapFont">
+    <title><function>OpenBitmapFont</function></title>
+    <indexterm zone="Requests:OpenBitmapFont" significance="preferred"><primary>OpenBitmapFont</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2261,11 +2261,11 @@ error is returned.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>QueryXInfo</primary></indexterm>
-<function>QueryXInfo</function>
-</para>
+</section>
+
+<section id="Requests:QueryXInfo">
+    <title><function>QueryXInfo</function></title>
+    <indexterm zone="Requests:QueryXInfo" significance="preferred"><primary>QueryXInfo</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2297,11 +2297,11 @@ is returned.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>QueryXExtents8</primary></indexterm>
-<function>QueryXExtents8</function>
-</para>
+</section>
+
+<section id="Requests:QueryXExtents8">
+    <title><function>QueryXExtents8</function></title>
+    <indexterm zone="Requests:QueryXExtents8" significance="preferred"><primary>QueryXExtents8</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2336,11 +2336,11 @@ uses 1-byte character codes.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>QueryXExtents16</primary></indexterm>
-<function>QueryXExtents16</function>
-</para>
+</section>
+
+<section id="Requests:QueryXExtents16">
+    <title><function>QueryXExtents16</function></title>
+    <indexterm zone="Requests:QueryXExtents16" significance="preferred"><primary>QueryXExtents16</primary></indexterm>
 <blockquote>
     <para>
 <emphasis remap='I'>fontid</emphasis>:  FONTID
@@ -2414,11 +2414,11 @@ error is returned.
     </para>
 </blockquote>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>QueryXBitmaps8</primary></indexterm>
-<function>QueryXBitmaps8</function>
-</para>
+</section>
+
+<section id="Requests:QueryXBitmaps8">
+    <title><function>QueryXBitmaps8</function></title>
+    <indexterm zone="Requests:QueryXBitmaps8" significance="preferred"><primary>QueryXBitmaps8</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2464,11 +2464,11 @@ except that it
 uses 1-byte character codes.
     </para>
 </blockquote>
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>QueryXBitmaps16</primary></indexterm>
-<function>QueryXBitmaps16</function>
-</para>
+</section>
+
+<section id="Requests:QueryXBitmaps16">
+    <title><function>QueryXBitmaps16</function></title>
+    <indexterm zone="Requests:QueryXBitmaps16" significance="preferred"><primary>QueryXBitmaps16</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2612,11 +2612,11 @@ ranges, a <errorname>Range</errorname> error is returned.
 If FORMAT is invalid, a <errorname>Format</errorname> error is returned.
     </para>
 </blockquote>
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>CloseFont</primary></indexterm>
-<function>CloseFont</function>
-</para>
+</section>
+
+<section id="Requests:CloseFont">
+    <title><function>CloseFont</function></title>
+    <indexterm zone="Requests:CloseFont" significance="preferred"><primary>CloseFont</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2643,12 +2643,11 @@ If FONTID is not associated with any open fonts, a
 error is returned.
     </para>
 </blockquote>
+</section>
 
-<para>
-<!-- .LP -->
-<function>"close connection"</function>
-<indexterm significance="preferred"><primary>close connection</primary></indexterm>
-</para>
+<section id="Requests:close_connection">
+    <title>close connection</title>
+    <indexterm zone="Requests:close_connection" significance="preferred"><primary>close connection</primary></indexterm>
 
 <blockquote>
     <para>
@@ -2660,6 +2659,7 @@ free to release any storage or licenses allocated on behalf of
 the client that made the connection.
     </para>
 </blockquote>
+</section>
 </section>
 
 <section id='Errors'>
