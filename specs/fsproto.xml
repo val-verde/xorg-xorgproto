@@ -3377,7 +3377,7 @@ n    PROPINFO           property data
 
 <section id='Encoding::Requests'>
 <title>Requests</title>
-<para><emphasis role="bold">open connection</emphasis></para>
+<para><link linkend="Requests:open_connection"><emphasis role="bold">open connection</emphasis></link></para>
 <literallayout class="monospaced">
 1     BYTE                   byteorder, one of the values:
       #x42                   MostSignificant Byte first
@@ -3448,12 +3448,12 @@ following requests:
 </para>
 
 <literallayout class="monospaced">
-<emphasis role="bold">NoOp</emphasis>
+<link linkend="Requests:NoOp"><emphasis role="bold"><function>NoOp</function></emphasis></link>
 1   0                        major-opcode
 1                            unused
 2   1                        length
 
-<emphasis role="bold">ListExtensions</emphasis>
+<link linkend="Requests:ListExtensions"><emphasis role="bold"><function>ListExtensions</function></emphasis></link>
 1   1                        major-opcode
 1                            unused
 2   1                        length
@@ -3465,7 +3465,7 @@ following requests:
 n   LISTofSTRNAME            names
 p                            unused, p=pad(n)
 
-<emphasis role="bold">QueryExtension</emphasis>
+<link linkend="Requests:QueryExtension"><emphasis role="bold"><function>QueryExtension</function></emphasis></link>
 1   2                        major-opcode
 1   n                        length of name
 2   1+(n+p)/4                length
@@ -3485,7 +3485,7 @@ p                            unused, p=pad(n)
 1   CARD8                    number-errors
 3                            unused
 
-<emphasis role="bold">ListCatalogues</emphasis>
+<link linkend="Requests:ListCatalogues"><emphasis role="bold"><function>ListCatalogues</function></emphasis></link>
 1   3                        major-opcode
 1                            unused
 2   3+(n+p)/4                length
@@ -3504,14 +3504,14 @@ p                            unused, p=pad(n)
 n   LISTofSTRNAME            catalogue-names
 p                            unused, p=pad(n)
 
-<emphasis role="bold">SetCatalogues</emphasis>
+<link linkend="Requests:SetCatalogues"><emphasis role="bold"><function>SetCatalogues</function></emphasis></link>
 1   4                        major-opcode
 1   CARD8                    numberof catalogue-names
 2   1+(n+p)/4                length
 n   LISTofSTRNAME            catalogue-names
 p                            unused, p=pad(n)
 
-<emphasis role="bold">GetCatalogues</emphasis>
+<link linkend="Requests:GetCatalogues"><emphasis role="bold"><function>GetCatalogues</function></emphasis></link>
 1   5                        major-opcode
 1                            unused
 2   1                        length
@@ -3523,13 +3523,13 @@ p                            unused, p=pad(n)
 n   LISTofSTRNAME            catalogue-names
 p                            unused, p=pad(n)
 
-<emphasis role="bold">SetEventMask</emphasis>
+<link linkend="Requests:SetEventMask"><emphasis role="bold"><function>SetEventMask</function></emphasis></link>
 1   6                        major-opcode
 1   CARD8                    extension-opcode
 2   2                        length
 4   EVENTMASK                event-mask
 
-<emphasis role="bold">GetEventMask</emphasis>
+<link linkend="Requests:GetEventMask"><emphasis role="bold"><function>GetEventMask</function></emphasis></link>
 1   7                        major-opcode
 1   CARD8                    extension-opcode
 2   1                        length
@@ -3540,7 +3540,7 @@ p                            unused, p=pad(n)
 4   3                        length
 4   EVENTMASK                event-mask
 
-<emphasis role="bold">CreateAC</emphasis>
+<link linkend="Requests:CreateAC"><emphasis role="bold"><function>CreateAC</function></emphasis></link>
 1   8                        major-opcode
 1   CARD8                    numberof authorization-protocols
 2   2+a/4                    length
@@ -3585,26 +3585,26 @@ q                            unused, q=pad(d)
 d   LISTofBYTE               authorization-data
 q                            unused, q=pad(d)
 
-<emphasis role="bold">FreeAC</emphasis>
+<link linkend="Requests:FreeAC"><emphasis role="bold"><function>FreeAC</function></emphasis></link>
 1   9                        major-opcode
 1                            unused
 2   2                        length
 4   ACCESSCONTEXT            ac
 
-<emphasis role="bold">SetAuthorization</emphasis>
+<link linkend="Requests:SetAuthorization"><emphasis role="bold"><function>SetAuthorization</function></emphasis></link>
 1   10                       major-opcode
 1                            unused
 2   2                        length
 4   ACCESSCONTEXT            ac
 
-<emphasis role="bold">SetResolution</emphasis>
+<link linkend="Requests:SetResolution"><emphasis role="bold"><function>SetResolution</function></emphasis></link>
 1   11                       major-opcode
 1   n                        number of resolutions
 2   1+(6*n+p)/4              length
 6*n LISTofRESOLUTION         resolutions
 p   p=pad(6*n)
 
-<emphasis role="bold">GetResolution</emphasis>
+<link linkend="Requests:GetResolution"><emphasis role="bold"><function>GetResolution</function></emphasis></link>
 1   12                       major-opcode
 1                            unused
 2   1                        length
@@ -3616,7 +3616,7 @@ p   p=pad(6*n)
 6*n LISTofRESOLUTION         resolutions
 p   p=pad(6*n)
 
-<emphasis role="bold">ListFonts</emphasis>
+<link linkend="Requests:ListFonts"><emphasis role="bold"><function>ListFonts</function></emphasis></link>
 1   13                       major-opcode
 1                            unused
 2   3+(n+p)/4                length
@@ -3635,7 +3635,7 @@ p                            unused, p=pad(n)
 n   LISTofSTRNAME            font-names
 p                            unused, p=pad(n)
 
-<emphasis role="bold">ListFontsWithXInfo</emphasis>
+<link linkend="Requests:ListFontsWithXInfo"><emphasis role="bold"><function>ListFontsWithXInfo</function></emphasis></link>
 1   14                       major-opcode
 1                            unused
 2   3+(n+p)/4                length
@@ -3659,7 +3659,7 @@ p                            unused, p=pad(n)
 2   CARD16                   sequence-number
 4   2                        reply length
 
-<emphasis role="bold">OpenBitmapFont</emphasis>
+<link linkend="Requests:OpenBitmapFont"><emphasis role="bold"><function>OpenBitmapFont</function></emphasis></link>
 1   15                       major-opcode
 1                            unused
 2   4+(n+p)/4                length
@@ -3677,7 +3677,7 @@ p                            unused, p=pad(n)
 1   BOOL                     cachable
 3                            unused
 
-<emphasis role="bold">QueryXInfo</emphasis>
+<link linkend="Requests:QueryXInfo"><emphasis role="bold"><function>QueryXInfo</function></emphasis></link>
 1   16                       major-opcode
 1                            unused
 2   2                        length
@@ -3690,7 +3690,7 @@ p                            unused, p=pad(n)
 f   XFONTINFO                fontinfo
 p                            unused, p=pad(f)
 
-<emphasis role="bold">QueryXExtents8</emphasis>
+<link linkend="Requests:QueryXExtents8"><emphasis role="bold"><function>QueryXExtents8</function></emphasis></link>
 1   17                       major-opcode
 1   BOOL                     range
 2   3+(n+p)/4                length
@@ -3706,7 +3706,7 @@ p                            unused, p=pad(n)
 4   n                        number of extents
 12*n LISTofXCHARINFO         extents
 
-<emphasis role="bold">QueryXExtents16</emphasis>
+<link linkend="Requests:QueryXExtents16"><emphasis role="bold"><function>QueryXExtents16</function></emphasis></link>
 1   18                       major-opcode
 1   BOOL                     range
 2   3+(2*n+p)/4              length
@@ -3722,7 +3722,7 @@ p                            unused, p=pad(2*n)
 4   n                        number of extents
 12*n LISTofXCHARINFO         extents
 
-<emphasis role="bold">QueryXBitmaps8</emphasis>
+<link linkend="Requests:QueryXBitmaps8"><emphasis role="bold"><function>QueryXBitmaps8</function></emphasis></link>
 1   19                       major-opcode
 1   BOOL                     range
 2   4+(n+p)/4                length
@@ -3743,7 +3743,7 @@ p                            unused, p=pad(n)
 m   LISTofBYTE               glyphimages
 p                            unused, p=pad(m)
 
-<emphasis role="bold">QueryXBitmaps16</emphasis>
+<link linkend="Requests:QueryXBitmaps16"><emphasis role="bold"><function>QueryXBitmaps16</function></emphasis></link>
 1   20                       major-opcode
 1   BOOL                     range
 2   4+(2*n+p)/4              length
@@ -3764,7 +3764,7 @@ p                            unused, p=pad(2*n)
 m   LISTofBYTE               glyphimages
 p                            unused, p=pad(m)
 
-<emphasis role="bold">CloseFont</emphasis>
+<link linkend="Requests:CloseFont"><emphasis role="bold"><function>CloseFont</function></emphasis></link>
 1   21                       major-opcode
 1                            unused
 2   2                        length
@@ -3776,7 +3776,7 @@ p                            unused, p=pad(m)
 <title>Errors</title>
 <literallayout class="monospaced">
 
-<emphasis role="bold">Request</emphasis>
+<link linkend="Errors:Request"><emphasis role="bold"><errorname>Request</errorname></emphasis></link>
 1   1                        type error
 1   0                        <errorname>Request</errorname>
 2   CARD16                   sequence-number
@@ -3786,7 +3786,7 @@ p                            unused, p=pad(m)
 1   CARD8                    minor-opcode
 2                            unused
 
-<emphasis role="bold">Format</emphasis>
+<link linkend="Errors:Format"><emphasis role="bold"><errorname>Format</errorname></emphasis></link>
 1   1                        type error
 1   1                        <errorname>Format</errorname>
 2   CARD16                   sequence-number
@@ -3797,7 +3797,7 @@ p                            unused, p=pad(m)
 2                            unused
 4   BITMAPFORMAT             bad-format
 
-<emphasis role="bold">Font</emphasis>
+<link linkend="Errors:Font"><emphasis role="bold"><errorname>Font</errorname></emphasis></link>
 1   1                        type error
 1   2                        <errorname>Font</errorname>
 2   CARD16                   sequence-number
@@ -3808,7 +3808,7 @@ p                            unused, p=pad(m)
 2                            unused
 4   FONTID bad-fontid
 
-<emphasis role="bold">Range</emphasis>
+<link linkend="Errors:Range"><emphasis role="bold"><errorname>Range</errorname></emphasis></link>
 1   1                        type error
 1   3                        <errorname>Range</errorname>
 2   CARD16                   sequence-number
@@ -3819,7 +3819,7 @@ p                            unused, p=pad(m)
 2                            unused
 4   RANGE                    bad-range
 
-<emphasis role="bold">EventMask</emphasis>
+<link linkend="Errors:EventMask"><emphasis role="bold"><errorname>EventMask</errorname></emphasis></link>
 1   1                        type error
 1   4                        <errorname>EventMask</errorname>
 2   CARD16                   sequence-number
@@ -3830,7 +3830,7 @@ p                            unused, p=pad(m)
 2                            unused
 4   EVENTMASK                event-mask
 
-<emphasis role="bold">AccessContext</emphasis>
+<link linkend="Errors:AccessContext"><emphasis role="bold"><errorname>AccessContext</errorname></emphasis></link>
 1   1                        type error
 1   5                        <errorname>AccessContext</errorname>
 2   CARD16                   sequence-number
@@ -3841,7 +3841,7 @@ p                            unused, p=pad(m)
 2                            unused
 4   ACCESSCONTEXT            access context
 
-<emphasis role="bold">IDChoice</emphasis>
+<link linkend="Errors:IDChoice"><emphasis role="bold"><errorname>IDChoice</errorname></emphasis></link>
 1   1                        type error
 1   6                        <errorname>IDChoice</errorname>
 2   CARD16                   sequence-number
@@ -3852,7 +3852,7 @@ p                            unused, p=pad(m)
 2                            unused
 4   FONTID                   bad-fontid
 
-<emphasis role="bold">Name</emphasis>
+<link linkend="Errors:Name"><emphasis role="bold"><errorname>Name</errorname></emphasis></link>
 1   1                        type error
 1   7                        <errorname>Name</errorname>
 2   CARD16                   sequence-number
@@ -3862,7 +3862,7 @@ p                            unused, p=pad(m)
 1   CARD8                    minor-opcode
 2                            unused
 
-<emphasis role="bold">Resolution</emphasis>
+<link linkend="Errors:Resolution"><emphasis role="bold"><errorname>Resolution</errorname></emphasis></link>
 1   1                        type error
 1   8                        <errorname>Resolution</errorname>
 2   CARD16                   sequence-number
@@ -3872,7 +3872,7 @@ p                            unused, p=pad(m)
 1   CARD8                    minor-opcode
 6   RESOLUTION               resolution
 
-<emphasis role="bold">Alloc</emphasis>
+<link linkend="Errors:Alloc"><emphasis role="bold"><errorname>Alloc</errorname></emphasis></link>
 1   1                        type error
 1   9                        <errorname>Alloc</errorname>
 2   CARD16                   sequence-number
@@ -3882,7 +3882,7 @@ p                            unused, p=pad(m)
 1   CARD8                    minor-opcode
 2                            unused
 
-<emphasis role="bold">Length</emphasis>
+<link linkend="Errors:Length"><emphasis role="bold"><errorname>Length</errorname></emphasis></link>
 1   1                        type error
 1   10                       <errorname>Length</errorname>
 2   CARD16                   sequence-number
@@ -3893,7 +3893,7 @@ p                            unused, p=pad(m)
 2                            unused
 4   CARD32                   bad-length
 
-<emphasis role="bold">Implementation</emphasis>
+<link linkend="Errors:Implementation"><emphasis role="bold"><errorname>Implementation</errorname></emphasis></link>
 1   1                        type error
 1   11                       <errorname>Implementation</errorname>
 2   CARD16                   sequence-number
@@ -3909,14 +3909,14 @@ p                            unused, p=pad(m)
 <section id='Encoding::Events'>
 <title>Events</title>
 <literallayout class="monospaced">
-<emphasis role="bold">KeepAlive</emphasis>
+<link linkend="Events:KeepAlive"><emphasis role="bold"><function>KeepAlive</function></emphasis></link>
 1   2                        type event
 1   0                        event KeepAlive
 2   CARD16                   sequence-number
 4   3                        length
 4   TIMESTAMP                timestamp
 
-<emphasis role="bold">CatalogueListNotify</emphasis>
+<link linkend="Events:CatalogueListNotify"><emphasis role="bold"><function>CatalogueListNotify</function></emphasis></link>
 1   2                        type event
 1   1                        event CatalogueListNotify
 2   CARD16                   sequence-number
@@ -3926,7 +3926,7 @@ p                            unused, p=pad(m)
 1   BOOL                     deleted
 2                            unused
 
-<emphasis role="bold">FontListNotify</emphasis>
+<link linkend="Events:FontListNotify"><emphasis role="bold"><function>FontListNotify</function></emphasis></link>
 1   2                        type event
 1   2                        event FontListNotify
 2   CARD16                   sequence-number
