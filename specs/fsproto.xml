@@ -3055,11 +3055,10 @@ lines are omitted from the description.
 <!-- .LP -->
 The core X Font Service protocol defines the following events:
 </para>
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>KeepAlive</primary></indexterm>
-<function>KeepAlive</function>
-</para>
+
+<section id="Events:KeepAlive">
+    <title><function>KeepAlive</function></title>
+    <indexterm zone="Events:KeepAlive" significance="preferred"><primary>KeepAlive</primary></indexterm>
 <blockquote>
     <para>
 This unsolicited, nonmaskable event may be sent by the
@@ -3071,12 +3070,11 @@ by sending any request (such as
 ).
     </para>
 </blockquote>
+</section>
 
-<para>
-<!-- .LP -->
-<indexterm significance="preferred"><primary>CatalogueListNotify</primary></indexterm>
-<function>CatalogueListNotify</function>
-</para>
+<section id="Events:CatalogueListNotify">
+    <title><function>CatalogueListNotify</function></title>
+    <indexterm zone="Events:CatalogueListNotify" significance="preferred"><primary>CatalogueListNotify</primary></indexterm>
 <blockquote>
     <para>
 <emphasis remap='I'>added</emphasis>:  BOOL
@@ -3095,11 +3093,11 @@ DELETED field is True if any existing catalogues have
 been removed from the server, otherwise it is False.
     </para>
 </blockquote>
-<para>
-<!-- .LP      -->
-<indexterm significance="preferred"><primary>FontListNotify</primary></indexterm>
-<function>FontListNotify</function>
-</para>
+</section>
+
+<section id="Events:FontListNotify">
+    <title><function>FontListNotify</function></title>
+    <indexterm zone="Events:FontListNotify" significance="preferred"><primary>FontListNotify</primary></indexterm>
 <blockquote>
     <para>
 <emphasis remap='I'>added</emphasis>:  BOOL
@@ -3120,11 +3118,14 @@ field is True if any existing fonts have been removed
 from any of catalogues used by the client, otherwise it
 is False.
     </para>
+</blockquote>
+</section>
+<section id="Events:Extensions">
+  <title>Extensions</title>
     <para>
-<!-- .sp -->
 Additional events may be defined by extensions.
     </para>
-</blockquote>
+</section>
 </section>
 </chapter>
 
