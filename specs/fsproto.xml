@@ -3947,14 +3947,24 @@ p                            unused, p=pad(m)
 <!-- .XE -->
 <para>
 This document represents the culmination of several years of debate and
-experiments done under the auspices of the MIT X Consortium font working group.
+experiments done under the auspices of the
+<orgname class="consortium">MIT X Consortium</orgname> font working group.
 Although this was a group effort, the author remains responsible for any errors
-or omissions.  The protocol presented here was primarily designed by Jim
-Fulton, Keith Packard, and Bob Scheifler.  Special thanks goes to Ned
-Batchelder, Jim Flowers, and Axel Deininger for their invigorating comments
+or omissions.  The protocol presented here was primarily designed by
+<personname><firstname>Jim</firstname><surname>Fulton</surname></personname>,
+<personname><firstname>Keith</firstname><surname>Packard</surname></personname>,
+and
+<personname><firstname>Bob</firstname><surname>Scheifler</surname></personname>.
+Special thanks goes to
+<personname><firstname>Ned</firstname><surname>Batchelder</surname></personname>,
+<personname><firstname>Jim</firstname><surname>Flowers</surname></personname>,
+and
+<personname><firstname>Axel</firstname><surname>Deininger</surname></personname>
+for their invigorating comments
 which never failed to make this a better document.
-Stephen Gildea edited version 2 of this document.
-Finally, David Lemke
+<personname><firstname>Stephen</firstname><surname>Gildea</surname></personname>
+edited version 2 of this document.  Finally,
+<personname><firstname>David</firstname><surname>Lemke</surname></personname>
 deserves great credit for designing and coding the sample implementation.
 </para>
 </chapter>
