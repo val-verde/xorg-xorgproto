@@ -2721,11 +2721,10 @@ bytes of extra data.
 <!-- .LP -->
 The following errors are defined for the core protocol:
 </para>
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Request</errorname></secondary></indexterm>
-<errorname>Request</errorname>
-</para>
+
+<section id="Errors:Request">
+    <title><errorname>Request</errorname></title>
+    <indexterm zone="Errors:Request" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Request</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2739,12 +2738,11 @@ extension request that is issued before a
 of that extension.
     </para>
 </blockquote>
+</section>
 
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Format</errorname></secondary></indexterm>
-<errorname>Format</errorname>
-</para>
+<section id="Errors:Format">
+    <title><errorname>Format</errorname></title>
+    <indexterm zone="Errors:Format" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Format</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2763,12 +2761,11 @@ requests.
 The value that caused the error is included as extra data.
     </para>
 </blockquote>
+</section>
 
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Font</errorname></secondary></indexterm>
-<errorname>Font</errorname>
-</para>
+<section id="Errors:Font">
+    <title><errorname>Font</errorname></title>
+    <indexterm zone="Errors:Font" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Font</errorname></secondary></indexterm>
 <blockquote>
     <para>
 <emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
@@ -2789,12 +2786,11 @@ requests.  The value that caused
 the error is included as extra data.
     </para>
 </blockquote>
+</section>
 
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Range</errorname></secondary></indexterm>
-<errorname>Range</errorname>
-</para>
+<section id="Errors:Range">
+    <title><errorname>Range</errorname></title>
+    <indexterm zone="Errors:Range" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Range</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2814,11 +2810,11 @@ requests.  The
 value that caused the error is included as extra data.
     </para>
 </blockquote>
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>EventMask</errorname></secondary></indexterm>
-<errorname>EventMask</errorname>
-</para>
+</section>
+
+<section id="Errors:EventMask">
+    <title><errorname>EventMask</errorname></title>
+    <indexterm zone="Errors:EventMask" significance="preferred"><primary>Error Codes</primary><secondary><errorname>EventMask</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2835,11 +2831,11 @@ request.  The value that caused the error is
 included as extra data.
     </para>
 </blockquote>
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary>AccessContext</secondary></indexterm>
-<errorname>AccessContext</errorname>
-</para>
+</section>
+
+<section id="Errors:AccessContext">
+    <title><errorname>AccessContext</errorname></title>
+    <indexterm zone="Errors:AccessContext" significance="preferred"><primary>Error Codes</primary><secondary><errorname>AccessContext</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2862,11 +2858,11 @@ returned as extra data.  In the third case, the current
 ACCESSCONTEXT is returned as extra data.
     </para>
 </blockquote>
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>IDChoice</errorname></secondary></indexterm>
-<errorname>IDChoice</errorname>
-</para>
+</section>
+
+<section id="Errors:IDChoice">
+    <title><errorname>IDChoice</errorname></title>
+    <indexterm zone="Errors:IDChoice" significance="preferred"><primary>Error Codes</primary><secondary><errorname>IDChoice</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2886,11 +2882,11 @@ request.  The value that caused the error
 is included as extra data.
     </para>
 </blockquote>
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Name</errorname></secondary></indexterm>
-<errorname>Name</errorname>
-</para>
+</section>
+
+<section id="Errors:Name">
+    <title><errorname>Name</errorname></title>
+    <indexterm zone="Errors:Name" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Name</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2905,12 +2901,11 @@ request or no catalogue names in a
 request.
     </para>
 </blockquote>
+</section>
 
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Resolution</errorname></secondary></indexterm>
-<errorname>Resolution</errorname>
-</para>
+<section id="Errors:Resolution">
+    <title><errorname>Resolution</errorname></title>
+    <indexterm zone="Errors:Resolution" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Resolution</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2932,12 +2927,11 @@ request.  The value that caused the
 error is included in the DATA-OR-UNUSED field and as extra data.
     </para>
 </blockquote>
+</section>
 
-<para>
-<!-- .LP      -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Alloc</errorname></secondary></indexterm>
-<errorname>Alloc</errorname>
-</para>
+<section id="Errors:Alloc">
+    <title><errorname>Alloc</errorname></title>
+    <indexterm zone="Errors:Length" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Alloc</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2948,12 +2942,11 @@ This error is generated by any request for which the server
 lacks sufficient resources (especially memory).
     </para>
 </blockquote>
+</section>
 
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Length</errorname></secondary></indexterm>
-<errorname>Length</errorname>
-</para>
+<section id="Errors:Length">
+    <title><errorname>Length</errorname></title>
+    <indexterm zone="Errors:Length" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Length</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2968,11 +2961,11 @@ greater than (MAXIMUM-REQUEST-LENGTH * 4) bytes.  The value that
 caused the error is included as extra data.
     </para>
 </blockquote>
-<para>
-<!-- .LP -->
-  <indexterm significance="preferred"><primary>Error Codes</primary><secondary><errorname>Implementation</errorname></secondary></indexterm>
-<errorname>Implementation</errorname>
-</para>
+</section>
+
+<section id="Errors:Implementation">
+    <title><errorname>Implementation</errorname></title>
+    <indexterm zone="Errors:Implementation" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Implementation</errorname></secondary></indexterm>
 
 <blockquote>
     <para>
@@ -2983,10 +2976,15 @@ This error may be generated in response to any request that
 the server is unable to process because it is deficient.  Use
 of this error is highly discouraged and indicates lack of
 conformance to the protocol.
-<!-- .sp -->
-Additional errors may be defined by extensions.
     </para>
 </blockquote>
+</section>
+<section id="Errors:Extensions">
+  <title>Extensions</title>
+    <para>
+Additional errors may be defined by extensions.
+    </para>
+</section>
 </section>
 
 <section id='Events'>
