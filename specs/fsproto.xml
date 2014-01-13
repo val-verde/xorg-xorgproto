@@ -414,7 +414,7 @@ users over time (for example, print spoolers).
 </para>
 <para>
 <!-- .sp -->
-<function>AccessContexts</function>
+<type>AccessContext</type>s
 must be created (with
 <function>CreateAC</function>)
 and switched among (with
@@ -1762,11 +1762,11 @@ error is returned.
     </informaltable>
     <para>
 This request creates a new
-<function>AccessContext</function>
+<type>AccessContext</type>
 object within the
 server containing the specified authorization data.  When
 this
-<function>AccessContext</function>
+<type>AccessContext</type>
 is selected by the client using the
 <function>SetAuthorization</function>
 request, the data may be used by the server
@@ -1778,7 +1778,7 @@ access to particular font information.
 If STATUS is Denied, the server rejects the client's
 authorization information and does not associate AC with any
 valid
-<function>AccessContext</function>.
+<type>AccessContext</type>.
 In this case, AUTHORIZATION-INDEX is set
 to zero, and zero bytes of AUTHORIZATION-DATA is returned.
     </para>
@@ -1842,14 +1842,14 @@ with an access context, an <errorname>IDChoice</errorname> error is returned.
 This request indicates that the specified AC should no longer
 be associated with a valid access context.  If AC is also the
 current
-<function>AccessContext</function>
+<type>AccessContext</type>
 (as set by the
 <function>SetAuthorization</function>
 request), an implicit
 <function>SetAuthorization</function>
 of None is done to
 restore the
-<function>AccessContext</function>
+<type>AccessContext</type>
 established for the initial
 connection setup.  Operations on fonts that were opened under
 AC are not affected.  The client may reuse the value of AC in
@@ -1882,7 +1882,7 @@ error is returned.
     </informaltable>
     <para>
 This request sets the
-<function>AccessContext</function>
+<type>AccessContext</type>
 to be used for subsequent
 requests (except for
 <function>QueryXInfo</function>,
@@ -1893,19 +1893,19 @@ requests (except for
 and
 <function>CloseFont</function>
 which are done under the
-<function>AccessContext</function>
+<type>AccessContext</type>
 of the
 corresponding
 <function>OpenBitmapFont</function>
 ).
 An AC of None restores the
-<function>AccessContext</function>
+<type>AccessContext</type>
 established for the initial connection setup.
     </para>
     <para>
 <!-- .sp -->
 If AC is neither None nor a value associated with a valid
-<function>AccessContext</function>
+<type>AccessContext</type>
 previously created by
 <function>CreateAC</function>,
 an
@@ -2117,7 +2117,7 @@ open the font associated with the chosen name.
 Permission to access the font is determined by the server
 according the licensing policy used for this font.  The server
 may use the client's current
-<function>AccessContext</function>
+<type>AccessContext</type>
 (as set by the most
 recent
 <function>SetAuthorization</function>
@@ -2125,12 +2125,12 @@ request or the original connection
 setup) to determine any client-specific sets of permissions.
 After the font has been opened, the client is allowed to
 specify a new
-<function>AccessContext</function>
+<type>AccessContext</type>
 with
 <function>SetAuthorization</function>
 or release
 the
-<function>AccessContext</function>
+<type>AccessContext</type>
 using
 <function>FreeAC</function>
 .  Subsequent
@@ -2179,13 +2179,13 @@ this information to precompute certain values.
 If CACHABLE is set to True, the client may cache the font
 (so that redundant opens of the same font may be avoided)
 and use it with all
-<function>AccessContexts</function>
+<type>AccessContext</type>s
 during the life of the
 client without violating the font's licensing policy.  This
 flag is typically set whenever a font is unlicensed or is
 licensed on a per-display basis.  If CACHABLE is False, the
 client should reopen the font for each
-<function>AccessContext</function>.
+<type>AccessContext</type>.
 <!-- .sp -->
     </para>
     <para>
