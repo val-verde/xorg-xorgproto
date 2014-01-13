@@ -330,7 +330,7 @@ of the core X Window System protocol</olink>
     <para>
 <!-- .IP \(bu 5 -->
 Data type names are spelled in upper case with no word separators,
-as in:  FONTID
+as in:  <type>FONTID</type>
     </para>
   </listitem>
   <listitem>
@@ -358,8 +358,8 @@ printed in lower case in a distinct font.
   </listitem>
   <listitem>
     <para>
-Type declarations have the form "name: type",
-as in:  CARD8: 8-bit byte
+Type declarations have the form "<type>name</type>: type",
+as in:  <type>CARD8</type>: 8-bit byte
     </para>
   </listitem>
   <listitem>
@@ -371,7 +371,7 @@ braces, as in:  { Min, MaxWidth, Max }
   <listitem>
     <para>
 Comma-separated lists of structure elements are enclosed in
-brackets, as in:  [ byte1: CARD8, byte2: CARD8 ]
+brackets, as in:  [ byte1: <type>CARD8</type>, byte2: <type>CARD8</type> ]
     </para>
   </listitem>
 </itemizedlist>
@@ -379,7 +379,7 @@ brackets, as in:  [ byte1: CARD8, byte2: CARD8 ]
 <para>
 <!-- .LP -->
 A type with a prefix "LISTof" represents a counted list of
-elements of that type, as in:  LISTofCARD8
+elements of that type, as in:  <type>LISTofCARD8</type>
 </para>
 
 <section id='Data_Types'>
@@ -392,7 +392,7 @@ The following data types are used in the core X Font Server protocol:
 </para>
 
 <literallayout class="monospaced">
-ACCESSCONTEXT:     ID
+<type>ACCESSCONTEXT</type>:     <type>ID</type>
 </literallayout>
 <blockquote>
 <para>
@@ -424,8 +424,8 @@ to represent all of these "font users" properly.
 </blockquote>
 
 <literallayout class="monospaced">
-ALTERNATESERVER:  [ name:  STRING8,
-                    subset:  BOOL ]
+<type>ALTERNATESERVER</type>:  [ name:  <type>STRING8</type>,
+                    subset:  <type>BOOL</type> ]
 </literallayout>
 
 <blockquote>
@@ -443,8 +443,8 @@ failure.
 </blockquote>
 
 <literallayout class="monospaced">
-AUTH:  [ name:  STRING8,
-         data:  LISTofBYTE ]
+<type>AUTH</type>:  [ name:  <type>STRING8</type>,
+         data:  <type>LISTofBYTE</type> ]
 </literallayout>
 
 <blockquote>
@@ -457,11 +457,11 @@ request.
 </blockquote>
 
 <literallayout class="monospaced">
-BITMAPFORMAT:
+<type>BITMAPFORMAT</type>:
 </literallayout>
 
 <literallayout class="monospaced">
-   CARD32 containing the following fields defined by the
+   <type>CARD32</type> containing the following fields defined by the
    sets of values given further below
    [
      byte-order-msb:      1 bit,
@@ -518,8 +518,9 @@ glyph image.  It contains one of the following alternate values:
      ImageRectMax          (2 &lt;&lt; 2)
 </literallayout>
 <para>
-For a glyph with extents XCHARINFO in a font with header information
-XFONTINFO, the IMAGE-RECT values have the following meanings:
+For a glyph with extents <type>XCHARINFO</type> in a font with header
+information <type>XFONTINFO</type>, the IMAGE-RECT values have
+the following meanings:
 </para>
 <para>
 <function>ImageRectMin</function> -
@@ -529,10 +530,10 @@ most compact representation.  The edges of the rectangle
 are:
 </para>
 <literallayout class="monospaced">
-         left:     XCHARINFO.LBEARING
-         right:    XCHARINFO.RBEARING
-         top:      XCHARINFO.ASCENT
-         bottom:   XCHARINFO.DESCENT
+         left:     <structfield>XCHARINFO.LBEARING</structfield>
+         right:    <structfield>XCHARINFO.RBEARING</structfield>
+         top:      <structfield>XCHARINFO.ASCENT</structfield>
+         bottom:   <structfield>XCHARINFO.DESCENT</structfield>
 </literallayout>
 <para>
 
@@ -548,11 +549,11 @@ direction.  The edges of the rectangle are:
 </para>
 
 <literallayout class="monospaced">
-left:         min (XFONTINFO.MIN-BOUNDS.LBEARING, 0)
-right:        max (XFONTINFO.MAX-BOUNDS.RBEARING,
-                   XFONTINFO.MAX-BOUNDS.WIDTH)
-top:               XCHARINFO.ASCENT
-bottom:            XCHARINFO.DESCENT
+left:         min (<structfield>XFONTINFO.MIN-BOUNDS.LBEARING</structfield>, 0)
+right:        max (<structfield>XFONTINFO.MAX-BOUNDS.RBEARING</structfield>,
+                   <structfield>XFONTINFO.MAX-BOUNDS.WIDTH</structfield>)
+top:               <structfield>XCHARINFO.ASCENT</structfield>
+bottom:            <structfield>XCHARINFO.DESCENT</structfield>
 </literallayout>
 
 <para>
@@ -568,13 +569,13 @@ the rectangle are:
 </para>
 
 <literallayout class="monospaced">
-left:         min (XFONTINFO.MIN-BOUNDS.LBEARING, 0)
-right:        max (XFONTINFO.MAX-BOUNDS.RBEARING,
-                   XFONTINFO.MAX-BOUNDS.WIDTH)
-top:          max (XFONTINFO.FONT-ASCENT,
-                   XFONTINFO.MAX-BOUNDS.ASCENT)
-bottom:       max (XFONTINFO.FONT-DESCENT,
-                   XFONTINFO.MAX-BOUNDS.DESCENT)
+left:         min (<structfield>XFONTINFO.MIN-BOUNDS.LBEARING</structfield>, 0)
+right:        max (<structfield>XFONTINFO.MAX-BOUNDS.RBEARING</structfield>,
+                   <structfield>XFONTINFO.MAX-BOUNDS.WIDTH</structfield>)
+top:          max (<structfield>XFONTINFO.FONT-ASCENT</structfield>,
+                   <structfield>XFONTINFO.MAX-BOUNDS.ASCENT</structfield>)
+bottom:       max (<structfield>XFONTINFO.FONT-DESCENT</structfield>,
+                   <structfield>XFONTINFO.MAX-BOUNDS.DESCENT</structfield>)
 </literallayout>
 <para>
 The SCANLINE-PAD field specifies the number of bits (8, 16, 32,
@@ -601,20 +602,20 @@ SCANLINE-PAD.  It contains one of the following alternate values:
      ScanlineUnit64         (3 &lt;&lt; 12)
 </literallayout>
 <para>
-BITMAPFORMATs are byte-swapped as CARD32s.  All unspecified bits
-must be zero.
+<type>BITMAPFORMAT</type>s are byte-swapped as <type>CARD32</type>s.
+All unspecified bits must be zero.
 </para>
 <para>
-Use of an invalid BITMAPFORMAT causes a <errorname>Format</errorname> error to
-be returned.
+Use of an invalid <type>BITMAPFORMAT</type> causes a
+<errorname>Format</errorname> error to be returned.
 </para>
 </blockquote>
 <para>
-BITMAPFORMATMASK:     CARD32 mask
+<type>BITMAPFORMATMASK</type>:     <type>CARD32</type> mask
 </para>
 <blockquote>
 <para>
-This is a mask of bits representing the fields in a BITMAPFORMAT:
+This is a mask of bits representing the fields in a <type>BITMAPFORMAT</type>:
 </para>
 </blockquote>
 <literallayout class="monospaced">
@@ -629,7 +630,7 @@ Unspecified bits are required to be zero or else a <errorname>Format</errorname>
 is returned.
 </para>
 <para>
-BOOL:  CARD8
+<type>BOOL</type>:  <type>CARD8</type>
 </para>
 <blockquote>
 <para>
@@ -644,7 +645,7 @@ values:
 </blockquote>
 
 <para>
-BYTE:  8-bit value
+<type>BYTE</type>:  8-bit value
 </para>
 
 <blockquote>
@@ -655,15 +656,15 @@ is determined by the context in which it is used.
 </blockquote>
 
 <para>
-CARD8:  8-bit unsigned integer
+<type>CARD8</type>:  8-bit unsigned integer
 </para>
 
 <para>
-CARD16:  16-bit unsigned integer
+<type>CARD16</type>:  16-bit unsigned integer
 </para>
 
 <para>
-CARD32:  32-bit unsigned integer
+<type>CARD32</type>:  32-bit unsigned integer
 </para>
 
 <blockquote>
@@ -674,7 +675,7 @@ the server and client have different byte orders.
 </blockquote>
 
 <para>
-CHAR2B:  [ byte1, byte2:  CARD8 ]
+<type>CHAR2B</type>:  [ byte1, byte2:  <type>CARD8</type> ]
 </para>
 <blockquote>
 <para>
@@ -689,7 +690,7 @@ first.
 </blockquote>
 
 <para>
-EVENTMASK:  CARD32 mask
+<type>EVENTMASK</type>:  <type>CARD32</type> mask
 </para>
 
 <blockquote>
@@ -734,19 +735,19 @@ All unused bits must be set to zero.  In
 <function>SetEventMask</function>
 requests, if
 any bits are set that are not defined for the extension (or core)
-for which this EVENTMASK is intended (according to the EXTENSION-
+for which this <type>EVENTMASK</type> is intended (according to the EXTENSION-
 OPCODE given in the
 <function>SetEventMask</function>
 request), an
 <errorname>EventMask</errorname>
 error is generated.
 <!-- .sp -->
-This value is swapped as a CARD32.
+This value is swapped as a <type>CARD32</type>.
     </para>
 </blockquote>
 
 <para>
-FONTID:     ID
+<type>FONTID</type>:     <type>ID</type>
 </para>
 
 <blockquote>
@@ -759,7 +760,7 @@ font.
 </blockquote>
 
 <para>
-ID:  CARD32
+<type>ID</type>:  <type>CARD32</type>
 </para>
 
 <blockquote>
@@ -770,23 +771,24 @@ at least 1 other bit must be set (yielding a range of 1 through
 It is specified by the client to represent objects in
 the server.  Identifiers are scoped according to their type are
 private to the client; thus, the same identifier may be used for
-both a FONTID and an ACCESSCONTEXT as well as by multiple clients.
+both a <type>FONTID</type> and an <type>ACCESSCONTEXT</type>
+as well as by multiple clients.
 </para>
 <para>
-An ID of zero is referred to as None.
+An <type>ID</type> of zero is referred to as None.
 </para>
 </blockquote>
 
 <para>
-INT8:  8-bit signed integer
+<type>INT8</type>:  8-bit signed integer
 </para>
 
 <para>
-INT16:  16-bit signed integer
+<type>INT16</type>:  16-bit signed integer
 </para>
 
 <para>
-INT32:  32-bit signed integer
+<type>INT32</type>:  32-bit signed integer
 </para>
 
 <blockquote>
@@ -797,8 +799,8 @@ the client and server have different byte orders.
 </blockquote>
 
 <literallayout class="monospaced">
-OFFSET32:      [  position:     CARD32,
-                  length:       CARD32 ]
+<type>OFFSET32</type>:      [  position:     <type>CARD32</type>,
+                  length:       <type>CARD32</type> ]
 </literallayout>
 
 <blockquote>
@@ -809,8 +811,8 @@ data.
 </blockquote>
 
 <literallayout class="monospaced">
-PROPINFO:     [ offsets:          LISTofPROPOFFSET,
-                data:             LISTofBYTE ]
+<type>PROPINFO</type>:     [ offsets:          <type>LISTofPROPOFFSET</type>,
+                data:             <type>LISTofBYTE</type> ]
 </literallayout>
 
 <blockquote>
@@ -826,10 +828,10 @@ This structure is padded to 32-bit alignment.
 </blockquote>
 
 <literallayout class="monospaced">
-PROPOFFSET:     [ name:          OFFSET32,
-                 value:          OFFSET32,
-                 type:           CARD8,
-                 zero-pad3:      BYTE, BYTE, BYTE ]
+<type>PROPOFFSET</type>:     [ name:          <type>OFFSET32</type>,
+                 value:          <type>OFFSET32</type>,
+                 type:           <type>CARD8</type>,
+                 zero-pad3:      <type>BYTE</type>, <type>BYTE</type>, <type>BYTE</type> ]
 </literallayout>
 
 <blockquote>
@@ -840,7 +842,8 @@ of data for a property.
     <para>
 The NAME field specifies the position and length (which must be
 greater than zero) of the property name relative to the beginning
-of the PROPINFO.DATA block for this font.  The interpretation of
+of the <structfield>PROPINFO.DATA</structfield> block for this font.
+The interpretation of
 the position and length of the VALUE field is determined by the
 TYPE field, which contains one of the following alternate values:
     </para>
@@ -859,26 +862,27 @@ which have the following meanings:
     <blockquote>
       <para>
 This property contains a counted string of bytes.  The
-data is stored in the PROPINFO.DATA block beginning at
+data is stored in the <structfield>PROPINFO.DATA</structfield>
+block beginning at
 relative byte VALUE.POSITION (beginning with zero), extending
 for VALUE.LENGTH (at least zero) bytes.
       </para>
     </blockquote>
     <para>
 This property contains a unsigned, 32-bit number stored
-as a CARD32 in VALUE.POSITION (VALUE.LENGTH is zero).
+as a <type>CARD32</type> in VALUE.POSITION (VALUE.LENGTH is zero).
     </para>
     <blockquote>
       <para>
 This property contains a signed, 32-bit number stored as
-an INT32 in VALUE.POSITION (VALUE.LENGTH is zero).
+an <type>INT32</type> in VALUE.POSITION (VALUE.LENGTH is zero).
 This structure is zero-padded to 32-bit alignment.
       </para>
     </blockquote>
 </blockquote>
 
 <para>
-RANGE:     [ min-char, max-char:     CHAR2B ]
+<type>RANGE</type>:     [ min-char, max-char:     <type>CHAR2B</type> ]
 </para>
 
 <blockquote>
@@ -887,15 +891,17 @@ This structure specifies a range of character codes.  A single
 character is represented by MIN-CHAR equals MAX-CHAR.  If the
 linear interpretation of MAX-CHAR is less than that of MIN-CHAR,
 or if MIN-CHAR is less than the font's
-XFONTINFO.CHAR-RANGE.MIN-CHAR, or if MAX-CHAR is greater than the
-font's XFONTINFO.CHAR-RANGE.MAX-CHAR, the range is invalid.
+<structfield>XFONTINFO.CHAR-RANGE.MIN-CHAR</structfield>,
+or if MAX-CHAR is greater than the
+font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>,
+the range is invalid.
   </para>
 </blockquote>
 
 <literallayout class="monospaced">
-RESOLUTION:     [ x-resolution:          CARD16,
-                  y-resolution:          CARD16,
-                  decipoint-size:        CARD16 ]
+<type>RESOLUTION</type>:     [ x-resolution:          <type>CARD16</type>,
+                  y-resolution:          <type>CARD16</type>,
+                  decipoint-size:        <type>CARD16</type> ]
 </literallayout>
 
 <blockquote>
@@ -909,19 +915,19 @@ size, measured in tenths of a point, and must be greater than zero.
 </blockquote>
 
 <para>
-STRING8:          LISTofCARD8
+<type>STRING8</type>:          <type>LISTofCARD8</type>
 </para>
 
 <blockquote>
   <para>
 This is a counted list of 1-byte character codes, typically
 encoded in <acronym>ISO</acronym> 8859-1.  A character code "c" is equivalent to a
-CHAR2B structure whose BYTE1 is zero and whose BYTE2 is "c".
+<type>CHAR2B</type> structure whose BYTE1 is zero and whose BYTE2 is "c".
   </para>
 </blockquote>
 
 <para>
-TIMESTAMP:     CARD32
+<type>TIMESTAMP</type>:     <type>CARD32</type>
 </para>
 
 <blockquote>
@@ -933,10 +939,10 @@ permitted to wrap.
 </blockquote>
 
 <para>
-XCHARINFO:     [ lbearing, rbearing:     INT16,
-                 width:                  INT16,
-                 ascent, descent:        INT16,
-                 attributes:             CARD16 ]
+<type>XCHARINFO</type>:     [ lbearing, rbearing:     <type>INT16</type>,
+                 width:                  <type>INT16</type>,
+                 ascent, descent:        <type>INT16</type>,
+                 attributes:             <type>CARD16</type> ]
 </para>
 
 <blockquote>
@@ -998,15 +1004,15 @@ ASCENT + DESCENT pixels.
 </blockquote>
 
 <literallayout class="monospaced">
-XFONTINFO:     [ flags:               CARD32,
+<type>XFONTINFO</type>:     [ flags:               <type>CARD32</type>,
                  drawing-direction:   { LeftToRight, RightToLeft }
-                 char-range:          RANGE,
-                 default-char:        CHAR2B,
-                 min-bounds:          XCHARINFO,
-                 max-bounds:          XCHARINFO,
-                 font-ascent:         INT16,
-                 font-descent:        INT16,
-                 properties:          PROPINFO ]
+                 char-range:          <type>RANGE</type>,
+                 default-char:        <type>CHAR2B</type>,
+                 min-bounds:          <type>XCHARINFO</type>,
+                 max-bounds:          <type>XCHARINFO</type>,
+                 font-ascent:         <type>INT16</type>,
+                 font-descent:        <type>INT16</type>,
+                 properties:          <type>PROPINFO</type> ]
 </literallayout>
 
 <blockquote>
@@ -1261,10 +1267,10 @@ mutually-understood virtual stream:
         <colspec colname='c1' colwidth='2.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>byte-order</parameter>:</entry><entry>BYTE</entry></row>
-          <row><entry><parameter>client-major-protocol-version</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>client-minor-protocol-version</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry>LISTofAUTH</entry></row>
+          <row><entry><parameter>byte-order</parameter>:</entry><entry><type>BYTE</type></entry></row>
+          <row><entry><parameter>client-major-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>client-minor-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry><type>LISTofAUTH</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1302,11 +1308,11 @@ authorization data.
           <row><entry>▶</entry></row>
           <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue,
                                   Busy, Denied }</entry></row>
-          <row><entry><parameter>server-major-protocol-version</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>server-minor-protocol-version</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>alternate-servers-hint</parameter>:</entry><entry>LISTofALTERNATESERVER</entry></row>
-          <row><entry><parameter>authorization-index</parameter>:</entry><entry>CARD8</entry></row>
-          <row><entry><parameter>authorization-data</parameter>:</entry><entry>LISTofBYTE</entry></row>
+          <row><entry><parameter>server-major-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>server-minor-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>alternate-servers-hint</parameter>:</entry><entry><type>LISTofALTERNATESERVER</type></entry></row>
+          <row><entry><parameter>authorization-index</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1380,10 +1386,10 @@ setup is not finished, so no requests or events may be sent):
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>◀</entry></row>
-          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry><type>STRING8</type></entry></row>
           <row><entry>▶</entry></row>
           <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Busy, Denied }</entry></row>
-          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry>LISTofBYTE</entry></row>
+          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1407,10 +1413,10 @@ from the server:
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>remaining-length</parameter>:</entry><entry>CARD32</entry></row>
-          <row><entry><parameter>maximum-request-length</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>release-number</parameter>:</entry><entry>CARD32</entry></row>
-          <row><entry><parameter>vendor</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>remaining-length</parameter>:</entry><entry><type>CARD32</type></entry></row>
+          <row><entry><parameter>maximum-request-length</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>release-number</parameter>:</entry><entry><type>CARD32</type></entry></row>
+          <row><entry><parameter>vendor</parameter>:</entry><entry><type>STRING8</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1490,16 +1496,16 @@ case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>name</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>name</parameter>:</entry><entry><type>STRING8</type></entry></row>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>present</parameter>:</entry><entry>BOOL</entry></row>
-          <row><entry><parameter>major-version</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>minor-version</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>major-opcode</parameter>:</entry><entry>CARD8</entry></row>
-          <row><entry><parameter>first-event</parameter>:</entry><entry>CARD8</entry></row>
-          <row><entry><parameter>number-events</parameter>:</entry><entry>CARD8</entry></row>
-          <row><entry><parameter>first-error</parameter>:</entry><entry>CARD8</entry></row>
-          <row rowsep='1'><entry><parameter>number-errors</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>present</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>major-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>minor-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>major-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>first-event</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>number-events</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>first-error</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row rowsep='1'><entry><parameter>number-errors</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
         </tbody>
       </tgroup>
@@ -1549,10 +1555,10 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
-          <row><entry><parameter>max-names</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>max-names</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row><entry>▶+</entry></row>
-          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
         </tbody>
@@ -1670,7 +1676,7 @@ returned in mixed case.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>extension-opcode</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>extension-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row rowsep='1'><entry><parameter>event-mask</parameter>:</entry><entry><type>EVENTMASK</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>EventMask</errorname>,
 <errorname>Request</errorname></entry></row>
@@ -1719,7 +1725,7 @@ ignored.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>extension-opcode</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>extension-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row><entry>▶</entry></row>
           <row rowsep='1'><entry><parameter>event-mask</parameter>:</entry><entry><type>EVENTMASK</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Request</errorname></entry></row>
@@ -1751,11 +1757,11 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>ac</parameter>:</entry><entry>ACCESSCONTEXT</entry></row>
-          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry>LISTofAUTH</entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry></row>
+          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry><type>LISTofAUTH</type></entry></row>
           <row><entry>▶</entry></row>
           <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Denied }</entry></row>
-          <row><entry><parameter>authorization-index</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>authorization-index</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row rowsep='1'><entry><parameter>authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>IDChoice</errorname></entry></row>
         </tbody>
@@ -1807,10 +1813,10 @@ until STATUS is set to either Success or Denied.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>     ◀</entry></row>
-          <row><entry><parameter>     more-authorization-data</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>     more-authorization-data</parameter>:</entry><entry><type>STRING8</type></entry></row>
           <row><entry>     ▶</entry></row>
           <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Denied }</entry></row>
-          <row><entry><parameter>    more-authorization-data</parameter>:</entry><entry>LISTofBYTE</entry></row>
+          <row><entry><parameter>    more-authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1834,7 +1840,7 @@ with an access context, an <errorname>IDChoice</errorname> error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>ac</parameter>:</entry><entry>ACCESSCONTEXT</entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry></row>
           <row rowsep='1'><entry>Errors:</entry><entry><errorname>AccessContext</errorname>,
 <errorname>Alloc</errorname></entry></row>
         </tbody>
@@ -1877,7 +1883,7 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>ac</parameter>:</entry><entry>ACCESSCONTEXT</entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry></row>
           <row rowsep='1'><entry>Errors:</entry><entry><errorname>AccessContext</errorname></entry></row>
         </tbody>
       </tgroup>
@@ -1942,13 +1948,14 @@ instance that is used when a partially-specified scalable
 fontname is opened.
     </para>
     <para>
-If a zero-length list of RESOLUTIONS is given, the
+If a zero-length list of <type>RESOLUTION</type>s is given, the
 server-dependent default value is restored.  Otherwise, if
-elements of all of the specified RESOLUTIONS are non-zero, the
+elements of all of the specified <type>RESOLUTION</type>s are non-zero, the
 default resolutions for this client are changed.
     </para>
     <para>
-If a RESOLUTION entry contains a zero, a <errorname>Resolution</errorname> error is
+If a <type>RESOLUTION</type> entry contains a zero,
+a <errorname>Resolution</errorname> error is
 returned and the default resolutions are not changed.
     </para>
 </section>
@@ -1985,10 +1992,10 @@ a server-dependent default value is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
-          <row><entry><parameter>max-names</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>max-names</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row><entry>▶+</entry></row>
-          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
         </tbody>
@@ -2042,13 +2049,13 @@ is set to zero.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
-          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
-          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
-          <row><entry><parameter>max-names</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>max-names</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row><entry>▶+</entry></row>
-          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
-          <row><entry><parameter>info</parameter>:</entry><entry>XFONTINFO</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
+          <row><entry><parameter>info</parameter>:</entry><entry><type>XFONTINFO</type></entry></row>
           <row rowsep='1'><entry><parameter>name</parameter>:</entry><entry><type>STRING8</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
         </tbody>
@@ -2088,13 +2095,13 @@ client with the server.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
-          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
-          <row><entry><parameter>format-mask</parameter>:</entry><entry>BITMAPFORMATMASK</entry></row>
-          <row><entry><parameter>format-hint</parameter>:</entry><entry>BITMAPFORMAT</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>format-mask</parameter>:</entry><entry><type>BITMAPFORMATMASK</type></entry></row>
+          <row><entry><parameter>format-hint</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry></row>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>otherid</parameter>:</entry><entry>FONTID or None</entry></row>
-          <row><entry><parameter>otherid-valid</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>otherid</parameter>:</entry><entry><type>FONTID</type> or None</entry></row>
+          <row><entry><parameter>otherid-valid</parameter>:</entry><entry><type>BOOL</type></entry></row>
           <row rowsep='1'><entry><parameter>cachable</parameter>:</entry><entry><type>BOOL</type></entry></row>
           <row><entry>Errors:</entry><entry>
 <errorname>IDChoice</errorname>,
@@ -2143,7 +2150,7 @@ using
 <function>QueryXBitmaps16</function>
 and
 <function>CloseFont</function>
-requests on this FONTID are
+requests on this <type>FONTID</type> are
 performed according to permissions granted at the time of the
 <function>OpenBitmapFont</function>
 request.
@@ -2232,7 +2239,7 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
           <row><entry>▶</entry></row>
           <row rowsep='1'><entry><parameter>info</parameter>:</entry><entry><type>XFONTINFO</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
@@ -2262,9 +2269,9 @@ is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry>BOOL</entry></row>
-          <row><entry><parameter>chars</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry><type>STRING8</type></entry></row>
           <row><entry>▶</entry></row>
           <row rowsep='1'><entry><parameter>extents</parameter>:</entry><entry><type>LISTofXCHARINFO</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
@@ -2290,9 +2297,9 @@ uses 1-byte character codes.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry>BOOL</entry></row>
-          <row><entry><parameter>chars</parameter>:</entry><entry>LISTofCHAR2B</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry><type>LISTofCHAR2B</type></entry></row>
           <row><entry>▶</entry></row>
           <row rowsep='1'><entry><parameter>extents</parameter>:</entry><entry><type>LISTofXCHARINFO</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
@@ -2311,9 +2318,11 @@ specified by RANGE and CHARS.
 If RANGE is True, each succeeding pair of elements in CHARS is
 treated as a range of characters for which extents should be
 returned.  If CHARS contains an odd number of elements, the
-font's XFONTINFO.CHAR-RANGE.MAX-CHAR is implicitly appended to
+font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>
+is implicitly appended to
 the list.  If CHARS contains no elements, the list is
-implicitly replaced with the font's XFONTINFO.CHAR-RANGE.  If
+implicitly replaced with the font's
+<structfield>XFONTINFO.CHAR-RANGE.</structfield>  If
 any of the resulting character ranges are invalid, a <errorname>Range</errorname>
 error is returned.  Otherwise, the character ranges are
 concatenated in the order given by CHARS to produce a set of
@@ -2357,14 +2366,14 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry>BOOL</entry></row>
-          <row><entry><parameter>chars</parameter>:</entry><entry>STRING8</entry></row>
-          <row><entry><parameter>format</parameter>:</entry><entry>BITMAPFORMAT</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry></row>
           <row><entry>▶+</entry></row>
-          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
-          <row><entry><parameter>offsets</parameter>:</entry><entry>LISTofOFFSET32</entry></row>
-          <row><entry><parameter>bitmaps</parameter>:</entry><entry>LISTofBYTE</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
+          <row><entry><parameter>offsets</parameter>:</entry><entry><type>LISTofOFFSET32</type></entry></row>
+          <row><entry><parameter>bitmaps</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
           <row rowsep='1'><entry>Errors:</entry><entry><errorname>Font</errorname>,
 <errorname>Range</errorname>,
 <errorname>Format</errorname>,
@@ -2389,13 +2398,13 @@ uses 1-byte character codes.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry>BOOL</entry></row>
-          <row><entry><parameter>chars</parameter>:</entry><entry>LISTofCHAR2B</entry></row>
-          <row><entry><parameter>format</parameter>:</entry><entry>BITMAPFORMAT</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry><type>LISTofCHAR2B</type></entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry></row>
           <row><entry>▶+</entry></row>
-          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
-          <row><entry><parameter>offsets</parameter>:</entry><entry>LISTofOFFSET32</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
+          <row><entry><parameter>offsets</parameter>:</entry><entry><type>LISTofOFFSET32</type></entry></row>
           <row rowsep='1'><entry><parameter>bitmaps</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
           <errorname>Range</errorname>,
@@ -2414,9 +2423,11 @@ specified by RANGE and CHARS.
 If RANGE is True, each succeeding pair of elements in CHARS is
 treated as a range of characters for which bitmaps should be
 returned.  If CHARS contains an odd number of elements, the
-font's XFONTINFO.CHAR-RANGE.MAX-CHAR is implicitly appended to
+font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>
+is implicitly appended to
 the list.  If CHARS contains no elements, the list is
-implicitly replaced with the font's XFONTINFO.CHAR-RANGE.  If
+implicitly replaced with the font's
+<structfield>XFONTINFO.CHAR-RANGE.</structfield>  If
 any of the resulting character ranges are invalid, a <errorname>Range</errorname>
 error is returned.  Otherwise, the character ranges are
 concatenated in the order given by CHARS to produce a set of
@@ -2569,14 +2580,14 @@ All errors are at least 16 bytes long and contain the following fields:
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>type</parameter>:</entry><entry>CARD8</entry><entry>value of 1</entry></row>
-          <row><entry><parameter>error-code</parameter>:</entry><entry>CARD8</entry></row>
-          <row><entry><parameter>sequence-number</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>length</parameter>:</entry><entry>CARD32</entry></row>
-          <row><entry><parameter>timestamp</parameter>:</entry><entry>TIMESTAMP</entry></row>
-          <row><entry><parameter>major-opcode</parameter>:</entry><entry>CARD8</entry></row>
-          <row><entry><parameter>minor-opcode</parameter>:</entry><entry>CARD8</entry></row>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>type</parameter>:</entry><entry><type>CARD8</type></entry><entry>value of 1</entry></row>
+          <row><entry><parameter>error-code</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>sequence-number</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>length</parameter>:</entry><entry><type>CARD32</type></entry></row>
+          <row><entry><parameter>timestamp</parameter>:</entry><entry><type>TIMESTAMP</type></entry></row>
+          <row><entry><parameter>major-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>minor-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2609,7 +2620,7 @@ The following errors are defined for the core protocol:
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2632,13 +2643,13 @@ of that extension.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
-          <row><entry><parameter>format</parameter>:</entry><entry>BITMAPFORMAT</entry><entry>bad format value</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry><entry>bad format value</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by the use of an invalid BITMAPFORMAT
+This error is generated by the use of an invalid <type>BITMAPFORMAT</type>
 in the
 <function>OpenBitmapFont</function>,
 <function>QueryXBitmaps8</function>, and
@@ -2658,13 +2669,13 @@ The value that caused the error is included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
-          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry><entry>bad font identifier</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry><entry>bad font identifier</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by an invalid FONTID in the
+This error is generated by an invalid <type>FONTID</type> in the
 <function>QueryXInfo</function>,
 <function>QueryXExtents8</function>,
 <function>QueryXExtents16</function>,
@@ -2687,13 +2698,13 @@ the error is included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry>RANGE</entry><entry>bad range</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><type>RANGE</type></entry><entry>bad range</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by an invalid RANGE in the
+This error is generated by an invalid <type>RANGE</type> in the
 <function>QueryXExtents8</function>,
 <function>QueryXExtents16</function>,
 <function>QueryXBitmaps8</function>
@@ -2714,13 +2725,13 @@ value that caused the error is included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
-          <row><entry><parameter>event-mask</parameter>:</entry><entry>EVENTMASK</entry><entry>bad event mask</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
+          <row><entry><parameter>event-mask</parameter>:</entry><entry><type>EVENTMASK</type></entry><entry>bad event mask</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by an invalid EVENTMASK in the
+This error is generated by an invalid <type>EVENTMASK</type> in the
 <function>SetEventMask</function>
 request.  The value that caused the error is
 included as extra data.
@@ -2737,22 +2748,22 @@ included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
-          <row><entry><parameter>ac</parameter>:</entry><entry>ACCESSCONTEXT</entry><entry>unaccepted <type>AccessContext</type></entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry><entry>unaccepted <type>AccessContext</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by an invalid ACCESSCONTEXT in the
+This error is generated by an invalid <type>ACCESSCONTEXT</type> in the
 <function>FreeAC</function>
 or
 <function>SetAuthorization</function>
 request or by an
 <function>OpenBitmapFont</function>
 request performed without sufficient authorization.  In the
-first two cases, the ACCESSCONTEXT of the errant request is
+first two cases, the <type>ACCESSCONTEXT</type> of the errant request is
 returned as extra data.  In the third case, the current
-ACCESSCONTEXT is returned as extra data.
+<type>ACCESSCONTEXT</type> is returned as extra data.
     </para>
 </section>
 
@@ -2766,16 +2777,16 @@ ACCESSCONTEXT is returned as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
-          <row><entry><parameter>id</parameter>:</entry><entry>ID</entry><entry>bad identifier</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
+          <row><entry><parameter>id</parameter>:</entry><entry><type>ID</type></entry><entry>bad identifier</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
 This error is generated by an invalid or already associated
-ACCESSCONTEXT identifier in a
+<type>ACCESSCONTEXT</type> identifier in a
 <function>CreateAC</function>
-request or FONTID identifier
+request or <type>FONTID</type> identifier
 in an
 <function>OpenBitmapFont</function>
 request.  The value that caused the error
@@ -2793,7 +2804,7 @@ is included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2817,14 +2828,14 @@ request.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>X value of errant resolution</entry></row>
-          <row><entry><parameter>y-resolution</parameter>:</entry><entry>CARD16</entry><entry>Y value of errant resolution</entry></row>
-          <row><entry><parameter>point-size</parameter>:</entry><entry>CARD16</entry><entry>point size of errant resolution</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>X value of errant resolution</entry></row>
+          <row><entry><parameter>y-resolution</parameter>:</entry><entry><type>CARD16</type></entry><entry>Y value of errant resolution</entry></row>
+          <row><entry><parameter>point-size</parameter>:</entry><entry><type>CARD16</type></entry><entry>point size of errant resolution</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated in response to an invalid RESOLUTION
+This error is generated in response to an invalid <type>RESOLUTION</type>
 structure in a
 <function>SetResolution</function>
 request.  The value that caused the
@@ -2842,7 +2853,7 @@ error is included in the DATA-OR-UNUSED field and as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2862,8 +2873,8 @@ lacks sufficient resources (especially memory).
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
-          <row><entry><parameter>length</parameter>:</entry><entry>CARD32</entry><entry>bad length value</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
+          <row><entry><parameter>length</parameter>:</entry><entry><type>CARD32</type></entry><entry>bad length value</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2884,7 +2895,7 @@ caused the error is included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2920,11 +2931,11 @@ is at least 12 bytes long and contains the following fields:
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>type</parameter>:</entry><entry>CARD8</entry><entry>value of 2</entry></row>
-          <row><entry><parameter>event-code</parameter>:</entry><entry>CARD8</entry></row>
-          <row><entry><parameter>sequence-number</parameter>:</entry><entry>CARD16</entry></row>
-          <row><entry><parameter>length</parameter>:</entry><entry>CARD32</entry></row>
-          <row><entry><parameter>timestamp</parameter>:</entry><entry>TIMESTAMP</entry></row>
+          <row><entry><parameter>type</parameter>:</entry><entry><type>CARD8</type></entry><entry>value of 2</entry></row>
+          <row><entry><parameter>event-code</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>sequence-number</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>length</parameter>:</entry><entry><type>CARD32</type></entry></row>
+          <row><entry><parameter>timestamp</parameter>:</entry><entry><type>TIMESTAMP</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2936,7 +2947,7 @@ of the event and is in the range 0-127 for core events or the range 128-255 for
 extensions.  The SEQUENCE-NUMBER field specifies the least significant 16 bits
 of the sequence number of the last request to have been processed by the
 server.  The LENGTH field specifies the number of 4-byte units in this event
-packet and must always have a value of at least 3.  The TIMESTAMP field
+packet and must always have a value of at least 3.  The <type>TIMESTAMP</type> field
 specifies the server time when the event occurred.  If LENGTH is greater than
 three, these fields are followed by (LENGTH - 3) * 4 bytes of additional data.
 </para>
@@ -2993,8 +3004,8 @@ by sending any request (such as
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>added</parameter>:</entry><entry>BOOL</entry></row>
-          <row><entry><parameter>deleted</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>added</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>deleted</parameter>:</entry><entry><type>BOOL</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -3019,8 +3030,8 @@ been removed from the server, otherwise it is False.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>added</parameter>:</entry><entry>BOOL</entry></row>
-          <row><entry><parameter>deleted</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>added</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>deleted</parameter>:</entry><entry><type>BOOL</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -3102,9 +3113,9 @@ multiple of four:
 <!-- .XE -->
 <!-- .sp 6p -->
 <literallayout class="monospaced">
-ACCESSCONTEXT
+<type>ACCESSCONTEXT</type>
 
-4 CARD32 access context with at least one of the following bits set:
+4 <type>CARD32</type> access context with at least one of the following bits set:
 
 #x1fffffff
 
@@ -3113,25 +3124,25 @@ but none of the following bits set:
 #xe0000000               zero
 
 
-ALTERNATESERVER
-1     BOOL               subset
+<type>ALTERNATESERVER</type>
+1     <type>BOOL</type>               subset
 1     n                  length of name
-n     STRING8            name
+n     <type>STRING8</type>            name
 p                        unused, p=pad(n+2)
 
-AUTH
+<type>AUTH</type>
 
 2     n                  length of name
 2     d                  length of data
-n     STRING8            name
+n     <type>STRING8</type>            name
 p                        unused, p=pad(n)
-d     STRING8            data
+d     <type>STRING8</type>            data
 q                        unused, q=pad(d)
 
 
-BITMAPFORMAT
+<type>BITMAPFORMAT</type>
 
-4 CARD32 value, union of the following bits:
+4 <type>CARD32</type> value, union of the following bits:
      #x00000001           ByteOrderMSB
      #x00000002           BitOrderMSB
      #x00000000           ImageRectMin
@@ -3155,9 +3166,9 @@ and the following of which at most one bit may be set:
      #x0000000c at most one bit can be set
 
 
-BITMAPFORMATMASK
+<type>BITMAPFORMATMASK</type>
 
-4 CARD32 value, mask of the following bits:
+4 <type>CARD32</type> value, mask of the following bits:
 
      #x00000001           ByteOrderMask
      #x00000002           BitOrderMask
@@ -3169,30 +3180,30 @@ except for the following bits which must be zero:
 
      #xffffffe0           zero
 
-BOOL
+<type>BOOL</type>
 
-1    BOOL       boolean, one of the following values:
+1    <type>BOOL</type>       boolean, one of the following values:
 0    False
 1    True
 
-BYTE
-1    BYTE       unsigned byte of data
+<type>BYTE</type>
+1    <type>BYTE</type>       unsigned byte of data
 
-CARD8
-1    CARD8       8-bit unsigned integer
+<type>CARD8</type>
+1    <type>CARD8</type>       8-bit unsigned integer
 
-CARD16
-2    CARD16      16-bit unsigned integer
+<type>CARD16</type>
+2    <type>CARD16</type>      16-bit unsigned integer
 
-CARD32
-4    CARD32      32-bit unsigned integer
+<type>CARD32</type>
+4    <type>CARD32</type>      32-bit unsigned integer
 
-CHAR2B
-1    CARD8       byte1
-1    CARD8       byte2
+<type>CHAR2B</type>
+1    <type>CARD8</type>       byte1
+1    <type>CARD8</type>       byte2
 
-EVENTMASK
-4    CARD32 event mask
+<type>EVENTMASK</type>
+4    <type>CARD32</type> event mask
      for core events, this is union of the following bits:
 
      #00000001   CatalogueListChangeMask
@@ -3204,9 +3215,9 @@ but none of the following bits set:
 
 extensions define their own sets of bits
 
-FONTID
+<type>FONTID</type>
 
-4 CARD32 font identifier with at least one of
+4 <type>CARD32</type> font identifier with at least one of
 the following bits set:
 
      #x1fffffff
@@ -3215,64 +3226,64 @@ but none of the following bits set:
 
      #xe0000000   zero
 
-INT8
-1    INT8         8-bit signed integer
+<type>INT8</type>
+1    <type>INT8</type>         8-bit signed integer
 
-INT16
-2    INT16         16-bit signed integer
+<type>INT16</type>
+2    <type>INT16</type>         16-bit signed integer
 
-INT32
-4    INT32         32-bit signed integer
+<type>INT32</type>
+4    <type>INT32</type>         32-bit signed integer
 
-OFFSET32
-4    CARD32         position (or integer value)
-4    CARD32         length
+<type>OFFSET32</type>
+4    <type>CARD32</type>         position (or integer value)
+4    <type>CARD32</type>         length
 
-PROPINFO
-4    n                 number of PROPOFFSET components
+<type>PROPINFO</type>
+4    n                 number of <type>PROPOFFSET</type> components
 4    m                 number of bytes of property data
-20*n PROPOFFSET         property offsets into data block
-m    LISTofBYTE         property data block
+20*n <type>PROPOFFSET</type>         property offsets into data block
+m    <type>LISTofBYTE</type>         property data block
 
-PROPOFFSET
-8    OFFSET32         name in data block
-8    OFFSET32         value in data block
+<type>PROPOFFSET</type>
+8    <type>OFFSET32</type>         name in data block
+8    <type>OFFSET32</type>         value in data block
 
-1 CARD8 type, one of the following values:
+1 <type>CARD8</type> type, one of the following values:
 0    String
 1    Unsigned
 2    Signed
 3    zero
 
-RANGE
-2    CHAR2B                 minimum character code
-2    CHAR2B         maximum character code
+<type>RANGE</type>
+2    <type>CHAR2B</type>                 minimum character code
+2    <type>CHAR2B</type>         maximum character code
 
-RESOLUTION
-2    CARD16 x resolution in pixels per inch
-2    CARD16 y resolution in pixels per inch
-2    CARD16 point size in decipoints
+<type>RESOLUTION</type>
+2    <type>CARD16</type> x resolution in pixels per inch
+2    <type>CARD16</type> y resolution in pixels per inch
+2    <type>CARD16</type> point size in decipoints
 
 STRNAME
 1    n length of name
-n    STRING8 name
+n    <type>STRING8</type> name
 
-STRING8
-n    LISTofBYTE         array of 8-bit character values
+<type>STRING8</type>
+n    <type>LISTofBYTE</type>         array of 8-bit character values
 
-TIMESTAMP
-4    CARD32         milliseconds since server time origin
+<type>TIMESTAMP</type>
+4    <type>CARD32</type>         milliseconds since server time origin
 
-XCHARINFO
-2    INT16         left bearing
-2    INT16         right bearing
-2    INT16         width
-2    INT16         ascent
-2    INT16         descent
-2    CARD16         attributes
+<type>XCHARINFO</type>
+2    <type>INT16</type>         left bearing
+2    <type>INT16</type>         right bearing
+2    <type>INT16</type>         width
+2    <type>INT16</type>         ascent
+2    <type>INT16</type>         descent
+2    <type>CARD16</type>         attributes
 
-XFONTINFO
-4 CARD32 flags, union of the following bits:
+<type>XFONTINFO</type>
+4 <type>CARD32</type> flags, union of the following bits:
      #x00000001         AllCharactersExist
      #x00000002         InkInside
      #x00000004         HorizontalOverlap
@@ -3280,17 +3291,17 @@ XFONTINFO
 but none of the following bits set:
 
      #xfffffff8         zero
-4    RANGE              range of characters in font
-1    CARD8              drawing direction
+4    <type>RANGE</type>              range of characters in font
+1    <type>CARD8</type>              drawing direction
      0             LeftToRight
      1             RightToLeft
 1                       unused
-2    CHAR2B             default character
-12   XCHARINFO          minimum bounds
-12   XCHARINFO          maximum bounds
-2    INT16              font ascent
-2    INT16              font descent
-n    PROPINFO           property data
+2    <type>CHAR2B</type>             default character
+12   <type>XCHARINFO</type>          minimum bounds
+12   <type>XCHARINFO</type>          maximum bounds
+2    <type>INT16</type>              font ascent
+2    <type>INT16</type>              font descent
+n    <type>PROPINFO</type>           property data
 </literallayout>
 </section>
 
@@ -3298,28 +3309,28 @@ n    PROPINFO           property data
 <title>Requests</title>
 <para><link linkend="Requests:open_connection"><emphasis role="bold">open connection</emphasis></link></para>
 <literallayout class="monospaced">
-1     BYTE                   byteorder, one of the values:
+1     <type>BYTE</type>                   byteorder, one of the values:
       #x42                   MostSignificant Byte first
       #x6c                   LeastSignificant Byte first
-1     CARD8                  numberof auth in auth-data
+1     <type>CARD8</type>                  numberof auth in auth-data
 2     2                      client-major-protocol-version
 2     0                      client-minor-protocol-version
 2     a/4 lengthof           auth-data
-a     LISTofAUTH             auth-data
+a     <type>LISTofAUTH</type>             auth-data
 ▶
-2     CARD16                 status
+2     <type>CARD16</type>                 status
 0                            Success
 1                            Continue
 2                            Busy
 3                            Denied
 2     2                      major version
 2     0                      version
-1     CARD8                  numberof alternate-servers-hint
-1     CARD8                  authorization-index
+1     <type>CARD8</type>                  numberof alternate-servers-hint
+1     <type>CARD8</type>                  authorization-index
 2     a/4                    lengthof alternate-servers-hint
 2     (d+q)/4                lengthof authorization-data
-a     LISTofALTERNATESERVER  alternate-servers-hint
-d     LISTofBYTE             authorization-data
+a     <type>LISTofALTERNATESERVER</type>  alternate-servers-hint
+d     <type>LISTofBYTE</type>             authorization-data
 q                            unused, q=pad(d)
 </literallayout>
 
@@ -3335,17 +3346,17 @@ and closes the connection:
 <literallayout class="monospaced">
 ◀
 4     1+(d+q)/4              length
-d     LISTofBYTE             more-authorization-data
+d     <type>LISTofBYTE</type>             more-authorization-data
 q                            unused, q=pad(d)
 ▶
 4     2+(d+q)/4              length
-2     CARD16                 status
+2     <type>CARD16</type>                 status
         0                    Success
       1                      Continue
       2                      Busy
       3                      Denied
       2                      unused
-d     LISTofBYTE             more-authorization-data
+d     <type>LISTofBYTE</type>             more-authorization-data
 q                            unused, q=pad(d)
 </literallayout>
 <para>
@@ -3355,10 +3366,10 @@ sent by the server:
 
 <literallayout class="monospaced">
 4     3+(v+w)/4              length of rest of data
-2     CARD16                 maximum-request-length
+2     <type>CARD16</type>                 maximum-request-length
 2     v                      length of vendor string
-4     CARD32                 release-number
-v     STRING8                vendor-string
+4     <type>CARD32</type>                 release-number
+v     <type>STRING8</type>                vendor-string
 w                            unused, w=pad(v)
 </literallayout>
 <para>
@@ -3378,8 +3389,8 @@ following requests:
 2   1                        length
 ▶
 1   0                        type reply
-1   CARD8                    numberof names
-2   CARD16                   sequence-number
+1   <type>CARD8</type>                    numberof names
+2   <type>CARD16</type>                   sequence-number
 4   2+(n+p)/4                length
 n   LISTofSTRNAME            names
 p                            unused, p=pad(n)
@@ -3388,44 +3399,44 @@ p                            unused, p=pad(n)
 1   2                        major-opcode
 1   n                        length of name
 2   1+(n+p)/4                length
-n   STRING8                  name
+n   <type>STRING8</type>                  name
 p                            unused, p=pad(n)
 ▶
 1   0                        type reply
-1   BOOL                     present
-2   CARD16                   sequence-number
+1   <type>BOOL</type>                     present
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-2   CARD16                   major-version
-2   CARD16                   minor-version
-1   CARD8                    major-opcode
-1   CARD8                    first-event
-1   CARD8                    number-events
-1   CARD8                    first-error
-1   CARD8                    number-errors
+2   <type>CARD16</type>                   major-version
+2   <type>CARD16</type>                   minor-version
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    first-event
+1   <type>CARD8</type>                    number-events
+1   <type>CARD8</type>                    first-error
+1   <type>CARD8</type>                    number-errors
 3                            unused
 
 <link linkend="Requests:ListCatalogues"><emphasis role="bold"><function>ListCatalogues</function></emphasis></link>
 1   3                        major-opcode
 1                            unused
 2   3+(n+p)/4                length
-4   CARD32                   max-names
+4   <type>CARD32</type>                   max-names
 2   n                        length of pattern
 2                            unused
-n   STRING8                  pattern
+n   <type>STRING8</type>                  pattern
 p                            unused, p=pad(n)
 ▶+
 1   0                        type reply
 1                            unused
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   4+(n+p)/4                length
-4   CARD32                   replies-following-hint
-4   CARD32                   numberof catalogue-names
+4   <type>CARD32</type>                   replies-following-hint
+4   <type>CARD32</type>                   numberof catalogue-names
 n   LISTofSTRNAME            catalogue-names
 p                            unused, p=pad(n)
 
 <link linkend="Requests:SetCatalogues"><emphasis role="bold"><function>SetCatalogues</function></emphasis></link>
 1   4                        major-opcode
-1   CARD8                    numberof catalogue-names
+1   <type>CARD8</type>                    numberof catalogue-names
 2   1+(n+p)/4                length
 n   LISTofSTRNAME            catalogue-names
 p                            unused, p=pad(n)
@@ -3436,47 +3447,47 @@ p                            unused, p=pad(n)
 2   1                        length
 ▶
 1   0                        type reply
-1   CARD8                    numberof catalogue-names
-2   CARD16                   sequence-number
+1   <type>CARD8</type>                    numberof catalogue-names
+2   <type>CARD16</type>                   sequence-number
 4   2+(n+p)/4                length
 n   LISTofSTRNAME            catalogue-names
 p                            unused, p=pad(n)
 
 <link linkend="Requests:SetEventMask"><emphasis role="bold"><function>SetEventMask</function></emphasis></link>
 1   6                        major-opcode
-1   CARD8                    extension-opcode
+1   <type>CARD8</type>                    extension-opcode
 2   2                        length
-4   EVENTMASK                event-mask
+4   <type>EVENTMASK</type>                event-mask
 
 <link linkend="Requests:GetEventMask"><emphasis role="bold"><function>GetEventMask</function></emphasis></link>
 1   7                        major-opcode
-1   CARD8                    extension-opcode
+1   <type>CARD8</type>                    extension-opcode
 2   1                        length
 ▶
 1   0                        type reply
 1                            unused
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   3                        length
-4   EVENTMASK                event-mask
+4   <type>EVENTMASK</type>                event-mask
 
 <link linkend="Requests:CreateAC"><emphasis role="bold"><function>CreateAC</function></emphasis></link>
 1   8                        major-opcode
-1   CARD8                    numberof authorization-protocols
+1   <type>CARD8</type>                    numberof authorization-protocols
 2   2+a/4                    length
-4   ACCESSCONTEXT            ac
-a   LISTofAUTH               authorization-protocols
+4   <type>ACCESSCONTEXT</type>            ac
+a   <type>LISTofAUTH</type>               authorization-protocols
 ▶
 1   0                        type reply
-1   CARD8                    authorization-index
-2   CARD16                   sequence-number
+1   <type>CARD8</type>                    authorization-index
+2   <type>CARD16</type>                   sequence-number
 4   3+(d+q)/4                length
-2   CARD16                   status
+2   <type>CARD16</type>                   status
     0 Success
     1 Continue
     2 Busy
     3 Denied
 2                            unused
-d   LISTofBYTE               authorization-data
+d   <type>LISTofBYTE</type>               authorization-data
 q                            unused, q=pad(d)
 </literallayout>
 
@@ -3491,36 +3502,36 @@ Success, Busy, or Denied at which point the request is finished.
 <literallayout class="monospaced">
 ◀
 4   1+(d+q)/4                length
-d   LISTofBYTE               more-authorization-data
+d   <type>LISTofBYTE</type>               more-authorization-data
 q                            unused, q=pad(d)
 ▶
 4   2+(d+q)/4                length
-2   CARD16                   status
+2   <type>CARD16</type>                   status
     0 Success
     1 Continue
     2 Busy
     3 Denied
 2                            unused
-d   LISTofBYTE               authorization-data
+d   <type>LISTofBYTE</type>               authorization-data
 q                            unused, q=pad(d)
 
 <link linkend="Requests:FreeAC"><emphasis role="bold"><function>FreeAC</function></emphasis></link>
 1   9                        major-opcode
 1                            unused
 2   2                        length
-4   ACCESSCONTEXT            ac
+4   <type>ACCESSCONTEXT</type>            ac
 
 <link linkend="Requests:SetAuthorization"><emphasis role="bold"><function>SetAuthorization</function></emphasis></link>
 1   10                       major-opcode
 1                            unused
 2   2                        length
-4   ACCESSCONTEXT            ac
+4   <type>ACCESSCONTEXT</type>            ac
 
 <link linkend="Requests:SetResolution"><emphasis role="bold"><function>SetResolution</function></emphasis></link>
 1   11                       major-opcode
 1   n                        number of resolutions
 2   1+(6*n+p)/4              length
-6*n LISTofRESOLUTION         resolutions
+6*n <type>LISTofRESOLUTION</type>         resolutions
 p   p=pad(6*n)
 
 <link linkend="Requests:GetResolution"><emphasis role="bold"><function>GetResolution</function></emphasis></link>
@@ -3530,27 +3541,27 @@ p   p=pad(6*n)
 ▶
 1   0                        type reply
 1   n                        number of resolutions
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   2+(6*n+p)/4              length
-6*n LISTofRESOLUTION         resolutions
+6*n <type>LISTofRESOLUTION</type>         resolutions
 p   p=pad(6*n)
 
 <link linkend="Requests:ListFonts"><emphasis role="bold"><function>ListFonts</function></emphasis></link>
 1   13                       major-opcode
 1                            unused
 2   3+(n+p)/4                length
-4   CARD32                   max-names
+4   <type>CARD32</type>                   max-names
 2   n                        length of pattern
 2                            unused
-n   STRING8                  pattern
+n   <type>STRING8</type>                  pattern
 p                            unused, p=pad(n)
 ▶+
 1   0                        type reply
 1                            unused
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   4+(n+p)/4                length
-4   CARD32                   replies-following-hint
-4   CARD32                   numberof font-names
+4   <type>CARD32</type>                   replies-following-hint
+4   <type>CARD32</type>                   numberof font-names
 n   LISTofSTRNAME            font-names
 p                            unused, p=pad(n)
 
@@ -3558,136 +3569,136 @@ p                            unused, p=pad(n)
 1   14                       major-opcode
 1                            unused
 2   3+(n+p)/4                length
-4   CARD32                   max-names
+4   <type>CARD32</type>                   max-names
 2   n                        length of pattern
 2                            unused
-n   STRING8                  pattern
+n   <type>STRING8</type>                  pattern
 p                            unused, p=pad(n)
 ▶+ (except for last in series)
 1   0                        type reply
 1   n                        length of name
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   3+(n+p+f)/4              length
-4   CARD32                   replies-hint
-f   XFONTINFO                fontinfo
-n   STRING8                  name
+4   <type>CARD32</type>                   replies-hint
+f   <type>XFONTINFO</type>                fontinfo
+n   <type>STRING8</type>                  name
 p                            unused, p=pad(n)
 ▶ (last in series)
 1   0                        type reply
 1   0                        last-reply indicator
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   2                        reply length
 
 <link linkend="Requests:OpenBitmapFont"><emphasis role="bold"><function>OpenBitmapFont</function></emphasis></link>
 1   15                       major-opcode
 1                            unused
 2   4+(n+p)/4                length
-4   FONTID                   fontid
-4   BITMAPFORMATMASK         format-mask
-4   BITMAPFORMAT             format
+4   <type>FONTID</type>                   fontid
+4   <type>BITMAPFORMATMASK</type>         format-mask
+4   <type>BITMAPFORMAT</type>             format
 n   STRNAME                  pattern
 p                            unused, p=pad(n)
 ▶
 1   0                        type reply
-1   BOOL                     otherid-valid
-2   CARD16                   sequence-number
+1   <type>BOOL</type>                     otherid-valid
+2   <type>CARD16</type>                   sequence-number
 4   4                        length
-4   FONTID                   otherid
-1   BOOL                     cachable
+4   <type>FONTID</type>                   otherid
+1   <type>BOOL</type>                     cachable
 3                            unused
 
 <link linkend="Requests:QueryXInfo"><emphasis role="bold"><function>QueryXInfo</function></emphasis></link>
 1   16                       major-opcode
 1                            unused
 2   2                        length
-4   FONTID                   fontid
+4   <type>FONTID</type>                   fontid
 ▶
 1   0                        type reply
 1                            unused
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   2+f/4                    length
-f   XFONTINFO                fontinfo
+f   <type>XFONTINFO</type>                fontinfo
 p                            unused, p=pad(f)
 
 <link linkend="Requests:QueryXExtents8"><emphasis role="bold"><function>QueryXExtents8</function></emphasis></link>
 1   17                       major-opcode
-1   BOOL                     range
+1   <type>BOOL</type>                     range
 2   3+(n+p)/4                length
-4   FONTID                   fontid
+4   <type>FONTID</type>                   fontid
 4   n                        number chars entries
-n   STRING8                  chars
+n   <type>STRING8</type>                  chars
 p                            unused, p=pad(n)
 ▶
 1   0                        type reply
 1                            unused
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   3+3*n                    length
 4   n                        number of extents
-12*n LISTofXCHARINFO         extents
+12*n <type>LISTofXCHARINFO</type>         extents
 
 <link linkend="Requests:QueryXExtents16"><emphasis role="bold"><function>QueryXExtents16</function></emphasis></link>
 1   18                       major-opcode
-1   BOOL                     range
+1   <type>BOOL</type>                     range
 2   3+(2*n+p)/4              length
-4   FONTID                   fontid
+4   <type>FONTID</type>                   fontid
 4   n                        number chars entries
-2*n                          LISTofCHAR2B chars
+2*n                          <type>LISTofCHAR2B</type> chars
 p                            unused, p=pad(2*n)
 ▶
 1   0                        type reply
 1                            unused
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   3+3*n                    length
 4   n                        number of extents
-12*n LISTofXCHARINFO         extents
+12*n <type>LISTofXCHARINFO</type>         extents
 
 <link linkend="Requests:QueryXBitmaps8"><emphasis role="bold"><function>QueryXBitmaps8</function></emphasis></link>
 1   19                       major-opcode
-1   BOOL                     range
+1   <type>BOOL</type>                     range
 2   4+(n+p)/4                length
-4   FONTID                   fontid
-4   BITMAPFORMAT             format
+4   <type>FONTID</type>                   fontid
+4   <type>BITMAPFORMAT</type>             format
 4   n                        number of chars entries
-n   STRING8                  chars
+n   <type>STRING8</type>                  chars
 p                            unused, p=pad(n)
 ▶+
 1   0                        type reply
 1                            unused
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5+2*n+(m+p)/4            length
-4   CARD32                   replies-following-hint
+4   <type>CARD32</type>                   replies-following-hint
 4   n                        number of offsets
 4   m                        number of bytes of glyph images
-8*n LISTofOFFSET32           offsets
-m   LISTofBYTE               glyphimages
+8*n <type>LISTofOFFSET32</type>           offsets
+m   <type>LISTofBYTE</type>               glyphimages
 p                            unused, p=pad(m)
 
 <link linkend="Requests:QueryXBitmaps16"><emphasis role="bold"><function>QueryXBitmaps16</function></emphasis></link>
 1   20                       major-opcode
-1   BOOL                     range
+1   <type>BOOL</type>                     range
 2   4+(2*n+p)/4              length
-4   FONTID                   fontid
-4   BITMAPFORMAT             format
+4   <type>FONTID</type>                   fontid
+4   <type>BITMAPFORMAT</type>             format
 4   n                        number of chars entries
-2*n LISTofCHAR2B             chars
+2*n <type>LISTofCHAR2B</type>             chars
 p                            unused, p=pad(2*n)
 ▶
 1   0                        type reply
 1                            unused
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5+2*n+(m+p)/4            length
-4   CARD32                   replies-following-hint
+4   <type>CARD32</type>                   replies-following-hint
 4   n                        number of offsets
 4   m                        number of bytes of glyph images
-8*n LISTofOFFSET32           offsets
-m   LISTofBYTE               glyphimages
+8*n <type>LISTofOFFSET32</type>           offsets
+m   <type>LISTofBYTE</type>               glyphimages
 p                            unused, p=pad(m)
 
 <link linkend="Requests:CloseFont"><emphasis role="bold"><function>CloseFont</function></emphasis></link>
 1   21                       major-opcode
 1                            unused
 2   2                        length
-4   FONTID                   fontid
+4   <type>FONTID</type>                   fontid
 </literallayout>
 </section>
 
@@ -3698,128 +3709,128 @@ p                            unused, p=pad(m)
 <link linkend="Errors:Request"><emphasis role="bold"><errorname>Request</errorname></emphasis></link>
 1   1                        type error
 1   0                        <errorname>Request</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   4                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
 
 <link linkend="Errors:Format"><emphasis role="bold"><errorname>Format</errorname></emphasis></link>
 1   1                        type error
 1   1                        <errorname>Format</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
-4   BITMAPFORMAT             bad-format
+4   <type>BITMAPFORMAT</type>             bad-format
 
 <link linkend="Errors:Font"><emphasis role="bold"><errorname>Font</errorname></emphasis></link>
 1   1                        type error
 1   2                        <errorname>Font</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
-4   FONTID bad-fontid
+4   <type>FONTID</type> bad-fontid
 
 <link linkend="Errors:Range"><emphasis role="bold"><errorname>Range</errorname></emphasis></link>
 1   1                        type error
 1   3                        <errorname>Range</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
-4   RANGE                    bad-range
+4   <type>RANGE</type>                    bad-range
 
 <link linkend="Errors:EventMask"><emphasis role="bold"><errorname>EventMask</errorname></emphasis></link>
 1   1                        type error
 1   4                        <errorname>EventMask</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
-4   EVENTMASK                event-mask
+4   <type>EVENTMASK</type>                event-mask
 
 <link linkend="Errors:AccessContext"><emphasis role="bold"><errorname>AccessContext</errorname></emphasis></link>
 1   1                        type error
 1   5                        <errorname>AccessContext</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
-4   ACCESSCONTEXT            access context
+4   <type>ACCESSCONTEXT</type>            access context
 
 <link linkend="Errors:IDChoice"><emphasis role="bold"><errorname>IDChoice</errorname></emphasis></link>
 1   1                        type error
 1   6                        <errorname>IDChoice</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
-4   FONTID                   bad-fontid
+4   <type>FONTID</type>                   bad-fontid
 
 <link linkend="Errors:Name"><emphasis role="bold"><errorname>Name</errorname></emphasis></link>
 1   1                        type error
 1   7                        <errorname>Name</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   4                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
 
 <link linkend="Errors:Resolution"><emphasis role="bold"><errorname>Resolution</errorname></emphasis></link>
 1   1                        type error
 1   8                        <errorname>Resolution</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
-6   RESOLUTION               resolution
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
+6   <type>RESOLUTION</type>               resolution
 
 <link linkend="Errors:Alloc"><emphasis role="bold"><errorname>Alloc</errorname></emphasis></link>
 1   1                        type error
 1   9                        <errorname>Alloc</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   4                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
 
 <link linkend="Errors:Length"><emphasis role="bold"><errorname>Length</errorname></emphasis></link>
 1   1                        type error
 1   10                       <errorname>Length</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   5                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
-4   CARD32                   bad-length
+4   <type>CARD32</type>                   bad-length
 
 <link linkend="Errors:Implementation"><emphasis role="bold"><errorname>Implementation</errorname></emphasis></link>
 1   1                        type error
 1   11                       <errorname>Implementation</errorname>
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   4                        length
-4   TIMESTAMP                timestamp
-1   CARD8                    major-opcode
-1   CARD8                    minor-opcode
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>CARD8</type>                    major-opcode
+1   <type>CARD8</type>                    minor-opcode
 2                            unused
 
 </literallayout>
@@ -3831,28 +3842,28 @@ p                            unused, p=pad(m)
 <link linkend="Events:KeepAlive"><emphasis role="bold"><function>KeepAlive</function></emphasis></link>
 1   2                        type event
 1   0                        event KeepAlive
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   3                        length
-4   TIMESTAMP                timestamp
+4   <type>TIMESTAMP</type>                timestamp
 
 <link linkend="Events:CatalogueListNotify"><emphasis role="bold"><function>CatalogueListNotify</function></emphasis></link>
 1   2                        type event
 1   1                        event CatalogueListNotify
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   4                        length
-4   TIMESTAMP                timestamp
-1   BOOL                     added
-1   BOOL                     deleted
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>BOOL</type>                     added
+1   <type>BOOL</type>                     deleted
 2                            unused
 
 <link linkend="Events:FontListNotify"><emphasis role="bold"><function>FontListNotify</function></emphasis></link>
 1   2                        type event
 1   2                        event FontListNotify
-2   CARD16                   sequence-number
+2   <type>CARD16</type>                   sequence-number
 4   4                        length
-4   TIMESTAMP                timestamp
-1   BOOL                     added
-1   BOOL                     deleted
+4   <type>TIMESTAMP</type>                timestamp
+1   <type>BOOL</type>                     added
+1   <type>BOOL</type>                     deleted
 2                            unused
 
 </literallayout>
