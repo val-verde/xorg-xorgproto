@@ -1131,15 +1131,21 @@ requests are received.  Servers are permitted to add or remove fonts to the
 list visible to the client between any two requests, but requests must be
 processed atomically.  Each request packet is at least 4 bytes long and
 contains the following fields:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>major-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>minor-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>length</parameter>:</entry><entry><type>CARD16</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 </para>
-<!-- .RS -->
-<literallayout class="monospaced">
-     major-opcode:               CARD8
-     minor-opcode:               CARD8
-     length:                    CARD16
-</literallayout>
 <para>
-<!-- .RE -->
 The MAJOR-OPCODE specifies which core request or extension package this packet
 represents.  If the MAJOR-OPCODE corresponds to a core request, the
 MINOR-OPCODE contains 8 bits of request-specific data.  Otherwise, the
@@ -1179,16 +1185,22 @@ between 0 and 255, inclusive.
 <para>
 <!-- .LP -->
 Each reply is at least 8 bytes long and contains the following fields:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>type</parameter>:</entry><entry><type>CARD8</type></entry><entry>value of 0</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD8</type></entry></row>
+          <row><entry><parameter>sequence-number</parameter>:</entry><entry><type>CARD16</type></entry></row>
+          <row><entry><parameter>length</parameter>:</entry><entry><type>CARD32</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 </para>
-<!-- .RS -->
-<literallayout class="monospaced">
-     type:                 CARD8 value of 0
-     data-or-unused:       CARD8
-     sequence-number:      CARD16
-     length:               CARD32
-</literallayout>
 <para>
-<!-- .RE -->
 The TYPE field has a value of zero.  The DATA-OR-UNUSED field may be used to
 encode one byte of reply-specific data (see
 <link linkend="Encoding::Requests">Section 5.2 on request encoding</link>).
@@ -1202,26 +1214,31 @@ data.
 <para>
 <!-- .LP -->
 Requests that have replies are described using the following syntax:
+  <blockquote><para>
+    <emphasis role="bold"><function>RequestName</function></emphasis>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>arg1</parameter>:</entry><entry><type>type1</type></entry></row>
+          <row><entry><parameter>arg2</parameter>:</entry><entry><type>type2</type></entry></row>
+          <row><entry> ...</entry></row>
+          <row><entry><parameter>argN</parameter>:</entry><entry><type>typeN</type></entry></row>
+          <row><entry> ▶</entry></row>
+          <row><entry><parameter>result1</parameter>:</entry><entry><type>type1</type></entry></row>
+          <row><entry><parameter>result2</parameter>:</entry><entry><type>type2</type></entry></row>
+          <row><entry> ...</entry></row>
+          <row rowsep="1"><entry><parameter>resultM</parameter>:</entry><entry><type>typeM</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>kind1</errorname>, <errorname>kind2</errorname> ..., <errorname>kindK</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    Description
+  </para></blockquote>
 </para>
-<!-- .RS -->
-<literallayout class="monospaced">
-     RequestName
-         <emphasis remap='I'>arg1</emphasis>:  type1
-         <emphasis remap='I'>arg2</emphasis>:  type2
-         ...
-         <emphasis remap='I'>argN</emphasis>:  typeN
-           ▶
-        <emphasis remap='I'>result1</emphasis>:  type1
-         <emphasis remap='I'>result2</emphasis>:  type2
-         ...
-         <emphasis remap='I'>resultM</emphasis>:  typeM
-
-     Errors:  <emphasis remap='I'>kind1</emphasis>, <emphasis remap='I'>kind2</emphasis> ..., <emphasis remap='I'>kindK</emphasis>
-
-     Description
-</literallayout>
 <para>
-<!-- .RE -->
 If a request does not generate a reply, the "▶" and result lines are
 omitted.  If a request may generate multiple replies, the "▶" is replaced by
 a "▶+".  In the authorization data exchanges in the initial connection setup
@@ -1237,12 +1254,19 @@ mutually-understood virtual stream:
 <section id="Requests:open_connection">
     <title>open connection</title>
     <indexterm zone="Requests:open_connection" significance="preferred"><primary>open connection</primary></indexterm>
-<literallayout class="monospaced">
-     byte-order:                         BYTE
-     client-major-protocol-version:      CARD16
-     client-minor-protocol-version:      CARD16
-     authorization-protocols:            LISTofAUTH
-</literallayout>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='2.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>byte-order</parameter>:</entry><entry>BYTE</entry></row>
+          <row><entry><parameter>client-major-protocol-version</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>client-minor-protocol-version</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry>LISTofAUTH</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 <para>
 The initial byte of the connection specifies the BYTE-ORDER in
 which subsequent 16-bit and 32-bit numeric values are to be
@@ -1253,8 +1277,6 @@ that the least-significant byte is to be transmitted first.
 If any other value is encountered the server closes the
 connection without any response.
 </para>
-
-<blockquote>
   <para>
 The CLIENT-MAJOR-PROTOCOL-VERSION and
 CLIENT-MINOR-PROTOCOL-VERSION specify which version of the
@@ -1270,18 +1292,24 @@ information.  The server may use this to determine which
 protocol to use or as part of the initial exchange of
 authorization data.
   </para>
-<literallayout class="monospaced">
-▶
-status:                         { Success, Continue,
-                                  Busy, Denied }
-server-major-protocol-version:  CARD16
-server-minor-protocol-version:  CARD16
-alternate-servers-hint:         LISTofALTERNATESERVER
-authorization-index:            CARD8
-authorization-data:             LISTofBYTE
-</literallayout>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='2.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry>▶</entry></row>
+          <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue,
+                                  Busy, Denied }</entry></row>
+          <row><entry><parameter>server-major-protocol-version</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>server-minor-protocol-version</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>alternate-servers-hint</parameter>:</entry><entry>LISTofALTERNATESERVER</entry></row>
+          <row><entry><parameter>authorization-index</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>authorization-data</parameter>:</entry><entry>LISTofBYTE</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
   <para>
-<!-- .RE -->
 The SERVER-MAJOR-PROTOCOL-VERSION and
 SERVER-MINOR-PROTOCOL-VERSION specify the version of the font
 service protocol that the server expects from the client.  If
@@ -1305,16 +1333,21 @@ connection is rejected or lost.
 The STATUS field indicates whether the server accepted,
 rejected, or would like more information about the connection.
 It has one of the following alternate values:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='2.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>Success</constant></entry><entry><literal>0</literal></entry></row>
+          <row><entry><constant>Continue</constant></entry><entry><literal>1</literal></entry></row>
+          <row><entry><constant>Busy</constant></entry><entry><literal>2</literal></entry></row>
+          <row><entry><constant>Denied</constant></entry><entry><literal>3</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
   </para>
-<literallayout class="monospaced">
-
-          Success          0
-          Continue         1
-          Busy             2
-          Denied           3
-</literallayout>
   <para>
-<!-- .RE -->
 If STATUS is Denied, the server has rejected the client's
 authorization information.  If STATUS is Busy, the server has
 simply decided that it cannot provide fonts to this client at
@@ -1333,26 +1366,27 @@ used to send back authorization protocol-dependent data to the
 client (such as a challenge, authentication of the server,
 etc.).
   </para>
-</blockquote>
-
 <para>
 <!-- .LP -->
 If STATUS is Success, the following section of protocol is
 omitted.  Otherwise, if STATUS is Continue, the server expects
 more authorization data from the client (i.e. the connection
 setup is not finished, so no requests or events may be sent):
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry>◀</entry></row>
+          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry>▶</entry></row>
+          <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Busy, Denied }</entry></row>
+          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry>LISTofBYTE</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 </para>
-
-<literallayout class="monospaced">
-◀
-more-authorization-data:   STRING8
-▶
-status:                    { Success, Continue,
-                           Busy, Denied }
-more-authorization-data:   LISTofBYTE
-</literallayout>
-
-<!-- .RE -->
 <para>
 The values in STATUS have the same meanings as described
 above.  This section of protocol is repeated until the server
@@ -1365,15 +1399,21 @@ Once the connection has been accepted and STATUS is Success,
 an implicit AccessContext is created for the authorization
 data and the protocol continues with the following data sent
 from the server:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry>▶</entry></row>
+          <row><entry><parameter>remaining-length</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>maximum-request-length</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>release-number</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>vendor</parameter>:</entry><entry>STRING8</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 </para>
-<!-- .RS -->
-<literallayout class="monospaced">
-▶
-remaining-length:           CARD32
-maximum-request-length:     CARD16
-release-number:             CARD32
-vendor:                     STRING8
-</literallayout>
 <para>
 The REMAINING-LENGTH specifies the length in 4-byte units of
 the remaining data to be transmitted to the client.  The
@@ -1397,9 +1437,16 @@ exchanged, the client may issue any of requests described below:
 <section id="Requests:NoOp">
     <title><function>NoOp</function></title>
     <indexterm zone="Requests:NoOp" significance="preferred"><primary>NoOp</primary></indexterm>
-    <para>
-Errors:  <errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request does nothing.  It is typically used in response
 to a
@@ -1411,23 +1458,24 @@ event.
 <section id="Requests:ListExtensions">
     <title><function>ListExtensions</function></title>
     <indexterm zone="Requests:ListExtensions" significance="preferred"><primary>ListExtensions</primary></indexterm>
-<para>
-▶
-</para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry>▶</entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<blockquote>
-  <para>
-<emphasis remap='I'>names</emphasis>:  LISTofSTRING8
-  </para>
-  <para>
-Errors:  <errorname>Alloc</errorname>
-  </para>
   <para>
 This request returns the names of the extension packages
 that are supported by the server.  Extension names are
 case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
   </para>
-</blockquote>
 
 </section>
 
@@ -1435,44 +1483,26 @@ case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
     <title><function>QueryExtension</function></title>
     <indexterm zone="Requests:QueryExtension" significance="preferred"><primary>QueryExtension</primary></indexterm>
 
-<blockquote>
-<para>
-<emphasis remap='I'>name</emphasis>:  STRING8
-</para>
-</blockquote>
-<para>
-▶
-</para>
-
-<blockquote>
-  <para>
-<emphasis remap='I'>present</emphasis>:  BOOL
-    </para>
-    <para>
-<emphasis remap='I'>major-version</emphasis>:  CARD16
-    </para>
-    <para>
-<emphasis remap='I'>minor-version</emphasis>:  CARD16
-    </para>
-    <para>
-<emphasis remap='I'>major-opcode</emphasis>:  CARD8
-    </para>
-    <para>
-<emphasis remap='I'>first-event</emphasis>:  CARD8
-    </para>
-    <para>
-<emphasis remap='I'>number-events</emphasis>:  CARD8
-    </para>
-    <para>
-<emphasis remap='I'>first-error</emphasis>:  CARD8
-    </para>
-    <para>
-<emphasis remap='I'>number-errors</emphasis>:  CARD8
-  </para>
-  <para>
-Errors:
-<errorname>Alloc</errorname>
-  </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>name</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry>▶</entry></row>
+          <row><entry><parameter>present</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>major-version</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>minor-version</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>major-opcode</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>first-event</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>number-events</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>first-error</parameter>:</entry><entry>CARD8</entry></row>
+          <row rowsep='1'><entry><parameter>number-errors</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
   <para>
 This request determines whether or not the extension package
 specified by NAME (encoded in <acronym>ISO</acronym> 8859-1) is supported by the
@@ -1506,37 +1536,27 @@ this extension's events.  Otherwise, a
 <errorname>Request</errorname>
 error is returned.
   </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:ListCatalogues">
     <title><function>ListCatalogues</function></title>
     <indexterm zone="Requests:ListCatalogues" significance="preferred"><primary>ListCatalogues</primary></indexterm>
 
-<blockquote>
-    <para>
-<emphasis remap='I'>pattern</emphasis>:  STRING8
-    </para>
-    <para>
-<emphasis remap='I'>max-names</emphasis>:  CARD32
-    </para>
-</blockquote>
-<para>
-<!-- .LP -->
-▶+
-</para>
-<blockquote>
-    <para>
-<emphasis remap='I'>replies-following-hint</emphasis>:  CARD32
-    </para>
-    <para>
-<emphasis remap='I'>names</emphasis>:      LISTofSTRING8
-    </para>
-    <para>
-Errors:
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>max-names</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry>▶+</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request returns a list of at most MAX-NAMES names
 of collections (called catalogues) of fonts that match
@@ -1571,22 +1591,23 @@ replies that are likely, but not required, to follow.  In the
 last reply, which may contain zero or more names, this field
 is set to zero.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:SetCatalogues">
     <title><function>SetCatalogues</function></title>
     <indexterm zone="Requests:SetCatalogues" significance="preferred"><primary>SetCatalogues</primary></indexterm>
-<blockquote>
-    <para>
-<emphasis remap='I'>names</emphasis>:  LISTofSTRING8
-    </para>
-    <para>
-Errors:
-<errorname>Alloc</errorname>,
-<errorname>Name</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname>,
+<errorname>Name</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request sets the list of catalogues whose fonts should be
 visible to the client.  The union of the fonts provided by
@@ -1607,26 +1628,23 @@ If any of the catalogue names are invalid, a
 <errorname>Name</errorname>
 error is returned and the request is ignored.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:GetCatalogues">
     <title><function>GetCatalogues</function></title>
     <indexterm zone="Requests:GetCatalogues" significance="preferred"><primary>GetCatalogues</primary></indexterm>
-
-<para>
-▶
-</para>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>names</emphasis>:  LISTofSTRING8
-    </para>
-    <para>
-Errors:
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry>▶</entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request returns the current list of catalogue names
 (encoded in <acronym>ISO</acronym> 8859-1) associated with the client.  These
@@ -1640,26 +1658,24 @@ A zero-length list indicates the server's default set of
 fonts.  Catalogue names are case-insensitive and may be
 returned in mixed case.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:SetEventMask">
     <title><function>SetEventMask</function></title>
     <indexterm zone="Requests:SetEventMask" significance="preferred"><primary>SetEventMask</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>extension-opcode</emphasis>:  CARD8
-    </para>
-    <para>
-<emphasis remap='I'>event-mask</emphasis>:  EVENTMASK
-    </para>
-    <para>
-Errors:
-<errorname>EventMask</errorname>,
-<errorname>Request</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>extension-opcode</parameter>:</entry><entry>CARD8</entry></row>
+          <row rowsep='1'><entry><parameter>event-mask</parameter>:</entry><entry><type>EVENTMASK</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>EventMask</errorname>,
+<errorname>Request</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request specifies the set of maskable events that the
 extension indicated by EXTENSION-OPCODE (or zero for the core)
@@ -1691,30 +1707,24 @@ core), an
 error is returned and the request is
 ignored.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:GetEventMask">
     <title><function>GetEventMask</function></title>
     <indexterm zone="Requests:GetEventMask" significance="preferred"><primary>GetEventMask</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>extension-opcode</emphasis>:  CARD8
-    </para>
-</blockquote>
-<para>
-▶
-</para>
-<blockquote>
-    <para>
-<emphasis remap='I'>event-mask</emphasis>:  EVENTMASK
-    </para>
-    <para>
-Errors:
-<errorname>Request</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>extension-opcode</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry>▶</entry></row>
+          <row rowsep='1'><entry><parameter>event-mask</parameter>:</entry><entry><type>EVENTMASK</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Request</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request returns the set of maskable core events the
 extension indicated by EXTENSION-OPCODE (or the core if zero)
@@ -1729,40 +1739,27 @@ or zero, a
 <errorname>Request</errorname>
 error is returned.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:CreateAC">
     <title><function>CreateAC</function></title>
     <indexterm zone="Requests:CreateAC" significance="preferred"><primary>CreateAC</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>ac</emphasis>:  ACCESSCONTEXT
-    </para>
-    <para>
-<emphasis remap='I'>authorization-protocols</emphasis>:  LISTofAUTH
-    </para>
-</blockquote>
-<para>
-▶
-</para>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>status</emphasis>:       { Success, Continue, Denied }
-    </para>
-    <para>
-<emphasis remap='I'>authorization-index</emphasis>:          CARD8
-    </para>
-    <para>
-<emphasis remap='I'>authorization-data</emphasis>:          LISTofBYTE
-    </para>
-    <para>
-Errors:
-<errorname>IDChoice</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>ac</parameter>:</entry><entry>ACCESSCONTEXT</entry></row>
+          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry>LISTofAUTH</entry></row>
+          <row><entry>▶</entry></row>
+          <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Denied }</entry></row>
+          <row><entry><parameter>authorization-index</parameter>:</entry><entry>CARD8</entry></row>
+          <row rowsep='1'><entry><parameter>authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>IDChoice</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request creates a new
 <function>AccessContext</function>
@@ -1802,13 +1799,20 @@ the request by sending the following protocol and receiving
 the indicated response from the server.  This continues
 until STATUS is set to either Success or Denied.
     </para>
-<literallayout class="monospaced">
-     ◀
-     more-authorization-data:          STRING8
-     ▶
-     status:                           { Success, Continue, Denied }
-     more-authorization-data:          LISTofBYTE
-</literallayout>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry>     ◀</entry></row>
+          <row><entry><parameter>     more-authorization-data</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry>     ▶</entry></row>
+          <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Denied }</entry></row>
+          <row><entry><parameter>    more-authorization-data</parameter>:</entry><entry>LISTofBYTE</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 Once the connection has been accepted and STATUS is Success,
 the request is complete.
@@ -1817,23 +1821,23 @@ the request is complete.
 If AC is not in the range [1..2^29-1] or is already associated
 with an access context, an <errorname>IDChoice</errorname> error is returned.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:FreeAC">
     <title><function>FreeAC</function></title>
     <indexterm zone="Requests:FreeAC" significance="preferred"><primary>FreeAC</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>ac</emphasis>:  ACCESSCONTEXT
-    </para>
-    <para>
-Errors:
-<errorname>AccessContext</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>ac</parameter>:</entry><entry>ACCESSCONTEXT</entry></row>
+          <row rowsep='1'><entry>Errors:</entry><entry><errorname>AccessContext</errorname>,
+<errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request indicates that the specified AC should no longer
 be associated with a valid access context.  If AC is also the
@@ -1860,22 +1864,22 @@ created by
 <errorname>AccessContext</errorname>
 error is returned.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:SetAuthorization">
     <title><function>SetAuthorization</function></title>
     <indexterm zone="Requests:SetAuthorization" significance="preferred"><primary>SetAuthorization</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>ac</emphasis>:  ACCESSCONTEXT
-    </para>
-    <para>
-Errors:
-<errorname>AccessContext</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>ac</parameter>:</entry><entry>ACCESSCONTEXT</entry></row>
+          <row rowsep='1'><entry>Errors:</entry><entry><errorname>AccessContext</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request sets the
 <function>AccessContext</function>
@@ -1908,23 +1912,23 @@ an
 <errorname>AccessContext</errorname>
 error is returned.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:SetResolution">
     <title><function>SetResolution</function></title>
     <indexterm zone="Requests:SetResolution" significance="preferred"><primary>SetResolution</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>resolutions</emphasis>:  LISTofRESOLUTION
-    </para>
-    <para>
-Errors:
-<errorname>Resolution</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row rowsep='1'><entry><parameter>resolutions</parameter>:</entry><entry><type>LISTofRESOLUTION</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Resolution</errorname>,
+<errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request provides a hint as to the resolution and
 preferred point size of the drawing surfaces for which the
@@ -1945,60 +1949,49 @@ default resolutions for this client are changed.
 If a RESOLUTION entry contains a zero, a <errorname>Resolution</errorname> error is
 returned and the default resolutions are not changed.
     </para>
-</blockquote>
 </section>
 
 <section id="Requests:GetResolution">
     <title><function>GetResolution</function></title>
     <indexterm zone="Requests:GetResolution" significance="preferred"><primary>GetResolution</primary></indexterm>
-<para>
-▶
-</para>
-<blockquote>
-    <para>
-<emphasis remap='I'>resolutions</emphasis>:  LISTofRESOLUTION
-    </para>
-    <para>
-Errors:
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry>▶</entry></row>
+          <row rowsep='1'><entry><parameter>resolutions</parameter>:</entry><entry><type>LISTofRESOLUTION</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request returns the current list of default resolutions.
 If a client has not performed a
 <function>SetResolution</function>,
 a server-dependent default value is returned.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:ListFonts">
     <title><function>ListFonts</function></title>
     <indexterm zone="Requests:ListFonts" significance="preferred"><primary>ListFonts</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>pattern</emphasis>:  STRING8
-    </para>
-    <para>
-<emphasis remap='I'>max-names</emphasis>:  CARD32
-    </para>
-</blockquote>
-<para>
-▶+
-</para>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>replies-following-hint</emphasis>:  CARD32
-    </para>
-    <para>
-<emphasis remap='I'>names</emphasis>:  LISTofSTRING8
-    </para>
-    <para>
-Errors:
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>max-names</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry>▶+</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request returns a list of at most MAX-NAMES font names
 that match the specified PATTERN, according to matching rules
@@ -2036,47 +2029,29 @@ replies that are likely, but not required, to follow.  In the
 last reply, which may contain zero or more names, this field
 is set to zero.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:ListFontsWithXInfo">
     <title><function>ListFontsWithXInfo</function></title>
     <indexterm zone="Requests:ListFontsWithXInfo" significance="preferred"><primary>ListFontsWithXInfo</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>pattern</emphasis>:  STRING8
-    </para>
-    <para>
-<emphasis remap='I'>pattern</emphasis>:  STRING8
-    </para>
-    <para>
-<emphasis remap='I'>pattern</emphasis>:  STRING8
-    </para>
-    <para>
-<emphasis remap='I'>max-names</emphasis>:  CARD32
-    </para>
-</blockquote>
-
-<para>
-▶+
-</para>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>replies-following-hint</emphasis>:  CARD32
-    </para>
-    <para>
-<emphasis remap='I'>info</emphasis>:  XFONTINFO
-    </para>
-    <para>
-<emphasis remap='I'>name</emphasis>:  STRING8
-    </para>
-    <para>
-Errors:
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>max-names</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry>▶+</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>info</parameter>:</entry><entry>XFONTINFO</entry></row>
+          <row rowsep='1'><entry><parameter>name</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request is similar to
 <function>ListFonts</function>
@@ -2100,50 +2075,34 @@ zero, only the final reply containing a zero-length NAME and
 no INFO is returned.  This may be used to synchronize the
 client with the server.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:OpenBitmapFont">
     <title><function>OpenBitmapFont</function></title>
     <indexterm zone="Requests:OpenBitmapFont" significance="preferred"><primary>OpenBitmapFont</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>fontid</emphasis>:  FONTID
-    </para>
-    <para>
-<emphasis remap='I'>pattern</emphasis>:  STRING8
-    </para>
-    <para>
-<emphasis remap='I'>format-mask</emphasis>:  BITMAPFORMATMASK
-    </para>
-    <para>
-<emphasis remap='I'>format-hint</emphasis>:  BITMAPFORMAT
-    </para>
-</blockquote>
-
-<para>
-▶
-</para>
-<blockquote>
-    <para>
-<emphasis remap='I'>otherid</emphasis>:  FONTID or None
-    </para>
-    <para>
-<emphasis remap='I'>otherid-valid</emphasis>:  BOOL
-    </para>
-    <para>
-<emphasis remap='I'>cachable</emphasis>:  BOOL
-    </para>
-    <para>
-Errors:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>format-mask</parameter>:</entry><entry>BITMAPFORMATMASK</entry></row>
+          <row><entry><parameter>format-hint</parameter>:</entry><entry>BITMAPFORMAT</entry></row>
+          <row><entry>▶</entry></row>
+          <row><entry><parameter>otherid</parameter>:</entry><entry>FONTID or None</entry></row>
+          <row><entry><parameter>otherid-valid</parameter>:</entry><entry>BOOL</entry></row>
+          <row rowsep='1'><entry><parameter>cachable</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry>Errors:</entry><entry>
 <errorname>IDChoice</errorname>,
 <errorname>Name</errorname>,
 <errorname>Format</errorname>,
 <errorname>AccessContext</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+<errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request looks for a server-dependent choice of the
 font names that match the specified PATTERN according to the
@@ -2259,31 +2218,25 @@ fields in FORMAT-HINT indicated by FORMAT-MASK are invalid, a
 <errorname>Format</errorname>
 error is returned.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:QueryXInfo">
     <title><function>QueryXInfo</function></title>
     <indexterm zone="Requests:QueryXInfo" significance="preferred"><primary>QueryXInfo</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>fontid</emphasis>:  FONTID
-    </para>
-</blockquote>
-<para>
-▶
-</para>
-<blockquote>
-    <para>
-<emphasis remap='I'>info</emphasis>:  XFONTINFO
-    </para>
-    <para>
-Errors:
-<errorname>Font</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
+          <row><entry>▶</entry></row>
+          <row rowsep='1'><entry><parameter>info</parameter>:</entry><entry><type>XFONTINFO</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
+<errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request returns the font header and property information
 for the open font associated with FONTID.
@@ -2295,78 +2248,56 @@ If FONTID is not associated with any open fonts, a
 error
 is returned.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:QueryXExtents8">
     <title><function>QueryXExtents8</function></title>
     <indexterm zone="Requests:QueryXExtents8" significance="preferred"><primary>QueryXExtents8</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>fontid</emphasis>:  FONTID
-    </para>
-    <para>
-<emphasis remap='I'>range</emphasis>:  BOOL
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>chars</emphasis>:  STRING8
-    </para>
-</blockquote>
-<para>
-▶
-</para>
-<blockquote>
-    <para>
-<emphasis remap='I'>extents</emphasis>:  LISTofXCHARINFO
-    </para>
-    <para>
-Errors:
-<errorname>Font</errorname>,
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry>▶</entry></row>
+          <row rowsep='1'><entry><parameter>extents</parameter>:</entry><entry><type>LISTofXCHARINFO</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
 <errorname>Range</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+<errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request is equivalent to
 <function>QueryXExtents16</function>
 except that it
 uses 1-byte character codes.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:QueryXExtents16">
     <title><function>QueryXExtents16</function></title>
     <indexterm zone="Requests:QueryXExtents16" significance="preferred"><primary>QueryXExtents16</primary></indexterm>
-<blockquote>
-    <para>
-<emphasis remap='I'>fontid</emphasis>:  FONTID
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>range</emphasis>:  BOOL
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>chars</emphasis>:  LISTofCHAR2B
-    </para>
-</blockquote>
-<para>
-▶
-</para>
-<blockquote>
-    <para>
-<emphasis remap='I'>extents</emphasis>:  LISTofXCHARINFO
-    </para>
-    <para>
-Errors:
-<errorname>Font</errorname>,
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry>LISTofCHAR2B</entry></row>
+          <row><entry>▶</entry></row>
+          <row rowsep='1'><entry><parameter>extents</parameter>:</entry><entry><type>LISTofXCHARINFO</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
 <errorname>Range</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+<errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request returns a list of glyph extents from the open
 font associated with FONTID for the series of characters
@@ -2412,103 +2343,64 @@ ranges, a
 <errorname>Range</errorname>
 error is returned.
     </para>
-</blockquote>
-
 </section>
 
 <section id="Requests:QueryXBitmaps8">
     <title><function>QueryXBitmaps8</function></title>
     <indexterm zone="Requests:QueryXBitmaps8" significance="preferred"><primary>QueryXBitmaps8</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>fontid</emphasis>:  FONTID
-    </para>
-    <para>
-<emphasis remap='I'>range</emphasis>:  BOOL
-    </para>
-    <para>
-<emphasis remap='I'>chars</emphasis>:  STRING8
-    </para>
-    <para>
-<emphasis remap='I'>format</emphasis>:  BITMAPFORMAT
-    </para>
-</blockquote>
-<para>
-▶+
-</para>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>replies-following-hint</emphasis>:  CARD32
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>offsets</emphasis>:  LISTofOFFSET32
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>bitmaps</emphasis>:  LISTofBYTE
-    </para>
-    <para>
-Errors:
-<errorname>Font</errorname>,
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry>STRING8</entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry>BITMAPFORMAT</entry></row>
+          <row><entry>▶+</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>offsets</parameter>:</entry><entry>LISTofOFFSET32</entry></row>
+          <row><entry><parameter>bitmaps</parameter>:</entry><entry>LISTofBYTE</entry></row>
+          <row rowsep='1'><entry>Errors:</entry><entry><errorname>Font</errorname>,
 <errorname>Range</errorname>,
 <errorname>Format</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+<errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request is equivalent to
 <function>QueryXBitmaps16</function>
 except that it
 uses 1-byte character codes.
     </para>
-</blockquote>
 </section>
 
 <section id="Requests:QueryXBitmaps16">
     <title><function>QueryXBitmaps16</function></title>
     <indexterm zone="Requests:QueryXBitmaps16" significance="preferred"><primary>QueryXBitmaps16</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>fontid</emphasis>:  FONTID
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>range</emphasis>:  BOOL
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>chars</emphasis>:  LISTofCHAR2B
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>format</emphasis>:  BITMAPFORMAT
-    </para>
-</blockquote>
-<para>
-▶+
-</para>
-<blockquote>
-    <para>
-<emphasis remap='I'>replies-following-hint</emphasis>:  CARD32
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>offsets</emphasis>:  LISTofOFFSET32
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>bitmaps</emphasis>:  LISTofBYTE
-    </para>
-    <para>
-Errors:
-<errorname>Font</errorname>,
-<errorname>Range</errorname>,
-<errorname>Format</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry>LISTofCHAR2B</entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry>BITMAPFORMAT</entry></row>
+          <row><entry>▶+</entry></row>
+          <row><entry><parameter>replies-following-hint</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>offsets</parameter>:</entry><entry>LISTofOFFSET32</entry></row>
+          <row rowsep='1'><entry><parameter>bitmaps</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
+          <errorname>Range</errorname>,
+          <errorname>Format</errorname>,
+          <errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request returns a list of glyph bitmaps from the open
 font associated with FONTID for the series of characters
@@ -2611,22 +2503,22 @@ error is returned.  If RANGE is True and CHARS contains any invalid
 ranges, a <errorname>Range</errorname> error is returned.
 If FORMAT is invalid, a <errorname>Format</errorname> error is returned.
     </para>
-</blockquote>
 </section>
 
 <section id="Requests:CloseFont">
     <title><function>CloseFont</function></title>
     <indexterm zone="Requests:CloseFont" significance="preferred"><primary>CloseFont</primary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>fontid</emphasis>:  FONTID
-    </para>
-    <para>
-Errors:
-<errorname>Font</errorname>,
-<errorname>Alloc</errorname>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row rowsep='1'><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
+          <row><entry>Errors:</entry><entry><errorname>Font</errorname>, <errorname>Alloc</errorname></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This request indicates that the specified FONTID should no
 longer be associated with an open font.  The server is free to
@@ -2642,14 +2534,12 @@ If FONTID is not associated with any open fonts, a
 <errorname>Font</errorname>
 error is returned.
     </para>
-</blockquote>
 </section>
 
 <section id="Requests:close_connection">
     <title>close connection</title>
     <indexterm zone="Requests:close_connection" significance="preferred"><primary>close connection</primary></indexterm>
 
-<blockquote>
     <para>
 When a connection is closed, a
 <function>CloseFont</function>
@@ -2658,7 +2548,6 @@ that are open on the connection.  In addition, the server is
 free to release any storage or licenses allocated on behalf of
 the client that made the connection.
     </para>
-</blockquote>
 </section>
 </section>
 
@@ -2670,39 +2559,24 @@ the client that made the connection.
 <para>
 All errors are at least 16 bytes long and contain the following fields:
 </para>
-<blockquote>
-    <para>
-<emphasis remap='I'>type</emphasis>:  CARD8  value of 1
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>error-code</emphasis>:  CARD8
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>sequence-number</emphasis>:  CARD16
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>length</emphasis>:  CARD32
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>timestamp</emphasis>:  TIMESTAMP
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>major-opcode</emphasis>:  CARD8
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>minor-opcode</emphasis>:  CARD8
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16
-    </para>
-</blockquote>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>type</parameter>:</entry><entry>CARD8</entry><entry>value of 1</entry></row>
+          <row><entry><parameter>error-code</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>sequence-number</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>length</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>timestamp</parameter>:</entry><entry>TIMESTAMP</entry></row>
+          <row><entry><parameter>major-opcode</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>minor-opcode</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 <para>
 <!-- .LP -->
 The TYPE field has a value of one.  The ERROR-CODE field specifies which error
@@ -2725,11 +2599,17 @@ The following errors are defined for the core protocol:
 <section id="Errors:Request">
     <title><errorname>Request</errorname></title>
     <indexterm zone="Errors:Request" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Request</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by any request that has an unknown
 combination of major and minor request numbers, or by any
@@ -2737,20 +2617,23 @@ extension request that is issued before a
 <function>QueryExtension</function>
 of that extension.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:Format">
     <title><errorname>Format</errorname></title>
     <indexterm zone="Errors:Format" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Format</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
-    <para>
-<emphasis remap='I'>format</emphasis>:  BITMAPFORMAT     bad format value
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry>BITMAPFORMAT</entry><entry>bad format value</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by the use of an invalid BITMAPFORMAT
 in the
@@ -2760,19 +2643,23 @@ in the
 requests.
 The value that caused the error is included as extra data.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:Font">
     <title><errorname>Font</errorname></title>
     <indexterm zone="Errors:Font" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Font</errorname></secondary></indexterm>
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
-    <para>
-<emphasis remap='I'>fontid</emphasis>:  FONTID     bad font identifier
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry>FONTID</entry><entry>bad font identifier</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by an invalid FONTID in the
 <function>QueryXInfo</function>,
@@ -2785,20 +2672,23 @@ and
 requests.  The value that caused
 the error is included as extra data.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:Range">
     <title><errorname>Range</errorname></title>
     <indexterm zone="Errors:Range" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Range</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
-    <para>
-<emphasis remap='I'>range</emphasis>:  RANGE     bad range
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry>RANGE</entry><entry>bad range</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by an invalid RANGE in the
 <function>QueryXExtents8</function>,
@@ -2809,42 +2699,46 @@ and
 requests.  The
 value that caused the error is included as extra data.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:EventMask">
     <title><errorname>EventMask</errorname></title>
     <indexterm zone="Errors:EventMask" significance="preferred"><primary>Error Codes</primary><secondary><errorname>EventMask</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>event-mask</emphasis>:  EVENTMASK     bad event mask
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>event-mask</parameter>:</entry><entry>EVENTMASK</entry><entry>bad event mask</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by an invalid EVENTMASK in the
 <function>SetEventMask</function>
 request.  The value that caused the error is
 included as extra data.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:AccessContext">
     <title><errorname>AccessContext</errorname></title>
     <indexterm zone="Errors:AccessContext" significance="preferred"><primary>Error Codes</primary><secondary><errorname>AccessContext</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
-    <para>
-<emphasis remap='I'>ac</emphasis>:  ACCESSCONTEXT     unaccepted
-<function>AccessContext</function>
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry>ACCESSCONTEXT</entry><entry>unaccepted <type>AccessContext</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by an invalid ACCESSCONTEXT in the
 <function>FreeAC</function>
@@ -2857,20 +2751,23 @@ first two cases, the ACCESSCONTEXT of the errant request is
 returned as extra data.  In the third case, the current
 ACCESSCONTEXT is returned as extra data.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:IDChoice">
     <title><errorname>IDChoice</errorname></title>
     <indexterm zone="Errors:IDChoice" significance="preferred"><primary>Error Codes</primary><secondary><errorname>IDChoice</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
-    <para>
-<emphasis remap='I'>id</emphasis>:  ID     bad identifier
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>id</parameter>:</entry><entry>ID</entry><entry>bad identifier</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by an invalid or already associated
 ACCESSCONTEXT identifier in a
@@ -2881,17 +2778,22 @@ in an
 request.  The value that caused the error
 is included as extra data.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:Name">
     <title><errorname>Name</errorname></title>
     <indexterm zone="Errors:Name" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Name</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by a font name pattern that matches
 no fonts in an
@@ -2900,25 +2802,24 @@ request or no catalogue names in a
 <function>SetCatalogues</function>
 request.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:Resolution">
     <title><errorname>Resolution</errorname></title>
     <indexterm zone="Errors:Resolution" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Resolution</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     X value of errant resolution
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>y-resolution</emphasis>:  CARD16          Y value of errant resolution
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>point-size</emphasis>:  CARD16          point size of errant resolution
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>X value of errant resolution</entry></row>
+          <row><entry><parameter>y-resolution</parameter>:</entry><entry>CARD16</entry><entry>Y value of errant resolution</entry></row>
+          <row><entry><parameter>point-size</parameter>:</entry><entry>CARD16</entry><entry>point size of errant resolution</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated in response to an invalid RESOLUTION
 structure in a
@@ -2926,58 +2827,70 @@ structure in a
 request.  The value that caused the
 error is included in the DATA-OR-UNUSED field and as extra data.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:Alloc">
     <title><errorname>Alloc</errorname></title>
     <indexterm zone="Errors:Length" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Alloc</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by any request for which the server
 lacks sufficient resources (especially memory).
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:Length">
     <title><errorname>Length</errorname></title>
     <indexterm zone="Errors:Length" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Length</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
-    <para>
-<emphasis remap='I'>length</emphasis>:  CARD32     bad length value
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+          <row><entry><parameter>length</parameter>:</entry><entry>CARD32</entry><entry>bad length value</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error is generated by any request that has a length field
 greater than (MAXIMUM-REQUEST-LENGTH * 4) bytes.  The value that
 caused the error is included as extra data.
     </para>
-</blockquote>
 </section>
 
 <section id="Errors:Implementation">
     <title><errorname>Implementation</errorname></title>
     <indexterm zone="Errors:Implementation" significance="preferred"><primary>Error Codes</primary><secondary><errorname>Implementation</errorname></secondary></indexterm>
-
-<blockquote>
-    <para>
-<emphasis remap='I'>data-or-unused</emphasis>:  CARD16     unused
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>data-or-unused</parameter>:</entry><entry>CARD16</entry><entry>unused</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This error may be generated in response to any request that
 the server is unable to process because it is deficient.  Use
 of this error is highly discouraged and indicates lack of
 conformance to the protocol.
     </para>
-</blockquote>
 </section>
 <section id="Errors:Extensions">
   <title>Extensions</title>
@@ -2997,29 +2910,22 @@ Additional errors may be defined by extensions.
 Events may be generated in response to requests or at the server's discretion
 after the initial connection setup information has been exchanged.  Each event
 is at least 12 bytes long and contains the following fields:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>type</parameter>:</entry><entry>CARD8</entry><entry>value of 2</entry></row>
+          <row><entry><parameter>event-code</parameter>:</entry><entry>CARD8</entry></row>
+          <row><entry><parameter>sequence-number</parameter>:</entry><entry>CARD16</entry></row>
+          <row><entry><parameter>length</parameter>:</entry><entry>CARD32</entry></row>
+          <row><entry><parameter>timestamp</parameter>:</entry><entry>TIMESTAMP</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 </para>
-<blockquote>
-    <para>
-<!-- .TA .75i .75i .75i .75i -->
-<emphasis remap='I'>type</emphasis>:  CARD8     value of 2
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>event-code</emphasis>:  CARD8
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>sequence-number</emphasis>:  CARD16
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>length</emphasis>:  CARD32
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>timestamp</emphasis>:  TIMESTAMP
-    </para>
-</blockquote>
 <para>
 <!-- .LP -->
 The TYPE field contains the value 2.  The EVENT-CODE field specifies the number
@@ -3034,19 +2940,26 @@ three, these fields are followed by (LENGTH - 3) * 4 bytes of additional data.
 <para>
 <!-- .LP -->
 Events are described using the following syntax:
+  <blockquote><para>
+    <emphasis role="bold"><function>EventName</function></emphasis>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>arg1</parameter>:</entry><entry><type>type1</type></entry></row>
+          <row><entry> ...</entry></row>
+          <row><entry><parameter>argN</parameter>:</entry><entry><type>typeN</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    Description
+  </para></blockquote>
 </para>
-<literallayout class="monospaced">
-<function>EventName</function>
-         <emphasis remap='I'>arg1</emphasis>: type1
-         ...
-         <emphasis remap='I'>argN</emphasis>: typeN
-
-          Description
-</literallayout>
-
 <para>
 If an event does not provide any extra arguments, the
-<emphasis remap='I'>arg1</emphasis>...<emphasis remap='I'>argN</emphasis>
+<parameter>arg1</parameter>...<parameter>argN</parameter>
 lines are omitted from the description.
 </para>
 <para>
@@ -3057,7 +2970,6 @@ The core X Font Service protocol defines the following events:
 <section id="Events:KeepAlive">
     <title><function>KeepAlive</function></title>
     <indexterm zone="Events:KeepAlive" significance="preferred"><primary>KeepAlive</primary></indexterm>
-<blockquote>
     <para>
 This unsolicited, nonmaskable event may be sent by the
 server to verify that the connection has not been broken
@@ -3067,19 +2979,22 @@ by sending any request (such as
 <function>NoOp</function>
 ).
     </para>
-</blockquote>
 </section>
 
 <section id="Events:CatalogueListNotify">
     <title><function>CatalogueListNotify</function></title>
     <indexterm zone="Events:CatalogueListNotify" significance="preferred"><primary>CatalogueListNotify</primary></indexterm>
-<blockquote>
-    <para>
-<emphasis remap='I'>added</emphasis>:  BOOL
-    </para>
-    <para>
-<emphasis remap='I'>deleted</emphasis>:  BOOL
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>added</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>deleted</parameter>:</entry><entry>BOOL</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This event is sent to clients that have included
 <function>CatalogueListChangeMask</function>
@@ -3090,20 +3005,22 @@ been added to the server, otherwise it is False.  The
 DELETED field is True if any existing catalogues have
 been removed from the server, otherwise it is False.
     </para>
-</blockquote>
 </section>
 
 <section id="Events:FontListNotify">
     <title><function>FontListNotify</function></title>
     <indexterm zone="Events:FontListNotify" significance="preferred"><primary>FontListNotify</primary></indexterm>
-<blockquote>
-    <para>
-<emphasis remap='I'>added</emphasis>:  BOOL
-    </para>
-    <para>
-<!-- .br -->
-<emphasis remap='I'>deleted</emphasis>:  BOOL
-    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><parameter>added</parameter>:</entry><entry>BOOL</entry></row>
+          <row><entry><parameter>deleted</parameter>:</entry><entry>BOOL</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This event is sent to clients that have included
 <function>FontListChangeMask</function>
@@ -3116,7 +3033,6 @@ field is True if any existing fonts have been removed
 from any of catalogues used by the client, otherwise it
 is False.
     </para>
-</blockquote>
 </section>
 <section id="Events:Extensions">
   <title>Extensions</title>
