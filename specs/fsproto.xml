@@ -766,7 +766,8 @@ ID:  CARD32
 <para>
 This is a 32-bit value in which the top 3 bits must be clear, and
 at least 1 other bit must be set (yielding a range of 1 through
-2^29-1).  It is specified by the client to represent objects in
+2<superscript>29</superscript>-1).
+It is specified by the client to represent objects in
 the server.  Identifiers are scoped according to their type are
 private to the client; thus, the same identifier may be used for
 both a FONTID and an ACCESSCONTEXT as well as by multiple clients.
@@ -1818,7 +1819,8 @@ Once the connection has been accepted and STATUS is Success,
 the request is complete.
     </para>
     <para>
-If AC is not in the range [1..2^29-1] or is already associated
+If AC is not in the range
+[1..2<superscript>29</superscript>-1] or is already associated
 with an access context, an <errorname>IDChoice</errorname> error is returned.
     </para>
 </section>
@@ -2203,7 +2205,8 @@ with a non-wildcarded font name.
 <!-- .sp -->
     </para>
     <para>
-If FONTID is not in the range [1..2^29-1] or if it is already
+If FONTID is not in the range
+[1..2<superscript>29</superscript>-1] or if it is already
 associated with an open font, an
 <errorname>IDChoice</errorname>
 error is returned.
