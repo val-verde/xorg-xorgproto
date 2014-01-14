@@ -404,7 +404,6 @@ information may be used by the server to determine whether or not
 the client should be granted access to particular font data.
 </para>
 <para>
-<!-- .sp -->
 In order to preserve the integrity of font licensing being performed by
 the font server, care must be taken by a client to properly represent the
 identity of the true user of the font.  Some font clients will in fact
@@ -413,7 +412,6 @@ Other font clients may be doing work on behalf of a number of different
 users over time (for example, print spoolers).
 </para>
 <para>
-<!-- .sp -->
 <type>AccessContext</type>s
 must be created (with
 <function>CreateAC</function>)
@@ -494,20 +492,17 @@ and
 requests.
 </para>
 <para>
-<!-- .sp -->
 If the BYTE-ORDER-MSB bit (1 &lt;&lt; 0) is set, the Most Significant
 Byte of each scanline unit is returned first.  Otherwise, the
 Least Significant Byte is returned first.
 </para>
 <para>
-<!-- .sp -->
 If the BIT-ORDER-MSB bit (1 &lt;&lt; 1) is set, the left-most bit in
 each glyph scanline unit is stored in the Most Significant Bit of
 each transmitted scanline unit.  Otherwise, the left-most bit is
 stored in the Least Significant Bit.
 </para>
 <para>
-<!-- .sp -->
 The IMAGE-RECT field specifies a rectangle of pixels within the
 glyph image.  It contains one of the following alternate values:
 </para>
@@ -726,11 +721,11 @@ receiving
 events.
 </para>
 <para>
-<!-- .sp -->
 Extensions that provide additional events may define their own
 event masks.  These event masks have their own scope and may use
 the same bit values as the core or other extensions.
-<!-- .sp -->
+    </para>
+    <para>
 All unused bits must be set to zero.  In
 <function>SetEventMask</function>
 requests, if
@@ -741,7 +736,8 @@ OPCODE given in the
 request), an
 <errorname>EventMask</errorname>
 error is generated.
-<!-- .sp -->
+    </para>
+    <para>
 This value is swapped as a <type>CARD32</type>.
     </para>
 </blockquote>
@@ -956,18 +952,15 @@ baseline falls between two pixels as shown in Figure 3-1 of the
 <citetitle>Bitmap Distribution Format 2.1</citetitle> Consortium standard
 <xref linkend="References:bdf-spec"/>).
   </para>
-<!-- .sp -->
   <para>
 The LBEARING field specifies the directed distance measured to the
 right from the origin to the left edge of the left-most inked
 pixel in the glyph.
-<!-- .sp -->
   </para>
   <para>
 The RBEARING field specifies the directed distance (measured to
 the right) from the origin to the right edge of the right-most
 inked pixel in the glyph.
-<!-- .sp -->
   </para>
   <para>
 The WIDTH field specifies the directed distance (measured to the
@@ -976,19 +969,16 @@ should appear (called the <firstterm>escapement point</firstterm>). This
 distance includes any whitespace used for intercharacter padding and is
 also referred to as the <firstterm>logical width</firstterm> or
 <firstterm>horizontal escapement</firstterm>.
-<!-- .sp -->
   </para>
   <para>
 The ASCENT field specifies the directed distance (measured up)
 from the baseline to the top edge of the top-most inked pixel
 in the glyph.
-<!-- .sp -->
   </para>
   <para>
 The DESCENT field specifies the directed distance (measured
 down) from the baseline to the bottom edge of the bottom-most
 inked pixel.
-<!-- .sp -->
   </para>
   <para>
 The ATTRIBUTES field specifies glyph-specific information that
@@ -1528,12 +1518,10 @@ NUMBER-ERRORS is set to the number of new errors the extension
 defines.
   </para>
   <para>
-<!-- .sp -->
 Otherwise, PRESENT is set to False and the remaining fields are
 set to zero.
   </para>
   <para>
-<!-- .sp -->
 The server is free to return different values to different
 clients.  Therefore, clients must use this request before
 issuing any of the requests in the named extension package or
@@ -1628,7 +1616,6 @@ requests.  The catalogue names are
 case-insensitive and are encoded in <acronym>ISO</acronym> 8859-1.  A zero-length
 list resets the client's catalogue list to the
 server-dependent default.
-<!-- .sp -->
     </para>
     <para>
 If any of the catalogue names are invalid, a
@@ -1690,7 +1677,6 @@ should generate for the client.  Event masks are limited in
 scope to the extension (or core) for which they are defined,
 so expressing interest in events from one or more extensions
 requires multiple uses of this request.
-<!-- .sp -->
     </para>
     <para>
 The default event mask if
@@ -1698,7 +1684,6 @@ The default event mask if
 has not been called
 is zero, indicating no interest in any maskable events.
 Some events are not maskable and cannot be blocked.
-<!-- .sp -->
     </para>
     <para>
 If EXTENSION-OPCODE is not a valid extension opcode previously
@@ -1781,7 +1766,6 @@ to determine whether or not the client should be granted
 access to particular font information.
     </para>
     <para>
-<!-- .sp -->
 If STATUS is Denied, the server rejects the client's
 authorization information and does not associate AC with any
 valid
@@ -1790,7 +1774,6 @@ In this case, AUTHORIZATION-INDEX is set
 to zero, and zero bytes of AUTHORIZATION-DATA is returned.
     </para>
     <para>
-<!-- .sp -->
 Otherwise, AUTHORIZATION-INDEX is set to the index (beginning
 with 1) into the AUTHORIZATION-PROTOCOLS list of the protocol
 that the server will use for this connection.  If the server
@@ -1800,7 +1783,6 @@ back authorization protocol-dependent data to the client (such
 as a challenge, authentication of the server, etc.).
     </para>
     <para>
-<!-- .sp -->
 If STATUS is Continue, the client is expected to continue
 the request by sending the following protocol and receiving
 the indicated response from the server.  This continues
@@ -1911,7 +1893,6 @@ An AC of None restores the
 established for the initial connection setup.
     </para>
     <para>
-<!-- .sp -->
 If AC is neither None nor a value associated with a valid
 <type>AccessContext</type>
 previously created by
@@ -2071,14 +2052,12 @@ replies, if any, a final reply containing a zero-length NAME
 and no INFO is sent.
     </para>
     <para>
-<!-- .sp -->
 The REPLIES-FOLLOWING-HINT field in all but the last reply
 contains a positive value that specifies the number of replies
 that are likely, but not required, to follow.  In the last
 reply, this field is set to zero.
     </para>
     <para>
-<!-- .sp -->
 If PATTERN is of zero length or if MAX-NAMES is equal to
 zero, only the final reply containing a zero-length NAME and
 no INFO is returned.  This may be used to synchronize the
@@ -2167,12 +2146,10 @@ Otherwise, if OTHERID-VALID is False, OTHERID is no longer
 open but has not been reused by a subsequent
 <function>OpenBitmapFont</function>
 request.
-<!-- .sp -->
     </para>
     <para>
 If OTHERID is set to None, then OTHERID-VALID should be set
 to False.
-<!-- .sp -->
     </para>
     <para>
 The FORMAT-MASK indicates which fields in FORMAT-HINT
@@ -2182,7 +2159,6 @@ and
 <function>GetXBitmaps16</function>
 requests.  Servers may wish to use
 this information to precompute certain values.
-<!-- .sp -->
     </para>
     <para>
 If CACHABLE is set to True, the client may cache the font
@@ -2195,7 +2171,6 @@ flag is typically set whenever a font is unlicensed or is
 licensed on a per-display basis.  If CACHABLE is False, the
 client should reopen the font for each
 <type>AccessContext</type>.
-<!-- .sp -->
     </para>
     <para>
 The server is permitted to add to or remove from the set of
@@ -2209,7 +2184,6 @@ than would result from separate a
 followed by an
 <function>OpenBitmapFont</function>
 with a non-wildcarded font name.
-<!-- .sp -->
     </para>
     <para>
 If FONTID is not in the range
@@ -2252,7 +2226,6 @@ This request returns the font header and property information
 for the open font associated with FONTID.
     </para>
     <para>
-<!-- .sp -->
 If FONTID is not associated with any open fonts, a
 <errorname>Font</errorname>
 error
@@ -2314,7 +2287,6 @@ font associated with FONTID for the series of characters
 specified by RANGE and CHARS.
     </para>
     <para>
-<!-- .sp -->
 If RANGE is True, each succeeding pair of elements in CHARS is
 treated as a range of characters for which extents should be
 returned.  If CHARS contains an odd number of elements, the
@@ -2329,13 +2301,11 @@ concatenated in the order given by CHARS to produce a set of
 character codes for which extents are returned.
     </para>
     <para>
-<!-- .sp -->
 If RANGE is False, then CHARS specifies the set of character
 codes for which extents are returned.  If CHARS is of
 zero length, then a zero-length list of extents is returned.
     </para>
     <para>
-<!-- .sp -->
 The extents for each character code in the resulting set (which
 may contain duplicates) are returned in the order in
 which the character codes appear in the set.
@@ -2346,7 +2316,6 @@ A blank, zero-width character can be encoded
 with non-zero but equal left and right bearings.
     </para>
     <para>
-<!-- .sp -->
 If FONTID is not associated with any open fonts, a
 <errorname>Font</errorname>
 error is
@@ -2419,7 +2388,6 @@ font associated with FONTID for the series of characters
 specified by RANGE and CHARS.
     </para>
     <para>
-<!-- .sp -->
 If RANGE is True, each succeeding pair of elements in CHARS is
 treated as a range of characters for which bitmaps should be
 returned.  If CHARS contains an odd number of elements, the
@@ -2434,21 +2402,18 @@ concatenated in the order given by CHARS to produce a set of
 character codes for which bitmaps are returned.
     </para>
     <para>
-<!-- .sp -->
 If RANGE is False, then CHARS specifies the set of character
 codes for which bitmaps are returned.  If CHARS is of zero
 length, then a single reply containing a zero-length list of
 offsets and bitmaps is returned.
     </para>
     <para>
-<!-- .sp -->
 If any of the resulting character ranges are invalid, a <errorname>Range</errorname>
 error is returned.  Otherwise, the resulting character ranges
 are concatenated in the order given by CHARS to produce a set
 of character codes for which bitmaps are returned.
     </para>
     <para>
-<!-- .sp -->
 The server is free to return the glyph bitmaps in multiple
 replies to reduce the amount of buffering that is necessary.
 In this situation, the set of characters obtained above is
@@ -2461,7 +2426,6 @@ set.  A reply is generated for each subset, in the order that
 it was produced.
     </para>
     <para>
-<!-- .sp -->
 For each character in a subset, an image of that character's
 glyph is described by a rectangle of bits corresponding to the
 pixels specified by FORMAT.IMAGE-RECT.  Within the image, set
@@ -2469,7 +2433,6 @@ and clear bits represent inked and non-inked pixels,
 respectively.
     </para>
     <para>
-<!-- .sp -->
 Each scanline of a glyph image, from top to bottom, is zero-padded
 on the right to a multiple of the number of bits specified by
 FORMAT.SCANLINE-PAD.  The scanline is then divided from left
@@ -2483,7 +2446,6 @@ Finally, the units are arranged such that the left-most is
 transmitted first and the right-most is transmitted last.
     </para>
     <para>
-<!-- .sp -->
 The individual images within a subset are then concatenated in
 a server-dependent order to form the BITMAPS data of the
 reply.  If a glyph image is duplicated within a reply, the
@@ -2494,7 +2456,6 @@ glyph image must begin at a bit position that is a multiple of
 the FORMAT.SCANLINE-UNIT.
     </para>
     <para>
-<!-- .sp -->
 The OFFSETS array in a reply contains one entry for each
 character in the subset being returned, in the order that the
 characters appear in the subset.  Each entry specifies the
@@ -2503,7 +2464,6 @@ corresponding glyph image in the BITMAPS data of that reply
 (i.e. an offset may not refer to data in another reply).
     </para>
     <para>
-<!-- .sp -->
 The REPLIES-FOLLOWING-HINT field in all but the last reply
 contains a positive value that specifies the number of replies
 that are likely, but not required, to follow.  In the last
@@ -2511,7 +2471,6 @@ reply, which may contain data for zero or more characters,
 this field is set to zero.
     </para>
     <para>
-<!-- .sp -->
 If FONTID is not associated with any open fonts, a <errorname>Font</errorname>
 error is returned.  If RANGE is True and CHARS contains any invalid
 ranges, a <errorname>Range</errorname> error is returned.
@@ -2543,7 +2502,6 @@ subsequent
 request.
     </para>
     <para>
-<!-- .sp -->
 If FONTID is not associated with any open fonts, a
 <errorname>Font</errorname>
 error is returned.
@@ -3111,7 +3069,6 @@ multiple of four:
 <!-- .XS -->
 <!-- (SN Data Types -->
 <!-- .XE -->
-<!-- .sp 6p -->
 <literallayout class="monospaced">
 <type>ACCESSCONTEXT</type>
 
