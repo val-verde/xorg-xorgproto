@@ -632,7 +632,7 @@ bottom:            <structfield>XCHARINFO.DESCENT</structfield>
 This refers to all scanlines, from the maximum
 ascent (or the font ascent, whichever is greater) to the
 maximum descent (or the font descent, whichever is greater),
-padded to the same horizontal extents as MaxWidth.
+padded to the same horizontal extents as <constant>MaxWidth</constant>.
 All glyph images have the same sized bitmap and share a
 common origin.  This is the least compact representation,
 but may be the easiest or most efficient (particularly for
@@ -1664,8 +1664,8 @@ authorization data.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue,
-                                  Busy, Denied }</entry></row>
+          <row><entry><parameter>status</parameter>:</entry><entry>{ <constant>Success</constant>, <constant>Continue</constant>,
+                                  <constant>Busy</constant>, <constant>Denied</constant> }</entry></row>
           <row><entry><parameter>server-major-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>server-minor-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>alternate-servers-hint</parameter>:</entry><entry><type>LISTofALTERNATESERVER</type></entry></row>
@@ -1713,8 +1713,8 @@ It has one of the following alternate values:
     </informaltable>
   </para>
   <para>
-If STATUS is Denied, the server has rejected the client's
-authorization information.  If STATUS is Busy, the server has
+If STATUS is <constant>Denied</constant>, the server has rejected the client's
+authorization information.  If STATUS is <constant>Busy</constant>, the server has
 simply decided that it cannot provide fonts to this client at
 this time (it may be able to at a later time).  In both cases,
 AUTHORIZATION-INDEX is set to zero, no authorization-data is
@@ -1733,8 +1733,8 @@ etc.).
   </para>
 <para>
 <!-- .LP -->
-If STATUS is Success, the following section of protocol is
-omitted.  Otherwise, if STATUS is Continue, the server expects
+If STATUS is <constant>Success</constant>, the following section of protocol
+is omitted.  Otherwise, if STATUS is <constant>Continue</constant>, the server expects
 more authorization data from the client (i.e. the connection
 setup is not finished, so no requests or events may be sent):
     <informaltable frame='none'>
@@ -1746,7 +1746,7 @@ setup is not finished, so no requests or events may be sent):
           <row><entry>◀</entry></row>
           <row><entry><parameter>more-authorization-data</parameter>:</entry><entry><type>STRING8</type></entry></row>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Busy, Denied }</entry></row>
+          <row><entry><parameter>status</parameter>:</entry><entry>{ <constant>Success</constant>, <constant>Continue</constant>, <constant>Busy</constant>, <constant>Denied</constant> }</entry></row>
           <row><entry><parameter>more-authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
         </tbody>
       </tgroup>
@@ -1755,12 +1755,12 @@ setup is not finished, so no requests or events may be sent):
 <para>
 The values in STATUS have the same meanings as described
 above.  This section of protocol is repeated until the server
-either accepts (sets STATUS to Success) or rejects (sets
-STATUS to Denied or Busy) the connection.
+either accepts (sets STATUS to <constant>Success</constant>) or rejects (sets
+STATUS to <constant>Denied</constant> or <constant>Busy</constant>) the connection.
 </para>
 <para>
 <!-- .LP -->
-Once the connection has been accepted and STATUS is Success,
+Once the connection has been accepted and STATUS is <constant>Success</constant>,
 an implicit AccessContext is created for the authorization
 data and the protocol continues with the following data sent
 from the server:
@@ -1873,7 +1873,7 @@ This request determines whether or not the extension package
 specified by NAME (encoded in <acronym>ISO</acronym> 8859-1) is supported by the
 server and that there is sufficient number of major opcode,
 event, and error codes available.  If so, then PRESENT is set
-to True, MAJOR-VERSION and MINOR-VERSION are set to the
+to <constant>True</constant>, MAJOR-VERSION and MINOR-VERSION are set to the
 respective major and minor version numbers of the protocol
 that the server would prefer; MAJOR-OPCODE is set to the value
 to use in extension requests; FIRST-EVENT is set to the value
@@ -1886,7 +1886,7 @@ NUMBER-ERRORS is set to the number of new errors the extension
 defines.
   </para>
   <para>
-Otherwise, PRESENT is set to False and the remaining fields are
+Otherwise, PRESENT is set to <constant>False</constant> and the remaining fields are
 set to zero.
   </para>
   <para>
@@ -2115,7 +2115,7 @@ error is returned.
           <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry></row>
           <row><entry><parameter>authorization-protocols</parameter>:</entry><entry><type>LISTofAUTH</type></entry></row>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Denied }</entry></row>
+          <row><entry><parameter>status</parameter>:</entry><entry>{ <constant>Success</constant>, <constant>Continue</constant>, <constant>Denied</constant> }</entry></row>
           <row><entry><parameter>authorization-index</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row rowsep='1'><entry><parameter>authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
           <row><entry>Errors:</entry><entry><errorname>IDChoice</errorname></entry></row>
@@ -2136,7 +2136,7 @@ to determine whether or not the client should be granted
 access to particular font information.
     </para>
     <para>
-If STATUS is Denied, the server rejects the client's
+If STATUS is <constant>Denied</constant>, the server rejects the client's
 authorization information and does not associate AC with any
 valid
 <type>AccessContext</type>.
@@ -2153,10 +2153,10 @@ back authorization protocol-dependent data to the client (such
 as a challenge, authentication of the server, etc.).
     </para>
     <para>
-If STATUS is Continue, the client is expected to continue
+If STATUS is <constant>Continue</constant>, the client is expected to continue
 the request by sending the following protocol and receiving
 the indicated response from the server.  This continues
-until STATUS is set to either Success or Denied.
+until STATUS is set to either <constant>Success</constant> or <constant>Denied</constant>.
     </para>
     <informaltable frame='none'>
       <?dbfo keep-together="always" ?>
@@ -2167,13 +2167,13 @@ until STATUS is set to either Success or Denied.
           <row><entry>     ◀</entry></row>
           <row><entry><parameter>     more-authorization-data</parameter>:</entry><entry><type>STRING8</type></entry></row>
           <row><entry>     ▶</entry></row>
-          <row><entry><parameter>status</parameter>:</entry><entry>{ Success, Continue, Denied }</entry></row>
+          <row><entry><parameter>status</parameter>:</entry><entry>{ <constant>Success</constant>, <constant>Continue</constant>, <constant>Denied</constant> }</entry></row>
           <row><entry><parameter>    more-authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-Once the connection has been accepted and STATUS is Success,
+Once the connection has been accepted and STATUS is <constant>Success</constant>,
 the request is complete.
     </para>
     <para>
@@ -2207,7 +2207,7 @@ current
 <function>SetAuthorization</function>
 request), an implicit
 <function>SetAuthorization</function>
-of None is done to
+of <constant>None</constant> is done to
 restore the
 <type>AccessContext</type>
 established for the initial
@@ -2258,12 +2258,12 @@ of the
 corresponding
 <function>OpenBitmapFont</function>
 ).
-An AC of None restores the
+An AC of <constant>None</constant> restores the
 <type>AccessContext</type>
 established for the initial connection setup.
     </para>
     <para>
-If AC is neither None nor a value associated with a valid
+If AC is neither <constant>None</constant> nor a value associated with a valid
 <type>AccessContext</type>
 previously created by
 <function>CreateAC</function>,
@@ -2451,7 +2451,7 @@ client with the server.
           <row><entry><parameter>format-mask</parameter>:</entry><entry><type>BITMAPFORMATMASK</type></entry></row>
           <row><entry><parameter>format-hint</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry></row>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>otherid</parameter>:</entry><entry><type>FONTID</type> or None</entry></row>
+          <row><entry><parameter>otherid</parameter>:</entry><entry><type>FONTID</type> or <constant>None</constant></entry></row>
           <row><entry><parameter>otherid-valid</parameter>:</entry><entry><type>BOOL</type></entry></row>
           <row rowsep='1'><entry><parameter>cachable</parameter>:</entry><entry><type>BOOL</type></entry></row>
           <row><entry>Errors:</entry><entry>
@@ -2512,16 +2512,16 @@ has already opened the font successfully (possibly under a
 different name), the OTHERID field may be set to one of the
 identifiers previously used to open the font.  The
 OTHERID-VALID field indicates whether or not OTHERID is
-still associated with an open font: if it is True, the
+still associated with an open font: if it is <constant>True</constant>, the
 client may use OTHERID as an alternative to FONTID.
-Otherwise, if OTHERID-VALID is False, OTHERID is no longer
+Otherwise, if OTHERID-VALID is <constant>False</constant>, OTHERID is no longer
 open but has not been reused by a subsequent
 <function>OpenBitmapFont</function>
 request.
     </para>
     <para>
-If OTHERID is set to None, then OTHERID-VALID should be set
-to False.
+If OTHERID is set to <constant>None</constant>, then OTHERID-VALID should be set
+to <constant>False</constant>.
     </para>
     <para>
 The FORMAT-MASK indicates which fields in FORMAT-HINT
@@ -2533,14 +2533,14 @@ requests.  Servers may wish to use
 this information to precompute certain values.
     </para>
     <para>
-If CACHABLE is set to True, the client may cache the font
+If CACHABLE is set to <constant>True</constant>, the client may cache the font
 (so that redundant opens of the same font may be avoided)
 and use it with all
 <type>AccessContext</type>s
 during the life of the
 client without violating the font's licensing policy.  This
 flag is typically set whenever a font is unlicensed or is
-licensed on a per-display basis.  If CACHABLE is False, the
+licensed on a per-display basis.  If CACHABLE is <constant>False</constant>, the
 client should reopen the font for each
 <type>AccessContext</type>.
     </para>
@@ -2659,7 +2659,7 @@ font associated with FONTID for the series of characters
 specified by RANGE and CHARS.
     </para>
     <para>
-If RANGE is True, each succeeding pair of elements in CHARS is
+If RANGE is <constant>True</constant>, each succeeding pair of elements in CHARS is
 treated as a range of characters for which extents should be
 returned.  If CHARS contains an odd number of elements, the
 font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>
@@ -2673,7 +2673,7 @@ concatenated in the order given by CHARS to produce a set of
 character codes for which extents are returned.
     </para>
     <para>
-If RANGE is False, then CHARS specifies the set of character
+If RANGE is <constant>False</constant>, then CHARS specifies the set of character
 codes for which extents are returned.  If CHARS is of
 zero length, then a zero-length list of extents is returned.
     </para>
@@ -2691,7 +2691,7 @@ with non-zero but equal left and right bearings.
 If FONTID is not associated with any open fonts, a
 <errorname>Font</errorname>
 error is
-returned.  If RANGE is True and CHARS contains any invalid
+returned.  If RANGE is <constant>True</constant> and CHARS contains any invalid
 ranges, a
 <errorname>Range</errorname>
 error is returned.
@@ -2760,7 +2760,7 @@ font associated with FONTID for the series of characters
 specified by RANGE and CHARS.
     </para>
     <para>
-If RANGE is True, each succeeding pair of elements in CHARS is
+If RANGE is <constant>True</constant>, each succeeding pair of elements in CHARS is
 treated as a range of characters for which bitmaps should be
 returned.  If CHARS contains an odd number of elements, the
 font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>
@@ -2774,7 +2774,7 @@ concatenated in the order given by CHARS to produce a set of
 character codes for which bitmaps are returned.
     </para>
     <para>
-If RANGE is False, then CHARS specifies the set of character
+If RANGE is <constant>False</constant>, then CHARS specifies the set of character
 codes for which bitmaps are returned.  If CHARS is of zero
 length, then a single reply containing a zero-length list of
 offsets and bitmaps is returned.
@@ -2844,7 +2844,7 @@ this field is set to zero.
     </para>
     <para>
 If FONTID is not associated with any open fonts, a <errorname>Font</errorname>
-error is returned.  If RANGE is True and CHARS contains any invalid
+error is returned.  If RANGE is <constant>True</constant> and CHARS contains any invalid
 ranges, a <errorname>Range</errorname> error is returned.
 If FORMAT is invalid, a <errorname>Format</errorname> error is returned.
     </para>
@@ -3341,13 +3341,13 @@ by sending any request (such as
     </informaltable>
     <para>
 This event is sent to clients that have included
-<function>CatalogueListChangeMask</function>
+<function><constant>CatalogueListChangeMask</constant></function>
 in their core event mask
 whenever the list of catalogues that are available has
-changed.  The ADDED field is True if new catalogues have
-been added to the server, otherwise it is False.  The
-DELETED field is True if any existing catalogues have
-been removed from the server, otherwise it is False.
+changed.  The ADDED field is <constant>True</constant> if new catalogues have
+been added to the server, otherwise it is <constant>False</constant>.  The
+DELETED field is <constant>True</constant> if any existing catalogues have
+been removed from the server, otherwise it is <constant>False</constant>.
     </para>
 </section>
 
@@ -3367,15 +3367,15 @@ been removed from the server, otherwise it is False.
     </informaltable>
     <para>
 This event is sent to clients that have included
-<function>FontListChangeMask</function>
+<function><constant>FontListChangeMask</constant></function>
 in their event mask whenever the
 list of fonts that are provided by the currently selected
-catalogues has changed.  The ADDED field is True if new
+catalogues has changed.  The ADDED field is <constant>True</constant> if new
 fonts have been added to any of the catalogues currently
-used by the client, otherwise it is False.  The DELETED
-field is True if any existing fonts have been removed
+used by the client, otherwise it is <constant>False</constant>.  The DELETED
+field is <constant>True</constant> if any existing fonts have been removed
 from any of catalogues used by the client, otherwise it
-is False.
+is <constant>False</constant>.
     </para>
 </section>
 <section id="Events:Extensions">
@@ -3477,17 +3477,17 @@ q                        unused, q=pad(d)
 4 <type>CARD32</type> value, union of the following bits:
      #x00000001           ByteOrderMSB
      #x00000002           BitOrderMSB
-     #x00000000           ImageRectMin
-     #x00000004           ImageRectMaxWidth
-     #x00000008           ImageRectMax
-     #x00000000           ScanlinePad8
-     #x00000100           ScanlinePad16
-     #x00000200           ScanlinePad32
-     #x00000300           ScanlinePad64
-     #x00000000           ScanlineUnit8
-     #x00001000           ScanlineUnit16
-     #x00002000           ScanlineUnit32
-     #x00003000           ScanlineUnit64
+     #x00000000           <constant>ImageRectMin</constant>
+     #x00000004           <constant>ImageRectMaxWidth</constant>
+     #x00000008           <constant>ImageRectMax</constant>
+     #x00000000           <constant>ScanlinePad8</constant>
+     #x00000100           <constant>ScanlinePad16</constant>
+     #x00000200           <constant>ScanlinePad32</constant>
+     #x00000300           <constant>ScanlinePad64</constant>
+     #x00000000           <constant>ScanlineUnit8</constant>
+     #x00001000           <constant>ScanlineUnit16</constant>
+     #x00002000           <constant>ScanlineUnit32</constant>
+     #x00003000           <constant>ScanlineUnit64</constant>
 
 except for the following bits which must be zero:
 
@@ -3502,11 +3502,11 @@ and the following of which at most one bit may be set:
 
 4 <type>CARD32</type> value, mask of the following bits:
 
-     #x00000001           ByteOrderMask
-     #x00000002           BitOrderMask
-     #x00000004           ImageRectMask
-     #x00000008           ScanlinePadMask
-     #x00000010           ScanlineUnitMask
+     #x00000001           <constant>ByteOrderMask</constant>
+     #x00000002           <constant>BitOrderMask</constant>
+     #x00000004           <constant>ImageRectMask</constant>
+     #x00000008           <constant>ScanlinePadMask</constant>
+     #x00000010           <constant>ScanlineUnitMask</constant>
 
 except for the following bits which must be zero:
 
@@ -3515,8 +3515,8 @@ except for the following bits which must be zero:
 <type>BOOL</type>
 
 1    <type>BOOL</type>       boolean, one of the following values:
-0    False
-1    True
+0    <constant>False</constant>
+1    <constant>True</constant>
 
 <type>BYTE</type>
 1    <type>BYTE</type>       unsigned byte of data
@@ -3538,8 +3538,8 @@ except for the following bits which must be zero:
 4    <type>CARD32</type> event mask
      for core events, this is union of the following bits:
 
-     #00000001   CatalogueListChangeMask
-     #00000002   FontListChangeMask
+     #00000001   <constant>CatalogueListChangeMask</constant>
+     #00000002   <constant>FontListChangeMask</constant>
 
 but none of the following bits set:
 
@@ -3582,9 +3582,9 @@ m    <type>LISTofBYTE</type>         property data block
 8    <type>OFFSET32</type>         value in data block
 
 1 <type>CARD8</type> type, one of the following values:
-0    String
-1    Unsigned
-2    Signed
+0    <constant>String</constant>
+1    <constant>Unsigned</constant>
+2    <constant>Signed</constant>
 3    zero
 
 <type>RANGE</type>
@@ -3616,17 +3616,17 @@ n    <type>LISTofBYTE</type>         array of 8-bit character values
 
 <type>XFONTINFO</type>
 4 <type>CARD32</type> flags, union of the following bits:
-     #x00000001         AllCharactersExist
-     #x00000002         InkInside
-     #x00000004         HorizontalOverlap
+     #x00000001         <constant>AllCharactersExist</constant>
+     #x00000002         <constant>InkInside</constant>
+     #x00000004         <constant>HorizontalOverlap</constant>
 
 but none of the following bits set:
 
      #xfffffff8         zero
 4    <type>RANGE</type>              range of characters in font
 1    <type>CARD8</type>              drawing direction
-     0             LeftToRight
-     1             RightToLeft
+     0             <constant>LeftToRight</constant>
+     1             <constant>RightToLeft</constant>
 1                       unused
 2    <type>CHAR2B</type>             default character
 12   <type>XCHARINFO</type>          minimum bounds
@@ -3651,10 +3651,10 @@ n    <type>PROPINFO</type>           property data
 a     <type>LISTofAUTH</type>             auth-data
 ▶
 2     <type>CARD16</type>                 status
-0                            Success
-1                            Continue
-2                            Busy
-3                            Denied
+0                            <constant>Success</constant>
+1                            <constant>Continue</constant>
+2                            <constant>Busy</constant>
+3                            <constant>Denied</constant>
 2     2                      major version
 2     0                      version
 1     <type>CARD8</type>                  numberof alternate-servers-hint
@@ -3667,11 +3667,11 @@ q                            unused, q=pad(d)
 </literallayout>
 
 <para>
-If STATUS is Busy or Denied, the protocol stops and the connection is
-closed. If STATUS is Continue, the client is expected to respond with
+If STATUS is <constant>Busy</constant> or <constant>Denied</constant>, the protocol stops and the connection is
+closed. If STATUS is <constant>Continue</constant>, the client is expected to respond with
 additional data, to which the server responds with
 a new status value and more data. This dialog continues until the status
-is set to Success, or until the server sets STATUS to Busy or Denied
+is set to <constant>Success</constant>, or until the server sets STATUS to <constant>Busy</constant> or <constant>Denied</constant>
 and closes the connection:
 </para>
 
@@ -3683,16 +3683,16 @@ q                            unused, q=pad(d)
 ▶
 4     2+(d+q)/4              length
 2     <type>CARD16</type>                 status
-        0                    Success
-      1                      Continue
-      2                      Busy
-      3                      Denied
+        0                    <constant>Success</constant>
+      1                      <constant>Continue</constant>
+      2                      <constant>Busy</constant>
+      3                      <constant>Denied</constant>
       2                      unused
 d     <type>LISTofBYTE</type>             more-authorization-data
 q                            unused, q=pad(d)
 </literallayout>
 <para>
-When STATUS is Success, the protocol resumes with the following
+When STATUS is <constant>Success</constant>, the protocol resumes with the following
 sent by the server:
 </para>
 
@@ -3814,21 +3814,21 @@ a   <type>LISTofAUTH</type>               authorization-protocols
 2   <type>CARD16</type>                   sequence-number
 4   3+(d+q)/4                length
 2   <type>CARD16</type>                   status
-    0 Success
-    1 Continue
-    2 Busy
-    3 Denied
+    0 <constant>Success</constant>
+    1 <constant>Continue</constant>
+    2 <constant>Busy</constant>
+    3 <constant>Denied</constant>
 2                            unused
 d   <type>LISTofBYTE</type>               authorization-data
 q                            unused, q=pad(d)
 </literallayout>
 
 <para>
-If STATUS is Continue, the client is expected to respond with additional
+If STATUS is <constant>Continue</constant>, the client is expected to respond with additional
 data, to which the server
 responds with a new status value and more data. This dialog continues
 until the status is set to
-Success, Busy, or Denied at which point the request is finished.
+<constant>Success</constant>, <constant>Busy</constant>, or <constant>Denied</constant> at which point the request is finished.
 </para>
 
 <literallayout class="monospaced">
@@ -3839,10 +3839,10 @@ q                            unused, q=pad(d)
 ▶
 4   2+(d+q)/4                length
 2   <type>CARD16</type>                   status
-    0 Success
-    1 Continue
-    2 Busy
-    3 Denied
+    0 <constant>Success</constant>
+    1 <constant>Continue</constant>
+    2 <constant>Busy</constant>
+    3 <constant>Denied</constant>
 2                            unused
 d   <type>LISTofBYTE</type>               authorization-data
 q                            unused, q=pad(d)
