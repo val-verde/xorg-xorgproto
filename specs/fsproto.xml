@@ -30,7 +30,7 @@ provided that the above copyright notice and this permission
 notice appear in all copies.  Network Computing Devices, Inc.
 makes no representations about the suitability for any purpose
 of the information in this document.  This documentation is
-provided "as is" without express or implied warranty.
+provided &ldquo;as is&rdquo; without express or implied warranty.
 </para>
 </legalnotice>
 
@@ -38,7 +38,7 @@ provided "as is" without express or implied warranty.
 <para role="multiLicensing">Copyright © 1994 X Consortium</para>
 <para>
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
+of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -358,7 +358,7 @@ printed in lower case in a distinct font.
   </listitem>
   <listitem>
     <para>
-Type declarations have the form "<type>name</type>: type",
+Type declarations have the form <quote><type>name</type>: type</quote>,
 as in:  <type>CARD8</type>: 8-bit byte
     </para>
   </listitem>
@@ -380,7 +380,7 @@ brackets, as in:  [ <structfield>byte1</structfield>: <type>CARD8</type>,
 
 <para>
 <!-- .LP -->
-A type with a prefix "LISTof" represents a counted list of
+A type with a prefix <quote>LISTof</quote> represents a counted list of
 elements of that type, as in:  <type>LISTofCARD8</type>
 </para>
 
@@ -429,7 +429,7 @@ must be created (with
 <function>CreateAC</function>)
 and switched among (with
 <function>SetAuthorization</function>)
-to represent all of these "font users" properly.
+to represent all of these <quote>font users</quote> properly.
     </para>
 </section>
 
@@ -1591,10 +1591,10 @@ Requests that have replies are described using the following syntax:
   </para></blockquote>
 </para>
 <para>
-If a request does not generate a reply, the "▶" and result lines are
-omitted.  If a request may generate multiple replies, the "▶" is replaced by
-a "▶+".  In the authorization data exchanges in the initial connection setup
-and the CreateAC request, "◀" indicates data sent by the client in response
+If a request does not generate a reply, the ▶ and result lines are
+omitted.  If a request may generate multiple replies, the ▶ is replaced by
+a ▶+.  In the authorization data exchanges in the initial connection setup
+and the CreateAC request, ◀ indicates data sent by the client in response
 to data sent by the server.
 </para>
 <para>
@@ -1622,10 +1622,12 @@ mutually-understood virtual stream:
 <para>
 The initial byte of the connection specifies the BYTE-ORDER in
 which subsequent 16-bit and 32-bit numeric values are to be
-transmitted.  The octal value 102 (<acronym>ASCII</acronym> uppercase `B')
+transmitted.  The octal value <literal>102</literal>
+(<acronym>ASCII</acronym> uppercase <quote><literal>B</literal></quote>)
 indicates that the most-significant byte is to be transmitted
-first; the octal value 154 (<acronym>ASCII</acronym> lowercase `l') indicates
-that the least-significant byte is to be transmitted first.
+first; the octal value <literal>154</literal>
+(<acronym>ASCII</acronym> lowercase <quote><literal>l</literal></quote>)
+indicates that the least-significant byte is to be transmitted first.
 If any other value is encountered the server closes the
 connection without any response.
 </para>
@@ -1911,9 +1913,11 @@ error is returned.
 This request returns a list of at most MAX-NAMES names
 of collections (called catalogues) of fonts that match
 the specified PATTERN.  In the pattern (which is encoded
-in <acronym>ISO</acronym> 8859-1), the `?' character (octal 77) matches any
-single character; the `*' character (octal 52) matches
-any series of zero or more characters; and alphabetic
+in <acronym>ISO</acronym> 8859-1), the
+<quote><literal>?</literal></quote> character (octal <literal>77</literal>)
+matches any single character; the
+<quote><literal>*</literal></quote> character (octal <literal>52</literal>)
+matches any series of zero or more characters; and alphabetic
 characters match either upper- or lowercase.  The
 returned NAMES are encoded in <acronym>ISO</acronym> 8859-1 and may contain
 mixed character cases.
@@ -2343,9 +2347,11 @@ that match the specified PATTERN, according to matching rules
 of the <olink targetdoc='xlfd' targetptr='xlfd'><citetitle>X Logical
 Font Description Conventions</citetitle></olink>
 <xref linkend="References:xlfd-spec"/>.
-In the pattern (which is encoded in <acronym>ISO</acronym> 8859-1) the `?' character
-(octal 77) matches any single character; the `*' character
-(octal 52) matches any series of zero or more characters; and
+In the pattern (which is encoded in <acronym>ISO</acronym> 8859-1) the
+<quote><literal>?</literal></quote> character (octal <literal>77</literal>)
+matches any single character; the
+<quote><literal>*</literal></quote> character (octal <literal>52</literal>)
+matches any series of zero or more characters; and
 alphabetic characters match either upper- or lowercase.  The
 returned NAMES are encoded in <acronym>ISO</acronym> 8859-1 and may contain mixed
 character cases.  Font names are not required to be in <acronym>XLFD</acronym>
@@ -3377,7 +3383,8 @@ Additional events may be defined by extensions.
 <!-- .XE -->
 <para>
 <!-- .LP -->
-Numbers that are prefixed with "#x" are in hexadecimal (base 16).  All other
+Numbers that are prefixed with <quote><literal>#x</literal></quote>
+are in hexadecimal (base 16).  All other
 numbers are in decimal.  Requests, replies, errors, events, and compound types
 are described using the syntax:
 </para>
@@ -3403,14 +3410,16 @@ Objects containing counted lists use a lowercase single-letter variable (whose
 scope is limited to the request, reply, event, or error in which it is found)
 to represent the number of objects in the list.  These variables, and any
 expressions in which they are used, should be treated as unsigned integers.
-Multiple copies of an object are indicated by CONTENTS prefix "LISTof".
+Multiple copies of an object are indicated by CONTENTS prefix
+<quote>LISTof</quote>.
 </para>
 <para>
 <!-- .LP -->
 Unused bytes (whose value is undefined) will have a blank CONTENTS field and a
-NAME field of "unused".  Zeroed bytes (whose value must be zero) will have a
-blank CONTENTS field and a NAME field of "zero".  The expression pad(e)
-refers to the number of bytes needed to round a value "e" up to the closed
+NAME field of <quote>unused</quote>.  Zeroed bytes (whose value must be zero)
+will have a blank CONTENTS field and a NAME field of <quote>zero</quote>.
+The expression pad(e) refers to the number of bytes
+needed to round a value <quote>e</quote> up to the closed
 multiple of four:
 </para>
 <!-- .RS -->
