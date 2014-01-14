@@ -337,19 +337,19 @@ as in:  <type>FONTID</type>
     <para>
 <!-- .IP \(bu 5 -->
 Alternate values are capitalized with no word separators,
-as in:  MaxWidth
+as in:  <constant>MaxWidth</constant>
     </para>
   </listitem>
   <listitem>
     <para>
 <!-- .IP \(bu 5 -->
 Structure element declarations are in lower case with hyphens
-as word separators, as in:  byte-order-msb
+as word separators, as in:  <structfield>byte-order-msb</structfield>
     </para>
     <note>
       <para>
 Structure element names are referred to in
-upper case (e.g. BYTE-ORDER-MSB) when used in
+upper case (e.g. <structfield>BYTE-ORDER-MSB</structfield>) when used in
 descriptions to set them off from the surrounding
 text.  When this document is typeset they will be
 printed in lower case in a distinct font.
@@ -365,13 +365,15 @@ as in:  <type>CARD8</type>: 8-bit byte
   <listitem>
     <para>
 Comma-separated lists of alternate values are enclosed in
-braces, as in:  { Min, MaxWidth, Max }
+braces, as in:  { <constant>Min</constant>, <constant>MaxWidth</constant>,
+<constant>Max</constant> }
     </para>
   </listitem>
   <listitem>
     <para>
 Comma-separated lists of structure elements are enclosed in
-brackets, as in:  [ byte1: <type>CARD8</type>, byte2: <type>CARD8</type> ]
+brackets, as in:  [ <structfield>byte1</structfield>: <type>CARD8</type>,
+<structfield>byte2</structfield>: <type>CARD8</type> ]
     </para>
   </listitem>
 </itemizedlist>
@@ -391,10 +393,20 @@ elements of that type, as in:  <type>LISTofCARD8</type>
 The following data types are used in the core X Font Server protocol:
 </para>
 
-<literallayout class="monospaced">
-<type>ACCESSCONTEXT</type>:     <type>ID</type>
-</literallayout>
-<blockquote>
+<section id="Data_Types:ACCESSCONTEXT">
+  <title><type>ACCESSCONTEXT</type></title>
+  <indexterm zone="Data_Types:ACCESSCONTEXT" significance="preferred"><primary>ACCESSCONTEXT</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>ACCESSCONTEXT</type>:</entry><entry><type>ID</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 <para>
 This value is specified in the CreateAC request as the identifier
 to be used when referring to a particular AccessContext resource
@@ -419,70 +431,113 @@ and switched among (with
 <function>SetAuthorization</function>)
 to represent all of these "font users" properly.
     </para>
-</blockquote>
+</section>
 
-<literallayout class="monospaced">
-<type>ALTERNATESERVER</type>:  [ name:  <type>STRING8</type>,
-                    subset:  <type>BOOL</type> ]
-</literallayout>
+<section id="Data_Types:ALTERNATESERVER">
+  <title><type>ALTERNATESERVER</type></title>
+  <indexterm zone="Data_Types:ALTERNATESERVER" significance="preferred"><primary>ALTERNATESERVER</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry morerows="1"><type>ALTERNATESERVER</type>:</entry>
+          <entry> [ <structfield>name</structfield>:</entry><entry>  <type>STRING8</type>,</entry></row>
+          <row><entry>&emsp;<structfield>subset</structfield>:</entry><entry>  <type>BOOL</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<blockquote>
     <para>
-This structure specifies the NAME, encoded in <acronym>ISO</acronym> 8859-1 according
+This structure specifies the <structfield>NAME</structfield>,
+encoded in <acronym>ISO</acronym> 8859-1 according
 to <link linkend='Font_Server_Naming'>Section 3</link>,
 of another font server that may be useful as a
-substitute for this font server.  The SUBSET field indicates
+substitute for this font server.
+The <structfield>SUBSET</structfield> field indicates
 whether or not the alternate server is likely to only contain a
 subset of the fonts available from this font server.  This
 information is returned during the initial connection setup and
 may be used by the client to find a backup server in case of
 failure.
     </para>
-</blockquote>
+</section>
 
-<literallayout class="monospaced">
-<type>AUTH</type>:  [ name:  <type>STRING8</type>,
-         data:  <type>LISTofBYTE</type> ]
-</literallayout>
+<section id="Data_Types:AUTH">
+  <title><type>AUTH</type></title>
+  <indexterm zone="Data_Types:AUTH" significance="preferred"><primary>AUTH</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry morerows="1"><type>AUTH</type>:</entry><entry>[ <structfield>name</structfield>:</entry><entry><type>STRING8</type>,</entry></row>
+          <row><entry>&emsp;<structfield>data</structfield>:</entry><entry><type>LISTofBYTE</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<blockquote>
 <para>
 This structure specifies the name of an authorization protocol and
 initial data for that protocol.  It is used in the authorization
 negotiation in the initial connection setup and in the CreateAC
 request.
 </para>
-</blockquote>
+</section>
 
-<literallayout class="monospaced">
-<type>BITMAPFORMAT</type>:
-</literallayout>
+<section id="Data_Types:BITMAPFORMAT">
+  <title><type>BITMAPFORMAT</type></title>
+  <indexterm zone="Data_Types:BITMAPFORMAT" significance="preferred"><primary>BITMAPFORMAT</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>BITMAPFORMAT</type>:</entry><entry><type>CARD32</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<literallayout class="monospaced">
+    <para>
    <type>CARD32</type> containing the following fields defined by the
    sets of values given further below
-   [
-     byte-order-msb:      1 bit,
-     bit-order-msb:       1 bit,
-     image-rect:          2 bits { Min,
-                          MaxWidth,
-                          Max },
-     zero-pad:            4 bits,
-     scanline-pad:        2 bits { ScanlinePad8,
-                          ScanlinePad16,
-                          ScanlinePad32,
-                          ScanlinePad64 },
-     zero-pad:            2 bits,
-     scanline-unit:       2 bits { ScanlineUnit8,
-                          ScanlineUnit16,
-                          ScanlineUnit32,
-                          ScanlineUnit64 },
-     zero-pad:            2 bits,
-     zero-pad:            16 bits,
-   ]
-</literallayout>
+    </para>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+        <row><entry>[</entry></row>
+          <row><entry>&emsp;<structfield>byte-order-msb</structfield>:</entry><entry>      1 bit,</entry></row>
+          <row><entry>&emsp;<structfield>bit-order-msb</structfield>:</entry><entry>       1 bit,</entry></row>
+          <row><entry>&emsp;<structfield>image-rect</structfield>:</entry><entry>          2 bits</entry><entry>{ <constant>Min</constant>,
+                          <constant>MaxWidth</constant>,
+                          <constant>Max</constant> },</entry></row>
+          <row><entry>&emsp;<structfield>zero-pad</structfield>:</entry><entry>            4 bits,</entry></row>
+          <row><entry>&emsp;<structfield>scanline-pad</structfield>:</entry><entry>        2 bits</entry><entry>{ <constant>ScanlinePad8</constant>,
+                          <constant>ScanlinePad16</constant>,
+                          <constant>ScanlinePad32</constant>,
+                          <constant>ScanlinePad64</constant> },</entry></row>
+          <row><entry>&emsp;<structfield>zero-pad</structfield>:</entry><entry>            2 bits,</entry></row>
+          <row><entry>&emsp;<structfield>scanline-unit</structfield>:</entry><entry>       2 bits</entry><entry>{ <constant>ScanlineUnit8</constant>,
+                          <constant>ScanlineUnit16</constant>,
+                          <constant>ScanlineUnit32</constant>,
+                          <constant>ScanlineUnit64</constant> },</entry></row>
+          <row><entry>&emsp;<structfield>zero-pad</structfield>:</entry><entry>            2 bits,</entry></row>
+          <row><entry>&emsp;<structfield>zero-pad</structfield>:</entry><entry>            16 bits,</entry></row>
+          <row><entry>]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<blockquote>
 <para>
 This structure specifies how glyph images are transmitted in
 response to
@@ -492,56 +547,70 @@ and
 requests.
 </para>
 <para>
-If the BYTE-ORDER-MSB bit (1 &lt;&lt; 0) is set, the Most Significant
+If the <structfield>BYTE-ORDER-MSB</structfield> bit
+<literal>(1 &lt;&lt; 0)</literal> is set, the Most Significant
 Byte of each scanline unit is returned first.  Otherwise, the
 Least Significant Byte is returned first.
 </para>
 <para>
-If the BIT-ORDER-MSB bit (1 &lt;&lt; 1) is set, the left-most bit in
+If the <structfield>BIT-ORDER-MSB</structfield> bit
+<literal>(1 &lt;&lt; 1)</literal> is set, the left-most bit in
 each glyph scanline unit is stored in the Most Significant Bit of
 each transmitted scanline unit.  Otherwise, the left-most bit is
 stored in the Least Significant Bit.
 </para>
 <para>
-The IMAGE-RECT field specifies a rectangle of pixels within the
+The <structfield>IMAGE-RECT</structfield> field specifies a rectangle of
+pixels within the
 glyph image.  It contains one of the following alternate values:
-</para>
 
-<literallayout class="monospaced">
-     ImageRectMin          (0 &lt;&lt; 2)
-     ImageRectMaxWidth     (1 &lt;&lt; 2)
-     ImageRectMax          (2 &lt;&lt; 2)
-</literallayout>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>ImageRectMin</constant></entry><entry><literal>(0 &lt;&lt; 2)</literal></entry></row>
+          <row><entry><constant>ImageRectMaxWidth</constant></entry><entry><literal>(1 &lt;&lt; 2)</literal></entry></row>
+          <row><entry><constant>ImageRectMax</constant></entry><entry><literal>(2 &lt;&lt; 2)</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+</para>
 <para>
 For a glyph with extents <type>XCHARINFO</type> in a font with header
-information <type>XFONTINFO</type>, the IMAGE-RECT values have
-the following meanings:
-</para>
-<para>
-<function>ImageRectMin</function> -
+information <type>XFONTINFO</type>, the <structfield>IMAGE-RECT</structfield>
+values have the following meanings:
+<variablelist>
+  <varlistentry>
+    <term><constant>ImageRectMin</constant></term>
+    <listitem>
+      <para>
 This refers to the minimal bounding rectangle
 surrounding the inked pixels in the glyph.  This is the
 most compact representation.  The edges of the rectangle
 are:
-</para>
 <literallayout class="monospaced">
          left:     <structfield>XCHARINFO.LBEARING</structfield>
          right:    <structfield>XCHARINFO.RBEARING</structfield>
          top:      <structfield>XCHARINFO.ASCENT</structfield>
          bottom:   <structfield>XCHARINFO.DESCENT</structfield>
 </literallayout>
-<para>
-
-<function>ImageRectMaxWidth</function> -
+      </para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><constant>ImageRectMaxWidth</constant></term>
+    <listitem>
+      <para>
 This refers to the scanlines between the
 glyph's ascent and descent, padded on the left to the minimum
 left-bearing (or 0, whichever is less) and on the right to
 the maximum right-bearing (or logical-width, whichever is
 greater).  All glyph images share a common horizontal
-origin.  This is a combination of ImageRectMax in the
-horizontal direction and ImageRectMin in the vertical
+origin.  This is a combination of <constant>ImageRectMax</constant> in the
+horizontal direction and <constant>ImageRectMin</constant> in the vertical
 direction.  The edges of the rectangle are:
-</para>
 
 <literallayout class="monospaced">
 left:         min (<structfield>XFONTINFO.MIN-BOUNDS.LBEARING</structfield>, 0)
@@ -550,9 +619,14 @@ right:        max (<structfield>XFONTINFO.MAX-BOUNDS.RBEARING</structfield>,
 top:               <structfield>XCHARINFO.ASCENT</structfield>
 bottom:            <structfield>XCHARINFO.DESCENT</structfield>
 </literallayout>
-
-<para>
-ImageRectMax - This refers to all scanlines, from the maximum
+      </para>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><constant>ImageRectMax</constant></term>
+    <listitem>
+      <para>
+This refers to all scanlines, from the maximum
 ascent (or the font ascent, whichever is greater) to the
 maximum descent (or the font descent, whichever is greater),
 padded to the same horizontal extents as MaxWidth.
@@ -561,7 +635,6 @@ common origin.  This is the least compact representation,
 but may be the easiest or most efficient (particularly for
 character cell fonts) for some clients to use.  The edges of
 the rectangle are:
-</para>
 
 <literallayout class="monospaced">
 left:         min (<structfield>XFONTINFO.MIN-BOUNDS.LBEARING</structfield>, 0)
@@ -572,30 +645,51 @@ top:          max (<structfield>XFONTINFO.FONT-ASCENT</structfield>,
 bottom:       max (<structfield>XFONTINFO.FONT-DESCENT</structfield>,
                    <structfield>XFONTINFO.MAX-BOUNDS.DESCENT</structfield>)
 </literallayout>
+      </para>
+    </listitem>
+  </varlistentry>
+</variablelist>
+</para>
 <para>
-The SCANLINE-PAD field specifies the number of bits (8, 16, 32,
+The <structfield>SCANLINE-PAD</structfield> field specifies the number of
+bits (8, 16, 32,
 or 64) to which each glyph scanline is padded before transmitting.
 It contains one of the following alternate values:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>ScanlinePad8</constant></entry><entry><literal>(0 &lt;&lt; 8)</literal></entry></row>
+          <row><entry><constant>ScanlinePad16</constant></entry><entry><literal>(1 &lt;&lt; 8)</literal></entry></row>
+          <row><entry><constant>ScanlinePad32</constant></entry><entry><literal>(2 &lt;&lt; 8)</literal></entry></row>
+          <row><entry><constant>ScanlinePad64</constant></entry><entry><literal>(3 &lt;&lt; 8)</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 </para>
-<literallayout class="monospaced">
-     ScanlinePad8          (0 &lt;&lt; 8)
-     ScanlinePad16         (1 &lt;&lt; 8)
-     ScanlinePad32         (2 &lt;&lt; 8)
-     ScanlinePad64         (3 &lt;&lt; 8)
-</literallayout>
 <para>
-The SCANLINE-UNIT field specifies the number of bits (8, 16, 32,
-or 64) that should be treated as a unit for swapping.  This value
-must be less than or equal to the number of bits specified by the
-SCANLINE-PAD.  It contains one of the following alternate values:
-</para>
+The <structfield>SCANLINE-UNIT</structfield> field specifies the number of
+bits (8, 16, 32, or 64) that should be treated as a unit for swapping.
+This value must be less than or equal to the number of bits specified by the
+<structfield>SCANLINE-PAD</structfield>.  It contains one of the following
+alternate values:
 
-<literallayout class="monospaced">
-     ScanlineUnit8          (0 &lt;&lt; 12)
-     ScanlineUnit16         (1 &lt;&lt; 12)
-     ScanlineUnit32         (2 &lt;&lt; 12)
-     ScanlineUnit64         (3 &lt;&lt; 12)
-</literallayout>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>ScanlineUnit8</constant></entry><entry><literal>(0 &lt;&lt; 12)</literal></entry></row>
+          <row><entry><constant>ScanlineUnit16</constant></entry><entry><literal>(1 &lt;&lt; 12)</literal></entry></row>
+          <row><entry><constant>ScanlineUnit32</constant></entry><entry><literal>(2 &lt;&lt; 12)</literal></entry></row>
+          <row><entry><constant>ScanlineUnit64</constant></entry><entry><literal>(3 &lt;&lt; 12)</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+</para>
 <para>
 <type>BITMAPFORMAT</type>s are byte-swapped as <type>CARD32</type>s.
 All unspecified bits must be zero.
@@ -604,117 +698,199 @@ All unspecified bits must be zero.
 Use of an invalid <type>BITMAPFORMAT</type> causes a
 <errorname>Format</errorname> error to be returned.
 </para>
-</blockquote>
-<para>
-<type>BITMAPFORMATMASK</type>:     <type>CARD32</type> mask
-</para>
-<blockquote>
+</section>
+
+<section id="Data_Types:BITMAPFORMATMASK">
+  <title><type>BITMAPFORMATMASK</type></title>
+  <indexterm zone="Data_Types:BITMAPFORMATMASK" significance="preferred"><primary>BITMAPFORMATMASK</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>BITMAPFORMATMASK</type>:</entry><entry>     <type>CARD32</type> mask</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 <para>
 This is a mask of bits representing the fields in a <type>BITMAPFORMAT</type>:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>ByteOrderMask</constant></entry><entry><literal>(1 &lt;&lt; 0)</literal></entry></row>
+          <row><entry><constant>BitOrderMask</constant></entry><entry><literal>(1 &lt;&lt; 1)</literal></entry></row>
+          <row><entry><constant>ImageRectMask</constant></entry><entry><literal>(1 &lt;&lt; 2)</literal></entry></row>
+          <row><entry><constant>ScanlinePadMask</constant></entry><entry><literal>(1 &lt;&lt; 3)</literal></entry></row>
+          <row><entry><constant>ScanlineUnitMask</constant></entry><entry><literal>(1 &lt;&lt; 4)</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 </para>
-</blockquote>
-<literallayout class="monospaced">
-     ByteOrderMask          (1 &lt;&lt; 0)
-     BitOrderMask           (1 &lt;&lt; 1)
-     ImageRectMask          (1 &lt;&lt; 2)
-     ScanlinePadMask        (1 &lt;&lt; 3)
-     ScanlineUnitMask       (1 &lt;&lt; 4)
-</literallayout>
 <para>
-Unspecified bits are required to be zero or else a <errorname>Format</errorname> error
-is returned.
+Unspecified bits are required to be zero or else a
+<errorname>Format</errorname> error is returned.
 </para>
-<para>
-<type>BOOL</type>:  <type>CARD8</type>
-</para>
-<blockquote>
+</section>
+
+<section id="Data_Types:BOOL">
+  <title><type>BOOL</type></title>
+  <indexterm zone="Data_Types:BOOL" significance="preferred"><primary>BOOL</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>BOOL</type>:</entry><entry>  <type>CARD8</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 <para>
 This is a boolean value containing one of the following alternate
 values:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>False</constant></entry><entry><literal>0</literal></entry></row>
+          <row><entry><constant>True</constant></entry><entry><literal>1</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 </para>
+</section>
 
-<literallayout class="monospaced">
-     False              0
-     True               1
-</literallayout>
-</blockquote>
+<section id="Data_Types:BYTE">
+  <title><type>BYTE</type></title>
+  <indexterm zone="Data_Types:BYTE" significance="preferred"><primary>BYTE</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>BYTE</type>:</entry><entry>  8-bit value</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<para>
-<type>BYTE</type>:  8-bit value
-</para>
-
-<blockquote>
 <para>
 This is an unsigned byte of data whose encoding
 is determined by the context in which it is used.
 </para>
-</blockquote>
 
-<para>
-<type>CARD8</type>:  8-bit unsigned integer
-</para>
+</section>
 
-<para>
-<type>CARD16</type>:  16-bit unsigned integer
-</para>
+<section id="Data_Types:CARDn">
+  <title><type>CARD8</type>, <type>CARD16</type>, <type>CARD32</type></title>
+  <indexterm zone="Data_Types:CARDn" significance="preferred"><primary>CARD8</primary></indexterm>
+  <indexterm zone="Data_Types:CARDn" significance="preferred"><primary>CARD16</primary></indexterm>
+  <indexterm zone="Data_Types:CARDn" significance="preferred"><primary>CARD32</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>CARD8</type>:</entry><entry>  8-bit unsigned integer</entry></row>
+          <row><entry><type>CARD16</type>:</entry><entry>  16-bit unsigned integer</entry></row>
+          <row><entry><type>CARD32</type>:</entry><entry>  32-bit unsigned integer</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<para>
-<type>CARD32</type>:  32-bit unsigned integer
-</para>
-
-<blockquote>
 <para>
 These are unsigned numbers.  The latter two are byte-swapped when
 the server and client have different byte orders.
 </para>
-</blockquote>
 
-<para>
-<type>CHAR2B</type>:  [ byte1, byte2:  <type>CARD8</type> ]
-</para>
-<blockquote>
+</section>
+
+<section id="Data_Types:CHAR2B">
+  <title><type>CHAR2B</type></title>
+  <indexterm zone="Data_Types:CHAR2B" significance="preferred"><primary>CHAR2B</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>CHAR2B</type>:</entry><entry>[ <structfield>byte1</structfield>, <structfield>byte2</structfield>:</entry><entry><type>CARD8</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 <para>
 This structure specifies an individual character code within
-either a 2-dimensional matrix (using BYTE1 and BYTE2 as the row
-and column indices, respectively) or a vector (using BYTE1 and
-BYTE2 as most- and least-significant bytes, respectively).  This
-data type is treated as a pair of 8-bit values and is never
-byte-swapped.  Therefore, the client should always transmit BYTE1
-first.
-</para>
-</blockquote>
-
-<para>
-<type>EVENTMASK</type>:  <type>CARD32</type> mask
+either a 2-dimensional matrix (using <structfield>BYTE1</structfield>
+and <structfield>BYTE2</structfield> as the row and column indices,
+respectively) or a vector (using <structfield>BYTE1</structfield> and
+<structfield>BYTE2</structfield> as most- and least-significant bytes,
+respectively).  This data type is treated as a pair of 8-bit values and
+is never byte-swapped.  Therefore, the client should always transmit
+<structfield>BYTE1</structfield> first.
 </para>
 
-<blockquote>
+</section>
+
+<section id="Data_Types:EVENTMASK">
+  <title><type>EVENTMASK</type></title>
+  <indexterm zone="Data_Types:EVENTMASK" significance="preferred"><primary>EVENTMASK</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>EVENTMASK</type>:</entry><entry>  <type>CARD32</type> mask</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
 <para>
 This is a mask of bits indicating which of an extension's (or the
 core's) maskable events the client would like to receive.  Each
 bit indicates one or more events, and a bit value of one indicates
 interest in a corresponding set of events.  The following bits are
 defined for event masks specified for the core protocol (i.e. an
-EXTENSION-OPCODE of zero in
+<parameter>EXTENSION-OPCODE</parameter> of zero in
 <function>SetEventMask</function>
 and
 <function>GetEventMask</function>
 requests):
-</para>
 
-<literallayout class="monospaced">
-     CatalogueListChangeMask          (1 &lt;&lt; 0)
-     FontListChangeMask               (1 &lt;&lt; 1)
-</literallayout>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>CatalogueListChangeMask</constant></entry><entry><literal>(1 &lt;&lt; 0)</literal></entry></row>
+          <row><entry><constant>FontListChangeMask</constant></entry><entry><literal>(1 &lt;&lt; 1)</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+</para>
 
 <para>
 If
-<function>CatalogueListChangeMask</function>
+<constant>CatalogueListChangeMask</constant>
 is set, client is interested in
 receiving
 <function>CatalogueListNotify</function>
 events.  If
-<function>FontListChangeMask</function>
+<constant>FontListChangeMask</constant>
 is set, the client is interested in
 receiving
 <function>FontListNotify</function>
@@ -730,8 +906,8 @@ All unused bits must be set to zero.  In
 <function>SetEventMask</function>
 requests, if
 any bits are set that are not defined for the extension (or core)
-for which this <type>EVENTMASK</type> is intended (according to the EXTENSION-
-OPCODE given in the
+for which this <type>EVENTMASK</type> is intended (according to the
+<parameter>EXTENSION-OPCODE</parameter> given in the
 <function>SetEventMask</function>
 request), an
 <errorname>EventMask</errorname>
@@ -740,26 +916,48 @@ error is generated.
     <para>
 This value is swapped as a <type>CARD32</type>.
     </para>
-</blockquote>
 
-<para>
-<type>FONTID</type>:     <type>ID</type>
-</para>
+</section>
 
-<blockquote>
+<section id="Data_Types:FONTID">
+  <title><type>FONTID</type></title>
+  <indexterm zone="Data_Types:FONTID" significance="preferred"><primary>FONTID</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>FONTID</type>:</entry><entry>     <type>ID</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
 <para>
 This is specified by the client in the request
 <function>OpenBitmapFont</function>
 as the identifier to be used when referring to a particular open
 font.
 </para>
-</blockquote>
 
-<para>
-<type>ID</type>:  <type>CARD32</type>
-</para>
+</section>
 
-<blockquote>
+<section id="Data_Types:ID">
+  <title><type>ID</type></title>
+  <indexterm zone="Data_Types:ID" significance="preferred"><primary>ID</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>ID</type>:</entry><entry>  <type>CARD32</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
 <para>
 This is a 32-bit value in which the top 3 bits must be clear, and
 at least 1 other bit must be set (yielding a range of 1 through
@@ -771,47 +969,74 @@ both a <type>FONTID</type> and an <type>ACCESSCONTEXT</type>
 as well as by multiple clients.
 </para>
 <para>
-An <type>ID</type> of zero is referred to as None.
+An <type>ID</type> of zero is referred to as <constant>None</constant>.
 </para>
-</blockquote>
+</section>
 
-<para>
-<type>INT8</type>:  8-bit signed integer
-</para>
+<section id="Data_Types:INTn">
+  <title><type>INT8</type>, <type>INT16</type>, <type>INT32</type></title>
+  <indexterm zone="Data_Types:INTn" significance="preferred"><primary>INT8</primary></indexterm>
+  <indexterm zone="Data_Types:INTn" significance="preferred"><primary>INT16</primary></indexterm>
+  <indexterm zone="Data_Types:INTn" significance="preferred"><primary>INT32</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>INT8</type>:</entry><entry>  8-bit signed integer</entry></row>
+          <row><entry><type>INT16</type>:</entry><entry>  16-bit signed integer</entry></row>
+          <row><entry><type>INT32</type>:</entry><entry>  32-bit signed integer</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<para>
-<type>INT16</type>:  16-bit signed integer
-</para>
-
-<para>
-<type>INT32</type>:  32-bit signed integer
-</para>
-
-<blockquote>
 <para>
 These are signed numbers.  The latter two are byte-swapped when
 the client and server have different byte orders.
 </para>
-</blockquote>
+</section>
 
-<literallayout class="monospaced">
-<type>OFFSET32</type>:      [  position:     <type>CARD32</type>,
-                  length:       <type>CARD32</type> ]
-</literallayout>
-
-<blockquote>
+<section id="Data_Types:OFFSET32">
+  <title><type>OFFSET32</type></title>
+  <indexterm zone="Data_Types:OFFSET32" significance="preferred"><primary>OFFSET32</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry morerows='1'><type>OFFSET32</type>:</entry>
+          <entry>[ <structfield>position</structfield>:</entry><entry><type>CARD32</type>,</entry></row>
+          <row><entry>&emsp;<structfield>length</structfield>:</entry><entry><type>CARD32</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
     <para>
 This structure indicates a position and length within a block of
 data.
     </para>
-</blockquote>
+</section>
 
-<literallayout class="monospaced">
-<type>PROPINFO</type>:     [ offsets:          <type>LISTofPROPOFFSET</type>,
-                data:             <type>LISTofBYTE</type> ]
-</literallayout>
+<section id="Data_Types:PROPINFO">
+  <title><type>PROPINFO</type></title>
+  <indexterm zone="Data_Types:PROPINFO" significance="preferred"><primary>PROPINFO</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry morerows='1'><type>PROPINFO</type>:</entry>
+          <entry>[ <structfield>offsets</structfield>:</entry><entry><type>LISTofPROPOFFSET</type>,</entry></row>
+          <row><entry>&emsp;<structfield>data</structfield>:</entry><entry><type>LISTofBYTE</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<blockquote>
     <para>
 This structure describes the list of properties provided by a
 font.  Strings for all of the properties names and values are
@@ -821,41 +1046,59 @@ offsets and lengths.
     <para>
 This structure is padded to 32-bit alignment.
     </para>
-</blockquote>
 
-<literallayout class="monospaced">
-<type>PROPOFFSET</type>:     [ name:          <type>OFFSET32</type>,
-                 value:          <type>OFFSET32</type>,
-                 type:           <type>CARD8</type>,
-                 zero-pad3:      <type>BYTE</type>, <type>BYTE</type>, <type>BYTE</type> ]
-</literallayout>
+</section>
 
-<blockquote>
+<section id="Data_Types:PROPOFFSET">
+  <title><type>PROPOFFSET</type></title>
+  <indexterm zone="Data_Types:PROPOFFSET" significance="preferred"><primary>PROPOFFSET</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry morerows='3'><type>PROPOFFSET</type>:</entry>
+          <entry>[ <structfield>name</structfield>:</entry><entry><type>OFFSET32</type>,</entry></row>
+          <row><entry>&emsp;<structfield>value</structfield>:</entry><entry><type>OFFSET32</type>,</entry></row>
+          <row><entry>&emsp;<structfield>type</structfield>:</entry><entry><type>CARD8</type>,</entry></row>
+          <row><entry>&emsp;<structfield>zero-pad3</structfield>:</entry><entry><type>BYTE</type>, <type>BYTE</type>, <type>BYTE</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
     <para>
 This structure specifies the position, length, and type of
 of data for a property.
     </para>
     <para>
-The NAME field specifies the position and length (which must be
+The <structfield>NAME</structfield> field specifies the position and length
+(which must be
 greater than zero) of the property name relative to the beginning
 of the <structfield>PROPINFO.DATA</structfield> block for this font.
 The interpretation of
-the position and length of the VALUE field is determined by the
-TYPE field, which contains one of the following alternate values:
-    </para>
-</blockquote>
+the position and length of the <structfield>VALUE</structfield> field is
+determined by the <structfield>TYPE</structfield> field, which contains
+one of the following alternate values:
 
-<literallayout class="monospaced">
-     String          0
-     Unsigned        1
-     Signed          2
-</literallayout>
-
-<blockquote>
-    <para>
+     <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>String</constant></entry><entry><literal>0</literal></entry></row>
+          <row><entry><constant>Unsigned</constant></entry><entry><literal>1</literal></entry></row>
+          <row><entry><constant>Signed</constant></entry><entry><literal>2</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 which have the following meanings:
-    </para>
-    <blockquote>
+<variablelist>
+  <varlistentry>
+    <term><constant>String</constant></term>
+    <listitem>
       <para>
 This property contains a counted string of bytes.  The
 data is stored in the <structfield>PROPINFO.DATA</structfield>
@@ -863,85 +1106,160 @@ block beginning at
 relative byte VALUE.POSITION (beginning with zero), extending
 for VALUE.LENGTH (at least zero) bytes.
       </para>
-    </blockquote>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><constant>Unsigned</constant></term>
+    <listitem>
     <para>
 This property contains a unsigned, 32-bit number stored
 as a <type>CARD32</type> in VALUE.POSITION (VALUE.LENGTH is zero).
     </para>
-    <blockquote>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><constant>Signed</constant></term>
+    <listitem>
       <para>
 This property contains a signed, 32-bit number stored as
 an <type>INT32</type> in VALUE.POSITION (VALUE.LENGTH is zero).
-This structure is zero-padded to 32-bit alignment.
       </para>
-    </blockquote>
-</blockquote>
-
-<para>
-<type>RANGE</type>:     [ min-char, max-char:     <type>CHAR2B</type> ]
+    </listitem>
+  </varlistentry>
+</variablelist>
+This structure is zero-padded to 32-bit alignment.
 </para>
 
-<blockquote>
+</section>
+
+<section id="Data_Types:RANGE">
+  <title><type>RANGE</type></title>
+  <indexterm zone="Data_Types:RANGE" significance="preferred"><primary>RANGE</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>RANGE</type>:</entry>
+          <entry>[ <structfield>min-char</structfield>, <structfield>max-char</structfield>:</entry><entry><type>CHAR2B</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
   <para>
 This structure specifies a range of character codes.  A single
-character is represented by MIN-CHAR equals MAX-CHAR.  If the
-linear interpretation of MAX-CHAR is less than that of MIN-CHAR,
-or if MIN-CHAR is less than the font's
-<structfield>XFONTINFO.CHAR-RANGE.MIN-CHAR</structfield>,
-or if MAX-CHAR is greater than the
+character is represented by <structfield>MIN-CHAR</structfield> equals
+<structfield>MAX-CHAR</structfield>.  If the linear interpretation of
+<structfield>MAX-CHAR</structfield> is less than that of
+<structfield>MIN-CHAR</structfield>, or if
+<structfield>MIN-CHAR</structfield> is less than the font's
+<structfield>XFONTINFO.CHAR-RANGE.MIN-CHAR</structfield>, or if
+<structfield>MAX-CHAR</structfield> is greater than the
 font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>,
 the range is invalid.
   </para>
-</blockquote>
 
-<literallayout class="monospaced">
-<type>RESOLUTION</type>:     [ x-resolution:          <type>CARD16</type>,
-                  y-resolution:          <type>CARD16</type>,
-                  decipoint-size:        <type>CARD16</type> ]
-</literallayout>
+</section>
 
-<blockquote>
+<section id="Data_Types:RESOLUTION">
+  <title><type>RESOLUTION</type></title>
+  <indexterm zone="Data_Types:RESOLUTION" significance="preferred"><primary>RESOLUTION</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry morerows='2'><type>RESOLUTION</type>:</entry>
+          <entry>[ <structfield>x-resolution</structfield>:</entry><entry><type>CARD16</type>,</entry></row>
+          <row><entry>&emsp;<structfield>y-resolution</structfield>:</entry><entry><type>CARD16</type>,</entry></row>
+          <row><entry>&emsp;<structfield>decipoint-size</structfield>:</entry><entry><type>CARD16</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
   <para>
 This structure specifies resolution and point size to be used in
-resolving partially-specified scaled font names.  The X-RESOLUTION
-and Y-RESOLUTION are measured in pixels-per-inch and must be
-greater than zero.  The DECIPOINT-SIZE is the preferred font
+resolving partially-specified scaled font names.  The
+<structfield>X-RESOLUTION</structfield> and
+<structfield>Y-RESOLUTION</structfield> are measured in
+pixels-per-inch and must be greater than zero.
+The <structfield>DECIPOINT-SIZE</structfield> is the preferred font
 size, measured in tenths of a point, and must be greater than zero.
   </para>
-</blockquote>
 
-<para>
-<type>STRING8</type>:          <type>LISTofCARD8</type>
-</para>
+</section>
 
-<blockquote>
+<section id="Data_Types:STRING8">
+  <title><type>STRING8</type></title>
+  <indexterm zone="Data_Types:STRING8" significance="preferred"><primary>STRING8</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>STRING8</type>:</entry><entry>          <type>LISTofCARD8</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
   <para>
 This is a counted list of 1-byte character codes, typically
-encoded in <acronym>ISO</acronym> 8859-1.  A character code "c" is equivalent to a
-<type>CHAR2B</type> structure whose BYTE1 is zero and whose BYTE2 is "c".
+encoded in <acronym>ISO</acronym> 8859-1.  A character code
+<quote><literal>c</literal></quote> is equivalent to a
+<type>CHAR2B</type> structure whose <structfield>BYTE1</structfield>
+is zero and whose <structfield>BYTE2</structfield> is
+<quote><literal>c</literal></quote>.
   </para>
-</blockquote>
 
-<para>
-<type>TIMESTAMP</type>:     <type>CARD32</type>
-</para>
+</section>
 
-<blockquote>
+<section id="Data_Types:TIMESTAMP">
+  <title><type>TIMESTAMP</type></title>
+  <indexterm zone="Data_Types:TIMESTAMP" significance="preferred"><primary>TIMESTAMP</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><type>TIMESTAMP</type>:</entry><entry>     <type>CARD32</type></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+
   <para>
-This is the number of milliseconds that have passed since a server-
-dependent origin.  It is provided in errors and events and is
+This is the number of milliseconds that have passed since a
+server-dependent origin.  It is provided in errors and events and is
 permitted to wrap.
   </para>
-</blockquote>
+</section>
 
-<para>
-<type>XCHARINFO</type>:     [ lbearing, rbearing:     <type>INT16</type>,
-                 width:                  <type>INT16</type>,
-                 ascent, descent:        <type>INT16</type>,
-                 attributes:             <type>CARD16</type> ]
-</para>
+<section id="Data_Types:XCHARINFO">
+  <title><type>XCHARINFO</type></title>
+  <indexterm zone="Data_Types:XCHARINFO" significance="preferred"><primary>XCHARINFO</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry morerows='3'><type>XCHARINFO</type>:</entry>
+          <entry>[ <structfield>lbearing</structfield>, <structfield>rbearing</structfield>:</entry><entry><type>INT16</type>,</entry></row>
+          <row><entry>&emsp;<structfield>width</structfield>:</entry><entry><type>INT16</type>,</entry></row>
+          <row><entry>&emsp;<structfield>ascent</structfield>, <structfield>descent</structfield>:</entry><entry><type>INT16</type>,</entry></row>
+          <row><entry>&emsp;<structfield>attributes</structfield>:</entry><entry><type>CARD16</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-<blockquote>
   <para>
 This structure specifies the ink extents and horizontal escapement
 (also known as the set- or logical width) of an individual
@@ -953,94 +1271,115 @@ baseline falls between two pixels as shown in Figure 3-1 of the
 <xref linkend="References:bdf-spec"/>).
   </para>
   <para>
-The LBEARING field specifies the directed distance measured to the
+The <structfield>LBEARING</structfield> field specifies the
+directed distance measured to the
 right from the origin to the left edge of the left-most inked
 pixel in the glyph.
   </para>
   <para>
-The RBEARING field specifies the directed distance (measured to
+The <structfield>RBEARING</structfield> field specifies the
+directed distance (measured to
 the right) from the origin to the right edge of the right-most
 inked pixel in the glyph.
   </para>
   <para>
-The WIDTH field specifies the directed distance (measured to the
+The <structfield>WIDTH</structfield> field specifies the
+directed distance (measured to the
 right) from the origin to the position where the next character
 should appear (called the <firstterm>escapement point</firstterm>). This
 distance includes any whitespace used for intercharacter padding and is
 also referred to as the <firstterm>logical width</firstterm> or
 <firstterm>horizontal escapement</firstterm>.
+<indexterm zone="Data_Types:XCHARINFO" significance="preferred"><primary>horizontal escapement</primary></indexterm>
   </para>
   <para>
-The ASCENT field specifies the directed distance (measured up)
+The <structfield>ASCENT</structfield> field specifies the
+directed distance (measured up)
 from the baseline to the top edge of the top-most inked pixel
 in the glyph.
   </para>
   <para>
-The DESCENT field specifies the directed distance (measured
+The <structfield>DESCENT</structfield> field specifies the
+directed distance (measured
 down) from the baseline to the bottom edge of the bottom-most
 inked pixel.
   </para>
   <para>
-The ATTRIBUTES field specifies glyph-specific information that
+The <structfield>ATTRIBUTES</structfield> field specifies
+glyph-specific information that
 is passed through the application.  If this value is not being
 used, it should be zero.
   </para>
   <para>
 The ink bounding box of a glyph is defined to be the smallest
 rectangle that encloses all of the inked pixels.  This box has
-a width of RBEARING - LBEARING pixels and a height of
-ASCENT + DESCENT pixels.
+a width of
+<structfield>RBEARING</structfield> &minus; <structfield>LBEARING</structfield>
+pixels and a height of
+<structfield>ASCENT</structfield> + <structfield>DESCENT</structfield> pixels.
   </para>
-</blockquote>
+</section>
 
-<literallayout class="monospaced">
-<type>XFONTINFO</type>:     [ flags:               <type>CARD32</type>,
-                 drawing-direction:   { LeftToRight, RightToLeft }
-                 char-range:          <type>RANGE</type>,
-                 default-char:        <type>CHAR2B</type>,
-                 min-bounds:          <type>XCHARINFO</type>,
-                 max-bounds:          <type>XCHARINFO</type>,
-                 font-ascent:         <type>INT16</type>,
-                 font-descent:        <type>INT16</type>,
-                 properties:          <type>PROPINFO</type> ]
-</literallayout>
-
-<blockquote>
+<section id="Data_Types:XFONTINFO">
+  <title><type>XFONTINFO</type></title>
+  <indexterm zone="Data_Types:XFONTINFO" significance="preferred"><primary>XFONTINFO</primary></indexterm>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='3' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <colspec colname='c3' colwidth='1.0*'/>
+        <tbody>
+          <row><entry morerows='8'><type>XFONTINFO</type>:</entry>
+          <entry>[ <structfield>flags</structfield>:</entry><entry><type>CARD32</type>,</entry></row>
+          <row><entry>&emsp;<structfield>drawing-direction</structfield>:</entry><entry>{ <constant>LeftToRight</constant>, <constant>RightToLeft</constant> }</entry></row>
+          <row><entry>&emsp;<structfield>char-range</structfield>:</entry><entry><type>RANGE</type>,</entry></row>
+          <row><entry>&emsp;<structfield>default-char</structfield>:</entry><entry><type>CHAR2B</type>,</entry></row>
+          <row><entry>&emsp;<structfield>min-bounds</structfield>:</entry><entry><type>XCHARINFO</type>,</entry></row>
+          <row><entry>&emsp;<structfield>max-bounds</structfield>:</entry><entry><type>XCHARINFO</type>,</entry></row>
+          <row><entry>&emsp;<structfield>font-ascent</structfield>:</entry><entry><type>INT16</type>,</entry></row>
+          <row><entry>&emsp;<structfield>font-descent</structfield>:</entry><entry><type>INT16</type>,</entry></row>
+          <row><entry>&emsp;<structfield>properties</structfield>:</entry><entry><type>PROPINFO</type> ]</entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
   <para>
 This structure specifies attributes related to the font as a
 whole.
   </para>
   <para>
-The FLAGS field is a bit mask containing zero or more of the
-following boolean values (unspecified bits must be zero):
-  </para>
+The <structfield>FLAGS</structfield> field is a bit mask containing zero
+or more of the following boolean values (unspecified bits must be zero):
 
-<literallayout class="monospaced">
-     AllCharactersExist     (1 &lt;&lt; 0)
-     InkInside              (1 &lt;&lt; 1)
-     HorizontalOverlap      (1 &lt;&lt; 2)
-</literallayout>
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>AllCharactersExist</constant></entry><entry><literal>(1 &lt;&lt; 0)</literal></entry></row>
+          <row><entry><constant>InkInside</constant></entry><entry><literal>(1 &lt;&lt; 1)</literal></entry></row>
+          <row><entry><constant>HorizontalOverlap</constant></entry><entry><literal>(1 &lt;&lt; 2)</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
 
-    <para>
 which have the following meanings:
-    </para>
+<variablelist>
+  <varlistentry>
+    <term><constant>AllCharactersExist</constant></term>
+    <listitem>
     <para>
-AllCharactersExist
-    </para>
-
-<blockquote>
-    <para>
-If this bit is set, all of the characters
-in the range given by CHAR-RANGE have glyphs encoded in
+If this bit is set, all of the characters in the range given by
+<structfield>CHAR-RANGE</structfield> have glyphs encoded in
 the font.  If this bit is clear, some of the characters
 may not have encoded glyphs.
     </para>
-</blockquote>
-
-<para>
-InkInside
-</para>
-<blockquote>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><constant>InkInside</constant></term>
+    <listitem>
     <para>
 If this bit is set, the inked pixels of each glyph
 fall within the rectangle described by the font's ascent,
@@ -1048,11 +1387,11 @@ descent, origin, and the glyph's escapement point.  If
 this bit is clear, there may be glyphs whose ink extends
 outside this rectangle.
     </para>
-</blockquote>
-<para>
-HorizontalOverlap
-</para>
-<blockquote>
+    </listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><constant>HorizontalOverlap</constant></term>
+    <listitem>
     <para>
 If this bit is set, the two ink bounding
 boxes (smallest rectangle enclosing the inked pixels) of
@@ -1062,50 +1401,66 @@ escapement point of the first) on a common baseline.  If
 this bit is clear, there are no pairs of glyphs whose ink
 bounding boxes overlap.
     </para>
-</blockquote>
-<para>
-The DRAWING-DIRECTION field contains a hint indicating whether
-most of the character metrics have a positive (or "LeftToRight")
-logical width or a negative ("RightToLeft") logical width.  It
-contains the following alternate values:
+    </listitem>
+  </varlistentry>
+</variablelist>
 </para>
-<literallayout class="monospaced">
-         LeftToRight          0
-         RightToLeft          1
-</literallayout>
 <para>
-The CHAR-RANGE.MIN-CHAR and CHAR-RANGE.MAX-CHAR fields specify the
+The <structfield>DRAWING-DIRECTION</structfield> field contains a hint
+indicating whether most of the character metrics have a positive (or
+<quote><constant>LeftToRight</constant></quote>) logical width or a
+negative (<quote><constant>RightToLeft</constant></quote>) logical width.  It
+contains the following alternate values:
+    <informaltable frame='none'>
+      <?dbfo keep-together="always" ?>
+      <tgroup cols='2' align='left' colsep='0' rowsep='0'>
+        <colspec colname='c1' colwidth='1.0*'/>
+        <colspec colname='c2' colwidth='1.0*'/>
+        <tbody>
+          <row><entry><constant>LeftToRight</constant></entry><entry><literal>0</literal></entry></row>
+          <row><entry><constant>RightToLeft</constant></entry><entry><literal>1</literal></entry></row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+</para>
+<para>
+The <structfield>CHAR-RANGE.MIN-CHAR</structfield>
+and <structfield>CHAR-RANGE.MAX-CHAR</structfield> fields specify the
 first and last character codes that have glyphs encoded in this font.
 All fonts must have at least one encoded glyph (in which case the
-MIN-CHAR and MAX-CHAR are equal), but are not required to have glyphs
+<structfield>MIN-CHAR</structfield> and <structfield>MAX-CHAR</structfield>
+are equal), but are not required to have glyphs
 encoded at all positions between the first and last characters.
 </para>
 <para>
-The DEFAULT-CHAR field specifies the character code of the glyph
+The <structfield>DEFAULT-CHAR</structfield> field specifies
+the character code of the glyph
 that the client should substitute for unencoded characters.  Requests
 for extents or bitmaps for an unencoded character generate zero-filled
 metrics and a zero-length glyph bitmap, respectively.
 </para>
 <para>
-The MIN-BOUNDS and MAX-BOUNDS fields contain the minimum and maximum
+The <structfield>MIN-BOUNDS</structfield> and
+<structfield>MAX-BOUNDS</structfield> fields contain the minimum and maximum
 values of each of the extents field of all encoded characters in the
 font (i.e. non-existent characters are ignored).
 </para>
 <para>
-The FONT-ASCENT and FONT-DESCENT fields specify the font designer's
+The <structfield>FONT-ASCENT</structfield> and
+<structfield>FONT-DESCENT</structfield> fields specify the font designer's
 logical height of the font, above and below the baseline,
 respectively.  The sum of the two values is often used as the
 vertical line spacing of the font.  Individual glyphs are permitted
 to have ascents and descents that are greater than these values.
 </para>
 <para>
-The PROPERTIES field contains the property data associated with
-this font.
+The <structfield>PROPERTIES</structfield> field contains the
+property data associated with this font.
 </para>
 <para>
 This structure is padded to 32-bit alignment.
 </para>
-</blockquote>
+</section>
 </section>
 
 <section id='Requests'>
