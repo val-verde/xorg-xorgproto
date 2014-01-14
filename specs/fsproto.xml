@@ -582,9 +582,10 @@ For a glyph with extents <type>XCHARINFO</type> in a font with header
 information <type>XFONTINFO</type>, the <structfield>IMAGE-RECT</structfield>
 values have the following meanings:
 <variablelist>
-  <varlistentry>
+  <varlistentry id="Constant:ImageRectMin">
     <term><constant>ImageRectMin</constant></term>
     <listitem>
+      <indexterm zone="Constant:ImageRectMin" significance="preferred"><primary>ImageRectMin</primary></indexterm>
       <para>
 This refers to the minimal bounding rectangle
 surrounding the inked pixels in the glyph.  This is the
@@ -599,9 +600,10 @@ are:
       </para>
     </listitem>
   </varlistentry>
-  <varlistentry>
+  <varlistentry id="Constant:ImageRectMaxWidth">
     <term><constant>ImageRectMaxWidth</constant></term>
     <listitem>
+      <indexterm zone="Constant:ImageRectMaxWidth" significance="preferred"><primary>ImageRectMaxWidth</primary></indexterm>
       <para>
 This refers to the scanlines between the
 glyph's ascent and descent, padded on the left to the minimum
@@ -622,9 +624,10 @@ bottom:            <structfield>XCHARINFO.DESCENT</structfield>
       </para>
     </listitem>
   </varlistentry>
-  <varlistentry>
+  <varlistentry id="Constant:ImageRectMax">
     <term><constant>ImageRectMax</constant></term>
     <listitem>
+      <indexterm zone="Constant:ImageRectMax" significance="preferred"><primary>ImageRectMax</primary></indexterm>
       <para>
 This refers to all scanlines, from the maximum
 ascent (or the font ascent, whichever is greater) to the
@@ -1096,9 +1099,10 @@ one of the following alternate values:
     </informaltable>
 which have the following meanings:
 <variablelist>
-  <varlistentry>
+  <varlistentry id="Constant:String">
     <term><constant>String</constant></term>
     <listitem>
+      <indexterm zone="Constant:String" significance="preferred"><primary>String</primary></indexterm>
       <para>
 This property contains a counted string of bytes.  The
 data is stored in the <structfield>PROPINFO.DATA</structfield>
@@ -1108,18 +1112,20 @@ for VALUE.LENGTH (at least zero) bytes.
       </para>
     </listitem>
   </varlistentry>
-  <varlistentry>
+  <varlistentry id="Constant:Unsigned">
     <term><constant>Unsigned</constant></term>
     <listitem>
+      <indexterm zone="Constant:Unsigned" significance="preferred"><primary>Unsigned</primary></indexterm>
     <para>
 This property contains a unsigned, 32-bit number stored
 as a <type>CARD32</type> in VALUE.POSITION (VALUE.LENGTH is zero).
     </para>
     </listitem>
   </varlistentry>
-  <varlistentry>
+  <varlistentry id="Constant:Signed">
     <term><constant>Signed</constant></term>
     <listitem>
+      <indexterm zone="Constant:Signed" significance="preferred"><primary>Signed</primary></indexterm>
       <para>
 This property contains a signed, 32-bit number stored as
 an <type>INT32</type> in VALUE.POSITION (VALUE.LENGTH is zero).
@@ -1366,9 +1372,10 @@ or more of the following boolean values (unspecified bits must be zero):
 
 which have the following meanings:
 <variablelist>
-  <varlistentry>
+  <varlistentry id="Constant:AllCharactersExist">
     <term><constant>AllCharactersExist</constant></term>
     <listitem>
+      <indexterm zone="Constant:AllCharactersExist" significance="preferred"><primary>AllCharactersExist</primary></indexterm>
     <para>
 If this bit is set, all of the characters in the range given by
 <structfield>CHAR-RANGE</structfield> have glyphs encoded in
@@ -1377,9 +1384,10 @@ may not have encoded glyphs.
     </para>
     </listitem>
   </varlistentry>
-  <varlistentry>
+  <varlistentry id="Constant:InkInside">
     <term><constant>InkInside</constant></term>
     <listitem>
+      <indexterm zone="Constant:InkInside" significance="preferred"><primary>InkInside</primary></indexterm>
     <para>
 If this bit is set, the inked pixels of each glyph
 fall within the rectangle described by the font's ascent,
@@ -1389,9 +1397,10 @@ outside this rectangle.
     </para>
     </listitem>
   </varlistentry>
-  <varlistentry>
+  <varlistentry id="Constant:HorizontalOverlap">
     <term><constant>HorizontalOverlap</constant></term>
     <listitem>
+      <indexterm zone="Constant:HorizontalOverlap" significance="preferred"><primary>HorizontalOverlap</primary></indexterm>
     <para>
 If this bit is set, the two ink bounding
 boxes (smallest rectangle enclosing the inked pixels) of
@@ -1405,7 +1414,9 @@ bounding boxes overlap.
   </varlistentry>
 </variablelist>
 </para>
-<para>
+<para id="Data_Types:XFONTINFO.DRAWING-DIRECTION">
+  <indexterm zone="Data_Types:XFONTINFO.DRAWING-DIRECTION" significance="preferred"><primary>LeftToRight</primary></indexterm>
+  <indexterm zone="Data_Types:XFONTINFO.DRAWING-DIRECTION" significance="preferred"><primary>RightToLeft</primary></indexterm>
 The <structfield>DRAWING-DIRECTION</structfield> field contains a hint
 indicating whether most of the character metrics have a positive (or
 <quote><constant>LeftToRight</constant></quote>) logical width or a
