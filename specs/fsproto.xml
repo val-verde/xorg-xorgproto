@@ -1499,28 +1499,35 @@ contains the following fields:
     </informaltable>
 </para>
 <para>
-The MAJOR-OPCODE specifies which core request or extension package this packet
-represents.  If the MAJOR-OPCODE corresponds to a core request, the
-MINOR-OPCODE contains 8 bits of request-specific data.  Otherwise, the
-MINOR-OPCODE specifies which extension request this packet represents.  The
-LENGTH field specifies the number of 4-byte units contained within the packet
+
+The <parameter>MAJOR-OPCODE</parameter> specifies which core request or
+extension package this packet represents.  If the
+<parameter>MAJOR-OPCODE</parameter> corresponds to a core request, the
+<parameter>MINOR-OPCODE</parameter> contains 8 bits of request-specific data.
+Otherwise, the <parameter>MINOR-OPCODE</parameter> specifies which extension
+request this packet represents.  The <parameter>LENGTH</parameter> field
+specifies the number of 4-byte units contained within the packet
 and must be at least one.  If this field contains a value greater than one it
-is followed by (LENGTH - 1) * 4 bytes of request-specific data.  Unless
+is followed by (<parameter>LENGTH</parameter> - 1) * 4 bytes
+of request-specific data.  Unless
 otherwise specified, unused bytes are not required to be zero.
 </para>
 <para>
 If a request packet contains too little or too much data, the server returns
-a <link linkend="Errors:Length"><errorname>Length</errorname></link> error.  If the server runs out of internal
+a <link linkend="Errors:Length"><errorname>Length</errorname></link> error.
+If the server runs out of internal
 resources (such as memory) while processing a request, it returns an
-<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link> error.  If a server is
-deficient (and therefore non-compliant) and is unable to process a request, it
-may return an <link linkend="Errors:Implementation"><errorname>Implementation</errorname></link> error.
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link> error.
+If a server is deficient (and therefore non-compliant) and is unable to
+process a request, it may return an
+<link linkend="Errors:Implementation"><errorname>Implementation</errorname></link> error.
 If a client uses an extension request without previously having issued a
 <link linkend="Requests:QueryExtension"><function>QueryExtension</function></link>
 request for that extension, the server responds with a
 <link linkend="Errors:Request"><errorname>Request</errorname></link>
-error.  If the server encounters a request
-with an unknown MAJOR-OPCODE or MINOR-OPCODE, it responds with a
+error.  If the server encounters a request with an unknown
+<parameter>MAJOR-OPCODE</parameter> or <parameter>MINOR-OPCODE</parameter>,
+it responds with a
 <link linkend="Errors:Request"><errorname>Request</errorname></link>
 error.
 At most one error is generated per request.  If more than one error condition
@@ -1528,9 +1535,10 @@ is encountered in processing a requests, the choice of which error is returned
 is server-dependent.
 </para>
 <para>
-Core requests have MAJOR-OPCODE values between 0 and 127, inclusive.  Extension
-requests have MAJOR-OPCODE values between 128 and 255, inclusive, that are
-assigned by by the server.  All MINOR-OPCODE values in extension requests are
+Core requests have <parameter>MAJOR-OPCODE</parameter> values between 0 and
+127, inclusive.  Extension requests have <parameter>MAJOR-OPCODE</parameter>
+values between 128 and 255, inclusive, that are assigned by by the server.
+All <parameter>MINOR-OPCODE</parameter> values in extension requests are
 between 0 and 255, inclusive.
 </para>
 <para>
@@ -1551,15 +1559,17 @@ Each reply is at least 8 bytes long and contains the following fields:
     </informaltable>
 </para>
 <para>
-The TYPE field has a value of zero.  The DATA-OR-UNUSED field may be used to
+The <parameter>TYPE</parameter> field has a value of zero.
+The <parameter>DATA-OR-UNUSED</parameter> field may be used to
 encode one byte of reply-specific data (see
 <link linkend="Encoding::Requests">Section 5.2 on request encoding</link>).
 The least-significant 16 bits of the sequence number of the request that
-generated the reply are stored in the SEQUENCE-NUMBER field.  The LENGTH field
-specifies the number of 4-byte units in this reply packet, including the fields
-described above, and must be at least two.  If LENGTH is greater than two, the
-fields described above are followed by (LENGTH - 2) * 4 bytes of additional
-data.
+generated the reply are stored in the <parameter>SEQUENCE-NUMBER</parameter>
+field.  The <parameter>LENGTH</parameter> field specifies the number of
+4-byte units in this reply packet, including the fields described above,
+and must be at least two.  If <parameter>LENGTH</parameter> is greater
+than two, the fields described above are followed by
+(<parameter>LENGTH</parameter> - 2) * 4 bytes of additional data.
 </para>
 <para>
 Requests that have replies are described using the following syntax:
@@ -1616,7 +1626,8 @@ mutually-understood virtual stream:
       </tgroup>
     </informaltable>
 <para>
-The initial byte of the connection specifies the BYTE-ORDER in
+The initial byte of the connection specifies the
+<parameter>BYTE-ORDER</parameter> in
 which subsequent 16-bit and 32-bit numeric values are to be
 transmitted.  The octal value <literal>102</literal>
 (<acronym>ASCII</acronym> uppercase <quote><literal>B</literal></quote>)
@@ -1628,15 +1639,17 @@ If any other value is encountered the server closes the
 connection without any response.
 </para>
   <para>
-The CLIENT-MAJOR-PROTOCOL-VERSION and
-CLIENT-MINOR-PROTOCOL-VERSION specify which version of the
+The <parameter>CLIENT-MAJOR-PROTOCOL-VERSION</parameter> and
+<parameter>CLIENT-MINOR-PROTOCOL-VERSION</parameter> specify
+which version of the
 font service protocol the client would like to use.  If the
 client can support multiple versions, the highest version
 should be given.  This version of the protocol has a
 major version of 2 and a minor version of 0.
   </para>
   <para>
-The AUTHORIZATION-PROTOCOLS contains a list of protocol names and
+The <parameter>AUTHORIZATION-PROTOCOLS</parameter>
+contains a list of protocol names and
 optional initial data for which the client can provide
 information.  The server may use this to determine which
 protocol to use or as part of the initial exchange of
@@ -1660,8 +1673,9 @@ authorization data.
       </tgroup>
     </informaltable>
   <para>
-The SERVER-MAJOR-PROTOCOL-VERSION and
-SERVER-MINOR-PROTOCOL-VERSION specify the version of the font
+The <parameter>SERVER-MAJOR-PROTOCOL-VERSION</parameter> and
+<parameter>SERVER-MINOR-PROTOCOL-VERSION</parameter> specify
+the version of the font
 service protocol that the server expects from the client.  If
 the server supports the version specified by the client, this
 version number should be returned.  If the client has
@@ -1673,14 +1687,15 @@ It is the client's responsibility to decide whether or not it
 can match this version of the protocol.
   </para>
   <para>
-The ALTERNATE-SERVERS-HINT is a list of other font servers
+The <parameter>ALTERNATE-SERVERS-HINT</parameter>
+is a list of other font servers
 that may have related sets of fonts (determined by means
 outside this protocol, typically by the system administrator).
 Clients may choose to contact these font servers if the
 connection is rejected or lost.
   </para>
   <para>
-The STATUS field indicates whether the server accepted,
+The <parameter>STATUS</parameter> field indicates whether the server accepted,
 rejected, or would like more information about the connection.
 It has one of the following alternate values:
     <informaltable frame='none'>
@@ -1698,27 +1713,31 @@ It has one of the following alternate values:
     </informaltable>
   </para>
   <para>
-If STATUS is <constant>Denied</constant>, the server has rejected the client's
-authorization information.  If STATUS is <constant>Busy</constant>, the server has
+If <parameter>STATUS</parameter> is <constant>Denied</constant>,
+the server has rejected the client's authorization information.
+If <parameter>STATUS</parameter> is <constant>Busy</constant>, the server has
 simply decided that it cannot provide fonts to this client at
 this time (it may be able to at a later time).  In both cases,
-AUTHORIZATION-INDEX is set to zero, no authorization-data is
+<parameter>AUTHORIZATION-INDEX</parameter> is set to zero,
+no authorization-data is
 returned, and the server closes the connection after sending
 the data described so far.
   </para>
   <para>
-Otherwise the AUTHORIZATION-INDEX is set to the index
-(beginning with 1) into the AUTHORIZATION-PROTOCOLS list of
-the protocol that the server will use for this connection.  If
+Otherwise the <parameter>AUTHORIZATION-INDEX</parameter> is set to the index
+(beginning with 1) into the <parameter>AUTHORIZATION-PROTOCOLS</parameter>
+list of the protocol that the server will use for this connection.  If
 the server does not want to use any of the given protocols,
-this value is set to zero.  The AUTHORIZATION-DATA field is
-used to send back authorization protocol-dependent data to the
+this value is set to zero.  The <parameter>AUTHORIZATION-DATA</parameter>
+field is used to send back authorization protocol-dependent data to the
 client (such as a challenge, authentication of the server,
 etc.).
   </para>
 <para>
-If STATUS is <constant>Success</constant>, the following section of protocol
-is omitted.  Otherwise, if STATUS is <constant>Continue</constant>, the server expects
+If <parameter>STATUS</parameter> is <constant>Success</constant>,
+the following section of protocol is omitted.  Otherwise, if
+<parameter>STATUS</parameter> is <constant>Continue</constant>,
+the server expects
 more authorization data from the client (i.e. the connection
 setup is not finished, so no requests or events may be sent):
     <informaltable frame='none'>
@@ -1737,13 +1756,15 @@ setup is not finished, so no requests or events may be sent):
     </informaltable>
 </para>
 <para>
-The values in STATUS have the same meanings as described
+The values in <parameter>STATUS</parameter> have the same meanings as described
 above.  This section of protocol is repeated until the server
-either accepts (sets STATUS to <constant>Success</constant>) or rejects (sets
-STATUS to <constant>Denied</constant> or <constant>Busy</constant>) the connection.
+either accepts (sets <parameter>STATUS</parameter> to
+<constant>Success</constant>) or rejects (sets <parameter>STATUS</parameter>
+to <constant>Denied</constant> or <constant>Busy</constant>) the connection.
 </para>
 <para>
-Once the connection has been accepted and STATUS is <constant>Success</constant>,
+Once the connection has been accepted and <parameter>STATUS</parameter>
+is <constant>Success</constant>,
 an implicit AccessContext is created for the authorization
 data and the protocol continues with the following data sent
 from the server:
@@ -1763,15 +1784,17 @@ from the server:
     </informaltable>
 </para>
 <para>
-The REMAINING-LENGTH specifies the length in 4-byte units of
-the remaining data to be transmitted to the client.  The
-MAXIMUM-REQUEST-LENGTH specifies the largest request size in
-4-byte units that is accepted by the server and must have a
+The <parameter>REMAINING-LENGTH</parameter> specifies the length in 4-byte
+units of the remaining data to be transmitted to the client.  The
+<parameter>MAXIMUM-REQUEST-LENGTH</parameter> specifies the largest request
+size in 4-byte units that is accepted by the server and must have a
 value of at least 4096.  Requests with a length field larger
-than this value are ignored and a <link linkend="Errors:Length"><errorname>Length</errorname></link>
+than this value are ignored and a
+<link linkend="Errors:Length"><errorname>Length</errorname></link>
 error is returned.
-The VENDOR string specifies the name of the manufacturer of
-the font server.  The RELEASE-NUMBER specifies the particular
+The <parameter>VENDOR</parameter> string specifies the name of the
+manufacturer of the font server.  The
+<parameter>RELEASE-NUMBER</parameter> specifies the particular
 release of the server in a manufacturer-dependent manner.
 </para>
 </section>
@@ -1851,24 +1874,27 @@ case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
       </tgroup>
     </informaltable>
   <para>
-This request determines whether or not the extension package
-specified by NAME (encoded in <acronym>ISO</acronym> 8859-1) is supported by the
-server and that there is sufficient number of major opcode,
-event, and error codes available.  If so, then PRESENT is set
-to <constant>True</constant>, MAJOR-VERSION and MINOR-VERSION are set to the
+This request determines whether or not the extension package specified by
+<parameter>NAME</parameter> (encoded in <acronym>ISO</acronym> 8859-1) is
+supported by the server and that there is sufficient number of major opcode,
+event, and error codes available.  If so, then <parameter>PRESENT</parameter>
+is set to <constant>True</constant>, <parameter>MAJOR-VERSION</parameter>
+and <parameter>MINOR-VERSION</parameter> are set to the
 respective major and minor version numbers of the protocol
-that the server would prefer; MAJOR-OPCODE is set to the value
-to use in extension requests; FIRST-EVENT is set to the value
-of the first extension-specific event code or zero if the
-extension does not have any events; NUMBER-EVENTS is set to
-the number of new events that the event defines; FIRST-ERROR
+that the server would prefer; <parameter>MAJOR-OPCODE</parameter> is set to
+the value to use in extension requests; <parameter>FIRST-EVENT</parameter>
+is set to the value of the first extension-specific event code or zero if the
+extension does not have any events; <parameter>NUMBER-EVENTS</parameter> is
+set to the number of new events that the event defines;
+<parameter>FIRST-ERROR</parameter>
 is set to the value of the first extension-specific error code
 or zero if the extension does not define any new errors; and
-NUMBER-ERRORS is set to the number of new errors the extension
-defines.
+<parameter>NUMBER-ERRORS</parameter> is set to the number of
+new errors the extension defines.
   </para>
   <para>
-Otherwise, PRESENT is set to <constant>False</constant> and the remaining fields are
+Otherwise, <parameter>PRESENT</parameter> is set to
+<constant>False</constant> and the remaining fields are
 set to zero.
   </para>
   <para>
@@ -1903,20 +1929,22 @@ error is returned.
       </tgroup>
     </informaltable>
     <para>
-This request returns a list of at most MAX-NAMES names
+This request returns a list of at most <parameter>MAX-NAMES</parameter> names
 of collections (called catalogues) of fonts that match
-the specified PATTERN.  In the pattern (which is encoded
+the specified <parameter>PATTERN</parameter>.  In the pattern (which is encoded
 in <acronym>ISO</acronym> 8859-1), the
 <quote><literal>?</literal></quote> character (octal <literal>77</literal>)
 matches any single character; the
 <quote><literal>*</literal></quote> character (octal <literal>52</literal>)
 matches any series of zero or more characters; and alphabetic
 characters match either upper- or lowercase.  The
-returned NAMES are encoded in <acronym>ISO</acronym> 8859-1 and may contain
+returned <parameter>NAMES</parameter> are encoded in
+<acronym>ISO</acronym> 8859-1 and may contain
 mixed character cases.
     </para>
     <para>
-If PATTERN is of zero length or MAX-NAMES is equal to zero,
+If <parameter>PATTERN</parameter> is of zero length or
+<parameter>MAX-NAMES</parameter> is equal to zero,
 one reply containing a zero-length list of names is returned.
 This may be used to synchronize the client with the server.
     </para>
@@ -1932,7 +1960,7 @@ To reduce the amount of buffering needed by the server, the
 list of names may be split across several reply packets, so
 long as the names arrive in the same order that they would
 have appeared had they been in a single packet.  The
-REPLIES-FOLLOWING-HINT field in all but the last reply
+<parameter>REPLIES-FOLLOWING-HINT</parameter> field in all but the last reply
 contains a positive value that specifies the number of
 replies that are likely, but not required, to follow.  In the
 last reply, which may contain zero or more names, this field
@@ -2024,7 +2052,8 @@ returned in mixed case.
     </informaltable>
     <para>
 This request specifies the set of maskable events that the
-extension indicated by EXTENSION-OPCODE (or zero for the core)
+extension indicated by <parameter>EXTENSION-OPCODE</parameter>
+(or zero for the core)
 should generate for the client.  Event masks are limited in
 scope to the extension (or core) for which they are defined,
 so expressing interest in events from one or more extensions
@@ -2038,13 +2067,13 @@ is zero, indicating no interest in any maskable events.
 Some events are not maskable and cannot be blocked.
     </para>
     <para>
-If EXTENSION-OPCODE is not a valid extension opcode previously
-returned by
+If <parameter>EXTENSION-OPCODE</parameter> is not a valid extension
+opcode previously returned by
 <link linkend="Requests:QueryExtension"><function>QueryExtension</function></link>
 or zero, a
 <link linkend="Errors:Request"><errorname>Request</errorname></link>
 error is
-returned.  If EVENT-MASK contains any bits that do not
+returned.  If <parameter>EVENT-MASK</parameter> contains any bits that do not
 correspond to valid events for the specified extension (or
 core), an
 <link linkend="Errors:EventMask"><errorname>EventMask</errorname></link>
@@ -2071,12 +2100,13 @@ ignored.
     </informaltable>
     <para>
 This request returns the set of maskable core events the
-extension indicated by EXTENSION-OPCODE (or the core if zero)
+extension indicated by <parameter>EXTENSION-OPCODE</parameter>
+(or the core if zero)
 should generate for the client.  Non-maskable events are
 always sent to the client.
     </para>
     <para>
-If EXTENSION-OPCODE is not a valid extension opcode
+If <parameter>EXTENSION-OPCODE</parameter> is not a valid extension opcode
 previously returned by
 <link linkend="Requests:QueryExtension"><function>QueryExtension</function></link>
 or zero, a
@@ -2118,27 +2148,30 @@ to determine whether or not the client should be granted
 access to particular font information.
     </para>
     <para>
-If STATUS is <constant>Denied</constant>, the server rejects the client's
-authorization information and does not associate AC with any
-valid
-<type>AccessContext</type>.
-In this case, AUTHORIZATION-INDEX is set
-to zero, and zero bytes of AUTHORIZATION-DATA is returned.
+If <parameter>STATUS</parameter> is <constant>Denied</constant>, the server
+rejects the client's authorization information and does not associate
+<parameter>AC</parameter> with any valid <type>AccessContext</type>.
+In this case, <parameter>AUTHORIZATION-INDEX</parameter> is set
+to zero, and zero bytes of <parameter>AUTHORIZATION-DATA</parameter>
+is returned.
     </para>
     <para>
-Otherwise, AUTHORIZATION-INDEX is set to the index (beginning
-with 1) into the AUTHORIZATION-PROTOCOLS list of the protocol
+Otherwise, <parameter>AUTHORIZATION-INDEX</parameter> is set to the index
+(beginning with 1) into the <parameter>AUTHORIZATION-PROTOCOLS</parameter>
+list of the protocol
 that the server will use for this connection.  If the server
 does not want to use any of the given protocols, this value is
-set to zero.  The AUTHORIZATION-DATA field is used to send
-back authorization protocol-dependent data to the client (such
+set to zero.  The <parameter>AUTHORIZATION-DATA</parameter> field is used
+to send back authorization protocol-dependent data to the client (such
 as a challenge, authentication of the server, etc.).
     </para>
     <para>
-If STATUS is <constant>Continue</constant>, the client is expected to continue
+If <parameter>STATUS</parameter> is <constant>Continue</constant>,
+the client is expected to continue
 the request by sending the following protocol and receiving
 the indicated response from the server.  This continues
-until STATUS is set to either <constant>Success</constant> or <constant>Denied</constant>.
+until <parameter>STATUS</parameter> is set to either
+<constant>Success</constant> or <constant>Denied</constant>.
     </para>
     <informaltable frame='none'>
       <?dbfo keep-together="always" ?>
@@ -2155,11 +2188,11 @@ until STATUS is set to either <constant>Success</constant> or <constant>Denied</
       </tgroup>
     </informaltable>
     <para>
-Once the connection has been accepted and STATUS is <constant>Success</constant>,
-the request is complete.
+Once the connection has been accepted and <parameter>STATUS</parameter>
+is <constant>Success</constant>, the request is complete.
     </para>
     <para>
-If AC is not in the range
+If <parameter>AC</parameter> is not in the range
 [1..2<superscript>29</superscript>-1] or is already associated
 with an access context, an <link linkend="Errors:IDChoice"><errorname>IDChoice</errorname></link> error is returned.
     </para>
@@ -2181,9 +2214,9 @@ with an access context, an <link linkend="Errors:IDChoice"><errorname>IDChoice</
       </tgroup>
     </informaltable>
     <para>
-This request indicates that the specified AC should no longer
-be associated with a valid access context.  If AC is also the
-current
+This request indicates that the specified <parameter>AC</parameter> should
+no longer be associated with a valid access context.
+If <parameter>AC</parameter> is also the current
 <type>AccessContext</type>
 (as set by the
 <link linkend="Requests:SetAuthorization"><function>SetAuthorization</function></link>
@@ -2194,14 +2227,14 @@ restore the
 <type>AccessContext</type>
 established for the initial
 connection setup.  Operations on fonts that were opened under
-AC are not affected.  The client may reuse the value of AC in
-a subsequent
+<parameter>AC</parameter> are not affected.  The client may reuse the
+value of <parameter>AC</parameter> in a subsequent
 <link linkend="Requests:CreateAC"><function>CreateAC</function></link>
 request.
     </para>
     <para>
-If AC isn't associated with any valid authorization previously
-created by
+If <parameter>AC</parameter> isn't associated with any valid authorization
+previously created by
 <link linkend="Requests:CreateAC"><function>CreateAC</function></link>, an
 <link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link>
 error is returned.
@@ -2240,13 +2273,13 @@ of the
 corresponding
 <link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 ).
-An AC of <constant>None</constant> restores the
+An <parameter>AC</parameter> of <constant>None</constant> restores the
 <type>AccessContext</type>
 established for the initial connection setup.
     </para>
     <para>
-If AC is neither <constant>None</constant> nor a value associated with a valid
-<type>AccessContext</type>
+If <parameter>AC</parameter> is neither <constant>None</constant>
+nor a value associated with a valid <type>AccessContext</type>
 previously created by
 <link linkend="Requests:CreateAC"><function>CreateAC</function></link>,
 an
@@ -2335,8 +2368,9 @@ a server-dependent default value is returned.
       </tgroup>
     </informaltable>
     <para>
-This request returns a list of at most MAX-NAMES font names
-that match the specified PATTERN, according to matching rules
+This request returns a list of at most <parameter>MAX-NAMES</parameter>
+font names that match the specified <parameter>PATTERN</parameter>,
+according to matching rules
 of the <olink targetdoc='xlfd' targetptr='xlfd'><citetitle>X Logical
 Font Description Conventions</citetitle></olink>
 <xref linkend="References:xlfd-spec"/>.
@@ -2346,12 +2380,14 @@ matches any single character; the
 <quote><literal>*</literal></quote> character (octal <literal>52</literal>)
 matches any series of zero or more characters; and
 alphabetic characters match either upper- or lowercase.  The
-returned NAMES are encoded in <acronym>ISO</acronym> 8859-1 and may contain mixed
+returned <parameter>NAMES</parameter> are encoded in
+<acronym>ISO</acronym> 8859-1 and may contain mixed
 character cases.  Font names are not required to be in <acronym>XLFD</acronym>
 format.
     </para>
     <para>
-If PATTERN is of zero length or MAX-NAMES is equal to zero,
+If <parameter>PATTERN</parameter> is of zero length or
+<parameter>MAX-NAMES</parameter> is equal to zero,
 one reply containing a zero-length list of names is returned.
 This may be used to synchronize the client with the server.
     </para>
@@ -2367,7 +2403,7 @@ To reduce the amount of buffering needed by the server, the
 list of names may be split across several reply packets, so
 long as the names arrive in the same order that they would
 have appeared had they been in a single packet.  The
-REPLIES-FOLLOWING-HINT field in all but the last reply
+<parameter>REPLIES-FOLLOWING-HINT</parameter> field in all but the last reply
 contains a positive value that specifies the number of
 replies that are likely, but not required, to follow.  In the
 last reply, which may contain zero or more names, this field
@@ -2402,19 +2438,20 @@ This request is similar to
 except that a separate
 reply containing the name, header, and property data is
 generated for each matching font name.  Following these
-replies, if any, a final reply containing a zero-length NAME
-and no INFO is sent.
+replies, if any, a final reply containing a zero-length
+<parameter>NAME</parameter> and no <parameter>INFO</parameter> is sent.
     </para>
     <para>
-The REPLIES-FOLLOWING-HINT field in all but the last reply
-contains a positive value that specifies the number of replies
+The <parameter>REPLIES-FOLLOWING-HINT</parameter> field in all but the
+last reply contains a positive value that specifies the number of replies
 that are likely, but not required, to follow.  In the last
 reply, this field is set to zero.
     </para>
     <para>
-If PATTERN is of zero length or if MAX-NAMES is equal to
-zero, only the final reply containing a zero-length NAME and
-no INFO is returned.  This may be used to synchronize the
+If <parameter>PATTERN</parameter> is of zero length or if
+<parameter>MAX-NAMES</parameter> is equal to zero, only the final reply
+containing a zero-length <parameter>NAME</parameter> and no
+<parameter>INFO</parameter> is returned. This may be used to synchronize the
 client with the server.
     </para>
 </section>
@@ -2447,8 +2484,8 @@ client with the server.
     </informaltable>
     <para>
 This request looks for a server-dependent choice of the
-font names that match the specified PATTERN according to the
-rules described for
+font names that match the specified <parameter>PATTERN</parameter>
+according to the rules described for
 <link linkend="Requests:ListFonts"><function>ListFonts</function></link>.
 If no matches are found, a
 <link linkend="Errors:Name"><errorname>Name</errorname></link>
@@ -2491,22 +2528,28 @@ request.
     <para>
 If the server is willing and able to detect that the client
 has already opened the font successfully (possibly under a
-different name), the OTHERID field may be set to one of the
+different name), the <parameter>OTHERID</parameter> field
+may be set to one of the
 identifiers previously used to open the font.  The
-OTHERID-VALID field indicates whether or not OTHERID is
-still associated with an open font: if it is <constant>True</constant>, the
-client may use OTHERID as an alternative to FONTID.
-Otherwise, if OTHERID-VALID is <constant>False</constant>, OTHERID is no longer
+<parameter>OTHERID-VALID</parameter> field indicates whether or not
+<parameter>OTHERID</parameter> is still associated with an open font:
+if it is <constant>True</constant>, the client may use
+<parameter>OTHERID</parameter> as an alternative to
+<parameter>FONTID</parameter>. Otherwise, if
+<parameter>OTHERID-VALID</parameter> is <constant>False</constant>,
+<parameter>OTHERID</parameter> is no longer
 open but has not been reused by a subsequent
 <function>OpenBitmapFont</function>
 request.
     </para>
     <para>
-If OTHERID is set to <constant>None</constant>, then OTHERID-VALID should be set
+If <parameter>OTHERID</parameter> is set to <constant>None</constant>,
+then <parameter>OTHERID-VALID</parameter> should be set
 to <constant>False</constant>.
     </para>
     <para>
-The FORMAT-MASK indicates which fields in FORMAT-HINT
+The <parameter>FORMAT-MASK</parameter> indicates which fields in
+<parameter>FORMAT-HINT</parameter>
 the client is likely to use in subsequent
 <function>GetXBitmaps8</function>
 and
@@ -2515,14 +2558,16 @@ requests.  Servers may wish to use
 this information to precompute certain values.
     </para>
     <para>
-If CACHABLE is set to <constant>True</constant>, the client may cache the font
+If <parameter>CACHABLE</parameter> is set to <constant>True</constant>,
+the client may cache the font
 (so that redundant opens of the same font may be avoided)
 and use it with all
 <type>AccessContext</type>s
 during the life of the
 client without violating the font's licensing policy.  This
 flag is typically set whenever a font is unlicensed or is
-licensed on a per-display basis.  If CACHABLE is <constant>False</constant>, the
+licensed on a per-display basis.  If <parameter>CACHABLE</parameter>
+is <constant>False</constant>, the
 client should reopen the font for each
 <type>AccessContext</type>.
     </para>
@@ -2540,19 +2585,21 @@ followed by an
 with a non-wildcarded font name.
     </para>
     <para>
-If FONTID is not in the range
+If <parameter>FONTID</parameter> is not in the range
 [1..2<superscript>29</superscript>-1] or if it is already
 associated with an open font, an
 <link linkend="Errors:IDChoice"><errorname>IDChoice</errorname></link>
 error is returned.
-If no font is available that matches the specified PATTERN, a
+If no font is available that matches the specified
+<parameter>PATTERN</parameter>, a
 <link linkend="Errors:Name"><errorname>Name</errorname></link>
 error is returned.  If the font is present but the client
 is not permitted access, an
 <link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link>
 error is returned.
-If FORMAT-MASK has any unspecified bits set or if any of the
-fields in FORMAT-HINT indicated by FORMAT-MASK are invalid, a
+If <parameter>FORMAT-MASK</parameter> has any unspecified bits set or if any
+of the fields in <parameter>FORMAT-HINT</parameter> indicated by
+<parameter>FORMAT-MASK</parameter> are invalid, a
 <link linkend="Errors:Format"><errorname>Format</errorname></link>
 error is returned.
     </para>
@@ -2577,10 +2624,10 @@ error is returned.
     </informaltable>
     <para>
 This request returns the font header and property information
-for the open font associated with FONTID.
+for the open font associated with <parameter>FONTID</parameter>.
     </para>
     <para>
-If FONTID is not associated with any open fonts, a
+If <parameter>FONTID</parameter> is not associated with any open fonts, a
 <link linkend="Errors:Font"><errorname>Font</errorname></link>
 error
 is returned.
@@ -2638,25 +2685,28 @@ uses 1-byte character codes.
     <para>
 This request returns a list of glyph extents from the open
 font associated with FONTID for the series of characters
-specified by RANGE and CHARS.
+specified by <parameter>RANGE</parameter> and <parameter>CHARS</parameter>.
     </para>
     <para>
-If RANGE is <constant>True</constant>, each succeeding pair of elements in CHARS is
+If <parameter>RANGE</parameter> is <constant>True</constant>,
+each succeeding pair of elements in <parameter>CHARS</parameter> is
 treated as a range of characters for which extents should be
-returned.  If CHARS contains an odd number of elements, the
-font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>
+returned.  If <parameter>CHARS</parameter> contains an odd number of elements,
+the font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>
 is implicitly appended to
-the list.  If CHARS contains no elements, the list is
+the list.  If <parameter>CHARS</parameter> contains no elements, the list is
 implicitly replaced with the font's
 <structfield>XFONTINFO.CHAR-RANGE.</structfield>  If
-any of the resulting character ranges are invalid, a <link linkend="Errors:Range"><errorname>Range</errorname></link>
+any of the resulting character ranges are invalid, a
+<link linkend="Errors:Range"><errorname>Range</errorname></link>
 error is returned.  Otherwise, the character ranges are
-concatenated in the order given by CHARS to produce a set of
-character codes for which extents are returned.
+concatenated in the order given by <parameter>CHARS</parameter> to produce
+a set of character codes for which extents are returned.
     </para>
     <para>
-If RANGE is <constant>False</constant>, then CHARS specifies the set of character
-codes for which extents are returned.  If CHARS is of
+If <parameter>RANGE</parameter> is <constant>False</constant>,
+then <parameter>CHARS</parameter> specifies the set of character
+codes for which extents are returned.  If <parameter>CHARS</parameter> is of
 zero length, then a zero-length list of extents is returned.
     </para>
     <para>
@@ -2670,11 +2720,11 @@ A blank, zero-width character can be encoded
 with non-zero but equal left and right bearings.
     </para>
     <para>
-If FONTID is not associated with any open fonts, a
+If <parameter>FONTID</parameter> is not associated with any open fonts, a
 <link linkend="Errors:Font"><errorname>Font</errorname></link>
 error is
-returned.  If RANGE is <constant>True</constant> and CHARS contains any invalid
-ranges, a
+returned.  If <parameter>RANGE</parameter> is <constant>True</constant>
+and <parameter>CHARS</parameter> contains any invalid ranges, a
 <link linkend="Errors:Range"><errorname>Range</errorname></link>
 error is returned.
     </para>
@@ -2737,35 +2787,38 @@ uses 1-byte character codes.
       </tgroup>
     </informaltable>
     <para>
-This request returns a list of glyph bitmaps from the open
-font associated with FONTID for the series of characters
-specified by RANGE and CHARS.
+This request returns a list of glyph bitmaps from the open font associated
+with <parameter>FONTID</parameter> for the series of characters
+specified by <parameter>RANGE</parameter> and <parameter>CHARS</parameter>.
     </para>
     <para>
-If RANGE is <constant>True</constant>, each succeeding pair of elements in CHARS is
+If <parameter>RANGE</parameter> is <constant>True</constant>, each succeeding
+pair of elements in <parameter>CHARS</parameter> is
 treated as a range of characters for which bitmaps should be
-returned.  If CHARS contains an odd number of elements, the
-font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>
+returned.  If <parameter>CHARS</parameter> contains an odd number of elements,
+the font's <structfield>XFONTINFO.CHAR-RANGE.MAX-CHAR</structfield>
 is implicitly appended to
-the list.  If CHARS contains no elements, the list is
+the list.  If <parameter>CHARS</parameter> contains no elements, the list is
 implicitly replaced with the font's
 <structfield>XFONTINFO.CHAR-RANGE.</structfield>  If
 any of the resulting character ranges are invalid, a <link linkend="Errors:Range"><errorname>Range</errorname></link>
 error is returned.  Otherwise, the character ranges are
-concatenated in the order given by CHARS to produce a set of
-character codes for which bitmaps are returned.
+concatenated in the order given by <parameter>CHARS</parameter> to produce
+a set of character codes for which bitmaps are returned.
     </para>
     <para>
-If RANGE is <constant>False</constant>, then CHARS specifies the set of character
-codes for which bitmaps are returned.  If CHARS is of zero
-length, then a single reply containing a zero-length list of
+If <parameter>RANGE</parameter> is <constant>False</constant>,
+then <parameter>CHARS</parameter> specifies the set of character
+codes for which bitmaps are returned.  If <parameter>CHARS</parameter>
+is of zero length, then a single reply containing a zero-length list of
 offsets and bitmaps is returned.
     </para>
     <para>
-If any of the resulting character ranges are invalid, a <link linkend="Errors:Range"><errorname>Range</errorname></link>
+If any of the resulting character ranges are invalid, a
+<link linkend="Errors:Range"><errorname>Range</errorname></link>
 error is returned.  Otherwise, the resulting character ranges
-are concatenated in the order given by CHARS to produce a set
-of character codes for which bitmaps are returned.
+are concatenated in the order given by <parameter>CHARS</parameter>
+to produce a set of character codes for which bitmaps are returned.
     </para>
     <para>
 The server is free to return the glyph bitmaps in multiple
@@ -2801,8 +2854,8 @@ transmitted first and the right-most is transmitted last.
     </para>
     <para>
 The individual images within a subset are then concatenated in
-a server-dependent order to form the BITMAPS data of the
-reply.  If a glyph image is duplicated within a reply, the
+a server-dependent order to form the <parameter>BITMAPS</parameter> data
+of the reply.  If a glyph image is duplicated within a reply, the
 server is free to return fewer (but at least one) copies of
 the image.  If a character is not encoded within the font, a
 zero-length bitmap is substituted for this character.  Each
@@ -2810,25 +2863,30 @@ glyph image must begin at a bit position that is a multiple of
 the FORMAT.SCANLINE-UNIT.
     </para>
     <para>
-The OFFSETS array in a reply contains one entry for each
-character in the subset being returned, in the order that the
+The <parameter>OFFSETS</parameter> array in a reply contains one entry
+for each character in the subset being returned, in the order that the
 characters appear in the subset.  Each entry specifies the
 starting location in bytes and size in bytes of the
-corresponding glyph image in the BITMAPS data of that reply
-(i.e. an offset may not refer to data in another reply).
+corresponding glyph image in the <parameter>BITMAPS</parameter> data of that
+reply (i.e. an offset may not refer to data in another reply).
     </para>
     <para>
-The REPLIES-FOLLOWING-HINT field in all but the last reply
-contains a positive value that specifies the number of replies
+The <parameter>REPLIES-FOLLOWING-HINT</parameter> field in all but the
+last reply contains a positive value that specifies the number of replies
 that are likely, but not required, to follow.  In the last
 reply, which may contain data for zero or more characters,
 this field is set to zero.
     </para>
     <para>
-If FONTID is not associated with any open fonts, a <link linkend="Errors:Font"><errorname>Font</errorname></link>
-error is returned.  If RANGE is <constant>True</constant> and CHARS contains any invalid
-ranges, a <link linkend="Errors:Range"><errorname>Range</errorname></link> error is returned.
-If FORMAT is invalid, a <link linkend="Errors:Format"><errorname>Format</errorname></link> error is returned.
+If <parameter>FONTID</parameter> is not associated with any open fonts,
+a <link linkend="Errors:Font"><errorname>Font</errorname></link>
+error is returned.  If <parameter>RANGE</parameter> is
+<constant>True</constant> and <parameter>CHARS</parameter> contains any
+invalid ranges, a
+<link linkend="Errors:Range"><errorname>Range</errorname></link> error
+is returned.  If <parameter>FORMAT</parameter> is invalid, a
+<link linkend="Errors:Format"><errorname>Format</errorname></link> error
+is returned.
     </para>
 </section>
 
@@ -2847,16 +2905,16 @@ If FORMAT is invalid, a <link linkend="Errors:Format"><errorname>Format</errorna
       </tgroup>
     </informaltable>
     <para>
-This request indicates that the specified FONTID should no
-longer be associated with an open font.  The server is free to
+This request indicates that the specified <parameter>FONTID</parameter>
+should no longer be associated with an open font.  The server is free to
 release any client-specific storage or licenses allocated for
-the font.  The client may reuse the value of FONTID in a
-subsequent
+the font.  The client may reuse the value of <parameter>FONTID</parameter>
+in a subsequent
 <link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 request.
     </para>
     <para>
-If FONTID is not associated with any open fonts, a
+If <parameter>FONTID</parameter> is not associated with any open fonts, a
 <link linkend="Errors:Font"><errorname>Font</errorname></link>
 error is returned.
     </para>
