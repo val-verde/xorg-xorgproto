@@ -330,7 +330,7 @@ of the core X Window System protocol</olink>
     <para>
 <!-- .IP \(bu 5 -->
 Data type names are spelled in upper case with no word separators,
-as in:  <type>FONTID</type>
+as in:  <link linkend="Data_Types:FONTID"><type>FONTID</type></link>
     </para>
   </listitem>
   <listitem>
@@ -403,7 +403,7 @@ The following data types are used in the core X Font Server protocol:
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
-          <row><entry><type>ACCESSCONTEXT</type>:</entry><entry><type>ID</type></entry></row>
+          <row><entry><type>ACCESSCONTEXT</type>:</entry><entry><link linkend="Data_Types:ID"><type>ID</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -426,9 +426,9 @@ users over time (for example, print spoolers).
 <para>
 <type>AccessContext</type>s
 must be created (with
-<function>CreateAC</function>)
+<link linkend="Requests:CreateAC"><function>CreateAC</function></link>)
 and switched among (with
-<function>SetAuthorization</function>)
+<link linkend="Requests:SetAuthorization"><function>SetAuthorization</function></link>)
 to represent all of these <quote>font users</quote> properly.
     </para>
 </section>
@@ -444,8 +444,8 @@ to represent all of these <quote>font users</quote> properly.
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
           <row><entry morerows="1"><type>ALTERNATESERVER</type>:</entry>
-          <entry> [ <structfield>name</structfield>:</entry><entry>  <type>STRING8</type>,</entry></row>
-          <row><entry>&emsp;<structfield>subset</structfield>:</entry><entry>  <type>BOOL</type> ]</entry></row>
+          <entry> [ <structfield>name</structfield>:</entry><entry>  <link linkend="Data_Types:STRING8"><type>STRING8</type></link>,</entry></row>
+          <row><entry>&emsp;<structfield>subset</structfield>:</entry><entry>  <link linkend="Data_Types:BOOL"><type>BOOL</type></link> ]</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -475,8 +475,8 @@ failure.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
-          <row><entry morerows="1"><type>AUTH</type>:</entry><entry>[ <structfield>name</structfield>:</entry><entry><type>STRING8</type>,</entry></row>
-          <row><entry>&emsp;<structfield>data</structfield>:</entry><entry><type>LISTofBYTE</type> ]</entry></row>
+          <row><entry morerows="1"><type>AUTH</type>:</entry><entry>[ <structfield>name</structfield>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link>,</entry></row>
+          <row><entry>&emsp;<structfield>data</structfield>:</entry><entry><link linkend="Data_Types:BYTE"><type>LISTofBYTE</type></link> ]</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -541,9 +541,9 @@ request.
 <para>
 This structure specifies how glyph images are transmitted in
 response to
-<function>QueryXBitmaps8</function>
+<link linkend="Requests:QueryXBitmaps8"><function>QueryXBitmaps8</function></link>
 and
-<function>QueryXBitmaps16</function>
+<link linkend="Requests:QueryXBitmaps16"><function>QueryXBitmaps16</function></link>
 requests.
 </para>
 <para>
@@ -578,8 +578,8 @@ glyph image.  It contains one of the following alternate values:
     </informaltable>
 </para>
 <para>
-For a glyph with extents <type>XCHARINFO</type> in a font with header
-information <type>XFONTINFO</type>, the <structfield>IMAGE-RECT</structfield>
+For a glyph with extents <link linkend="Data_Types:XCHARINFO"><type>XCHARINFO</type></link> in a font with header
+information <link linkend="Data_Types:XFONTINFO"><type>XFONTINFO</type></link>, the <structfield>IMAGE-RECT</structfield>
 values have the following meanings:
 <variablelist>
   <varlistentry id="Constant:ImageRectMin">
@@ -694,12 +694,12 @@ alternate values:
     </informaltable>
 </para>
 <para>
-<type>BITMAPFORMAT</type>s are byte-swapped as <type>CARD32</type>s.
+<link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link>s are byte-swapped as <type>CARD32</type>s.
 All unspecified bits must be zero.
 </para>
 <para>
-Use of an invalid <type>BITMAPFORMAT</type> causes a
-<errorname>Format</errorname> error to be returned.
+Use of an invalid <link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link> causes a
+<link linkend="Errors:Format"><errorname>Format</errorname></link> error to be returned.
 </para>
 </section>
 
@@ -718,7 +718,7 @@ Use of an invalid <type>BITMAPFORMAT</type> causes a
       </tgroup>
     </informaltable>
 <para>
-This is a mask of bits representing the fields in a <type>BITMAPFORMAT</type>:
+This is a mask of bits representing the fields in a <link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link>:
     <informaltable frame='none'>
       <?dbfo keep-together="always" ?>
       <tgroup cols='2' align='left' colsep='0' rowsep='0'>
@@ -736,7 +736,7 @@ This is a mask of bits representing the fields in a <type>BITMAPFORMAT</type>:
 </para>
 <para>
 Unspecified bits are required to be zero or else a
-<errorname>Format</errorname> error is returned.
+<link linkend="Errors:Format"><errorname>Format</errorname></link> error is returned.
 </para>
 </section>
 
@@ -868,9 +868,9 @@ bit indicates one or more events, and a bit value of one indicates
 interest in a corresponding set of events.  The following bits are
 defined for event masks specified for the core protocol (i.e. an
 <parameter>EXTENSION-OPCODE</parameter> of zero in
-<function>SetEventMask</function>
+<link linkend="Requests:SetEventMask"><function>SetEventMask</function></link>
 and
-<function>GetEventMask</function>
+<link linkend="Requests:GetEventMask"><function>GetEventMask</function></link>
 requests):
 
     <informaltable frame='none'>
@@ -891,12 +891,12 @@ If
 <constant>CatalogueListChangeMask</constant>
 is set, client is interested in
 receiving
-<function>CatalogueListNotify</function>
+<link linkend="Events:CatalogueListNotify"><function>CatalogueListNotify</function></link>
 events.  If
 <constant>FontListChangeMask</constant>
 is set, the client is interested in
 receiving
-<function>FontListNotify</function>
+<link linkend="Events:FontListNotify"><function>FontListNotify</function></link>
 events.
 </para>
 <para>
@@ -906,14 +906,14 @@ the same bit values as the core or other extensions.
     </para>
     <para>
 All unused bits must be set to zero.  In
-<function>SetEventMask</function>
+<link linkend="Requests:SetEventMask"><function>SetEventMask</function></link>
 requests, if
 any bits are set that are not defined for the extension (or core)
 for which this <type>EVENTMASK</type> is intended (according to the
 <parameter>EXTENSION-OPCODE</parameter> given in the
-<function>SetEventMask</function>
+<link linkend="Requests:SetEventMask"><function>SetEventMask</function></link>
 request), an
-<errorname>EventMask</errorname>
+<link linkend="Errors:EventMask"><errorname>EventMask</errorname></link>
 error is generated.
     </para>
     <para>
@@ -932,14 +932,14 @@ This value is swapped as a <type>CARD32</type>.
         <colspec colname='c2' colwidth='1.0*'/>
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
-          <row><entry><type>FONTID</type>:</entry><entry>     <type>ID</type></entry></row>
+          <row><entry><type>FONTID</type>:</entry><entry>     <link linkend="Data_Types:ID"><type>ID</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
 
 <para>
 This is specified by the client in the request
-<function>OpenBitmapFont</function>
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 as the identifier to be used when referring to a particular open
 font.
 </para>
@@ -968,7 +968,7 @@ at least 1 other bit must be set (yielding a range of 1 through
 It is specified by the client to represent objects in
 the server.  Identifiers are scoped according to their type are
 private to the client; thus, the same identifier may be used for
-both a <type>FONTID</type> and an <type>ACCESSCONTEXT</type>
+both a <link linkend="Data_Types:FONTID"><type>FONTID</type></link> and an <link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link>
 as well as by multiple clients.
 </para>
 <para>
@@ -1034,8 +1034,8 @@ data.
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
           <row><entry morerows='1'><type>PROPINFO</type>:</entry>
-          <entry>[ <structfield>offsets</structfield>:</entry><entry><type>LISTofPROPOFFSET</type>,</entry></row>
-          <row><entry>&emsp;<structfield>data</structfield>:</entry><entry><type>LISTofBYTE</type> ]</entry></row>
+          <entry>[ <structfield>offsets</structfield>:</entry><entry><link linkend="Data_Types:PROPOFFSET"><type>LISTofPROPOFFSET</type></link>,</entry></row>
+          <row><entry>&emsp;<structfield>data</structfield>:</entry><entry><link linkend="Data_Types:BYTE"><type>LISTofBYTE</type></link> ]</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1063,10 +1063,10 @@ This structure is padded to 32-bit alignment.
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
           <row><entry morerows='3'><type>PROPOFFSET</type>:</entry>
-          <entry>[ <structfield>name</structfield>:</entry><entry><type>OFFSET32</type>,</entry></row>
-          <row><entry>&emsp;<structfield>value</structfield>:</entry><entry><type>OFFSET32</type>,</entry></row>
+          <entry>[ <structfield>name</structfield>:</entry><entry><link linkend="Data_Types:OFFSET32"><type>OFFSET32</type></link>,</entry></row>
+          <row><entry>&emsp;<structfield>value</structfield>:</entry><entry><link linkend="Data_Types:OFFSET32"><type>OFFSET32</type></link>,</entry></row>
           <row><entry>&emsp;<structfield>type</structfield>:</entry><entry><type>CARD8</type>,</entry></row>
-          <row><entry>&emsp;<structfield>zero-pad3</structfield>:</entry><entry><type>BYTE</type>, <type>BYTE</type>, <type>BYTE</type> ]</entry></row>
+          <row><entry>&emsp;<structfield>zero-pad3</structfield>:</entry><entry><link linkend="Data_Types:BYTE"><type>BYTE</type></link>, <link linkend="Data_Types:BYTE"><type>BYTE</type></link>, <link linkend="Data_Types:BYTE"><type>BYTE</type></link> ]</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1149,7 +1149,7 @@ This structure is zero-padded to 32-bit alignment.
         <colspec colname='c3' colwidth='1.0*'/>
         <tbody>
           <row><entry><type>RANGE</type>:</entry>
-          <entry>[ <structfield>min-char</structfield>, <structfield>max-char</structfield>:</entry><entry><type>CHAR2B</type> ]</entry></row>
+          <entry>[ <structfield>min-char</structfield>, <structfield>max-char</structfield>:</entry><entry><link linkend="Data_Types:CHAR2B"><type>CHAR2B</type></link> ]</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1218,7 +1218,7 @@ size, measured in tenths of a point, and must be greater than zero.
 This is a counted list of 1-byte character codes, typically
 encoded in <acronym>ISO</acronym> 8859-1.  A character code
 <quote><literal>c</literal></quote> is equivalent to a
-<type>CHAR2B</type> structure whose <structfield>BYTE1</structfield>
+<link linkend="Data_Types:CHAR2B"><type>CHAR2B</type></link> structure whose <structfield>BYTE1</structfield>
 is zero and whose <structfield>BYTE2</structfield> is
 <quote><literal>c</literal></quote>.
   </para>
@@ -1339,13 +1339,13 @@ pixels and a height of
           <row><entry morerows='8'><type>XFONTINFO</type>:</entry>
           <entry>[ <structfield>flags</structfield>:</entry><entry><type>CARD32</type>,</entry></row>
           <row><entry>&emsp;<structfield>drawing-direction</structfield>:</entry><entry>{ <constant>LeftToRight</constant>, <constant>RightToLeft</constant> }</entry></row>
-          <row><entry>&emsp;<structfield>char-range</structfield>:</entry><entry><type>RANGE</type>,</entry></row>
-          <row><entry>&emsp;<structfield>default-char</structfield>:</entry><entry><type>CHAR2B</type>,</entry></row>
-          <row><entry>&emsp;<structfield>min-bounds</structfield>:</entry><entry><type>XCHARINFO</type>,</entry></row>
-          <row><entry>&emsp;<structfield>max-bounds</structfield>:</entry><entry><type>XCHARINFO</type>,</entry></row>
+          <row><entry>&emsp;<structfield>char-range</structfield>:</entry><entry><link linkend="Data_Types:RANGE"><type>RANGE</type></link>,</entry></row>
+          <row><entry>&emsp;<structfield>default-char</structfield>:</entry><entry><link linkend="Data_Types:CHAR2B"><type>CHAR2B</type></link>,</entry></row>
+          <row><entry>&emsp;<structfield>min-bounds</structfield>:</entry><entry><link linkend="Data_Types:XCHARINFO"><type>XCHARINFO</type></link>,</entry></row>
+          <row><entry>&emsp;<structfield>max-bounds</structfield>:</entry><entry><link linkend="Data_Types:XCHARINFO"><type>XCHARINFO</type></link>,</entry></row>
           <row><entry>&emsp;<structfield>font-ascent</structfield>:</entry><entry><type>INT16</type>,</entry></row>
           <row><entry>&emsp;<structfield>font-descent</structfield>:</entry><entry><type>INT16</type>,</entry></row>
-          <row><entry>&emsp;<structfield>properties</structfield>:</entry><entry><type>PROPINFO</type> ]</entry></row>
+          <row><entry>&emsp;<structfield>properties</structfield>:</entry><entry><link linkend="Data_Types:PROPINFO"><type>PROPINFO</type></link> ]</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1521,18 +1521,18 @@ otherwise specified, unused bytes are not required to be zero.
 <para>
 <!-- .LP -->
 If a request packet contains too little or too much data, the server returns
-a <errorname>Length</errorname> error.  If the server runs out of internal
+a <link linkend="Errors:Length"><errorname>Length</errorname></link> error.  If the server runs out of internal
 resources (such as memory) while processing a request, it returns an
-<errorname>Alloc</errorname> error.  If a server is
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link> error.  If a server is
 deficient (and therefore non-compliant) and is unable to process a request, it
-may return an <errorname>Implementation</errorname> error.
+may return an <link linkend="Errors:Implementation"><errorname>Implementation</errorname></link> error.
 If a client uses an extension request without previously having issued a
-<function>QueryExtension</function>
+<link linkend="Requests:QueryExtension"><function>QueryExtension</function></link>
 request for that extension, the server responds with a
-<errorname>Request</errorname>
+<link linkend="Errors:Request"><errorname>Request</errorname></link>
 error.  If the server encounters a request
 with an unknown MAJOR-OPCODE or MINOR-OPCODE, it responds with a
-<errorname>Request</errorname>
+<link linkend="Errors:Request"><errorname>Request</errorname></link>
 error.
 At most one error is generated per request.  If more than one error condition
 is encountered in processing a requests, the choice of which error is returned
@@ -1623,10 +1623,10 @@ mutually-understood virtual stream:
         <colspec colname='c1' colwidth='2.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>byte-order</parameter>:</entry><entry><type>BYTE</type></entry></row>
+          <row><entry><parameter>byte-order</parameter>:</entry><entry><link linkend="Data_Types:BYTE"><type>BYTE</type></link></entry></row>
           <row><entry><parameter>client-major-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>client-minor-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
-          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry><type>LISTofAUTH</type></entry></row>
+          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry><link linkend="Data_Types:AUTH"><type>LISTofAUTH</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1668,9 +1668,9 @@ authorization data.
                                   <constant>Busy</constant>, <constant>Denied</constant> }</entry></row>
           <row><entry><parameter>server-major-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>server-minor-protocol-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
-          <row><entry><parameter>alternate-servers-hint</parameter>:</entry><entry><type>LISTofALTERNATESERVER</type></entry></row>
+          <row><entry><parameter>alternate-servers-hint</parameter>:</entry><entry><link linkend="Data_Types:ALTERNATESERVER"><type>LISTofALTERNATESERVER</type></link></entry></row>
           <row><entry><parameter>authorization-index</parameter>:</entry><entry><type>CARD8</type></entry></row>
-          <row><entry><parameter>authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
+          <row><entry><parameter>authorization-data</parameter>:</entry><entry><link linkend="Data_Types:BYTE"><type>LISTofBYTE</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1744,10 +1744,10 @@ setup is not finished, so no requests or events may be sent):
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>◀</entry></row>
-          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
           <row><entry>▶</entry></row>
           <row><entry><parameter>status</parameter>:</entry><entry>{ <constant>Success</constant>, <constant>Continue</constant>, <constant>Busy</constant>, <constant>Denied</constant> }</entry></row>
-          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
+          <row><entry><parameter>more-authorization-data</parameter>:</entry><entry><link linkend="Data_Types:BYTE"><type>LISTofBYTE</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1774,7 +1774,7 @@ from the server:
           <row><entry><parameter>remaining-length</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row><entry><parameter>maximum-request-length</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>release-number</parameter>:</entry><entry><type>CARD32</type></entry></row>
-          <row><entry><parameter>vendor</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>vendor</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1785,7 +1785,7 @@ the remaining data to be transmitted to the client.  The
 MAXIMUM-REQUEST-LENGTH specifies the largest request size in
 4-byte units that is accepted by the server and must have a
 value of at least 4096.  Requests with a length field larger
-than this value are ignored and a <errorname>Length</errorname>
+than this value are ignored and a <link linkend="Errors:Length"><errorname>Length</errorname></link>
 error is returned.
 The VENDOR string specifies the name of the manufacturer of
 the font server.  The RELEASE-NUMBER specifies the particular
@@ -1808,14 +1808,14 @@ exchanged, the client may issue any of requests described below:
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
 This request does nothing.  It is typically used in response
 to a
-<function>KeepAlive</function>
+<link linkend="Events:KeepAlive"><function>KeepAlive</function></link>
 event.
     </para>
 </section>
@@ -1830,8 +1830,8 @@ event.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>▶</entry></row>
-          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>LISTofSTRING8</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1854,9 +1854,9 @@ case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>name</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>name</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>present</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>present</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
           <row><entry><parameter>major-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>minor-version</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>major-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
@@ -1864,7 +1864,7 @@ case-sensitive and are encoded in <acronym>ISO</acronym> 8859-1.
           <row><entry><parameter>number-events</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row><entry><parameter>first-error</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row rowsep='1'><entry><parameter>number-errors</parameter>:</entry><entry><type>CARD8</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1894,9 +1894,9 @@ The server is free to return different values to different
 clients.  Therefore, clients must use this request before
 issuing any of the requests in the named extension package or
 using the
-<function>SetEventMask</function> request to express interest in any of
+<link linkend="Requests:SetEventMask"><function>SetEventMask</function></link> request to express interest in any of
 this extension's events.  Otherwise, a
-<errorname>Request</errorname>
+<link linkend="Errors:Request"><errorname>Request</errorname></link>
 error is returned.
   </para>
 </section>
@@ -1911,12 +1911,12 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
           <row><entry><parameter>max-names</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row><entry>▶+</entry></row>
           <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
-          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>LISTofSTRING8</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1967,9 +1967,9 @@ is set to zero.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname>,
-<errorname>Name</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>LISTofSTRING8</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link>,
+<link linkend="Errors:Name"><errorname>Name</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -1978,10 +1978,10 @@ This request sets the list of catalogues whose fonts should be
 visible to the client.  The union of the fonts provided by
 each of the named catalogues forms the set of fonts whose
 names match patterns in
-<function>ListFonts</function>,
-<function>ListFontsWithXInfo</function>,
+<link linkend="Requests:ListFonts"><function>ListFonts</function></link>,
+<link linkend="Requests:ListFontsWithXInfo"><function>ListFontsWithXInfo</function></link>,
 and
-<function>OpenBitmapFont</function>
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 requests.  The catalogue names are
 case-insensitive and are encoded in <acronym>ISO</acronym> 8859-1.  A zero-length
 list resets the client's catalogue list to the
@@ -1989,7 +1989,7 @@ server-dependent default.
     </para>
     <para>
 If any of the catalogue names are invalid, a
-<errorname>Name</errorname>
+<link linkend="Errors:Name"><errorname>Name</errorname></link>
 error is returned and the request is ignored.
     </para>
 </section>
@@ -2004,8 +2004,8 @@ error is returned and the request is ignored.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>▶</entry></row>
-          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>LISTofSTRING8</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2014,10 +2014,10 @@ This request returns the current list of catalogue names
 (encoded in <acronym>ISO</acronym> 8859-1) associated with the client.  These
 catalogues determine the set of fonts that are visible
 to
-<function>ListFonts</function>,
-<function>ListFontsWithXInfo</function>,
+<link linkend="Requests:ListFonts"><function>ListFonts</function></link>,
+<link linkend="Requests:ListFontsWithXInfo"><function>ListFontsWithXInfo</function></link>,
 and
-<function>OpenBitmapFont</function>.
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>.
 A zero-length list indicates the server's default set of
 fonts.  Catalogue names are case-insensitive and may be
 returned in mixed case.
@@ -2034,9 +2034,9 @@ returned in mixed case.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry><parameter>extension-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
-          <row rowsep='1'><entry><parameter>event-mask</parameter>:</entry><entry><type>EVENTMASK</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>EventMask</errorname>,
-<errorname>Request</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>event-mask</parameter>:</entry><entry><link linkend="Data_Types:EVENTMASK"><type>EVENTMASK</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:EventMask"><errorname>EventMask</errorname></link>,
+<link linkend="Errors:Request"><errorname>Request</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2058,14 +2058,14 @@ Some events are not maskable and cannot be blocked.
     <para>
 If EXTENSION-OPCODE is not a valid extension opcode previously
 returned by
-<function>QueryExtension</function>
+<link linkend="Requests:QueryExtension"><function>QueryExtension</function></link>
 or zero, a
-<errorname>Request</errorname>
+<link linkend="Errors:Request"><errorname>Request</errorname></link>
 error is
 returned.  If EVENT-MASK contains any bits that do not
 correspond to valid events for the specified extension (or
 core), an
-<errorname>EventMask</errorname>
+<link linkend="Errors:EventMask"><errorname>EventMask</errorname></link>
 error is returned and the request is
 ignored.
     </para>
@@ -2082,8 +2082,8 @@ ignored.
         <tbody>
           <row><entry><parameter>extension-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row><entry>▶</entry></row>
-          <row rowsep='1'><entry><parameter>event-mask</parameter>:</entry><entry><type>EVENTMASK</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Request</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>event-mask</parameter>:</entry><entry><link linkend="Data_Types:EVENTMASK"><type>EVENTMASK</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Request"><errorname>Request</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2096,9 +2096,9 @@ always sent to the client.
     <para>
 If EXTENSION-OPCODE is not a valid extension opcode
 previously returned by
-<function>QueryExtension</function>
+<link linkend="Requests:QueryExtension"><function>QueryExtension</function></link>
 or zero, a
-<errorname>Request</errorname>
+<link linkend="Errors:Request"><errorname>Request</errorname></link>
 error is returned.
     </para>
 </section>
@@ -2112,13 +2112,13 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry></row>
-          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry><type>LISTofAUTH</type></entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry><link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link></entry></row>
+          <row><entry><parameter>authorization-protocols</parameter>:</entry><entry><link linkend="Data_Types:AUTH"><type>LISTofAUTH</type></link></entry></row>
           <row><entry>▶</entry></row>
           <row><entry><parameter>status</parameter>:</entry><entry>{ <constant>Success</constant>, <constant>Continue</constant>, <constant>Denied</constant> }</entry></row>
           <row><entry><parameter>authorization-index</parameter>:</entry><entry><type>CARD8</type></entry></row>
-          <row rowsep='1'><entry><parameter>authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>IDChoice</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>authorization-data</parameter>:</entry><entry><link linkend="Data_Types:BYTE"><type>LISTofBYTE</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:IDChoice"><errorname>IDChoice</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2130,7 +2130,7 @@ server containing the specified authorization data.  When
 this
 <type>AccessContext</type>
 is selected by the client using the
-<function>SetAuthorization</function>
+<link linkend="Requests:SetAuthorization"><function>SetAuthorization</function></link>
 request, the data may be used by the server
 to determine whether or not the client should be granted
 access to particular font information.
@@ -2165,10 +2165,10 @@ until STATUS is set to either <constant>Success</constant> or <constant>Denied</
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>     ◀</entry></row>
-          <row><entry><parameter>     more-authorization-data</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>     more-authorization-data</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
           <row><entry>     ▶</entry></row>
           <row><entry><parameter>status</parameter>:</entry><entry>{ <constant>Success</constant>, <constant>Continue</constant>, <constant>Denied</constant> }</entry></row>
-          <row><entry><parameter>    more-authorization-data</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
+          <row><entry><parameter>    more-authorization-data</parameter>:</entry><entry><link linkend="Data_Types:BYTE"><type>LISTofBYTE</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2179,7 +2179,7 @@ the request is complete.
     <para>
 If AC is not in the range
 [1..2<superscript>29</superscript>-1] or is already associated
-with an access context, an <errorname>IDChoice</errorname> error is returned.
+with an access context, an <link linkend="Errors:IDChoice"><errorname>IDChoice</errorname></link> error is returned.
     </para>
 </section>
 
@@ -2192,9 +2192,9 @@ with an access context, an <errorname>IDChoice</errorname> error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry></row>
-          <row rowsep='1'><entry>Errors:</entry><entry><errorname>AccessContext</errorname>,
-<errorname>Alloc</errorname></entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry><link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link></entry></row>
+          <row rowsep='1'><entry>Errors:</entry><entry><link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link>,
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2204,9 +2204,9 @@ be associated with a valid access context.  If AC is also the
 current
 <type>AccessContext</type>
 (as set by the
-<function>SetAuthorization</function>
+<link linkend="Requests:SetAuthorization"><function>SetAuthorization</function></link>
 request), an implicit
-<function>SetAuthorization</function>
+<link linkend="Requests:SetAuthorization"><function>SetAuthorization</function></link>
 of <constant>None</constant> is done to
 restore the
 <type>AccessContext</type>
@@ -2214,14 +2214,14 @@ established for the initial
 connection setup.  Operations on fonts that were opened under
 AC are not affected.  The client may reuse the value of AC in
 a subsequent
-<function>CreateAC</function>
+<link linkend="Requests:CreateAC"><function>CreateAC</function></link>
 request.
     </para>
     <para>
 If AC isn't associated with any valid authorization previously
 created by
-<function>CreateAC</function>, an
-<errorname>AccessContext</errorname>
+<link linkend="Requests:CreateAC"><function>CreateAC</function></link>, an
+<link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link>
 error is returned.
     </para>
 </section>
@@ -2235,8 +2235,8 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry></row>
-          <row rowsep='1'><entry>Errors:</entry><entry><errorname>AccessContext</errorname></entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry><link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link></entry></row>
+          <row rowsep='1'><entry>Errors:</entry><entry><link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2245,18 +2245,18 @@ This request sets the
 <type>AccessContext</type>
 to be used for subsequent
 requests (except for
-<function>QueryXInfo</function>,
-<function>QueryXExtents8</function>,
-<function>QueryXExtents16</function>,
-<function>QueryXBitmaps8</function>,
-<function>QueryXBitmaps16</function>
+<link linkend="Requests:QueryXInfo"><function>QueryXInfo</function></link>,
+<link linkend="Requests:QueryXExtents8"><function>QueryXExtents8</function></link>,
+<link linkend="Requests:QueryXExtents16"><function>QueryXExtents16</function></link>,
+<link linkend="Requests:QueryXBitmaps8"><function>QueryXBitmaps8</function></link>,
+<link linkend="Requests:QueryXBitmaps16"><function>QueryXBitmaps16</function></link>
 and
-<function>CloseFont</function>
+<link linkend="Requests:CloseFont"><function>CloseFont</function></link>
 which are done under the
 <type>AccessContext</type>
 of the
 corresponding
-<function>OpenBitmapFont</function>
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 ).
 An AC of <constant>None</constant> restores the
 <type>AccessContext</type>
@@ -2266,9 +2266,9 @@ established for the initial connection setup.
 If AC is neither <constant>None</constant> nor a value associated with a valid
 <type>AccessContext</type>
 previously created by
-<function>CreateAC</function>,
+<link linkend="Requests:CreateAC"><function>CreateAC</function></link>,
 an
-<errorname>AccessContext</errorname>
+<link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link>
 error is returned.
     </para>
 </section>
@@ -2282,9 +2282,9 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row rowsep='1'><entry><parameter>resolutions</parameter>:</entry><entry><type>LISTofRESOLUTION</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Resolution</errorname>,
-<errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>resolutions</parameter>:</entry><entry><link linkend="Data_Types:RESOLUTION"><type>LISTofRESOLUTION</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Resolution"><errorname>Resolution</errorname></link>,
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2299,14 +2299,14 @@ instance that is used when a partially-specified scalable
 fontname is opened.
     </para>
     <para>
-If a zero-length list of <type>RESOLUTION</type>s is given, the
+If a zero-length list of <link linkend="Data_Types:RESOLUTION"><type>RESOLUTION</type></link>s is given, the
 server-dependent default value is restored.  Otherwise, if
-elements of all of the specified <type>RESOLUTION</type>s are non-zero, the
+elements of all of the specified <link linkend="Data_Types:RESOLUTION"><type>RESOLUTION</type></link>s are non-zero, the
 default resolutions for this client are changed.
     </para>
     <para>
-If a <type>RESOLUTION</type> entry contains a zero,
-a <errorname>Resolution</errorname> error is
+If a <link linkend="Data_Types:RESOLUTION"><type>RESOLUTION</type></link> entry contains a zero,
+a <link linkend="Errors:Resolution"><errorname>Resolution</errorname></link> error is
 returned and the default resolutions are not changed.
     </para>
 </section>
@@ -2321,15 +2321,15 @@ returned and the default resolutions are not changed.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry>▶</entry></row>
-          <row rowsep='1'><entry><parameter>resolutions</parameter>:</entry><entry><type>LISTofRESOLUTION</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>resolutions</parameter>:</entry><entry><link linkend="Data_Types:RESOLUTION"><type>LISTofRESOLUTION</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
 This request returns the current list of default resolutions.
 If a client has not performed a
-<function>SetResolution</function>,
+<link linkend="Requests:SetResolution"><function>SetResolution</function></link>,
 a server-dependent default value is returned.
     </para>
 </section>
@@ -2343,12 +2343,12 @@ a server-dependent default value is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
           <row><entry><parameter>max-names</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row><entry>▶+</entry></row>
           <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
-          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><type>LISTofSTRING8</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>names</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>LISTofSTRING8</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2402,21 +2402,21 @@ is set to zero.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
-          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
-          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
           <row><entry><parameter>max-names</parameter>:</entry><entry><type>CARD32</type></entry></row>
           <row><entry>▶+</entry></row>
           <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
-          <row><entry><parameter>info</parameter>:</entry><entry><type>XFONTINFO</type></entry></row>
-          <row rowsep='1'><entry><parameter>name</parameter>:</entry><entry><type>STRING8</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Alloc</errorname></entry></row>
+          <row><entry><parameter>info</parameter>:</entry><entry><link linkend="Data_Types:XFONTINFO"><type>XFONTINFO</type></link></entry></row>
+          <row rowsep='1'><entry><parameter>name</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
 This request is similar to
-<function>ListFonts</function>
+<link linkend="Requests:ListFonts"><function>ListFonts</function></link>
 except that a separate
 reply containing the name, header, and property data is
 generated for each matching font name.  Following these
@@ -2446,20 +2446,20 @@ client with the server.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
-          <row><entry><parameter>pattern</parameter>:</entry><entry><type>STRING8</type></entry></row>
-          <row><entry><parameter>format-mask</parameter>:</entry><entry><type>BITMAPFORMATMASK</type></entry></row>
-          <row><entry><parameter>format-hint</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link></entry></row>
+          <row><entry><parameter>pattern</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
+          <row><entry><parameter>format-mask</parameter>:</entry><entry><link linkend="Data_Types:BITMAPFORMATMASK"><type>BITMAPFORMATMASK</type></link></entry></row>
+          <row><entry><parameter>format-hint</parameter>:</entry><entry><link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link></entry></row>
           <row><entry>▶</entry></row>
-          <row><entry><parameter>otherid</parameter>:</entry><entry><type>FONTID</type> or <constant>None</constant></entry></row>
-          <row><entry><parameter>otherid-valid</parameter>:</entry><entry><type>BOOL</type></entry></row>
-          <row rowsep='1'><entry><parameter>cachable</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>otherid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link> or <constant>None</constant></entry></row>
+          <row><entry><parameter>otherid-valid</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
+          <row rowsep='1'><entry><parameter>cachable</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
           <row><entry>Errors:</entry><entry>
-<errorname>IDChoice</errorname>,
-<errorname>Name</errorname>,
-<errorname>Format</errorname>,
-<errorname>AccessContext</errorname>,
-<errorname>Alloc</errorname></entry></row>
+<link linkend="Errors:IDChoice"><errorname>IDChoice</errorname></link>,
+<link linkend="Errors:Name"><errorname>Name</errorname></link>,
+<link linkend="Errors:Format"><errorname>Format</errorname></link>,
+<link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link>,
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2467,9 +2467,9 @@ client with the server.
 This request looks for a server-dependent choice of the
 font names that match the specified PATTERN according to the
 rules described for
-<function>ListFonts</function>.
+<link linkend="Requests:ListFonts"><function>ListFonts</function></link>.
 If no matches are found, a
-<errorname>Name</errorname>
+<link linkend="Errors:Name"><errorname>Name</errorname></link>
 error is returned.  Otherwise, the server attempts to
 open the font associated with the chosen name.
     </para>
@@ -2480,28 +2480,28 @@ may use the client's current
 <type>AccessContext</type>
 (as set by the most
 recent
-<function>SetAuthorization</function>
+<link linkend="Requests:SetAuthorization"><function>SetAuthorization</function></link>
 request or the original connection
 setup) to determine any client-specific sets of permissions.
 After the font has been opened, the client is allowed to
 specify a new
 <type>AccessContext</type>
 with
-<function>SetAuthorization</function>
+<link linkend="Requests:SetAuthorization"><function>SetAuthorization</function></link>
 or release
 the
 <type>AccessContext</type>
 using
-<function>FreeAC</function>
+<link linkend="Requests:FreeAC"><function>FreeAC</function></link>
 .  Subsequent
-<function>QueryXInfo</function>,
-<function>QueryXExtents8</function>,
-<function>QueryXExtents16</function>,
-<function>QueryXBitmaps8</function>,
-<function>QueryXBitmaps16</function>
+<link linkend="Requests:QueryXInfo"><function>QueryXInfo</function></link>,
+<link linkend="Requests:QueryXExtents8"><function>QueryXExtents8</function></link>,
+<link linkend="Requests:QueryXExtents16"><function>QueryXExtents16</function></link>,
+<link linkend="Requests:QueryXBitmaps8"><function>QueryXBitmaps8</function></link>,
+<link linkend="Requests:QueryXBitmaps16"><function>QueryXBitmaps16</function></link>
 and
-<function>CloseFont</function>
-requests on this <type>FONTID</type> are
+<link linkend="Requests:CloseFont"><function>CloseFont</function></link>
+requests on this <link linkend="Data_Types:FONTID"><type>FONTID</type></link> are
 performed according to permissions granted at the time of the
 <function>OpenBitmapFont</function>
 request.
@@ -2547,12 +2547,12 @@ client should reopen the font for each
     <para>
 The server is permitted to add to or remove from the set of
 fonts returned by
-<function>ListFonts</function>
+<link linkend="Requests:ListFonts"><function>ListFonts</function></link>
 between any two requests, though
 mechanisms outside the protocol.  Therefore, it is possible
 for this request (which is atomic) to return a different font
 than would result from separate a
-<function>ListFonts</function>
+<link linkend="Requests:ListFonts"><function>ListFonts</function></link>
 followed by an
 <function>OpenBitmapFont</function>
 with a non-wildcarded font name.
@@ -2561,17 +2561,17 @@ with a non-wildcarded font name.
 If FONTID is not in the range
 [1..2<superscript>29</superscript>-1] or if it is already
 associated with an open font, an
-<errorname>IDChoice</errorname>
+<link linkend="Errors:IDChoice"><errorname>IDChoice</errorname></link>
 error is returned.
 If no font is available that matches the specified PATTERN, a
-<errorname>Name</errorname>
+<link linkend="Errors:Name"><errorname>Name</errorname></link>
 error is returned.  If the font is present but the client
 is not permitted access, an
-<errorname>AccessContext</errorname>
+<link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link>
 error is returned.
 If FORMAT-MASK has any unspecified bits set or if any of the
 fields in FORMAT-HINT indicated by FORMAT-MASK are invalid, a
-<errorname>Format</errorname>
+<link linkend="Errors:Format"><errorname>Format</errorname></link>
 error is returned.
     </para>
 </section>
@@ -2585,11 +2585,11 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link></entry></row>
           <row><entry>▶</entry></row>
-          <row rowsep='1'><entry><parameter>info</parameter>:</entry><entry><type>XFONTINFO</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
-<errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>info</parameter>:</entry><entry><link linkend="Data_Types:XFONTINFO"><type>XFONTINFO</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Font"><errorname>Font</errorname></link>,
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2599,7 +2599,7 @@ for the open font associated with FONTID.
     </para>
     <para>
 If FONTID is not associated with any open fonts, a
-<errorname>Font</errorname>
+<link linkend="Errors:Font"><errorname>Font</errorname></link>
 error
 is returned.
     </para>
@@ -2614,20 +2614,20 @@ is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry><type>BOOL</type></entry></row>
-          <row><entry><parameter>chars</parameter>:</entry><entry><type>STRING8</type></entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link></entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
           <row><entry>▶</entry></row>
-          <row rowsep='1'><entry><parameter>extents</parameter>:</entry><entry><type>LISTofXCHARINFO</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
-<errorname>Range</errorname>,
-<errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>extents</parameter>:</entry><entry><link linkend="Data_Types:XCHARINFO"><type>LISTofXCHARINFO</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Font"><errorname>Font</errorname></link>,
+<link linkend="Errors:Range"><errorname>Range</errorname></link>,
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
 This request is equivalent to
-<function>QueryXExtents16</function>
+<link linkend="Requests:QueryXExtents16"><function>QueryXExtents16</function></link>
 except that it
 uses 1-byte character codes.
     </para>
@@ -2642,14 +2642,14 @@ uses 1-byte character codes.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry><type>BOOL</type></entry></row>
-          <row><entry><parameter>chars</parameter>:</entry><entry><type>LISTofCHAR2B</type></entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link></entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry><link linkend="Data_Types:CHAR2B"><type>LISTofCHAR2B</type></link></entry></row>
           <row><entry>▶</entry></row>
-          <row rowsep='1'><entry><parameter>extents</parameter>:</entry><entry><type>LISTofXCHARINFO</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
-<errorname>Range</errorname>,
-<errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>extents</parameter>:</entry><entry><link linkend="Data_Types:XCHARINFO"><type>LISTofXCHARINFO</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Font"><errorname>Font</errorname></link>,
+<link linkend="Errors:Range"><errorname>Range</errorname></link>,
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2667,7 +2667,7 @@ is implicitly appended to
 the list.  If CHARS contains no elements, the list is
 implicitly replaced with the font's
 <structfield>XFONTINFO.CHAR-RANGE.</structfield>  If
-any of the resulting character ranges are invalid, a <errorname>Range</errorname>
+any of the resulting character ranges are invalid, a <link linkend="Errors:Range"><errorname>Range</errorname></link>
 error is returned.  Otherwise, the character ranges are
 concatenated in the order given by CHARS to produce a set of
 character codes for which extents are returned.
@@ -2689,11 +2689,11 @@ with non-zero but equal left and right bearings.
     </para>
     <para>
 If FONTID is not associated with any open fonts, a
-<errorname>Font</errorname>
+<link linkend="Errors:Font"><errorname>Font</errorname></link>
 error is
 returned.  If RANGE is <constant>True</constant> and CHARS contains any invalid
 ranges, a
-<errorname>Range</errorname>
+<link linkend="Errors:Range"><errorname>Range</errorname></link>
 error is returned.
     </para>
 </section>
@@ -2707,24 +2707,24 @@ error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry><type>BOOL</type></entry></row>
-          <row><entry><parameter>chars</parameter>:</entry><entry><type>STRING8</type></entry></row>
-          <row><entry><parameter>format</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link></entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry><link linkend="Data_Types:STRING8"><type>STRING8</type></link></entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry><link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link></entry></row>
           <row><entry>▶+</entry></row>
           <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
-          <row><entry><parameter>offsets</parameter>:</entry><entry><type>LISTofOFFSET32</type></entry></row>
-          <row><entry><parameter>bitmaps</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
-          <row rowsep='1'><entry>Errors:</entry><entry><errorname>Font</errorname>,
-<errorname>Range</errorname>,
-<errorname>Format</errorname>,
-<errorname>Alloc</errorname></entry></row>
+          <row><entry><parameter>offsets</parameter>:</entry><entry><link linkend="Data_Types:OFFSET32"><type>LISTofOFFSET32</type></link></entry></row>
+          <row><entry><parameter>bitmaps</parameter>:</entry><entry><link linkend="Data_Types:BYTE"><type>LISTofBYTE</type></link></entry></row>
+          <row rowsep='1'><entry>Errors:</entry><entry><link linkend="Errors:Font"><errorname>Font</errorname></link>,
+<link linkend="Errors:Range"><errorname>Range</errorname></link>,
+<link linkend="Errors:Format"><errorname>Format</errorname></link>,
+<link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
 This request is equivalent to
-<function>QueryXBitmaps16</function>
+<link linkend="Requests:QueryXBitmaps16"><function>QueryXBitmaps16</function></link>
 except that it
 uses 1-byte character codes.
     </para>
@@ -2739,18 +2739,18 @@ uses 1-byte character codes.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry><type>BOOL</type></entry></row>
-          <row><entry><parameter>chars</parameter>:</entry><entry><type>LISTofCHAR2B</type></entry></row>
-          <row><entry><parameter>format</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link></entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
+          <row><entry><parameter>chars</parameter>:</entry><entry><link linkend="Data_Types:CHAR2B"><type>LISTofCHAR2B</type></link></entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry><link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link></entry></row>
           <row><entry>▶+</entry></row>
           <row><entry><parameter>replies-following-hint</parameter>:</entry><entry><type>CARD32</type></entry></row>
-          <row><entry><parameter>offsets</parameter>:</entry><entry><type>LISTofOFFSET32</type></entry></row>
-          <row rowsep='1'><entry><parameter>bitmaps</parameter>:</entry><entry><type>LISTofBYTE</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Font</errorname>,
-          <errorname>Range</errorname>,
-          <errorname>Format</errorname>,
-          <errorname>Alloc</errorname></entry></row>
+          <row><entry><parameter>offsets</parameter>:</entry><entry><link linkend="Data_Types:OFFSET32"><type>LISTofOFFSET32</type></link></entry></row>
+          <row rowsep='1'><entry><parameter>bitmaps</parameter>:</entry><entry><link linkend="Data_Types:BYTE"><type>LISTofBYTE</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Font"><errorname>Font</errorname></link>,
+          <link linkend="Errors:Range"><errorname>Range</errorname></link>,
+          <link linkend="Errors:Format"><errorname>Format</errorname></link>,
+          <link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2768,7 +2768,7 @@ is implicitly appended to
 the list.  If CHARS contains no elements, the list is
 implicitly replaced with the font's
 <structfield>XFONTINFO.CHAR-RANGE.</structfield>  If
-any of the resulting character ranges are invalid, a <errorname>Range</errorname>
+any of the resulting character ranges are invalid, a <link linkend="Errors:Range"><errorname>Range</errorname></link>
 error is returned.  Otherwise, the character ranges are
 concatenated in the order given by CHARS to produce a set of
 character codes for which bitmaps are returned.
@@ -2780,7 +2780,7 @@ length, then a single reply containing a zero-length list of
 offsets and bitmaps is returned.
     </para>
     <para>
-If any of the resulting character ranges are invalid, a <errorname>Range</errorname>
+If any of the resulting character ranges are invalid, a <link linkend="Errors:Range"><errorname>Range</errorname></link>
 error is returned.  Otherwise, the resulting character ranges
 are concatenated in the order given by CHARS to produce a set
 of character codes for which bitmaps are returned.
@@ -2843,10 +2843,10 @@ reply, which may contain data for zero or more characters,
 this field is set to zero.
     </para>
     <para>
-If FONTID is not associated with any open fonts, a <errorname>Font</errorname>
+If FONTID is not associated with any open fonts, a <link linkend="Errors:Font"><errorname>Font</errorname></link>
 error is returned.  If RANGE is <constant>True</constant> and CHARS contains any invalid
-ranges, a <errorname>Range</errorname> error is returned.
-If FORMAT is invalid, a <errorname>Format</errorname> error is returned.
+ranges, a <link linkend="Errors:Range"><errorname>Range</errorname></link> error is returned.
+If FORMAT is invalid, a <link linkend="Errors:Format"><errorname>Format</errorname></link> error is returned.
     </para>
 </section>
 
@@ -2859,8 +2859,8 @@ If FORMAT is invalid, a <errorname>Format</errorname> error is returned.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row rowsep='1'><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry></row>
-          <row><entry>Errors:</entry><entry><errorname>Font</errorname>, <errorname>Alloc</errorname></entry></row>
+          <row rowsep='1'><entry><parameter>fontid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link></entry></row>
+          <row><entry>Errors:</entry><entry><link linkend="Errors:Font"><errorname>Font</errorname></link>, <link linkend="Errors:Alloc"><errorname>Alloc</errorname></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -2870,12 +2870,12 @@ longer be associated with an open font.  The server is free to
 release any client-specific storage or licenses allocated for
 the font.  The client may reuse the value of FONTID in a
 subsequent
-<function>OpenBitmapFont</function>
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 request.
     </para>
     <para>
 If FONTID is not associated with any open fonts, a
-<errorname>Font</errorname>
+<link linkend="Errors:Font"><errorname>Font</errorname></link>
 error is returned.
     </para>
 </section>
@@ -2886,7 +2886,7 @@ error is returned.
 
     <para>
 When a connection is closed, a
-<function>CloseFont</function>
+<link linkend="Requests:CloseFont"><function>CloseFont</function></link>
 is done on all fonts
 that are open on the connection.  In addition, the server is
 free to release any storage or licenses allocated on behalf of
@@ -2914,7 +2914,7 @@ All errors are at least 16 bytes long and contain the following fields:
           <row><entry><parameter>error-code</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row><entry><parameter>sequence-number</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>length</parameter>:</entry><entry><type>CARD32</type></entry></row>
-          <row><entry><parameter>timestamp</parameter>:</entry><entry><type>TIMESTAMP</type></entry></row>
+          <row><entry><parameter>timestamp</parameter>:</entry><entry><link linkend="Data_Types:TIMESTAMP"><type>TIMESTAMP</type></link></entry></row>
           <row><entry><parameter>major-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row><entry><parameter>minor-opcode</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry></row>
@@ -2958,7 +2958,7 @@ The following errors are defined for the core protocol:
 This error is generated by any request that has an unknown
 combination of major and minor request numbers, or by any
 extension request that is issued before a
-<function>QueryExtension</function>
+<link linkend="Requests:QueryExtension"><function>QueryExtension</function></link>
 of that extension.
     </para>
 </section>
@@ -2974,16 +2974,16 @@ of that extension.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
-          <row><entry><parameter>format</parameter>:</entry><entry><type>BITMAPFORMAT</type></entry><entry>bad format value</entry></row>
+          <row><entry><parameter>format</parameter>:</entry><entry><link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link></entry><entry>bad format value</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by the use of an invalid <type>BITMAPFORMAT</type>
+This error is generated by the use of an invalid <link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link>
 in the
-<function>OpenBitmapFont</function>,
-<function>QueryXBitmaps8</function>, and
-<function>QueryXBitmaps16</function>
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>,
+<link linkend="Requests:QueryXBitmaps8"><function>QueryXBitmaps8</function></link>, and
+<link linkend="Requests:QueryXBitmaps16"><function>QueryXBitmaps16</function></link>
 requests.
 The value that caused the error is included as extra data.
     </para>
@@ -3000,19 +3000,19 @@ The value that caused the error is included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
-          <row><entry><parameter>fontid</parameter>:</entry><entry><type>FONTID</type></entry><entry>bad font identifier</entry></row>
+          <row><entry><parameter>fontid</parameter>:</entry><entry><link linkend="Data_Types:FONTID"><type>FONTID</type></link></entry><entry>bad font identifier</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by an invalid <type>FONTID</type> in the
-<function>QueryXInfo</function>,
-<function>QueryXExtents8</function>,
-<function>QueryXExtents16</function>,
-<function>QueryXBitmaps8</function>,
-<function>QueryXBitmaps16</function>
+This error is generated by an invalid <link linkend="Data_Types:FONTID"><type>FONTID</type></link> in the
+<link linkend="Requests:QueryXInfo"><function>QueryXInfo</function></link>,
+<link linkend="Requests:QueryXExtents8"><function>QueryXExtents8</function></link>,
+<link linkend="Requests:QueryXExtents16"><function>QueryXExtents16</function></link>,
+<link linkend="Requests:QueryXBitmaps8"><function>QueryXBitmaps8</function></link>,
+<link linkend="Requests:QueryXBitmaps16"><function>QueryXBitmaps16</function></link>
 and
-<function>CloseFont</function>
+<link linkend="Requests:CloseFont"><function>CloseFont</function></link>
 requests.  The value that caused
 the error is included as extra data.
     </para>
@@ -3029,17 +3029,17 @@ the error is included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
-          <row><entry><parameter>range</parameter>:</entry><entry><type>RANGE</type></entry><entry>bad range</entry></row>
+          <row><entry><parameter>range</parameter>:</entry><entry><link linkend="Data_Types:RANGE"><type>RANGE</type></link></entry><entry>bad range</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by an invalid <type>RANGE</type> in the
-<function>QueryXExtents8</function>,
-<function>QueryXExtents16</function>,
-<function>QueryXBitmaps8</function>
+This error is generated by an invalid <link linkend="Data_Types:RANGE"><type>RANGE</type></link> in the
+<link linkend="Requests:QueryXExtents8"><function>QueryXExtents8</function></link>,
+<link linkend="Requests:QueryXExtents16"><function>QueryXExtents16</function></link>,
+<link linkend="Requests:QueryXBitmaps8"><function>QueryXBitmaps8</function></link>
 and
-<function>QueryXBitmaps16</function>
+<link linkend="Requests:QueryXBitmaps16"><function>QueryXBitmaps16</function></link>
 requests.  The
 value that caused the error is included as extra data.
     </para>
@@ -3056,13 +3056,13 @@ value that caused the error is included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
-          <row><entry><parameter>event-mask</parameter>:</entry><entry><type>EVENTMASK</type></entry><entry>bad event mask</entry></row>
+          <row><entry><parameter>event-mask</parameter>:</entry><entry><link linkend="Data_Types:EVENTMASK"><type>EVENTMASK</type></link></entry><entry>bad event mask</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by an invalid <type>EVENTMASK</type> in the
-<function>SetEventMask</function>
+This error is generated by an invalid <link linkend="Data_Types:EVENTMASK"><type>EVENTMASK</type></link> in the
+<link linkend="Requests:SetEventMask"><function>SetEventMask</function></link>
 request.  The value that caused the error is
 included as extra data.
     </para>
@@ -3079,21 +3079,21 @@ included as extra data.
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
-          <row><entry><parameter>ac</parameter>:</entry><entry><type>ACCESSCONTEXT</type></entry><entry>unaccepted <type>AccessContext</type></entry></row>
+          <row><entry><parameter>ac</parameter>:</entry><entry><link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link></entry><entry>unaccepted <type>AccessContext</type></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
-This error is generated by an invalid <type>ACCESSCONTEXT</type> in the
-<function>FreeAC</function>
+This error is generated by an invalid <link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link> in the
+<link linkend="Requests:FreeAC"><function>FreeAC</function></link>
 or
-<function>SetAuthorization</function>
+<link linkend="Requests:SetAuthorization"><function>SetAuthorization</function></link>
 request or by an
-<function>OpenBitmapFont</function>
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 request performed without sufficient authorization.  In the
-first two cases, the <type>ACCESSCONTEXT</type> of the errant request is
+first two cases, the <link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link> of the errant request is
 returned as extra data.  In the third case, the current
-<type>ACCESSCONTEXT</type> is returned as extra data.
+<link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link> is returned as extra data.
     </para>
 </section>
 
@@ -3108,17 +3108,17 @@ returned as extra data.  In the third case, the current
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
           <row><entry><parameter>data-or-unused</parameter>:</entry><entry><type>CARD16</type></entry><entry>unused</entry></row>
-          <row><entry><parameter>id</parameter>:</entry><entry><type>ID</type></entry><entry>bad identifier</entry></row>
+          <row><entry><parameter>id</parameter>:</entry><entry><link linkend="Data_Types:ID"><type>ID</type></link></entry><entry>bad identifier</entry></row>
         </tbody>
       </tgroup>
     </informaltable>
     <para>
 This error is generated by an invalid or already associated
-<type>ACCESSCONTEXT</type> identifier in a
-<function>CreateAC</function>
-request or <type>FONTID</type> identifier
+<link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link> identifier in a
+<link linkend="Requests:CreateAC"><function>CreateAC</function></link>
+request or <link linkend="Data_Types:FONTID"><type>FONTID</type></link> identifier
 in an
-<function>OpenBitmapFont</function>
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 request.  The value that caused the error
 is included as extra data.
     </para>
@@ -3141,9 +3141,9 @@ is included as extra data.
     <para>
 This error is generated by a font name pattern that matches
 no fonts in an
-<function>OpenBitmapFont</function>
+<link linkend="Requests:OpenBitmapFont"><function>OpenBitmapFont</function></link>
 request or no catalogue names in a
-<function>SetCatalogues</function>
+<link linkend="Requests:SetCatalogues"><function>SetCatalogues</function></link>
 request.
     </para>
 </section>
@@ -3165,9 +3165,9 @@ request.
       </tgroup>
     </informaltable>
     <para>
-This error is generated in response to an invalid <type>RESOLUTION</type>
+This error is generated in response to an invalid <link linkend="Data_Types:RESOLUTION"><type>RESOLUTION</type></link>
 structure in a
-<function>SetResolution</function>
+<link linkend="Requests:SetResolution"><function>SetResolution</function></link>
 request.  The value that caused the
 error is included in the DATA-OR-UNUSED field and as extra data.
     </para>
@@ -3265,7 +3265,7 @@ is at least 12 bytes long and contains the following fields:
           <row><entry><parameter>event-code</parameter>:</entry><entry><type>CARD8</type></entry></row>
           <row><entry><parameter>sequence-number</parameter>:</entry><entry><type>CARD16</type></entry></row>
           <row><entry><parameter>length</parameter>:</entry><entry><type>CARD32</type></entry></row>
-          <row><entry><parameter>timestamp</parameter>:</entry><entry><type>TIMESTAMP</type></entry></row>
+          <row><entry><parameter>timestamp</parameter>:</entry><entry><link linkend="Data_Types:TIMESTAMP"><type>TIMESTAMP</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -3277,7 +3277,7 @@ of the event and is in the range 0-127 for core events or the range 128-255 for
 extensions.  The SEQUENCE-NUMBER field specifies the least significant 16 bits
 of the sequence number of the last request to have been processed by the
 server.  The LENGTH field specifies the number of 4-byte units in this event
-packet and must always have a value of at least 3.  The <type>TIMESTAMP</type> field
+packet and must always have a value of at least 3.  The <link linkend="Data_Types:TIMESTAMP"><type>TIMESTAMP</type></link> field
 specifies the server time when the event occurred.  If LENGTH is greater than
 three, these fields are followed by (LENGTH - 3) * 4 bytes of additional data.
 </para>
@@ -3320,7 +3320,7 @@ server to verify that the connection has not been broken
 (for transports that do not provide this information).
 Clients should acknowledge receipt of this request
 by sending any request (such as
-<function>NoOp</function>
+<link linkend="Requests:NoOp"><function>NoOp</function></link>
 ).
     </para>
 </section>
@@ -3334,8 +3334,8 @@ by sending any request (such as
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>added</parameter>:</entry><entry><type>BOOL</type></entry></row>
-          <row><entry><parameter>deleted</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>added</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
+          <row><entry><parameter>deleted</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -3360,8 +3360,8 @@ been removed from the server, otherwise it is <constant>False</constant>.
         <colspec colname='c1' colwidth='1.0*'/>
         <colspec colname='c2' colwidth='1.0*'/>
         <tbody>
-          <row><entry><parameter>added</parameter>:</entry><entry><type>BOOL</type></entry></row>
-          <row><entry><parameter>deleted</parameter>:</entry><entry><type>BOOL</type></entry></row>
+          <row><entry><parameter>added</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
+          <row><entry><parameter>deleted</parameter>:</entry><entry><link linkend="Data_Types:BOOL"><type>BOOL</type></link></entry></row>
         </tbody>
       </tgroup>
     </informaltable>
@@ -3445,7 +3445,7 @@ multiple of four:
 <!-- (SN Data Types -->
 <!-- .XE -->
 <literallayout class="monospaced">
-<type>ACCESSCONTEXT</type>
+<link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link>
 
 4 <type>CARD32</type> access context with at least one of the following bits set:
 
@@ -3456,13 +3456,13 @@ but none of the following bits set:
 #xe0000000               zero
 
 
-<type>ALTERNATESERVER</type>
+<link linkend="Data_Types:ALTERNATESERVER"><type>ALTERNATESERVER</type></link>
 1     <type>BOOL</type>               subset
 1     n                  length of name
 n     <type>STRING8</type>            name
 p                        unused, p=pad(n+2)
 
-<type>AUTH</type>
+<link linkend="Data_Types:AUTH"><type>AUTH</type></link>
 
 2     n                  length of name
 2     d                  length of data
@@ -3472,7 +3472,7 @@ d     <type>STRING8</type>            data
 q                        unused, q=pad(d)
 
 
-<type>BITMAPFORMAT</type>
+<link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link>
 
 4 <type>CARD32</type> value, union of the following bits:
      #x00000001           ByteOrderMSB
@@ -3498,7 +3498,7 @@ and the following of which at most one bit may be set:
      #x0000000c at most one bit can be set
 
 
-<type>BITMAPFORMATMASK</type>
+<link linkend="Data_Types:BITMAPFORMATMASK"><type>BITMAPFORMATMASK</type></link>
 
 4 <type>CARD32</type> value, mask of the following bits:
 
@@ -3512,13 +3512,13 @@ except for the following bits which must be zero:
 
      #xffffffe0           zero
 
-<type>BOOL</type>
+<link linkend="Data_Types:BOOL"><type>BOOL</type></link>
 
 1    <type>BOOL</type>       boolean, one of the following values:
 0    <constant>False</constant>
 1    <constant>True</constant>
 
-<type>BYTE</type>
+<link linkend="Data_Types:BYTE"><type>BYTE</type></link>
 1    <type>BYTE</type>       unsigned byte of data
 
 <type>CARD8</type>
@@ -3530,11 +3530,11 @@ except for the following bits which must be zero:
 <type>CARD32</type>
 4    <type>CARD32</type>      32-bit unsigned integer
 
-<type>CHAR2B</type>
+<link linkend="Data_Types:CHAR2B"><type>CHAR2B</type></link>
 1    <type>CARD8</type>       byte1
 1    <type>CARD8</type>       byte2
 
-<type>EVENTMASK</type>
+<link linkend="Data_Types:EVENTMASK"><type>EVENTMASK</type></link>
 4    <type>CARD32</type> event mask
      for core events, this is union of the following bits:
 
@@ -3547,7 +3547,7 @@ but none of the following bits set:
 
 extensions define their own sets of bits
 
-<type>FONTID</type>
+<link linkend="Data_Types:FONTID"><type>FONTID</type></link>
 
 4 <type>CARD32</type> font identifier with at least one of
 the following bits set:
@@ -3567,17 +3567,17 @@ but none of the following bits set:
 <type>INT32</type>
 4    <type>INT32</type>         32-bit signed integer
 
-<type>OFFSET32</type>
+<link linkend="Data_Types:OFFSET32"><type>OFFSET32</type></link>
 4    <type>CARD32</type>         position (or integer value)
 4    <type>CARD32</type>         length
 
-<type>PROPINFO</type>
+<link linkend="Data_Types:PROPINFO"><type>PROPINFO</type></link>
 4    n                 number of <type>PROPOFFSET</type> components
 4    m                 number of bytes of property data
 20*n <type>PROPOFFSET</type>         property offsets into data block
 m    <type>LISTofBYTE</type>         property data block
 
-<type>PROPOFFSET</type>
+<link linkend="Data_Types:PROPOFFSET"><type>PROPOFFSET</type></link>
 8    <type>OFFSET32</type>         name in data block
 8    <type>OFFSET32</type>         value in data block
 
@@ -3587,11 +3587,11 @@ m    <type>LISTofBYTE</type>         property data block
 2    <constant>Signed</constant>
 3    zero
 
-<type>RANGE</type>
+<link linkend="Data_Types:RANGE"><type>RANGE</type></link>
 2    <type>CHAR2B</type>                 minimum character code
 2    <type>CHAR2B</type>         maximum character code
 
-<type>RESOLUTION</type>
+<link linkend="Data_Types:RESOLUTION"><type>RESOLUTION</type></link>
 2    <type>CARD16</type> x resolution in pixels per inch
 2    <type>CARD16</type> y resolution in pixels per inch
 2    <type>CARD16</type> point size in decipoints
@@ -3600,13 +3600,13 @@ STRNAME
 1    n length of name
 n    <type>STRING8</type> name
 
-<type>STRING8</type>
+<link linkend="Data_Types:STRING8"><type>STRING8</type></link>
 n    <type>LISTofBYTE</type>         array of 8-bit character values
 
-<type>TIMESTAMP</type>
+<link linkend="Data_Types:TIMESTAMP"><type>TIMESTAMP</type></link>
 4    <type>CARD32</type>         milliseconds since server time origin
 
-<type>XCHARINFO</type>
+<link linkend="Data_Types:XCHARINFO"><type>XCHARINFO</type></link>
 2    <type>INT16</type>         left bearing
 2    <type>INT16</type>         right bearing
 2    <type>INT16</type>         width
@@ -3614,7 +3614,7 @@ n    <type>LISTofBYTE</type>         array of 8-bit character values
 2    <type>INT16</type>         descent
 2    <type>CARD16</type>         attributes
 
-<type>XFONTINFO</type>
+<link linkend="Data_Types:XFONTINFO"><type>XFONTINFO</type></link>
 4 <type>CARD32</type> flags, union of the following bits:
      #x00000001         <constant>AllCharactersExist</constant>
      #x00000002         <constant>InkInside</constant>
@@ -4278,7 +4278,7 @@ policies might include, but are not limited to, combinations of the following:
   <listitem>
     <para>
 anyone may access any fonts.  The server neither refuses any connections
-nor generates <errorname>AccessContext</errorname> errors on any
+nor generates <link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link> errors on any
 fonts.  For environments without specially-licensed fonts, this is
 sufficient.
     </para>
@@ -4310,7 +4310,7 @@ and then look in a list of allowed users.
   <listitem>
     <para>
 only a certain number of clients may use a given font at any one time.
-Additional clients would receive <errorname>AccessContext</errorname>
+Additional clients would receive <link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link>
 errors if they attempt to open the font.  This is only effective if
 the initial clients keep the font open for the entire time that it
 is being used (even if all of the data has been transmitted and is
@@ -4326,7 +4326,7 @@ a particular font may only be accessed a limited
 number of times before its license must be renewed.  Each time
 the font is opened, the server decrements a counter.  When the
 counter reaches zero, all further attempts to open the font
-return an <errorname>AccessContext</errorname> error.
+return an <link linkend="Errors:AccessContext"><errorname>AccessContext</errorname></link> error.
     </para>
   </listitem>
   </varlistentry>
