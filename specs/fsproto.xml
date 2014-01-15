@@ -125,7 +125,6 @@ implement a variety of strategies for fine-grained demand-loading of glyphs.
 <!-- (SN Architectural Model -->
 <!-- .XE -->
 <para>
-<!-- .LP -->
 In this document, the words <firstterm>client</firstterm> and
 <firstterm>server</firstterm> refer to the consumer and
 provider of a font, respectively, unless otherwise indicated.  It is important
@@ -160,7 +159,6 @@ as printer drivers).
 </figure>
 
 <para>
-<!-- .LP  -->
 Clients communicate with the font server using the request/reply/event model
 over any mutually-understood virtual stream connection (such as
 <acronym>TCP/IP</acronym>, DECnet,
@@ -175,7 +173,6 @@ of the bitmap-oriented core X Window System protocol.  Extensions are expected
 as new needs evolve.
 </para>
 <para>
-<!-- .LP -->
 A font server reads raw font data from a variety of sources (possibly
 including other font servers) and converts it into a common format that is
 transmitted to the client using the protocol described in
@@ -223,7 +220,6 @@ asynchronous notification of clients by the server.
 </para>
 
 <para>
-<!-- .LP -->
 Clients may provide authorization data for the server to be used in determining
 (according to the server's licensing policy) whether or not access should be
 granted to particular fonts.  This is particularly useful for clients whose
@@ -231,7 +227,6 @@ authorization changes over time (such as an X server that can verify the
 identity of the user).
 </para>
 <para>
-<!-- .LP -->
 Implementations that wish to provide additional requests or events may use the
 extension mechanism.  Adding to the core font service protocol (with the
 accompanying change in the major or minor version numbers) is reserved to the X
@@ -287,7 +282,6 @@ that may be requested.  For example:
 <!-- (SN DECnet Names -->
 <!-- .XE -->
 <para>
-<!-- .LP -->
 The following syntax should be used for DECnet names:
 
 <literallayout class="monospaced">
@@ -318,7 +312,6 @@ requested.  For example:
 <!-- (SN Protocol -->
 <!-- .XE -->
 <para>
-<!-- .LP -->
 The protocol described below uses the request/reply/error model and is
 specified using the same conventions outlined in
 <olink targetdoc='x11protocol' targetptr='Syntactic_Conventions'>Section 2
@@ -379,7 +372,6 @@ brackets, as in:  [ <structfield>byte1</structfield>: <type>CARD8</type>,
 </itemizedlist>
 
 <para>
-<!-- .LP -->
 A type with a prefix <quote>LISTof</quote> represents a counted list of
 elements of that type, as in:  <type>LISTofCARD8</type>
 </para>
@@ -1480,13 +1472,11 @@ This structure is padded to 32-bit alignment.
 <!-- (SN Requests -->
 <!-- .XE -->
 <para>
-<!-- .LP -->
 This section describes the requests that may be sent by the client and the
 replies or errors that are generated in response.  Versions of the protocol
 with the same major version are required to be upward-compatible.
 </para>
 <para>
-<!-- .LP -->
 Every request on a given connection is implicitly assigned a sequence number,
 starting with 1, that is used in replies, error, and events.  Servers are
 required to generate replies and errors in the order in which the corresponding
@@ -1519,7 +1509,6 @@ is followed by (LENGTH - 1) * 4 bytes of request-specific data.  Unless
 otherwise specified, unused bytes are not required to be zero.
 </para>
 <para>
-<!-- .LP -->
 If a request packet contains too little or too much data, the server returns
 a <link linkend="Errors:Length"><errorname>Length</errorname></link> error.  If the server runs out of internal
 resources (such as memory) while processing a request, it returns an
@@ -1539,14 +1528,12 @@ is encountered in processing a requests, the choice of which error is returned
 is server-dependent.
 </para>
 <para>
-<!-- .LP -->
 Core requests have MAJOR-OPCODE values between 0 and 127, inclusive.  Extension
 requests have MAJOR-OPCODE values between 128 and 255, inclusive, that are
 assigned by by the server.  All MINOR-OPCODE values in extension requests are
 between 0 and 255, inclusive.
 </para>
 <para>
-<!-- .LP -->
 Each reply is at least 8 bytes long and contains the following fields:
     <informaltable frame='none'>
       <?dbfo keep-together="always" ?>
@@ -1575,7 +1562,6 @@ fields described above are followed by (LENGTH - 2) * 4 bytes of additional
 data.
 </para>
 <para>
-<!-- .LP -->
 Requests that have replies are described using the following syntax:
   <blockquote><para>
     <emphasis role="bold"><function>RequestName</function></emphasis>
@@ -1609,7 +1595,6 @@ and the CreateAC request, ◀ indicates data sent by the client in response
 to data sent by the server.
 </para>
 <para>
-<!-- .LP -->
 The protocol begins with the establishment of a connection over a
 mutually-understood virtual stream:
 </para>
@@ -1732,7 +1717,6 @@ client (such as a challenge, authentication of the server,
 etc.).
   </para>
 <para>
-<!-- .LP -->
 If STATUS is <constant>Success</constant>, the following section of protocol
 is omitted.  Otherwise, if STATUS is <constant>Continue</constant>, the server expects
 more authorization data from the client (i.e. the connection
@@ -1759,7 +1743,6 @@ either accepts (sets STATUS to <constant>Success</constant>) or rejects (sets
 STATUS to <constant>Denied</constant> or <constant>Busy</constant>) the connection.
 </para>
 <para>
-<!-- .LP -->
 Once the connection has been accepted and STATUS is <constant>Success</constant>,
 an implicit AccessContext is created for the authorization
 data and the protocol continues with the following data sent
@@ -1794,7 +1777,6 @@ release of the server in a manufacturer-dependent manner.
 </section>
 <section><title />
 <para>
-<!-- .LP -->
 After the connection is established and the setup information has been
 exchanged, the client may issue any of requests described below:
 </para>
@@ -2922,7 +2904,6 @@ All errors are at least 16 bytes long and contain the following fields:
       </tgroup>
     </informaltable>
 <para>
-<!-- .LP -->
 The TYPE field has a value of one.  The ERROR-CODE field specifies which error
 occurred.  Core errors codes are in the range 0 through 127, extension error
 codes are in the range 128 through 255.  The SEQUENCE-NUMBER field contains the
@@ -2936,7 +2917,6 @@ LENGTH is greater than four, these fields are followed by (LENGTH - 4) * 4
 bytes of extra data.
 </para>
 <para>
-<!-- .LP -->
 The following errors are defined for the core protocol:
 </para>
 
@@ -3250,7 +3230,6 @@ Additional errors may be defined by extensions.
 <!-- (SN Events -->
 <!-- .XE -->
 <para>
-<!-- .LP -->
 Events may be generated in response to requests or at the server's discretion
 after the initial connection setup information has been exchanged.  Each event
 is at least 12 bytes long and contains the following fields:
@@ -3271,7 +3250,6 @@ is at least 12 bytes long and contains the following fields:
     </informaltable>
 </para>
 <para>
-<!-- .LP -->
 The TYPE field contains the value 2.  The EVENT-CODE field specifies the number
 of the event and is in the range 0-127 for core events or the range 128-255 for
 extensions.  The SEQUENCE-NUMBER field specifies the least significant 16 bits
@@ -3282,7 +3260,6 @@ specifies the server time when the event occurred.  If LENGTH is greater than
 three, these fields are followed by (LENGTH - 3) * 4 bytes of additional data.
 </para>
 <para>
-<!-- .LP -->
 Events are described using the following syntax:
   <blockquote><para>
     <emphasis role="bold"><function>EventName</function></emphasis>
@@ -3307,7 +3284,6 @@ If an event does not provide any extra arguments, the
 lines are omitted from the description.
 </para>
 <para>
-<!-- .LP -->
 The core X Font Service protocol defines the following events:
 </para>
 
@@ -3393,7 +3369,6 @@ Additional events may be defined by extensions.
 <!-- (SN Protocol Encoding -->
 <!-- .XE -->
 <para>
-<!-- .LP -->
 Numbers that are prefixed with <quote><literal>#x</literal></quote>
 are in hexadecimal (base 16).  All other
 numbers are in decimal.  Requests, replies, errors, events, and compound types
@@ -3416,7 +3391,6 @@ field, CONTENTS is the name of the type as given in
 this field contains a constant, and NAME is a description of this field.
 </para>
 <para>
-<!-- .LP -->
 Objects containing counted lists use a lowercase single-letter variable (whose
 scope is limited to the request, reply, event, or error in which it is found)
 to represent the number of objects in the list.  These variables, and any
@@ -3425,7 +3399,6 @@ Multiple copies of an object are indicated by CONTENTS prefix
 <quote>LISTof</quote>.
 </para>
 <para>
-<!-- .LP -->
 Unused bytes (whose value is undefined) will have a blank CONTENTS field and a
 NAME field of <quote>unused</quote>.  Zeroed bytes (whose value must be zero)
 will have a blank CONTENTS field and a NAME field of <quote>zero</quote>.
@@ -4342,7 +4315,6 @@ other font servers) may conflict with certain license policies.
 <appendix id="implementation_suggestions">
 <title>Implementation Suggestions</title>
 <para>
-<!-- .LP -->
 Font server implementations will probably wish to use techniques such as the
 following to avoid limits on the number of simultaneous connections:
 </para>
