@@ -3477,194 +3477,194 @@ multiple of four:
 <!-- .XE -->
 <literallayout class="monospaced">
 <link linkend="Data_Types:ACCESSCONTEXT"><type>ACCESSCONTEXT</type></link>
+4     <type>CARD32</type>                 access context
 
-4 <type>CARD32</type> access context with at least one of the following bits set:
+      with at least one of the following bits set:
 
-#x1fffffff
+        #x1fffffff
 
-but none of the following bits set:
+      but none of the following bits set:
 
-#xe0000000               zero
+        #xe0000000        zero
 
 
 <link linkend="Data_Types:ALTERNATESERVER"><type>ALTERNATESERVER</type></link>
-1     <type>BOOL</type>               subset
-1     n                  length of name
-n     <type>STRING8</type>            name
-p                        unused, p=pad(n+2)
+1     <type>BOOL</type>                   subset
+1     n                      length of name
+n     <type>STRING8</type>                name
+p                            unused, p=pad(n+2)
 
 <link linkend="Data_Types:AUTH"><type>AUTH</type></link>
-
-2     n                  length of name
-2     d                  length of data
-n     <type>STRING8</type>            name
-p                        unused, p=pad(n)
-d     <type>STRING8</type>            data
-q                        unused, q=pad(d)
+2     n                      length of name
+2     d                      length of data
+n     <type>STRING8</type>                name
+p                            unused, p=pad(n)
+d     <type>STRING8</type>                data
+q                            unused, q=pad(d)
 
 
 <link linkend="Data_Types:BITMAPFORMAT"><type>BITMAPFORMAT</type></link>
+4     <type>CARD32</type>                 value, union of the following bits:
 
-4 <type>CARD32</type> value, union of the following bits:
-     #x00000001           ByteOrderMSB
-     #x00000002           BitOrderMSB
-     #x00000000           <constant>ImageRectMin</constant>
-     #x00000004           <constant>ImageRectMaxWidth</constant>
-     #x00000008           <constant>ImageRectMax</constant>
-     #x00000000           <constant>ScanlinePad8</constant>
-     #x00000100           <constant>ScanlinePad16</constant>
-     #x00000200           <constant>ScanlinePad32</constant>
-     #x00000300           <constant>ScanlinePad64</constant>
-     #x00000000           <constant>ScanlineUnit8</constant>
-     #x00001000           <constant>ScanlineUnit16</constant>
-     #x00002000           <constant>ScanlineUnit32</constant>
-     #x00003000           <constant>ScanlineUnit64</constant>
+        #x00000001        ByteOrderMSB
+        #x00000002        BitOrderMSB
+        #x00000000        <constant>ImageRectMin</constant>
+        #x00000004        <constant>ImageRectMaxWidth</constant>
+        #x00000008        <constant>ImageRectMax</constant>
+        #x00000000        <constant>ScanlinePad8</constant>
+        #x00000100        <constant>ScanlinePad16</constant>
+        #x00000200        <constant>ScanlinePad32</constant>
+        #x00000300        <constant>ScanlinePad64</constant>
+        #x00000000        <constant>ScanlineUnit8</constant>
+        #x00001000        <constant>ScanlineUnit16</constant>
+        #x00002000        <constant>ScanlineUnit32</constant>
+        #x00003000        <constant>ScanlineUnit64</constant>
 
-except for the following bits which must be zero:
+      except for the following bits which must be zero:
 
-     #xffffccf0           zero
+        #xffffccf0        zero
 
-and the following of which at most one bit may be set:
+      and the following of which at most one bit may be set:
 
-     #x0000000c at most one bit can be set
+        #x0000000c        at most one bit can be set
 
 
 <link linkend="Data_Types:BITMAPFORMATMASK"><type>BITMAPFORMATMASK</type></link>
+4     <type>CARD32</type>                 value, mask of the following bits:
 
-4 <type>CARD32</type> value, mask of the following bits:
+        #x00000001        <constant>ByteOrderMask</constant>
+        #x00000002        <constant>BitOrderMask</constant>
+        #x00000004        <constant>ImageRectMask</constant>
+        #x00000008        <constant>ScanlinePadMask</constant>
+        #x00000010        <constant>ScanlineUnitMask</constant>
 
-     #x00000001           <constant>ByteOrderMask</constant>
-     #x00000002           <constant>BitOrderMask</constant>
-     #x00000004           <constant>ImageRectMask</constant>
-     #x00000008           <constant>ScanlinePadMask</constant>
-     #x00000010           <constant>ScanlineUnitMask</constant>
+      except for the following bits which must be zero:
 
-except for the following bits which must be zero:
-
-     #xffffffe0           zero
+        #xffffffe0        zero
 
 <link linkend="Data_Types:BOOL"><type>BOOL</type></link>
-
-1    <type>BOOL</type>       boolean, one of the following values:
-0    <constant>False</constant>
-1    <constant>True</constant>
+1     <type>BOOL</type>                   boolean, one of the following values:
+        0                 <constant>False</constant>
+        1                 <constant>True</constant>
 
 <link linkend="Data_Types:BYTE"><type>BYTE</type></link>
-1    <type>BYTE</type>       unsigned byte of data
+1     <type>BYTE</type>                   unsigned byte of data
 
 <type>CARD8</type>
-1    <type>CARD8</type>       8-bit unsigned integer
+1     <type>CARD8</type>                  8-bit unsigned integer
 
 <type>CARD16</type>
-2    <type>CARD16</type>      16-bit unsigned integer
+2     <type>CARD16</type>                 16-bit unsigned integer
 
 <type>CARD32</type>
-4    <type>CARD32</type>      32-bit unsigned integer
+4     <type>CARD32</type>                 32-bit unsigned integer
 
 <link linkend="Data_Types:CHAR2B"><type>CHAR2B</type></link>
-1    <type>CARD8</type>       byte1
-1    <type>CARD8</type>       byte2
+1     <type>CARD8</type>                  byte1
+1     <type>CARD8</type>                  byte2
 
 <link linkend="Data_Types:EVENTMASK"><type>EVENTMASK</type></link>
-4    <type>CARD32</type> event mask
-     for core events, this is union of the following bits:
+4     <type>CARD32</type>                 event mask
 
-     #00000001   <constant>CatalogueListChangeMask</constant>
-     #00000002   <constant>FontListChangeMask</constant>
+      for core events, this is union of the following bits:
 
-but none of the following bits set:
+        #00000001         <constant>CatalogueListChangeMask</constant>
+        #00000002         <constant>FontListChangeMask</constant>
 
-     #fffffffc
+      but none of the following bits set:
 
-extensions define their own sets of bits
+        #fffffffc
+
+      extensions define their own sets of bits
 
 <link linkend="Data_Types:FONTID"><type>FONTID</type></link>
+4     <type>CARD32</type>                 font identifier
 
-4 <type>CARD32</type> font identifier with at least one of
-the following bits set:
+      with at least one of the following bits set:
 
-     #x1fffffff
+        #x1fffffff
 
-but none of the following bits set:
+      but none of the following bits set:
 
-     #xe0000000   zero
+        #xe0000000        zero
 
 <type>INT8</type>
-1    <type>INT8</type>         8-bit signed integer
+1     <type>INT8</type>                   8-bit signed integer
 
 <type>INT16</type>
-2    <type>INT16</type>         16-bit signed integer
+2     <type>INT16</type>                  16-bit signed integer
 
 <type>INT32</type>
-4    <type>INT32</type>         32-bit signed integer
+4     <type>INT32</type>                  32-bit signed integer
 
 <link linkend="Data_Types:OFFSET32"><type>OFFSET32</type></link>
-4    <type>CARD32</type>         position (or integer value)
-4    <type>CARD32</type>         length
+4     <type>CARD32</type>                 position (or integer value)
+4     <type>CARD32</type>                 length
 
 <link linkend="Data_Types:PROPINFO"><type>PROPINFO</type></link>
-4    n                 number of <type>PROPOFFSET</type> components
-4    m                 number of bytes of property data
-20*n <type>PROPOFFSET</type>         property offsets into data block
-m    <type>LISTofBYTE</type>         property data block
+4     n                      number of <type>PROPOFFSET</type> components
+4     m                      number of bytes of property data
+20*n  <type>PROPOFFSET</type>             property offsets into data block
+m     <type>LISTofBYTE</type>             property data block
 
 <link linkend="Data_Types:PROPOFFSET"><type>PROPOFFSET</type></link>
-8    <type>OFFSET32</type>         name in data block
-8    <type>OFFSET32</type>         value in data block
-
-1 <type>CARD8</type> type, one of the following values:
-0    <constant>String</constant>
-1    <constant>Unsigned</constant>
-2    <constant>Signed</constant>
-3    zero
+8     <type>OFFSET32</type>               name in data block
+8     <type>OFFSET32</type>               value in data block
+1     <type>CARD8</type>                  type, one of the following values:
+        0                 <constant>String</constant>
+        1                 <constant>Unsigned</constant>
+        2                 <constant>Signed</constant>
+        3                 zero
 
 <link linkend="Data_Types:RANGE"><type>RANGE</type></link>
-2    <type>CHAR2B</type>                 minimum character code
-2    <type>CHAR2B</type>         maximum character code
+2     <type>CHAR2B</type>                 minimum character code
+2     <type>CHAR2B</type>                 maximum character code
 
 <link linkend="Data_Types:RESOLUTION"><type>RESOLUTION</type></link>
-2    <type>CARD16</type> x resolution in pixels per inch
-2    <type>CARD16</type> y resolution in pixels per inch
-2    <type>CARD16</type> point size in decipoints
+2     <type>CARD16</type>                 x resolution in pixels per inch
+2     <type>CARD16</type>                 y resolution in pixels per inch
+2     <type>CARD16</type>                 point size in decipoints
 
 STRNAME
-1    n length of name
-n    <type>STRING8</type> name
+1     n                      length of name
+n     <type>STRING8</type>                name
 
 <link linkend="Data_Types:STRING8"><type>STRING8</type></link>
-n    <type>LISTofBYTE</type>         array of 8-bit character values
+n     <type>LISTofBYTE</type>             array of 8-bit character values
 
 <link linkend="Data_Types:TIMESTAMP"><type>TIMESTAMP</type></link>
-4    <type>CARD32</type>         milliseconds since server time origin
+4     <type>CARD32</type>                 milliseconds since server time origin
 
 <link linkend="Data_Types:XCHARINFO"><type>XCHARINFO</type></link>
-2    <type>INT16</type>         left bearing
-2    <type>INT16</type>         right bearing
-2    <type>INT16</type>         width
-2    <type>INT16</type>         ascent
-2    <type>INT16</type>         descent
-2    <type>CARD16</type>         attributes
+2     <type>INT16</type>                  left bearing
+2     <type>INT16</type>                  right bearing
+2     <type>INT16</type>                  width
+2     <type>INT16</type>                  ascent
+2     <type>INT16</type>                  descent
+2     <type>CARD16</type>                 attributes
 
 <link linkend="Data_Types:XFONTINFO"><type>XFONTINFO</type></link>
-4 <type>CARD32</type> flags, union of the following bits:
-     #x00000001         <constant>AllCharactersExist</constant>
-     #x00000002         <constant>InkInside</constant>
-     #x00000004         <constant>HorizontalOverlap</constant>
+4     <type>CARD32</type>                 flags, union of the following bits:
 
-but none of the following bits set:
+        #x00000001        <constant>AllCharactersExist</constant>
+        #x00000002        <constant>InkInside</constant>
+        #x00000004        <constant>HorizontalOverlap</constant>
 
-     #xfffffff8         zero
-4    <type>RANGE</type>              range of characters in font
-1    <type>CARD8</type>              drawing direction
-     0             <constant>LeftToRight</constant>
-     1             <constant>RightToLeft</constant>
-1                       unused
-2    <type>CHAR2B</type>             default character
-12   <type>XCHARINFO</type>          minimum bounds
-12   <type>XCHARINFO</type>          maximum bounds
-2    <type>INT16</type>              font ascent
-2    <type>INT16</type>              font descent
-n    <type>PROPINFO</type>           property data
+      but none of the following bits set:
+
+        #xfffffff8        zero
+
+4     <type>RANGE</type>                  range of characters in font
+1     <type>CARD8</type>                  drawing direction
+        0                 <constant>LeftToRight</constant>
+        1                 <constant>RightToLeft</constant>
+1                            unused
+2     <type>CHAR2B</type>                 default character
+12    <type>XCHARINFO</type>              minimum bounds
+12    <type>XCHARINFO</type>              maximum bounds
+2     <type>INT16</type>                  font ascent
+2     <type>INT16</type>                  font descent
+n     <type>PROPINFO</type>               property data
 </literallayout>
 </section>
 
@@ -3673,8 +3673,8 @@ n    <type>PROPINFO</type>           property data
 <para><link linkend="Requests:open_connection"><emphasis role="bold">open connection</emphasis></link></para>
 <literallayout class="monospaced">
 1     <type>BYTE</type>                   byteorder, one of the values:
-      #x42                   MostSignificant Byte first
-      #x6c                   LeastSignificant Byte first
+        #x42              MostSignificant Byte first
+        #x6c              LeastSignificant Byte first
 1     <type>CARD8</type>                  numberof auth in auth-data
 2     2                      client-major-protocol-version
 2     0                      client-minor-protocol-version
@@ -3682,10 +3682,10 @@ n    <type>PROPINFO</type>           property data
 a     <type>LISTofAUTH</type>             auth-data
 ▶
 2     <type>CARD16</type>                 status
-0                            <constant>Success</constant>
-1                            <constant>Continue</constant>
-2                            <constant>Busy</constant>
-3                            <constant>Denied</constant>
+        0                 <constant>Success</constant>
+        1                 <constant>Continue</constant>
+        2                 <constant>Busy</constant>
+        3                 <constant>Denied</constant>
 2     2                      major version
 2     0                      version
 1     <type>CARD8</type>                  numberof alternate-servers-hint
@@ -3714,11 +3714,11 @@ q                            unused, q=pad(d)
 ▶
 4     2+(d+q)/4              length
 2     <type>CARD16</type>                 status
-        0                    <constant>Success</constant>
-      1                      <constant>Continue</constant>
-      2                      <constant>Busy</constant>
-      3                      <constant>Denied</constant>
-      2                      unused
+        0                 <constant>Success</constant>
+        1                 <constant>Continue</constant>
+        2                 <constant>Busy</constant>
+        3                 <constant>Denied</constant>
+2                            unused
 d     <type>LISTofBYTE</type>             more-authorization-data
 q                            unused, q=pad(d)
 </literallayout>
@@ -3845,10 +3845,10 @@ a   <type>LISTofAUTH</type>               authorization-protocols
 2   <type>CARD16</type>                   sequence-number
 4   3+(d+q)/4                length
 2   <type>CARD16</type>                   status
-    0 <constant>Success</constant>
-    1 <constant>Continue</constant>
-    2 <constant>Busy</constant>
-    3 <constant>Denied</constant>
+        0                    <constant>Success</constant>
+        1                    <constant>Continue</constant>
+        2                    <constant>Busy</constant>
+        3                    <constant>Denied</constant>
 2                            unused
 d   <type>LISTofBYTE</type>               authorization-data
 q                            unused, q=pad(d)
@@ -3870,10 +3870,10 @@ q                            unused, q=pad(d)
 ▶
 4   2+(d+q)/4                length
 2   <type>CARD16</type>                   status
-    0 <constant>Success</constant>
-    1 <constant>Continue</constant>
-    2 <constant>Busy</constant>
-    3 <constant>Denied</constant>
+        0                    <constant>Success</constant>
+        1                    <constant>Continue</constant>
+        2                    <constant>Busy</constant>
+        3                    <constant>Denied</constant>
 2                            unused
 d   <type>LISTofBYTE</type>               authorization-data
 q                            unused, q=pad(d)
@@ -4099,7 +4099,7 @@ p                            unused, p=pad(m)
 1   <type>CARD8</type>                    major-opcode
 1   <type>CARD8</type>                    minor-opcode
 2                            unused
-4   <type>FONTID</type> bad-fontid
+4   <type>FONTID</type>                   bad-fontid
 
 <link linkend="Errors:Range"><emphasis role="bold"><errorname>Range</errorname></emphasis></link>
 1   1                        type error
