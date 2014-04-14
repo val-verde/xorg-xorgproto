@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([FontsProto], [2.1.2],
+AC_INIT([FontsProto], [2.1.3],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 
