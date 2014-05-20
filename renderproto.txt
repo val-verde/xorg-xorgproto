@@ -519,9 +519,10 @@ QueryPictFormats
 
 	->
 
-	fallback:	PICTFORMAT
 	formats:	LISTofPICTFORMINFO
 	screens:	LISTofPICTSCREEN
+	ndepths:	CARD32
+	nvisuals:	CARD32
 	subpixels:	LISTofSUBPIXEL
 
 	Errors:
@@ -532,8 +533,8 @@ QueryPictFormats
 	Every PictFormat must match a supported depth, but not every
 	PictFormat need have a matching visual.
 
-	The fallback format is used as an intermediate representation
-	in cases where there is no ideal choice.
+	The total number of PICTDEPTH and PICTVISUAL objects is this reply
+	is given in 'ndepths' and 'nvisuals'.
 
 	The relationship between the red, green and blue elements making
 	up each pixel indexed by screen is returned in subpixels.
