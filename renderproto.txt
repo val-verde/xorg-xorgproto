@@ -567,7 +567,13 @@ QueryFilters
 	filters:	LISTofSTRING8
 	aliases:	LISTofCARD16
 
-	
+	This request gets the names of available filters that can be used on the
+	given drawable. Filters are applied using a SetPictureFilter request.
+
+	'aliases' contains a value for each filter name which is the index into
+	'filters' if this name is an alias. Non-aliased filter have this value
+	set to 0xFFFF.
+
 14. Extension Requests
 
 CreatePicture
