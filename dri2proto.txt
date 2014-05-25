@@ -327,8 +327,11 @@ The name of this extension is "DRI2".
 ┌───
     DRI2SwapBuffers
 	drawable: DRAWABLE
-      ▶	
-	count: two CARD32s
+	target_msc: two CARD32s
+	divisor: two CARD32s
+	remainder: two CARD32s
+      ▶
+	swap: two CARD32s
 └───
 	Errors: Window
 
@@ -750,27 +753,6 @@ A.2 Protocol Requests
 	1	8			DRI2 opcode
 	2	8			length
 	4	DRAWABLE		drawable
-      ▶	
-	1	1			Reply
-        1				unused
-	2	CARD16			sequence number
-	4	0			reply length
-	4	CARD32			buffer count
-	4	CARD32			unused
-	4	CARD32			unused
-	4	CARD32			unused
-	4	CARD32			unused
-	4	CARD32			unused
-	4	CARD32			unused
-	5n	LISTofDRI2BUFFER	buffers
-└───
-
-┌───
-    DRI2SwapBuffers
-	1	CARD8			major opcode
-	1	8			DRI2 opcode
-	2	8			length
-	4	DRAWABLE		drawable
 	4	CARD32			target_msc_hi
 	4	CARD32			target_msc_lo
 	4	CARD32			divisor_hi
@@ -784,7 +766,7 @@ A.2 Protocol Requests
 	4	0			reply length
 	4	CARD32			swap_hi
 	4	CARD32			swap_lo
-	5n	LISTofDRI2BUFFER	buffers
+	20				unused
 └───
 
 ┌───
