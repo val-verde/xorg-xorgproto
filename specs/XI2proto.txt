@@ -1630,6 +1630,7 @@ XIPassiveGrabDevice
             deviceid:        DEVICE
             detail:          CARD32
             grab_type:       GRABTYPE
+            time:            TIMESTAMP
             grab_window:     Window
             cursor:          Cursor
             owner_events:    Bool
@@ -1695,6 +1696,8 @@ on the specified input device.
             Number of elements in modifiers_return
         modifiers_return
             XKB modifier state that could not be grabbed.
+        time
+            This field is unused.
 
 If owner-events is False, input events generated from this device are
 reported with respect to grab-window, and are only reported if
