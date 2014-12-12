@@ -149,7 +149,7 @@ be dynamically configured to provide support for:
 
  4) multiple GPU rendering - This replaces Xinerama.
 
-1.99 Acknowledgements
+1.99 Acknowledgments
 
 Our thanks to the contributors to the design found on the xpert mailing
 list, in particular:
@@ -262,7 +262,7 @@ RRCONFIGSTATUS { Success
 	configuration is unsupported by the hardware. The goal is to make
 	these limitations expressed by the protocol, but when that isn't
 	possible it is correct to return this error value. If, as a
-	implementor, you find this error code required, please submit the
+	implementer, you find this error code required, please submit the
 	hardware constraints that exist so that a future version of the
 	extension can correctly capture the configuration constraints in
 	your system.
