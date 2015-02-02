@@ -151,6 +151,12 @@ be dynamically configured to provide support for:
 
 1.5. Introduction to version 1.5 of the extension
 
+Version 1.5 adds an optional TILE property to outputs.
+
+   • An optional TILE property.
+     This property is used to denote individual tiles in a tiled monitor
+     configuration, as exposed via DisplayID v1.3.
+
 Version 1.5 adds monitors
 
  • A 'Monitor' is a rectangular subset of the screen which represents
@@ -2089,6 +2095,26 @@ doesn't handle a mandatory property correctly.
 	unique identifiers.  When such an identifier is available, this property
 	contains its raw bytes.
 
+    "TILE"			aka RR_PROPERTY_RANDR_TILE
+	Type:			INTEGER
+	Format:			32
+	Num items:		8
+	Flags:			Immutable
+	Range/List:		-
+
+        Tile monitors have an array of values describing the tiling,
+        based on DisplayID v1.3
+
+	The 8 elements are:
+        0: group id - The tile group identifier
+        1: flags - flags for tile group
+		0x1 = single monitor enclosure
+        2: number of horizontal tiles in tile group
+        3: number of vertical tiles in tile group
+        4: horizontal tile location for this tile
+        5: vertical tile location for this tile
+        6: horizontal tile size for this tile
+        7: vertical tile size for this tile
 
 9.2 Properties introduced with version 1.2 of the RandR extension
 
@@ -2129,6 +2155,11 @@ Property			Immutable	Mandatory since
 ────────			─────────	───────────────
 GUID				yes		not mandatory
 
+9.7 Properties introduced with version 1.5 of the RandR extension
+
+Property			Immutable	Mandatory since
+────────			─────────	───────────────
+TILE				yes		not mandatory
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
 10. Extension Versioning

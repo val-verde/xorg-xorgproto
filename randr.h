@@ -186,6 +186,7 @@ typedef unsigned long	XRandrModeFlags;
 #define RR_PROPERTY_BORDER		"Border"
 #define RR_PROPERTY_BORDER_DIMENSIONS	"BorderDimensions"
 #define RR_PROPERTY_GUID		"GUID"
+#define RR_PROPERTY_RANDR_TILE		"TILE"
 
 /* roles this device can carry out */
 #define RR_Capability_None 0
