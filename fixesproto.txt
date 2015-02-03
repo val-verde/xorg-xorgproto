@@ -469,8 +469,8 @@ GetCursorImageAndName
 		y-hot:			CARD16
 		cursor-serial:		CARD32
 		cursor-atom:		ATOM
-		cursor-name:		LISTofCARD8
 		cursor-image:		LISTofCARD32
+		cursor-name:		LISTofCARD8
 
 	This is similar to GetCursorImage except for including both
 	the atom and name of the current cursor.
