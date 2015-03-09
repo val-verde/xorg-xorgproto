@@ -222,8 +222,8 @@ typedef struct	_XkbRedirectKeyAction {
 
 #define	XkbSARedirectVMods(a)		((((unsigned int)(a)->vmods1)<<8)|\
 					((unsigned int)(a)->vmods0))
-#define	XkbSARedirectSetVMods(a,m)	(((a)->vmods_mask1=(((m)>>8)&0xff)),\
-					 ((a)->vmods_mask0=((m)&0xff)))
+#define	XkbSARedirectSetVMods(a,m)	(((a)->vmods1=(((m)>>8)&0xff)),\
+					 ((a)->vmods0=((m)&0xff)))
 #define	XkbSARedirectVModsMask(a)	((((unsigned int)(a)->vmods_mask1)<<8)|\
 					((unsigned int)(a)->vmods_mask0))
 #define	XkbSARedirectSetVModsMask(a,m)	(((a)->vmods_mask1=(((m)>>8)&0xff)),\
