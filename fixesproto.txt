@@ -525,19 +525,13 @@ HideCursor
 
 	A client sends this request to indicate that it wants the
 	cursor image to be hidden (i.e. to not be displayed) when
-	the sprite is inside the specified window, or one of its
-	subwindows. If the sprite is inside a window for which one
-	or more active clients have requested cursor hiding then the
-	cursor image will not be displayed.
+	the sprite is on the same screen as the specified window.
+	The sprite will be hidden if one or more clients have called
+	HideCursor and not ShowCursor.
 
 	Note that even though cursor hiding causes the cursor image
 	to be invisible, CursorNotify events will still be sent
 	normally, as if the cursor image were visible.
-
-	If, during a grab, one or more active clients have requested
-	cursor hiding for grab window, or one of its ancestors, the
-	cursor image of the grab cursor will not be displayed during
-	the lifetime of that grab.
 
 	When a client with outstanding cursor hiding requests
 	terminates its connection these requests will be deleted.
@@ -552,13 +546,9 @@ ShowCursor
 		window:			WINDOW
 
 	A client sends this request to indicate that it wants the
-	cursor image to be displayed when the sprite is inside the
-	specified window, or one of its subwindows. If the sprite
-	is inside a window for which no active clients have requested
-	cursor hiding then the cursor image for that window will be
-	displayed. In other words, if a client calls HideCursor for
-	a specified window, or window subtree, this request reverses
-	the effects of the HideCursor request.
+	cursor image to be displayed when the sprite is on the same
+	screen as the specified window. The sprite will be hidden
+	if one or more clients have called HideCursor and not ShowCursor.
 
 	If the client has made no outstanding HideCursor requests
 	a BadMatch error is generated.
