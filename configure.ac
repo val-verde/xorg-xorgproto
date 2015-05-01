@@ -1,5 +1,5 @@
 AC_PREREQ([2.60])
-AC_INIT([KBProto], [1.0.6],
+AC_INIT([KBProto], [1.0.7],
         [https://bugs.freedesktop.org/enter_bug.cgi?product=xorg])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 
