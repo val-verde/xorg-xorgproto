@@ -979,7 +979,6 @@ CompositeGlyphs32
 	mask-format:	PICTFORMAT or None
 	glyphset:	GLYPHABLE
 	src-x, src-y:	INT16
-	dst-x, dst-y:	INT16
 	glyphcmds:	LISTofGLYPHITEM8	CompositeGlyphs8
 	glyphcmds:	LISTofGLYPHITEM16	CompositeGlyphs16
 	glyphcmds:	LISTofGLYPHITEM32	CompositeGlyphs32
@@ -987,7 +986,7 @@ CompositeGlyphs32
 	Errors:
 		Picture, PictOp, PictFormat, GlyphSet, Glyph
 
-	The dst-x and dst-y coordinates are relative to the drawable's
+	The src-x and src-y coordinates are relative to the drawable's
 	origin and specify the baseline starting position (the initial glyph
 	origin).  Each glyph item is processed in turn.  A glyphset item
 	causes the glyphset to be used for subsequent glyphs.  Switching
