@@ -18,7 +18,7 @@ designed to aid users with limited visual acuity.  The DAMAGE extension is
 designed to make such applications reasonably efficient in the face of
 server-client latency.
 
-2. Acknolwedgements
+2. Acknowledgements
 
 As usual, the author had significant input from many people, in particular:
 
