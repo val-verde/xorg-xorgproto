@@ -282,7 +282,7 @@ The name of this extension is "Present"
 
 	Selects the set of Present events to be delivered for the
 	specified window and event context. PresentSelectInput can
-	create, modifiy or delete event contexts. An event context is
+	create, modify, or delete event contexts. An event context is
 	associated with a specific window; using an existing event
 	context with a different window generates a Match error.
 
