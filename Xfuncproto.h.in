@@ -210,4 +210,11 @@ in this Software without prior written authorization from The Open Group.
 # endif
 #endif
 
+/* requires xproto >= 7.0.30 */
+#if __has_attribute(no_sanitize_thread)
+# define _X_NOTSAN __attribute__((no_sanitize_thread))
+#else
+# define _X_NOTSAN
+#endif
+
 #endif /* _XFUNCPROTO_H_ */
