@@ -37,7 +37,7 @@ pcs = [
         ['inputproto',          '2.3.2'],
         ['kbproto',             '1.0.7'],
         ['presentproto',        '1.1'],
-        ['randrproto',          '1.5.0'],
+        ['randrproto',          '1.6.0'],
         ['recordproto',         '1.14.2'],
         ['renderproto',         '0.11.1'],
         ['resourceproto',       '1.2.0'],
