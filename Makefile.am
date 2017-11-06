@@ -12,6 +12,7 @@ glinternal_HEADERS = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = glproto.pc
 
+EXTRA_DIST = meson.build
 
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
