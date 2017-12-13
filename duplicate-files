@@ -1,0 +1,10 @@
+./.gitignore
+./AUTHORS
+./autogen.sh
+./configure.ac
+./COPYING
+./docbook.am
+./Makefile.am
+./README
+./specs/Makefile.am
+./specs/.gitignore
