@@ -5,6 +5,6 @@ includedir=@includedir@
 
 Name: FixesProto
 Description: X Fixes extension headers
-Version: @PACKAGE_VERSION@
+Version: 5.0
 Cflags: -I${includedir}
 Requires: xextproto >= 7.0.99.1

@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: ScrnSaverProto
 Description: ScrnSaver extension headers
-Version: @PACKAGE_VERSION@
+Version: 1.2.2
 Cflags: -I${includedir}

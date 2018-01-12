@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: DRI2Proto
 Description: DRI2 extension headers
-Version: @PACKAGE_VERSION@
+Version: 2.8
 Cflags: -I${includedir}

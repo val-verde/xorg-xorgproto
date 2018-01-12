@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: FontcacheProto
 Description: Fontcache extension headers
-Version: @PACKAGE_VERSION@
+Version: 0.1.3
 Cflags: -I${includedir}

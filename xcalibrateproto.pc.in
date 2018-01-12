@@ -5,5 +5,5 @@ includedir=@includedir@
 
 Name: XCalibrate
 Description: XCalibrate extension headers
-Version: @PACKAGE_VERSION@
+Version: 0.1.0
 Cflags: -I${includedir}

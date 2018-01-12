@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: XCMiscProto
 Description: XCMisc extension headers
-Version: @PACKAGE_VERSION@
+Version: 1.2.2
 Cflags: -I${includedir}

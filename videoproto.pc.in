@@ -5,5 +5,5 @@ includedir=@includedir@
 
 Name: VideoProto
 Description: Video extension headers
-Version: @PACKAGE_VERSION@
+Version: 2.3.3
 Cflags: -I${includedir}

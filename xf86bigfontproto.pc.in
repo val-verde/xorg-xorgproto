@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: XF86BigFontProto
 Description: XF86BigFont extension headers
-Version: @PACKAGE_VERSION@
+Version: 1.2.0
 Cflags: -I${includedir}

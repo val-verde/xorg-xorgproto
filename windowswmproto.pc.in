@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: WindowsWMProto
 Description: WindowsWM extension headers
-Version: @PACKAGE_VERSION@
+Version: 1.0.4
 Cflags: -I${includedir}

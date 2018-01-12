@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: XProxyManagementProtocol
 Description: X Proxy Management Protocol headers
-Version: @PACKAGE_VERSION@
+Version: 1.0.3
 Cflags: -I${includedir}

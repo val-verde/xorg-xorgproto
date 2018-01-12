@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: ResourceProto
 Description: Resource extension headers
-Version: @PACKAGE_VERSION@
+Version: 1.2.0
 Cflags: -I${includedir}

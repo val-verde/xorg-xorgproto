@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: XF86VidModeProto
 Description: XF86VidMode extension headers
-Version: @PACKAGE_VERSION@
+Version: 2.3.1
 Cflags: -I${includedir}

@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: DRI3Proto
 Description: DRI3 extension headers
-Version: @PACKAGE_VERSION@
+Version: 1.0
 Cflags: -I${includedir}
