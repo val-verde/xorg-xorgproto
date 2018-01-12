@@ -42,6 +42,12 @@ AC_CONFIG_HEADERS([Xfuncproto.h])
 
 AC_CANONICAL_HOST
 
+AC_ARG_ENABLE(legacy,
+	      AS_HELP_STRING([--enable-legacy],
+			     [Install legacy protocol headers (default: false)]),
+			     [LEGACY=$enableval], [LEGACY=no])
+AM_CONDITIONAL(LEGACY, [test "x$LEGACY" = "xyes"])
+
 # Check for enable/disable options
 AC_ARG_ENABLE(function-prototypes,
 	AS_HELP_STRING([--enable-function-prototypes],

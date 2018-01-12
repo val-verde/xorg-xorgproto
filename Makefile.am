@@ -14,6 +14,7 @@ bigreqs_HEADERS = \
 bigreqsprotopkgconfigdir = $(libdir)/pkgconfig
 bigreqsprotopkgconfig_DATA = bigreqsproto.pc
 
+if LEGACY
 XCalibrateincludedir = $(includedir)/X11/extensions
 XCalibrateinclude_HEADERS = xcalibrateproto.h xcalibratewire.h
 
@@ -21,6 +22,7 @@ calibrateprotopkgconfigdir = $(libdir)/pkgconfig
 calibrateprotopkgconfig_DATA = xcalibrateproto.pc
 
 calibrateproto_EXTRA_DIST = autogen.sh xcalibrateproto.pc.in
+endif
 
 compositedir = $(includedir)/X11/extensions
 composite_HEADERS = \
@@ -58,6 +60,7 @@ dri3_HEADERS = dri3proto.h
 dri3protopkgconfigdir = $(libdir)/pkgconfig
 dri3protopkgconfig_DATA = dri3proto.pc
 
+if LEGACY
 eviedir = $(includedir)/X11/extensions
 evie_HEADERS = \
 	evieproto.h \
@@ -67,6 +70,7 @@ evieprotopkgconfigdir = $(libdir)/pkgconfig
 evieprotopkgconfig_DATA = evieproto.pc
 
 evieproto_EXTRA_DIST = evieproto.pc.in
+endif
 
 fixesdir = $(includedir)/X11/extensions
 fixes_HEADERS = \
@@ -76,6 +80,7 @@ fixes_HEADERS = \
 fixesprotopkgconfigdir = $(libdir)/pkgconfig
 fixesprotopkgconfig_DATA = fixesproto.pc
 
+if LEGACY
 fontcachedir = $(includedir)/X11/extensions
 fontcache_HEADERS = \
 	fontcache.h \
@@ -86,6 +91,7 @@ fontcacheprotopkgconfigdir = $(libdir)/pkgconfig
 fontcacheprotopkgconfig_DATA = fontcacheproto.pc
 
 fontcacheproto_EXTRA_DIST = fontcacheproto.pc.in
+endif
 
 fontsdir = $(includedir)/X11/fonts
 fonts_HEADERS = \
@@ -136,6 +142,7 @@ kb_HEADERS = \
 kbprotopkgconfigdir = $(libdir)/pkgconfig
 kbprotopkgconfig_DATA = kbproto.pc
 
+if LEGACY
 lg3ddir = $(includedir)/X11/extensions
 lg3d_HEADERS = lgewire.h
 
@@ -143,6 +150,7 @@ lg3dprotopkgconfigdir = $(libdir)/pkgconfig
 lg3dprotopkgconfig_DATA = lg3dproto.pc
 
 lg3dproto_EXTRA_DIST = autogen.sh lg3dproto.pc.in
+endif
 
 xproxymngdir = $(includedir)/X11/PM
 xproxymng_HEADERS = \
@@ -160,6 +168,7 @@ present_HEADERS = presentproto.h presenttokens.h
 presentprotopkgconfigdir = $(libdir)/pkgconfig
 presentprotopkgconfig_DATA = presentproto.pc
 
+if LEGACY
 printdir = $(includedir)/X11/extensions
 print_HEADERS = \
 	Print.h \
@@ -202,6 +211,8 @@ SUFFIXES = .$(MISC_MAN_SUFFIX) .man
 .man.$(MISC_MAN_SUFFIX): man
 	$(MKDIR_P) man
 	$(AM_V_GEN)$(SED) $(MAN_SUBSTS) < $< > $@
+endif
+
 randrdir = $(includedir)/X11/extensions
 randr_HEADERS = \
 	randr.h \
@@ -398,6 +409,7 @@ xf86miscprotopkgconfig_DATA = xf86miscproto.pc
 
 xf86miscproto_EXTRA_DIST = xf86miscproto.pc.in
 
+if LEGACY
 xf86rushdir = $(includedir)/X11/extensions
 xf86rush_HEADERS = \
 	xf86rush.h \
@@ -407,6 +419,7 @@ xf86rushprotopkgconfigdir = $(libdir)/pkgconfig
 xf86rushprotopkgconfig_DATA = xf86rushproto.pc
 
 xf86rushproto_EXTRA_DIST = xf86rushproto.pc.in
+endif
 
 xf86vidmodedir = $(includedir)/X11/extensions
 xf86vidmode_HEADERS = \
