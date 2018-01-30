@@ -38,7 +38,7 @@ XORG_WITH_XSLTPROC
 XORG_CHECK_SGML_DOCTOOLS(1.8)
 
 AC_CONFIG_HEADERS([do-not-use-config.h])
-AC_CONFIG_HEADERS([Xfuncproto.h])
+AC_CONFIG_HEADERS([include/X11/Xfuncproto.h])
 
 AC_CANONICAL_HOST
 
@@ -247,6 +247,7 @@ AC_CONFIG_FILES([applewmproto.pc
 		 fontcacheproto.pc
 		 fontsproto.pc
 		 glproto.pc
+		 include/X11/Xpoll.h
 		 inputproto.pc
 		 kbproto.pc
 		 lg3dproto.pc
@@ -271,7 +272,6 @@ AC_CONFIG_FILES([applewmproto.pc
 		 xf86rushproto.pc
 		 xf86vidmodeproto.pc
 		 xineramaproto.pc
-		 Xpoll.h
 		 xproto.pc
 		 xproxymngproto.pc])
 		 
