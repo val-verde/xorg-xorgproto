@@ -21,3 +21,12 @@ principles.
 
 If there are mistakes here, they are mine; entirely possible after
 over 15 years. - Jim Gettys
+
+---
+
+The above is a description of the core protocol, inherited from the merge of
+the various per-protocol repos into this unified project. The LG3D protocol was
+by Deron Johnson at Sun Microsystems. XFIXES, DAMAGE and COMPOSITE were by
+Keith Packard at HP; DAMAGE had additional contributions from Eric Anholt at
+Intel. The remaining extensions had no AUTHORS file; contributions for correct
+attribution here would be most welcome. - Adam Jackson
