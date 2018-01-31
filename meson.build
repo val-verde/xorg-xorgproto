@@ -271,5 +271,5 @@ if get_option('legacy') == true
 endif
 
 ext_xorgproto = declare_dependency(
-    include_directories : include_directories('.')
+    include_directories : include_directories('include')
 )
