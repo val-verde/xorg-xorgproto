@@ -48,8 +48,9 @@ in this Software without prior written authorization from The Open Group.
 #endif /* _Xconst */
 
 /* Function prototype configuration (see configure for more info) */
-#ifndef NARROWPROTO
-#undef NARROWPROTO
+#if !defined(NARROWPROTO) && \
+    (defined(__linux__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__))
+#define NARROWPROTO
 #endif
 #ifndef FUNCPROTO
 #undef FUNCPROTO

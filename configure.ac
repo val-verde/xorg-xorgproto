@@ -65,10 +65,6 @@ AC_ARG_ENABLE(nested-prototypes,
 	AS_HELP_STRING([--enable-nested-prototypes],
 		       [nested prototypes are supported (default: auto)]),
 	[NESTEDPROTO=$enableval], [NESTEDPROTO=auto])
-AC_ARG_ENABLE(wide-prototypes,
-	AS_HELP_STRING([--enable-wide-prototypes],
-		       [widen function prototypes (default: auto)]),
-	[WIDEPROTO=$enableval], [WIDEPROTO=auto])
 
 
 AC_CHECK_HEADERS([sys/select.h sys/param.h sys/types.h sys/time.h])
@@ -217,22 +213,6 @@ else
       fi
     fi
   fi
-fi
-
-AC_MSG_CHECKING([whether to widen function prototypes])
-if test "x$WIDEPROTO" = xauto; then
-	case $host_os in
-		linux*)		WIDEPROTO=no ;;
-		freebsd*)	WIDEPROTO=no ;;
-		netbsd*)	WIDEPROTO=no ;;
-		openbsd*)	WIDEPROTO=no ;;
-		*)		WIDEPROTO=yes ;;
-	esac
-fi
-AC_MSG_RESULT([$WIDEPROTO])
-
-if test "x$WIDEPROTO" = xno; then
-	AC_DEFINE(NARROWPROTO, [], [Narrow prototypes])
 fi
 
 AC_CONFIG_FILES([applewmproto.pc
