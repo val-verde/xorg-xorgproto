@@ -48,25 +48,6 @@ AC_ARG_ENABLE(legacy,
 			     [LEGACY=$enableval], [LEGACY=no])
 AM_CONDITIONAL(LEGACY, [test "x$LEGACY" = "xyes"])
 
-# Check for enable/disable options
-AC_ARG_ENABLE(function-prototypes,
-	AS_HELP_STRING([--enable-function-prototypes],
-		       [force function prototypes (default: auto)]),
-	[FUNCPROTO=$enableval], [FUNCPROTO=auto])
-AC_ARG_ENABLE(varargs-prototypes,
-	AS_HELP_STRING([--enable-varargs-prototypes],
-		       [varargs prototypes are supported (default: auto)]),
-	[VAPROTO=$enableval], [VAPROTO=auto])
-AC_ARG_ENABLE(const-prototypes,
-	AS_HELP_STRING([--enable-const-prototypes],
-		       [const is supported (default: auto)]),
-	[CONSTPROTO=$enableval], [CONSTPROTO=auto])
-AC_ARG_ENABLE(nested-prototypes,
-	AS_HELP_STRING([--enable-nested-prototypes],
-		       [nested prototypes are supported (default: auto)]),
-	[NESTEDPROTO=$enableval], [NESTEDPROTO=auto])
-
-
 AC_CHECK_HEADERS([sys/select.h sys/param.h sys/types.h sys/time.h])
 
 # Handle Xpoll.h.in
@@ -126,94 +107,6 @@ if test "x$fds_bits_found" = xfalse ; then
 fi
 
 AC_SUBST([USE_FDS_BITS])
-
-
-# Handle Xfuncproto.h
-AC_MSG_CHECKING([whether const prototypes are supported])
-if test "x$CONSTPROTO" = xauto; then
-	case $host_os in
-		linux*)		CONSTPROTO=yes ;;
-		freebsd*)	CONSTPROTO=yes ;;
-		netbsd*)	CONSTPROTO=yes ;;
-		openbsd*)	CONSTPROTO=yes ;;
-		solaris*)	CONSTPROTO=yes ;;
-		*)		CONSTPROTO=no ;;
-	esac
-fi
-AC_MSG_RESULT([$CONSTPROTO])
-
-AC_MSG_CHECKING([whether varargs prototypes are supported])
-if test "x$VAPROTO" = xauto; then
-	case $host_os in
-		linux*)		VAPROTO=yes ;;
-		freebsd*)	VAPROTO=yes ;;
-		netbsd*)	VAPROTO=yes ;;
-		openbsd*)	VAPROTO=yes ;;
-		solaris*)	VAPROTO=yes ;;
-		*)		VAPROTO=no ;;
-	esac
-fi
-AC_MSG_RESULT([$VAPROTO])
-
-AC_MSG_CHECKING([whether nested prototypes are supported])
-if test "x$NESTEDPROTO" = xauto; then
-	case $host_os in
-		linux*)		NESTEDPROTO=yes ;;
-		freebsd*)	NESTEDPROTO=yes ;;
-		netbsd*)	NESTEDPROTO=yes ;;
-		openbsd*)	NESTEDPROTO=yes ;;
-		solaris*)	NESTEDPROTO=yes ;;
-		*)		NESTEDPROTO=no ;;
-	esac
-fi
-AC_MSG_RESULT([$NESTEDPROTO])
-
-AC_MSG_CHECKING([whether to force function prototypes])
-if test "x$FUNCPROTO" = xauto; then
-	case $host_os in
-	    linux*)	FUNCPROTO=yes ;;
-	    freebsd*)	FUNCPROTO=yes ;;
-	    netbsd*)	FUNCPROTO=yes ;;
-	    openbsd*)	FUNCPROTO=yes ;;
-	    *)
-		if test "x$VAPROTO" = xyes && test "x$NESTEDPROTO" = xyes; then
-			FUNCPROTO=yes
-		else
-			FUNCPROTO=no
-		fi
-		;;
-	esac
-fi
-AC_MSG_RESULT([$FUNCPROTO])
-
-# Logic for this was taken from Imake.tmpl
-if test "x$FUNCPROTO" = xyes && test "x$VAPROTO" = xyes && test "x$NESTEDPROTO" = xyes && test "x$CONSTPROTO" = xyes; then
-		AC_DEFINE(FUNCPROTO, [15], [FUNCPROTO])
-else
-  if test "x$FUNCPROTO" = xyes && test "x$VAPROTO" = xyes && test "x$NESTEDPROTO" = xyes; then
-		AC_DEFINE(FUNCPROTO, [11], [FUNCPROTO])
-  else
-    if test "x$FUNCPROTO" = xyes && test "x$NESTEDPROTO" = xyes; then
-		AC_DEFINE(FUNCPROTO, [9], [FUNCPROTO])
-    else
-      if test "x$FUNCPROTO" = xyes && test "x$VAPROTO" = xyes && test "x$CONSTPROTO" = xyes; then
-		AC_DEFINE(FUNCPROTO, [7], [FUNCPROTO])
-      else
-        if test "x$FUNCPROTO" = xyes && test "x$CONSTPROTO" = xyes; then
-		AC_DEFINE(FUNCPROTO, [5], [FUNCPROTO])
-        else
-          if test "x$FUNCPROTO" = xyes && test "x$VAPROTO" = xyes; then
-		AC_DEFINE(FUNCPROTO, [3], [FUNCPROTO])
-          else
-            if test "x$FUNCPROTO" = xyes; then
-		AC_DEFINE(FUNCPROTO, [], [FUNCPROTO])
-            fi
-          fi
-        fi
-      fi
-    fi
-  fi
-fi
 
 AC_CONFIG_FILES([applewmproto.pc
 		 bigreqsproto.pc
