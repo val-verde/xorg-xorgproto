@@ -308,6 +308,7 @@ xproto_HEADERS = \
 	include/X11/Xatom.h \
 	include/X11/Xdefs.h \
 	include/X11/XF86keysym.h \
+	include/X11/Xfuncproto.h \
 	include/X11/Xfuncs.h \
 	include/X11/X.h \
 	include/X11/Xmd.h \
@@ -323,7 +324,6 @@ xproto_HEADERS = \
 	include/X11/Xwinsock.h
 
 nodist_xproto_HEADERS = \
-	include/X11/Xfuncproto.h \
 	include/X11/Xpoll.h
 
 x11protopkgconfigdir = $(datadir)/pkgconfig
