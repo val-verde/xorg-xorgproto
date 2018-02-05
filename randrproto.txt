@@ -1,6 +1,6 @@
 	       The X Resize, Rotate and Reflect Extension
-			     Version 1.5.0
-			       2015-03-14
+			     Version 1.6.0
+			       2017-04-01
 
 			      Jim Gettys
 			   Jim.Gettys@hp.com
@@ -9,9 +9,7 @@
 			Hewlett Packard Company
 
 			     Keith Packard
-			keith.packard@intel.com
-		     Open Source Technology Center
-			   Intel Corporation
+			  keithp@keithp.com
 
 1. Introduction
 
@@ -194,6 +192,16 @@ XID BadMatch when a RandR output disappears. This is to clarify that
 going forward the X server will not remove outputs dynamically,
 just mark them as disconnected.
 
+1.6. Introduction to version 1.6 of the extension
+
+Version 1.6 adds resource leasing.
+
+ • A 'Lease' is a collection of crtcs and outputs which are made
+   available to a client for direct access via kernel KMS and DRM
+   APIs. This is done by passing a suitable file descriptor back to
+   the client which has access to those resources. While leased, those
+   resources aren't used by the X server.
+
 1.99 Acknowledgments
 
 Our thanks to the contributors to the design found on the xpert mailing
@@ -280,6 +288,8 @@ Mode
 	A value for a MODE argument does not name a defined MODE.
 Provider
 	A value for a PROVIDER argument does not name a defined PROVIDER.
+Lease
+	A value for a LEASE argument does not name a defined LEASE
 
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -424,6 +434,12 @@ MONITORINFO { name: ATOM
 	      width-in-millimeters: CARD32
 	      height-in-millimeters: CARD32
 	      outputs: LISTofOUTPUT }
+
+			      ❧❧❧❧❧❧❧❧❧❧❧
+
+5.7. Protocol Types added in version 1.6 of the extension
+
+LEASE { XID }
 
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -1674,6 +1690,57 @@ dynamic changes in the display environment.
 	window of the screen.
 
 			      ❧❧❧❧❧❧❧❧❧❧❧
+
+7.6. Extension Requests added in version 1.6 of the extension.
+
+┌───
+    RRCreateLease
+	window : WINDOW
+	lid: LEASE
+	crtcs: LISTofCRTC
+	outputs: LISTofOUTPUT
+     ▶
+	nfd: CARD8
+	lease: FD
+└───
+	Errors: IdChoice, Window, Access, Value, CRTC, Output
+
+	Creates a new Lease called 'lid' for the specified crtcs and
+	outputs from the screen defined by 'window'. Returns a KMS/DRM
+	file descriptor which can control the leased objects directly
+	through the kernel. While leased, all resources will appear to
+	be 'useless' to clients other than the leasing client as
+	follows:
+
+	• Crtcs are reported as having no 'possible-outputs' and all
+	  other values reported as if the crtc were disabled.
+
+	• Outputs are reported as having no crtcs they can be
+	  connected to, no clones they can share a crtc with, will
+	  report a connection status of Disconnected, and will show
+	  the current crtc as if it were disabled.
+
+	The lease remains in effect until the file descriptor is
+	closed, even if the client holding the lease disconnects from
+	the X server.
+
+	Returns an Access error if any of the named resources are
+	already leased to another client.
+
+┌───
+    RRFreeLease
+	lid: LEASE
+	terminate: BOOL
+└───
+	Errors: Lease
+
+	Frees the reference to the lease 'lid'. If 'terminate' is
+	true, then the lease is terminated and all leased resources
+	returned to the X server. If 'terminate' is false, then the
+	lease remains in effect, but the X server no longer has a name
+	for it.
+
+			      ❧❧❧❧❧❧❧❧❧❧❧
 8. Extension Events
 
 Clients MAY select for ConfigureNotify on the root window to be
@@ -1854,6 +1921,21 @@ factors, such as re-cabling a monitor, etc.
 	RandR resources associated with the screen has changed, either
 	created or destroyed. Querying the list of available resources
 	with RRGetScreenResources and RRGetProviders will return the new set.
+
+8.3 Events added in version 1.6 of the RandR extension
+
+┌───
+    RRLeaseNotify:
+	timestamp : TIMESTAMP		time screen was reconfigured
+	window : WINDOW			window requesting notification
+	lease : LEASE			lease
+	created : BOOL			created/destroyed indicator
+└───
+
+	This event is generated whenever a lease has been created or
+	destroyed and is sent to requesting clients. 'timestamp'
+	indicates when the change happend.  'window' is the window
+	selecting for this event.
 
 			      ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -2286,6 +2368,7 @@ A.1 Common Types
 	0x0010	ProviderChangeNotifyMask 	Added in version 1.4
 	0x0020	ProviderPropertyNotifyMask	Added in version 1.4
 	0x0040	ResourceChangeNotifyMask	Added in version 1.4
+	0x0080  LeaseNotifyMask                 Added in version 1.6
 
 └───
       Event select mask for RRSelectInput
