@@ -1,8 +1,10 @@
-Lg3dProto is built with the traditional configure script:
+autotools:
 
-	$ ./configure --prefix=/usr/X11R6
+    $ ./configure
+    $ sudo make install
 
-This should generate valid Makefiles, then:
+meson:
 
-        $ make
-        $ make install
+    $ meson setup build
+    $ meson configure build
+    $ sudo meson -C build install
