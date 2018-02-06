@@ -2363,14 +2363,14 @@ A.1.1 Common Types added in version 1.5 of the protocol
 	4	ATOM		name
 	1	BOOL		primary
 	1	BOOL		automatic
-	2	CARD16		ncrtcs
+	2	CARD16		noutputs
 	2	INT16		x
 	2	INT16		y
 	2	CARD16		width in pixels
 	2	CARD16		height in pixels
 	4	CARD32		width in millimeters
 	4	CARD32		height in millimeters
-	4*n	CRTC		crtcs
+	4*n	OUTPUT		outputs
 └───
 
 A.2 Protocol Requests
