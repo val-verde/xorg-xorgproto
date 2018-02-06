@@ -58,12 +58,18 @@ pcs = [
 ]
 
 foreach pc : pcs
+    if pc[0] == 'xf86driproto'
+        subdir = 'X11/dri'
+    else
+        subdir = ''
+    endif
     pkg.generate(
         name : pc[0],
         filebase : pc[0],
         description : pc[0] + ' headers',
         version : pc[1],
-        install_dir : get_option('datadir') + '/pkgconfig'
+        install_dir : get_option('datadir') + '/pkgconfig',
+        subdirs : subdir,
     )
 endforeach
 
