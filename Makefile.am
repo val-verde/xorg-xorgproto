@@ -500,4 +500,14 @@ EXTRA_DIST = \
     COPYING-xf86miscproto \
     COPYING-xf86rushproto \
     COPYING-xf86vidmodeproto \
-    COPYING-xineramaproto
+    COPYING-xineramaproto \
+    include/GL/internal/meson.build \
+    include/GL/meson.build \
+    include/meson.build \
+    include/X11/dri/meson.build \
+    include/X11/extensions/meson.build \
+    include/X11/fonts/meson.build \
+    include/X11/meson.build \
+    include/X11/PM/meson.build \
+    meson.build \
+    meson_options.txt
