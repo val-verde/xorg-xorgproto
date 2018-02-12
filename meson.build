@@ -35,7 +35,7 @@ pcs = [
         ['fontsproto',          '2.1.3'],
         ['glproto',             '1.4.17'],
         ['inputproto',          '2.3.2'],
-        ['kbproto',             '1.0.6'],
+        ['kbproto',             '1.0.7'],
         ['presentproto',        '1.1'],
         ['randrproto',          '1.5.0'],
         ['recordproto',         '1.14.2'],
