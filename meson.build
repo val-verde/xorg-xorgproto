@@ -53,7 +53,7 @@ pcs = [
         ['xf86miscproto',       '0.9.3'],
         ['xf86vidmodeproto',    '2.3.1'],
         ['xineramaproto',       '1.2.1'],
-        ['xproto',              '7.0.31'],
+        ['xproto',              '7.0.32'],
         ['xproxymngproto',      '1.0.3'],
 ]
 

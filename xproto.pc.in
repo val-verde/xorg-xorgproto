@@ -6,5 +6,5 @@ includex11dir=@includedir@/X11
  
 Name: Xproto
 Description: Xproto headers
-Version: 7.0.31
+Version: 7.0.32
 Cflags: -I${includedir}
