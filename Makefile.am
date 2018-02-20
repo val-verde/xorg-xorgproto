@@ -16,7 +16,7 @@ bigreqsprotopkgconfig_DATA = bigreqsproto.pc
 
 if LEGACY
 XCalibrateincludedir = $(includedir)/X11/extensions
-XCalibrateinclude_HEADERS = 
+XCalibrateinclude_HEADERS = \
 	include/X11/extensions/xcalibrateproto.h \
 	include/X11/extensions/xcalibratewire.h
 
@@ -198,6 +198,7 @@ printproto_EXTRA_DIST = 	printproto.pc.in	\
 		specs/xp_protoIX.doc	\
 		specs/xp_protoTOC.doc	\
 		specs/xp_proto_cov.mif
+endif
 
 SED = sed
 
@@ -219,7 +220,6 @@ SUFFIXES = .$(MISC_MAN_SUFFIX) .man
 .man.$(MISC_MAN_SUFFIX): man
 	$(MKDIR_P) man
 	$(AM_V_GEN)$(SED) $(MAN_SUBSTS) < $< > $@
-endif
 
 randrdir = $(includedir)/X11/extensions
 randr_HEADERS = \
