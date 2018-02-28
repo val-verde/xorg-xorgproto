@@ -36,7 +36,7 @@ pcs = [
         ['glproto',             '1.4.17'],
         ['inputproto',          '2.3.2'],
         ['kbproto',             '1.0.7'],
-        ['presentproto',        '1.1'],
+        ['presentproto',        '1.2'],
         ['randrproto',          '1.6.0'],
         ['recordproto',         '1.14.2'],
         ['renderproto',         '0.11.1'],

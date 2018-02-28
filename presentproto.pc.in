@@ -5,5 +5,5 @@ includedir=@includedir@
  
 Name: PresentProto
 Description: Present extension headers
-Version: 1.1
+Version: 1.2
 Cflags: -I${includedir}

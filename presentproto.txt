@@ -1,6 +1,6 @@
 			The Present Extension
-			     Version 1.0
-			       2013-6-6
+			     Version 1.2
+			      2018-02-26
       
 			    Keith Packard
 			  keithp@keithp.com
@@ -24,6 +24,7 @@ change and is provided only as an aid to further Present development.
 Eric Anholt <eric@anholt.net>
 Owen Taylor <otaylor@redhat.com>
 James Jones <jajones@nvidia.com>
+Louis-Francis Ratté-Boulianne <lfrb@collabora.com>
 
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄ 
 
@@ -55,7 +56,8 @@ PRESENTEVENTMASK { PresentConfigureNotifyMask,
 
 PRESENTOPTION { PresentOptionAsync,
                 PresentOptionCopy,
-		PresentOptionUST }
+		PresentOptionUST,
+		PresentOptionSuboptimal }
 
 PRESENTCAPABILITY { PresentCapabilityAsync,
 		    PresentCapabilityFence,
@@ -66,7 +68,8 @@ PRESENTCOMPLETEKIND { PresentCompleteKindPixmap,
 
 PRESENTCOMPLETEMODE { PresentCompleteModeCopy,
 		      PresentCompleteModeFlip,
-		      PresentCompleteModeSkip }
+		      PresentCompleteModeSkip,
+		      PresentCompleteModeSuboptimalCopy }
 
 The Present extension also uses the Sync extension Fence data type to
 provide synchronization for pixmaps.
@@ -225,6 +228,10 @@ The name of this extension is "Present"
 	the target time as the driver can manage. Otherwise, the
 	server will take the target UST time and convert it to a
 	suitable target MSC value.
+
+	If 'options' contains PresentOptionSuboptimal, then the
+	PresentCompleteNotify event can have mode
+	PresentCompleteModeSuboptimalCopy as the client supports it.
 
 	After the presentation occurs, a PresentCompleteNotify event
 	with kind PresentCompleteKindPixmap will be generated, both to
@@ -408,12 +415,16 @@ The name of this extension is "Present"
 	'mode' is PresentCompleteModeCopy when the source pixmap
 	contents are taken from the pixmap and the pixmap is idle
 	immediately after the presentation completes. 'mode' is
-	PresentCompleteModeFlip when the pixmap remains in-use even
-	after the presentation completes. It will become idle no later
-	than when the next PresentPixmap operation targeting the same
-	window by any client completes. If the presentation operation
-	was skipped because some later operation made it irrelevant,
-	then 'mode' will be PresentCompleteModeSkip.
+	PresentCompleteModeSuboptimalCopy when the source pixmap
+	contents are copied but it would be possible to flip the
+	pixmap if the buffer format/modifier was different (options
+	given to PresentPixmap must contain PresentOptionSuboptimal).
+	'mode' is PresentCompleteModeFlip when the pixmap remains in-use
+	even after the presentation completes. It will become idle no
+	later than when the next PresentPixmap operation targeting the
+	same window by any client completes. If the presentation
+	operation was skipped because some later operation made it
+	irrelevant, then 'mode' will be PresentCompleteModeSkip.
 
 	'serial' is the value provided in the generating PresentPixmap
 	request.
@@ -505,6 +516,9 @@ The name of this extension is "Present"
 
 	1.0: First published version
 
+	1.2: Added PresentCompleteModeSuboptimalCopy flag and
+	     PresentOptionSuboptimal option
+
 			     ❄ ❄ ❄  ❄  ❄ ❄ ❄
 
 
@@ -569,6 +583,7 @@ A.1 Common Types
 	1	PresentOptionAsync
 	2	PresentOptionCopy;
 	4	PresentOptionUST
+	8	PresentOptionSuboptimal
 └───
 
 ┌───
@@ -589,6 +604,7 @@ A.1 Common Types
 	0	PresentCompleteModeCopy
 	1	PresentCompleteModeFlip
 	2	PresentCompleteModeSkip
+	3	PresentCompleteModeSuboptimalCopy
 └───
 
 ┌───
