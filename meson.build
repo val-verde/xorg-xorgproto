@@ -30,7 +30,7 @@ pcs = [
         ['damageproto',         '1.2.1'],
         ['dmxproto',            '2.3.1'],
         ['dri2proto',           '2.8'],
-        ['dri3proto',           '1.0'],
+        ['dri3proto',           '1.2'],
         ['fixesproto',          '5.0'],
         ['fontsproto',          '2.1.3'],
         ['glproto',             '1.4.17'],
