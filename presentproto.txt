@@ -318,7 +318,7 @@ The name of this extension is "Present"
 	PresentCapabilityFence means that the target device can take
 	advantage of SyncFences in the Present operations to improve
 	GPU throughput. The driver must operate correctly in the
-	absense of fences, but may have reduced performance. Using
+	absence of fences, but may have reduced performance. Using
 	fences for drivers not advertising this capability should have
 	no performance impact.
 

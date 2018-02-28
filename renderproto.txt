@@ -614,7 +614,7 @@ CreatePicture
 	component-alpha:	BOOL
 	
 	When used as a source or mask operand, Repeat indicates how the
-	drawable contents should be extented in both directions.
+	drawable contents should be extended in both directions.
 	
 	The alpha channel of alpha-map is used in place of any alpha channel
 	contained within the drawable for all rendering operations.  The

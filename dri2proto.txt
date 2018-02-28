@@ -9,7 +9,7 @@
 
 1. Introduction
 
-The DRI2 extension is designed to associate and access auxillary
+The DRI2 extension is designed to associate and access auxiliary
 rendering buffers with an X drawable.
 
 DRI2 is a essentially a helper extension to support implementation of
@@ -49,7 +49,7 @@ Stolen from OpenGL FBOs, I guess.
 
 2.2. Kernel rendering manager
 
-This specification assumes a rendering architechture, where an
+This specification assumes a rendering architecture, where an
 underlying kernel rendering manager that can provide 32 bit integer
 handles to video memory buffers.  These handles can be passed between
 processes, which, through a direct rendering driver, submit rendering
@@ -57,7 +57,7 @@ to the kernel rendering manager, targeting and/or sourcing from these
 buffers.  This extension provides a means to communicate about such
 buffers as associated with an X drawable.
 
-The details of how the a direct rendering driver use the buffer names
+The details of how the direct rendering driver use the buffer names
 and submit the rendering requests is outside the scope of this
 specification.  However, Appendix B does discuss implementation of
 this specification on the Graphics Execution Manager (GEM).
@@ -102,7 +102,7 @@ use DRI2CopyRegion to copy contents back and forth between the fake
 front buffer and the real front buffer.  When X and direct rendering
 to a front buffer is interleaved, it is the responsibility of the
 application to synchronize access using glXWaitGL and glXWaitX.  A
-DRI2 implementation of direct rendering GLX, should use these enty
+DRI2 implementation of direct rendering GLX, should use these entry
 points to copy contents back and forth to as necessary to ensure
 consistent rendering.
 
@@ -419,7 +419,7 @@ The name of this extension is "DRI2".
 
 	Blocks the client until the swap buffer count reaches target_sbc.  If
 	the swap buffer count is already greater than or equal to target_sbc
-	when the request is recieved, this request will return immediately.
+	when the request is received, this request will return immediately.
 
 	If target_sbc is 0, this request will block the client until all
 	previous DRI2SwapBuffers requests have completed.

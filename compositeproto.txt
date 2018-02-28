@@ -35,7 +35,7 @@ both early prototypes and the final design include:
  	a prototype of the coordinate transformation mechanism.
 
  +	Ryan Lortie for helping figure out reasonable parent clipping
- 	semantics in the presense of manual redirected children.
+	semantics in the presence of manual redirected children.
 
 3. Architecture
 
@@ -86,7 +86,7 @@ the contents and to create a new name for the newly allocated pixmap.
 In automatic update mode, the X server is itself responsible for presenting
 the child window contents within the parent. It seems reasonable, then, for
 rendering to the parent window to be clipped so as not to interfere with any
-child window content. In an environment with a mixure of manual and
+child window content. In an environment with a mixture of manual and
 automatic updating windows, rendering to the parent in the area nominally
 occupied by a manual update window should be able to affect parent pixel
 values in those areas, but such rendering should be clipped to automatic
@@ -135,7 +135,7 @@ should be defined by the clients themselves.
 3.3 Clipping semantics redefined
 
 Version 0.4 of the protocol changes the semantics of clipping in the
-presense of manual redirect children. In version 0.3, a parent was always
+presence of manual redirect children. In version 0.3, a parent was always
 clipped to child windows, independent of the kind of redirection going on.
 With version 0.4, the parent is no longer clipped to child windows which are
 manually redirected. This means the parent can draw in the child region without using

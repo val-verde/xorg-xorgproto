@@ -160,7 +160,7 @@ Version 1.5 adds monitors
  • A 'Monitor' is a rectangular subset of the screen which represents
    a coherent collection of pixels presented to the user.
 
- • Each Monitor is be associated with a list of outputs (which may be
+ • Each Monitor is associated with a list of outputs (which may be
    empty).
 
  • When clients define monitors, the associated outputs are removed from
@@ -176,7 +176,7 @@ Version 1.5 adds monitors
    active outputs associated with them
 
 This new object separates the physical configuration of the hardware
-from the logical subsets  the screen that applications should
+from the logical subsets of the screen that applications should
 consider as single viewable areas.
 
 1.5.1. Relationship between Monitors and Xinerama
@@ -235,7 +235,7 @@ implications of MST monitors and encouraging the introduction of the
 Screens may change dynamically, either under control of this extension, or
 due to external events. Examples include: monitors being swapped, pressing a
 button to switch from internal display to an external monitor on a laptop,
-or, eventually, the hotplug of a display card entirely on busses such as
+or, eventually, the hotplug of a display card entirely on buses such as
 Cardbus or Express Card which permit hot-swap (which will require other work
 in addition to this extension).
 
@@ -621,7 +621,7 @@ The name of this extension is "RANDR".
 	rate is unknown or on devices for which refresh is not relevant.
 
 	'sizes' is the list of possible frame buffer sizes (at the normal
-	orientation. Each size indicates both the linear physical size of
+	orientation). Each size indicates both the linear physical size of
 	the screen and the pixel size.
 
 	'refresh' is the list of refresh rates for each size. Each element
