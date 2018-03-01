@@ -13,6 +13,8 @@ config.sub
 configure
 do-not-use-config.h
 do-not-use-config.h.in
+install-sh
 man/Xprint.7
+missing
 stamp-h1
 stamp-h2
