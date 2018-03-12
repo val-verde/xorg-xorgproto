@@ -139,7 +139,7 @@ typedef struct _ScreenSaverSuspend {
     CARD8 reqType;
     CARD8 saverReqType;
     CARD16 length B16;
-    Bool suspend B32;
+    CARD32 suspend B32;		/* a boolean, but using the wrong encoding */
 } xScreenSaverSuspendReq;
 #define sz_xScreenSaverSuspendReq	8
 
