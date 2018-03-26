@@ -156,7 +156,6 @@ lg3dprotopkgconfigdir = $(datadir)/pkgconfig
 lg3dprotopkgconfig_DATA = lg3dproto.pc
 
 lg3dproto_EXTRA_DIST = autogen.sh lg3dproto.pc.in
-endif
 
 xproxymngdir = $(includedir)/X11/PM
 xproxymng_HEADERS = \
@@ -167,6 +166,7 @@ pmprotopkgconfigdir = $(datadir)/pkgconfig
 pmprotopkgconfig_DATA = xproxymngproto.pc
 
 pmproto_EXTRA_DIST = xproxymngproto.pc.in
+endif
 
 presentdir = $(includedir)/X11/extensions
 present_HEADERS = \
@@ -261,6 +261,7 @@ scrnsaver_HEADERS = \
 scrnsaverprotopkgconfigdir = $(datadir)/pkgconfig
 scrnsaverprotopkgconfig_DATA = scrnsaverproto.pc
 
+if LEGACY
 trapdir = $(includedir)/X11/extensions
 trap_HEADERS = \
 	include/X11/extensions/xtrapbits.h \
@@ -275,6 +276,7 @@ trapprotopkgconfigdir = $(datadir)/pkgconfig
 trapprotopkgconfig_DATA = trapproto.pc
 
 trapproto_EXTRA_DIST = trapproto.pc.in
+endif
 
 videodir = $(includedir)/X11/extensions
 video_HEADERS = \
@@ -410,6 +412,7 @@ xf86dri_HEADERS = \
 xf86driprotopkgconfigdir = $(datadir)/pkgconfig
 xf86driprotopkgconfig_DATA = xf86driproto.pc
 
+if LEGACY
 xf86miscdir = $(includedir)/X11/extensions
 xf86misc_HEADERS = \
 	include/X11/extensions/xf86misc.h \
@@ -420,7 +423,6 @@ xf86miscprotopkgconfig_DATA = xf86miscproto.pc
 
 xf86miscproto_EXTRA_DIST = xf86miscproto.pc.in
 
-if LEGACY
 xf86rushdir = $(includedir)/X11/extensions
 xf86rush_HEADERS = \
 	include/X11/extensions/xf86rush.h \
