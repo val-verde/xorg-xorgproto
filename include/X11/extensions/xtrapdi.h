@@ -112,7 +112,7 @@ typedef struct
 {
     CARD8      valid[4L];  /* Bits TRUE indicates data field is used */
     CARD8      data[4L];   /* Bits looked at if corresponding valid bit set */
-    ReqFlags   req;        /* Bits coorespond to core requests */
+    ReqFlags   req;        /* Bits correspond to core requests */
     EventFlags event;      /* Bits correspond to core events */
 } XETrapFlags;
 
@@ -207,7 +207,7 @@ typedef struct
     CARD8     minor_opcode;
     CARD16    length;
     /*
-     * The follwing is done so that structure padding wont be
+     * The following is done so that structure padding wont be
      * a problem.  The request structure contains a shadow for
      * the XETrapCfg structure. Since the XETrapCfg also has a
      * substructure (XETrapFlags) this structure is also shadowed.
@@ -294,7 +294,7 @@ typedef struct
 /* Structure of Get Current Configuration Information reply */
 typedef struct
 {
-    CARD8       state_flags[2]; /* Miscelaneous flags, see below #define's */
+    CARD8       state_flags[2]; /* Miscellaneous flags, see below #define's */
     CARD16      pad0;           /* Assure quadword alignment */
     XETrapCfg   config;         /* Current Config information */
     CARD32      pad1;

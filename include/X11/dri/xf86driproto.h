@@ -42,7 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define XF86DRINAME "XFree86-DRI"
 
 /* The DRI version number.  This was originally set to be the same of the
- * XFree86 version number.  However, this version is really indepedent of
+ * XFree86 version number.  However, this version is really independent of
  * the XFree86 version.
  *
  * Version History:

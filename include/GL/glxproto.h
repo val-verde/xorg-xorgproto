@@ -36,7 +36,7 @@
 /*****************************************************************************/
 
 /*
-** Errrors.
+** Errors.
 */
 #define GLXBadContext		0
 #define GLXBadContextState	1
@@ -1296,7 +1296,7 @@ typedef struct {
 /**
  * Protocol header for glXSetClientInfoARB
  *
- * This structure is follwed by \c numVersions * 2 \c CARD32 values listing
+ * This structure is followed by \c numVersions * 2 \c CARD32 values listing
  * the OpenGL versions supported by the client.  The pairs of values are an
  * OpenGL major version followed by a minor version.  For example,
  *
