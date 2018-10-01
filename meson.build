@@ -29,6 +29,7 @@ pcs = [
         ['compositeproto',      '0.4.2'],
         ['damageproto',         '1.2.1'],
         ['dmxproto',            '2.3.1'],
+        ['dpmsproto',           '1.2'],
         ['dri2proto',           '2.8'],
         ['dri3proto',           '1.2'],
         ['fixesproto',          '5.0'],

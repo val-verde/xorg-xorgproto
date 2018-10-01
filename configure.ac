@@ -110,6 +110,7 @@ AC_CONFIG_FILES([applewmproto.pc
 		 compositeproto.pc
 		 damageproto.pc
 		 dmxproto.pc
+		 dpmsproto.pc
 		 dri2proto.pc
 		 dri3proto.pc
 		 evieproto.pc
