@@ -503,6 +503,7 @@ EXTRA_DIST = \
     COPYING-xf86rushproto \
     COPYING-xf86vidmodeproto \
     COPYING-xineramaproto \
+    README.md \
     include/GL/internal/meson.build \
     include/GL/meson.build \
     include/meson.build \
