@@ -23,11 +23,12 @@
 #define XF86XK_ModeLock		0x1008FF01	/* Mode Switch Lock */
 
 /* Backlight controls. */
-#define XF86XK_MonBrightnessUp   0x1008FF02  /* Monitor/panel brightness */
-#define XF86XK_MonBrightnessDown 0x1008FF03  /* Monitor/panel brightness */
-#define XF86XK_KbdLightOnOff     0x1008FF04  /* Keyboards may be lit     */
-#define XF86XK_KbdBrightnessUp   0x1008FF05  /* Keyboards may be lit     */
-#define XF86XK_KbdBrightnessDown 0x1008FF06  /* Keyboards may be lit     */
+#define XF86XK_MonBrightnessUp    0x1008FF02  /* Monitor/panel brightness */
+#define XF86XK_MonBrightnessDown  0x1008FF03  /* Monitor/panel brightness */
+#define XF86XK_KbdLightOnOff      0x1008FF04  /* Keyboards may be lit     */
+#define XF86XK_KbdBrightnessUp    0x1008FF05  /* Keyboards may be lit     */
+#define XF86XK_KbdBrightnessDown  0x1008FF06  /* Keyboards may be lit     */
+#define XF86XK_MonBrightnessCycle 0x1008FF07  /* Monitor/panel brightness */
 
 /*
  * Keys found on some "Internet" keyboards.
