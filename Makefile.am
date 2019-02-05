@@ -22,8 +22,6 @@ XCalibrateinclude_HEADERS = \
 
 calibrateprotopkgconfigdir = $(datadir)/pkgconfig
 calibrateprotopkgconfig_DATA = xcalibrateproto.pc
-
-calibrateproto_EXTRA_DIST = autogen.sh xcalibrateproto.pc.in
 endif
 
 compositedir = $(includedir)/X11/extensions
@@ -73,8 +71,6 @@ evie_HEADERS = \
 
 evieprotopkgconfigdir = $(datadir)/pkgconfig
 evieprotopkgconfig_DATA = evieproto.pc
-
-evieproto_EXTRA_DIST = evieproto.pc.in
 endif
 
 fixesdir = $(includedir)/X11/extensions
@@ -94,8 +90,6 @@ fontcache_HEADERS = \
 
 fontcacheprotopkgconfigdir = $(datadir)/pkgconfig
 fontcacheprotopkgconfig_DATA = fontcacheproto.pc
-
-fontcacheproto_EXTRA_DIST = fontcacheproto.pc.in
 endif
 
 fontsdir = $(includedir)/X11/fonts
@@ -123,8 +117,6 @@ glinternal_HEADERS = \
 
 glprotopkgconfigdir = $(datadir)/pkgconfig
 glprotopkgconfig_DATA = glproto.pc
-
-glproto_EXTRA_DIST = meson.build
 
 inputdir = $(includedir)/X11/extensions
 input_HEADERS = \
@@ -155,8 +147,6 @@ lg3d_HEADERS = \
 lg3dprotopkgconfigdir = $(datadir)/pkgconfig
 lg3dprotopkgconfig_DATA = lg3dproto.pc
 
-lg3dproto_EXTRA_DIST = autogen.sh lg3dproto.pc.in
-
 xproxymngdir = $(includedir)/X11/PM
 xproxymng_HEADERS = \
 	include/X11/PM/PM.h \
@@ -164,8 +154,6 @@ xproxymng_HEADERS = \
 
 pmprotopkgconfigdir = $(datadir)/pkgconfig
 pmprotopkgconfig_DATA = xproxymngproto.pc
-
-pmproto_EXTRA_DIST = xproxymngproto.pc.in
 endif
 
 presentdir = $(includedir)/X11/extensions
@@ -188,16 +176,6 @@ printprotopkgconfig_DATA = printproto.pc
 miscmandir = $(MISC_MAN_DIR)
 miscman_DATA =	man/Xprint.$(MISC_MAN_SUFFIX)
 CLEANFILES = $(miscman_DATA)
-
-printproto_EXTRA_DIST = 	printproto.pc.in	\
-		man/Xprint.man		\
-		man/Xprint.sgml		\
-		specs/xp_proto.book	\
-		specs/xp_proto.mif	\
-		specs/xp_proto.ps	\
-		specs/xp_protoIX.doc	\
-		specs/xp_protoTOC.doc	\
-		specs/xp_proto_cov.mif
 endif
 
 SED = sed
@@ -274,8 +252,6 @@ trap_HEADERS = \
 
 trapprotopkgconfigdir = $(datadir)/pkgconfig
 trapprotopkgconfig_DATA = trapproto.pc
-
-trapproto_EXTRA_DIST = trapproto.pc.in
 endif
 
 videodir = $(includedir)/X11/extensions
@@ -421,8 +397,6 @@ xf86misc_HEADERS = \
 xf86miscprotopkgconfigdir = $(datadir)/pkgconfig
 xf86miscprotopkgconfig_DATA = xf86miscproto.pc
 
-xf86miscproto_EXTRA_DIST = xf86miscproto.pc.in
-
 xf86rushdir = $(includedir)/X11/extensions
 xf86rush_HEADERS = \
 	include/X11/extensions/xf86rush.h \
@@ -430,8 +404,6 @@ xf86rush_HEADERS = \
 
 xf86rushprotopkgconfigdir = $(datadir)/pkgconfig
 xf86rushprotopkgconfig_DATA = xf86rushproto.pc
-
-xf86rushproto_EXTRA_DIST = xf86rushproto.pc.in
 endif
 
 xf86vidmodedir = $(includedir)/X11/extensions
@@ -503,6 +475,7 @@ EXTRA_DIST = \
     COPYING-xf86vidmodeproto \
     COPYING-xineramaproto \
     README.md \
+    autogen.sh \
     include/GL/internal/meson.build \
     include/GL/meson.build \
     include/meson.build \
@@ -512,4 +485,14 @@ EXTRA_DIST = \
     include/X11/meson.build \
     include/X11/PM/meson.build \
     meson.build \
-    meson_options.txt
+    meson_options.txt \
+    man/Xprint.man \
+    man/Xprint.sgml \
+    specs/xp_proto.book \
+    specs/xp_proto.mif \
+    specs/xp_proto.ps \
+    specs/xp_protoIX.doc \
+    specs/xp_protoTOC.doc \
+    specs/xp_proto_cov.mif
+
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-legacy
