@@ -481,7 +481,6 @@ EXTRA_DIST = \
     COPYING-inputproto \
     COPYING-kbproto \
     COPYING-lg3dproto \
-    COPYING-panoramixproto \
     COPYING-pmproto \
     COPYING-presentproto \
     COPYING-printproto \
