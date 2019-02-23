@@ -129,6 +129,15 @@ AC_CONFIG_FILES([applewmproto.pc
 		 renderproto.pc
 		 resourceproto.pc
 		 scrnsaverproto.pc
+		 specs/Makefile
+		 specs/bigreqsproto/Makefile
+		 specs/fontsproto/Makefile
+		 specs/kbproto/Makefile
+		 specs/recordproto/Makefile
+		 specs/scrnsaverproto/Makefile
+		 specs/xcmiscproto/Makefile
+		 specs/xextproto/Makefile
+		 specs/xproto/Makefile
 		 trapproto.pc
 		 videoproto.pc
 		 windowswmproto.pc

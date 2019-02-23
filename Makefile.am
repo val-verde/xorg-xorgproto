@@ -422,7 +422,7 @@ xinerama_HEADERS = \
 xineramaprotopkgconfigdir = $(datadir)/pkgconfig
 xineramaprotopkgconfig_DATA = xineramaproto.pc
 
-# SUBDIRS=specs
+SUBDIRS=specs
 
 dist_doc_DATA = \
 	compositeproto.txt \
@@ -487,12 +487,6 @@ EXTRA_DIST = \
     meson.build \
     meson_options.txt \
     man/Xprint.man \
-    man/Xprint.sgml \
-    specs/xp_proto.book \
-    specs/xp_proto.mif \
-    specs/xp_proto.ps \
-    specs/xp_protoIX.doc \
-    specs/xp_protoTOC.doc \
-    specs/xp_proto_cov.mif
+    man/Xprint.sgml
 
 AM_DISTCHECK_CONFIGURE_FLAGS = --enable-legacy
