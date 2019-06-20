@@ -265,6 +265,7 @@ video_HEADERS = \
 videoprotopkgconfigdir = $(datadir)/pkgconfig
 videoprotopkgconfig_DATA = videoproto.pc
 
+if LEGACY
 windowswmdir = $(includedir)/X11/extensions
 windowswm_HEADERS = \
         include/X11/extensions/windowswm.h \
@@ -272,6 +273,7 @@ windowswm_HEADERS = \
 
 windowswmprotopkgconfigdir = $(datadir)/pkgconfig
 windowswmprotopkgconfig_DATA = windowswmproto.pc
+endif
 
 xprotodir = $(includedir)/X11
 xproto_HEADERS = \
