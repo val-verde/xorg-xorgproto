@@ -130,11 +130,13 @@ inputprotopkgconfig_DATA = inputproto.pc
 
 kbdir = $(includedir)/X11/extensions
 kb_HEADERS = \
-	include/X11/extensions/XKBgeom.h \
 	include/X11/extensions/XKB.h \
 	include/X11/extensions/XKBproto.h \
 	include/X11/extensions/XKBsrv.h \
 	include/X11/extensions/XKBstr.h
+if LEGACY
+kb_HEADERS += include/X11/extensions/XKBgeom.h
+endif
 
 kbprotopkgconfigdir = $(datadir)/pkgconfig
 kbprotopkgconfig_DATA = kbproto.pc
@@ -256,11 +258,13 @@ endif
 
 videodir = $(includedir)/X11/extensions
 video_HEADERS = \
-	include/X11/extensions/vldXvMC.h \
 	include/X11/extensions/Xv.h \
 	include/X11/extensions/XvMC.h \
 	include/X11/extensions/XvMCproto.h \
 	include/X11/extensions/Xvproto.h
+if LEGACY
+video_HEADERS += include/X11/extensions/vldXvMC.h
+endif
 
 videoprotopkgconfigdir = $(datadir)/pkgconfig
 videoprotopkgconfig_DATA = videoproto.pc
