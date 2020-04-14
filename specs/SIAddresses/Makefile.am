@@ -1,6 +1,6 @@
 dist_noinst_DATA = 	\
-	hostname.txt	\
-	IPv6.txt	\
-	localuser.txt	\
+	hostname.md	\
+	IPv6.md		\
+	localuser.md	\
 	README
 
