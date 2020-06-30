@@ -2340,7 +2340,7 @@ Group state in group is detailed as follows:
 In servers supporting XI 2.2, a TouchBegin event is generated whenever a new
 touch sequence initializes.
 A TouchEnd event is generated whenever a touch sequence ceases. A
-TouchUpdate event is generated whenever a valuator value changes, or a flag
+TouchUpdate event is generated whenever a valuator value changes, or a
 flag (e.g. pending end) has changed for that touch sequence; this may result
 in a TouchUpdate event being sent with zero valuators.
 
