@@ -1745,7 +1745,7 @@ device is actively grabbed if:
 Otherwise, if grab_type is GrabtypeTouchBegin, a touch grab begins if:
 
         - the device is not actively grabbed, and
-        - the specified modifier keys are down
+        - the specified modifier keys are down, and
         - a touch begins in grab_window or a descendant of grab_window, and
         - a passive grab of the same grab_type + modifier combination does not
           does not exist on an ancestor of grab_window.
