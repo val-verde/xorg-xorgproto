@@ -1663,9 +1663,9 @@ on the specified input device.
             The device to establish the passive grab on or AllDevices or
             AllMasterDevices.
         detail
-            The button number, or key code to grab for.
-            Must be 0 for GrabtypeEnter, GrabtypeFocusIn, and
-            GrabtypeTouchBegin.
+            In the case of GrabtypeButton, specifies the button number to grab for.
+            In the case of GrabtypeKeycode, specifies the key code to grab for.
+            The value must be 0 for GrabtypeEnter, GrabtypeFocusIn, and GrabtypeTouchBegin.
         grab_type
             The type of grab to establish.
         grab_window
