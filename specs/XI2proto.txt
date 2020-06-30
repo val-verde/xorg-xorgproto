@@ -1526,11 +1526,11 @@ ownership processing.
         Specifies whether a device is to be thawed and events are to be
         replayed, or how to handle a grabbed touch sequence.
     touchid
-        The ID of the touch sequence to accept or reject. The value is undefined
+        The ID of the touch sequence to accept or reject. The value is ignored
         for event modes other than AcceptTouch and RejectTouch.
     grab_window
         The window on which to accept or reject a touch sequence grab. The value
-        is undefined for event modes other than AcceptTouch and RejectTouch.
+        is ignored for event modes other than AcceptTouch and RejectTouch.
 
 The request has no effect if the specified time is earlier than the last-grab
 time of the most recent active grab for the client, or if the specified time is
