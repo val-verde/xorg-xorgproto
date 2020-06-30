@@ -1663,7 +1663,7 @@ on the specified input device.
             The device to establish the passive grab on or AllDevices or
             AllMasterDevices.
         detail
-            The button number, or key symbol to grab for.
+            The button number, or key code to grab for.
             Must be 0 for GrabtypeEnter, GrabtypeFocusIn, and
             GrabtypeTouchBegin.
         grab_type
@@ -1833,7 +1833,7 @@ Release an explicit passive grab on the specified input device.
         deviceid
             The device to establish the passive grab on.
         detail
-            The button number or key symbol to ungrab.
+            The button number or key code to ungrab.
             Must be 0 for GrabtypeEnter, GrabtypeFocusIn, and
             GrabtypeTouchBegin.
         grab_type
