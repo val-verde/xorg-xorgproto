@@ -2264,7 +2264,10 @@ KeyRelease, ButtonPress, ButtonRelease, Motion.
 XI 2.2: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
 
     detail
-        The button number, key code, touch ID, or 0.
+        Represents the key code in the cases of KeyPress and KeyRelease.
+        Represents the button number in the cases of ButtonPress and ButtonRelease.
+        Represents the touch ID in the cases of TouchBegin, TouchUpdate and TouchEnd.
+        In the case of Motion, the value will be 0.
     root
     event
     child
