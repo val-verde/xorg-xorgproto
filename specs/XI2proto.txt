@@ -2063,38 +2063,38 @@ The following event types are available in XI2.
 
 Version 2.0:
 
-        - HierarchyChanged
-        - DeviceChanged
-        - KeyPress
-        - KeyRelease
-        - ButtonPress
-        - ButtonRelease
-        - Motion
-        - RawKeyPress
-        - RawKeyRelease
-        - RawButtonPress
-        - RawButtonRelease
-        - RawMotion
-        - Enter
-        - Leave
-        - FocusIn
-        - FocusOut
-        - PropertyEvent
+        - HierarchyChanged (see <<events-hierarchyevent,HierarchyEvent>>)
+        - DeviceChanged (see <<events-devicechangedevent,DeviceChangedEvent>>)
+        - KeyPress (see <<events-deviceevent,DeviceEvent>>)
+        - KeyRelease (see <<events-deviceevent,DeviceEvent>>)
+        - ButtonPress (see <<events-deviceevent,DeviceEvent>>)
+        - ButtonRelease (see <<events-deviceevent,DeviceEvent>>)
+        - Motion (see <<events-deviceevent,DeviceEvent>>)
+        - RawKeyPress (see <<events-rawevent,RawEvent>>)
+        - RawKeyRelease (see <<events-rawevent,RawEvent>>)
+        - RawButtonPress (see <<events-rawevent,RawEvent>>)
+        - RawButtonRelease (see <<events-rawevent,RawEvent>>)
+        - RawMotion (see <<events-rawevent,RawEvent>>)
+        - Enter (see <<events-enterleave,Enter>>)
+        - Leave (see <<events-enterleave,Leave>>)
+        - FocusIn (see <<events-enterleave,FocusIn>>)
+        - FocusOut (see <<events-enterleave,FocusOut>>)
+        - PropertyEvent (see <<events-propertyevent,PropertyEvent>>)
 
 Version 2.2:
 
-        - TouchBegin
-        - TouchUpdate
-        - TouchOwnership
-        - TouchEnd
-        - RawTouchBegin
-        - RawTouchUpdate
-        - RawTouchEnd
+        - TouchBegin (see <<events-deviceevent,DeviceEvent>>)
+        - TouchUpdate (see <<events-deviceevent,DeviceEvent>>)
+        - TouchOwnership (see <<events-touchownershipevent,TouchOwnershipEvent>>)
+        - TouchEnd (see <<events-deviceevent,DeviceEvent>>)
+        - RawTouchBegin (see <<events-rawevent,RawEvent>>)
+        - RawTouchUpdate (see <<events-rawevent,RawEvent>>)
+        - RawTouchEnd (see <<events-rawevent,RawEvent>>)
 
 Version 2.3:
 
-        - BarrierHit
-        - BarrierLeave
+        - BarrierHit (see <<events-barrierevent,BarrierEvent>>)
+        - BarrierLeave (see <<events-barrierevent,BarrierEvent>>)
 
 All events have a set of common fields specified as EVENTHEADER.
 
