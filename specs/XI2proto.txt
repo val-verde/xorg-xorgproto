@@ -2690,7 +2690,8 @@ While client I wants to process pointer events on window W's parent, window Y.
 * I calls XIPassiveGrab for XI_{ButtonPress,MotionNotify,ButtonRelease} to
    create a synchronous pointer grab from D on Y.
 * C calls XISelectEvent for XI_Touch{Begin|Update|Ownership|End} from D on W.
-* I receives a ButtonPress event whenever a touch begins within W, and is
+* I receives a ButtonPress and MotionNotify events whenever a (direct device)
+   touch begins within W, and is
    considered the owner of the event.  C receives a TouchBegin event, but does
    not receive a TouchOwnership event.
 * When the touchpoint moves, C will receive a TouchUpdate event.  Event
