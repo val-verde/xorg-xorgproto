@@ -1455,9 +1455,9 @@ SOFTWARE.
 #define XK_fivesixths                    0x0ab7  /* U+215A VULGAR FRACTION FIVE SIXTHS */
 #define XK_careof                        0x0ab8  /* U+2105 CARE OF */
 #define XK_figdash                       0x0abb  /* U+2012 FIGURE DASH */
-#define XK_leftanglebracket              0x0abc  /*(U+27E8 MATHEMATICAL LEFT ANGLE BRACKET)*/
+#define XK_leftanglebracket              0x0abc  /*(U+2329 LEFT-POINTING ANGLE BRACKET)*/
 #define XK_decimalpoint                  0x0abd  /*(U+002E FULL STOP)*/
-#define XK_rightanglebracket             0x0abe  /*(U+27E9 MATHEMATICAL RIGHT ANGLE BRACKET)*/
+#define XK_rightanglebracket             0x0abe  /*(U+232A RIGHT-POINTING ANGLE BRACKET)*/
 #define XK_marker                        0x0abf
 #define XK_oneeighth                     0x0ac3  /* U+215B VULGAR FRACTION ONE EIGHTH */
 #define XK_threeeighths                  0x0ac4  /* U+215C VULGAR FRACTION THREE EIGHTHS */
