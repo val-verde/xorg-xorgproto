@@ -2084,6 +2084,11 @@ SOFTWARE.
 #define XK_ohorn                      0x10001a1  /* U+01A1 LATIN SMALL LETTER O WITH HORN */
 #define XK_Uhorn                      0x10001af  /* U+01AF LATIN CAPITAL LETTER U WITH HORN */
 #define XK_uhorn                      0x10001b0  /* U+01B0 LATIN SMALL LETTER U WITH HORN */
+#define XK_combining_tilde            0x1000303  /* U+0303 COMBINING TILDE */
+#define XK_combining_grave            0x1000300  /* U+0300 COMBINING GRAVE ACCENT */
+#define XK_combining_acute            0x1000301  /* U+0301 COMBINING ACUTE ACCENT */
+#define XK_combining_hook             0x1000309  /* U+0309 COMBINING HOOK ABOVE */
+#define XK_combining_belowdot         0x1000323  /* U+0323 COMBINING DOT BELOW */
 
 #endif /* XK_VIETNAMESE */
 
