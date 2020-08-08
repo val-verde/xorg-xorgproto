@@ -3,7 +3,7 @@ X Window System Unified Protocol
 
 This package provides the headers and specification documents defining
 the core protocol and (many) extensions for the X Window System. The
-extensions are those common among servers descended from X.Org 6.7. It
+extensions are those common among servers descended from X11R7. It
 also includes a number of headers that aren't purely protocol related,
 but are depended upon by many other X Window System packages to provide
 common definitions and porting layer.
@@ -15,14 +15,14 @@ protocol description suitable for code generation or use in new
 projects, please refer to the XCB project:
 
   https://xcb.freedesktop.org/
-  https://cgit.freedesktop.org/xcb/proto
+  https://gitlab.freedesktop.org/xorg/proto/xcbproto
 
 All questions regarding this software should be directed at the
 Xorg mailing list:
 
   https://lists.x.org/mailman/listinfo/xorg
 
-The master development code repository can be found at:
+The primary development code repository can be found at:
 
   https://gitlab.freedesktop.org/xorg/proto/xorgproto
 

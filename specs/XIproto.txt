@@ -474,7 +474,7 @@ VALUATORCLASS is as follows:
 
         axes
                 The axes field contains a pointer to an AXISINFO
-                struture.
+                structure.
 
 The information returned for each axis reported by the
 device is:
@@ -630,7 +630,7 @@ by first_valuator and num_valuators are set. If the number of
 valuators supported by the device is less than the expression
 first_valuator + num_valuators, a Value error will result.
 
-If the request succeeds, Success is returned. If the specifed
+If the request succeeds, Success is returned. If the specified
 device is grabbed by some other client, the request will fail
 and a status of AlreadyGrabbed will be returned.
 
@@ -698,7 +698,7 @@ where
 
    Errors: Length, Device, Match, Value
 
-ChangeDeviceControl changes the specifed device control
+ChangeDeviceControl changes the specified device control
 according to the values specified in the DeviceControl
 structure. The device control must be supported by the target
 server and device or an error will result.
@@ -969,7 +969,7 @@ keycodes. Client programs may be running that depend on those
 characteristics. For example, a client program could allocate
 an array based on the number of buttons on the pointer device,
 and then use the button numbers received in button events as
-indicies into that array. Changing the core devices could cause
+indices into that array. Changing the core devices could cause
 such client programs to behave improperly or abnormally
 terminate.
 
@@ -2546,7 +2546,7 @@ DeviceEnabled, the device is enabled and will generate events.
 If the field is DeviceDisabled or DeviceRemoved, the given
 device is disabled and stops sending events or was removed from
 the server, respectively. If the field is DeviceUnrecoverable,
-an IO-error has occured on the device and the device is
+an IO-error has occurred on the device and the device is
 forcibly disabled and removed by the server. If devchange is
 DeviceControlChanged, control specifies the type of control
 that has been changed.

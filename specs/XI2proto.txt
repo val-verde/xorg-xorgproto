@@ -198,7 +198,7 @@ the screen. A master keyboard is represented by a keyboard focus.
 Each master pointer is paired with the respective master keyboard and vice
 versa, and this pairing is constant for the lifetime of both input devices.
 Clients can use this pairing behaviour to implement input paradigms that
-require pointer and keyboard interation (e.g. SHIFT + Click).
+require pointer and keyboard integration (e.g. SHIFT + Click).
 
 [[hierarchy-slave]]
 Slave devices
@@ -265,7 +265,7 @@ is chosen to provide the data for this request.
 This ClientPointer may be explicitly assigned to a client with the
 SetClientPointer call. If no ClientPointer is set when a client issues an
 ambiguous request, the server choses one device as the ClientPointer. The
-method of chosing a ClientPointer from the available master pointers is
+method of choosing a ClientPointer from the available master pointers is
 implementation-specific.
 
 If the master pointer currently set as ClientPointer for one or more clients is
@@ -391,7 +391,7 @@ touch events as they occur on the device. If and when the client
 becomes the owner of a touch sequence, a TouchOwnership event is sent to the
 client. If the client is the initial owner of the sequence, the TouchBegin is
 immediately followed by the TouchOwnership event. Otherwise, TouchUpdate events
-may preceed a TouchOwnership event. A client is not guaranteed to become the
+may precede a TouchOwnership event. A client is not guaranteed to become the
 owner of any given touch sequence.
 
 The server delivers touch events to all clients that have selected for
@@ -1399,7 +1399,7 @@ XIGrabDevice
 
 This request actively grabs control of the specified input device. Further
 input events from this device are reported only to the grabbing client.
-This request overides any previous active grab by this client for this
+This request overrides any previous active grab by this client for this
 device.  This request does not affect the processing of XI 2.2
 touch events.
 
@@ -1802,7 +1802,7 @@ with mode XIPassiveGrabNotify are generated as if the pointer or focus
 were to suddenly warp from its current position to some position in
 the grab window.  These events are sent to the grabbing client only
 and only if the grab event mask has selected for it. If such a passive
-grab deactivates, addional LeaveNotify events with mode
+grab deactivates, additional LeaveNotify events with mode
 XIPassiveUngrabNotify are generated and sent to the grabbing client
 before the grab deactivates.
 
@@ -1902,7 +1902,7 @@ The type is uninterpreted by the server. The format specifies whether
 the data should be viewed as a list of 8-bit, 16-bit, or 32-bit
 quantities so that the server can correctly byte-swap as necessary.
 
-If the mode is Replace, the previous propert y value is discarded.  If
+If the mode is Replace, the previous property value is discarded.  If
 the mode is Prepend or Append, then the type and format must match the
 existing property value (or a Match error results). If the property is
 undefined, it is treated as defined with the correct type and format
@@ -2149,20 +2149,20 @@ HierarchyEvent
                     flags:              SETofHIERARCHYMASK}
 
     flags
-        Set of the changes that have occured, causing this event.
+        Set of the changes that have occurred, causing this event.
     num_info
         The number of device info structs following the request.
     info:
         The current hierarchy information.
 
 An XIHierarchyEvent is sent whenever the device hierarchy been
-changed. The flags specify all types of hierarchy modifiations that have
-occured.
+changed. The flags specify all types of hierarchy modifications that have
+occurred.
 For all devices, info details the hierarchy information after the
-modification of the hierarchy has occured. For each device specified with
+modification of the hierarchy has occurred. For each device specified with
 deviceid:
 
-- if type is MasterPointer or MasterKeyboard, attachment decribes the
+- if type is MasterPointer or MasterKeyboard, attachment describes the
   pairing of this device.
 - if type is SlavePointer or SlaveKeyboard, attachment describes the
   master device this device is attached to.
@@ -2285,7 +2285,7 @@ XI 2.2: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
     sourceid
         The source device that originally generated the event.
     mods
-        XKB modifier state before the event occured.
+        XKB modifier state before the event occurred.
     group
         XKB group state before the event.
     buttons
@@ -2393,7 +2393,7 @@ when the device is grabbed by another client.
 
 
     eventtype
-        The type of event that occured on the device.
+        The type of event that occurred on the device.
     detail
         The button number, keycode or touch ID¹.
     sourceid
@@ -2491,7 +2491,7 @@ zero if the device is a floating slave device.
         window, then focus is True. Otherwise, focus is False. This field is
         unspecified for focus in/out events.
     mods
-        XKB modifier state before the event occured.
+        XKB modifier state before the event occurred.
     group
         XKB group state before the event.
     buttons_len
