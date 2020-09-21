@@ -9,11 +9,13 @@ Authors:
 - Peter Hutterer (Red Hat) <peter.hutterer@redhat.com>
 - Daniel Stone (Collabora Ltd.) <daniel@fooishbar.org>
 - Chase Douglas (Canonical, Ltd.) <chase.douglas@canonical.com>
+- Povilas Kanapickas <povilas@radix.lt>
 
 [[history]]
 History 
 -------
 
+- v2.4, TODOTODO TODO: Touchpad gesture support added
 - v2.3, December 2012: Pointer barrier events added
 - v2.2, March 2012: Multitouch support added
 - v2.1, December 2011: new raw event behaviour, smooth scrolling support
@@ -62,6 +64,11 @@ Changes in version 2.3
 ----------------------
 
 - Pointer barrier events added
+
+Changes in version 2.4
+----------------------
+
+- Touchpad gesture support added
 
 //                            ❧❧❧❧❧❧❧❧❧❧❧
 
@@ -613,6 +620,122 @@ The BarrierDeviceIsGrabbed flag is set whenever a pointer barrier event is
 generated while the device is actively grabbed by any client or a passive
 grab has activated for this device prior to the event.
 
+
+[[touch-gestures]]
+Gesture event sequences
+~~~~~~~~~~~~~~~~~~~~~~~
+
+XI 2.4 introduces support for touch gestures. A touch gesture is a interaction of
+two or more fingers that is interpreted by the driver as a gesture such as swipe
+or pinch.
+
+A pinch gesture is executed when two or more fingers are located on the touchpad and are
+either changing the relative distance to each other or are changing the relative angle.
+Pinch gestures may change both rotation and distance at the same time.
+
+Swipe gestures are executed when three or more fingers are moved synchronously in the
+same direction.
+
+A single device may only support either touch or gesture events. Gestures are supported
+only on dependent devices as direct touch devices do not expose enough
+context about the gestures by design (see <<multitouch-device-modes, Touch device modes>>
+for explanation of the properties of direct and dependent devices).
+
+Gesture events are only available to clients supporting version 2.4 or later of
+the X Input Extension. Clients must use the XIQueryVersion request to announce
+support for this version.
+
+Gesture event processing differs from normal event processing in a few ways.
+The most notable differences are that gesture events are processed partially
+out-of-band from pointer and keyboard events.
+
+A single device must not support both touch and gesture events.
+
+
+[[gesture-lifecycle]]
+Gesture event lifecycle
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Gesture input follows a three-stage cycle:
+
+        begin - update - update - ... - end
+
+i.e. “begin” the sequence when the device interprets interaction on it as a gesture,
+“update” the current gesture location or properties any number of times, and finally
+“end” the sequence when the interation stops or is no longer a gesture.
+Within this document, the term "gesture sequence" is used to describe the above sequence
+of events.
+
+Two gesture types are supported: swipe and pinch.
+In the protocol, there's a separate event type for each of the three stages and gesture types:
+
+ - GesturePinchBegin
+ - GesturePinchUpdate
+ - GesturePinchEnd
+ - GestureSwipeBegin
+ - GestureSwipeUpdate
+ - GestureSwipeEnd
+
+In this document we will use the following abbreviations:
+
+ - GestureFOOBegin refers to either GesturePinchBegin or GestureSwipeBegin
+ - GestureFOOUpdate refers to either GesturePinchUpdate or GestureSwipeUpdate
+ - GestureFOOEnd refers to either GesturePinchEnd or GestureSwipeEnd
+
+A gesture sequence always generates GestureFOOBegin and GestureFOOEnd events, and may
+also generate GestureFOOUpdate events.  Clients must select for all three of these events
+simultaneously.
+
+When a gesture starts, the client is sent a GestureFOOBegin event detailing the position
+of the gesture, as well as the initial properties of the gesture.  Note that the
+logical state of the device (as seen through the input protocol) may lag the physical
+state if event processing is affected by grabs.
+
+Only one gesture sequence may be active on a specific input device at a time.
+
+Whenever the gesture position or any other property of the gesture changes,
+a GestureFOOUpdate event is sent to the client listening
+to events for that gesture with the updated information.
+
+When the gesture has logically ended, or a client will otherwise not receive
+any more events for a given gesture, a GestureFOOEnd event will be sent to
+that client.
+
+If a gesture does not physically end but changes the number of touches, a
+GestureFOOEnd event with the cancel flag set is sent tot he client, followed
+by a GestureFOOBegin event. This may happen when e.g. at the beginning of a
+4 finger gesture, a 3 finger gesture is recognized for a short moment.
+Clients are expected to undo any actions caused by the cancelled gesture.
+
+Passive gesture grabs are similar to standard input event grabs in that they
+take precedence over event selections and are searched from the root window
+to the child window (as opposed to selections, which start their search at the
+child window and continue up to the root window). See the
+<<requests-passivegrabdevice,XIPassiveGrabDevice>> request documentation for more
+information on passive grab activation.
+
+Only one client may select for gesture events from a given device on a window.
+
+Events originating from a single gesture sequence will generally be sent to a single
+client. The only exception is when GestureFOOBegin is grabbed and replayed to
+a subsequent client. In this case, all replaying clients will get GestureFOOBegin and
+GestureFOOEnd events and the final client will get whole gesture sequence.
+
+The decision what client will be sent the gesture sequence happens when the
+GestureFOOBegin event is received. First, any active device grab is chosen.
+If no grab is active, the first passive grab is chosen searching from the root
+window to the deepest child window. If no grab is found, then the first event
+selection is chosen going from the deepest child to the root window.
+
+If gesture events are not included in the mask of the chosen grab,
+then no client will receive events for the gesture sequence.
+A core or a XI 1.x pointer grab will cause the gesture sequence to be discarded.
+
+If there are simultaneous gesture event sequences from multiple devices, the
+master device will ignore all gesture sequences except the first. Specifically, if
+GestureFOOBegin is received when a gesture is already active, all events
+relating to the new gesture sequence will be discarded.
+
 [[glossary-notations]]
 Notations used in this document
 -------------------------------
@@ -768,7 +891,7 @@ XIQueryDevice
                  name:                  LISTofCHAR8
                  classes:               LISTofCLASS }
 
-    CLASS { BUTTONCLASS, KEYCLASS, VALUATORCLASS, SCROLLCLASS, TOUCHCLASS }
+    CLASS { BUTTONCLASS, KEYCLASS, VALUATORCLASS, SCROLLCLASS, TOUCHCLASS, GESTURECLASS }
 
     BUTTONCLASS   { type:                 ButtonClass
                     length:               CARD16
@@ -814,8 +937,14 @@ XIQueryDevice
 
     TOUCHMODE { DirectTouch, DependentTouch }
 
+    GESTURECLASS³ { type:                 GestureClass
+                    length:               CARD16
+                    sourceid:             CARD16
+                    num_touches:          CARD16 }
+
     ¹ since XI 2.1
     ² since XI 2.2
+    ³ since XI 2.4
 
 XIQueryDevice details information about the requested input devices.
 
@@ -958,6 +1087,20 @@ exist per ValuatorClass.
 Devices with a TouchClass emit touch events with the same axes as pointer
 events.
 
+    GestureClass:
+    type
+        Always GestureClass.
+    length
+        Length in 4 byte units.
+    sourceid
+        The device this class originates from.
+    num_touches
+        The maximum number of touchpoints in a gesture that the device may send.
+        If num_touches is 0, the number of supported touches is unknown or
+        unlimited.
+
+Devices with a GestureClass emit gesture events.
+
 [[requests-selectevents]]
 XISelectEvents
 ^^^^^^^^^^^^^^
@@ -1010,6 +1153,18 @@ all three of the other touch events. If the selection for these touch events
 overlaps a current selection by another client (e.g. selecting for a
 specific device when another client has a selection for XIAllDevices), a
 BadAccess error occurs.
+
+A client selecting for any of XI_GesturePinchBegin, XI_GesturePinchUpdate, or XI_GesturePinchEnd
+must select for all three events at the same time, else a BadValue error
+will be generated.
+
+A client selecting for any of XI_GestureSwipeBegin, XI_GestureSwipeUpdate, or XI_GestureSwipeEnd
+must select for all three events at the same time, else a BadValue error
+will be generated.
+
+If the selection for gesture events overlaps a current selection by another client
+(e.g. selecting for a specific device when another client has a selection for
+XIAllDevices), a BadAccess error occurs.
 
 [[requests-getselectedevents]]
 XIGetSelectedEvents
@@ -1554,7 +1709,9 @@ you pass to the event-mode argument:
     SyncDevice:
         If the specified device is frozen and actively grabbed by the client,
         event processing for that device continues normally until the next
-        event is reported to the client. At this time, the specified device
+        button press or release, or key press or release, or a gesture begin or end
+        event (depending on the grab) is reported to the client.
+        At this time, the specified device
         again appears to freeze. However, if the reported event causes the
         grab to be released, the specified device does not freeze.
         SyncDevice has no effect if the specified device is not frozen by the
@@ -1569,6 +1726,8 @@ you pass to the event-mode argument:
         grab-window of the grab just released.
         The request has no effect if the specified device is not grabbed by
         the client or if it is not frozen as the result of an event.
+        In case of gesture begin event being replayed, the original grabbing
+        client will receive a GesturePinchEnd or GestureSwipeEnd event.
      AsyncPairedDevice
         If the paired master device is frozen by the client, event processing
         for it continues as usual. If the paired device is frozen multiple
@@ -1646,12 +1805,14 @@ XIPassiveGrabDevice
     └───
 
         GRABTYPE         { GrabtypeButton, GrabtypeKeycode, GrabtypeEnter,
-                           GrabtypeFocusIn, GrabtypeTouchBegin¹ }
+                           GrabtypeFocusIn, GrabtypeTouchBegin¹,
+                           GrabtypeGesturePinchBegin², GrabtypeGestureSwipeBegin² }
 
         GRABMODIFIERINFO {   status:    Access
                              modifiers: SETofMODIFIERMASK }
 
     ¹ since XI 2.2
+    ² since XI 2.4
 
 Establish an explicit passive grab for a button or keycode
 on the specified input device.
@@ -1665,7 +1826,8 @@ on the specified input device.
         detail
             In the case of GrabtypeButton, specifies the button number to grab for.
             In the case of GrabtypeKeycode, specifies the key code to grab for.
-            The value must be 0 for GrabtypeEnter, GrabtypeFocusIn, and GrabtypeTouchBegin.
+            The value must be 0 for GrabtypeEnter, GrabtypeFocusIn, GrabtypeTouchBegin,
+            GrabtypeGesturePinchBegin and GrabtypeGestureSwipeBegin.
         grab_type
             The type of grab to establish.
         grab_window
@@ -1750,6 +1912,15 @@ Otherwise, if grab_type is GrabtypeTouchBegin, a touch grab begins if:
         - a passive grab of the same grab_type + modifier combination does not
           does not exist on an ancestor of grab_window.
 
+Otherwise, if grab_type is GrabtypeGesturePinchBegin or GrabtypeGestureSwipeBegin,
+a gesture grab begins if:
+
+        - the device is not actively grabbed, and
+        - the specified modifier keys are down, and
+        - a specific gesture begins in grab_window or a descendant of grab_window, and
+        - a passive grab of the same grab_type + modifier combination does not
+          does not exist on an ancestor of grab_window.
+
 Ownership of the touch sequence is granted to the grabbing client if:
 
         - a TouchBegin or pointer grab for an emulated touch sequence of a
@@ -1769,6 +1940,8 @@ pointer or focus leaves the window and all of its descendants,
 independent of the state of modifier keys.
 A GrabtypeTouchBegin grab is released when the touch sequence ends or
 the client uses XIAllowEvents with mode RejectTouch.
+A GrabtypeGesturePinchBegin and GrabtypeGestureSwipeBegin grab are
+released when the gesture sequence ends.
 Note that the logical state of a device (as seen by means of the
 protocol) may lag the physical state if device event processing is
 frozen.
@@ -1784,8 +1957,12 @@ other client already has issued an XIPassiveGrabDevice request of
 grab_type XIGrabtypeEnter, XIGrabtypeFocusIn, or
 XIGrabtypeTouchBegin with the same grab_window and the same
 modifier combination, the failed modifier combinations are returned
-in modifiers_return. If num_modifiers_return is zero, all passive
-grabs have been successful.
+in modifiers_return.
+If some other client already has issued an XIPassiveGrabDevice request of
+grab_type XIGrabtypeGesturePinchBegin or XIGrabtypeGestureSwipeBegin
+with the same grab_window, and the same modifier combination,
+the failed modifier combinations are returned in modifiers_return.
+If num_modifiers_return is zero, all passive grabs have been successful.
 
 If a button grab or enter grab activates, EnterNotify and LeaveNotify
 events with mode Grab are generated as if the pointer were to suddenly
@@ -1833,9 +2010,10 @@ Release an explicit passive grab on the specified input device.
         deviceid
             The device to establish the passive grab on.
         detail
-            The button number or key code to ungrab.
-            Must be 0 for GrabtypeEnter, GrabtypeFocusIn, and
-            GrabtypeTouchBegin.
+            In the case of GrabtypeButton, specifies the button number to ungrab.
+            In the case of GrabtypeKeycode, specifies the key code to ungrab.
+            The value must be 0 for GrabtypeEnter, GrabtypeFocusIn, GrabtypeTouchBegin,
+            GrabtypeGesturePinchBegin and GrabtypeGestureSwipeBegin.
         grab_type
             The type of grab to establish.
         grab_window
@@ -2096,6 +2274,15 @@ Version 2.3:
         - BarrierHit (see <<events-barrierevent,BarrierEvent>>)
         - BarrierLeave (see <<events-barrierevent,BarrierEvent>>)
 
+Version 2.4
+
+        - GesturePinchBegin (see <<events-gesturepinch,GesturePinchEvent)
+        - GesturePinchUpdate (see <<events-gesturepinch,GesturePinchEvent)
+        - GesturePinchEnd (see <<events-gesturepinch,GesturePinchEvent)
+        - GestureSwipeBegin (see <<events-gesturepinch,GestureSwipeEvent)
+        - GestureSwipeUpdate (see <<events-gesturepinch,GestureSwipeEvent)
+        - GestureSwipeEnd (see <<events-gesturepinch,GestureSwipeEvent)
+
 All events have a set of common fields specified as EVENTHEADER.
 
 
@@ -2271,7 +2458,7 @@ XI 2.2: The event type may also be TouchBegin, TouchUpdate, or TouchEnd.
     root
     event
     child
-        The root window, event window or subwindow, respectively. See core
+        The root window, event window or subwindow, respectively. See the core
         protocol specification for more detail.
     root_x
     root_y
@@ -2645,6 +2832,222 @@ destroyed while pointer movement is constrained by the barrier, or the
 master pointer blocked by the barrier is removed. This event
 has a dx/dy of 0/0.
 
+[[events-xi24]]
+Events introduced in version 2.4
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[[events-gesturepinch]]
+GesturePinchEvent
+^^^^^^^^^^^^^^^^^
+    ┌───
+        GesturePinchEvent
+            EVENTHEADER
+            detail:                     CARD32
+            root:                       Window
+            event:                      Window
+            child:                      Window
+            root_x:                     FP1616
+            root_y:                     FP1616
+            event_x:                    FP1616
+            event_y:                    FP1616
+            delta_x:                    FP1616
+            delta_y:                    FP1616
+            delta_unaccel_x:            FP1616
+            delta_unaccel_y:            FP1616
+            scale:                      FP1616
+            delta_angle:                FP1616
+            sourceid:                   DEVICEID
+            mods:                       MODIFIERINFO
+            group:                      GROUPINFO
+            flags:                      GESTUREPINCHEVENTFLAGS
+    └───
+
+    MODIFIERINFO  { base_mods:           CARD32,
+                    latched_mods:        CARD32,
+                    locked_mods:         CARD32,
+                    effective_mods:      CARD32}
+    GROUPINFO     { base_group:          CARD8,
+                    latched_group:       CARD8,
+                    locked_group:        CARD8,
+                    effective_group:     CARD8}
+
+    GESTUREPINCHEVENTFLAGS { GesturePinchCancelled }
+
+An XIGesturePinchEvent is generated whenever the logical state of a device
+changes in response to a pinch gesture. The event type may be one of GesturePinchBegin,
+GesturePinchUpdate, GesturePinchEnd.
+
+    detail
+        Represents the number of touches in a gesture.
+    root
+    event
+    child
+        The root window, event window or subwindow, respectively. See the core
+        protocol specification for more detail.
+    root_x
+    root_y
+        The position of the pointer in screen coordinates (16.16 fixed point).
+    event_x
+    event_y
+        The position of the pointer in screen coordinates relative to the
+        event window (16.16 fixed point).
+    delta_x
+    delta_y
+        The gesture delta between the last and the current events.
+        If the device employs acceleration, then the values represented by these fields is
+        the accelerated delta.
+        If the event type is GesturePinchBegin or GesturePinchEnd, this value is zero.
+    delta_unaccel_x:
+    delta_unaccel_y:
+        The gesture delta between the last and the current events.
+        The values represented by these fields are unaccelerated values regardless of whether
+        the device employs acceleration.
+        If the event type is GesturePinchBegin or GesturePinchEnd, this value is zero.
+    scale:
+        The absolute scale of a pinch gesture. The scale is the division of the current distance
+        between the fingers and the distance at the start of the gesture. The scale begins at 1.0,
+        and if e.g. the fingers moved together by 50% then the scale will become 0.5, if they move
+        twice as far apart as initially the scale becomes 2.0, etc.
+        If the event type is GesturePinchBegin, the value of the field is 1.0.
+        If the event type is GesturePinchEnd, the value of the field is equal to the last
+        GesturePinchUpdate event if any, or 1.0 if there's no such event.
+    delta_angle:
+        The angle delta in degrees between the last and current GesturePinchUpdate events.
+        Clockwise rotation is represented by a positive delta, counter-clockwise by a negative delta.
+        The angle represents the rotation of finger positions around the center of gravity. The
+        calculation of the center of gravity is implementation-dependent.
+        If the event type is GesturePinchBegin or GesturePinchEnd, this value is zero.
+    sourceid
+        The source device that originally generated the event.
+    mods
+        XKB modifier state before the event occured.
+    group
+        XKB group state before the event.
+    flags
+        Miscellaneous information about this event.
+        Events of type GesturePinchEnd can have GesturePinchCancelled set.
+        It means that the gesture has been cancelled for some reason.
+
+Modifier state in mods is detailed as follows:
+
+    base_mods
+        XKB base modifier state.
+    latched_mods
+        XKB latched modifier state.
+    locked_mods
+        XKB locked modifier state.
+
+Group state in group is detailed as follows:
+
+    base_group
+        XKB base group state.
+    latched_group
+        XKB latched group state.
+    locked_group
+        XKB locked group state.
+
+A GesturePinchBegin event is generated whenever a new pinch gesture sequence initializes.
+A GesturePinchEnd event is generated whenever such gesture sequence ceases. A
+GesturePinchUpdate event is generated whenever a property of the gesture changes.
+
+[[events-gestureswipe]]
+GestureSwipeEvent
+^^^^^^^^^^^^^^^^^
+    ┌───
+        GestureSwipeEvent
+            EVENTHEADER
+            detail:                     CARD32
+            root:                       Window
+            event:                      Window
+            child:                      Window
+            root_x:                     FP1616
+            root_y:                     FP1616
+            event_x:                    FP1616
+            event_y:                    FP1616
+            delta_x:                    FP1616
+            delta_y:                    FP1616
+            delta_unaccel_x:            FP1616
+            delta_unaccel_y:            FP1616
+            sourceid:                   DEVICEID
+            mods:                       MODIFIERINFO
+            group:                      GROUPINFO
+            flags:                      GESTURESWIPEEVENTFLAGS
+    └───
+
+    MODIFIERINFO  { base_mods:           CARD32,
+                    latched_mods:        CARD32,
+                    locked_mods:         CARD32,
+                    effective_mods:      CARD32}
+    GROUPINFO     { base_group:          CARD8,
+                    latched_group:       CARD8,
+                    locked_group:        CARD8,
+                    effective_group:     CARD8}
+
+    GESTURESWIPEEVENTFLAGS { GestureSwipeCancelled }
+
+An XIGestureSwipeEvent is generated whenever the logical state of a device
+changes in response to a Swipe gesture. The event type may be one of GestureSwipeBegin,
+GestureSwipeUpdate, GestureSwipeEnd.
+
+    detail
+        Represents the number of touches in a gesture.
+    root
+    event
+    child
+        The root window, event window or subwindow, respectively. See the core
+        protocol specification for more detail.
+    root_x
+    root_y
+        The position of the pointer in screen coordinates (16.16 fixed point).
+    event_x
+    event_y
+        The position of the pointer in screen coordinates relative to the
+        event window (16.16 fixed point).
+    delta_x
+    delta_y
+        The gesture delta between the last and the current events.
+        If the device employs acceleration, then the values represented by these fields is
+        the accelerated delta.
+        If the event type is GestureSwipeBegin or GestureSwipeEnd, this value is zero.
+    delta_unaccel_x:
+    delta_unaccel_y:
+        The gesture delta between the last and the current events.
+        The values represented by these fields are unaccelerated values regardless of whether
+        the device employs acceleration.
+        If the event type is GestureSwipeBegin or GestureSwipeEnd, this value is zero.
+    sourceid
+        The source device that originally generated the event.
+    mods
+        XKB modifier state before the event occured.
+    group
+        XKB group state before the event.
+    flags
+        Miscellaneous information about this event.
+        Events of type GestureSwipeEnd can have GestureSwipeCancelled set.
+        It means that the gesture has been cancelled for some reason.
+
+Modifier state in mods is detailed as follows:
+
+    base_mods
+        XKB base modifier state.
+    latched_mods
+        XKB latched modifier state.
+    locked_mods
+        XKB locked modifier state.
+
+Group state in group is detailed as follows:
+
+    base_group
+        XKB base group state.
+    latched_group
+        XKB latched group state.
+    locked_group
+        XKB locked group state.
+
+A GestureSwipeBegin event is generated whenever a new swipe gesture sequence initializes.
+A GestureSwipeEnd event is generated whenever such gesture sequence ceases. A
+GestureSwipeUpdate event is generated whenever a property of the gesture changes.
+
 :numbered!:
 [[xi22-usecases]]
 [appendix]
@@ -2717,3 +3120,45 @@ Driver DRV provides touch support from tracked device D:
 * DRV calls the respective input driver API with the touch sequence data. The
    touch sequence emulating a pointer has the respective flag set. DRV does not
    submit pointer data for any touchpoint.
+
+:numbered!:
+[[xi24-usecases]]
+[appendix]
+XI 2.4 Use-cases
+----------------
+
+All use-cases that include the receiving and processing of gesture events
+require the client to announce XI 2.4 support in the XIQueryVersion request.
+
+Client C wants to process swipe gesture events from a device D on window W.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* C calls XISelectEvent for XI_GestureSwipe{Begin|Update|End} from D on W.
+* C receives GestureSwipeBegin whenever a swipe gesture sequence starts when the
+   pointer is within W's borders.
+* C receives GestureSwipeUpdate events whenever a gesture property changes for a
+   gesture sequence it received a GestureSwipeBegin event for.
+* C receives GestureSwipeEnd whenever a gesture it received a GestureSwipeBegin event for
+   ceases.
+
+While client E wants to process pointer events on window W's parent, window Y.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* E calls XIGrabButton for XI_{ButtonPress,MotionNotify,ButtonRelease} to
+   create a asynchronous pointer grab from D on Y.
+* C calls XISelectEvent for XI_SwipeGesture{Begin|Update|End} from D on W.
+* E receives a ButtonPress due to a dependent device button press. The grab is
+   activated.
+* Any swipe gestures will result in no events being sent to C or E while E is
+   holding the grab.
+* After ButtonRelease event, the grab is released, swipe gestures can start as normal.
+
+Client C wants to process swipe gestures of a specific touch count from a device D on window W.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* C calls XIGrabSwipeGestureBegin to create a synchronous passive grab for
+   XI_GestureSwipe{Begin|Update|End} from D on W.
+* C receives GestureSwipeBegin whenever a swipe gesture sequence starts when the
+   pointer is within W's borders. This activates the passive grab.
+* C gets XI_GestureSwipeBegin, checks whether it's of appropriate touch count.
+* If yes, then C calls XIAllowEvents with XIAsyncDevice and processes the touch events.
+* If no, then C calls XIAllowEvents with XIReplayDevice and gives clients selecting or grabbing
+  the child windows a chance to process the gesture. In this case C gets GestureSwipeEnd event
+  immediately.
