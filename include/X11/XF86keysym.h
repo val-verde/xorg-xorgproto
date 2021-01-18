@@ -3,8 +3,10 @@
  *
  * The XFree86 keysym range is 0x10080001 - 0x1008FFFF.
  *
- * X.Org will not be adding to the XF86 set of keysyms, though they have
- * been adopted and are considered a "standard" part of X keysym definitions.
+ * The XF86 set of keysyms is a catch-all set of defines for keysyms found
+ * on various multimedia keyboards. Originally specific to XFree86 they have
+ * been been adopted over time and are considered a "standard" part of X
+ * keysym definitions.
  * XFree86 never properly commented these keysyms, so we have done our
  * best to explain the semantic meaning of these keys.
  *
