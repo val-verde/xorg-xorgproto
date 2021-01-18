@@ -232,3 +232,43 @@
 #define XF86XK_Prev_VMode	0x1008FE23   /* prev. video mode available */
 #define XF86XK_LogWindowTree	0x1008FE24   /* print window tree to log   */
 #define XF86XK_LogGrabInfo	0x1008FE25   /* print all active grabs to log */
+
+
+/*
+ * Reserved range for evdev symbols: 0x10081000-0x10081FFF
+ *
+ * Key syms within this range must match the Linux kernel
+ * input-event-codes.h file in the format:
+ *     XF86XK_CamelCaseKernelName	_EVDEVK(kernel value)
+ * For example, the kernel
+ *   #define KEY_MACRO_RECORD_START	0x2b0
+ * effectively ends up as:
+ *   #define XF86XK_MacroRecordStart	0x100812b0
+ *
+ * For historical reasons, some keysyms within the reserved range will be
+ * missing, most notably all "normal" keys that are mapped through default
+ * XKB layouts (e.g. KEY_Q).
+ *
+ * CamelCasing is done with a human control as last authority, e.g. see VOD
+ * instead of Vod for the Video on Demand key.
+ *
+ * The format for #defines is strict:
+ *
+ * #define XF86XK_FOO<tab...>_EVDEVK(0xABC)<tab><tab> |* kver KEY_FOO *|
+ *
+ * Where
+ * - alignment by tabs
+ * - the _EVDEVK macro must be used
+ * - the hex code must be in uppercase hex
+ * - the kernel version (kver) is in the form v5.10
+ * - kver and key name are within a slash-star comment (a pipe is used in
+ *   this example for technical reasons)
+ * These #defines are parsed by scripts. Do not stray from the given format.
+ *
+ * Where the evdev keycode is mapped to a different symbol, please add a
+ * comment line starting with Use: but otherwise the same format, e.g.
+ *  Use: XF86XK_RotationLockToggle	_EVDEVK(0x231)		   v4.16 KEY_ROTATE_LOCK_TOGGLE
+ *
+ */
+#define _EVDEVK(_v) (0x10081000 + _v)
+#undef _EVDEVK

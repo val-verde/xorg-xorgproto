@@ -12,10 +12,11 @@ variables:
   FDO_UPSTREAM_REPO: 'xorg/proto/xorgproto'
   # Changing the tag will rebuild the container images. The value is just a
   # string, but we use the date for human benefits.
-  FDO_DISTRIBUTION_TAG: '2021-01-20.0'
+  FDO_DISTRIBUTION_TAG: '2021-01-21.1'
 
 stages:
   - prep
+  - check
   - build
   - test
 
@@ -28,7 +29,7 @@ container-prep:
     # minimal set of packages required to build and install
     BASE_PACKAGES: 'meson ninja gcc'
     # extra packages we need for various tests
-    EXTRA_PACKAGES: 'libevdev python python-libevdev'
+    EXTRA_PACKAGES: 'git libevdev python python-libevdev python-black'
     FDO_DISTRIBUTION_PACKAGES: $BASE_PACKAGES $EXTRA_PACKAGES
 
 meson:
@@ -39,8 +40,26 @@ meson:
     matrix:
       - MESON_OPTIONS: ['', '-Dlegacy=true']
   script:
-    - mkdir ../_inst
+    - mkdir -p ../_inst
     - meson builddir --prefix="$PWD/../_inst" $MESON_OPTIONS
     - meson configure builddir
     - ninja -C builddir test
     - ninja -C builddir install
+
+check evdev keysyms:
+  extends:
+    - .fdo.distribution-image@arch
+  stage: test
+  script:
+    - ./scripts/keysym-generator.py --header=include/X11/XF86keysym.h verify
+
+check formatting:
+  extends:
+    - .fdo.distribution-image@arch
+  stage: check
+  script:
+    - black scripts/keysym-generator.py
+    - git diff --exit-code || (echo "Please run Black against the Python script" && false)
+  only:
+    changes:
+      - scripts/keysym-generator.py

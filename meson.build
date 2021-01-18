@@ -95,3 +95,8 @@ ext_xorgproto = declare_dependency(
 )
 
 subdir('include')
+
+keysymfile = join_paths(meson.source_root(), 'include', 'X11', 'XF86keysym.h')
+test('evdev-keysym-check',
+     find_program('scripts/keysym-generator.py'),
+     args: ['-v', '--header', keysymfile, 'verify'])

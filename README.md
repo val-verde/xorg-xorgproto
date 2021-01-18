@@ -32,3 +32,27 @@ For patch submission instructions, see:
 
   https://www.x.org/wiki/Development/Documentation/SubmittingPatches
 
+
+Updating for new Linux kernel releases
+--------------------------------------
+
+The XF86keysym.h header file needs updating whenever the Linux kernel
+adds a new keycode to linux/input-event-codes.h. See the comment in
+include/X11/XF86keysym.h for details on the format.
+
+The steps to update the file are:
+
+- if the kernel release did not add new `KEY_FOO` defines, no work is
+  required
+- ensure that libevdev has been updated to the new kernel headers. This may
+  require installing libevdev from git.
+- run `scripts/keysym-generator.py` to add new keysyms. See the `--help`
+  output for the correct invocation.
+- verify that the format for any keys added by this script is correct and
+  that the keys need to be mapped. Where a key code should not get a new
+  define or is already defined otherwise, comment the line.
+- file a merge request with the new changes
+- notify the xkeyboard-config maintainers that updates are needed
+
+Note that any #define added immediately becomes API. Due diligence is
+recommended.
