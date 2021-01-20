@@ -1,0 +1,46 @@
+# vim: set expandtab shiftwidth=2 tabstop=8 textwidth=0:
+
+include:
+  # Arch container builder template
+  - project: 'freedesktop/ci-templates'
+    ref: 6f86b8bcb0cd5168c32779c4fea9a893c4a0c046
+    file:
+      - '/templates/arch.yml'
+
+# global variables to be used by most/all jobs.
+variables:
+  FDO_UPSTREAM_REPO: 'xorg/proto/xorgproto'
+  # Changing the tag will rebuild the container images. The value is just a
+  # string, but we use the date for human benefits.
+  FDO_DISTRIBUTION_TAG: '2021-01-20.0'
+
+stages:
+  - prep
+  - build
+  - test
+
+container-prep:
+  extends:
+    - .fdo.container-build@arch
+  stage: prep
+  variables:
+    GIT_STRATEGY: none
+    # minimal set of packages required to build and install
+    BASE_PACKAGES: 'meson ninja gcc'
+    # extra packages we need for various tests
+    EXTRA_PACKAGES: 'libevdev python python-libevdev'
+    FDO_DISTRIBUTION_PACKAGES: $BASE_PACKAGES $EXTRA_PACKAGES
+
+meson:
+  extends:
+    - .fdo.distribution-image@arch
+  stage: build
+  parallel:
+    matrix:
+      - MESON_OPTIONS: ['', '-Dlegacy=true']
+  script:
+    - mkdir ../_inst
+    - meson builddir --prefix="$PWD/../_inst" $MESON_OPTIONS
+    - meson configure builddir
+    - ninja -C builddir test
+    - ninja -C builddir install
