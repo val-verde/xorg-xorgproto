@@ -271,4 +271,8 @@
  *
  */
 #define _EVDEVK(_v) (0x10081000 + _v)
+#define XF86XK_NotificationCenter	_EVDEVK(0x1BC)		/* v5.10 KEY_NOTIFICATION_CENTER */
+#define XF86XK_PickupPhone		_EVDEVK(0x1BD)		/* v5.10 KEY_PICKUP_PHONE */
+#define XF86XK_HangupPhone		_EVDEVK(0x1BE)		/* v5.10 KEY_HANGUP_PHONE */
+#define XF86XK_FnRightShift		_EVDEVK(0x1E5)		/* v5.10 KEY_FN_RIGHT_SHIFT */
 #undef _EVDEVK
