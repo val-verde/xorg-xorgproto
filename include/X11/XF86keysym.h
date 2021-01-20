@@ -275,4 +275,5 @@
 #define XF86XK_PickupPhone		_EVDEVK(0x1BD)		/* v5.10 KEY_PICKUP_PHONE */
 #define XF86XK_HangupPhone		_EVDEVK(0x1BE)		/* v5.10 KEY_HANGUP_PHONE */
 #define XF86XK_FnRightShift		_EVDEVK(0x1E5)		/* v5.10 KEY_FN_RIGHT_SHIFT */
+#define XF86XK_SelectiveScreenshot	_EVDEVK(0x27A)		/* v5.6  KEY_SELECTIVE_SCREENSHOT */
 #undef _EVDEVK
