@@ -273,6 +273,7 @@
 #define _EVDEVK(_v) (0x10081000 + _v)
 #define XF86XK_BrightnessAuto		_EVDEVK(0x0F4)		/* v3.16 KEY_BRIGHTNESS_AUTO */
 /* Use: XF86XK_WWAN			_EVDEVK(0x0F6)		   v3.13 KEY_WWAN */
+/* Use: XF86XK_AudioMicMute		_EVDEVK(0x0F8)		   v3.1  KEY_MICMUTE */
 /* Use: XF86XK_FullScreen		_EVDEVK(0x174)		   v5.1  KEY_FULL_SCREEN */
 #define XF86XK_AspectRatio		_EVDEVK(0x177)		/* v5.1  KEY_ASPECT_RATIO */
 #define XF86XK_NotificationCenter	_EVDEVK(0x1BC)		/* v5.10 KEY_NOTIFICATION_CENTER */
