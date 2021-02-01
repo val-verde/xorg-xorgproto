@@ -271,6 +271,7 @@
  *
  */
 #define _EVDEVK(_v) (0x10081000 + _v)
+/* Use: XF86XK_Eject			_EVDEVK(0x0A2)		         KEY_EJECTCLOSECD */
 /* Use: XF86XK_New			_EVDEVK(0x0B5)		   v2.6.14 KEY_NEW */
 /* Use: XK_Redo				_EVDEVK(0x0B6)		   v2.6.14 KEY_REDO */
 /* KEY_DASHBOARD has been mapped to LaunchB in xkeyboard-config since 2011 */
@@ -296,8 +297,18 @@
 /* Use: XF86XK_WWAN			_EVDEVK(0x0F6)		   v3.13 KEY_WWAN */
 /* Use: XF86XK_RFKill			_EVDEVK(0x0F7)		   v2.6.33 KEY_RFKILL */
 /* Use: XF86XK_AudioMicMute		_EVDEVK(0x0F8)		   v3.1  KEY_MICMUTE */
+#define XF86XK_Info			_EVDEVK(0x166)		/*       KEY_INFO */
+/* Use: XF86XK_CycleAngle		_EVDEVK(0x173)		         KEY_ANGLE */
 /* Use: XF86XK_FullScreen		_EVDEVK(0x174)		   v5.1  KEY_FULL_SCREEN */
 #define XF86XK_AspectRatio		_EVDEVK(0x177)		/* v5.1  KEY_ASPECT_RATIO */
+#define XF86XK_DVD			_EVDEVK(0x185)		/*       KEY_DVD */
+#define XF86XK_Audio			_EVDEVK(0x188)		/*       KEY_AUDIO */
+/* Use: XF86XK_Video			_EVDEVK(0x189)		         KEY_VIDEO */
+/* Use: XF86XK_Calendar			_EVDEVK(0x18D)		         KEY_CALENDAR */
+#define XF86XK_ChannelUp		_EVDEVK(0x192)		/*       KEY_CHANNELUP */
+#define XF86XK_ChannelDown		_EVDEVK(0x193)		/*       KEY_CHANNELDOWN */
+/* Use: XF86XK_AudioRandomPlay		_EVDEVK(0x19A)		         KEY_SHUFFLE */
+#define XF86XK_Break			_EVDEVK(0x19B)		/*       KEY_BREAK */
 #define XF86XK_VideoPhone		_EVDEVK(0x1A0)		/* v2.6.20 KEY_VIDEOPHONE */
 /* Use: XF86XK_Game			_EVDEVK(0x1A1)		   v2.6.20 KEY_GAMES */
 /* Use: XF86XK_ZoomIn			_EVDEVK(0x1A2)		   v2.6.20 KEY_ZOOMIN */
@@ -328,6 +339,8 @@
 #define XF86XK_NotificationCenter	_EVDEVK(0x1BC)		/* v5.10 KEY_NOTIFICATION_CENTER */
 #define XF86XK_PickupPhone		_EVDEVK(0x1BD)		/* v5.10 KEY_PICKUP_PHONE */
 #define XF86XK_HangupPhone		_EVDEVK(0x1BE)		/* v5.10 KEY_HANGUP_PHONE */
+#define XF86XK_Fn			_EVDEVK(0x1D0)		/*       KEY_FN */
+#define XF86XK_Fn_Esc			_EVDEVK(0x1D1)		/*       KEY_FN_ESC */
 #define XF86XK_FnRightShift		_EVDEVK(0x1E5)		/* v5.10 KEY_FN_RIGHT_SHIFT */
 /* Use: XK_braille_dot_1		_EVDEVK(0x1F1)		   v2.6.17 KEY_BRL_DOT1 */
 /* Use: XK_braille_dot_2		_EVDEVK(0x1F2)		   v2.6.17 KEY_BRL_DOT2 */
