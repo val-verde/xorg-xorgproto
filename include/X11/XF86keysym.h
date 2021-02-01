@@ -273,9 +273,13 @@
 #define _EVDEVK(_v) (0x10081000 + _v)
 #define XF86XK_BrightnessAuto		_EVDEVK(0x0F4)		/* v3.16 KEY_BRIGHTNESS_AUTO */
 /* Use: XF86XK_WWAN			_EVDEVK(0x0F6)		   v3.13 KEY_WWAN */
+/* Use: XF86XK_RFKill			_EVDEVK(0x0F7)		   v2.6.33 KEY_RFKILL */
 /* Use: XF86XK_AudioMicMute		_EVDEVK(0x0F8)		   v3.1  KEY_MICMUTE */
 /* Use: XF86XK_FullScreen		_EVDEVK(0x174)		   v5.1  KEY_FULL_SCREEN */
 #define XF86XK_AspectRatio		_EVDEVK(0x177)		/* v5.1  KEY_ASPECT_RATIO */
+#define XF86XK_10ChannelsUp		_EVDEVK(0x1B8)		/* v2.6.38 KEY_10CHANNELSUP */
+#define XF86XK_10ChannelsDown		_EVDEVK(0x1B9)		/* v2.6.38 KEY_10CHANNELSDOWN */
+#define XF86XK_Images			_EVDEVK(0x1BA)		/* v2.6.39 KEY_IMAGES */
 #define XF86XK_NotificationCenter	_EVDEVK(0x1BC)		/* v5.10 KEY_NOTIFICATION_CENTER */
 #define XF86XK_PickupPhone		_EVDEVK(0x1BD)		/* v5.10 KEY_PICKUP_PHONE */
 #define XF86XK_HangupPhone		_EVDEVK(0x1BE)		/* v5.10 KEY_HANGUP_PHONE */
@@ -284,6 +288,17 @@
 #define XF86XK_NumericB			_EVDEVK(0x20D)		/* v4.1  KEY_NUMERIC_B */
 #define XF86XK_NumericC			_EVDEVK(0x20E)		/* v4.1  KEY_NUMERIC_C */
 #define XF86XK_NumericD			_EVDEVK(0x20F)		/* v4.1  KEY_NUMERIC_D */
+#define XF86XK_CameraFocus		_EVDEVK(0x210)		/* v2.6.33 KEY_CAMERA_FOCUS */
+#define XF86XK_WPSButton		_EVDEVK(0x211)		/* v2.6.34 KEY_WPS_BUTTON */
+/* Use: XF86XK_TouchpadToggle		_EVDEVK(0x212)		   v2.6.37 KEY_TOUCHPAD_TOGGLE */
+/* Use: XF86XK_TouchpadOn		_EVDEVK(0x213)		   v2.6.37 KEY_TOUCHPAD_ON */
+/* Use: XF86XK_TouchpadOff		_EVDEVK(0x214)		   v2.6.37 KEY_TOUCHPAD_OFF */
+#define XF86XK_CameraZoomIn		_EVDEVK(0x215)		/* v2.6.39 KEY_CAMERA_ZOOMIN */
+#define XF86XK_CameraZoomOut		_EVDEVK(0x216)		/* v2.6.39 KEY_CAMERA_ZOOMOUT */
+#define XF86XK_CameraUp			_EVDEVK(0x217)		/* v2.6.39 KEY_CAMERA_UP */
+#define XF86XK_CameraDown		_EVDEVK(0x218)		/* v2.6.39 KEY_CAMERA_DOWN */
+#define XF86XK_CameraLeft		_EVDEVK(0x219)		/* v2.6.39 KEY_CAMERA_LEFT */
+#define XF86XK_CameraRight		_EVDEVK(0x21A)		/* v2.6.39 KEY_CAMERA_RIGHT */
 #define XF86XK_AttendantOn		_EVDEVK(0x21B)		/* v3.10 KEY_ATTENDANT_ON */
 #define XF86XK_AttendantOff		_EVDEVK(0x21C)		/* v3.10 KEY_ATTENDANT_OFF */
 #define XF86XK_AttendantToggle		_EVDEVK(0x21D)		/* v3.10 KEY_ATTENDANT_TOGGLE */
