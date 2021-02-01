@@ -284,6 +284,12 @@
 /* Use: XF86XK_RotationLockToggle	_EVDEVK(0x231)		   v4.16 KEY_ROTATE_LOCK_TOGGLE */
 #define XF86XK_Assistant		_EVDEVK(0x247)		/* v4.13 KEY_ASSISTANT */
 /* Use: ISO_Next_Group			_EVDEVK(0x248)		   v5.2  KEY_KBD_LAYOUT_NEXT */
+#define XF86XK_KbdInputAssistPrev	_EVDEVK(0x260)		/* v3.18 KEY_KBDINPUTASSIST_PREV */
+#define XF86XK_KbdInputAssistNext	_EVDEVK(0x261)		/* v3.18 KEY_KBDINPUTASSIST_NEXT */
+#define XF86XK_KbdInputAssistPrevgroup	_EVDEVK(0x262)		/* v3.18 KEY_KBDINPUTASSIST_PREVGROUP */
+#define XF86XK_KbdInputAssistNextgroup	_EVDEVK(0x263)		/* v3.18 KEY_KBDINPUTASSIST_NEXTGROUP */
+#define XF86XK_KbdInputAssistAccept	_EVDEVK(0x264)		/* v3.18 KEY_KBDINPUTASSIST_ACCEPT */
+#define XF86XK_KbdInputAssistCancel	_EVDEVK(0x265)		/* v3.18 KEY_KBDINPUTASSIST_CANCEL */
 #define XF86XK_RightUp			_EVDEVK(0x266)		/* v4.7  KEY_RIGHT_UP */
 #define XF86XK_RightDown		_EVDEVK(0x267)		/* v4.7  KEY_RIGHT_DOWN */
 #define XF86XK_LeftUp			_EVDEVK(0x268)		/* v4.7  KEY_LEFT_UP */
