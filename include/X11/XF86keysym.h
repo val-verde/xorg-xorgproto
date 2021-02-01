@@ -280,6 +280,7 @@
 /* Use: XF86XK_RotationLockToggle	_EVDEVK(0x231)		   v4.16 KEY_ROTATE_LOCK_TOGGLE */
 #define XF86XK_Assistant		_EVDEVK(0x247)		/* v4.13 KEY_ASSISTANT */
 /* Use: ISO_Next_Group			_EVDEVK(0x248)		   v5.2  KEY_KBD_LAYOUT_NEXT */
+#define XF86XK_OnScreenKeyboard		_EVDEVK(0x278)		/* v4.12 KEY_ONSCREEN_KEYBOARD */
 #define XF86XK_PrivacyScreenToggle	_EVDEVK(0x279)		/* v5.5  KEY_PRIVACY_SCREEN_TOGGLE */
 #define XF86XK_SelectiveScreenshot	_EVDEVK(0x27A)		/* v5.6  KEY_SELECTIVE_SCREENSHOT */
 #define XF86XK_Macro1			_EVDEVK(0x290)		/* v5.5  KEY_MACRO1 */
