@@ -271,12 +271,43 @@
  *
  */
 #define _EVDEVK(_v) (0x10081000 + _v)
+/* KEY_DASHBOARD has been mapped to LaunchB in xkeyboard-config since 2011 */
+/* Use: XF86XK_LaunchB			_EVDEVK(0x0CC)		   v2.6.28 KEY_DASHBOARD */
+/* Use: XF86XK_UWB			_EVDEVK(0x0EF)		   v2.6.24 KEY_UWB */
+/* Use: XF86XK_Next_VMode		_EVDEVK(0x0F1)		   v2.6.23 KEY_VIDEO_NEXT */
+/* Use: XF86XK_Prev_VMode		_EVDEVK(0x0F2)		   v2.6.23 KEY_VIDEO_PREV */
+/* Use: XF86XK_MonBrightnessCycle	_EVDEVK(0x0F3)		   v2.6.23 KEY_BRIGHTNESS_CYCLE */
 #define XF86XK_BrightnessAuto		_EVDEVK(0x0F4)		/* v3.16 KEY_BRIGHTNESS_AUTO */
+#define XF86XK_DisplayOff		_EVDEVK(0x0F5)		/* v2.6.23 KEY_DISPLAY_OFF */
 /* Use: XF86XK_WWAN			_EVDEVK(0x0F6)		   v3.13 KEY_WWAN */
 /* Use: XF86XK_RFKill			_EVDEVK(0x0F7)		   v2.6.33 KEY_RFKILL */
 /* Use: XF86XK_AudioMicMute		_EVDEVK(0x0F8)		   v3.1  KEY_MICMUTE */
 /* Use: XF86XK_FullScreen		_EVDEVK(0x174)		   v5.1  KEY_FULL_SCREEN */
 #define XF86XK_AspectRatio		_EVDEVK(0x177)		/* v5.1  KEY_ASPECT_RATIO */
+#define XF86XK_VideoPhone		_EVDEVK(0x1A0)		/* v2.6.20 KEY_VIDEOPHONE */
+/* Use: XF86XK_Game			_EVDEVK(0x1A1)		   v2.6.20 KEY_GAMES */
+/* Use: XF86XK_ZoomIn			_EVDEVK(0x1A2)		   v2.6.20 KEY_ZOOMIN */
+/* Use: XF86XK_ZoomOut			_EVDEVK(0x1A3)		   v2.6.20 KEY_ZOOMOUT */
+#define XF86XK_ZoomReset		_EVDEVK(0x1A4)		/* v2.6.20 KEY_ZOOMRESET */
+/* Use: XF86XK_Word			_EVDEVK(0x1A5)		   v2.6.20 KEY_WORDPROCESSOR */
+#define XF86XK_Editor			_EVDEVK(0x1A6)		/* v2.6.20 KEY_EDITOR */
+/* Use: XF86XK_Excel			_EVDEVK(0x1A7)		   v2.6.20 KEY_SPREADSHEET */
+#define XF86XK_GraphicsEditor		_EVDEVK(0x1A8)		/* v2.6.20 KEY_GRAPHICSEDITOR */
+#define XF86XK_Presentation		_EVDEVK(0x1A9)		/* v2.6.20 KEY_PRESENTATION */
+#define XF86XK_Database			_EVDEVK(0x1AA)		/* v2.6.20 KEY_DATABASE */
+/* Use: XF86XK_News			_EVDEVK(0x1AB)		   v2.6.20 KEY_NEWS */
+#define XF86XK_Voicemail		_EVDEVK(0x1AC)		/* v2.6.20 KEY_VOICEMAIL */
+#define XF86XK_Addressbook		_EVDEVK(0x1AD)		/* v2.6.20 KEY_ADDRESSBOOK */
+/* Use: XF86XK_Messenger		_EVDEVK(0x1AE)		   v2.6.20 KEY_MESSENGER */
+#define XF86XK_DisplayToggle		_EVDEVK(0x1AF)		/* v2.6.20 KEY_DISPLAYTOGGLE */
+#define XF86XK_SpellCheck		_EVDEVK(0x1B0)		/* v2.6.24 KEY_SPELLCHECK */
+/* Use: XF86XK_LogOff			_EVDEVK(0x1B1)		   v2.6.24 KEY_LOGOFF */
+/* Use: dollar				_EVDEVK(0x1B2)		   v2.6.24 KEY_DOLLAR */
+/* Use: euro				_EVDEVK(0x1B3)		   v2.6.24 KEY_EURO */
+/* Use: XF86XK_Frameback		_EVDEVK(0x1B4)		   v2.6.24 KEY_FRAMEBACK */
+/* Use: XF86XK_Frameforward		_EVDEVK(0x1B5)		   v2.6.24 KEY_FRAMEFORWARD */
+#define XF86XK_ContextMenu		_EVDEVK(0x1B6)		/* v2.6.24 KEY_CONTEXT_MENU */
+#define XF86XK_MediaRepeat		_EVDEVK(0x1B7)		/* v2.6.26 KEY_MEDIA_REPEAT */
 #define XF86XK_10ChannelsUp		_EVDEVK(0x1B8)		/* v2.6.38 KEY_10CHANNELSUP */
 #define XF86XK_10ChannelsDown		_EVDEVK(0x1B9)		/* v2.6.38 KEY_10CHANNELSDOWN */
 #define XF86XK_Images			_EVDEVK(0x1BA)		/* v2.6.39 KEY_IMAGES */
@@ -284,6 +315,20 @@
 #define XF86XK_PickupPhone		_EVDEVK(0x1BD)		/* v5.10 KEY_PICKUP_PHONE */
 #define XF86XK_HangupPhone		_EVDEVK(0x1BE)		/* v5.10 KEY_HANGUP_PHONE */
 #define XF86XK_FnRightShift		_EVDEVK(0x1E5)		/* v5.10 KEY_FN_RIGHT_SHIFT */
+/* Use: XK_braille_dot_9		_EVDEVK(0x1F9)		   v2.6.23 KEY_BRL_DOT9 */
+/* Use: XK_braille_dot_1		_EVDEVK(0x1FA)		   v2.6.23 KEY_BRL_DOT10 */
+#define XF86XK_Numeric0			_EVDEVK(0x200)		/* v2.6.28 KEY_NUMERIC_0 */
+#define XF86XK_Numeric1			_EVDEVK(0x201)		/* v2.6.28 KEY_NUMERIC_1 */
+#define XF86XK_Numeric2			_EVDEVK(0x202)		/* v2.6.28 KEY_NUMERIC_2 */
+#define XF86XK_Numeric3			_EVDEVK(0x203)		/* v2.6.28 KEY_NUMERIC_3 */
+#define XF86XK_Numeric4			_EVDEVK(0x204)		/* v2.6.28 KEY_NUMERIC_4 */
+#define XF86XK_Numeric5			_EVDEVK(0x205)		/* v2.6.28 KEY_NUMERIC_5 */
+#define XF86XK_Numeric6			_EVDEVK(0x206)		/* v2.6.28 KEY_NUMERIC_6 */
+#define XF86XK_Numeric7			_EVDEVK(0x207)		/* v2.6.28 KEY_NUMERIC_7 */
+#define XF86XK_Numeric8			_EVDEVK(0x208)		/* v2.6.28 KEY_NUMERIC_8 */
+#define XF86XK_Numeric9			_EVDEVK(0x209)		/* v2.6.28 KEY_NUMERIC_9 */
+#define XF86XK_NumericStar		_EVDEVK(0x20A)		/* v2.6.28 KEY_NUMERIC_STAR */
+#define XF86XK_NumericPound		_EVDEVK(0x20B)		/* v2.6.28 KEY_NUMERIC_POUND */
 #define XF86XK_NumericA			_EVDEVK(0x20C)		/* v4.1  KEY_NUMERIC_A */
 #define XF86XK_NumericB			_EVDEVK(0x20D)		/* v4.1  KEY_NUMERIC_B */
 #define XF86XK_NumericC			_EVDEVK(0x20E)		/* v4.1  KEY_NUMERIC_C */
