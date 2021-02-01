@@ -271,8 +271,22 @@
  *
  */
 #define _EVDEVK(_v) (0x10081000 + _v)
+/* Use: XF86XK_New			_EVDEVK(0x0B5)		   v2.6.14 KEY_NEW */
+/* Use: XK_Redo				_EVDEVK(0x0B6)		   v2.6.14 KEY_REDO */
 /* KEY_DASHBOARD has been mapped to LaunchB in xkeyboard-config since 2011 */
 /* Use: XF86XK_LaunchB			_EVDEVK(0x0CC)		   v2.6.28 KEY_DASHBOARD */
+/* Use: XF86XK_Display			_EVDEVK(0x0E3)		   v2.6.12 KEY_SWITCHVIDEOMODE */
+/* Use: XF86XK_KbdLightOnOff		_EVDEVK(0x0E4)		   v2.6.12 KEY_KBDILLUMTOGGLE */
+/* Use: XF86XK_KbdBrightnessDown	_EVDEVK(0x0E5)		   v2.6.12 KEY_KBDILLUMDOWN */
+/* Use: XF86XK_KbdBrightnessUp		_EVDEVK(0x0E6)		   v2.6.12 KEY_KBDILLUMUP */
+/* Use: XF86XK_Send			_EVDEVK(0x0E7)		   v2.6.14 KEY_SEND */
+/* Use: XF86XK_Reply			_EVDEVK(0x0E8)		   v2.6.14 KEY_REPLY */
+/* Use: XF86XK_MailForward		_EVDEVK(0x0E9)		   v2.6.14 KEY_FORWARDMAIL */
+/* Use: XF86XK_Save			_EVDEVK(0x0EA)		   v2.6.14 KEY_SAVE */
+/* Use: XF86XK_Documents		_EVDEVK(0x0EB)		   v2.6.14 KEY_DOCUMENTS */
+/* Use: XF86XK_Battery			_EVDEVK(0x0EC)		   v2.6.17 KEY_BATTERY */
+/* Use: XF86XK_Bluetooth		_EVDEVK(0x0ED)		   v2.6.19 KEY_BLUETOOTH */
+/* Use: XF86XK_WLAN			_EVDEVK(0x0EE)		   v2.6.19 KEY_WLAN */
 /* Use: XF86XK_UWB			_EVDEVK(0x0EF)		   v2.6.24 KEY_UWB */
 /* Use: XF86XK_Next_VMode		_EVDEVK(0x0F1)		   v2.6.23 KEY_VIDEO_NEXT */
 /* Use: XF86XK_Prev_VMode		_EVDEVK(0x0F2)		   v2.6.23 KEY_VIDEO_PREV */
@@ -315,6 +329,14 @@
 #define XF86XK_PickupPhone		_EVDEVK(0x1BD)		/* v5.10 KEY_PICKUP_PHONE */
 #define XF86XK_HangupPhone		_EVDEVK(0x1BE)		/* v5.10 KEY_HANGUP_PHONE */
 #define XF86XK_FnRightShift		_EVDEVK(0x1E5)		/* v5.10 KEY_FN_RIGHT_SHIFT */
+/* Use: XK_braille_dot_1		_EVDEVK(0x1F1)		   v2.6.17 KEY_BRL_DOT1 */
+/* Use: XK_braille_dot_2		_EVDEVK(0x1F2)		   v2.6.17 KEY_BRL_DOT2 */
+/* Use: XK_braille_dot_3		_EVDEVK(0x1F3)		   v2.6.17 KEY_BRL_DOT3 */
+/* Use: XK_braille_dot_4		_EVDEVK(0x1F4)		   v2.6.17 KEY_BRL_DOT4 */
+/* Use: XK_braille_dot_5		_EVDEVK(0x1F5)		   v2.6.17 KEY_BRL_DOT5 */
+/* Use: XK_braille_dot_6		_EVDEVK(0x1F6)		   v2.6.17 KEY_BRL_DOT6 */
+/* Use: XK_braille_dot_7		_EVDEVK(0x1F7)		   v2.6.17 KEY_BRL_DOT7 */
+/* Use: XK_braille_dot_8		_EVDEVK(0x1F8)		   v2.6.17 KEY_BRL_DOT8 */
 /* Use: XK_braille_dot_9		_EVDEVK(0x1F9)		   v2.6.23 KEY_BRL_DOT9 */
 /* Use: XK_braille_dot_1		_EVDEVK(0x1FA)		   v2.6.23 KEY_BRL_DOT10 */
 #define XF86XK_Numeric0			_EVDEVK(0x200)		/* v2.6.28 KEY_NUMERIC_0 */
