@@ -271,6 +271,8 @@
  *
  */
 #define _EVDEVK(_v) (0x10081000 + _v)
+/* Use: XF86XK_FullScreen		_EVDEVK(0x174)		   v5.1  KEY_FULL_SCREEN */
+#define XF86XK_AspectRatio		_EVDEVK(0x177)		/* v5.1  KEY_ASPECT_RATIO */
 #define XF86XK_NotificationCenter	_EVDEVK(0x1BC)		/* v5.10 KEY_NOTIFICATION_CENTER */
 #define XF86XK_PickupPhone		_EVDEVK(0x1BD)		/* v5.10 KEY_PICKUP_PHONE */
 #define XF86XK_HangupPhone		_EVDEVK(0x1BE)		/* v5.10 KEY_HANGUP_PHONE */
