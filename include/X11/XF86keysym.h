@@ -271,6 +271,7 @@
  *
  */
 #define _EVDEVK(_v) (0x10081000 + _v)
+#define XF86XK_BrightnessAuto		_EVDEVK(0x0F4)		/* v3.16 KEY_BRIGHTNESS_AUTO */
 /* Use: XF86XK_FullScreen		_EVDEVK(0x174)		   v5.1  KEY_FULL_SCREEN */
 #define XF86XK_AspectRatio		_EVDEVK(0x177)		/* v5.1  KEY_ASPECT_RATIO */
 #define XF86XK_NotificationCenter	_EVDEVK(0x1BC)		/* v5.10 KEY_NOTIFICATION_CENTER */
@@ -282,8 +283,17 @@
 #define XF86XK_NumericC			_EVDEVK(0x20E)		/* v4.1  KEY_NUMERIC_C */
 #define XF86XK_NumericD			_EVDEVK(0x20F)		/* v4.1  KEY_NUMERIC_D */
 /* Use: XF86XK_RotationLockToggle	_EVDEVK(0x231)		   v4.16 KEY_ROTATE_LOCK_TOGGLE */
+#define XF86XK_Buttonconfig		_EVDEVK(0x240)		/* v3.16 KEY_BUTTONCONFIG */
+#define XF86XK_Taskmanager		_EVDEVK(0x241)		/* v3.16 KEY_TASKMANAGER */
+#define XF86XK_Journal			_EVDEVK(0x242)		/* v3.16 KEY_JOURNAL */
+#define XF86XK_ControlPanel		_EVDEVK(0x243)		/* v3.16 KEY_CONTROLPANEL */
+#define XF86XK_AppSelect		_EVDEVK(0x244)		/* v3.16 KEY_APPSELECT */
+#define XF86XK_Screensaver		_EVDEVK(0x245)		/* v3.16 KEY_SCREENSAVER */
+#define XF86XK_VoiceCommand		_EVDEVK(0x246)		/* v3.16 KEY_VOICECOMMAND */
 #define XF86XK_Assistant		_EVDEVK(0x247)		/* v4.13 KEY_ASSISTANT */
 /* Use: ISO_Next_Group			_EVDEVK(0x248)		   v5.2  KEY_KBD_LAYOUT_NEXT */
+#define XF86XK_BrightnessMin		_EVDEVK(0x250)		/* v3.16 KEY_BRIGHTNESS_MIN */
+#define XF86XK_BrightnessMax		_EVDEVK(0x251)		/* v3.16 KEY_BRIGHTNESS_MAX */
 #define XF86XK_KbdInputAssistPrev	_EVDEVK(0x260)		/* v3.18 KEY_KBDINPUTASSIST_PREV */
 #define XF86XK_KbdInputAssistNext	_EVDEVK(0x261)		/* v3.18 KEY_KBDINPUTASSIST_NEXT */
 #define XF86XK_KbdInputAssistPrevgroup	_EVDEVK(0x262)		/* v3.18 KEY_KBDINPUTASSIST_PREVGROUP */
