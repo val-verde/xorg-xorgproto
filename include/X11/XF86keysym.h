@@ -277,6 +277,10 @@
 #define XF86XK_PickupPhone		_EVDEVK(0x1BD)		/* v5.10 KEY_PICKUP_PHONE */
 #define XF86XK_HangupPhone		_EVDEVK(0x1BE)		/* v5.10 KEY_HANGUP_PHONE */
 #define XF86XK_FnRightShift		_EVDEVK(0x1E5)		/* v5.10 KEY_FN_RIGHT_SHIFT */
+#define XF86XK_NumericA			_EVDEVK(0x20C)		/* v4.1  KEY_NUMERIC_A */
+#define XF86XK_NumericB			_EVDEVK(0x20D)		/* v4.1  KEY_NUMERIC_B */
+#define XF86XK_NumericC			_EVDEVK(0x20E)		/* v4.1  KEY_NUMERIC_C */
+#define XF86XK_NumericD			_EVDEVK(0x20F)		/* v4.1  KEY_NUMERIC_D */
 /* Use: XF86XK_RotationLockToggle	_EVDEVK(0x231)		   v4.16 KEY_ROTATE_LOCK_TOGGLE */
 #define XF86XK_Assistant		_EVDEVK(0x247)		/* v4.13 KEY_ASSISTANT */
 /* Use: ISO_Next_Group			_EVDEVK(0x248)		   v5.2  KEY_KBD_LAYOUT_NEXT */
