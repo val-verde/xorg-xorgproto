@@ -283,6 +283,10 @@
 #define XF86XK_NumericB			_EVDEVK(0x20D)		/* v4.1  KEY_NUMERIC_B */
 #define XF86XK_NumericC			_EVDEVK(0x20E)		/* v4.1  KEY_NUMERIC_C */
 #define XF86XK_NumericD			_EVDEVK(0x20F)		/* v4.1  KEY_NUMERIC_D */
+#define XF86XK_AttendantOn		_EVDEVK(0x21B)		/* v3.10 KEY_ATTENDANT_ON */
+#define XF86XK_AttendantOff		_EVDEVK(0x21C)		/* v3.10 KEY_ATTENDANT_OFF */
+#define XF86XK_AttendantToggle		_EVDEVK(0x21D)		/* v3.10 KEY_ATTENDANT_TOGGLE */
+#define XF86XK_LightsToggle		_EVDEVK(0x21E)		/* v3.10 KEY_LIGHTS_TOGGLE */
 #define XF86XK_ALSToggle		_EVDEVK(0x230)		/* v3.13 KEY_ALS_TOGGLE */
 /* Use: XF86XK_RotationLockToggle	_EVDEVK(0x231)		   v4.16 KEY_ROTATE_LOCK_TOGGLE */
 #define XF86XK_Buttonconfig		_EVDEVK(0x240)		/* v3.16 KEY_BUTTONCONFIG */
