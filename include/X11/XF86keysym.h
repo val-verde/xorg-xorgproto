@@ -327,10 +327,10 @@
 #define XF86XK_DisplayToggle		_EVDEVK(0x1AF)		/* v2.6.20 KEY_DISPLAYTOGGLE */
 #define XF86XK_SpellCheck		_EVDEVK(0x1B0)		/* v2.6.24 KEY_SPELLCHECK */
 /* Use: XF86XK_LogOff			_EVDEVK(0x1B1)		   v2.6.24 KEY_LOGOFF */
-/* Use: dollar				_EVDEVK(0x1B2)		   v2.6.24 KEY_DOLLAR */
-/* Use: euro				_EVDEVK(0x1B3)		   v2.6.24 KEY_EURO */
-/* Use: XF86XK_Frameback		_EVDEVK(0x1B4)		   v2.6.24 KEY_FRAMEBACK */
-/* Use: XF86XK_Frameforward		_EVDEVK(0x1B5)		   v2.6.24 KEY_FRAMEFORWARD */
+/* Use: XK_dollar			_EVDEVK(0x1B2)		   v2.6.24 KEY_DOLLAR */
+/* Use: XK_EuroSign			_EVDEVK(0x1B3)		   v2.6.24 KEY_EURO */
+/* Use: XF86XK_FrameBack		_EVDEVK(0x1B4)		   v2.6.24 KEY_FRAMEBACK */
+/* Use: XF86XK_FrameForward		_EVDEVK(0x1B5)		   v2.6.24 KEY_FRAMEFORWARD */
 #define XF86XK_ContextMenu		_EVDEVK(0x1B6)		/* v2.6.24 KEY_CONTEXT_MENU */
 #define XF86XK_MediaRepeat		_EVDEVK(0x1B7)		/* v2.6.26 KEY_MEDIA_REPEAT */
 #define XF86XK_10ChannelsUp		_EVDEVK(0x1B8)		/* v2.6.38 KEY_10CHANNELSUP */
@@ -393,7 +393,7 @@
 #define XF86XK_Screensaver		_EVDEVK(0x245)		/* v3.16 KEY_SCREENSAVER */
 #define XF86XK_VoiceCommand		_EVDEVK(0x246)		/* v3.16 KEY_VOICECOMMAND */
 #define XF86XK_Assistant		_EVDEVK(0x247)		/* v4.13 KEY_ASSISTANT */
-/* Use: ISO_Next_Group			_EVDEVK(0x248)		   v5.2  KEY_KBD_LAYOUT_NEXT */
+/* Use: XK_ISO_Next_Group		_EVDEVK(0x248)		   v5.2  KEY_KBD_LAYOUT_NEXT */
 #define XF86XK_BrightnessMin		_EVDEVK(0x250)		/* v3.16 KEY_BRIGHTNESS_MIN */
 #define XF86XK_BrightnessMax		_EVDEVK(0x251)		/* v3.16 KEY_BRIGHTNESS_MAX */
 #define XF86XK_KbdInputAssistPrev	_EVDEVK(0x260)		/* v3.18 KEY_KBDINPUTASSIST_PREV */
