@@ -158,7 +158,7 @@ def verify(ns):
     )
     # This is the comment pattern we expect
     expected_comment_pattern = re.compile(
-        r"/\* Use: \w+\t+_EVDEVK\(0x([0-9A-F]{3})\)\t+   (v[2-6]\.[0-9]+(\.[0-9]+)?)? +KEY_\w+ \*/"
+        r"/\* Use: \w+\t+_EVDEVK\(0x(?P<value>[0-9A-F]{3})\)\t+   (v[2-6]\.[0-9]+(\.[0-9]+)?)? +KEY_\w+ \*/"
     )
 
     # Some patterns to spot specific errors, just so we can print useful errors
@@ -206,12 +206,11 @@ def verify(ns):
                 if not re.match(define, line):
                     match = re.match(expected_comment_pattern, line)
                     if match:
-                        if match.group(1) != match.group(1).upper():
-                            error(
-                                f"Hex code 0x{match.group(1)} must be uppercase", line
-                            )
-                        if match.group(1):
-                            keycode = int(match.group(1), 16)
+                        hexcode = match.group("value")
+                        if hexcode != hexcode.upper():
+                            error(f"Hex code 0x{hexcode} must be uppercase", line)
+                        if hexcode:
+                            keycode = int(hexcode, 16)
                             if keycode < last_keycode:
                                 error("Keycode must be ascending", line)
                             if keycode == last_keycode:
