@@ -31,6 +31,22 @@ def die(msg):
     sys.exit(1)
 
 
+def all_keysyms(directory):
+    """
+    Extract the key names for all keysyms we have in our repo and return
+    them as list.
+    """
+    keysym_names = []
+    pattern = re.compile(r"^#define\s+(?P<name>\w+)\s+(0x[0-9A-Fa-f]+)")
+    for path in directory.glob("*keysym*.h"):
+        with open(path) as fd:
+            for line in fd:
+                match = re.match(pattern, line)
+                if match:
+                    keysym_names.append(match.group("name"))
+    return keysym_names
+
+
 class Kernel(object):
     """
     Wrapper around the kernel git tree to simplify searching for when a
@@ -158,7 +174,7 @@ def verify(ns):
     )
     # This is the comment pattern we expect
     expected_comment_pattern = re.compile(
-        r"/\* Use: \w+\t+_EVDEVK\(0x(?P<value>[0-9A-F]{3})\)\t+   (v[2-6]\.[0-9]+(\.[0-9]+)?)? +KEY_\w+ \*/"
+        r"/\* Use: (?P<name>\w+)\t+_EVDEVK\(0x(?P<value>[0-9A-F]{3})\)\t+   (v[2-6]\.[0-9]+(\.[0-9]+)?)? +KEY_\w+ \*/"
     )
 
     # Some patterns to spot specific errors, just so we can print useful errors
@@ -174,6 +190,8 @@ def verify(ns):
     success = True
 
     all_defines = []
+
+    all_keysym_names = all_keysyms(ns.header.parent)
 
     class ParserError(Exception):
         pass
@@ -216,6 +234,10 @@ def verify(ns):
                             if keycode == last_keycode:
                                 error("Duplicate keycode", line)
                             last_keycode = keycode
+
+                        name = match.group("name")
+                        if name not in all_keysym_names:
+                            error(f"Unknown keysym {name}", line)
                     elif re.match(hex_pattern, line):
                         logger.warning(f"Unexpected hex code in {line}")
                     continue
@@ -417,6 +439,8 @@ def main():
 
     if not ns.header:
         ns.header = find_xf86keysym_header()
+    else:
+        ns.header = Path(ns.header)
 
     if ns.command is None:
         parser.error("Invalid or missing command")
