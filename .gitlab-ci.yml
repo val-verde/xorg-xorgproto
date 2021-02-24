@@ -12,7 +12,7 @@ variables:
   FDO_UPSTREAM_REPO: 'xorg/proto/xorgproto'
   # Changing the tag will rebuild the container images. The value is just a
   # string, but we use the date for human benefits.
-  FDO_DISTRIBUTION_TAG: '2021-01-21.1'
+  FDO_DISTRIBUTION_TAG: '2021-02-24.0'
 
 stages:
   - prep
@@ -27,7 +27,7 @@ container-prep:
   variables:
     GIT_STRATEGY: none
     # minimal set of packages required to build and install
-    BASE_PACKAGES: 'meson ninja gcc'
+    BASE_PACKAGES: 'meson ninja gcc autoconf automake make xorg-util-macros pkgconf'
     # extra packages we need for various tests
     EXTRA_PACKAGES: 'git libevdev python python-libevdev python-black'
     FDO_DISTRIBUTION_PACKAGES: $BASE_PACKAGES $EXTRA_PACKAGES
@@ -45,6 +45,22 @@ meson:
     - meson configure builddir
     - ninja -C builddir test
     - ninja -C builddir install
+
+autotools:
+  extends:
+    - .fdo.distribution-image@arch
+  stage: build
+  parallel:
+    matrix:
+      - CONFIGURE_OPTIONS: ['', '--enable-legacy']
+  script:
+    - mkdir -p ../_inst _build
+    - autoreconf -ivf
+    - pushd _build
+    - ../configure --prefix="$PWD/../_inst" $CONFIGURE_OPTIONS
+    - make install
+    - make distcheck
+    - popd
 
 check evdev keysyms:
   extends:
