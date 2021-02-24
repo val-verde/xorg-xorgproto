@@ -22,7 +22,7 @@ dnl
 dnl Process this file with autoconf to create configure.
 
 AC_PREREQ([2.60])
-AC_INIT([xorgproto], [2020.1],
+AC_INIT([xorgproto], [2021.2],
         [https://gitlab.freedesktop.org/xorg/proto/xorgproto/issues])
 AM_INIT_AUTOMAKE([foreign dist-bzip2])
 
