@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-project('xorgproto', 'c', license : 'MIT', version : '2021.2')
+project('xorgproto', 'c', license : 'MIT', version : '2021.3')
 cc = meson.get_compiler('c')
 sed = find_program('sed')
 
