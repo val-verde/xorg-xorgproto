@@ -58,6 +58,7 @@ autotools:
     - autoreconf -ivf
     - pushd _build
     - ../configure --prefix="$PWD/../_inst" $CONFIGURE_OPTIONS
+    - make check
     - make install
     - make distcheck
     - mv xorgproto*.tar.gz ..

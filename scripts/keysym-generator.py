@@ -13,6 +13,7 @@
 
 import argparse
 import logging
+import os
 import sys
 import re
 import libevdev
@@ -385,9 +386,10 @@ def find_xf86keysym_header():
     """
     paths = tuple(Path.cwd().glob("**/XF86keysym.h"))
     if not paths:
-        path = Path("/usr/include/X11/XF86keysym.h")
+        fallbackdir = Path(os.getenv("INCLUDESDIR") or "/usr/include/")
+        path = fallbackdir / "X11" / "XF86keysym.h"
         if not path.exists():
-            die("Unable to find XF86keysym.h in CWD or /usr")
+            die(f"Unable to find XF86keysym.h in CWD or {fallbackdir}")
     else:
         if len(paths) > 1:
             die("Multiple XF86keysym.h in CWD, please use --header")
@@ -409,7 +411,7 @@ def main():
 
     subparsers = parser.add_subparsers(help="command-specific help", dest="command")
     parser_verify = subparsers.add_parser(
-        "verify", help="Verify the XF86keysym.h matches requirements"
+        "verify", help="Verify the XF86keysym.h matches requirements (default)"
     )
     parser_verify.set_defaults(func=verify)
 
@@ -443,7 +445,8 @@ def main():
         ns.header = Path(ns.header)
 
     if ns.command is None:
-        parser.error("Invalid or missing command")
+        print("No command specified, defaulting to verify'")
+        ns.func = verify
 
     sys.exit(ns.func(ns))
 

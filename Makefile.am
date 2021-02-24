@@ -487,3 +487,11 @@ EXTRA_DIST = \
 
 
 AM_DISTCHECK_CONFIGURE_FLAGS = --enable-legacy
+
+if HAVE_PYTHON
+AM_TESTS_ENVIRONMENT = \
+       INCLUDESDIR=$(top_srcdir)/include
+TESTS = scripts/keysym-generator.py
+TEST_EXTENSIONS = .py
+PY_LOG_COMPILER = $(PYTHON)
+endif
