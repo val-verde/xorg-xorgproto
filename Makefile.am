@@ -1,3 +1,24 @@
+SED = sed
+
+XORGRELSTRING = @PACKAGE_STRING@
+  XORGMANNAME = X Version 11
+
+MAN_SUBSTS = \
+        -e 's|__vendorversion__|"$(XORGRELSTRING)" "$(XORGMANNAME)"|' \
+        -e 's|__xorgversion__|"$(XORGRELSTRING)" "$(XORGMANNAME)"|' \
+        -e 's|__datadir__|$(datadir)|g' \
+        -e 's|__libdir__|$(libdir)|g' \
+        -e 's|__sysconfdir__|$(sysconfdir)|g' \
+        -e 's|__appmansuffix__|$(APP_MAN_SUFFIX)|g' \
+        -e 's|__libmansuffix__|$(LIB_MAN_SUFFIX)|g' \
+        -e 's|__miscmansuffix__|$(MISC_MAN_SUFFIX)|g'
+
+SUFFIXES = .$(MISC_MAN_SUFFIX) .man
+
+.man.$(MISC_MAN_SUFFIX): man
+	$(MKDIR_P) man
+	$(AM_V_GEN)$(SED) $(MAN_SUBSTS) < $< > $@
+
 applewmdir = $(includedir)/X11/extensions
 applewm_HEADERS = \
         include/X11/extensions/applewmconst.h \
@@ -120,27 +141,6 @@ present_HEADERS = \
 
 presentprotopkgconfigdir = $(datadir)/pkgconfig
 presentprotopkgconfig_DATA = presentproto.pc
-
-SED = sed
-
-XORGRELSTRING = @PACKAGE_STRING@
-  XORGMANNAME = X Version 11
-
-MAN_SUBSTS = \
-        -e 's|__vendorversion__|"$(XORGRELSTRING)" "$(XORGMANNAME)"|' \
-        -e 's|__xorgversion__|"$(XORGRELSTRING)" "$(XORGMANNAME)"|' \
-        -e 's|__datadir__|$(datadir)|g' \
-        -e 's|__libdir__|$(libdir)|g' \
-        -e 's|__sysconfdir__|$(sysconfdir)|g' \
-        -e 's|__appmansuffix__|$(APP_MAN_SUFFIX)|g' \
-        -e 's|__libmansuffix__|$(LIB_MAN_SUFFIX)|g' \
-        -e 's|__miscmansuffix__|$(MISC_MAN_SUFFIX)|g'
-
-SUFFIXES = .$(MISC_MAN_SUFFIX) .man
-
-.man.$(MISC_MAN_SUFFIX): man
-	$(MKDIR_P) man
-	$(AM_V_GEN)$(SED) $(MAN_SUBSTS) < $< > $@
 
 randrdir = $(includedir)/X11/extensions
 randr_HEADERS = \
