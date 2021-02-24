@@ -60,7 +60,27 @@ autotools:
     - ../configure --prefix="$PWD/../_inst" $CONFIGURE_OPTIONS
     - make install
     - make distcheck
+    - mv xorgproto*.tar.gz ..
     - popd
+  artifacts:
+    paths:
+      - xorgproto*.tar.gz
+
+meson from tarball:
+  extends:
+    - .fdo.distribution-image@arch
+  stage: test
+  script:
+    - mkdir -p _tarball_build
+    - tar xf xorgproto-*.tar.gz -C _tarball_build
+    - pushd _tarball_build/xorgproto-*
+    - meson builddir
+    - meson configure builddir
+    - ninja -C builddir test
+  needs:
+    - autotools
+  variables:
+    GIT_STRATEGY: none
 
 check evdev keysyms:
   extends:
