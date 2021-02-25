@@ -83,6 +83,27 @@ meson from tarball:
   variables:
     GIT_STRATEGY: none
 
+compare meson and autotools:
+  extends:
+    - .fdo.distribution-image@arch
+  stage: test
+  script:
+    - mkdir -p $PWD/_meson_inst
+    - mkdir -p $PWD/_autotools_inst
+    # the prefix ends up in the pkgconfig files, so we use a symlink
+    # to use the same --prefix for meson and autotools
+    - ln -sf $PWD/_meson_inst $PWD/_inst
+    - meson builddir
+    - meson configure builddir --prefix=$PWD/_inst
+    - ninja -C builddir install
+    - rm $PWD/_inst
+    - ln -sf $PWD/_autotools_inst $PWD/_inst
+    - autoreconf -ivf
+    # meson doesn't build the specs yet
+    - ./configure --prefix=$PWD/_inst --disable-specs
+    - make && make install
+    - diff --brief --recursive $PWD/_meson_inst $PWD/_autotools_inst
+
 check evdev keysyms:
   extends:
     - .fdo.distribution-image@arch
