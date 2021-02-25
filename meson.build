@@ -66,6 +66,22 @@ foreach pc : pcs
     )
 endforeach
 
+
+docs = files('compositeproto.txt',
+             'damageproto.txt',
+             'dri2proto.txt',
+             'dri3proto.txt',
+             'fixesproto.txt',
+             'PM_spec',
+             'presentproto.txt',
+             'randrproto.txt',
+             'renderproto.txt',
+             'resproto.txt',
+             'xv-protocol-v2.txt')
+install_data(docs,
+             install_dir: get_option('datadir') / 'doc' / 'xorgproto')
+
+
 if get_option('legacy') == true
     legacy_pcs = [
         'evieproto',
