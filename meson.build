@@ -20,7 +20,6 @@
 
 project('xorgproto', 'c', license : 'MIT', version : '2021.3')
 cc = meson.get_compiler('c')
-sed = find_program('sed')
 
 pcs = [
         'applewmproto',
