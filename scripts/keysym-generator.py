@@ -16,9 +16,19 @@ import logging
 import os
 import sys
 import re
-import libevdev
 import subprocess
 from pathlib import Path
+
+try:
+    import libevdev
+except ModuleNotFoundError as e:
+    print(f"Error: {e}", file=sys.stderr)
+    print(
+        "One or more python modules are missing. Please install those "
+        "modules and re-run this tool."
+    )
+    sys.exit(77)
+
 
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 logger = logging.getLogger("ksgen")
