@@ -12,7 +12,7 @@ variables:
   FDO_UPSTREAM_REPO: 'xorg/proto/xorgproto'
   # Changing the tag will rebuild the container images. The value is just a
   # string, but we use the date for human benefits.
-  FDO_DISTRIBUTION_TAG: '2021-02-24.0'
+  FDO_DISTRIBUTION_TAG: '2021-04-30.0'
 
 stages:
   - prep
@@ -29,7 +29,7 @@ container-prep:
     # minimal set of packages required to build and install
     BASE_PACKAGES: 'meson ninja gcc autoconf automake make xorg-util-macros pkgconf'
     # extra packages we need for various tests
-    EXTRA_PACKAGES: 'git libevdev python python-libevdev python-black'
+    EXTRA_PACKAGES: 'git libevdev python python-libevdev python-black jq'
     FDO_DISTRIBUTION_PACKAGES: $BASE_PACKAGES $EXTRA_PACKAGES
 
 meson:
@@ -121,3 +121,17 @@ check formatting:
   only:
     changes:
       - scripts/keysym-generator.py
+
+check versions are in sync:
+  extends:
+    - .fdo.distribution-image@arch
+  stage: test
+  script:
+    - autoreconf -ivf
+    - ./configure --version | head -n 1 | sed -e 's/xorgproto configure //' > autotools.version
+    - |
+      meson builddir
+      pushd builddir
+      meson introspect --projectinfo | jq -r '.version' > ../meson.version
+      popd
+    - diff -u autotools.version meson.version || (echo "ERROR - autotools and meson versions not in sync" && false)

@@ -18,6 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# keep version in sync with configure.ac
 project('xorgproto', 'c', license : 'MIT', version : '2021.3')
 cc = meson.get_compiler('c')
 
