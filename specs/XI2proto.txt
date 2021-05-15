@@ -15,7 +15,7 @@ Authors:
 History 
 -------
 
-- v2.4, TODOTODO TODO: Touchpad gesture support added
+- v2.4, (not released): Touchpad gesture support added
 - v2.3, December 2012: Pointer barrier events added
 - v2.2, March 2012: Multitouch support added
 - v2.1, December 2011: new raw event behaviour, smooth scrolling support
