@@ -940,7 +940,8 @@ XIQueryDevice
     GESTURECLASS³ { type:                 GestureClass
                     length:               CARD16
                     sourceid:             CARD16
-                    num_touches:          CARD16 }
+                    num_touches:          CARD8
+                    pad:                  CARD8 }
 
     ¹ since XI 2.1
     ² since XI 2.2
