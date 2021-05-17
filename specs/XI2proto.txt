@@ -933,7 +933,7 @@ XIQueryDevice
                   length:               CARD16
                   sourceid:             CARD16
                   mode:                 TOUCHMODE
-                  num_touches:          CARD16 }
+                  num_touches:          CARD8 }
 
     TOUCHMODE { DirectTouch, DependentTouch }
 
