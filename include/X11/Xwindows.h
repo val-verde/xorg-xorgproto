@@ -67,6 +67,7 @@ The Open Group.
 #define INT64 wINT64
 #define LONG64 wLONG64
 #endif
+#undef ControlMask
 #undef Status
 #define Status wStatus
 #define ATOM wATOM

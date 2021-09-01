@@ -47,12 +47,14 @@ The Open Group.
 #define _NO_BOOL_TYPEDEF
 #define BOOL WINBOOL
 #define INT32 wINT32
+#undef ControlMask
 #undef Status
 #define Status wStatus
 #define ATOM wATOM
 #define BYTE wBYTE
 #define FreeResource wFreeResource
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #undef Status
 #define Status int
 #undef BYTE
