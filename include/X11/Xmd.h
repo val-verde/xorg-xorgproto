@@ -68,7 +68,7 @@ SOFTWARE.
      defined(__s390x__) || \
      defined(__amd64__) || defined(amd64) || \
      defined(__powerpc64__)
-#  if !defined(__ILP32__) /* amd64-x32 is 32bit */
+#  if !defined(__ILP32__) && !defined(_WIN64) /* amd64-x32 is 32bit */
 #   define LONG64				/* 32/64-bit architecture */
 #  endif /* !__ILP32__ */
 # endif
